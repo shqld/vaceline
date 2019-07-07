@@ -1,0 +1,1 @@
+parse x 18.49 ops/sec ±5.12% (34 runs sampled)

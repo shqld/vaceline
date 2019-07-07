@@ -13,7 +13,8 @@
     "build": "rimraf dist && yarn babel src -d dist -x .ts",
     "test": "yarn lint && yarn type && yarn jest",
     "lint": "yarn eslint src --ext .ts",
-    "type": "yarn tsc --noEmit"
+    "type": "yarn tsc --noEmit",
+    "bench": "node benchmark > bench.txt"
   },
   "dependencies": {
     "parsimmon": "^1.12.0",
@@ -33,6 +34,7 @@
     "@types/parsimmon": "^1.10.0",
     "@typescript-eslint/eslint-plugin": "^1.11.0",
     "@typescript-eslint/parser": "^1.11.0",
+    "benchmark": "^2.1.4",
     "debug": "^4.1.1",
     "dev-null": "^0.1.1",
     "eslint": "^6.0.1",
