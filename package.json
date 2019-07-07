@@ -34,6 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^1.11.0",
     "@typescript-eslint/parser": "^1.11.0",
     "debug": "^4.1.1",
+    "dev-null": "^0.1.1",
     "eslint": "^6.0.1",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-node": "^9.1.0",
