@@ -1,5 +1,7 @@
-import { Identifier, Node, Plain } from '../nodes'
+import { Node } from '../nodes'
 import { traverse } from '.'
+import { isNode } from '../utils/node'
+import { Identifier } from '../ast-nodes'
 
 export interface Handler {
   entry?(path: NodePath<any>): void
@@ -60,7 +62,7 @@ export class NodePath<T extends Node> implements TraversalContext {
     query?: Partial<Identifier>
   ): this is NodePath<Identifier> {
     return (
-      this.node instanceof Identifier &&
+      isNode(this.node, ['Identifier']) &&
       (query == undefined
         ? true
         : Object.entries(query).every(([k, v]) => this.node[k] === v))

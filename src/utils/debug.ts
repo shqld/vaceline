@@ -1,4 +1,4 @@
-import debug, { Debugger, Formatters } from 'debug'
+import debug from 'debug'
 
 const vaceline = debug('vaceline')
 
@@ -6,20 +6,6 @@ const vaceline = debug('vaceline')
 // it is for printing output(code|ast)
 vaceline.log = console.log.bind(console)
 
-type BuildDebug = (
-  ...scopes: Array<string>
-) => Debugger & {
-  build: BuildDebug
-}
+export const buildDebug = vaceline.extend.bind(vaceline)
 
-const createBuildDebug = (base: Debugger) => (...scopes: Array<string>) => {
-  const debug = base.extend(scopes.join(':')) as Debugger & {
-    build: BuildDebug
-  }
-
-  debug.build = createBuildDebug(debug)
-
-  return debug
-}
-
-export const buildDebug = createBuildDebug(vaceline)
+export { vaceline as debugVacel }

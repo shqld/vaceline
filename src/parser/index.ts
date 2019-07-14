@@ -1,85 +1,107 @@
-import * as p from 'parsimmon'
+import { Program, Statement } from '../ast-nodes'
+import { Tokenizer, Token, TokenType } from './tokenizer'
+import { Node, NodeType, NodeAs } from '../nodes'
+import { createError } from './create-error'
+import { TokenReader } from './token-reader'
 
-import * as u from '../utils/index'
-import * as n from '../nodes'
-import { helpers as h, wrappers as w, symbols as s } from './lib'
+import { isNode } from '../utils/node'
+import { isToken } from '../utils/token'
+import { PlainNode, NodeWithLoc } from '../nodes/node'
+import { parseStmt } from './statement/index'
+import { parseCompound } from './compound'
+import { buildDebug } from '../utils/debug'
 
-import { LanguageWithLocation, Language } from './typings'
-import { expression } from './expression'
-import { createNode } from './create-node'
-import { literal } from './literal'
-import { statement } from './statement'
+const debug = buildDebug('parser')
 
-export const createParser = (opts: Partial<ParseOption>) =>
-  p.createLanguage<LanguageWithLocation<Language>>({
-    ...literal,
-    ...expression,
-    ...statement,
+export const parse = (source: string) => new Parser(source).parse()
 
-    File: (r) =>
-      r.Program.map((program) => ({ program, filePath: opts.filePath! })).thru(
-        createNode(n.File)
-      ),
+export class Parser extends TokenReader {
+  source: string
 
-    Program: (r) =>
-      p.optWhitespace
-        .then(r.statement.thru(w.list))
-        .map((body) => ({ body }))
-        .thru(createNode(n.Program)),
+  constructor(source: string, opts: { keywords?: Array<string> } = {}) {
+    const tokens = new Tokenizer(source, opts).tokenize()
 
-    block: (r) =>
-      r.statement
-        .thru(w.list)
-        .thru(w.bracket)
-        .map(([lbracket, body, rbracket]) => ({
-          lbracket,
-          body,
-          rbracket,
-        }))
-        .thru(createNode(n.Block)),
+    super(tokens)
 
-    customStatement: (r) =>
-      opts.customDirectives
-        ? h
-            .grease(
-              p.alt(...opts.customDirectives.map(h.directive)),
-              r.expression.thru(w.list)
-            )
-            .map(([directive, body]) => ({
-              directive,
-              body,
-            }))
-            .thru(w.semi)
-            .thru(createNode(n.CustomStatement))
-        : p.alt(),
-  })
-
-interface ParseOption {
-  filePath: string
-  customDirectives: Array<string>
-}
-
-export const Parser = createParser({})
-
-const parseFile = (parser: p.Language, input: string, filePath: string) => {
-  try {
-    const ast = parser.File.tryParse(input)
-    ast.filePath = filePath
-
-    return ast
-  } catch (err) {
-    err.message = err.message + '\n' + 'at: ' + filePath
-    throw err
+    this.source = source
   }
-}
 
-const parseProgram = (parser: p.Language, input: string) =>
-  parser.Program.tryParse(input)
+  parse(): Program {
+    return this.parseProgram()
+  }
 
-export const parse = (input: string, opts: Partial<ParseOption> = {}) => {
-  const parser = createParser(opts)
+  private parseProgram(): Program {
+    const node = this.startNode()
 
-  if (opts.filePath) return parseFile(parser, input, opts.filePath)
+    const body = parseCompound<Statement>(this, parseStmt)
 
-  return parseProgram(parser, input)
+    return this.finishNode(node, 'Program', { body })
+  }
+
+  startNode(): NodeWithLoc {
+    const node = new Node()
+
+    const startToken = this.getCurrentToken()
+    const start = startToken
+      ? startToken.loc.start
+      : { offset: 0, line: 1, column: 1 }
+
+    node.loc = {
+      start,
+      end: null as any,
+    }
+
+    return node as NodeWithLoc
+  }
+
+  finishNode<T extends NodeType, N extends NodeAs<T>, V extends PlainNode<N>>(
+    node: NodeWithLoc,
+    type: T,
+    values: V
+  ): N {
+    node.loc.end = this.getCurrentToken()!.loc.end
+
+    const finished = Node.build(node, type, values)
+
+    if (debug.enabled) {
+      const log = { ...finished }
+      delete log.loc
+      debug(log)
+    }
+
+    return finished
+  }
+
+  validateNode<T extends Array<NodeType>>(
+    node: Node,
+    type: T,
+    message?: string
+  ): NodeAs<T[number]> {
+    if (!isNode(node, type)) {
+      message = 'expected ' + type.join(', ') + (message ? message : '')
+
+      const loc = node.loc!
+
+      throw createError(this.source, message, loc.start, loc.end)
+    }
+
+    return node as NodeAs<T[number]>
+  }
+
+  validateToken<T extends TokenType, U extends string>(
+    token: Token,
+    type: T,
+    value?: U
+  ): Token & { type: T; value: U } {
+    if (!isToken(token, type, value)) {
+      throw createError(
+        this.source,
+        'expected ' + [type, value].join(', '),
+        token.loc.start,
+        token.loc.end
+      )
+    }
+
+    return token as Token & { type: T; value: U }
+  }
 }

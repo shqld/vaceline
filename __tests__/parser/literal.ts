@@ -1,103 +1,88 @@
+import { parseLiteral } from '../../src/parser/literal'
 import { Parser } from '../../src/parser'
 
 describe('Literal', () => {
+  const parseExpr = (source: string) => parseLiteral(new Parser(source))
+
   describe('BooleanLiteral', () => {
     it('should parse', () => {
-      {
-        const node = Parser.BooleanLiteral.tryParse('true')
-        expect(node.value).toBe('true')
-      }
-      {
-        const node = Parser.BooleanLiteral.tryParse('false')
-        expect(node.value).toBe('false')
-      }
-      {
-        expect(() => Parser.BooleanLiteral.tryParse('string')).toThrow()
-      }
+      expect(parseExpr('true')).toMatchObject({
+        type: 'BooleanLiteral',
+        value: 'true',
+      })
+      expect(parseExpr('false')).toMatchObject({
+        type: 'BooleanLiteral',
+        value: 'false',
+      })
+      expect(parseExpr('string')).toBeNull()
     })
   })
+
   describe('StringLiteral', () => {
     it('should parse', () => {
-      {
-        const node = Parser.StringLiteral.tryParse('"string"')
-        expect(node.value).toBe('string')
-      }
-      {
-        expect(() =>
-          Parser.StringLiteral.tryParse(`"
+      expect(parseExpr('"hello"')).toMatchObject({
+        type: 'StringLiteral',
+        value: '"hello"',
+      })
+      expect(() =>
+        parseExpr(`"
           multiline
         "`)
-        ).toThrow()
-      }
+      ).toThrowError(/invalid token/)
     })
   })
 
   describe('MultilineLiteral', () => {
     it('should parse', () => {
-      {
-        const node = Parser.MultilineLiteral.tryParse('{"string"}')
-        expect(node.value).toBe('string')
-      }
-      {
-        const node = Parser.MultilineLiteral.tryParse(`{"
+      expect(parseExpr('{"hello"}')).toMatchObject({
+        type: 'StringLiteral',
+        value: '{"hello"}',
+      })
+      expect(
+        parseExpr(`{"
 multiline
 "}`)
-        expect(node.value).toBe('\nmultiline\n')
-      }
-      {
-        expect(() => Parser.MultilineLiteral.tryParse('"string"')).toThrow()
-      }
+      ).toMatchObject({
+        type: 'StringLiteral',
+        value: '{"\nmultiline\n"}',
+      })
+    })
+  })
+
+  describe('DurationLiteral', () => {
+    it('should parse', () => {
+      expect(parseExpr('100s')).toMatchObject({
+        type: 'DurationLiteral',
+        value: '100s',
+      })
+
+      expect(parseExpr('1m')).toMatchObject({
+        type: 'DurationLiteral',
+        value: '1m',
+      })
+
+      expect(parseExpr('10a')).not.toMatchObject({
+        type: 'DurationLiteral',
+      })
     })
   })
 
   describe('NumericLiteral', () => {
     it('should parse', () => {
-      {
-        const node = Parser.DurationLiteral.tryParse('100s')
-        expect(node.value).toBe('100s')
-      }
-      {
-        const node = Parser.DurationLiteral.tryParse('1m')
-        expect(node.value).toBe('1m')
-      }
-      {
-        expect(() => Parser.DurationLiteral.tryParse('100')).toThrow()
-      }
-    })
-  })
+      expect(parseExpr('100')).toMatchObject({
+        type: 'NumericLiteral',
+        value: '100',
+      })
 
-  describe('NumericLiteral', () => {
-    it('should parse', () => {
-      {
-        const node = Parser.NumericLiteral.tryParse('100')
-        expect(node.value).toBe('100')
-      }
-      {
-        const node = Parser.NumericLiteral.tryParse('0')
-        expect(node.value).toBe('0')
-      }
-      // {
-      //   // TODO:
-      //   expect(() => Parser.NumericLiteral.tryParse('001')).toThrow()
-      // }
-    })
-  })
+      expect(parseExpr('0')).toMatchObject({
+        type: 'NumericLiteral',
+        value: '0',
+      })
 
-  describe('IpLiteral', () => {
-    it('should parse', () => {
-      expect(() => Parser.IpLiteral.tryParse('"192.0.2.0"')).not.toThrow()
-      expect(() => Parser.IpLiteral.tryParse('"192.0.2.0"/16')).not.toThrow()
-      expect(() => Parser.IpLiteral.tryParse('"2001:db8::1"')).not.toThrow()
-      expect(() =>
-        Parser.IpLiteral.tryParse('"2002:c000:0204::"')
-      ).not.toThrow() /* 6to4 mapping for "192.0.2.4" */
-      expect(() =>
-        Parser.IpLiteral.tryParse('"::FFFF:192.0.2.4"')
-      ).not.toThrow() /* IPv4 mapping for "192.0.2.4" */
-      expect(() => Parser.IpLiteral.tryParse('"::1"')).not.toThrow()
-      expect(() =>
-        Parser.IpLiteral.tryParse('"::"')
-      ).not.toThrow() /* unspecified address */
+      expect(() => parseExpr('001')).toThrowError(/invalid number/)
+
+      expect(() => parseExpr('0.')).toThrow(/invalid number/)
+      expect(parseExpr('.11')).toBe(null)
     })
   })
 })

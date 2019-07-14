@@ -12,7 +12,5 @@ import { Node } from '../../src/nodes'
 // const ast: Node = parse(code)
 
 describe('DebuggerPlugin', () => {
-  it('TODO: implemenet', () => {
-    throw new Error()
-  })
+  it.todo('implemenet')
 })

@@ -2,7 +2,7 @@ include "vacel_module_a";
 include "vecel_module_b";
 
 backend vacel_origin {
-  # .ssh = true;
+  .ssh = true;
   .host = "example.com";
 }
 

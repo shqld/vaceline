@@ -62,44 +62,52 @@ const main = async () => {
   if (opts.debug === true) {
     debug.enable('vaceline:*')
   } else if (typeof opts.debug === 'string') {
-    debug.enable(`vaceline:${opts.debug}`)
+    debug.enable(`vaceline:${opts.debug}:*`)
   }
 
-  let ast
+  let paths
 
   if (opts.stdin) {
     assert(!opts.source, '`source` must not be present')
-
-    const input = fs.readFileSync('/dev/stdin', 'utf8')
-    ast = parse(input)
+    paths = ['/dev/stdin']
   }
 
   if (opts.source) {
     const inputPath = path.resolve(opts.source)
     assert(fs.existsSync(inputPath), 'File not found: ' + inputPath)
 
-    if (fs.statSync(inputPath).isDirectory()) {
-      const files = utils.readdirr(inputPath)
-
-      ast = files.map((filePath) =>
-        parse(fs.readFileSync(filePath, 'utf8'), filePath)
-      )
-    } else {
-      const input = fs.readFileSync(inputPath, 'utf8')
-      ast = parse(input, inputPath)
-    }
+    paths = fs.statSync(inputPath).isDirectory()
+      ? utils.readdirr(inputPath)
+      : [inputPath]
   }
 
-  assert(ast !== undefined, 'source path or --stdin option must be present')
+  assert(paths !== undefined, 'source path or --stdin option must be present')
+
+  const ast = paths.map((filePath) => {
+    const readablePath =
+      filePath === '/dev/stdin'
+        ? 'stdin'
+        : path.relative(path.resolve(), filePath)
+
+    console.time(readablePath)
+    const ast = parse(fs.readFileSync(filePath, 'utf8'), filePath)
+    console.timeEnd(readablePath)
+
+    return ast
+  })
+
+  assert(
+    Array.isArray(ast) && ast.length > 0,
+    'No parsing executed due to unexpected reason'
+  )
 
   if (opts.ast) {
     console.error(JSON.stringify(ast, null, 2))
     process.exit()
   }
 
-  const output = Array.isArray(ast)
-    ? ast.map((a) => generate(a).code)
-    : generate(ast).code
+  const output =
+    ast.length > 1 ? ast.map((a) => generate(a).code) : generate(ast[0]).code
 
   if (opts.outDir) {
     if (!fs.existsSync(opts.outDir)) mkdirp(opts.outDir)
