@@ -1,4 +1,4 @@
-import { Parser } from '../../src/parser'
+import { parse } from '../../src'
 
 describe('Literal', () => {
   describe('BooleanLiteral', () => {

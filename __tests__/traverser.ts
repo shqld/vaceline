@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 
 import { traverse } from '../src/traverser'
-import { Parser } from '../src/parser'
+import { parse } from '../src'
 import { Identifier, Node, MemberExpression } from '../src/nodes'
 import { NodePath } from '../src/traverser/path'
 
