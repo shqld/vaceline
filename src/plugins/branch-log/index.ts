@@ -1,79 +1,75 @@
 import { traverse } from '../..'
-import {
-  Node,
-  StringLiteral,
-  IfStatement,
-  SubroutineStatement,
-  AddStatement,
-  MemberExpression,
-  SetStatement,
-} from '../../nodes'
+import { Node, nodeDefs } from '../../nodes'
 import { hydrate } from '../../hydrate'
 import { NodePath } from '../../traverser/path'
+import { Member, FunCallExpression } from '../../ast-nodes'
+import { isNode } from '../../utils/node'
 
 const variable = (obj: 'req' | 'resp') =>
-  hydrate(`{
-  "type": "MemberExpression",
-  "object": {
-    "type": "Identifier",
-    "name": "${obj}"
-  },
-  "property": {
-    "type": "MemberExpression",
-    "object": {
-      "type": "Identifier",
-      "name": "http"
+  ({
+    type: 'Member',
+    base: {
+      type: 'Member',
+      base: {
+        type: 'Identifier',
+        name: obj,
+      },
+      member: {
+        type: 'Identifier',
+        name: 'http',
+      },
     },
-    "property": {
-      "type": "Header",
-      "name": "Branch-Log"
-    }
-  }
-}`) as MemberExpression
+    member: {
+      type: 'Header',
+      name: 'Branch-Log',
+    },
+  } as Member)
 
-const collectLogs = hydrate(`{
-  "type": "FunCallExpression",
-  "callee": {
-    "type": "MemberExpression",
-    "object": {
-      "type": "Identifier",
-      "name": "std"
+const collectLogs = {
+  type: 'FunCallExpression',
+  callee: {
+    type: 'Member',
+    base: {
+      type: 'Identifier',
+      name: 'std',
     },
-    "property": {
-      "type": "Identifier",
-      "name": "collect"
-    }
-  }
-}`)
+    member: {
+      type: 'Identifier',
+      name: 'collect',
+    },
+  },
+} as FunCallExpression
 
 export default (ast: Node) => {
   traverse(ast, {
     entry({ node }) {
-      if (node instanceof SubroutineStatement) {
+      if (isNode(node, ['SubroutineStatement'])) {
         const loggerNode =
           node.id.name === 'vcl_deliver'
-            ? SetStatement.create({
+            ? Node.create('SetStatement', {
                 operator: '=',
                 left: variable('resp'),
-                right: StringLiteral.create({ value: 'std.collect(std)' }),
+                right: Node.create('StringLiteral', {
+                  value: 'std.collect(std)',
+                }),
               })
-            : AddStatement.create({
+            : Node.create('AddStatement', {
                 operator: '=',
                 left: variable('req'),
-                right: StringLiteral.create({ value: node.id.name }),
+                right: Node.create('StringLiteral', { value: node.id.name }),
               })
 
-        node.body.body.unshift(loggerNode)
-      } else if (node instanceof IfStatement) {
-        const loggerNode = AddStatement.create({
+        node.body.unshift(loggerNode)
+      } else if (isNode(node, ['IfStatement'])) {
+        const loggerNode = Node.create('AddStatement', {
           operator: '=',
           left: variable('req'),
-          right: StringLiteral.create({
+          right: Node.create('StringLiteral', {
             value: `${node.loc!.start.line}:${node.loc!.start.column}`,
           }),
         })
 
-        node.consequent.body.unshift(loggerNode)
+        node.consequent.unshift(loggerNode)
       }
     },
   })

@@ -2,16 +2,22 @@ import fs from 'fs'
 import path from 'path'
 
 import { traverse } from '../src/traverser'
-import { Parser } from '../src/parser'
-import { Identifier, Node, MemberExpression } from '../src/nodes'
+import { parse } from '../src'
+import { Node, NodeType } from '../src/nodes'
 import { NodePath } from '../src/traverser/path'
+import { Identifier } from '../src/ast-nodes'
+
+const checkNode = (node: any, type: NodeType) => {
+  expect(node).toBeInstanceOf(Node)
+  expect(node.type).toBe(type)
+}
 
 describe('Traverser', () => {
   const code = fs.readFileSync(
     path.resolve('__tests__/__fixture__/test.vcl'),
     'utf8'
   )
-  const ast = Parser.Program.tryParse(code)
+  const ast = parse(code)
 
   // it('should traverse every node', () => {})
   it('should traverse entry', () => {
@@ -25,7 +31,7 @@ describe('Traverser', () => {
       },
     })
 
-    expect(node!).toBeInstanceOf(Identifier)
+    checkNode(node!, 'Identifier')
     expect(node!.name).toBe('specialUser')
   })
 
@@ -36,18 +42,6 @@ describe('Traverser', () => {
       entry(path: NodePath<any>) {
         paths.push(path)
       },
-    })
-
-    it('should `get` child node as NodePath', () => {
-      const path = paths[paths.length - 8]
-
-      expect(path.node).toBeInstanceOf(MemberExpression)
-
-      expect(path.get('object')).toBeInstanceOf(NodePath)
-      expect(path.get('object').node).toBe(path.node.object)
-
-      expect(path.get('property')).toBeInstanceOf(NodePath)
-      expect(path.get('property').node).toBe(path.node.property)
     })
 
     it("shouldn't have `parent` & `parentPath` in the top node", () => {
