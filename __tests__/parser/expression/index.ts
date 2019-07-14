@@ -1,12 +1,12 @@
-import { Parser } from '../../../src/parser'
+import { parse } from '../../../src'
 
 describe('Expression', () => {
   it('should be parsed', () => {
-    Parser.expression.tryParse(`{"
+    parse(`{"
     
     
     "} req.http.b`)
-    Parser.expression.tryParse('http_status_matches(resp.status, "404") && beresp.status == "404"')
+    parse('http_status_matches(resp.status, "404") && beresp.status == "404"')
   })
 
   describe('ConcatExpression', () => {
@@ -17,7 +17,9 @@ describe('Expression', () => {
       "} true 100s            100`)
 
       expect(node.body).toHaveLength(5)
-      node.body.slice(1).forEach((b: any) => expect(b.type.endsWith('Literal')).toBeTruthy())
+      node.body
+        .slice(1)
+        .forEach((b: any) => expect(b.type.endsWith('Literal')).toBeTruthy())
     })
   })
 
@@ -32,7 +34,9 @@ describe('Expression', () => {
         expect(node.arguments).toHaveLength(2)
       }
       {
-        const node: any = Parser.FunCallExpression.tryParse('if (req.http.b, a, b)')
+        const node: any = Parser.FunCallExpression.tryParse(
+          'if (req.http.b, a, b)'
+        )
         expect(node.callee).toHaveProperty('type', 'Identifier')
         expect(node.callee.name).toBe('if')
         expect(node.arguments).toHaveLength(3)
@@ -62,7 +66,9 @@ describe('Expression', () => {
 
     it('should parse nested expressions', () => {
       {
-        const node = Parser.BinaryExpression.tryParse('req.http.a == "a" != "b"')
+        const node = Parser.BinaryExpression.tryParse(
+          'req.http.a == "a" != "b"'
+        )
         expect(node).toHaveProperty('type', 'BinaryExpression')
       }
     })
@@ -71,19 +77,25 @@ describe('Expression', () => {
   describe('LogicalExpression', () => {
     it('should be parsed', () => {
       {
-        const node = Parser.LogicalExpression.tryParse('req.http.a && req.http.b')
+        const node = Parser.LogicalExpression.tryParse(
+          'req.http.a && req.http.b'
+        )
 
         expect(node).toHaveProperty('type', 'LogicalExpression')
       }
       {
-        const node = Parser.LogicalExpression.tryParse('req.http.a || req.http.b')
+        const node = Parser.LogicalExpression.tryParse(
+          'req.http.a || req.http.b'
+        )
 
         expect(node).toHaveProperty('type', 'LogicalExpression')
       }
     })
 
     it('should parse nested expressions', () => {
-      const node = Parser.LogicalExpression.tryParse('req.http.a && req.http.b || req.http.c')
+      const node = Parser.LogicalExpression.tryParse(
+        'req.http.a && req.http.b || req.http.c'
+      )
 
       expect(node).toHaveProperty('type', 'LogicalExpression')
     })
@@ -92,7 +104,9 @@ describe('Expression', () => {
       // Don't test with `p.alt(Parser.LogicalExpression, Parser.BinaryExpression)`
       // because each parser has the right order to be declared
       // To test that as well, always use an abstract Parser e.g. `literal`, `expression`, `statement`...
-      const node = Parser.expression.tryParse('req.http.a == "a" && req.http.b != "c"')
+      const node = Parser.expression.tryParse(
+        'req.http.a == "a" && req.http.b != "c"'
+      )
 
       expect(node).toHaveProperty('operator', '&&')
 
@@ -105,7 +119,9 @@ describe('Expression', () => {
 
     // TODO: move to BooleanExpression test
     it('should not take the precedence', () => {
-      const node = Parser.expression.tryParse('req.http.a == ("a" && req.http.b) != "c"')
+      const node = Parser.expression.tryParse(
+        'req.http.a == ("a" && req.http.b) != "c"'
+      )
 
       expect(node).toHaveProperty('operator', '!=')
 
