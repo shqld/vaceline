@@ -1,28 +1,55 @@
-import chalk from 'chalk'
+import { createError } from '../create-error'
 
-type TokenType =
-  | 'identifier'
-  | 'symbol'
-  | 'operator'
-  | 'keyword'
-  | 'string'
-  | 'boolean'
-  | 'numeric'
-  | 'duration'
-  | 'ip'
-  | 'comment'
-
-interface Position {
+export interface Position {
   line: number
   column: number
 }
 
-interface Token {
+export interface Location {
+  start: Position
+  end: Position
+}
+
+export type TokenType =
+  | 'identifier'
+  | 'symbol'
+  | 'operator'
+  | 'keyword'
+  | 'literal'
+  | 'valueTypes'
+  | 'returnTypes'
+  | 'comment'
+
+export interface Token {
   type: TokenType
   value: string
   start: number
   end: number
-  loc: { start: Position; end: Position }
+  loc: Location
+}
+
+export type LiteralType = 'string' | 'boolean' | 'numeric' | 'duration' | 'ip'
+
+export interface LiteralToken extends Token {
+  type: 'literal'
+  literalType: LiteralType
+  value: string
+  raw: string
+}
+
+export interface KeywordToken extends Token {
+  type: 'keyword'
+  value: typeof keywords[number]
+}
+
+export interface ValueTypeToken extends Token {
+  type: 'valueTypes'
+  value: typeof valueTypes[number]
+}
+
+export interface ReturnTypeToken extends Token {
+  type: 'returnTypes'
+  value: typeof returnTypes[number]
 }
 
 const keywords = [
@@ -46,15 +73,24 @@ const keywords = [
   'sub',
   'acl',
   'backend',
-]
+] as const
 
-const symbols = [';', ',', '{', '}', '(', ')']
+const symbols = [';', '.', ',', '{', '}', '(', ')'] as const
 const operators = {
   binary: ['==', '!=', '>=', '>', '<=', '<', '~', '!~'],
   unary: ['!'],
   logical: ['||', '&&'],
   assign: ['=', '*=', '+=', '-=', '/=', '||=', '&&='],
-}
+} as const
+
+const valueTypes = ['STRING', 'BOOL', 'BOOLEAN', 'INTEGER', 'FLOAT'] as const
+const returnTypes = [
+  'pass',
+  'hit_for_pass',
+  'lookup',
+  'pipe',
+  'deliver',
+] as const
 
 const escapeRegExp = (s: string | RegExp) =>
   s instanceof RegExp ? s.source : s.replace(/[-\\^$*+?.()|[\]{}]/g, '\\$&')
@@ -76,72 +112,45 @@ const splitters = [
   ...operators.assign,
 ]
 
+const matchers = {
+  keywords: new Set(keywords),
+  symbols: new Set(symbols),
+  operators: new Set([
+    ...operators.binary,
+    ...operators.unary,
+    ...operators.logical,
+    ...operators.assign,
+  ]),
+  valueTypes: new Set(valueTypes),
+  returnTypes: new Set(returnTypes),
+} as const
+
 const reSplitter = new RegExp('(' + getJoinedRegExp(splitters) + ')')
 
 export class Tokenizer {
   raw: string
   source: ReadonlyArray<string>
-  keywords: Set<string>
-  symbols: Set<string>
-  operators: Set<string>
+  matchers: { [P in keyof typeof matchers]: Set<string> }
 
   constructor(raw: string, opts: { keywords?: Array<string> } = {}) {
     this.raw = raw
     this.source = raw.split(reSplitter)
 
-    this.keywords = new Set(
-      opts.keywords ? [...keywords, ...opts.keywords] : keywords
-    )
-    this.symbols = new Set(symbols)
-    this.operators = new Set([
-      ...operators.binary,
-      ...operators.unary,
-      ...operators.logical,
-      ...operators.assign,
-    ])
+    const keywords: typeof matchers.keywords = opts.keywords
+      ? new Set([...(matchers.keywords as any), ...opts.keywords])
+      : matchers.keywords
+
+    this.matchers = {
+      ...matchers,
+      keywords,
+    }
+
+    this.matchers
+    // opts.keywords ? [...keywords, ...opts.keywords] :
   }
 
-  // TODO: this method is still buggy in the case of source with too few lines
-  createError(message: string, lineNum: number, colNum: number): SyntaxError {
-    const topMargin = 2
-    const bottomMargin = 1
-
-    const topLine = lineNum - topMargin
-    const bottomLine = lineNum + bottomMargin
-
-    const hMark = '> '
-    const vMark = '^'
-    const pad = String(bottomLine).length
-
-    const targets = this.raw
-      .split('\n')
-      .slice(topLine, bottomLine)
-      .map((line, num) => {
-        num++ // line index != line number
-
-        const currentLine = topLine + num
-
-        const lineIndicator = chalk.gray(
-          String(currentLine).padStart(pad) + ' | '
-        )
-
-        if (currentLine === lineNum) {
-          return (
-            chalk.redBright.bold(hMark) +
-            lineIndicator +
-            line +
-            '\n' +
-            ' '.repeat(colNum + pad + '>  | '.length - 1) +
-            chalk.redBright.bold(vMark)
-          )
-        }
-
-        return ' '.repeat(hMark.length) + lineIndicator + line
-      })
-
-    const err = new SyntaxError(message + '\n\n' + targets.join('\n'))
-
-    return err
+  createError(message: string, line: number, col: number): SyntaxError {
+    return createError(this.raw, message, line, col)
   }
 
   tokenize(): Array<Token> {
@@ -194,38 +203,47 @@ export class Tokenizer {
       /** determine token type */
 
       let type: TokenType
+      let literalType!: LiteralType
 
-      if (this.symbols.has(str)) {
+      if (this.matchers.symbols.has(str)) {
         type = 'symbol'
-      } else if (this.operators.has(str)) {
+      } else if (this.matchers.operators.has(str)) {
         type = 'operator'
-      } else if (this.keywords.has(str)) {
+      } else if (this.matchers.keywords.has(str)) {
         type = 'keyword'
+      } else if (this.matchers.valueTypes.has(str)) {
+        type = 'valueTypes'
+      } else if (this.matchers.returnTypes.has(str)) {
+        type = 'returnTypes'
       } else if (str.startsWith('"')) {
-        type = 'string'
+        type = 'literal'
+        literalType = 'string'
       } else if (str.startsWith('{"')) {
-        type = 'string'
+        type = 'literal'
+        literalType = 'string'
 
         // string can have newline inside
         const lines = str.split('\n')
         line += lines!.length - 1
         column = lines[lines.length - 1].length - (str.length - 1)
       } else if (/true|false/.test(str)) {
-        type = 'boolean'
+        type = 'literal'
+        literalType = 'boolean'
       } else if (/^\d[\d\.]*/.test(str)) {
-        type = 'numeric'
+        type = 'literal'
+        literalType = 'numeric'
       } else if (/\d(s|ms)/.test(str)) {
-        type = 'duration'
+        type = 'literal'
+        literalType = 'duration'
       } else if (/"[a-fA-F0-9:.]+"(\/\d+)?/.test(str)) {
-        type = 'ip'
+        type = 'literal'
+        literalType = 'ip'
       } else if (/^#|\/\/|\/\*/.test(str)) {
         type = 'comment'
       } else {
         type = 'identifier'
 
         if (!/^[A-Za-z][A-Za-z\d\.-_]*/.test(str)) {
-          console.log(tokens.slice(-5))
-          console.log(str)
           throw this.createError('invalid token', line, column)
         }
       }
@@ -250,9 +268,10 @@ export class Tokenizer {
           start: { line: startLine!, column: startColumn! },
           end: { line: endLine, column: endColumn },
         },
+        literalType,
       })
     }
 
-    return tokens
+    return tokens as Array<Token>
   }
 }
