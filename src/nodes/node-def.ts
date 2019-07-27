@@ -1,12 +1,13 @@
 import { Node } from './node'
-import { Printable } from '../nodes'
-import * as n from './nodes'
+import * as n from '../ast-nodes.d'
 
-export type ExtractNodeFromDef<T> = T extends NodeDef<infer P> ? P : never
+export type ExtractNodeFromDef<Def> = Def extends NodeDef<infer Node>
+  ? Node
+  : never
 
 export type NodeDefMap = typeof nodeDefs
 export type NodeType = keyof NodeDefMap
-export type NodeSet<T extends NodeType> = ExtractNodeFromDef<NodeDefMap[T]>
+export type NodeAs<T extends NodeType> = ExtractNodeFromDef<NodeDefMap[T]>
 
 export interface NodeDef<T extends Node> {
   build(node: T, obj: Omit<T, keyof Node>): void

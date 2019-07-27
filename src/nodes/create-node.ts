@@ -1,6 +1,5 @@
-import { Node } from './node'
+import { Node, Location } from './node'
 import { NodeDefMap, nodeDefs, ExtractNodeFromDef } from './node-def'
-import { Location } from './tokenizer'
 
 export const createNode = <
   T extends keyof NodeDefMap,

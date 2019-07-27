@@ -7,11 +7,19 @@ import {
   ReturnTypeToken,
   ValueTypeToken,
 } from './tokenizer'
-import * as n from './nodes'
-import { Node } from './node'
-import { NodeType, NodeSet, NodeDefMap, ExtractNodeFromDef } from './node-def'
-import { createNode } from './create-node'
+import * as n from '../ast-nodes.d'
+import {
+  Node,
+  NodeType,
+  NodeAs,
+  NodeDefMap,
+  ExtractNodeFromDef,
+  createNode,
+} from '../nodes'
 import { createError } from './create-error'
+
+import { isNode } from '../utils/node'
+import { isToken, isLiteralToken, isKeywordToken } from '../utils/token'
 
 export const parse = (source: string) => new Parser(source).parse()
 
@@ -483,7 +491,7 @@ export class Parser {
     node: Node,
     type: T,
     message?: string
-  ): NodeSet<T[number]> {
+  ): NodeAs<T[number]> {
     if (!isNode(node, type)) {
       message = 'expected ' + type.join(', ') + (message ? message : '')
       throw createError(
@@ -494,7 +502,7 @@ export class Parser {
       )
     }
 
-    return node as NodeSet<T[number]>
+    return node as NodeAs<T[number]>
   }
 
   validateToken<T extends TokenType, U extends string>(
@@ -515,26 +523,4 @@ export class Parser {
 
     return token as Token & { type: T; value: U }
   }
-}
-
-const isLiteralToken = (t: Token): t is LiteralToken => t.type === 'literal'
-const isKeywordToken = (t: Token): t is KeywordToken => t.type === 'keyword'
-
-const isNode = <T extends Array<NodeType>>(
-  node: Node,
-  types: T
-): node is NodeSet<T[number]> => types.includes(node.type as any)
-
-const isToken = <T extends TokenType, U extends string>(
-  token: Token | null,
-  type: TokenType,
-  value?: string
-): token is Token & { type: T; value: U } => {
-  if (!token) return false
-
-  if (value != null) {
-    return token.type === type && token.value === value
-  }
-
-  return token.type === type
 }
