@@ -1,14 +1,5 @@
 import { createError } from '../create-error'
-
-export interface Position {
-  line: number
-  column: number
-}
-
-export interface Location {
-  start: Position
-  end: Position
-}
+import { Location } from '../../nodes'
 
 export type TokenType =
   | 'identifier'

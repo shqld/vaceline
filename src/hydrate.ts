@@ -1,6 +1,6 @@
-import * as nodes from './nodes'
+import { Node } from './nodes'
 
-export const hydrate = (raw: string): nodes.Node =>
+export const hydrate = (raw: string): Node =>
   JSON.parse(raw, (_, value) => {
     if (value && value.type) {
       // @ts-ignore

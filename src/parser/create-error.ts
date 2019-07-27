@@ -1,5 +1,4 @@
 import chalk from 'chalk'
-import { Position } from './tokenizer'
 
 const TOP_MARGIN = 2
 const BOTTOM_MARGIN = 1

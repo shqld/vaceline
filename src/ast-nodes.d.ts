@@ -1,5 +1,5 @@
-import { Node } from './node'
-import { Token } from './tokenizer'
+import { Node } from './nodes/node'
+import { Token } from './parser/tokenizer'
 
 export type Literal =
   | BooleanLiteral
