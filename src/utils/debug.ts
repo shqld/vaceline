@@ -6,6 +6,5 @@ const vacel = debug('vacel')
 // it is for printing output(code|ast)
 vacel.log = console.log.bind(console)
 
-export const parse = vacel.extend('parse')
-export const traverse = vacel.extend('traverse')
-export const generate = vacel.extend('generate')
+export const buildDebug = (...scopes: Array<string>) =>
+  vacel.extend(scopes.join(':'))
