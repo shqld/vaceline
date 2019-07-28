@@ -6,14 +6,7 @@ import {
   ValueTypeToken,
 } from './tokenizer'
 import * as n from '../ast-nodes.d'
-import {
-  Node,
-  NodeType,
-  NodeAs,
-  NodeDefMap,
-  ExtractNodeFromDef,
-  createNode,
-} from '../nodes'
+import { Node, NodeType, NodeAs } from '../nodes'
 import { createError } from './create-error'
 import { TokenReader } from './token-reader'
 
@@ -47,14 +40,13 @@ export class Parser extends TokenReader {
   }
 
   createNode<
-    T extends keyof NodeDefMap,
-    D extends NodeDefMap[T],
-    N extends ExtractNodeFromDef<D>,
+    T extends NodeType,
+    N extends NodeAs<T>,
     V extends Omit<N, keyof Node>
   >(type: T, parse: () => V): N {
     const values = parse()
 
-    return createNode(type, values)
+    return Node.create(type, values)
   }
 
   parseProgram(): n.Program {
@@ -350,7 +342,7 @@ export class Parser extends TokenReader {
     // const first = buf[0]
     // const last = buf[buf.length - 1]
 
-    return createNode('ConcatExpression', {
+    return Node.create('ConcatExpression', {
       body: buf,
     })
   }
