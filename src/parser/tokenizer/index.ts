@@ -143,8 +143,8 @@ export class Tokenizer {
     // opts.keywords ? [...keywords, ...opts.keywords] :
   }
 
-  createError(message: string, line: number, col: number): SyntaxError {
-    return createError(this.raw, message, line, col)
+  createError(message: string, start: number, end?: number): SyntaxError {
+    return createError(this.raw, message, start, end)
   }
 
   tokenize(): Array<Token> {
@@ -238,7 +238,7 @@ export class Tokenizer {
         type = 'identifier'
 
         if (!/^[A-Za-z][A-Za-z\d\.-_]*/.test(str)) {
-          throw this.createError('invalid token', line, column)
+          throw this.createError('invalid token', offset)
         }
       }
 

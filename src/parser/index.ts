@@ -494,12 +494,7 @@ export class Parser {
   ): NodeAs<T[number]> {
     if (!isNode(node, type)) {
       message = 'expected ' + type.join(', ') + (message ? message : '')
-      throw createError(
-        this.source,
-        message,
-        node.loc!.start.line,
-        node.loc!.start.column
-      )
+      throw createError(this.source, message, node.start!, node.end!)
     }
 
     return node as NodeAs<T[number]>
@@ -511,13 +506,11 @@ export class Parser {
     value?: U
   ): Token & { type: T; value: U } {
     if (!isToken(token, type, value)) {
-      const { loc } = token as Token
-
       throw createError(
         this.source,
         'expected ' + [type, value].join(', '),
-        loc.start.line,
-        loc.start.column
+        token.start,
+        token.end
       )
     }
 

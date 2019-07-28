@@ -304,29 +304,30 @@ before/* comment */after
     })
   })
 
-  describe('error', () => {
-    chalk.enabled = false
+  describe('error-handling', () => {
+    it('should emit SyntaxError', () => {
+      chalk.enabled = false
 
-    try {
-      tokenize(
-        `
+      expect(() =>
+        tokenize(
+          `
 ident1
 ident2
-ident3 invalid&
+ident3 %(%
 ident4
 `
-      )
-    } catch (err) {
-      expect(err.message).toStrictEqual(
+        )
+      ).toThrow(
         `
 invalid token
 
+  1 | ident1
   2 | ident2
-> 3 | ident3 invalid&
-             ^
+> 3 | ident3 %(%
+               ^
   4 | ident4
       `.trim()
       )
-    }
+    })
   })
 })

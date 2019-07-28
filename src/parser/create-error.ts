@@ -1,51 +1,85 @@
 import chalk from 'chalk'
+import { assert } from '../utils/assert'
 
-const TOP_MARGIN = 2
-const BOTTOM_MARGIN = 1
+const MARGIN = 2
+const HORIZONTAL_MARK = '> '
+const VERTICAL_MARK = '^'
 
-// TODO: still buggy in the case of source with too few lines
+const getLocation = (lines: Array<string>, start: number, end?: number) => {
+  if (end && start > end)
+    throw new Error('invalid end offset (end number is less than start)')
+
+  let acc = 0
+  let line: number
+  let column: number
+  let range: number = 1
+
+  for (let i = 0; i < lines.length; i++) {
+    const lineLength = lines[i].length
+    acc += lineLength
+
+    if (acc > start) {
+      // Add 1 because line & col count from 1
+      line = i + 1
+      column = start - (acc - lineLength) + 1
+
+      if (end) {
+        if (end + 1 > acc)
+          throw new Error('invalid end offset (end number exceeds line)')
+
+        range = end - start + 1
+      }
+      break
+    }
+  }
+
+  if (line! === undefined || column! === undefined)
+    throw new Error('invalid start offset')
+
+  return { line, column, range }
+}
+
 export const createError = (
   source: string,
   message: string,
-  lineNum: number,
-  colNum: number
+  start: number,
+  end?: number
 ): SyntaxError => {
-  // const { line: lineNum, column: colNum } = position
+  const lines = source.split('\n')
 
-  const topLine = lineNum - TOP_MARGIN
-  const bottomLine = lineNum + BOTTOM_MARGIN
+  const loc = getLocation(lines, start, end)
 
-  const hMark = '> '
-  const vMark = '^'
-  const pad = String(bottomLine).length
+  const topLine = loc.line - MARGIN - 1 > 0 ? loc.line - MARGIN - 1 : 0
+  const bottomLine =
+    loc.line + MARGIN <= lines.length ? loc.line + MARGIN : lines.length
 
-  const targets = source
-    .split('\n')
-    .slice(topLine, bottomLine)
-    .map((line, num) => {
-      num++ // line index != line number
+  const pad = String(bottomLine).length // The max of line num digits
 
-      const currentLine = topLine + num
+  const verticalMark =
+    ' '.repeat('> '.length + pad + ' | '.length + loc.column - 1) +
+    chalk.redBright.bold(VERTICAL_MARK.repeat(loc.range))
 
-      const lineIndicator = chalk.gray(
-        String(currentLine).padStart(pad) + ' | '
-      )
+  const errorLocationDisplay: Array<String> = []
 
-      if (currentLine === lineNum) {
-        return (
-          chalk.redBright.bold(hMark) +
-          lineIndicator +
-          line +
-          '\n' +
-          ' '.repeat(colNum + pad + '>  | '.length - 1) +
-          chalk.redBright.bold(vMark)
-        )
-      }
+  lines.slice(topLine, bottomLine).forEach((lineStr, num) => {
+    const currentLine = topLine + num + 1
+    const isTargetLine = currentLine === loc.line
 
-      return ' '.repeat(hMark.length) + lineIndicator + line
-    })
+    // `90 | `
+    const lineIndicator = String(currentLine).padStart(pad) + ' | '
 
-  const err = new SyntaxError(message + '\n\n' + targets.join('\n'))
+    // `> `
+    const horizontalMark = isTargetLine
+      ? chalk.redBright.bold(HORIZONTAL_MARK)
+      : ' '.repeat(HORIZONTAL_MARK.length)
 
-  return err
+    // `> 90 | source`
+    errorLocationDisplay.push(
+      horizontalMark + chalk.gray(lineIndicator) + lineStr
+    )
+
+    if (isTargetLine) errorLocationDisplay.push(verticalMark)
+  })
+
+  return new SyntaxError(message + '\n\n' + errorLocationDisplay.join('\n'))
 }
