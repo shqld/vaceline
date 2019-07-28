@@ -11,6 +11,8 @@ export interface Location {
   end: Position
 }
 
+export type PlainNode<T extends Node> = Omit<T, keyof Node>
+
 export class Node {
   type!: string
   start?: number
@@ -20,7 +22,7 @@ export class Node {
   static create = <
     T extends NodeType,
     N extends NodeAs<T>,
-    V extends Omit<N, keyof Node>
+    V extends PlainNode<N>
   >(
     type: T,
     values: V
@@ -43,7 +45,7 @@ export class Node {
   // to maximize JIT optimization with hidden class by V8
   static createWithLoc = <T extends NodeType, N extends NodeAs<T>>(
     type: T,
-    values: Omit<N, keyof Node>,
+    values: PlainNode<N>,
     location: {
       start: number
       end: number
