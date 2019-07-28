@@ -14,6 +14,9 @@ export type TokenType =
 export interface Token {
   type: TokenType
   value: string
+  literalType: LiteralType | void
+  raw: string | void
+
   start: number
   end: number
   loc: Location
@@ -24,8 +27,8 @@ export type LiteralType = 'string' | 'boolean' | 'numeric' | 'duration' | 'ip'
 export interface LiteralToken extends Token {
   type: 'literal'
   literalType: LiteralType
-  value: string
   raw: string
+  value: string
 }
 
 export interface KeywordToken extends Token {
