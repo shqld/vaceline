@@ -17,8 +17,6 @@ export interface Token {
   literalType: LiteralType | void
   raw: string | void
 
-  start: number
-  end: number
   loc: Location
 }
 
@@ -256,11 +254,9 @@ export class Tokenizer {
       tokens.push({
         type,
         value: str,
-        start: startOffset!,
-        end: endOffset,
         loc: {
-          start: { line: startLine!, column: startColumn! },
-          end: { line: endLine, column: endColumn },
+          start: { offset: startOffset, line: startLine, column: startColumn },
+          end: { offset: endOffset, line: endLine, column: endColumn },
         },
         literalType,
       })

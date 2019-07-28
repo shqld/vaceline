@@ -2,6 +2,7 @@ import { assert } from '../utils/assert'
 import { NodeType, NodeAs, nodeDefs } from './node-def'
 
 export interface Position {
+  offset: number
   line: number
   column: number
 }
@@ -12,11 +13,10 @@ export interface Location {
 }
 
 export type PlainNode<T extends Node> = Omit<T, keyof Node>
+export type NodeWithLocation = Node & { loc: Location }
 
 export class Node {
   type!: string
-  start?: number
-  end?: number
   loc?: Location
 
   static create = <
@@ -41,23 +41,17 @@ export class Node {
   }
 
   // When creating node with location,
-  // always define node.{start|end|loc} ahead of other values
+  // always define node.loc ahead of other values
   // to maximize JIT optimization with hidden class by V8
   static createWithLoc = <T extends NodeType, N extends NodeAs<T>>(
     type: T,
     values: PlainNode<N>,
-    location: {
-      start: number
-      end: number
-      loc: Location
-    }
+    loc: Location
   ): N & { start: number; end: number; loc: Location } => {
     const node = new Node()
 
     node.type = type
-    node.start = location.start
-    node.end = location.end
-    node.loc = location.loc
+    node.loc = loc
 
     const def = nodeDefs[type]
 

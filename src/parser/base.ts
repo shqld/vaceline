@@ -41,7 +41,10 @@ export class ParserBase extends TokenReader {
   ): NodeAs<T[number]> {
     if (!isNode(node, type)) {
       message = 'expected ' + type.join(', ') + (message ? message : '')
-      throw createError(this.source, message, node.start!, node.end!)
+
+      const loc = node.loc!
+
+      throw createError(this.source, message, loc.start, loc.end)
     }
 
     return node as NodeAs<T[number]>
@@ -56,8 +59,8 @@ export class ParserBase extends TokenReader {
       throw createError(
         this.source,
         'expected ' + [type, value].join(', '),
-        token.start,
-        token.end
+        token.loc.start,
+        token.loc.end
       )
     }
 
