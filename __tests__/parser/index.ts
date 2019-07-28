@@ -3,76 +3,76 @@ import { parse } from '../../src'
 describe('Parser', () => {
   describe('Program', () => {
     it('should parse literal', () => {
-      expect(parse('true;').body).toStrictEqual([
-        expect.objectContaining({
+      expect(parse('true;').body).toMatchObject([
+        {
           type: 'ExpressionStatement',
-          body: expect.objectContaining({
+          body: {
             type: 'BooleanLiteral',
             value: 'true',
-          }),
-        }),
+          },
+        },
       ])
 
-      expect(parse('"hello";').body).toStrictEqual([
-        expect.objectContaining({
+      expect(parse('"hello";').body).toMatchObject([
+        {
           type: 'ExpressionStatement',
-          body: expect.objectContaining({
+          body: {
             type: 'StringLiteral',
             value: '"hello"',
-          }),
-        }),
+          },
+        },
       ])
 
-      expect(parse('100;').body).toStrictEqual([
-        expect.objectContaining({
+      expect(parse('100;').body).toMatchObject([
+        {
           type: 'ExpressionStatement',
-          body: expect.objectContaining({
+          body: {
             type: 'NumericLiteral',
             value: '100',
-          }),
-        }),
+          },
+        },
       ])
 
       // FIXME: unexpectedly returned `NumericLiteral`
-      // expect(parse('100s').body).toStrictEqual([
-      //   expect.objectContaining({
+      // expect(parse('100s').body).toMatchObject([
+      //   {
       //     type: 'ExpressionStatement',
-      //     body: expect.objectContaining({
+      //     body: {
       //       type: 'DurationLiteral',
       //       value: '100s',
-      //     }),
-      //   }),
+      //     },
+      //   },
       // ])
 
-      expect(parse('ident;').body).toStrictEqual([
-        expect.objectContaining({
+      expect(parse('ident;').body).toMatchObject([
+        {
           type: 'ExpressionStatement',
-          body: expect.objectContaining({
+          body: {
             type: 'Identifier',
             name: 'ident',
-          }),
-        }),
+          },
+        },
       ])
     })
 
-    expect(parse('ident "hello" 100;').body).toStrictEqual([
-      expect.objectContaining({
+    expect(parse('ident "hello" 100;').body).toMatchObject([
+      {
         type: 'ExpressionStatement',
-        body: expect.objectContaining({
+        body: {
           type: 'ConcatExpression',
           body: [
-            expect.objectContaining({
+            {
               type: 'Identifier',
-            }),
-            expect.objectContaining({
+            },
+            {
               type: 'StringLiteral',
-            }),
-            expect.objectContaining({
+            },
+            {
               type: 'NumericLiteral',
-            }),
+            },
           ],
-        }),
-      }),
+        },
+      },
     ])
   })
 
