@@ -1,9 +1,7 @@
 import { Node } from './node'
 import * as n from '../ast-nodes.d'
 
-export type ExtractNodeFromDef<Def> = Def extends NodeDef<infer Node>
-  ? Node
-  : never
+type ExtractNodeFromDef<Def> = Def extends NodeDef<infer Node> ? Node : never
 
 export type NodeDefMap = typeof nodeDefs
 export type NodeType = keyof NodeDefMap
