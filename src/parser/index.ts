@@ -9,14 +9,14 @@ export class Parser extends StatementParser {
   }
 
   private parseProgram(): Program {
-    return this.createNode('Program', () => {
-      const body: Array<Statement> = []
+    const node = this.startNode({ offset: 0, line: 1, column: 1 })
 
-      while (!this.isEOF()) {
-        body.push(this.parseStmt(this.read()))
-      }
+    const body: Array<Statement> = []
 
-      return { body }
-    })
+    while (!this.isEOF()) {
+      body.push(this.parseStmt(this.read()))
+    }
+
+    return this.finishNode(node, 'Program', { body })
   }
 }
