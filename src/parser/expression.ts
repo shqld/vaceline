@@ -26,6 +26,10 @@ export class ExpressionParser extends ParserBase {
 
     const node = this.startNode()
 
+    if (token.type === 'symbol' && token.value === ';') {
+      return expr
+    }
+
     let backup: number
 
     const buf = [expr]
@@ -34,6 +38,20 @@ export class ExpressionParser extends ParserBase {
       backup = this.getCursor()
 
       const token = this.read()
+
+      if (token.type === 'symbol' && token.value === ';') {
+        // backtrack to the backed-up cursor
+        this.jumpTo(backup)
+
+        // the next token wasn't an expression
+        if (buf.length === 1) {
+          return buf[0]
+        }
+
+        return this.finishNode(node, 'ConcatExpression', {
+          body: buf,
+        })
+      }
 
       try {
         buf.push(this.parseExprBase(token))
