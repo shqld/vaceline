@@ -10,6 +10,10 @@ describe('Parser', () => {
             type: 'BooleanLiteral',
             value: 'true',
           },
+          loc: {
+            start: { offset: 0 },
+            end: { offset: 4 },
+          },
         },
       ])
 
@@ -20,6 +24,10 @@ describe('Parser', () => {
             type: 'StringLiteral',
             value: '"hello"',
           },
+          loc: {
+            start: { offset: 0 },
+            end: { offset: 7 },
+          },
         },
       ])
 
@@ -29,6 +37,10 @@ describe('Parser', () => {
           body: {
             type: 'NumericLiteral',
             value: '100',
+          },
+          loc: {
+            start: { offset: 0 },
+            end: { offset: 3 },
           },
         },
       ])
@@ -51,6 +63,10 @@ describe('Parser', () => {
             type: 'Identifier',
             name: 'ident',
           },
+          loc: {
+            start: { offset: 0 },
+            end: { offset: 5 },
+          },
         },
       ])
     })
@@ -63,18 +79,32 @@ describe('Parser', () => {
           body: [
             {
               type: 'Identifier',
+              loc: {
+                start: { offset: 0 },
+                end: { offset: 4 },
+              },
             },
             {
               type: 'StringLiteral',
+              loc: {
+                start: { offset: 6 },
+                end: { offset: 12 },
+              },
             },
             {
               type: 'NumericLiteral',
+              loc: {
+                start: { offset: 14 },
+                end: { offset: 16 },
+              },
             },
           ],
+        },
+        loc: {
+          start: { offset: 0 },
+          end: { offset: 17 },
         },
       },
     ])
   })
-
-  // it('should', () => {})
 })
