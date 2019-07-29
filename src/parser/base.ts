@@ -11,10 +11,15 @@ import { TokenReader } from './token-reader'
 
 import { isNode } from '../utils/node'
 import { isToken } from '../utils/token'
-import { PlainNode } from '../nodes/node'
+import { PlainNode, Position, NodeWithLoc } from '../nodes/node'
+
+interface Stack<T> {
+  push: Array<T>['push']
+  pop: Array<T>['pop']
+}
 
 export class ParserBase extends TokenReader {
-  source: string
+  protected source: string
 
   constructor(source: string, opts: { keywords?: Array<string> } = {}) {
     const tokens = new Tokenizer(source, opts).tokenize()
@@ -24,14 +29,25 @@ export class ParserBase extends TokenReader {
     this.source = source
   }
 
-  protected createNode<
+  protected startNode(start?: Position): NodeWithLoc {
+    const node = new Node()
+
+    node.loc = {
+      start: start || this.getCurrentLocation().start,
+      end: null as any,
+    }
+
+    return node as NodeWithLoc
+  }
+
+  protected finishNode<
     T extends NodeType,
     N extends NodeAs<T>,
     V extends PlainNode<N>
-  >(type: T, parse: () => V): N {
-    const values = parse()
+  >(node: NodeWithLoc, type: T, values: V): N {
+    node.loc.end = this.getCurrentLocation().end
 
-    return Node.create(type, values)
+    return Node.build(node, type, values)
   }
 
   protected validateNode<T extends Array<NodeType>>(

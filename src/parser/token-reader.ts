@@ -1,10 +1,11 @@
 import { Token } from './tokenizer'
+import { Location } from '../nodes'
 
 export class TokenReader {
   private tokens: Array<Token>
-
   private cur: number
-  private comments: Array<Token>
+
+  comments: Array<Token>
 
   constructor(tokens: Array<Token>) {
     this.tokens = tokens
@@ -13,8 +14,8 @@ export class TokenReader {
     this.cur = 0
   }
 
-  getComments(): Array<Token> {
-    return this.comments
+  getCurrentLocation(): Location {
+    return this.tokens[this.cur - 1].loc
   }
 
   jumpTo(cur: number) {

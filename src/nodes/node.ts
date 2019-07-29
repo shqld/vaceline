@@ -15,6 +15,8 @@ export interface Location {
 export type PlainNode<T extends Node> = Omit<T, keyof Node>
 export type NodeWithLocation = Node & { loc: Location }
 
+export type NodeWithLoc = Node & { loc: Location }
+
 export class Node {
   type!: string
   loc?: Location
@@ -40,18 +42,12 @@ export class Node {
     return node as N & { type: T }
   }
 
-  // When creating node with location,
-  // always define node.loc ahead of other values
-  // to maximize JIT optimization with hidden class by V8
-  static createWithLoc = <T extends NodeType, N extends NodeAs<T>>(
+  static build<T extends NodeType, N extends NodeAs<T>>(
+    node: Node,
     type: T,
-    values: PlainNode<N>,
-    loc: Location
-  ): N & { start: number; end: number; loc: Location } => {
-    const node = new Node()
-
+    values: PlainNode<N>
+  ): N & { loc: Location } {
     node.type = type
-    node.loc = loc
 
     const def = nodeDefs[type]
 
