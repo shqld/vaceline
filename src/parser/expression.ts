@@ -4,6 +4,7 @@ import { isToken, isLiteralToken } from '../utils/token'
 
 import { Token } from './tokenizer'
 import { ParserBase } from './base'
+import { NodeWithLoc } from '../nodes/node'
 
 const literals = {
   string: 'StringLiteral',
@@ -19,9 +20,11 @@ export class ExpressionParser extends ParserBase {
     token: Token = this.read(),
     shortcut = false
   ): n.Expression {
-    if (shortcut) return this.parseExprBase(token)
-
     const expr = this.parseExprBase(token)
+
+    if (shortcut) return expr
+
+    const node = this.startNode()
 
     let backup: number
 
@@ -32,17 +35,6 @@ export class ExpressionParser extends ParserBase {
 
       const token = this.read()
 
-      if (
-        token.type !== 'operator' &&
-        token.type !== 'identifier' &&
-        token.type !== 'literal'
-      ) {
-        // backtrack to the backed-up cursor
-        this.jumpTo(backup)
-        // the next token can't be an expression
-        return this.parseConcatExpr(buf)
-      }
-
       try {
         buf.push(this.parseExprBase(token))
       } catch (err) {
@@ -51,86 +43,83 @@ export class ExpressionParser extends ParserBase {
           this.jumpTo(backup)
 
           // the next token wasn't an expression
-          return this.parseConcatExpr(buf)
+          if (buf.length === 1) {
+            return buf[0]
+          }
+
+          return this.finishNode(node, 'ConcatExpression', {
+            body: buf,
+          })
         }
 
         throw err
       }
     }
+
+    return expr
   }
 
-  private parseConcatExpr(buf: Array<n.Expression>) {
-    if (buf.length === 1) {
-      return buf[0]
-    }
-
-    // const first = buf[0]
-    // const last = buf[buf.length - 1]
-
-    return Node.create('ConcatExpression', {
-      body: buf,
-    })
-  }
-
-  private parseExprBase(token: Token = this.read()): n.Expression {
+  private parseExprBase(
+    token: Token = this.read(),
+    node: NodeWithLoc = this.startNode()
+  ): n.Expression {
     if (isLiteralToken(token)) {
       const literalType = literals[token.literalType]
 
-      return this.createNode(literalType, () => ({
+      return this.finishNode(node, literalType, {
         value: token.value,
-      }))
+      })
     }
 
     if (token.type === 'identifier') {
       if (isToken(this.peek(), 'symbol', '(')) {
-        return this.createNode('FunCallExpression', () => {
-          const callee = this.createNode('Identifier', () => ({
-            name: token.value,
-          }))
+        const ident = this.startNode()
 
-          this.take()
+        const callee = this.finishNode(ident, 'Identifier', {
+          name: token.value,
+        })
 
-          const args: Array<n.Expression> = []
+        this.take()
 
-          while (true) {
-            args.push(this.parseExpr())
-            if (isToken(this.peek(), 'symbol', ')')) {
-              this.take()
-              break
-            }
+        const args: Array<n.Expression> = []
 
-            this.validateToken(this.read(), 'symbol', ',')
+        while (true) {
+          args.push(this.parseExpr())
+
+          if (isToken(this.peek(), 'symbol', ')')) {
+            this.take()
+            break
           }
 
-          return {
-            callee,
-            arguments: args,
-          }
+          this.validateToken(this.read(), 'symbol', ',')
+        }
+
+        return this.finishNode(node, 'FunCallExpression', {
+          callee,
+          arguments: args,
         })
       }
 
-      return this.createNode('Identifier', () => ({ name: token.value }))
+      return this.finishNode(node, 'Identifier', { name: token.value })
     }
 
     if (token.type === 'symbol') {
       if (token.value === '(') {
-        return this.createNode('BooleanExpression', () => {
-          const body = this.parseExpr()
-          this.validateToken(this.read(), 'symbol', ')')
+        const body = this.parseExpr()
+        this.validateToken(this.read(), 'symbol', ')')
 
-          return {
-            body,
-          }
+        return this.finishNode(node, 'BooleanExpression', {
+          body,
         })
       }
     }
 
     if (token.type === 'operator') {
       if (token.value === '!') {
-        return this.createNode('UnaryExpression', () => ({
+        return this.finishNode(node, 'UnaryExpression', {
           argument: this.parseExpr(),
           operator: token.value,
-        }))
+        })
       }
     }
 
