@@ -3,6 +3,7 @@ import { isToken, isKeywordToken } from '../utils/token'
 
 import { ReturnTypeToken, ValueTypeToken } from './tokenizer'
 import { ExpressionParser } from './expression'
+import { createError } from './create-error'
 
 export class StatementParser extends ExpressionParser {
   private ensureSemi() {
@@ -270,6 +271,11 @@ export class StatementParser extends ExpressionParser {
       })
     }
 
-    throw new SyntaxError('[stmt] not implemented yet')
+    throw createError(
+      this.source,
+      '[stmt] not implemented yet',
+      node.loc.start,
+      node.loc.end
+    )
   }
 }
