@@ -3,6 +3,16 @@ import { parse } from '../../src'
 describe('Parser', () => {
   describe('Program', () => {
     it('should parse literal', () => {
+      console.log(
+        JSON.stringify(
+          parse(`{"
+      asd
+            "}`),
+          null,
+          2
+        )
+      )
+
       expect(parse('true;').body).toMatchObject([
         {
           type: 'ExpressionStatement',
