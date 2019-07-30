@@ -5,6 +5,7 @@ import { isToken, isLiteralToken } from '../utils/token'
 import { Token } from './tokenizer'
 import { ParserBase } from './base'
 import { NodeWithLoc } from '../nodes/node'
+import { createError } from './create-error'
 
 const literals = {
   string: 'StringLiteral',
@@ -141,6 +142,11 @@ export class ExpressionParser extends ParserBase {
       }
     }
 
-    throw new SyntaxError('[expr] not implemented yet')
+    throw createError(
+      this.source,
+      '[expr] not implemented yet',
+      node.loc.start,
+      node.loc.end
+    )
   }
 }
