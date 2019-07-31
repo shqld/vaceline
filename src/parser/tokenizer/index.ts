@@ -1,5 +1,5 @@
 import { createError } from '../create-error'
-import { Location } from '../../nodes'
+import { Location, Position } from '../../nodes'
 
 export type TokenType =
   | 'identifier'
@@ -93,8 +93,9 @@ const splitters = [
   /* spaces         */ / +/,
   /* newline        */ '\n',
   /* ip             */ /"[A-Fa-f0-9:.]+"(\/\d+)?/,
+  /* number         */ /^\d[\d\.]*/,
   /* string         */ /"[^\n]*?"/,
-  /* multis tring   */ /{"[\s\S]*?"}/,
+  /* multiline str  */ /{"[\s\S]*?"}/,
   /* line comment   */ /#[^\n]*|\/\/[^\n]*/,
   /* inline comment */ /\/\*[\s\S]*\*\//,
   ...symbols,
@@ -141,10 +142,6 @@ export class Tokenizer {
     // opts.keywords ? [...keywords, ...opts.keywords] :
   }
 
-  createError(message: string, start: number, end?: number): SyntaxError {
-    return createError(this.raw, message, start, end)
-  }
-
   tokenize(): Array<Token> {
     const source = this.source
     const tokens = []
@@ -179,6 +176,8 @@ export class Tokenizer {
         continue
       }
 
+      let err: string
+
       let startOffset: number,
         startLine: number,
         startColumn: number,
@@ -210,6 +209,11 @@ export class Tokenizer {
       } else if (str.startsWith('"')) {
         type = 'literal'
         literalType = 'string'
+
+        if (!str.endsWith('"')) {
+          err =
+            'invalid token (string may have newlines inside normal quotes, use `{" "}`)'
+        }
       } else if (str.startsWith('{"')) {
         type = 'literal'
         literalType = 'string'
@@ -236,7 +240,7 @@ export class Tokenizer {
         type = 'identifier'
 
         if (!/^[A-Za-z][A-Za-z\d\.-_]*/.test(str)) {
-          throw this.createError('invalid token', offset)
+          err = 'invalid token'
         }
       }
 
@@ -250,6 +254,24 @@ export class Tokenizer {
       endOffset = offset - 1
       endLine = line
       endColumn = column - 1
+
+      // @ts-ignore
+      if (err) {
+        throw createError(
+          this.raw,
+          err,
+          {
+            offset: startOffset,
+            line: startLine,
+            column: startColumn,
+          },
+          {
+            offset: endOffset,
+            line: endLine,
+            column,
+          }
+        )
+      }
 
       tokens.push({
         type,

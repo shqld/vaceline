@@ -305,7 +305,7 @@ before/* comment */after
           `
 ident1
 ident2
-ident3 %(%
+ident3 %%%
 ident4
 `
         )
@@ -315,8 +315,8 @@ invalid token
 
   1 | ident1
   2 | ident2
-> 3 | ident3 %(%
-               ^
+> 3 | ident3 %%%
+             ^^^
   4 | ident4
       `.trim()
       )
