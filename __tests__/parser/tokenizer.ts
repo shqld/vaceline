@@ -151,8 +151,7 @@ ident
 
       expect(tokenize(str)).toMatchObject([
         {
-          type: 'literal',
-          literalType: 'string',
+          type: 'string',
           value: '"hello"',
           loc: {
             start: {
@@ -168,8 +167,7 @@ ident
           },
         },
         {
-          type: 'literal',
-          literalType: 'string',
+          type: 'string',
           value: '"world"',
           loc: {
             start: {
@@ -208,8 +206,7 @@ llo"} "hello"
         )
       ).toMatchObject([
         {
-          type: 'literal',
-          literalType: 'string',
+          type: 'string',
           value: '{"he\nllo"}',
           loc: {
             start: {
@@ -225,8 +222,7 @@ llo"} "hello"
           },
         },
         {
-          type: 'literal',
-          literalType: 'string',
+          type: 'string',
           value: '"hello"',
           loc: {
             start: {
@@ -251,28 +247,25 @@ llo"} "hello"
           false`)
       ).toMatchObject([
         {
-          type: 'literal',
-          literalType: 'boolean',
+          type: 'keyword',
           value: 'true',
         },
         {
-          type: 'literal',
-          literalType: 'boolean',
+          type: 'keyword',
           value: 'false',
         },
       ])
     })
 
     it('should tokenize numeric', () => {
-      expect(tokenize('100')).toMatchObject([
-        { type: 'literal', literalType: 'numeric', value: '100' },
-      ])
+      expect(tokenize('100')).toMatchObject([{ type: 'number', value: '100' }])
 
       expect(tokenize('100.01')).toMatchObject([
-        { type: 'literal', literalType: 'numeric', value: '100.01' },
+        { type: 'number', value: '100.01' },
       ])
 
       expect(() => tokenize('.11')).toThrow(/invalid token/)
+      expect(() => tokenize('0.')).toThrow(/invalid token/)
     })
   })
 
