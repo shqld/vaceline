@@ -77,12 +77,6 @@ export const nodeDefs = {
     },
   } as NodeDef<n.NumericLiteral>,
 
-  IpLiteral: {
-    build(node, obj) {
-      node.value = obj.value
-    },
-  } as NodeDef<n.IpLiteral>,
-
   Identifier: {
     build(node, obj) {
       node.name = obj.name
@@ -94,6 +88,13 @@ export const nodeDefs = {
       node.name = obj.name
     },
   } as NodeDef<n.Header>,
+
+  Ip: {
+    build(node, obj) {
+      node.value = obj.value
+      node.cidr = obj.cidr
+    },
+  } as NodeDef<n.Ip>,
 
   MemberExpression: {
     build(node, obj) {

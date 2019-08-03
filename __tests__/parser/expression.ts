@@ -1,6 +1,7 @@
 import { Parser } from '../../src/parser'
 import { parseExpr } from '../../src/parser/expression'
 import { BinaryExpression, LogicalExpression } from '../../src/ast-nodes'
+import { parseIp } from '../../src/parser/statement/ip'
 
 const parse = (source: string) => parseExpr(new Parser(source))
 
@@ -227,6 +228,71 @@ describe('Expression', () => {
         },
         right: { name: 'd' },
       } as BinaryExpression)
+    })
+  })
+
+  describe('Ip', () => {
+    const parse = (str: string) => parseIp(new Parser(str))
+
+    it('should parse', () => {
+      expect(parse('"localhost"')).toMatchObject({
+        type: 'Ip',
+        value: 'localhost',
+      })
+      expect(() => parse('"localhost"/16')).toThrow(
+        /invalid ip address.*A prefix length is not supported for `localhost`/
+      )
+
+      // v4
+      expect(parse('"192.0.2.0"')).toMatchObject({
+        type: 'Ip',
+        value: '192.0.2.0',
+      })
+      expect(parse('"192.0.2.0"/16')).toMatchObject({
+        type: 'Ip',
+        value: '192.0.2.0',
+        cidr: 16,
+      })
+      expect(() => parse('"192.0.2.0"/33')).toThrow(
+        /IPv4 prefix length must be between 0 and 32/
+      )
+
+      // v6
+      expect(parse('"2001:db8::1"')).toMatchObject({
+        type: 'Ip',
+        value: '2001:db8::1',
+      })
+      expect(parse('"2001:db8::1"/16')).toMatchObject({
+        type: 'Ip',
+        value: '2001:db8::1',
+        cidr: 16,
+      })
+      expect(() => parse('"2001:db8::1"/129')).toThrow(
+        /IPv6 prefix length must be between 0 and 128/
+      )
+
+      /* 6to4 mapping for "192.0.2.4" */
+      expect(parse('"2002:c000:0204::"')).toMatchObject({
+        type: 'Ip',
+        value: '2002:c000:0204::',
+      })
+      expect(parse('"::FFFF:192.0.2.4"')).toMatchObject({
+        type: 'Ip',
+        value: '::FFFF:192.0.2.4',
+      })
+      expect(parse('"::1"')).toMatchObject({
+        type: 'Ip',
+        value: '::1',
+      })
+
+      /* unspecified address */
+      expect(parse('"::"')).toMatchObject({
+        type: 'Ip',
+        value: '::',
+      })
+
+      expect(() => parse('"0.0.0"')).toThrow(/invalid ip address/)
+      expect(() => parse('"invalid"')).toThrow(/invalid ip address/)
     })
   })
 })

@@ -7,7 +7,7 @@ import { TokenReader } from './token-reader'
 import { isNode } from '../utils/node'
 import { isToken } from '../utils/token'
 import { PlainNode, NodeWithLoc } from '../nodes/node'
-import { parseStmt } from './statement'
+import { parseStmt } from './statement/index'
 
 export const parse = (source: string) => new Parser(source).parse()
 

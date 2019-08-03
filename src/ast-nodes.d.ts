@@ -7,12 +7,12 @@ export type Literal =
   | MultilineLiteral
   | DurationLiteral
   | NumericLiteral
-  | IpLiteral
 
 export type Expression =
   | Literal
   | Identifier
   | Header
+  | Ip
   | MemberExpression
   | BooleanExpression
   | UnaryExpression
@@ -93,11 +93,6 @@ export interface NumericLiteral extends Node {
   value: string
 }
 
-export interface IpLiteral extends Node {
-  type: 'IpLiteral'
-  value: string
-}
-
 export interface Identifier extends Node {
   type: 'Identifier'
   name: string
@@ -106,6 +101,12 @@ export interface Identifier extends Node {
 export interface Header extends Node {
   type: 'Header'
   name: string
+}
+
+export interface Ip extends Node {
+  type: 'Ip'
+  value: string
+  cidr?: number
 }
 
 export interface MemberExpression extends Node {

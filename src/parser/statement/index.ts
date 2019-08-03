@@ -1,10 +1,11 @@
-import * as n from '../ast-nodes'
-import { isToken } from '../utils/token'
+import * as n from '../../ast-nodes'
+import { isToken } from '../../utils/token'
 
-import { parseExpr } from './expression'
-import { createError } from './create-error'
-import { Parser } from '.'
-import { keywords } from './keywords'
+import { parseExpr } from '../expression'
+import { createError } from '../create-error'
+import { Parser } from '..'
+import { keywords } from '../keywords'
+import { parseIp } from './ip'
 
 const ensureSemi = (p: Parser) => {
   p.validateToken(p.read(), 'symbol', ';')
@@ -249,14 +250,14 @@ export const parseStmt = (p: Parser): n.Statement => {
     const body = []
 
     while (true) {
-      if (p.validateToken(p.peek()!, 'symbol', '}')) {
+      if (isToken(p.peek()!, 'symbol', '}')) {
         p.take()
         break
       }
 
-      body.push(p.validateNode(parseExpr(p, p.read(), true), ['IpLiteral']))
+      body.push(parseIp(p))
 
-      p.validateToken(p.read(), 'symbol', ',')
+      ensureSemi(p)
     }
 
     return p.finishNode(node, 'AclStatement', {
