@@ -1,8 +1,8 @@
 import { parseLiteral } from '../../src/parser/literal'
-import { ParserBase } from '../../src/parser/base'
+import { Parser } from '../../src/parser'
 
 describe('Literal', () => {
-  const parseExpr = (source: string) => parseLiteral(new ParserBase(source))
+  const parseExpr = (source: string) => parseLiteral(new Parser(source))
 
   describe('BooleanLiteral', () => {
     it('should parse', () => {
