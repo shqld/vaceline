@@ -7,6 +7,7 @@ import { ParserBase } from './base'
 import { NodeWithLoc } from '../nodes/node'
 import { createError } from './create-error'
 import { parseLiteral } from './literal'
+import { isTSImportEqualsDeclaration } from '@babel/types'
 
 const literals = {
   string: 'StringLiteral',
@@ -28,39 +29,26 @@ export class ExpressionParser extends ParserBase {
 
     const node = this.startNode()
 
-    if (token.type === 'symbol' && token.value === ';') {
+    if (isToken(token, 'symbol', ';')) {
       return expr
     }
 
-    let backup: number
+    let backup = this.getCursor()
 
     const buf = [expr]
 
     while (!this.isEOF()) {
-      backup = this.getCursor()
-
       const token = this.read()
 
-      // if (token.type === 'symbol' && token.value === ';') {
-      //   // backtrack to the backed-up cursor
-      //   this.jumpTo(backup)
-
-      //   // the next token wasn't an expression
-      //   if (buf.length === 1) {
-      //     return buf[0]
-      //   }
-
-      //   return this.finishNode(node, 'ConcatExpression', {
-      //     body: buf,
-      //   })
-      // }
+      if (isToken(token, 'symbol', ';')) {
+        break
+      }
 
       try {
         buf.push(this.parseExprBase(token))
+        backup = this.getCursor()
       } catch (err) {
         if (err instanceof SyntaxError) {
-          // backtrack to the backed-up cursor
-          this.jumpTo(backup)
           break
         } else {
           throw err
@@ -68,15 +56,20 @@ export class ExpressionParser extends ParserBase {
       }
     }
 
+    // backtrack to the backed-up cursor
+    this.jumpTo(backup)
+
     // the next token wasn't an expression
     if (buf.length === 1) {
-      return buf[0]
+      return expr
     }
 
     return this.finishNode(node, 'ConcatExpression', {
       body: buf,
     })
   }
+
+  // private parseOpExpr() {}
 
   private parseExprBase(
     token: Token = this.read(),
