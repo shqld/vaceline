@@ -83,35 +83,4 @@ multiline
       expect(() => parseExpr('0.')).toThrow(/invalid number/)
     })
   })
-
-  // TODO:
-  describe('IpLiteral', () => {
-    it('should parse', () => {
-      expect(parseExpr('"192.0.2.0"')).toMatchObject({
-        type: 'IpLiteral',
-      })
-      expect(parseExpr('"192.0.2.0"/16')).toMatchObject({
-        type: 'IpLiteral',
-      })
-      expect(parseExpr('"2001:db8::1"')).toMatchObject({
-        type: 'IpLiteral',
-      })
-
-      /* 6to4 mapping for "192.0.2.4" */
-      expect(parseExpr('"2002:c000:0204::"')).toMatchObject({
-        type: 'IpLiteral',
-      })
-      expect(parseExpr('"::FFFF:192.0.2.4"')).toMatchObject({
-        type: 'IpLiteral',
-      })
-      expect(parseExpr('"::1"')).toMatchObject({
-        type: 'IpLiteral',
-      })
-
-      /* unspecified address */
-      expect(parseExpr('"::"')).toMatchObject({
-        type: 'IpLiteral',
-      })
-    })
-  })
 })
