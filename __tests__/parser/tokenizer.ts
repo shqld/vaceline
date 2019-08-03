@@ -258,14 +258,11 @@ llo"} "hello"
     })
 
     it('should tokenize numeric', () => {
-      expect(tokenize('100')).toMatchObject([{ type: 'number', value: '100' }])
+      expect(tokenize('100')).toMatchObject([{ type: 'numeric', value: '100' }])
 
       expect(tokenize('100.01')).toMatchObject([
-        { type: 'number', value: '100.01' },
+        { type: 'numeric', value: '100.01' },
       ])
-
-      expect(() => tokenize('.11')).toThrow(/invalid token/)
-      expect(() => tokenize('0.')).toThrow(/invalid token/)
     })
   })
 

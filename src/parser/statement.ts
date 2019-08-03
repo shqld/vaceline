@@ -1,7 +1,6 @@
 import * as n from '../ast-nodes'
 import { isToken, isKeywordToken } from '../utils/token'
 
-import { ReturnTypeToken, ValueTypeToken } from './tokenizer'
 import { ExpressionParser } from './expression'
 import { createError } from './create-error'
 
