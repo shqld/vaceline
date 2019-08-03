@@ -12,14 +12,14 @@ export const parseLiteral = (
   token: Token = parser.read(),
   node: NodeWithLoc = parser.startNode()
 ): n.Literal | null => {
-  if (token.type === 'string') {
-    return parser.finishNode(node, 'StringLiteral', {
+  if (isToken(token, 'boolean')) {
+    return parser.finishNode(node, 'BooleanLiteral', {
       value: token.value,
     })
   }
 
-  if (isToken(token, 'keyword', /true|false/)) {
-    return parser.finishNode(node, 'BooleanLiteral', {
+  if (token.type === 'string') {
+    return parser.finishNode(node, 'StringLiteral', {
       value: token.value,
     })
   }

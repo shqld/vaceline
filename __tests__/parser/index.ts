@@ -3,16 +3,6 @@ import { parse } from '../../src'
 describe('Parser', () => {
   describe('Program', () => {
     it('should parse literal', () => {
-      console.log(
-        JSON.stringify(
-          parse(`{"
-      asd
-            "}`),
-          null,
-          2
-        )
-      )
-
       expect(parse('true;').body).toMatchObject([
         {
           type: 'ExpressionStatement',
@@ -55,16 +45,15 @@ describe('Parser', () => {
         },
       ])
 
-      // FIXME: unexpectedly returned `NumericLiteral`
-      // expect(parse('100s').body).toMatchObject([
-      //   {
-      //     type: 'ExpressionStatement',
-      //     body: {
-      //       type: 'DurationLiteral',
-      //       value: '100s',
-      //     },
-      //   },
-      // ])
+      expect(parse('100s;').body).toMatchObject([
+        {
+          type: 'ExpressionStatement',
+          body: {
+            type: 'DurationLiteral',
+            value: '100s',
+          },
+        },
+      ])
 
       expect(parse('ident;').body).toMatchObject([
         {
