@@ -1,280 +1,273 @@
 import * as n from '../ast-nodes'
 import { isToken, isKeywordToken } from '../utils/token'
 
-import { ExpressionParser } from './expression'
+import { parseExpr } from './expression'
 import { createError } from './create-error'
+import { Parser } from '.'
 
-export class StatementParser extends ExpressionParser {
-  private ensureSemi() {
-    this.validateToken(this.read(), 'symbol', ';')
+const ensureSemi = (p: Parser) => {
+  p.validateToken(p.read(), 'symbol', ';')
+}
+
+export const parseStmt = (p: Parser): n.Statement => {
+  const token = p.peek()!
+  const node = p.startNode()
+
+  if (!isKeywordToken(token)) {
+    const body = parseExpr(p)
+
+    ensureSemi(p)
+
+    return p.finishNode(node, 'ExpressionStatement', {
+      body,
+    })
   }
 
-  protected parseStmt(
-    token = this.read(),
-    node = this.startNode()
-  ): n.Statement {
-    if (!isKeywordToken(token)) {
-      const body = this.parseExpr(token)
+  p.take()
 
-      this.ensureSemi()
+  if (token.value === 'set' || token.value === 'add') {
+    const left = p.validateNode(parseExpr(p), ['Identifier'])
+    const operator = p.validateToken(p.read(), 'operator').value
+    const right = parseExpr(p)
 
-      return this.finishNode(node, 'ExpressionStatement', {
-        body,
-      })
-    }
+    ensureSemi(p)
 
-    if (token.value === 'set' || token.value === 'add') {
-      const left = this.validateNode(this.parseExpr(), ['Identifier'])
-      const operator = this.validateToken(this.read(), 'operator').value
-      const right = this.parseExpr()
-
-      this.ensureSemi()
-
-      return this.finishNode(
-        node,
-        token.value === 'add' ? 'AddStatement' : 'SetStatement',
-        {
-          left,
-          operator,
-          right,
-        }
-      )
-    }
-
-    if (token.value === 'unset') {
-      const id = this.validateNode(this.parseExpr(), ['Identifier'])
-
-      this.ensureSemi()
-
-      return this.finishNode(node, 'UnsetStatement', {
-        id,
-      })
-    }
-
-    if (token.value === 'include') {
-      const module = this.validateNode(this.parseExpr(), ['StringLiteral'])
-
-      this.ensureSemi()
-
-      return this.finishNode(node, 'IncludeStatement', {
-        module,
-      })
-    }
-
-    if (token.value === 'import') {
-      const module = this.validateNode(this.parseExpr(), ['Identifier'])
-
-      this.ensureSemi()
-
-      return this.finishNode(node, 'ImportStatement', {
-        module,
-      })
-    }
-
-    if (token.value === 'call') {
-      const subroutine = this.validateNode(this.parseExpr(), ['Identifier'])
-
-      this.ensureSemi()
-
-      return this.finishNode(node, 'CallStatement', {
-        subroutine,
-      })
-    }
-
-    if (token.value === 'declare') {
-      this.validateToken(this.read(), 'keyword', 'local')
-
-      const id = this.validateNode(this.parseExpr(), ['Identifier'])
-      const valueType = (this.validateToken(
-        this.read(),
-        'valueTypes'
-      ) as ValueTypeToken).value
-
-      this.ensureSemi()
-
-      return this.finishNode(node, 'DeclareStatement', {
-        id,
-        valueType,
-      })
-    }
-
-    if (token.value === 'return') {
-      let returnActionToken: ReturnTypeToken
-
-      // `()` can be skipped
-      if (isToken(this.peek(), 'symbol', '(')) {
-        this.take()
-        returnActionToken = this.validateToken(this.read(), 'returnTypes')
-        this.validateToken(this.read(), 'symbol', ')')
-      } else {
-        returnActionToken = this.validateToken(this.read(), 'returnTypes')
+    return p.finishNode(
+      node,
+      token.value === 'add' ? 'AddStatement' : 'SetStatement',
+      {
+        left,
+        operator,
+        right,
       }
-
-      const action = returnActionToken.value
-
-      this.ensureSemi()
-
-      return this.finishNode(node, 'ReturnStatement', { action })
-    }
-
-    if (token.value === 'error') {
-      const status = this.validateNode(this.parseExpr(this.read(), true), [
-        'NumericLiteral',
-      ])
-
-      // `message` can be void
-      if (isToken(this.peek(), 'symbol', ';')) {
-        this.take()
-
-        return this.finishNode(node, 'ErrorStatement', {
-          status,
-        })
-      }
-
-      const message = this.parseExpr()
-
-      this.ensureSemi()
-
-      return this.finishNode(node, 'ErrorStatement', {
-        status,
-        message,
-      })
-    }
-
-    if (token.value === 'restart') {
-      return this.finishNode(node, 'RestartStatement', {})
-    }
-
-    if (token.value === 'synthetic') {
-      const response = this.parseExpr()
-
-      this.ensureSemi()
-
-      return this.finishNode(node, 'SyntheticStatement', {
-        response,
-      })
-    }
-
-    if (token.value === 'log') {
-      const content = this.parseExpr()
-
-      this.ensureSemi()
-
-      return this.finishNode(node, 'LogStatement', {
-        content,
-      })
-    }
-
-    if (token.value === 'if') {
-      this.validateToken(this.read(), 'symbol', '(')
-
-      const test = this.parseExpr()
-
-      this.validateToken(this.read(), 'symbol', ')')
-
-      this.validateToken(this.read(), 'symbol', '{')
-
-      const consequent: Array<n.Statement> = []
-      while (true) {
-        if (isToken(this.peek(), 'symbol', '}')) {
-          this.take()
-          break
-        }
-
-        consequent.push(this.parseStmt())
-      }
-
-      if (this.isEOF() || !isToken(this.peek(), 'keyword', 'else')) {
-        return this.finishNode(node, 'IfStatement', {
-          test,
-          consequent,
-        })
-      }
-
-      this.take()
-
-      let alternative: n.IfStatement | Array<n.Statement>
-      if (isToken(this.peek(), 'keyword', 'if')) {
-        alternative = this.validateNode(this.parseStmt(this.read()), [
-          'IfStatement',
-        ])
-      } else {
-        this.validateToken(this.read(), 'symbol', '{')
-
-        alternative = []
-
-        while (true) {
-          if (isToken(this.peek(), 'symbol', '}')) {
-            this.take()
-            break
-          }
-
-          alternative.push(this.parseStmt())
-        }
-      }
-
-      return this.finishNode(node, 'IfStatement', {
-        test,
-        consequent,
-        alternative,
-      })
-    }
-
-    if (token.value === 'sub') {
-      const id = this.validateNode(this.parseExpr(this.read(), true), [
-        'Identifier',
-      ])
-      this.validateToken(this.read(), 'symbol', '{')
-
-      const body = []
-
-      while (true) {
-        if (isToken(this.peek(), 'symbol', '}')) {
-          this.take()
-          break
-        }
-
-        body.push(this.parseStmt())
-      }
-
-      return this.finishNode(node, 'SubroutineStatement', {
-        id,
-        body,
-      })
-    }
-
-    if (token.value === 'acl') {
-      const id = this.validateNode(this.parseExpr(this.read(), true), [
-        'Identifier',
-      ])
-      this.validateToken(this.read(), 'symbol', '{')
-
-      const body = []
-
-      while (true) {
-        if (this.validateToken(this.peek()!, 'symbol', '}')) {
-          this.take()
-          break
-        }
-
-        body.push(
-          this.validateNode(this.parseExpr(this.read(), true), ['IpLiteral'])
-        )
-
-        this.validateToken(this.read(), 'symbol', ',')
-      }
-
-      return this.finishNode(node, 'AclStatement', {
-        id,
-        body,
-      })
-    }
-
-    throw createError(
-      this.source,
-      '[stmt] not implemented yet',
-      node.loc.start,
-      node.loc.end
     )
   }
+
+  if (token.value === 'unset') {
+    const id = p.validateNode(parseExpr(p), ['Identifier'])
+
+    ensureSemi(p)
+
+    return p.finishNode(node, 'UnsetStatement', {
+      id,
+    })
+  }
+
+  if (token.value === 'include') {
+    const module = p.validateNode(parseExpr(p), ['StringLiteral'])
+
+    ensureSemi(p)
+
+    return p.finishNode(node, 'IncludeStatement', {
+      module,
+    })
+  }
+
+  if (token.value === 'import') {
+    const module = p.validateNode(parseExpr(p), ['Identifier'])
+
+    ensureSemi(p)
+
+    return p.finishNode(node, 'ImportStatement', {
+      module,
+    })
+  }
+
+  if (token.value === 'call') {
+    const subroutine = p.validateNode(parseExpr(p), ['Identifier'])
+
+    ensureSemi(p)
+
+    return p.finishNode(node, 'CallStatement', {
+      subroutine,
+    })
+  }
+
+  if (token.value === 'declare') {
+    p.validateToken(p.read(), 'keyword', 'local')
+
+    const id = p.validateNode(parseExpr(p), ['Identifier'])
+    const valueType = (p.validateToken(
+      p.read(),
+      'valueTypes'
+    ) as ValueTypeToken).value
+
+    ensureSemi(p)
+
+    return p.finishNode(node, 'DeclareStatement', {
+      id,
+      valueType,
+    })
+  }
+
+  if (token.value === 'return') {
+    let returnActionToken: ReturnTypeToken
+
+    // `()` can be skipped
+    if (isToken(p.peek(), 'symbol', '(')) {
+      p.take()
+      returnActionToken = p.validateToken(p.read(), 'returnTypes')
+      p.validateToken(p.read(), 'symbol', ')')
+    } else {
+      returnActionToken = p.validateToken(p.read(), 'returnTypes')
+    }
+
+    const action = returnActionToken.value
+
+    ensureSemi(p)
+
+    return p.finishNode(node, 'ReturnStatement', { action })
+  }
+
+  if (token.value === 'error') {
+    const status = p.validateNode(parseExpr(p, p.read(), true), [
+      'NumericLiteral',
+    ])
+
+    // `message` can be void
+    if (isToken(p.peek(), 'symbol', ';')) {
+      p.take()
+
+      return p.finishNode(node, 'ErrorStatement', {
+        status,
+      })
+    }
+
+    const message = parseExpr(p)
+
+    ensureSemi(p)
+
+    return p.finishNode(node, 'ErrorStatement', {
+      status,
+      message,
+    })
+  }
+
+  if (token.value === 'restart') {
+    return p.finishNode(node, 'RestartStatement', {})
+  }
+
+  if (token.value === 'synthetic') {
+    const response = parseExpr(p)
+
+    ensureSemi(p)
+
+    return p.finishNode(node, 'SyntheticStatement', {
+      response,
+    })
+  }
+
+  if (token.value === 'log') {
+    const content = parseExpr(p)
+
+    ensureSemi(p)
+
+    return p.finishNode(node, 'LogStatement', {
+      content,
+    })
+  }
+
+  if (token.value === 'if') {
+    p.validateToken(p.read(), 'symbol', '(')
+
+    const test = parseExpr(p)
+
+    p.validateToken(p.read(), 'symbol', ')')
+
+    p.validateToken(p.read(), 'symbol', '{')
+
+    const consequent: Array<n.Statement> = []
+    while (true) {
+      if (isToken(p.peek(), 'symbol', '}')) {
+        p.take()
+        break
+      }
+
+      consequent.push(parseStmt(p))
+    }
+
+    if (p.isEOF() || !isToken(p.peek(), 'keyword', 'else')) {
+      return p.finishNode(node, 'IfStatement', {
+        test,
+        consequent,
+      })
+    }
+
+    p.take()
+
+    let alternative: n.IfStatement | Array<n.Statement>
+    if (isToken(p.peek(), 'keyword', 'if')) {
+      alternative = p.validateNode(parseStmt(p), ['IfStatement'])
+    } else {
+      p.validateToken(p.read(), 'symbol', '{')
+
+      alternative = []
+
+      while (true) {
+        if (isToken(p.peek(), 'symbol', '}')) {
+          p.take()
+          break
+        }
+
+        alternative.push(parseStmt(p))
+      }
+    }
+
+    return p.finishNode(node, 'IfStatement', {
+      test,
+      consequent,
+      alternative,
+    })
+  }
+
+  if (token.value === 'sub') {
+    const id = p.validateNode(parseExpr(p, p.read(), true), ['Identifier'])
+    p.validateToken(p.read(), 'symbol', '{')
+
+    const body = []
+
+    while (true) {
+      if (isToken(p.peek(), 'symbol', '}')) {
+        p.take()
+        break
+      }
+
+      body.push(parseStmt(p))
+    }
+
+    return p.finishNode(node, 'SubroutineStatement', {
+      id,
+      body,
+    })
+  }
+
+  if (token.value === 'acl') {
+    const id = p.validateNode(parseExpr(p, p.read(), true), ['Identifier'])
+    p.validateToken(p.read(), 'symbol', '{')
+
+    const body = []
+
+    while (true) {
+      if (p.validateToken(p.peek()!, 'symbol', '}')) {
+        p.take()
+        break
+      }
+
+      body.push(p.validateNode(parseExpr(p, p.read(), true), ['IpLiteral']))
+
+      p.validateToken(p.read(), 'symbol', ',')
+    }
+
+    return p.finishNode(node, 'AclStatement', {
+      id,
+      body,
+    })
+  }
+
+  throw createError(
+    p.source,
+    '[stmt] not implemented yet',
+    node.loc.start,
+    node.loc.end
+  )
 }

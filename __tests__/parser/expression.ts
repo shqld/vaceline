@@ -1,22 +1,21 @@
 import { Parser } from '../../src/parser'
+import { parseExpr } from '../../src/parser/expression'
 import { BinaryExpression, LogicalExpression } from '../../src/ast-nodes'
 
 // @ts-ignore private method
-const parseExpr = (source: string) => new Parser(source).parseExpr()
+const parse = (source: string) => parseExpr(new Parser(source))
 
 describe('Expression', () => {
   it('should be parsed', () => {
-    parseExpr(`{"
+    parse(`{"
 
     "} req.http.b`)
-    parseExpr(
-      'http_status_matches(resp.status, "404") && beresp.status == "404"'
-    )
+    parse('http_status_matches(resp.status, "404") && beresp.status == "404"')
   })
 
   describe('ConcatExpression', () => {
     it('should be parsed', () => {
-      expect(parseExpr('"a" "b" "c"')).toMatchObject({
+      expect(parse('"a" "b" "c"')).toMatchObject({
         type: 'ConcatExpression',
         body: [
           { type: 'StringLiteral', value: '"a"' },
@@ -25,7 +24,7 @@ describe('Expression', () => {
         ],
       })
       expect(
-        parseExpr(`req.http.Host {"
+        parse(`req.http.Host {"
       a
       "} true             100`)
       ).toMatchObject({
@@ -42,14 +41,12 @@ describe('Expression', () => {
 
   describe('FunCallExpression', () => {
     it('should be parsed', () => {
-      expect(
-        parseExpr('http_status_matches(resp.status, "404")')
-      ).toMatchObject({
+      expect(parse('http_status_matches(resp.status, "404")')).toMatchObject({
         type: 'FunCallExpression',
         callee: { type: 'Identifier' },
         arguments: [{ type: 'Identifier' }, { type: 'StringLiteral' }],
       })
-      expect(parseExpr('if (req.http.b, a, b)')).toMatchObject({
+      expect(parse('if (req.http.b, a, b)')).toMatchObject({
         type: 'FunCallExpression',
         callee: { type: 'Identifier', value: 'if' },
         arguments: [
@@ -59,7 +56,7 @@ describe('Expression', () => {
         ],
       })
       expect(() =>
-        parseExpr(`
+        parse(`
       if (http_status_matches(resp.status, "404") && beresp.status == "404") {
         set req.http.A = "Not Found";
       }
@@ -71,14 +68,14 @@ describe('Expression', () => {
   describe('BinaryExpression', () => {
     it('should parse', () => {
       expect(() =>
-        parseExpr(
+        parse(
           'req.http.isCorrect == true != true <= true ~ true && (true || true)'
         )
       ).not.toThrow()
     })
 
     it('should be parsed', () => {
-      expect(parseExpr('a == b')).toMatchObject({
+      expect(parse('a == b')).toMatchObject({
         type: 'BinaryExpression',
         operator: '==',
         left: {
@@ -92,13 +89,13 @@ describe('Expression', () => {
         loc: { start: { offset: 0 }, end: { offset: 5 } },
       } as BinaryExpression)
 
-      expect(parseExpr('req.http.a ~ "a"')).toMatchObject({
+      expect(parse('req.http.a ~ "a"')).toMatchObject({
         type: 'BinaryExpression',
       })
     })
 
     it('should parse nested expressions', () => {
-      expect(parseExpr('a == b != c')).toMatchObject({
+      expect(parse('a == b != c')).toMatchObject({
         type: 'BinaryExpression',
         operator: '!=',
         left: {
@@ -122,7 +119,7 @@ describe('Expression', () => {
     })
 
     it('should take the precedence over first one', () => {
-      expect(parseExpr('a == b == c')).toMatchObject({
+      expect(parse('a == b == c')).toMatchObject({
         left: { left: { name: 'a' }, right: { name: 'b' } },
         right: { name: 'c' },
       } as BinaryExpression)
@@ -131,7 +128,7 @@ describe('Expression', () => {
 
   describe('LogicalExpression', () => {
     it('should be parsed', () => {
-      expect(parseExpr('a && b')).toMatchObject({
+      expect(parse('a && b')).toMatchObject({
         type: 'LogicalExpression',
         operator: '&&',
         left: {
@@ -145,7 +142,7 @@ describe('Expression', () => {
         loc: { start: { offset: 0 }, end: { offset: 5 } },
       } as LogicalExpression)
 
-      expect(parseExpr('a || b')).toMatchObject({
+      expect(parse('a || b')).toMatchObject({
         type: 'LogicalExpression',
         operator: '||',
         left: {
@@ -161,7 +158,7 @@ describe('Expression', () => {
     })
 
     it('should parse nested expressions', () => {
-      expect(parseExpr('a && b && c')).toMatchObject({
+      expect(parse('a && b && c')).toMatchObject({
         type: 'LogicalExpression',
         operator: '&&',
         left: {
@@ -185,14 +182,14 @@ describe('Expression', () => {
     })
 
     it('should take the precedence over first one', () => {
-      expect(parseExpr('a && b && c')).toMatchObject({
+      expect(parse('a && b && c')).toMatchObject({
         left: { left: { name: 'a' }, right: { name: 'b' } },
         right: { name: 'c' },
       } as LogicalExpression)
     })
 
     it('should take the precedence over `&&`', () => {
-      expect(parseExpr('a || b && c')).toMatchObject({
+      expect(parse('a || b && c')).toMatchObject({
         type: 'LogicalExpression',
         operator: '||',
         right: { operator: '&&' },
@@ -200,7 +197,7 @@ describe('Expression', () => {
     })
 
     it('should take the precedence over BinaryExpression', () => {
-      expect(parseExpr('a == b && c != d')).toMatchObject({
+      expect(parse('a == b && c != d')).toMatchObject({
         type: 'LogicalExpression',
         operator: '&&',
         left: { type: 'BinaryExpression', operator: '==' },
@@ -210,7 +207,7 @@ describe('Expression', () => {
 
     // TODO: move to BooleanExpression test
     it('should not take the precedence inside BooleanExpression', () => {
-      expect(parseExpr('a == (b && c) != d')).toMatchObject({
+      expect(parse('a == (b && c) != d')).toMatchObject({
         type: 'BinaryExpression',
         operator: '!=',
         left: {

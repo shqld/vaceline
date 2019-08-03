@@ -14,8 +14,8 @@ export class TokenReader {
     this.cur = 0
   }
 
-  getCurrentLocation(): Location {
-    return this.tokens[this.cur - 1].loc
+  getCurrentToken(): Token {
+    return this.tokens[this.cur - 1]
   }
 
   jumpTo(cur: number) {
@@ -26,7 +26,7 @@ export class TokenReader {
     return this.cur
   }
 
-  get(cur: number): Token {
+  get(cur: number): Token | null {
     return this.tokens[cur]
   }
 
