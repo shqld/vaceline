@@ -1,9 +1,10 @@
 import * as n from '../ast-nodes'
-import { isToken, isKeywordToken } from '../utils/token'
+import { isToken } from '../utils/token'
 
 import { parseExpr } from './expression'
 import { createError } from './create-error'
 import { Parser } from '.'
+import { keywords } from './keywords'
 
 const ensureSemi = (p: Parser) => {
   p.validateToken(p.read(), 'symbol', ';')
@@ -13,7 +14,7 @@ export const parseStmt = (p: Parser): n.Statement => {
   const token = p.peek()!
   const node = p.startNode()
 
-  if (!isKeywordToken(token)) {
+  if (!keywords.has(token.value)) {
     const body = parseExpr(p)
 
     ensureSemi(p)
@@ -84,7 +85,7 @@ export const parseStmt = (p: Parser): n.Statement => {
   }
 
   if (token.value === 'declare') {
-    p.validateToken(p.read(), 'keyword', 'local')
+    p.validateToken(p.read(), 'ident', 'local')
 
     const id = p.validateNode(parseExpr(p), ['Identifier'])
     const valueType = (p.validateToken(
@@ -186,7 +187,7 @@ export const parseStmt = (p: Parser): n.Statement => {
       consequent.push(parseStmt(p))
     }
 
-    if (p.isEOF() || !isToken(p.peek(), 'keyword', 'else')) {
+    if (p.isEOF() || !isToken(p.peek(), 'ident', 'else')) {
       return p.finishNode(node, 'IfStatement', {
         test,
         consequent,

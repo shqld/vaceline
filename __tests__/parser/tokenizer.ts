@@ -5,12 +5,12 @@ import chalk from 'chalk'
 const tokenize = (str: string) => new Tokenizer(str.trim()).tokenize()
 
 describe('Tokenizer', () => {
-  it('should tokenize a single identifier', () => {
+  it('should tokenize a single ident', () => {
     const str = 'ident'.repeat(1)
 
     expect(tokenize(str)).toMatchObject([
       {
-        type: 'identifier',
+        type: 'ident',
         value: 'ident',
         loc: {
           end: {
@@ -28,12 +28,12 @@ describe('Tokenizer', () => {
     ])
   })
 
-  it('should tokenize a single identifier', () => {
+  it('should tokenize a single ident', () => {
     const str = 'ident ident '.repeat(1)
 
     expect(tokenize(str)).toMatchObject([
       {
-        type: 'identifier',
+        type: 'ident',
         value: 'ident',
         loc: {
           end: {
@@ -49,7 +49,7 @@ describe('Tokenizer', () => {
         },
       },
       {
-        type: 'identifier',
+        type: 'ident',
         value: 'ident',
         loc: {
           start: {
@@ -67,7 +67,7 @@ describe('Tokenizer', () => {
     ])
   })
 
-  it('should tokenize multiple identifiers', () => {
+  it('should tokenize multiple idents', () => {
     expect(
       tokenize(
         `
@@ -77,7 +77,7 @@ ident
       )
     ).toMatchObject([
       {
-        type: 'identifier',
+        type: 'ident',
         value: 'ident',
         loc: {
           start: {
@@ -93,7 +93,7 @@ ident
         },
       },
       {
-        type: 'identifier',
+        type: 'ident',
         value: 'ident',
         loc: {
           end: {
@@ -109,7 +109,7 @@ ident
         },
       },
       {
-        type: 'identifier',
+        type: 'ident',
         value: 'i',
         loc: {
           start: {
@@ -125,7 +125,7 @@ ident
         },
       },
       {
-        type: 'identifier',
+        type: 'ident',
         value: 'ident',
         loc: {
           start: {
@@ -275,13 +275,13 @@ before// comment after
 before/* comment */after
       `)
       ).toMatchObject([
-        { type: 'identifier', value: 'before' },
+        { type: 'ident', value: 'before' },
         { type: 'comment', value: '# comment' },
-        { type: 'identifier', value: 'before' },
+        { type: 'ident', value: 'before' },
         { type: 'comment', value: '// comment after' },
-        { type: 'identifier', value: 'before' },
+        { type: 'ident', value: 'before' },
         { type: 'comment', value: '/* comment */' },
-        { type: 'identifier', value: 'after' },
+        { type: 'ident', value: 'after' },
       ])
     })
   })
