@@ -247,11 +247,11 @@ llo"} "hello"
           false`)
       ).toMatchObject([
         {
-          type: 'keyword',
+          type: 'boolean',
           value: 'true',
         },
         {
-          type: 'keyword',
+          type: 'boolean',
           value: 'false',
         },
       ])

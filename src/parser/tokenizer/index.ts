@@ -10,6 +10,7 @@ export type TokenType =
   | 'comment'
   | 'string'
   | 'numeric'
+  | 'boolean'
 
 export interface Token {
   type: TokenType
@@ -23,9 +24,6 @@ export interface KeywordToken extends Token {
 }
 
 const keywords = [
-  'true',
-  'false',
-
   'include',
   'import',
   'call',
@@ -152,6 +150,8 @@ export class Tokenizer {
         type = 'keyword'
       } else if (this.matchers.operators.has(str)) {
         type = 'operator'
+      } else if (/true|false/.test(str)) {
+        type = 'boolean'
       } else if (str.startsWith('"')) {
         type = 'string'
 
