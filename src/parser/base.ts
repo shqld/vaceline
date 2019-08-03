@@ -7,11 +7,6 @@ import { isNode } from '../utils/node'
 import { isToken } from '../utils/token'
 import { PlainNode, Position, NodeWithLoc } from '../nodes/node'
 
-interface Stack<T> {
-  push: Array<T>['push']
-  pop: Array<T>['pop']
-}
-
 export class ParserBase extends TokenReader {
   source: string
 

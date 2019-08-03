@@ -1,4 +1,5 @@
 import { Parser } from '../../src/parser'
+import { BinaryExpression, LogicalExpression } from '../../src/ast-nodes'
 
 // @ts-ignore private method
 const parseExpr = (source: string) => new Parser(source).parseExpr()
@@ -68,81 +69,166 @@ describe('Expression', () => {
   })
 
   describe('BinaryExpression', () => {
-    // it('should parse', () => {
-    //   expect(() =>
-    //     OperatorExpression.tryParse(
-    //       'req.http.isCorrect == true != true <= true ~ true && (true || true)'
-    //     )
-    //   ).not.toThrow()
-    // })
+    it('should parse', () => {
+      expect(() =>
+        parseExpr(
+          'req.http.isCorrect == true != true <= true ~ true && (true || true)'
+        )
+      ).not.toThrow()
+    })
 
     it('should be parsed', () => {
-      expect(parseExpr('req.http.a == "a"')).toMatchObject({
+      expect(parseExpr('a == b')).toMatchObject({
         type: 'BinaryExpression',
-      })
+        operator: '==',
+        left: {
+          name: 'a',
+          loc: { start: { offset: 0 }, end: { offset: 0 } },
+        },
+        right: {
+          name: 'b',
+          loc: { start: { offset: 5 }, end: { offset: 5 } },
+        },
+        loc: { start: { offset: 0 }, end: { offset: 5 } },
+      } as BinaryExpression)
+
       expect(parseExpr('req.http.a ~ "a"')).toMatchObject({
         type: 'BinaryExpression',
       })
     })
 
     it('should parse nested expressions', () => {
-      {
-        expect(parseExpr('req.http.a == "a" != "b"')).toMatchObject({
+      expect(parseExpr('a == b != c')).toMatchObject({
+        type: 'BinaryExpression',
+        operator: '!=',
+        left: {
           type: 'BinaryExpression',
-        })
-      }
+          operator: '==',
+          left: {
+            name: 'a',
+            loc: { start: { offset: 0 }, end: { offset: 0 } },
+          },
+          right: {
+            name: 'b',
+            loc: { start: { offset: 5 }, end: { offset: 5 } },
+          },
+        },
+        right: {
+          name: 'c',
+          loc: { start: { offset: 10 }, end: { offset: 10 } },
+        },
+        loc: { start: { offset: 0 }, end: { offset: 10 } },
+      } as BinaryExpression)
+    })
+
+    it('should take the precedence over first one', () => {
+      expect(parseExpr('a == b == c')).toMatchObject({
+        left: { left: { name: 'a' }, right: { name: 'b' } },
+        right: { name: 'c' },
+      } as BinaryExpression)
     })
   })
 
   describe('LogicalExpression', () => {
     it('should be parsed', () => {
-      expect(parseExpr('req.http.a && req.http.b')).toMatchObject({
+      expect(parseExpr('a && b')).toMatchObject({
         type: 'LogicalExpression',
-      })
-      expect(parseExpr('req.http.a || req.http.b')).toMatchObject({
+        operator: '&&',
+        left: {
+          name: 'a',
+          loc: { start: { offset: 0 }, end: { offset: 0 } },
+        },
+        right: {
+          name: 'b',
+          loc: { start: { offset: 5 }, end: { offset: 5 } },
+        },
+        loc: { start: { offset: 0 }, end: { offset: 5 } },
+      } as LogicalExpression)
+
+      expect(parseExpr('a || b')).toMatchObject({
         type: 'LogicalExpression',
+        operator: '||',
+        left: {
+          name: 'a',
+          loc: { start: { offset: 0 }, end: { offset: 0 } },
+        },
+        right: {
+          name: 'b',
+          loc: { start: { offset: 5 }, end: { offset: 5 } },
+        },
+        loc: { start: { offset: 0 }, end: { offset: 5 } },
       })
     })
 
     it('should parse nested expressions', () => {
-      expect(parseExpr('req.http.a && req.http.b || req.http.c')).toMatchObject(
-        {
+      expect(parseExpr('a && b && c')).toMatchObject({
+        type: 'LogicalExpression',
+        operator: '&&',
+        left: {
           type: 'LogicalExpression',
-        }
-      )
+          operator: '&&',
+          left: {
+            name: 'a',
+            loc: { start: { offset: 0 }, end: { offset: 0 } },
+          },
+          right: {
+            name: 'b',
+            loc: { start: { offset: 5 }, end: { offset: 5 } },
+          },
+        },
+        right: {
+          name: 'c',
+          loc: { start: { offset: 10 }, end: { offset: 10 } },
+        },
+        loc: { start: { offset: 0 }, end: { offset: 10 } },
+      })
+    })
+
+    it('should take the precedence over first one', () => {
+      expect(parseExpr('a && b && c')).toMatchObject({
+        left: { left: { name: 'a' }, right: { name: 'b' } },
+        right: { name: 'c' },
+      } as LogicalExpression)
+    })
+
+    it('should take the precedence over `&&`', () => {
+      expect(parseExpr('a || b && c')).toMatchObject({
+        type: 'LogicalExpression',
+        operator: '||',
+        right: { operator: '&&' },
+      } as LogicalExpression)
     })
 
     it('should take the precedence over BinaryExpression', () => {
-      // Don't test with `p.alt(Parser.LogicalExpression, Parser.BinaryExpression)`
-      // because each parser has the right order to be declared
-      // To test that as well, always use an abstract Parser e.g. `literal`, `expression`, `statement`...
-      const node = parseExpr('req.http.a == "a" && req.http.b != "c"')
-
-      expect(node).toHaveProperty('operator', '&&')
-
-      expect(node).toHaveProperty('left.type', 'BinaryExpression')
-      expect(node).toHaveProperty('right.type', 'BinaryExpression')
-
-      expect(node).toHaveProperty('left.operator', '==')
-      expect(node).toHaveProperty('right.operator', '!=')
+      expect(parseExpr('a == b && c != d')).toMatchObject({
+        type: 'LogicalExpression',
+        operator: '&&',
+        left: { type: 'BinaryExpression', operator: '==' },
+        right: { type: 'BinaryExpression', operator: '!=' },
+      } as LogicalExpression)
     })
 
     // TODO: move to BooleanExpression test
-    it('should not take the precedence', () => {
-      const node = parseExpr('req.http.a == ("a" && req.http.b) != "c"')
-
-      expect(node).toHaveProperty('operator', '!=')
-
-      expect(node).toHaveProperty('left.type', 'BinaryExpression')
-      expect(node).toHaveProperty('right.type', 'StringLiteral')
-
-      expect(node).toHaveProperty('left.operator', '==')
-      expect(node).toHaveProperty('left.right.type', 'BooleanExpression')
-
-      expect(node).toHaveProperty('left.right.body.type', 'LogicalExpression')
-      expect(node).toHaveProperty('left.right.body.operator', '&&')
-
-      expect(node).toHaveProperty('left.right.body.left.value', 'a')
+    it('should not take the precedence inside BooleanExpression', () => {
+      expect(parseExpr('a == (b && c) != d')).toMatchObject({
+        type: 'BinaryExpression',
+        operator: '!=',
+        left: {
+          type: 'BinaryExpression',
+          operator: '==',
+          left: { name: 'a' },
+          right: {
+            type: 'BooleanExpression',
+            body: {
+              type: 'LogicalExpression',
+              operator: '&&',
+              left: { name: 'b' },
+              right: { name: 'c' },
+            },
+          },
+        },
+        right: { name: 'd' },
+      } as BinaryExpression)
     })
   })
 })
