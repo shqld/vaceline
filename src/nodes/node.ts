@@ -27,11 +27,15 @@ export class Node {
     V extends PlainNode<N>
   >(
     type: T,
-    values: V
+    values: V,
+    loc?: Location
   ): N => {
     const node = new Node()
 
     node.type = type
+    if (loc) {
+      node.loc = loc
+    }
 
     const def = nodeDefs[type]
 

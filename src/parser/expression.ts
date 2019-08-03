@@ -7,23 +7,25 @@ import { ParserBase } from './base'
 import { NodeWithLoc } from '../nodes/node'
 import { createError } from './create-error'
 import { parseLiteral } from './literal'
-import { isTSImportEqualsDeclaration } from '@babel/types'
+import * as ops from './tokenizer/operators'
 
-const literals = {
-  string: 'StringLiteral',
-  boolean: 'BooleanLiteral',
-  numeric: 'NumericLiteral',
-  duration: 'DurationLiteral',
-  ip: 'IpLiteral',
-} as const
+interface Stack<T> {
+  [I: number]: T
+  push: Array<T>['push']
+  pop: Array<T>['pop']
+  length: Array<T>['length']
+}
 
 export class ExpressionParser extends ParserBase {
-  // TODO: too costly
-  protected parseExpr(
+  private parseExpr(token: Token = this.read()) {
+    return this.parseConcatExpr(token)
+  }
+
+  protected parseConcatExpr(
     token: Token = this.read(),
     shortcut = false
   ): n.Expression {
-    const expr = this.parseExprBase(token)
+    const expr = this.parseOperatorExpr(token)
 
     if (shortcut) return expr
 
@@ -45,7 +47,7 @@ export class ExpressionParser extends ParserBase {
       }
 
       try {
-        buf.push(this.parseExprBase(token))
+        buf.push(this.parseHumbleExpr(token))
         backup = this.getCursor()
       } catch (err) {
         if (err instanceof SyntaxError) {
@@ -69,9 +71,103 @@ export class ExpressionParser extends ParserBase {
     })
   }
 
-  // private parseOpExpr() {}
+  protected parseOperatorExpr(
+    token: Token = this.read(),
+    shortcut = false
+  ): n.Expression {
+    const expr = this.parseHumbleExpr(token)
 
-  private parseExprBase(
+    if (shortcut) return expr
+
+    if (isToken(token, 'symbol', ';')) {
+      return expr
+    }
+
+    // let node = this.startNode()
+    let backup = this.getCursor()
+
+    type Operator = Token & {
+      type: 'operator'
+      precedence: number
+      isBinary: boolean
+    }
+
+    const rpn: Array<n.Expression | Operator> = [expr]
+    const opStack: Stack<Operator> = []
+
+    // covert expression sequence into rpn
+    while (!this.isEOF()) {
+      const op = this.peek()! as Operator
+
+      const isBinary = ops.binary.has(op.value)
+      const isLogical = !isBinary && ops.logical.has(op.value)
+
+      if (!isBinary && !isLogical) break
+
+      this.take()
+
+      op.precedence = ops.getPrecedence(op.value)
+      op.isBinary = isBinary
+
+      while (op.precedence >= (opStack[opStack.length - 1] || {}).precedence) {
+        rpn.push(opStack.pop()!)
+      }
+
+      opStack.push(op)
+
+      try {
+        rpn.push(this.parseHumbleExpr())
+      } catch (err) {
+        if (err instanceof SyntaxError) {
+          this.jumpTo(backup)
+          break
+        }
+        throw err
+      }
+
+      backup = this.getCursor()
+    }
+
+    while (opStack.length) {
+      rpn.push(opStack.pop()!)
+    }
+
+    // calculate rpn
+    const stack: Stack<n.Expression> = []
+
+    for (let i = 0; i < rpn.length; i++) {
+      const item = rpn[i]
+      if (item instanceof Node) {
+        stack.push(item)
+        continue
+      }
+
+      const right = stack.pop()!
+      const left = stack.pop()!
+
+      const expr = Node.create(
+        item.isBinary ? 'BinaryExpression' : 'LogicalExpression',
+        {
+          left,
+          right,
+          operator: item.value,
+        },
+        { start: left.loc!.start, end: right.loc!.end }
+      )
+
+      stack.push(expr)
+    }
+
+    // console.log(stack)
+
+    if (stack.length !== 1) {
+      throw new Error()
+    }
+
+    return stack[0]
+  }
+
+  private parseHumbleExpr(
     token: Token = this.read(),
     node: NodeWithLoc = this.startNode()
   ): n.Expression {
