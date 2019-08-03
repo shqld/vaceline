@@ -1,7 +1,4 @@
-import { Token, KeywordToken, TokenType } from '../parser/tokenizer'
-
-export const isKeywordToken = (t: Token): t is KeywordToken =>
-  t.type === 'keyword'
+import { Token, TokenType } from '../parser/tokenizer'
 
 export const isToken = <
   Type extends TokenType,

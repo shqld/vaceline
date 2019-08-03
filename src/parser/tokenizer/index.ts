@@ -3,9 +3,8 @@ import { Location, Position } from '../../nodes'
 import { operators } from './operators'
 
 export type TokenType =
-  | 'identifier'
+  | 'ident'
   | 'symbol'
-  | 'keyword'
   | 'operator'
   | 'comment'
   | 'string'
@@ -17,34 +16,6 @@ export interface Token {
   value: string
   loc: Location
 }
-
-export interface KeywordToken extends Token {
-  type: 'keyword'
-  value: typeof keywords[number]
-}
-
-const keywords = [
-  'include',
-  'import',
-  'call',
-  'declare',
-  'local',
-  'declare',
-  'local',
-  'add',
-  'set',
-  'unset',
-  'return',
-  'error',
-  'restart',
-  'synthetic',
-  'log',
-  'if',
-  'else',
-  'sub',
-  'acl',
-  'backend',
-] as const
 
 const symbols = [';', ',', '{', '}', '(', ')'] as const
 
@@ -65,7 +36,6 @@ const splitters = [
 ]
 
 const matchers = {
-  keywords: new Set(keywords),
   symbols: new Set(symbols),
   operators: new Set(operators),
 } as const
@@ -75,20 +45,10 @@ const reSplitter = new RegExp('(' + getJoinedRegExp(splitters) + ')')
 export class Tokenizer {
   raw: string
   source: ReadonlyArray<string>
-  matchers: { [P in keyof typeof matchers]: Set<string> }
 
   constructor(raw: string, opts: { keywords?: Array<string> } = {}) {
     this.raw = raw
     this.source = raw.split(reSplitter)
-
-    const keywords: typeof matchers.keywords = opts.keywords
-      ? new Set([...(matchers.keywords as any), ...opts.keywords])
-      : matchers.keywords
-
-    this.matchers = {
-      ...matchers,
-      keywords,
-    }
   }
 
   tokenize(): Array<Token> {
@@ -144,11 +104,9 @@ export class Tokenizer {
 
       let type: TokenType
 
-      if (this.matchers.symbols.has(str)) {
+      if (matchers.symbols.has(str as any)) {
         type = 'symbol'
-      } else if (this.matchers.keywords.has(str)) {
-        type = 'keyword'
-      } else if (this.matchers.operators.has(str)) {
+      } else if (matchers.operators.has(str as any)) {
         type = 'operator'
       } else if (/true|false/.test(str)) {
         type = 'boolean'
@@ -168,10 +126,10 @@ export class Tokenizer {
         column = lines[lines.length - 1].length - (str.length - 1)
       } else if (/^\d/.test(str)) {
         type = 'numeric'
-      } else if (/^#|\/\/|\/\*/.test(str)) {
+      } else if (/^(#|\/\/|\/\*)/.test(str)) {
         type = 'comment'
       } else {
-        type = 'identifier'
+        type = 'ident'
 
         if (!/^[A-Za-z][A-Za-z\d\.-_]*/.test(str)) {
           err = 'invalid token'

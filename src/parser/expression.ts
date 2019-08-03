@@ -171,7 +171,7 @@ const parseHumbleExpr = (
 
   if (literal) return literal
 
-  if (token.type === 'identifier') {
+  if (token.type === 'ident') {
     if (isToken(p.peek(), 'symbol', '(')) {
       const ident = p.startNode()
 
