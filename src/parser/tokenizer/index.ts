@@ -1,13 +1,15 @@
 import { createError } from '../create-error'
 import { Location, Position } from '../../nodes'
+import { operators } from './operators'
 
 export type TokenType =
   | 'identifier'
   | 'symbol'
   | 'keyword'
+  | 'operator'
   | 'comment'
   | 'string'
-  | 'number'
+  | 'numeric'
 
 export interface Token {
   type: TokenType
@@ -56,17 +58,18 @@ const getJoinedRegExp = (s: Array<string | RegExp>) =>
 const splitters = [
   /* spaces         */ / +/,
   /* newline        */ '\n',
-  /* number         */ /^\d[\d\.]*/,
   /* string         */ /"[^\n]*?"/,
   /* multiline str  */ /{"[\s\S]*?"}/,
   /* line comment   */ /#[^\n]*|\/\/[^\n]*/,
   /* inline comment */ /\/\*[\s\S]*\*\//,
   ...symbols,
+  ...operators,
 ]
 
 const matchers = {
   keywords: new Set(keywords),
   symbols: new Set(symbols),
+  operators: new Set(operators),
 } as const
 
 const reSplitter = new RegExp('(' + getJoinedRegExp(splitters) + ')')
@@ -147,10 +150,12 @@ export class Tokenizer {
         type = 'symbol'
       } else if (this.matchers.keywords.has(str)) {
         type = 'keyword'
+      } else if (this.matchers.operators.has(str)) {
+        type = 'operator'
       } else if (str.startsWith('"')) {
         type = 'string'
 
-        if (!str.endsWith('"')) {
+        if (!str.endsWith('"') || str === '"') {
           err =
             'invalid token (string may have newlines inside normal quotes, use `{" "}`)'
         }
@@ -161,12 +166,8 @@ export class Tokenizer {
         const lines = str.split('\n')
         line += lines!.length - 1
         column = lines[lines.length - 1].length - (str.length - 1)
-      } else if (/^\d[\d\.]*/.test(str)) {
-        type = 'number'
-
-        if (str.endsWith('.')) {
-          err = 'invalid token (number?)'
-        }
+      } else if (/^\d/.test(str)) {
+        type = 'numeric'
       } else if (/^#|\/\/|\/\*/.test(str)) {
         type = 'comment'
       } else {

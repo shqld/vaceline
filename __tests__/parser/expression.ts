@@ -6,8 +6,7 @@ const parseExpr = (source: string) => new Parser(source).parseExpr()
 describe('Expression', () => {
   it('should be parsed', () => {
     parseExpr(`{"
-    
-    
+
     "} req.http.b`)
     parseExpr(
       'http_status_matches(resp.status, "404") && beresp.status == "404"'
@@ -34,6 +33,7 @@ describe('Expression', () => {
           { type: 'Identifier' },
           { type: 'StringLiteral' },
           { type: 'BooleanLiteral' },
+          { type: 'NumericLiteral' },
         ],
       })
     })

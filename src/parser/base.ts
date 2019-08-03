@@ -1,10 +1,4 @@
-import {
-  Tokenizer,
-  Token,
-  TokenType,
-  ReturnTypeToken,
-  ValueTypeToken,
-} from './tokenizer'
+import { Tokenizer, Token, TokenType } from './tokenizer'
 import { Node, NodeType, NodeAs } from '../nodes'
 import { createError } from './create-error'
 import { TokenReader } from './token-reader'
@@ -19,7 +13,7 @@ interface Stack<T> {
 }
 
 export class ParserBase extends TokenReader {
-  protected source: string
+  source: string
 
   constructor(source: string, opts: { keywords?: Array<string> } = {}) {
     const tokens = new Tokenizer(source, opts).tokenize()
@@ -29,7 +23,7 @@ export class ParserBase extends TokenReader {
     this.source = source
   }
 
-  protected startNode(start?: Position): NodeWithLoc {
+  startNode(start?: Position): NodeWithLoc {
     const node = new Node()
 
     node.loc = {
@@ -40,17 +34,17 @@ export class ParserBase extends TokenReader {
     return node as NodeWithLoc
   }
 
-  protected finishNode<
-    T extends NodeType,
-    N extends NodeAs<T>,
-    V extends PlainNode<N>
-  >(node: NodeWithLoc, type: T, values: V): N {
+  finishNode<T extends NodeType, N extends NodeAs<T>, V extends PlainNode<N>>(
+    node: NodeWithLoc,
+    type: T,
+    values: V
+  ): N {
     node.loc.end = this.getCurrentLocation().end
 
     return Node.build(node, type, values)
   }
 
-  protected validateNode<T extends Array<NodeType>>(
+  validateNode<T extends Array<NodeType>>(
     node: Node,
     type: T,
     message?: string
@@ -66,7 +60,7 @@ export class ParserBase extends TokenReader {
     return node as NodeAs<T[number]>
   }
 
-  protected validateToken<T extends TokenType, U extends string>(
+  validateToken<T extends TokenType, U extends string>(
     token: Token,
     type: T,
     value?: U

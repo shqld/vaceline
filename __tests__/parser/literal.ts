@@ -1,9 +1,9 @@
-import { Parser } from '../../src/parser'
-
-// @ts-ignore private method
-const parseExpr = (source: string) => new Parser(source).parseExpr()
+import { parseLiteral } from '../../src/parser/literal'
+import { ParserBase } from '../../src/parser/base'
 
 describe('Literal', () => {
+  const parseExpr = (source: string) => parseLiteral(new ParserBase(source))
+
   describe('BooleanLiteral', () => {
     it('should parse', () => {
       expect(parseExpr('true')).toMatchObject({
@@ -14,9 +14,7 @@ describe('Literal', () => {
         type: 'BooleanLiteral',
         value: 'false',
       })
-      expect(parseExpr('string')).not.toMatchObject({
-        type: 'BooleanLiteral',
-      })
+      expect(parseExpr('string')).toBeNull()
     })
   })
 
@@ -30,7 +28,7 @@ describe('Literal', () => {
         parseExpr(`"
           multiline
         "`)
-      ).toThrow()
+      ).toThrowError(/invalid token/)
     })
   })
 
@@ -57,10 +55,13 @@ multiline
         type: 'DurationLiteral',
         value: '100s',
       })
+
       expect(parseExpr('1m')).toMatchObject({
         type: 'DurationLiteral',
         value: '1m',
       })
+
+      expect(() => parseExpr('10a')).toThrowError(/invalid token/)
     })
   })
 
@@ -70,15 +71,20 @@ multiline
         type: 'NumericLiteral',
         value: '100',
       })
+
       expect(parseExpr('0')).toMatchObject({
         type: 'NumericLiteral',
         value: '0',
       })
-      // TODO:
-      expect(() => parseExpr('001')).toThrow()
+
+      expect(() => parseExpr('001')).toThrowError(/invalid number/)
+
+      expect(() => parseExpr('.11')).toThrow(/invalid token/)
+      expect(() => parseExpr('0.')).toThrow(/invalid number/)
     })
   })
 
+  // TODO:
   describe('IpLiteral', () => {
     it('should parse', () => {
       expect(parseExpr('"192.0.2.0"')).toMatchObject({
