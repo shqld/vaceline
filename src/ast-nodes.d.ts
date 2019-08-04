@@ -236,7 +236,7 @@ export interface SubroutineStatement extends Node {
 export interface AclStatement extends Node {
   type: 'AclStatement'
   id: Identifier
-  body: Array<IpLiteral>
+  body: Array<Ip>
 }
 
 export interface CustomStatement extends Node {
@@ -245,19 +245,10 @@ export interface CustomStatement extends Node {
   body: Array<Node>
 }
 
-export interface StructDefinitionExpression extends Node {
-  type: 'StructDefinitionExpression'
-  body: Array<MemberAssignStatement>
-}
-
-export interface MemberAssignStatement extends Node {
-  type: 'MemberAssignStatement'
-  id: Identifier
-  value: Literal | StructDefinitionExpression
-}
+export type BackendDef = Array<{ key: string; value: Expression | BackendDef }>
 
 export interface BackendStatement extends Node {
   type: 'BackendStatement'
   id: Identifier
-  body: StructDefinitionExpression
+  body: BackendDef
 }
