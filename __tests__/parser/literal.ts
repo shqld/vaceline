@@ -61,7 +61,9 @@ multiline
         value: '1m',
       })
 
-      expect(() => parseExpr('10a')).toThrowError(/invalid token/)
+      expect(parseExpr('10a')).not.toMatchObject({
+        type: 'DurationLiteral',
+      })
     })
   })
 
@@ -79,7 +81,7 @@ multiline
 
       expect(() => parseExpr('001')).toThrowError(/invalid number/)
 
-      expect(() => parseExpr('.11')).toThrow(/invalid token/)
+      expect(() => parseExpr('.11')).toThrow(/invalid number/)
       expect(() => parseExpr('0.')).toThrow(/invalid number/)
     })
   })

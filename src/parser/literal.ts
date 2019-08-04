@@ -4,6 +4,7 @@ import { Token } from './tokenizer'
 import { NodeWithLoc } from '../nodes/node'
 import { createError } from './create-error'
 import { Parser } from '.'
+import { isToken } from '../utils/token'
 
 export const parseLiteral = (
   p: Parser,
@@ -23,14 +24,17 @@ export const parseLiteral = (
   }
 
   if (token.type === 'numeric') {
-    if (/(ms|s|m|h|d|y)$/.test(token.value)) {
+    if (isToken(p.peek()!, 'ident', /ms|s|m|h|d|y/)) {
       return p.finishNode(node, 'DurationLiteral', {
-        value: token.value,
+        value: token.value + p.read().value,
       })
     }
 
     if (!Number.isNaN(Number(token.value))) {
-      if (token.value.length !== 1 && token.value.startsWith('0')) {
+      if (
+        token.value.startsWith('.') ||
+        (token.value.length !== 1 && token.value.startsWith('0'))
+      ) {
         throw createError(
           p.source,
           'invalid number',
