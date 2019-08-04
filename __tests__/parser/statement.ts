@@ -1,10 +1,14 @@
 import { Parser } from '../../src/parser'
-import { AclStatement, LogStatement } from '../../src/ast-nodes'
+import {
+  AclStatement,
+  LogStatement,
+  BackendStatement,
+} from '../../src/ast-nodes'
 import { parseStmt } from '../../src/parser/statement/index'
 
 const parse = (source: string) => parseStmt(new Parser(source))
 
-describe('Parser.parse', () => {
+describe('parseStatement', () => {
   it('should parse LogStatement', () => {
     expect(parse('log {"a"} req.http.b;')).toMatchObject({
       type: 'LogStatement',
@@ -44,5 +48,55 @@ acl my_acls {
       ],
       loc: { start: { line: 1 }, end: { line: 5 } },
     } as AclStatement)
+  })
+
+  it('should parse BackendStatement', () => {
+    expect(
+      parse(
+        `
+backend my_backend {
+  .connect_timeout = 5s;
+  .host = "example.com";
+  .ssl = true;
+  .probe = {
+    .request = "GET /probe HTTP/1.1" "Host: example.com";
+    .timeout = 5s;
+  }
+}
+`.trim()
+      )
+    ).toMatchObject({
+      type: 'BackendStatement',
+      body: [
+        {
+          key: 'connect_timeout',
+          value: { type: 'DurationLiteral', value: '5s' },
+        },
+        {
+          key: 'host',
+          value: { type: 'StringLiteral', value: '"example.com"' },
+        },
+        {
+          key: 'ssl',
+          value: { type: 'BooleanLiteral', value: 'true' },
+        },
+        {
+          key: 'probe',
+          value: [
+            {
+              key: 'request',
+              value: {
+                type: 'ConcatExpression',
+                body: [{ type: 'StringLiteral' }, { type: 'StringLiteral' }],
+              },
+            },
+            {
+              key: 'timeout',
+              value: { type: 'DurationLiteral', value: '5s' },
+            },
+          ],
+        },
+      ],
+    } as BackendStatement)
   })
 })

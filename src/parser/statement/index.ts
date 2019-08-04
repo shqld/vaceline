@@ -198,7 +198,7 @@ export const parseStmt = (p: Parser): n.Statement => {
     p.take()
 
     let alternative: n.IfStatement | Array<n.Statement>
-    if (isToken(p.peek(), 'keyword', 'if')) {
+    if (isToken(p.peek(), 'ident', 'if')) {
       alternative = p.validateNode(parseStmt(p), ['IfStatement'])
     } else {
       p.validateToken(p.read(), 'symbol', '{')
@@ -266,10 +266,52 @@ export const parseStmt = (p: Parser): n.Statement => {
     })
   }
 
+  if (token.value === 'backend') {
+    const id = p.validateNode(parseExpr(p, p.read(), true), ['Identifier'])
+
+    p.validateToken(p.read(), 'symbol', '{')
+
+    const body = parseBackendDef(p)
+
+    return p.finishNode(node, 'BackendStatement', {
+      id,
+      body,
+    })
+  }
+
   throw createError(
     p.source,
     '[stmt] not implemented yet',
     node.loc.start,
     node.loc.end
   )
+}
+
+const parseBackendDef = (p: Parser): n.BackendDef => {
+  const body = []
+
+  while (true) {
+    if (isToken(p.peek()!, 'symbol', '}')) {
+      p.take()
+      break
+    }
+
+    p.validateToken(p.read(), 'symbol', '.')
+    const key = p.validateNode(parseExpr(p), ['Identifier']).name
+    p.validateToken(p.read(), 'operator', '=')
+
+    let value
+
+    if (isToken(p.peek()!, 'symbol', '{')) {
+      p.take()
+      value = parseBackendDef(p)
+    } else {
+      value = parseExpr(p)
+      ensureSemi(p)
+    }
+
+    body.push({ key, value })
+  }
+
+  return body
 }
