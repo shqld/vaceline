@@ -17,7 +17,7 @@ export interface Token {
   loc: Location
 }
 
-const symbols = [';', ',', '/', '{', '}', '(', ')'] as const
+const symbols = [';', '.', ',', '/', '{', '}', '(', ')'] as const
 
 const escapeRegExp = (s: string | RegExp) =>
   s instanceof RegExp ? s.source : s.replace(/[-\\^$*+?.()|[\]{}]/g, '\\$&')
@@ -29,6 +29,7 @@ const splitters = [
   /* newline        */ '\n',
   /* string         */ /"[^\n]*?"/,
   /* multiline str  */ /{"[\s\S]*?"}/,
+  /* numeric        */ /[\d\.]+/,
   /* line comment   */ /#[^\n]*|\/\/[^\n]*/,
   /* inline comment */ /\/\*[\s\S]*\*\//,
   ...symbols,
@@ -124,7 +125,7 @@ export class Tokenizer {
         const lines = str.split('\n')
         line += lines!.length - 1
         column = lines[lines.length - 1].length - (str.length - 1)
-      } else if (/^\d/.test(str)) {
+      } else if (/[\d\.]+/.test(str)) {
         type = 'numeric'
       } else if (/^(#|\/\/|\/\*)/.test(str)) {
         type = 'comment'
