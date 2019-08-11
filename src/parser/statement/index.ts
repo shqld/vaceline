@@ -146,6 +146,8 @@ export const parseStmt = (p: Parser): n.Statement => {
   }
 
   if (token.value === 'restart') {
+    ensureSemi(p)
+
     return p.finishNode(node, 'RestartStatement', {})
   }
 
