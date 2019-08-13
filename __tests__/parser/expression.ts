@@ -1,6 +1,10 @@
 import { Parser } from '../../src/parser'
 import { parseExpr } from '../../src/parser/expression'
-import { BinaryExpression, LogicalExpression } from '../../src/ast-nodes'
+import {
+  BinaryExpression,
+  LogicalExpression,
+  Member,
+} from '../../src/ast-nodes'
 import { parseIp } from '../../src/parser/statement/ip'
 
 const parse = (source: string) => parseExpr(new Parser(source))
@@ -293,6 +297,26 @@ describe('Expression', () => {
 
       expect(() => parse('"0.0.0"')).toThrow(/invalid ip address/)
       expect(() => parse('"invalid"')).toThrow(/invalid ip address/)
+    })
+  })
+
+  describe.only('Member', () => {
+    it.only('should be parsed', () => {
+      expect(parse('a.b')).toMatchObject({
+        type: 'Member',
+        base: { type: 'Identifier', name: 'a' },
+        member: { type: 'Identifier', name: 'b' },
+      } as Member)
+
+      expect(parse('a.b.c')).toMatchObject({
+        type: 'Member',
+        base: {
+          type: 'Member',
+          base: { type: 'Identifier', name: 'a' },
+          member: { type: 'Identifier', name: 'b' },
+        },
+        member: { type: 'Identifier', name: 'c' },
+      } as Member)
     })
   })
 })

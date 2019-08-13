@@ -13,14 +13,13 @@ export type Expression =
   | Identifier
   | Header
   | Ip
-  | MemberExpression
+  | Member
   | BooleanExpression
   | UnaryExpression
   | FunCallExpression
   | ConcatExpression
   | BinaryExpression
   | LogicalExpression
-  | StructDefinitionExpression
 
 export type Statement =
   | ExpressionStatement
@@ -40,7 +39,6 @@ export type Statement =
   | SubroutineStatement
   | AclStatement
   | CustomStatement
-  | MemberAssignStatement
   | BackendStatement
 
 export interface File extends Node {
@@ -109,10 +107,10 @@ export interface Ip extends Node {
   cidr?: number
 }
 
-export interface MemberExpression extends Node {
-  type: 'MemberExpression'
-  object: Identifier
-  property: Identifier | Header | MemberExpression
+export interface Member extends Node {
+  type: 'Member'
+  base: Identifier | Member
+  member: Identifier | Header
 }
 
 export interface BooleanExpression extends Node {
@@ -128,7 +126,7 @@ export interface UnaryExpression extends Node {
 
 export interface FunCallExpression extends Node {
   type: 'FunCallExpression'
-  callee: MemberExpression | Identifier
+  callee: Member | Identifier
   arguments: Array<Expression>
 }
 
@@ -172,27 +170,27 @@ export interface CallStatement extends Node {
 
 export interface DeclareStatement extends Node {
   type: 'DeclareStatement'
-  id: Identifier | MemberExpression
+  id: Identifier | Member
   valueType: 'STRING' | 'BOOL' | 'BOOLEAN' | 'INTEGER' | 'FLOAT'
 }
 
 export interface AddStatement extends Node {
   type: 'AddStatement'
-  left: Identifier | MemberExpression
+  left: Identifier | Member
   right: Expression
   operator: string
 }
 
 export interface SetStatement extends Node {
   type: 'SetStatement'
-  left: Identifier | MemberExpression
+  left: Identifier | Member
   right: Expression
   operator: string
 }
 
 export interface UnsetStatement extends Node {
   type: 'UnsetStatement'
-  id: Identifier | MemberExpression
+  id: Identifier | Member
 }
 
 export interface ReturnStatement extends Node {
