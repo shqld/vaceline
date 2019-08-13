@@ -1,22 +1,22 @@
 import * as n from '../../ast-nodes'
 import { isToken } from '../../utils/token'
 
-import { parseExpr } from '../expression'
+import { parseExpr, parseIdentifier } from '../expression'
 import { createError } from '../create-error'
 import { Parser } from '..'
 import { keywords } from '../keywords'
 import { parseIp } from './ip'
+import { Token } from '../tokenizer'
 
 const ensureSemi = (p: Parser) => {
   p.validateToken(p.read(), 'symbol', ';')
 }
 
-export const parseStmt = (p: Parser): n.Statement => {
-  const token = p.peek()!
+export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
   const node = p.startNode()
 
   if (!keywords.has(token.value)) {
-    const body = parseExpr(p)
+    const body = parseExpr(p, token)
 
     ensureSemi(p)
 
@@ -25,10 +25,8 @@ export const parseStmt = (p: Parser): n.Statement => {
     })
   }
 
-  p.take()
-
   if (token.value === 'set' || token.value === 'add') {
-    const left = p.validateNode(parseExpr(p), ['Identifier'])
+    const left = p.validateNode(parseExpr(p), ['Identifier', 'Member'])
     const operator = p.validateToken(p.read(), 'operator').value
     const right = parseExpr(p)
 
@@ -46,7 +44,7 @@ export const parseStmt = (p: Parser): n.Statement => {
   }
 
   if (token.value === 'unset') {
-    const id = p.validateNode(parseExpr(p), ['Identifier'])
+    const id = p.validateNode(parseExpr(p), ['Identifier', 'Member'])
 
     ensureSemi(p)
 
@@ -88,11 +86,11 @@ export const parseStmt = (p: Parser): n.Statement => {
   if (token.value === 'declare') {
     p.validateToken(p.read(), 'ident', 'local')
 
-    const id = p.validateNode(parseExpr(p), ['Identifier'])
-    const valueType = (p.validateToken(
-      p.read(),
-      'valueTypes'
-    ) as ValueTypeToken).value
+    const id = p.validateNode(parseIdentifier(p, p.read()), [
+      'Identifier',
+      'Member',
+    ])
+    const valueType = p.validateToken(p.read(), 'ident').value
 
     ensureSemi(p)
 
@@ -190,7 +188,7 @@ export const parseStmt = (p: Parser): n.Statement => {
       consequent.push(parseStmt(p))
     }
 
-    if (p.isEOF() || !isToken(p.peek(), 'ident', 'else')) {
+    if (p.isNextEOF() || !isToken(p.peek(), 'ident', 'else')) {
       return p.finishNode(node, 'IfStatement', {
         test,
         consequent,

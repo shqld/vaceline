@@ -31,8 +31,15 @@ export class Parser extends TokenReader {
 
     const body: Array<Statement> = []
 
-    while (!this.isEOF()) {
-      body.push(parseStmt(this))
+    while (true) {
+      const token = this.peek()
+      if (!token) {
+        break
+      }
+
+      this.take()
+
+      body.push(parseStmt(this, token))
     }
 
     return this.finishNode(node, 'Program', { body })

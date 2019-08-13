@@ -232,7 +232,7 @@ Program {
       "body": Block {
         "body": Array [
           SetStatement {
-            "left": MemberExpression {
+            "left": Member {
               "loc": Object {
                 "end": Object {
                   "column": 26,
@@ -265,7 +265,7 @@ Program {
                 "type": "Identifier",
               },
               "print": [Function],
-              "property": MemberExpression {
+              "property": Member {
                 "loc": Object {
                   "end": Object {
                     "column": 26,
@@ -316,9 +316,9 @@ Program {
                   "print": [Function],
                   "type": "Header",
                 },
-                "type": "MemberExpression",
+                "type": "Member",
               },
-              "type": "MemberExpression",
+              "type": "Member",
             },
             "loc": Object {
               "end": Object {
@@ -337,7 +337,7 @@ Program {
             "print": [Function],
             "right": FunCallExpression {
               "arguments": Array [
-                MemberExpression {
+                Member {
                   "loc": Object {
                     "end": Object {
                       "column": 30,
@@ -370,7 +370,7 @@ Program {
                     "type": "Identifier",
                   },
                   "print": [Function],
-                  "property": MemberExpression {
+                  "property": Member {
                     "loc": Object {
                       "end": Object {
                         "column": 30,
@@ -421,11 +421,11 @@ Program {
                       "print": [Function],
                       "type": "Header",
                     },
-                    "type": "MemberExpression",
+                    "type": "Member",
                   },
-                  "type": "MemberExpression",
+                  "type": "Member",
                 },
-                MemberExpression {
+                Member {
                   "loc": Object {
                     "end": Object {
                       "column": 30,
@@ -458,7 +458,7 @@ Program {
                     "type": "Identifier",
                   },
                   "print": [Function],
-                  "property": MemberExpression {
+                  "property": Member {
                     "loc": Object {
                       "end": Object {
                         "column": 30,
@@ -509,11 +509,11 @@ Program {
                       "print": [Function],
                       "type": "Header",
                     },
-                    "type": "MemberExpression",
+                    "type": "Member",
                   },
-                  "type": "MemberExpression",
+                  "type": "Member",
                 },
-                MemberExpression {
+                Member {
                   "loc": Object {
                     "end": Object {
                       "column": 18,
@@ -546,7 +546,7 @@ Program {
                     "type": "Identifier",
                   },
                   "print": [Function],
-                  "property": MemberExpression {
+                  "property": Member {
                     "loc": Object {
                       "end": Object {
                         "column": 18,
@@ -597,9 +597,9 @@ Program {
                       "print": [Function],
                       "type": "Identifier",
                     },
-                    "type": "MemberExpression",
+                    "type": "Member",
                   },
-                  "type": "MemberExpression",
+                  "type": "Member",
                 },
               ],
               "callee": Identifier {
@@ -687,7 +687,7 @@ Program {
             "type": "Comment",
           },
           DeclareStatement {
-            "id": MemberExpression {
+            "id": Member {
               "loc": Object {
                 "end": Object {
                   "column": 34,
@@ -738,7 +738,7 @@ Program {
                 "print": [Function],
                 "type": "Identifier",
               },
-              "type": "MemberExpression",
+              "type": "Member",
             },
             "loc": Object {
               "end": Object {
@@ -758,7 +758,7 @@ Program {
             "valueType": "BOOL",
           },
           DeclareStatement {
-            "id": MemberExpression {
+            "id": Member {
               "loc": Object {
                 "end": Object {
                   "column": 32,
@@ -809,7 +809,7 @@ Program {
                 "print": [Function],
                 "type": "Identifier",
               },
-              "type": "MemberExpression",
+              "type": "Member",
             },
             "loc": Object {
               "end": Object {
@@ -829,7 +829,7 @@ Program {
             "valueType": "STRING",
           },
           SetStatement {
-            "left": MemberExpression {
+            "left": Member {
               "loc": Object {
                 "end": Object {
                   "column": 24,
@@ -880,7 +880,7 @@ Program {
                 "print": [Function],
                 "type": "Identifier",
               },
-              "type": "MemberExpression",
+              "type": "Member",
             },
             "loc": Object {
               "end": Object {
@@ -900,7 +900,7 @@ Program {
             "right": BooleanExpression {
               "body": LogicalExpression {
                 "left": BinaryExpression {
-                  "left": MemberExpression {
+                  "left": Member {
                     "loc": Object {
                       "end": Object {
                         "column": 26,
@@ -933,7 +933,7 @@ Program {
                       "type": "Identifier",
                     },
                     "print": [Function],
-                    "property": MemberExpression {
+                    "property": Member {
                       "loc": Object {
                         "end": Object {
                           "column": 26,
@@ -984,9 +984,9 @@ Program {
                         "print": [Function],
                         "type": "Header",
                       },
-                      "type": "MemberExpression",
+                      "type": "Member",
                     },
-                    "type": "MemberExpression",
+                    "type": "Member",
                   },
                   "loc": Object {
                     "end": Object {
@@ -1038,7 +1038,7 @@ Program {
                 "next": [Function],
                 "operator": "&&",
                 "print": [Function],
-                "right": MemberExpression {
+                "right": Member {
                   "loc": Object {
                     "end": Object {
                       "column": 32,
@@ -1071,7 +1071,7 @@ Program {
                     "type": "Identifier",
                   },
                   "print": [Function],
-                  "property": MemberExpression {
+                  "property": Member {
                     "loc": Object {
                       "end": Object {
                         "column": 32,
@@ -1122,9 +1122,9 @@ Program {
                       "print": [Function],
                       "type": "Header",
                     },
-                    "type": "MemberExpression",
+                    "type": "Member",
                   },
-                  "type": "MemberExpression",
+                  "type": "Member",
                 },
                 "type": "LogicalExpression",
               },
@@ -1177,7 +1177,7 @@ Program {
             "type": "SetStatement",
           },
           SetStatement {
-            "left": MemberExpression {
+            "left": Member {
               "loc": Object {
                 "end": Object {
                   "column": 22,
@@ -1228,7 +1228,7 @@ Program {
                 "print": [Function],
                 "type": "Identifier",
               },
-              "type": "MemberExpression",
+              "type": "Member",
             },
             "loc": Object {
               "end": Object {
@@ -1247,7 +1247,7 @@ Program {
             "print": [Function],
             "right": FunCallExpression {
               "arguments": Array [
-                MemberExpression {
+                Member {
                   "loc": Object {
                     "end": Object {
                       "column": 45,
@@ -1298,9 +1298,9 @@ Program {
                     "print": [Function],
                     "type": "Identifier",
                   },
-                  "type": "MemberExpression",
+                  "type": "Member",
                 },
-                MemberExpression {
+                Member {
                   "loc": Object {
                     "end": Object {
                       "column": 74,
@@ -1333,7 +1333,7 @@ Program {
                     "type": "Identifier",
                   },
                   "print": [Function],
-                  "property": MemberExpression {
+                  "property": Member {
                     "loc": Object {
                       "end": Object {
                         "column": 74,
@@ -1384,9 +1384,9 @@ Program {
                       "print": [Function],
                       "type": "Header",
                     },
-                    "type": "MemberExpression",
+                    "type": "Member",
                   },
-                  "type": "MemberExpression",
+                  "type": "Member",
                 },
               ],
               "callee": Identifier {
@@ -1474,7 +1474,7 @@ Program {
             "type": "Comment",
           },
           SetStatement {
-            "left": MemberExpression {
+            "left": Member {
               "loc": Object {
                 "end": Object {
                   "column": 34,
@@ -1507,7 +1507,7 @@ Program {
                 "type": "Identifier",
               },
               "print": [Function],
-              "property": MemberExpression {
+              "property": Member {
                 "loc": Object {
                   "end": Object {
                     "column": 34,
@@ -1558,9 +1558,9 @@ Program {
                   "print": [Function],
                   "type": "Identifier",
                 },
-                "type": "MemberExpression",
+                "type": "Member",
               },
-              "type": "MemberExpression",
+              "type": "Member",
             },
             "loc": Object {
               "end": Object {
@@ -1579,7 +1579,7 @@ Program {
             "print": [Function],
             "right": FunCallExpression {
               "arguments": Array [
-                MemberExpression {
+                Member {
                   "loc": Object {
                     "end": Object {
                       "column": 57,
@@ -1630,7 +1630,7 @@ Program {
                     "print": [Function],
                     "type": "Identifier",
                   },
-                  "type": "MemberExpression",
+                  "type": "Member",
                 },
                 StringLiteral {
                   "loc": Object {
@@ -1754,7 +1754,7 @@ Program {
             "type": "Comment",
           },
           SetStatement {
-            "left": MemberExpression {
+            "left": Member {
               "loc": Object {
                 "end": Object {
                   "column": 34,
@@ -1787,7 +1787,7 @@ Program {
                 "type": "Identifier",
               },
               "print": [Function],
-              "property": MemberExpression {
+              "property": Member {
                 "loc": Object {
                   "end": Object {
                     "column": 34,
@@ -1838,9 +1838,9 @@ Program {
                   "print": [Function],
                   "type": "Header",
                 },
-                "type": "MemberExpression",
+                "type": "Member",
               },
-              "type": "MemberExpression",
+              "type": "Member",
             },
             "loc": Object {
               "end": Object {
@@ -1857,7 +1857,7 @@ Program {
             "next": [Function],
             "operator": "=",
             "print": [Function],
-            "right": MemberExpression {
+            "right": Member {
               "loc": Object {
                 "end": Object {
                   "column": 52,
@@ -1908,7 +1908,7 @@ Program {
                 "print": [Function],
                 "type": "Identifier",
               },
-              "type": "MemberExpression",
+              "type": "Member",
             },
             "type": "SetStatement",
           },
@@ -2235,7 +2235,7 @@ Program {
       "body": Block {
         "body": Array [
           UnsetStatement {
-            "id": MemberExpression {
+            "id": Member {
               "loc": Object {
                 "end": Object {
                   "column": 38,
@@ -2268,7 +2268,7 @@ Program {
                 "type": "Identifier",
               },
               "print": [Function],
-              "property": MemberExpression {
+              "property": Member {
                 "loc": Object {
                   "end": Object {
                     "column": 38,
@@ -2319,9 +2319,9 @@ Program {
                   "print": [Function],
                   "type": "Identifier",
                 },
-                "type": "MemberExpression",
+                "type": "Member",
               },
-              "type": "MemberExpression",
+              "type": "Member",
             },
             "loc": Object {
               "end": Object {
@@ -2428,7 +2428,7 @@ Program {
             "consequent": Block {
               "body": Array [
                 SetStatement {
-                  "left": MemberExpression {
+                  "left": Member {
                     "loc": Object {
                       "end": Object {
                         "column": 19,
@@ -2479,7 +2479,7 @@ Program {
                       "print": [Function],
                       "type": "Identifier",
                     },
-                    "type": "MemberExpression",
+                    "type": "Member",
                   },
                   "loc": Object {
                     "end": Object {
@@ -2608,7 +2608,7 @@ Program {
               "value": ")",
             },
             "test": BinaryExpression {
-              "left": MemberExpression {
+              "left": Member {
                 "loc": Object {
                   "end": Object {
                     "column": 34,
@@ -2641,7 +2641,7 @@ Program {
                   "type": "Identifier",
                 },
                 "print": [Function],
-                "property": MemberExpression {
+                "property": Member {
                   "loc": Object {
                     "end": Object {
                       "column": 34,
@@ -2692,9 +2692,9 @@ Program {
                     "print": [Function],
                     "type": "Identifier",
                   },
-                  "type": "MemberExpression",
+                  "type": "Member",
                 },
-                "type": "MemberExpression",
+                "type": "Member",
               },
               "loc": Object {
                 "end": Object {
