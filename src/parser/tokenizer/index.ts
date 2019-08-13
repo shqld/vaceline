@@ -1,6 +1,10 @@
 import { createError } from '../create-error'
 import { Location, Position } from '../../nodes'
 import { operators } from './operators'
+import { buildDebug } from '../../utils/debug'
+
+const debug = buildDebug('tokenizer')
+const debugTokens = debug.build('tokens')
 
 export type TokenType =
   | 'ident'
@@ -50,6 +54,8 @@ export class Tokenizer {
   constructor(raw: string, opts: { keywords?: Array<string> } = {}) {
     this.raw = raw
     this.source = raw.split(reSplitter)
+
+    debugTokens(this.source)
   }
 
   tokenize(): Array<Token> {
