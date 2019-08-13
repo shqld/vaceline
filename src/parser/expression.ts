@@ -200,7 +200,7 @@ const parseHumbleExpr = (
       })
     }
 
-    return p.finishNode(node, 'Identifier', { name: token.value })
+    return parseIdentifier(p, token)
   }
 
   if (token.type === 'symbol') {
@@ -229,4 +229,37 @@ const parseHumbleExpr = (
     node.loc.start,
     node.loc.end
   )
+}
+
+export const parseIdentifier = (
+  p: Parser,
+  token?: Token,
+  base: n.Identifier | n.Member = p.finishNode(p.startNode(), 'Identifier', {
+    name: token!.value,
+  })
+): n.Member | n.Identifier => {
+  if (!isToken(p.peek()!, 'symbol', '.')) {
+    return base
+  }
+
+  p.take()
+
+  const memberTok = p.read()
+  const member = p.finishNode(p.startNode(), 'Identifier', {
+    name: memberTok.value,
+  })
+
+  const expr = Node.create(
+    'Member',
+    {
+      base,
+      member,
+    },
+    {
+      start: base.loc!.start,
+      end: member.loc!.end,
+    }
+  )
+
+  return parseIdentifier(p, undefined, expr)
 }

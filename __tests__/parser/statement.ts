@@ -14,7 +14,7 @@ describe('parseStatement', () => {
       type: 'LogStatement',
       content: {
         type: 'ConcatExpression',
-        body: [{ type: 'StringLiteral' }, { type: 'Identifier' }],
+        body: [{ type: 'StringLiteral' }, { type: 'Member' }],
       },
     } as LogStatement)
 

@@ -96,12 +96,12 @@ export const nodeDefs = {
     },
   } as NodeDef<n.Ip>,
 
-  MemberExpression: {
+  Member: {
     build(node, obj) {
-      node.object = obj.object
-      node.property = obj.property
+      node.base = obj.base
+      node.member = obj.member
     },
-  } as NodeDef<n.MemberExpression>,
+  } as NodeDef<n.Member>,
 
   BooleanExpression: {
     build(node, obj) {
@@ -248,19 +248,6 @@ export const nodeDefs = {
       node.body = obj.body
     },
   } as NodeDef<n.AclStatement>,
-
-  StructDefinitionExpression: {
-    build(node, obj) {
-      node.body = obj.body
-    },
-  } as NodeDef<n.StructDefinitionExpression>,
-
-  MemberAssignStatement: {
-    build(node, obj) {
-      node.id = obj.id
-      node.value = obj.value
-    },
-  } as NodeDef<n.MemberAssignStatement>,
 
   BackendStatement: {
     build(node, obj) {
