@@ -8,6 +8,9 @@ import { createError } from './create-error'
 import { parseLiteral } from './literal'
 import * as ops from './tokenizer/operators'
 import { Parser } from '.'
+import { buildDebug } from '../utils/debug'
+
+const debug = buildDebug('parser', 'expression')
 
 interface Stack<T> {
   [I: number]: T
@@ -35,7 +38,7 @@ export const parseExpr = (
 
   const buf = [expr]
 
-  while (!p.isEOF()) {
+  while (!p.isNextEOF()) {
     const token = p.read()
 
     if (isToken(token, 'symbol', ';')) {
@@ -93,7 +96,7 @@ const parseOperatorExpr = (
   const opStack: Stack<Operator> = []
 
   // covert expression sequence into rpn
-  while (!p.isEOF()) {
+  while (!p.isNextEOF()) {
     const op = p.peek()! as Operator
 
     const isBinary = ops.binary.has(op.value)
@@ -173,9 +176,7 @@ const parseHumbleExpr = (
 
   if (token.type === 'ident') {
     if (isToken(p.peek(), 'symbol', '(')) {
-      const ident = p.startNode()
-
-      const callee = p.finishNode(ident, 'Identifier', {
+      const callee = p.finishNode(p.startNode(), 'Identifier', {
         name: token.value,
       })
 

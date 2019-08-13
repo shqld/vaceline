@@ -33,6 +33,10 @@ export class TokenReader {
   read(): Token {
     const token = this.tokens[this.cur++]
 
+    if (!token) {
+      throw new SyntaxError('Unexpected EOF')
+    }
+
     if (token.type === 'comment') {
       this.comments.push(token)
       return this.read()
@@ -59,7 +63,7 @@ export class TokenReader {
     this.cur++
   }
 
-  isEOF(): boolean {
-    return !this.tokens[this.cur]
+  isNextEOF(): boolean {
+    return this.tokens.length <= this.cur + 1
   }
 }
