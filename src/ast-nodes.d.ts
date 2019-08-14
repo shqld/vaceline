@@ -243,10 +243,10 @@ export interface CustomStatement extends Node {
   body: Array<Node>
 }
 
-export type BackendDef = Array<{ key: string; value: Expression | BackendDef }>
+export type BackendDef = { key: string; value: Expression | Array<BackendDef> }
 
 export interface BackendStatement extends Node {
   type: 'BackendStatement'
   id: Identifier
-  body: BackendDef
+  body: Array<BackendDef>
 }

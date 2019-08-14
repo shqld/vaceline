@@ -8,6 +8,7 @@ import { isNode } from '../utils/node'
 import { isToken } from '../utils/token'
 import { PlainNode, NodeWithLoc } from '../nodes/node'
 import { parseStmt } from './statement/index'
+import { parseCompound } from './compound'
 
 export const parse = (source: string) => new Parser(source).parse()
 
@@ -29,18 +30,7 @@ export class Parser extends TokenReader {
   private parseProgram(): Program {
     const node = this.startNode()
 
-    const body: Array<Statement> = []
-
-    while (true) {
-      const token = this.peek()
-      if (!token) {
-        break
-      }
-
-      this.take()
-
-      body.push(parseStmt(this, token))
-    }
+    const body = parseCompound<Statement>(this, parseStmt)
 
     return this.finishNode(node, 'Program', { body })
   }

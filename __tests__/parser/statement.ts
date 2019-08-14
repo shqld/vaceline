@@ -20,9 +20,10 @@ describe('parseStatement', () => {
 
     expect(
       parse(`
-    log {"a: "} if(req.http.b, "b", "c")
-      if(req.http.b, "b", "c")
-      regsuball(req.http.X-Forwarded-Host, {"	"}, "");
+log
+  {"a: "}
+  if(req.http.b, "b", "c")
+  regsuball(req.http.X-Forwarded-Host, {"	"}, "");
     `)
     ).toMatchObject({ type: 'LogStatement' })
   })

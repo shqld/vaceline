@@ -9,6 +9,7 @@ import { parseLiteral } from './literal'
 import * as ops from './tokenizer/operators'
 import { Parser } from '.'
 import { buildDebug } from '../utils/debug'
+import { parseCompound } from './compound'
 
 const debug = buildDebug('parser', 'expression')
 
@@ -182,18 +183,7 @@ const parseHumbleExpr = (
 
       p.take()
 
-      const args: Array<n.Expression> = []
-
-      while (true) {
-        args.push(parseExpr(p))
-
-        if (isToken(p.peek(), 'symbol', ')')) {
-          p.take()
-          break
-        }
-
-        p.validateToken(p.read(), 'symbol', ',')
-      }
+      const args = parseCompound(p, parseExpr, ')', ',')
 
       return p.finishNode(node, 'FunCallExpression', {
         callee,
