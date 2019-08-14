@@ -3,9 +3,9 @@ import { isToken } from '../../utils/token'
 import isIp from 'is-ip'
 import { createError } from '../create-error'
 
-export const parseIp = (p: Parser) => {
-  const token = p.validateToken(p.read(), 'string')
-  const value = token.value.slice(1, -1) // strip quotes
+export const parseIp = (p: Parser, token = p.read()) => {
+  const str = p.validateToken(token, 'string')
+  const value = str.value.slice(1, -1) // strip quotes
   const node = p.startNode()
 
   const isLocalhost = value === 'localhost'
@@ -50,6 +50,8 @@ export const parseIp = (p: Parser) => {
       )
     }
   }
+
+  p.validateToken(p.read(), 'symbol', ';')
 
   return p.finishNode(node, 'Ip', {
     value,

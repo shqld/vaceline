@@ -7,6 +7,7 @@ import { Parser } from '..'
 import { keywords } from '../keywords'
 import { parseIp } from './ip'
 import { Token } from '../tokenizer'
+import { parseCompound } from '../compound'
 
 const ensureSemi = (p: Parser) => {
   p.validateToken(p.read(), 'symbol', ';')
@@ -178,15 +179,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
 
     p.validateToken(p.read(), 'symbol', '{')
 
-    const consequent: Array<n.Statement> = []
-    while (true) {
-      if (isToken(p.peek(), 'symbol', '}')) {
-        p.take()
-        break
-      }
-
-      consequent.push(parseStmt(p))
-    }
+    const consequent = parseCompound(p, parseStmt, '}')
 
     if (p.isNextEOF() || !isToken(p.peek(), 'ident', 'else')) {
       return p.finishNode(node, 'IfStatement', {
@@ -205,14 +198,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
 
       alternative = []
 
-      while (true) {
-        if (isToken(p.peek(), 'symbol', '}')) {
-          p.take()
-          break
-        }
-
-        alternative.push(parseStmt(p))
-      }
+      parseCompound(p, parseStmt, '}')
     }
 
     return p.finishNode(node, 'IfStatement', {
@@ -226,16 +212,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
     const id = p.validateNode(parseExpr(p, p.read(), true), ['Identifier'])
     p.validateToken(p.read(), 'symbol', '{')
 
-    const body = []
-
-    while (true) {
-      if (isToken(p.peek(), 'symbol', '}')) {
-        p.take()
-        break
-      }
-
-      body.push(parseStmt(p))
-    }
+    const body = parseCompound(p, parseStmt, '}')
 
     return p.finishNode(node, 'SubroutineStatement', {
       id,
@@ -247,18 +224,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
     const id = p.validateNode(parseExpr(p, p.read(), true), ['Identifier'])
     p.validateToken(p.read(), 'symbol', '{')
 
-    const body = []
-
-    while (true) {
-      if (isToken(p.peek()!, 'symbol', '}')) {
-        p.take()
-        break
-      }
-
-      body.push(parseIp(p))
-
-      ensureSemi(p)
-    }
+    const body = parseCompound(p, parseIp, '}')
 
     return p.finishNode(node, 'AclStatement', {
       id,
@@ -271,7 +237,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
 
     p.validateToken(p.read(), 'symbol', '{')
 
-    const body = parseBackendDef(p)
+    const body = parseCompound(p, parseBackendDef, '}')
 
     return p.finishNode(node, 'BackendStatement', {
       id,
@@ -287,31 +253,20 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
   )
 }
 
-const parseBackendDef = (p: Parser): n.BackendDef => {
-  const body = []
+const parseBackendDef = (p: Parser, token = p.read()): n.BackendDef => {
+  p.validateToken(token, 'symbol', '.')
+  const key = p.validateNode(parseExpr(p), ['Identifier']).name
+  p.validateToken(p.read(), 'operator', '=')
 
-  while (true) {
-    if (isToken(p.peek()!, 'symbol', '}')) {
-      p.take()
-      break
-    }
+  let value
 
-    p.validateToken(p.read(), 'symbol', '.')
-    const key = p.validateNode(parseExpr(p), ['Identifier']).name
-    p.validateToken(p.read(), 'operator', '=')
-
-    let value
-
-    if (isToken(p.peek()!, 'symbol', '{')) {
-      p.take()
-      value = parseBackendDef(p)
-    } else {
-      value = parseExpr(p)
-      ensureSemi(p)
-    }
-
-    body.push({ key, value })
+  if (isToken(p.peek()!, 'symbol', '{')) {
+    p.take()
+    value = parseCompound(p, parseBackendDef, '}')
+  } else {
+    value = parseExpr(p)
+    ensureSemi(p)
   }
 
-  return body
+  return { key, value }
 }
