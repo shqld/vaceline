@@ -62,7 +62,7 @@ const main = async () => {
   if (opts.debug === true) {
     debug.enable('vacel:*')
   } else if (typeof opts.debug === 'string') {
-    debug.enable(`vacel:${opts.debug}`)
+    debug.enable(`vacel:${opts.debug}:*`)
   }
 
   let ast
