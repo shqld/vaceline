@@ -229,7 +229,7 @@ export const parseIdentifier = (
     name: token!.value,
   })
 ): n.Member | n.Identifier => {
-  if (!isToken(p.peek()!, 'symbol', '.')) {
+  if (!isToken(p.peek(), 'symbol', '.') && !isToken(p.peek(), 'symbol', ':')) {
     return base
   }
 
