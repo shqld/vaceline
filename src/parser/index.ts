@@ -9,6 +9,9 @@ import { isToken } from '../utils/token'
 import { PlainNode, NodeWithLoc } from '../nodes/node'
 import { parseStmt } from './statement/index'
 import { parseCompound } from './compound'
+import { buildDebug } from '../utils/debug'
+
+const debug = buildDebug('parser')
 
 export const parse = (source: string) => new Parser(source).parse()
 
@@ -58,7 +61,15 @@ export class Parser extends TokenReader {
   ): N {
     node.loc.end = this.getCurrentToken()!.loc.end
 
-    return Node.build(node, type, values)
+    const finished = Node.build(node, type, values)
+
+    if (debug.enabled) {
+      const log = { ...finished }
+      delete log.loc
+      debug(log)
+    }
+
+    return finished
   }
 
   validateNode<T extends Array<NodeType>>(
