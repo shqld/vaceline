@@ -4,7 +4,7 @@ import { operators } from './operators'
 import { buildDebug } from '../../utils/debug'
 
 const debug = buildDebug('tokenizer')
-const debugTokens = debug.build('tokens')
+const debugTokens = debug.build('raw')
 
 export type TokenType =
   | 'ident'
@@ -31,11 +31,12 @@ const getJoinedRegExp = (s: Array<string | RegExp>) =>
 const splitters = [
   /* spaces         */ / +/,
   /* newline        */ '\n',
-  /* string         */ /"[^\n]*?"/,
-  /* multiline str  */ /{"[\s\S]*?"}/,
-  /* numeric        */ /[\d\.]+/,
   /* line comment   */ /#[^\n]*|\/\/[^\n]*/,
   /* inline comment */ /\/\*[\s\S]*\*\//,
+  /* string         */ /"[^\n]*?"/,
+  /* multiline str  */ /{"[\s\S]*?"}/,
+  /* ident          */ /[A-z][A-z\d-_]*/,
+  /* numeric        */ /[\d\.]+/,
   ...symbols,
   ...operators,
 ]
@@ -55,7 +56,9 @@ export class Tokenizer {
     this.raw = raw
     this.source = raw.split(reSplitter)
 
-    debugTokens(this.source)
+    if (debugTokens.enabled) {
+      debugTokens(this.source.filter((t) => !/^\s*$/.test(t)))
+    }
   }
 
   tokenize(): Array<Token> {
@@ -131,7 +134,7 @@ export class Tokenizer {
         const lines = str.split('\n')
         line += lines!.length - 1
         column = lines[lines.length - 1].length - (str.length - 1)
-      } else if (/[\d\.]+/.test(str)) {
+      } else if (/^[\d\.]+$/.test(str)) {
         type = 'numeric'
       } else if (/^(#|\/\/|\/\*)/.test(str)) {
         type = 'comment'
