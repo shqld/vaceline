@@ -176,22 +176,20 @@ const parseHumbleExpr = (
   if (literal) return literal
 
   if (token.type === 'ident') {
-    if (isToken(p.peek(), 'symbol', '(')) {
-      const callee = p.finishNode(p.startNode(), 'Identifier', {
-        name: token.value,
-      })
+    const ident = parseIdentifier(p, token)
 
+    if (isToken(p.peek(), 'symbol', '(')) {
       p.take()
 
       const args = parseCompound(p, parseExpr, ')', ',')
 
       return p.finishNode(node, 'FunCallExpression', {
-        callee,
+        callee: ident,
         arguments: args,
       })
     }
 
-    return parseIdentifier(p, token)
+    return ident
   }
 
   if (token.type === 'symbol') {
