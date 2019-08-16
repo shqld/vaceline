@@ -7,6 +7,7 @@ export const topLevelKeywords = new Set([
 ])
 
 export const keywords = new Set([
+  // statement directives
   'call',
   'declare',
   'local',
@@ -24,3 +25,5 @@ export const keywords = new Set([
   'else',
   ...topLevelKeywords,
 ])
+
+export const returnActions = new Set(['deliver', 'pass', 'fetch', 'lookup'])

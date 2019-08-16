@@ -4,7 +4,7 @@ import { isToken } from '../../utils/token'
 import { parseExpr, parseIdentifier } from '../expression'
 import { createError } from '../create-error'
 import { Parser } from '..'
-import { keywords } from '../keywords'
+import { keywords, returnActions } from '../keywords'
 import { parseIp } from './ip'
 import { Token } from '../tokenizer'
 import { parseCompound } from '../compound'
@@ -102,18 +102,30 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
   }
 
   if (token.value === 'return') {
-    let returnActionToken: ReturnTypeToken
+    let returnActionToken: Token
 
     // `()` can be skipped
     if (isToken(p.peek(), 'symbol', '(')) {
       p.take()
-      returnActionToken = p.validateToken(p.read(), 'returnTypes')
+
+      returnActionToken = p.read()
+
       p.validateToken(p.read(), 'symbol', ')')
     } else {
-      returnActionToken = p.validateToken(p.read(), 'returnTypes')
+      returnActionToken = p.read()
     }
 
-    const action = returnActionToken.value
+    if (!returnActions.has(returnActionToken.value)) {
+      throw createError(
+        p.source,
+        'return should be one of ' +
+          Array.from(returnActions.values()).join(', '),
+        returnActionToken.loc.start,
+        returnActionToken.loc.end
+      )
+    }
+
+    const action = returnActionToken.value as any
 
     ensureSemi(p)
 
