@@ -36,7 +36,7 @@ const splitters = [
   /* string         */ /"[^\n]*?"/,
   /* multiline str  */ /{"[\s\S]*?"}/,
   /* ident          */ /[A-z][A-z\d-_]*/,
-  /* numeric        */ /[\d\.]+/,
+  /* numeric        */ /[\d][\d\.]+/,
   ...symbols,
   ...operators,
 ]
