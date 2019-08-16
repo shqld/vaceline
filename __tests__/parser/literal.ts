@@ -81,8 +81,8 @@ multiline
 
       expect(() => parseExpr('001')).toThrowError(/invalid number/)
 
-      expect(() => parseExpr('.11')).toThrow(/invalid number/)
       expect(() => parseExpr('0.')).toThrow(/invalid number/)
+      expect(parseExpr('.11')).toBe(null)
     })
   })
 })
