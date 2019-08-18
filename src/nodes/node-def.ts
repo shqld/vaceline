@@ -255,4 +255,11 @@ export const nodeDefs = {
       node.body = obj.body
     },
   } as NodeDef<n.BackendStatement>,
+
+  TableStatement: {
+    build(node, obj) {
+      node.id = obj.id
+      node.body = obj.body
+    },
+  } as NodeDef<n.TableStatement>,
 } as const
