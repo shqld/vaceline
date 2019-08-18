@@ -3,8 +3,9 @@ import { Location, Position } from '../../nodes'
 import { operators } from './operators'
 import { buildDebug } from '../../utils/debug'
 
-const debug = buildDebug('tokenizer')
-const debugTokens = debug.build('raw')
+const debug = buildDebug('tokenize')
+const debugToken = debug.extend('token')
+const debugRaw = debug.extend('raw')
 
 export type TokenType =
   | 'ident'
@@ -56,8 +57,8 @@ export class Tokenizer {
     this.raw = raw
     this.source = raw.split(reSplitter)
 
-    if (debugTokens.enabled) {
-      debugTokens(this.source.filter((t) => !/^\s*$/.test(t)))
+    if (debugRaw.enabled) {
+      debugRaw(this.source.filter((t) => !/^\s*$/.test(t)))
     }
   }
 
@@ -175,14 +176,20 @@ export class Tokenizer {
         )
       }
 
-      tokens.push({
+      const token = {
         type,
         value: str,
         loc: {
           start: { offset: startOffset, line: startLine, column: startColumn },
           end: { offset: endOffset, line: endLine, column: endColumn },
         },
-      })
+      }
+
+      if (debugToken.enabled) {
+        debugToken(`${token.type}: ${token.value}`)
+      }
+
+      tokens.push(token)
     }
 
     return tokens as Array<Token>
