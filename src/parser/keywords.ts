@@ -4,6 +4,7 @@ export const topLevelKeywords = new Set([
   'sub',
   'acl',
   'backend',
+  'table',
 ])
 
 export const keywords = new Set([

@@ -224,6 +224,10 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
     })
   }
 
+  if (token.value === 'table') {
+    return parseTableStatement(p, node)
+  }
+
   throw createError(
     p.source,
     '[stmt] not implemented yet',
@@ -284,5 +288,38 @@ const parseIfStatement = (p: Parser, node: NodeWithLoc): n.IfStatement => {
     test,
     consequent,
     alternative,
+  })
+}
+
+const parseTableDef = (p: Parser, token: Token): n.TableDef => {
+  const key = p.validateToken(token, 'string').value
+
+  p.validateToken(p.read(), 'symbol', ':')
+
+  const value = p.validateToken(p.read(), 'string').value
+
+  if (isToken(p.peek(), 'symbol', ',')) {
+    p.take()
+  }
+
+  return {
+    key,
+    value,
+  }
+}
+
+const parseTableStatement = (
+  p: Parser,
+  node: NodeWithLoc
+): n.TableStatement => {
+  const id = p.validateNode(parseIdentifier(p, p.read()), ['Identifier'])
+
+  p.validateToken(p.read(), 'symbol', '{')
+
+  const body = parseCompound(p, parseTableDef, '}')
+
+  return p.finishNode(node, 'TableStatement', {
+    id,
+    body,
   })
 }

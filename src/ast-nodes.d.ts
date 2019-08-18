@@ -40,6 +40,7 @@ export type Statement =
   | AclStatement
   | CustomStatement
   | BackendStatement
+  | TableStatement
 
 export interface File extends Node {
   type: 'File'
@@ -249,4 +250,12 @@ export interface BackendStatement extends Node {
   type: 'BackendStatement'
   id: Identifier
   body: Array<BackendDef>
+}
+
+export type TableDef = { key: string; value: string }
+
+export interface TableStatement extends Node {
+  type: 'TableStatement'
+  id: Identifier
+  body: Array<TableDef>
 }
