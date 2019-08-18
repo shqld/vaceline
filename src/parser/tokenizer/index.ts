@@ -119,7 +119,7 @@ export class Tokenizer {
         type = 'symbol'
       } else if (matchers.operators.has(str as any)) {
         type = 'operator'
-      } else if (/true|false/.test(str)) {
+      } else if (/^(true|false)$/.test(str)) {
         type = 'boolean'
       } else if (str.startsWith('"')) {
         type = 'string'
