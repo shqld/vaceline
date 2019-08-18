@@ -9,6 +9,7 @@ import { parseIp } from './ip'
 import { Token } from '../tokenizer'
 import { parseCompound } from '../compound'
 import { NodeWithLoc } from '../../nodes/node'
+import { parseLiteral } from '../literal'
 
 const ensureSemi = (p: Parser) => {
   p.validateToken(p.read(), 'symbol', ';')
@@ -66,7 +67,11 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
   }
 
   if (token.value === 'import') {
-    const module = p.validateNode(parseExpr(p), ['Identifier'])
+    const module = p.validateNode(
+      parseExpr(p),
+      ['Identifier'],
+      'Only identifier is valid for import'
+    )
 
     ensureSemi(p)
 
@@ -119,7 +124,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
     if (!returnActions.has(returnActionToken.value)) {
       throw createError(
         p.source,
-        'return should be one of ' +
+        'return action should be one of ' +
           Array.from(returnActions.values()).join(', '),
         returnActionToken.loc.start,
         returnActionToken.loc.end
@@ -134,9 +139,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
   }
 
   if (token.value === 'error') {
-    const status = p.validateNode(parseExpr(p, p.read(), true), [
-      'NumericLiteral',
-    ])
+    const status = Number(p.validateToken(p.read(), 'numeric').value)
 
     // `message` can be void
     if (isToken(p.peek(), 'symbol', ';')) {

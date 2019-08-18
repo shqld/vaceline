@@ -4,6 +4,12 @@ import {
   LogStatement,
   BackendStatement,
   IfStatement,
+  ImportStatement,
+  ReturnStatement,
+  ErrorStatement,
+  RestartStatement,
+  SyntheticStatement,
+  TableStatement,
 } from '../../src/ast-nodes'
 import { parseStmt } from '../../src/parser/statement/index'
 
@@ -149,6 +155,188 @@ if (true) {
           },
         },
       } as IfStatement)
+    })
+  })
+
+  describe('ImportStatement', () => {
+    it('should parse', () => {
+      expect(
+        parse(`
+import module;
+      `)
+      ).toMatchObject({
+        type: 'ImportStatement',
+        module: {
+          type: 'Identifier',
+          name: 'module',
+        },
+      } as ImportStatement)
+    })
+
+    it('should not parse `import` with string literal', () => {
+      expect(() =>
+        parse(`
+import "module";
+    `)
+      ).toThrow(/Only identifier is valid for import/)
+    })
+  })
+
+  describe('ReturnStatement', () => {
+    it('should parse', () => {
+      expect(
+        parse(`
+        return (pass);
+      `)
+      ).toMatchObject({
+        type: 'ReturnStatement',
+        action: 'pass',
+      } as ReturnStatement)
+    })
+
+    it('should parse also without parens', () => {
+      expect(
+        parse(`
+        return pass;
+      `)
+      ).toMatchObject({
+        type: 'ReturnStatement',
+        action: 'pass',
+      } as ReturnStatement)
+    })
+
+    it('should not parse with invalid action arg', () => {
+      expect(() =>
+        parse(`
+        return invalid_action;
+      `)
+      ).toThrow(/return action should be one of/)
+    })
+  })
+
+  describe('ErrorStatement', () => {
+    it('should parse', () => {
+      expect(
+        parse(`
+        error 700;
+      `)
+      ).toMatchObject({
+        type: 'ErrorStatement',
+        status: 700,
+      } as ErrorStatement)
+    })
+
+    it('should parse with error message', () => {
+      expect(
+        parse(`
+        error 700 "Special Error";
+      `)
+      ).toMatchObject({
+        type: 'ErrorStatement',
+        status: 700,
+        message: {
+          type: 'StringLiteral',
+          value: '"Special Error"',
+        },
+      } as ErrorStatement)
+    })
+  })
+
+  describe('RestartStatement', () => {
+    it('should parse', () => {
+      expect(
+        parse(`
+        restart;
+      `)
+      ).toMatchObject({
+        type: 'RestartStatement',
+      } as RestartStatement)
+    })
+
+    it('should not parse with argment', () => {
+      expect(() =>
+        parse(`
+        restart 1;
+      `)
+      ).toThrow(/expected symbol.*;/)
+    })
+  })
+
+  describe('SyntheticStatement', () => {
+    it('should parse', () => {
+      expect(
+        parse(`
+        synthetic "response";
+      `)
+      ).toMatchObject({
+        type: 'SyntheticStatement',
+        response: {
+          type: 'StringLiteral',
+          value: '"response"',
+        },
+      } as SyntheticStatement)
+    })
+
+    it('should parse with ConcatExpression', () => {
+      expect(
+        parse(`
+        synthetic "{ \"id\": \"" req.http.id "\" }";
+      `)
+      ).toMatchObject({
+        type: 'SyntheticStatement',
+        response: {
+          type: 'ConcatExpression',
+        },
+      } as SyntheticStatement)
+    })
+
+    it('should not parse with argment', () => {
+      expect(() =>
+        parse(`
+        synthetic;
+      `)
+      ).toThrow() // TODO: /no response argument/
+    })
+  })
+
+  describe('TableStatement', () => {
+    it('should parse', () => {
+      expect(
+        parse(`
+        table my_table {
+          "key": "value",
+          "key": "value"
+        };
+      `)
+      ).toMatchObject({
+        type: 'TableStatement',
+        id: {
+          type: 'Identifier',
+          name: 'my_table',
+        },
+        body: [
+          {
+            key: '"key"',
+            value: '"value"',
+          },
+          {
+            key: '"key"',
+            value: '"value"',
+          },
+        ],
+      } as TableStatement)
+    })
+
+    it('should parse with trailing comma of last value', () => {
+      expect(
+        parse(`
+        table my_table {
+          "key": "value",
+        };
+      `)
+      ).toMatchObject({
+        type: 'TableStatement',
+      } as TableStatement)
     })
   })
 })
