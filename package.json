@@ -14,7 +14,8 @@
     "test": "yarn lint && yarn type && yarn jest",
     "lint": "yarn eslint src --ext .ts",
     "type": "yarn tsc --noEmit",
-    "bench": "node benchmark > bench.txt"
+    "bench": "node benchmark > bench.txt",
+    "coverage": "yarn jest --coverage"
   },
   "dependencies": {
     "chalk": "^2.4.2",
