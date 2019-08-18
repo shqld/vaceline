@@ -31,6 +31,7 @@ const getJoinedRegExp = (s: Array<string | RegExp>) =>
 
 const splitters = [
   /* spaces         */ / +/,
+  /* tabs           */ /	+/,
   /* newline        */ '\n',
   /* line comment   */ /#[^\n]*|\/\/[^\n]*/,
   /* inline comment */ /\/\*[\s\S]*\*\//,
@@ -79,8 +80,8 @@ export class Tokenizer {
         continue
       }
 
-      // only whitespaces
-      if (str.startsWith(' ')) {
+      // only whitespaces or tabs
+      if (/^( |	)/.test(str)) {
         offset += str.length
         column += str.length
 
