@@ -201,7 +201,7 @@ export interface ReturnStatement extends Node {
 
 export interface ErrorStatement extends Node {
   type: 'ErrorStatement'
-  status: Literal
+  status: number
   message?: Expression
 }
 
