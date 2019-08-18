@@ -22,7 +22,7 @@ export interface Token {
   loc: Location
 }
 
-const symbols = [';', ':', '.', ',', '/', '{', '}', '(', ')'] as const
+const symbols = [';', ':', '.', ',', '/', '{', '}', '(', ')', '+'] as const
 
 const escapeRegExp = (s: string | RegExp) =>
   s instanceof RegExp ? s.source : s.replace(/[-\\^$*+?.()|[\]{}]/g, '\\$&')
@@ -38,8 +38,8 @@ const splitters = [
   /* multiline str  */ /{"[\s\S]*?"}/,
   /* ident          */ /[A-z][A-z\d-_]*/,
   /* numeric        */ /[\d][\d\.]+/,
-  ...symbols,
   ...operators,
+  ...symbols,
 ]
 
 const matchers = {

@@ -40,10 +40,14 @@ export const parseExpr = (
   const buf = [expr]
 
   while (!p.isNextEOF()) {
-    const token = p.read()
+    let token = p.read()
 
     if (isToken(token, 'symbol', ';')) {
       break
+    }
+
+    if (isToken(token, 'symbol', '+')) {
+      token = p.read()
     }
 
     try {
