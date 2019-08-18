@@ -26,4 +26,18 @@ export const keywords = new Set([
   ...topLevelKeywords,
 ])
 
-export const returnActions = new Set(['deliver', 'pass', 'fetch', 'lookup'])
+// https://book.varnish-software.com/4.0/chapters/VCL_Basics.html#legal-return-actions
+export const returnActions = new Set([
+  'deliver',
+  'fetch',
+  'restart',
+  'hash',
+  'pass',
+  'pipe',
+  'synth',
+  'purge',
+  'lookup',
+
+  // Fastly
+  'deliver_stale',
+])
