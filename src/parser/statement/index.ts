@@ -8,6 +8,7 @@ import { keywords, returnActions } from '../keywords'
 import { parseIp } from './ip'
 import { Token } from '../tokenizer'
 import { parseCompound } from '../compound'
+import { NodeWithLoc } from '../../nodes/node'
 
 const ensureSemi = (p: Parser) => {
   p.validateToken(p.read(), 'symbol', ';')
@@ -183,41 +184,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
   }
 
   if (token.value === 'if') {
-    p.validateToken(p.read(), 'symbol', '(')
-
-    const test = parseExpr(p)
-
-    p.validateToken(p.read(), 'symbol', ')')
-
-    p.validateToken(p.read(), 'symbol', '{')
-
-    const consequent = parseCompound(p, parseStmt, '}')
-
-    if (p.isNextEOF() || !isToken(p.peek(), 'ident', 'else')) {
-      return p.finishNode(node, 'IfStatement', {
-        test,
-        consequent,
-      })
-    }
-
-    p.take()
-
-    let alternative: n.IfStatement | Array<n.Statement>
-    if (isToken(p.peek(), 'ident', 'if')) {
-      alternative = p.validateNode(parseStmt(p), ['IfStatement'])
-    } else {
-      p.validateToken(p.read(), 'symbol', '{')
-
-      alternative = []
-
-      parseCompound(p, parseStmt, '}')
-    }
-
-    return p.finishNode(node, 'IfStatement', {
-      test,
-      consequent,
-      alternative,
-    })
+    return parseIfStatement(p, node)
   }
 
   if (token.value === 'sub') {
@@ -281,4 +248,41 @@ const parseBackendDef = (p: Parser, token = p.read()): n.BackendDef => {
   }
 
   return { key, value }
+}
+
+const parseIfStatement = (p: Parser, node: NodeWithLoc): n.IfStatement => {
+  p.validateToken(p.read(), 'symbol', '(')
+
+  const test = parseExpr(p)
+
+  p.validateToken(p.read(), 'symbol', ')')
+
+  p.validateToken(p.read(), 'symbol', '{')
+
+  const consequent = parseCompound(p, parseStmt, '}')
+
+  let alternative: n.IfStatement | Array<n.Statement> | undefined = undefined
+
+  const next = p.peek()
+
+  if (isToken(next, 'ident', /elsif|elseif/)) {
+    p.take()
+    alternative = parseIfStatement(p, p.startNode())
+  } else if (isToken(next, 'ident', 'else')) {
+    p.take()
+
+    if (isToken(p.peek(), 'ident', 'if')) {
+      p.take()
+      alternative = parseIfStatement(p, p.startNode())
+    } else {
+      p.validateToken(p.read(), 'symbol', '{')
+      alternative = parseCompound(p, parseStmt, '}')
+    }
+  }
+
+  return p.finishNode(node, 'IfStatement', {
+    test,
+    consequent,
+    alternative,
+  })
 }

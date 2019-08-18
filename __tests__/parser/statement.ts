@@ -3,10 +3,11 @@ import {
   AclStatement,
   LogStatement,
   BackendStatement,
+  IfStatement,
 } from '../../src/ast-nodes'
 import { parseStmt } from '../../src/parser/statement/index'
 
-const parse = (source: string) => parseStmt(new Parser(source))
+const parse = (source: string) => parseStmt(new Parser(source.trim()))
 
 describe('parseStatement', () => {
   it('should parse LogStatement', () => {
@@ -99,5 +100,47 @@ backend my_backend {
         },
       ],
     } as BackendStatement)
+  })
+
+  it('should parse IfStatement', () => {
+    expect(
+      parse(`
+if (true) {
+  a;
+} else if (true) {
+  b;
+} elsif (true) {
+  c;
+} elseif (true) {
+  d;
+} else {
+  e;
+}
+    `)
+    ).toMatchObject({
+      type: 'IfStatement',
+      test: { type: 'BooleanLiteral' },
+      consequent: [
+        {
+          type: 'ExpressionStatement',
+          body: { type: 'Identifier', name: 'a' },
+        },
+      ],
+      alternative: {
+        type: 'IfStatement',
+        alternative: {
+          type: 'IfStatement',
+          alternative: {
+            type: 'IfStatement',
+            alternative: [
+              {
+                type: 'ExpressionStatement',
+                body: { type: 'Identifier', name: 'e' },
+              },
+            ],
+          },
+        },
+      },
+    } as IfStatement)
   })
 })
