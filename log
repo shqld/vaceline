@@ -1,0 +1,3561 @@
+[
+  'acl acl_nikkei_net {\n' +
+    '  "138.101.0.0"/16;\n' +
+    '  "125.102.255.58";\n' +
+    '  "219.120.22.170"/30;\n' +
+    '  "82.136.1.214"/24;\n' +
+    '  "211.129.100.142";\n' +
+    '  "219.99.33.124";\n' +
+    '  "211.5.72.192"/28;\n' +
+    '  "218.216.18.90";\n' +
+    '  "61.197.218.48"/28;\n' +
+    '  "52.198.211.58";\n' +
+    '  "218.216.75.209";\n' +
+    '  "202.94.157.220";\n' +
+    '  "202.94.157.222";\n' +
+    '  "126.113.5.210";\n' +
+    '  "210.143.35.0"/26;\n' +
+    '  "202.32.8.252"/27;\n' +
+    '  "52.197.27.192";\n' +
+    '  "122.249.68.170";\n' +
+    '  "121.1.155.253";\n' +
+    '  "122.208.60.90"/32;\n' +
+    '  "39.110.207.120"/32;\n' +
+    '  "52.68.53.35";\n' +
+    '  "118.238.27.242"/32;\n' +
+    '  "59.146.221.56";\n' +
+    '  "67.172.113.79";\n' +
+    '  "73.220.85.73";\n' +
+    '  "222.158.202.9";\n' +
+    '  "148.75.168.32";\n' +
+    '  "118.151.157.0"/24;\n' +
+    '  "203.180.185.0"/24;\n' +
+    '  "202.213.5.1";\n' +
+    '  "27.34.169.126";\n' +
+    '  "39.110.218.162";\n' +
+    '  "113.43.205.58";\n' +
+    '}',
+  'backend apigw_production {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "apigw.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend apigw_staging {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "apigw.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: apigw.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend apigw_development {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "apigw-iddev.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: apigw-iddev.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend dev_proxy {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "80";\n' +
+    '  .host = "rnikkei-cdn-devproxy.ap-northeast-1.elasticbeanstalk.com";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl = false;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-cdn-devproxy.ap-northeast-1.elasticbeanstalk.com" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_hub_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-hub.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-hub.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-hub.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-hub.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_article_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-article.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-article.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-article.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-article.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_stream_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-stream.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-stream.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-stream.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-stream.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_data_table_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "80";\n' +
+    '  .host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  .ssl_cert_hostname = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = false;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET / HTTP/1.1" "Host: s3-ap-northeast-1.amazonaws.com" "Connection: close";\n' +
+    '    .dummy = true;\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_assets_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "80";\n' +
+    '  .host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  .ssl_cert_hostname = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = false;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET / HTTP/1.1" "Host: s3-ap-northeast-1.amazonaws.com" "Connection: close";\n' +
+    '    .dummy = true;\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend nikkei_ui_styleguide_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "80";\n' +
+    '  .host = "nikkei-ui-styleguide.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "nikkei-ui-styleguide.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  .ssl_cert_hostname = "nikkei-ui-styleguide.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = false;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET / HTTP/1.1" "Host: nikkei-ui-styleguide.s3-website-ap-northeast-1.amazonaws.com" "Connection: close";\n' +
+    '    .dummy = true;\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend kite_ui_catalog_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "80";\n' +
+    '  .host = "kite-ui-catalog.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "kite-ui-catalog.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  .ssl_cert_hostname = "kite-ui-catalog.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = false;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET / HTTP/1.1" "Host: kite-ui-catalog.s3-website-ap-northeast-1.amazonaws.com" "Connection: close";\n' +
+    '    .dummy = true;\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend nikkei_flag_toggler_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "80";\n' +
+    '  .host = "rnikkei-flag-toggler.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-flag-toggler.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  .ssl_cert_hostname = "rnikkei-flag-toggler.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = false;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET / HTTP/1.1" "Host: rnikkei-flag-toggler.s3-website-ap-northeast-1.amazonaws.com" "Connection: close";\n' +
+    '    .dummy = true;\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_push_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-push.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-push.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-push.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-push.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_service_registry_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "80";\n' +
+    '  .host = "rnikkei-service-registry.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-service-registry.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  .ssl_cert_hostname = "rnikkei-service-registry.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = false;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET / HTTP/1.1" "Host: rnikkei-service-registry.s3-website-ap-northeast-1.amazonaws.com" "Connection: close";\n' +
+    '    .dummy = true;\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_apigw_service_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-apigw-service.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-apigw-service.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-apigw-service.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-apigw-service.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_dashboards_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-dashboards.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-dashboards.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-dashboards.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-dashboards.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend nikkei_ui_assets_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "80";\n' +
+    '  .host = "nikkei-ui-assets.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "nikkei-ui-assets.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  .ssl_cert_hostname = "nikkei-ui-assets.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = false;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET / HTTP/1.1" "Host: nikkei-ui-assets.s3-website-ap-northeast-1.amazonaws.com" "Connection: close";\n' +
+    '    .dummy = true;\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_pages_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-pages.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-pages.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-pages.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-pages.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_config_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "80";\n' +
+    '  .host = "rnikkei-config.ap-northeast-1.elasticbeanstalk.com";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-config.ap-northeast-1.elasticbeanstalk.com";\n' +
+    '  .ssl_cert_hostname = "rnikkei-config.ap-northeast-1.elasticbeanstalk.com";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = false;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-config.ap-northeast-1.elasticbeanstalk.com" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend ad_server_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "80";\n' +
+    '  .host = "adpriv.nikkei.com";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "adpriv.nikkei.com";\n' +
+    '  .ssl_cert_hostname = "adpriv.nikkei.com";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = false;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /jserver/OENCJP&#x3D;UTF8/acc_random&#x3D;6282299667/AAMBTXT1/SITE&#x3D;NWSTOP/AREA&#x3D;PRETXT/AAMSZ&#x3D;TEXT HTTP/1.1" "Host: adpriv.nikkei.com" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_edition_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-edition.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-edition.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-edition.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-edition.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_ad_proxy_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-ad-proxy.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-ad-proxy.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-ad-proxy.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-ad-proxy.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend birghtcove_01_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "80";\n' +
+    '  .host = "brightcove01.brightcove.com";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "brightcove01.brightcove.com";\n' +
+    '  .ssl_cert_hostname = "brightcove01.brightcove.com";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = false;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET / HTTP/1.1" "Host: brightcove01.brightcove.com" "Connection: close";\n' +
+    '    .dummy = true;\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend brightcove_04_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "80";\n' +
+    '  .host = "brightcove04.brightcove.com";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "brightcove04.brightcove.com";\n' +
+    '  .ssl_cert_hostname = "brightcove04.brightcove.com";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = false;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET / HTTP/1.1" "Host: brightcove04.brightcove.com" "Connection: close";\n' +
+    '    .dummy = true;\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend brightcove_04_o_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "80";\n' +
+    '  .host = "brightcove04.o.brightcove.com";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "brightcove04.o.brightcove.com";\n' +
+    '  .ssl_cert_hostname = "brightcove04.o.brightcove.com";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = false;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET / HTTP/1.1" "Host: brightcove04.o.brightcove.com" "Connection: close";\n' +
+    '    .dummy = true;\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend brightcove_uds_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "80";\n' +
+    '  .host = "uds.ak.o.brightcove.com";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "uds.ak.o.brightcove.com";\n' +
+    '  .ssl_cert_hostname = "uds.ak.o.brightcove.com";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = false;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET / HTTP/1.1" "Host: uds.ak.o.brightcove.com" "Connection: close";\n' +
+    '    .dummy = true;\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend www_nikkei_com_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "80";\n' +
+    '  .host = "www.nikkei.com";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "www.nikkei.com";\n' +
+    '  .ssl_cert_hostname = "www.nikkei.com";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = false;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET / HTTP/1.1" "Host: www.nikkei.com" "Connection: close";\n' +
+    '    .dummy = true;\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend parts_nikkei_com_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "80";\n' +
+    '  .host = "parts.nikkei.com";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "parts.nikkei.com";\n' +
+    '  .ssl_cert_hostname = "parts.nikkei.com";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = false;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET / HTTP/1.1" "Host: parts.nikkei.com" "Connection: close";\n' +
+    '    .dummy = true;\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_paper_viewer_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-paper-viewer.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-paper-viewer.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-paper-viewer.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-paper-viewer.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_lambda_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-lambda.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-lambda.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-lambda.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET / HTTP/1.1" "Host: rnikkei-lambda.dev.n8s.jp" "Connection: close";\n' +
+    '    .dummy = true;\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_search_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-search.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-search.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-search.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET / HTTP/1.1" "Host: rnikkei-search.dev.n8s.jp" "Connection: close";\n' +
+    '    .dummy = true;\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_paywall_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-paywall.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-paywall.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-paywall.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET / HTTP/1.1" "Host: rnikkei-paywall.dev.n8s.jp" "Connection: close";\n' +
+    '    .dummy = true;\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend nikkei_svg_service_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "nikkei-svg-service.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "nikkei-svg-service.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "nikkei-svg-service.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: nikkei-svg-service.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_login_service_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-login-service.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-login-service.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-login-service.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-login-service.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_mynews_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-mynews.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-mynews.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-mynews.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-mynews.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_tracking_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "80";\n' +
+    '  .host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  .ssl_cert_hostname = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = false;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET / HTTP/1.1" "Host: s3-ap-northeast-1.amazonaws.com" "Connection: close";\n' +
+    '    .dummy = true;\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_polyfill_proxy_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "cdn.polyfill.io";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "cdn.polyfill.io";\n' +
+    '  .ssl_cert_hostname = "cdn.polyfill.io";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /v2/polyfill.min.js HTTP/1.1" "Host: cdn.polyfill.io" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_brightcove_api_proxy_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-brightcove-api-proxy.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-brightcove-api-proxy.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-brightcove-api-proxy.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-brightcove-api-proxy.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_recommendation_service_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-recommendation-service.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-recommendation-service.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-recommendation-service.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-recommendation-service.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_redirect_service_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-redirect-service.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-redirect-service.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-redirect-service.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-redirect-service.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_purge_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-purge.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-purge.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-purge.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-purge.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_live_blog_assets_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "80";\n' +
+    '  .host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  .ssl_cert_hostname = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = false;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET / HTTP/1.1" "Host: s3-ap-northeast-1.amazonaws.com" "Connection: close";\n' +
+    '    .dummy = true;\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_live_blog_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-live-blog.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-live-blog.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-live-blog.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-live-blog.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_special_page_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-special-page.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-special-page.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-special-page.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-special-page.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_markets_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-markets.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-markets.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-markets.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-markets.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_stories_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-stories.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-stories.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-stories.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-stories.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_dynamic_critical_css_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-dynamic-critical-css.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-dynamic-critical-css.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-dynamic-critical-css.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-dynamic-critical-css.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend kite_hub_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "kite-hub.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "kite-hub.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "kite-hub.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: kite-hub.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend www_pre7_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "80";\n' +
+    '  .host = "www-pre7-nikkei-com-1031092267.ap-northeast-1.elb.amazonaws.com";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "www-pre7-nikkei-com-1031092267.ap-northeast-1.elb.amazonaws.com";\n' +
+    '  .ssl_cert_hostname = "www-pre7-nikkei-com-1031092267.ap-northeast-1.elb.amazonaws.com";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = false;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /etc/alive.txt HTTP/1.1" "Host: www-pre7-nikkei-com-1031092267.ap-northeast-1.elb.amazonaws.com" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}\n' +
+    'backend rnikkei_journalists_0 {\n' +
+    '  .connect_timeout = 1s;\n' +
+    '  .dynamic = true;\n' +
+    '  .port = "443";\n' +
+    '  .host = "rnikkei-journalists.dev.n8s.jp";\n' +
+    '  .first_byte_timeout = 15s;\n' +
+    '  .max_connections = 200;\n' +
+    '  .between_bytes_timeout = 10s;\n' +
+    '  .share_key = "f8585BOxnGQDMbnkJoM1e";\n' +
+    '  .ssl_sni_hostname = "rnikkei-journalists.dev.n8s.jp";\n' +
+    '  .ssl_cert_hostname = "rnikkei-journalists.dev.n8s.jp";\n' +
+    '  .ssl_check_cert = always;\n' +
+    '  .ssl = true;\n' +
+    '  .probe = {\n' +
+    '    .request = "GET /healthcheck HTTP/1.1" "Host: rnikkei-journalists.dev.n8s.jp" "Connection: close" "User-Agent: Fastly healthcheck";\n' +
+    '    .threshold = 1;\n' +
+    '    .window = 2;\n' +
+    '    .timeout = 5s;\n' +
+    '    .initial = 1;\n' +
+    '    .expected_response = 200;\n' +
+    '    .interval = 10s;\n' +
+    '  }\n' +
+    '}',
+  'import boltsort;\n' +
+    'include "backends";\n' +
+    'include "acls";\n' +
+    'include "features_stale";\n' +
+    'include "features_redirect";\n' +
+    'include "features_vanity-url";\n' +
+    'include "features_dev-backend";\n' +
+    'include "features_opt-in-opt-out";\n' +
+    'include "features_hide-registration";\n' +
+    'include "features_firewall";\n' +
+    'include "features_auth";\n' +
+    'include "features_flag";\n' +
+    'include "features_navigation";\n' +
+    'include "features_gift";\n' +
+    'include "features_esi";\n' +
+    'include "features_force-tls";\n' +
+    'include "features_healthcheck";\n' +
+    'include "features_robots";\n' +
+    'include "features_gzip";\n' +
+    'include "features_cors";\n' +
+    'include "features_csrf";\n' +
+    'include "features_mynews";\n' +
+    'include "features_haishin";\n' +
+    'include "features_migration";\n' +
+    'sub vcl_recv {\n' +
+    '  declare local var.tmpUrl STRING;\n' +
+    '  declare local var.backend STRING;\n' +
+    '  declare local var.overrideBackendName STRING;\n' +
+    '  set req.http.restarts = req.restarts;\n' +
+    '  if (!req.http.isSubResourceRequest) {\n' +
+    '    set req.http.isSubResourceRequest = "false";\n' +
+    '  }\n' +
+    '  if (req.restarts == 0) {\n' +
+    '    if (req.url.ext ~ "(html|js|css|jpg|jpeg|png|svg|webp|bmp|gif|tiff|map|ttf|otf)") {\n' +
+    '      set req.http.isSubResourceRequest = "true";\n' +
+    '    } else {\n' +
+    '      set req.http.isSubResourceRequest = "false";\n' +
+    '    }\n' +
+    '    set req.http.Nikkei-Routing-Journey = "";\n' +
+    '    set req.http.X-Forwarded-Host = req.http.Host;\n' +
+    '    set req.http.X-Forwarded-Path = req.url;\n' +
+    '  } else {\n' +
+    '    set req.http.Fastly-Force-Shield = "1";set req.http.Nikkei-Routing-Journey = req.http.Nikkei-Routing-Journey "; ";set req.http.explicitPass = "0";\n' +
+    '  }\n' +
+    '  call firewall_recv;\n' +
+    '  call force_tls_recv;\n' +
+    '  call haishin_recv;\n' +
+    '  call redirect_recv;\n' +
+    '  call vanity_url_recv;\n' +
+    '  call esi_recv;\n' +
+    '  call dev_backend_recv;\n' +
+    '  call gift_recv;\n' +
+    '  call opt_in_opt_out_recv;\n' +
+    '  if (req.http.isSubResourceRequest == "false") {\n' +
+    '    call auth_recv;\n' +
+    '    call migrate_pro_user;\n' +
+    '    call flag_recv;\n' +
+    '    call navigation_recv;\n' +
+    '  }\n' +
+    '  call hide_registration_recv;\n' +
+    '  call healthcheck_recv;\n' +
+    '  call robots_recv;\n' +
+    '  call csrf_recv;\n' +
+    '  call mynews_recv;\n' +
+    '  if (req.request == "GET" &&\n' +
+    '  req.url ~ "^/static/errors/" &&\n' +
+    '  req.http.backendErrorServeBlank == "1") {\n' +
+    '    error 758;\n' +
+    '  } else if (req.url ~ "^/hub/([^\\?]*)(\\?.*)?$" &&\n' +
+    '  req.http.Nikkei-Kite-Is-Migrated == "1") {\n' +
+    '    set req.backend = kite_hub_0;\n' +
+    '    set var.backend = "kite_hub_0";\n' +
+    '    set req.http.Host = "kite-hub.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/hub/([^\\?]*)(\\?.*)?$" &&\n' +
+    '  req.http.Nikkei-Kite-Is-Migrated == "1") {\n' +
+    '    set req.backend = kite_hub_0;\n' +
+    '    set var.backend = "kite_hub_0";\n' +
+    '    set req.http.Host = "kite-hub.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/hub/v(\\d+)/([^\\?]*)(\\?.*)?$" &&\n' +
+    '  req.http.Nikkei-Kite-Is-Migrated == "1") {\n' +
+    '    set req.backend = kite_hub_0;\n' +
+    '    set var.backend = "kite_hub_0";\n' +
+    '    set req.http.Host = "kite-hub.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/hub/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_hub_0;\n' +
+    '    set var.backend = "rnikkei_hub_0";\n' +
+    '    set req.http.Host = "rnikkei-hub.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/hub/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_hub_0;\n' +
+    '    set var.backend = "rnikkei_hub_0";\n' +
+    '    set req.http.Host = "rnikkei-hub.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/hub/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_hub_0;\n' +
+    '    set var.backend = "rnikkei_hub_0";\n' +
+    '    set req.http.Host = "rnikkei-hub.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/article/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_article_0;\n' +
+    '    set var.backend = "rnikkei_article_0";\n' +
+    '    set req.http.Host = "rnikkei-article.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/article/([^\\?/]+)/?(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_article_0;\n' +
+    '    set var.backend = "rnikkei_article_0";\n' +
+    '    set req.http.Host = "rnikkei-article.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/article/([^\\?/]+)/amp/?(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_article_0;\n' +
+    '    set var.backend = "rnikkei_article_0";\n' +
+    '    set req.http.Host = "rnikkei-article.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/article/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_article_0;\n' +
+    '    set var.backend = "rnikkei_article_0";\n' +
+    '    set req.http.Host = "rnikkei-article.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/article/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_article_0;\n' +
+    '    set var.backend = "rnikkei_article_0";\n' +
+    '    set req.http.Host = "rnikkei-article.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/article/([^\\?/]+)/paper-image/?(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_article_0;\n' +
+    '    set var.backend = "rnikkei_article_0";\n' +
+    '    set req.http.Host = "rnikkei-article.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/(genres|industries|columns|companies|regions|persons|authors|folders|sections|topics|firehose|commentators|ft-commentators)/([^\\?/]+)/?(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_stream_0;\n' +
+    '    set var.backend = "rnikkei_stream_0";\n' +
+    '    set req.http.Host = "rnikkei-stream.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/uids/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_stream_0;\n' +
+    '    set var.backend = "rnikkei_stream_0";\n' +
+    '    set req.http.Host = "rnikkei-stream.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/stream/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_stream_0;\n' +
+    '    set var.backend = "rnikkei_stream_0";\n' +
+    '    set req.http.Host = "rnikkei-stream.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/stream/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_stream_0;\n' +
+    '    set var.backend = "rnikkei_stream_0";\n' +
+    '    set req.http.Host = "rnikkei-stream.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/static/data-table/v([^\\?/]+)/([^\\?/]+)\\.css$") {\n' +
+    '    set req.backend = rnikkei_data_table_0;\n' +
+    '    set var.backend = "rnikkei_data_table_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url,\n' +
+    '      "^/\\.resources/static/data-table/v([^\\?/]+)/([^\\?/]+)\\.css$",\n' +
+    '      "/rnikkei-data-table/\\2@v\\1.css"\n' +
+    '    );\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/\\.resources/static/data-table/([^\\?/]+)\\.css$") {\n' +
+    '    set req.backend = rnikkei_data_table_0;\n' +
+    '    set var.backend = "rnikkei_data_table_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.resources/static/data-table/([^\\?/]+)\\.css$", "/rnikkei-data-table/\\1.css");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/\\.resources/static/data-table/example\\.html$") {\n' +
+    '    set req.backend = rnikkei_data_table_0;\n' +
+    '    set var.backend = "rnikkei_data_table_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.resources/static/data-table/example\\.html$", "/rnikkei-data-table/example.html");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/\\.resources/static/nad/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_assets_0;\n' +
+    '    set var.backend = "rnikkei_assets_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.resources/static/nad/([^\\?]*)(\\?.*)?$", "/nikkei-ad-assets/\\1");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/\\.resources/static/kad/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_assets_0;\n' +
+    '    set var.backend = "rnikkei_assets_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.resources/static/kad/([^\\?]*)(\\?.*)?$", "/kite-ad-assets/\\1");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/\\.resources/static/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_assets_0;\n' +
+    '    set var.backend = "rnikkei_assets_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.resources/static/([^\\?]*)(\\?.*)?$", "/rnikkei-assets/\\1");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/favicon\\.ico(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_assets_0;\n' +
+    '    set var.backend = "rnikkei_assets_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/favicon\\.ico(\\?.*)?$", "/rnikkei-assets/app/icons/favicon.ico");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/precache-worker\\.js(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_assets_0;\n' +
+    '    set var.backend = "rnikkei_assets_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/precache-worker\\.js(\\?.*)?$", "/rnikkei-assets/serviceworker/precache-worker.js");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/precache-worker-v2\\.js(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_assets_0;\n' +
+    '    set var.backend = "rnikkei_assets_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url,\n' +
+    '      "^/precache-worker-v2\\.js(\\?.*)?$",\n' +
+    '      "/rnikkei-assets/serviceworker/precache-worker-v2.js"\n' +
+    '    );\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/push-worker\\.js(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_assets_0;\n' +
+    '    set var.backend = "rnikkei_assets_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/push-worker\\.js(\\?.*)?$", "/rnikkei-assets/serviceworker/push-worker.js");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/push-worker-v2\\.js(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_assets_0;\n' +
+    '    set var.backend = "rnikkei_assets_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/push-worker-v2\\.js(\\?.*)?$", "/rnikkei-assets/serviceworker/push-worker-v2.js");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/mynews-worker\\.js(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_assets_0;\n' +
+    '    set var.backend = "rnikkei_assets_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/mynews-worker\\.js(\\?.*)?$", "/rnikkei-sw/mynews.js");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/\\.well-known/apple-app-site-association(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_assets_0;\n' +
+    '    set var.backend = "rnikkei_assets_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url,\n' +
+    '      "^/\\.well-known/apple-app-site-association(\\?.*)?$",\n' +
+    '      "/rnikkei-assets/app/apple-app-site-association.json"\n' +
+    '    );\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/apple-touch-icon-120x120\\.png$") {\n' +
+    '    set req.backend = rnikkei_assets_0;\n' +
+    '    set var.backend = "rnikkei_assets_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/apple-touch-icon-120x120\\.png$", "/rnikkei-assets/app/icons/favicon-120.png");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/apple-touch-icon-120x120-precomposed\\.png$") {\n' +
+    '    set req.backend = rnikkei_assets_0;\n' +
+    '    set var.backend = "rnikkei_assets_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url,\n' +
+    '      "^/apple-touch-icon-120x120-precomposed\\.png$",\n' +
+    '      "/rnikkei-assets/app/icons/favicon-120.png"\n' +
+    '    );\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/\\.tools/styleguide(/[^\\?]*)?(\\?.*)?$") {\n' +
+    '    set req.backend = nikkei_ui_styleguide_0;\n' +
+    '    set var.backend = "nikkei_ui_styleguide_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.tools/styleguide(/[^\\?]*)?(\\?.*)?$", "\\1\\2");\n' +
+    '    if (var.tmpUrl == "" &&\n' +
+    '    req.url ~ "[^/]$") {\n' +
+    '      set var.tmpUrl = req.url "/";\n' +
+    '      error 750 var.tmpUrl;\n' +
+    '    }\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "nikkei-ui-styleguide.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/\\.tools/kite/catalog(/[^\\?]*)?(\\?.*)?$") {\n' +
+    '    set req.backend = kite_ui_catalog_0;\n' +
+    '    set var.backend = "kite_ui_catalog_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.tools/kite/catalog(/[^\\?]*)?(\\?.*)?$", "\\1\\2");\n' +
+    '    if (var.tmpUrl == "" &&\n' +
+    '    req.url ~ "[^/]$") {\n' +
+    '      set var.tmpUrl = req.url "/";\n' +
+    '      error 750 var.tmpUrl;\n' +
+    '    }\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "kite-ui-catalog.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/\\.tools/toggler(/[^\\?]*)?(\\?.*)?$") {\n' +
+    '    set req.backend = nikkei_flag_toggler_0;\n' +
+    '    set var.backend = "nikkei_flag_toggler_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.tools/toggler(/[^\\?]*)?(\\?.*)?$", "\\1\\2");\n' +
+    '    if (var.tmpUrl == "" &&\n' +
+    '    req.url ~ "[^/]$") {\n' +
+    '      set var.tmpUrl = req.url "/";\n' +
+    '      error 750 var.tmpUrl;\n' +
+    '    }\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "rnikkei-flag-toggler.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/api/push/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_push_0;\n' +
+    '    set var.backend = "rnikkei_push_0";\n' +
+    '    set req.http.Host = "rnikkei-push.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.tools/service-registry/?$") {\n' +
+    '    set req.backend = rnikkei_service_registry_0;\n' +
+    '    set var.backend = "rnikkei_service_registry_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.tools/service-registry/?$", "/services.json");\n' +
+    '    if (var.tmpUrl == "" &&\n' +
+    '    req.url ~ "[^/]$") {\n' +
+    '      set var.tmpUrl = req.url "/";\n' +
+    '      error 750 var.tmpUrl;\n' +
+    '    }\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "rnikkei-service-registry.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/\\.tools/vanities/?$") {\n' +
+    '    set req.backend = rnikkei_service_registry_0;\n' +
+    '    set var.backend = "rnikkei_service_registry_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.tools/vanities/?$", "/vanities.json");\n' +
+    '    if (var.tmpUrl == "" &&\n' +
+    '    req.url ~ "[^/]$") {\n' +
+    '      set var.tmpUrl = req.url "/";\n' +
+    '      error 750 var.tmpUrl;\n' +
+    '    }\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "rnikkei-service-registry.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/api/articles/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_apigw_service_0;\n' +
+    '    set var.backend = "rnikkei_apigw_service_0";\n' +
+    '    set req.http.Host = "rnikkei-apigw-service.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/gift/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_apigw_service_0;\n' +
+    '    set var.backend = "rnikkei_apigw_service_0";\n' +
+    '    set req.http.Host = "rnikkei-apigw-service.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/auth/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_apigw_service_0;\n' +
+    '    set var.backend = "rnikkei_apigw_service_0";\n' +
+    '    set req.http.Host = "rnikkei-apigw-service.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/share-count/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_apigw_service_0;\n' +
+    '    set var.backend = "rnikkei_apigw_service_0";\n' +
+    '    set req.http.Host = "rnikkei-apigw-service.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/my/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_apigw_service_0;\n' +
+    '    set var.backend = "rnikkei_apigw_service_0";\n' +
+    '    set req.http.Host = "rnikkei-apigw-service.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/ranking/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_apigw_service_0;\n' +
+    '    set var.backend = "rnikkei_apigw_service_0";\n' +
+    '    set req.http.Host = "rnikkei-apigw-service.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/my/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_apigw_service_0;\n' +
+    '    set var.backend = "rnikkei_apigw_service_0";\n' +
+    '    set req.http.Host = "rnikkei-apigw-service.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/group/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_apigw_service_0;\n' +
+    '    set var.backend = "rnikkei_apigw_service_0";\n' +
+    '    set req.http.Host = "rnikkei-apigw-service.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.tools/monitoring/dashboards(/[^\\?]*)?(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_dashboards_0;\n' +
+    '    set var.backend = "rnikkei_dashboards_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.tools/monitoring/dashboards(/[^\\?]*)?(\\?.*)?$", "\\1\\2");\n' +
+    '    if (var.tmpUrl == "" &&\n' +
+    '    req.url ~ "[^/]$") {\n' +
+    '      set var.tmpUrl = req.url "/";\n' +
+    '      error 750 var.tmpUrl;\n' +
+    '    }\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "rnikkei-dashboards.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/dashboards/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_dashboards_0;\n' +
+    '    set var.backend = "rnikkei_dashboards_0";\n' +
+    '    set req.http.Host = "rnikkei-dashboards.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/components/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = nikkei_ui_assets_0;\n' +
+    '    set var.backend = "nikkei_ui_assets_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.resources/components/([^\\?]*)(\\?.*)?$", "/\\1");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "nikkei-ui-assets.s3-website-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/static(/[^\\?]*)?(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_pages_0;\n' +
+    '    set var.backend = "rnikkei_pages_0";\n' +
+    '    set req.http.Host = "rnikkei-pages.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/pages/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_pages_0;\n' +
+    '    set var.backend = "rnikkei_pages_0";\n' +
+    '    set req.http.Host = "rnikkei-pages.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/config/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_config_0;\n' +
+    '    set var.backend = "rnikkei_config_0";\n' +
+    '    set req.http.Host = "rnikkei-config.ap-northeast-1.elasticbeanstalk.com";\n' +
+    '  } else if (req.url ~ "^/\\.resources/ads/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = ad_server_0;\n' +
+    '    set var.backend = "ad_server_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.resources/ads/([^\\?]*)(\\?.*)?$", "\\1");\n' +
+    '    if (var.tmpUrl == "" &&\n' +
+    '    req.url ~ "[^/]$") {\n' +
+    '      set var.tmpUrl = req.url "/";\n' +
+    '      error 750 var.tmpUrl;\n' +
+    '    }\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "adpriv.nikkei.com";\n' +
+    '  } else if (req.url ~ "^/editions/([^\\?]*)/?(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_edition_0;\n' +
+    '    set var.backend = "rnikkei_edition_0";\n' +
+    '    set req.http.Host = "rnikkei-edition.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/editions/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_edition_0;\n' +
+    '    set var.backend = "rnikkei_edition_0";\n' +
+    '    set req.http.Host = "rnikkei-edition.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/edition/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_edition_0;\n' +
+    '    set var.backend = "rnikkei_edition_0";\n' +
+    '    set req.http.Host = "rnikkei-edition.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/editions/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_edition_0;\n' +
+    '    set var.backend = "rnikkei_edition_0";\n' +
+    '    set req.http.Host = "rnikkei-edition.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/ads/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_ad_proxy_0;\n' +
+    '    set var.backend = "rnikkei_ad_proxy_0";\n' +
+    '    set req.http.Host = "rnikkei-ad-proxy.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/mainos/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_ad_proxy_0;\n' +
+    '    set var.backend = "rnikkei_ad_proxy_0";\n' +
+    '    set req.http.Host = "rnikkei-ad-proxy.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/video-streams/01/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = birghtcove_01_0;\n' +
+    '    set var.backend = "birghtcove_01_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.resources/video-streams/01/([^\\?]*)(\\?.*)?$", "/\\1");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "brightcove01.brightcove.com";\n' +
+    '  } else if (req.url ~ "^/\\.resources/video-streams/04/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = brightcove_04_0;\n' +
+    '    set var.backend = "brightcove_04_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.resources/video-streams/04/([^\\?]*)(\\?.*)?$", "/\\1");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "brightcove04.brightcove.com";\n' +
+    '  } else if (req.url ~ "^/\\.resources/video-streams/04-o/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = brightcove_04_o_0;\n' +
+    '    set var.backend = "brightcove_04_o_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.resources/video-streams/04-o/([^\\?]*)(\\?.*)?$", "/\\1");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "brightcove04.o.brightcove.com";\n' +
+    '  } else if (req.url ~ "^/\\.resources/video-streams/uds/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = brightcove_uds_0;\n' +
+    '    set var.backend = "brightcove_uds_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.resources/video-streams/uds/([^\\?]*)(\\?.*)?$", "/\\1");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "uds.ak.o.brightcove.com";\n' +
+    '  } else if (req.url ~ "^/\\.resources/proxy/www\\.nikkei\\.com/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = www_nikkei_com_0;\n' +
+    '    set var.backend = "www_nikkei_com_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.resources/proxy/www\\.nikkei\\.com/([^\\?]*)(\\?.*)?$", "/\\1");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "www.nikkei.com";\n' +
+    '  } else if (req.url ~ "^/\\.resources/proxy/parts\\.nikkei\\.com/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = parts_nikkei_com_0;\n' +
+    '    set var.backend = "parts_nikkei_com_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.resources/proxy/parts\\.nikkei\\.com/([^\\?]*)(\\?.*)?$", "/\\1");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "parts.nikkei.com";\n' +
+    '  } else if (req.url ~ "^/paper(/[^\\?]*)?(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_paper_viewer_0;\n' +
+    '    set var.backend = "rnikkei_paper_viewer_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/paper(/[^\\?]*)?(\\?.*)?$", "/paper-viewer\\1\\2");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "rnikkei-paper-viewer.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/paper-viewer/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_paper_viewer_0;\n' +
+    '    set var.backend = "rnikkei_paper_viewer_0";\n' +
+    '    set req.http.Host = "rnikkei-paper-viewer.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/paper-viewer/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_paper_viewer_0;\n' +
+    '    set var.backend = "rnikkei_paper_viewer_0";\n' +
+    '    set req.http.Host = "rnikkei-paper-viewer.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.tasks/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_lambda_0;\n' +
+    '    set var.backend = "rnikkei_lambda_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.tasks/([^\\?]*)(\\?.*)?$", "/\\1");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "rnikkei-lambda.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/search(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_search_0;\n' +
+    '    set var.backend = "rnikkei_search_0";\n' +
+    '    set req.http.Host = "rnikkei-search.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/search/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_search_0;\n' +
+    '    set var.backend = "rnikkei_search_0";\n' +
+    '    set req.http.Host = "rnikkei-search.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/search/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_search_0;\n' +
+    '    set var.backend = "rnikkei_search_0";\n' +
+    '    set req.http.Host = "rnikkei-search.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/paywall/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_paywall_0;\n' +
+    '    set var.backend = "rnikkei_paywall_0";\n' +
+    '    set req.http.Host = "rnikkei-paywall.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/svg/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = nikkei_svg_service_0;\n' +
+    '    set var.backend = "nikkei_svg_service_0";\n' +
+    '    set req.http.Host = "nikkei-svg-service.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/login/?(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_login_service_0;\n' +
+    '    set var.backend = "rnikkei_login_service_0";\n' +
+    '    set req.http.Host = "rnikkei-login-service.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/post-auth/?(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_login_service_0;\n' +
+    '    set var.backend = "rnikkei_login_service_0";\n' +
+    '    set req.http.Host = "rnikkei-login-service.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/logout/?(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_login_service_0;\n' +
+    '    set var.backend = "rnikkei_login_service_0";\n' +
+    '    set req.http.Host = "rnikkei-login-service.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/post-unauth/?(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_login_service_0;\n' +
+    '    set var.backend = "rnikkei_login_service_0";\n' +
+    '    set req.http.Host = "rnikkei-login-service.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/mynews(/[^\\?]*)?(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_mynews_0;\n' +
+    '    set var.backend = "rnikkei_mynews_0";\n' +
+    '    set req.http.Host = "rnikkei-mynews.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/mynews-onboarding(/[^\\?]*)?(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_mynews_0;\n' +
+    '    set var.backend = "rnikkei_mynews_0";\n' +
+    '    set req.http.Host = "rnikkei-mynews.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/mynews/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_mynews_0;\n' +
+    '    set var.backend = "rnikkei_mynews_0";\n' +
+    '    set req.http.Host = "rnikkei-mynews.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/mynews/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_mynews_0;\n' +
+    '    set var.backend = "rnikkei_mynews_0";\n' +
+    '    set req.http.Host = "rnikkei-mynews.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/tracking/static/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_tracking_0;\n' +
+    '    set var.backend = "rnikkei_tracking_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.resources/tracking/static/([^\\?]*)(\\?.*)?$", "/rnikkei-tracking/\\1");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/\\.resources/polyfill/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_polyfill_proxy_0;\n' +
+    '    set var.backend = "rnikkei_polyfill_proxy_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.resources/polyfill/v(\\d+)/([^\\?]*)(\\?.*)?$", "/v\\1/\\2\\3");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "cdn.polyfill.io";\n' +
+    '  } else if (req.url ~ "^/api/brightcove-proxy/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_brightcove_api_proxy_0;\n' +
+    '    set var.backend = "rnikkei_brightcove_api_proxy_0";\n' +
+    '    set req.http.Host = "rnikkei-brightcove-api-proxy.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/recommendation/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_recommendation_service_0;\n' +
+    '    set var.backend = "rnikkei_recommendation_service_0";\n' +
+    '    set req.http.Host = "rnikkei-recommendation-service.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.tools/www-redirect(/[^\\?]*)?(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_redirect_service_0;\n' +
+    '    set var.backend = "rnikkei_redirect_service_0";\n' +
+    '    set req.http.Host = "rnikkei-redirect-service.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.tools/cache(/[^\\?]*)?(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_purge_0;\n' +
+    '    set var.backend = "rnikkei_purge_0";\n' +
+    '    set req.http.Host = "rnikkei-purge.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/live-blog/id-map\\.json$") {\n' +
+    '    set req.backend = rnikkei_live_blog_assets_0;\n' +
+    '    set var.backend = "rnikkei_live_blog_assets_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.resources/live-blog/id-map\\.json$", "/rnikkeidev-live-blog/id-map.json");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/\\.resources/live-blog/channels/([^\\?/]+)/timeline\\.json$") {\n' +
+    '    set req.backend = rnikkei_live_blog_assets_0;\n' +
+    '    set var.backend = "rnikkei_live_blog_assets_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url,\n' +
+    '      "^/\\.resources/live-blog/channels/([^\\?/]+)/timeline\\.json$",\n' +
+    '      "/rnikkeidev-live-blog/channels/\\1/timelines/latest.json"\n' +
+    '    );\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/\\.resources/live-blog/channels/([^\\?/]+)/config\\.json$") {\n' +
+    '    set req.backend = rnikkei_live_blog_assets_0;\n' +
+    '    set var.backend = "rnikkei_live_blog_assets_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url,\n' +
+    '      "^/\\.resources/live-blog/channels/([^\\?/]+)/config\\.json$",\n' +
+    '      "/rnikkeidev-live-blog/channels/\\1/config.json"\n' +
+    '    );\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/\\.resources/live-blog/channels/([^\\?]*)$") {\n' +
+    '    set req.backend = rnikkei_live_blog_assets_0;\n' +
+    '    set var.backend = "rnikkei_live_blog_assets_0";\n' +
+    '    set var.tmpUrl = regsub(\n' +
+    '    req.url, "^/\\.resources/live-blog/channels/([^\\?]*)$", "/rnikkeidev-live-blog/channels/\\1");\n' +
+    '    set req.url = var.tmpUrl;\n' +
+    '    set req.http.Host = "s3-ap-northeast-1.amazonaws.com";\n' +
+    '  } else if (req.url ~ "^/live-blog/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_live_blog_0;\n' +
+    '    set var.backend = "rnikkei_live_blog_0";\n' +
+    '    set req.http.Host = "rnikkei-live-blog.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/live-blog/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_live_blog_0;\n' +
+    '    set var.backend = "rnikkei_live_blog_0";\n' +
+    '    set req.http.Host = "rnikkei-live-blog.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/special/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_special_page_0;\n' +
+    '    set var.backend = "rnikkei_special_page_0";\n' +
+    '    set req.http.Host = "rnikkei-special-page.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/special/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_special_page_0;\n' +
+    '    set var.backend = "rnikkei_special_page_0";\n' +
+    '    set req.http.Host = "rnikkei-special-page.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/special-page/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_special_page_0;\n' +
+    '    set var.backend = "rnikkei_special_page_0";\n' +
+    '    set req.http.Host = "rnikkei-special-page.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/markets/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_markets_0;\n' +
+    '    set var.backend = "rnikkei_markets_0";\n' +
+    '    set req.http.Host = "rnikkei-markets.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/markets/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_markets_0;\n' +
+    '    set var.backend = "rnikkei_markets_0";\n' +
+    '    set req.http.Host = "rnikkei-markets.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/api/markets/v(\\d+)/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_markets_0;\n' +
+    '    set var.backend = "rnikkei_markets_0";\n' +
+    '    set req.http.Host = "rnikkei-markets.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/stories(/[^\\?]*)?(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_stories_0;\n' +
+    '    set var.backend = "rnikkei_stories_0";\n' +
+    '    set req.http.Host = "rnikkei-stories.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/stories/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_stories_0;\n' +
+    '    set var.backend = "rnikkei_stories_0";\n' +
+    '    set req.http.Host = "rnikkei-stories.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.tools/dynamic-critical-css(/[^\\?]*)?(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_dynamic_critical_css_0;\n' +
+    '    set var.backend = "rnikkei_dynamic_critical_css_0";\n' +
+    '    set req.http.Host = "rnikkei-dynamic-critical-css.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/journalists(/[^\\?]*)?(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_journalists_0;\n' +
+    '    set var.backend = "rnikkei_journalists_0";\n' +
+    '    set req.http.Host = "rnikkei-journalists.dev.n8s.jp";\n' +
+    '  } else if (req.url ~ "^/\\.resources/journalists/([^\\?]*)(\\?.*)?$") {\n' +
+    '    set req.backend = rnikkei_journalists_0;\n' +
+    '    set var.backend = "rnikkei_journalists_0";\n' +
+    '    set req.http.Host = "rnikkei-journalists.dev.n8s.jp";\n' +
+    '  } else {\n' +
+    '    set req.http.backendErrorStatusCode = "404";set req.http.backendErrorStatusText = "Not Found";set req.http.Nikkei-Routing-Journey = req.http.Nikkei-Routing-Journey "NO-ROUTE-MATCH:" req.url;if (req.http.X-Forwarded-Path ~ "^\\/\\.resources\\/" ||\n' +
+    '    req.http.X-Forwarded-Path ~ "^\\/api\\/") {\n' +
+    '      error 758;\n' +
+    '    }set req.url = "/static/errors/404";restart;\n' +
+    '  }\n' +
+    '  set req.http.Nikkei-Routing-Journey = req.http.Nikkei-Routing-Journey var.backend ":" req.url;\n' +
+    '  set var.backend = regsuball(\n' +
+    '  var.backend, "rnikkei_", "");\n' +
+    '  set var.backend = regsuball(\n' +
+    '  var.backend, "_\\d+$", "");\n' +
+    '  if (req.http.Referer ~ "precache-worker(-v\\d+)?\\.js$" &&\n' +
+    '  var.backend == "login_service") {\n' +
+    '    error 403;\n' +
+    '  }\n' +
+    '  if (req.http.Cookie:Nikkei-Routing-Override-Backend) {\n' +
+    '    set req.http.Nikkei-Routing-Override-Backend = urldecode(\n' +
+    '    req.http.Cookie:Nikkei-Routing-Override-Backend);\n' +
+    '  }\n' +
+    '  if (req.http.Nikkei-Routing-Override-Backend) {\n' +
+    '    set var.overrideBackendName = regsub(\n' +
+    '    req.http.Nikkei-Routing-Override-Backend, "\\s*\\-\\>.*$", "");\n' +
+    '    set var.overrideBackendName = regsuball(\n' +
+    '    var.overrideBackendName, "\\-", "_");\n' +
+    '    set var.overrideBackendName = regsub(\n' +
+    '    var.overrideBackendName, "rnikkei_", "");\n' +
+    '    set var.overrideBackendName = regsub(\n' +
+    '    var.overrideBackendName, "_\\d+$", "");\n' +
+    '    if (var.overrideBackendName == var.backend) {\n' +
+    '      set req.backend = dev_proxy;\n' +
+    '      set req.http.Host = "rnikkei-cdn-devproxy.ap-northeast-1.elasticbeanstalk.com";\n' +
+    '    }\n' +
+    '  }\n' +
+    '  if (!req.http.X-Geoip-Country-Code) {\n' +
+    '    set req.http.Nikkei-Geo-Country = client.geo.country_code;\n' +
+    '  }\n' +
+    '  set req.http.Nikkei-Routing-CDN-Secret = "E4tPGJUv0olZpZIxTROPGvtAyLIEcHnhviZIpPWV";\n' +
+    '  unset req.http.Cookie;\n' +
+    '  if (req.http.Authorization !~ "Bearer") {\n' +
+    '    unset req.http.Authorization;\n' +
+    '  }\n' +
+    '  if (req.url ~ "polyfill\\.min\\.js") {\n' +
+    '    set req.url = querystring.add(\n' +
+    '    req.url, "ua", req.http.User-Agent);\n' +
+    '  }\n' +
+    '  set req.url = boltsort.sort(\n' +
+    '  req.url);\n' +
+    '  if (req.request != "HEAD" &&\n' +
+    '  req.request != "GET" &&\n' +
+    '  req.request != "FASTLYPURGE") {\n' +
+    '    return (pass);\n' +
+    '  } else {\n' +
+    '    return (lookup);\n' +
+    '  }\n' +
+    '}\n' +
+    'sub vcl_fetch {\n' +
+    '  declare local var.cacheStrategy STRING;\n' +
+    '  call firewall_fetch;\n' +
+    '  call haishin_fetch;\n' +
+    '  call stale_fetch;\n' +
+    '  call opt_in_opt_out_fetch;\n' +
+    '  call gzip_fetch;\n' +
+    '  call esi_fetch;\n' +
+    '  if (req.http.isSubResourceRequest == "false") {\n' +
+    '    call auth_fetch;\n' +
+    '  }\n' +
+    '  if (req.http.explicitPass == "1") {\n' +
+    '    set var.cacheStrategy = "vcl-pass";\n' +
+    '  } else {\n' +
+    '    if (!beresp.http.Cache-Control) {\n' +
+    '      if (req.url ~ "/\\.resources\\/video-streams/" &&\n' +
+    '      beresp.status < 300) {\n' +
+    '        set beresp.http.Cache-Control = "max-age=604800";\n' +
+    '        set beresp.ttl = 604800s;\n' +
+    '        set var.cacheStrategy = "video-special";\n' +
+    '      } else {\n' +
+    '        set beresp.http.Cache-Control = "no-cache";set beresp.ttl = 0s;set var.cacheStrategy = "default-no-cache";\n' +
+    '      }\n' +
+    '    } else if (beresp.http.Surrogate-Control !~ "max-age" &&\n' +
+    '    beresp.http.Cache-Control !~ "(s-maxage|max-age)") {\n' +
+    '      set beresp.ttl = 0s;\n' +
+    '      set var.cacheStrategy = "no-ttl";\n' +
+    '    } else {\n' +
+    '      set var.cacheStrategy = "origin-defined";\n' +
+    '    }if (beresp.http.Cache-Control ~ "private") {\n' +
+    '      set beresp.ttl = 0s;\n' +
+    '      set var.cacheStrategy = "private";\n' +
+    '    }if (beresp.http.Set-Cookie) {\n' +
+    '      set beresp.ttl = 0s;\n' +
+    '      set var.cacheStrategy = "set-cookie";\n' +
+    '    }if (beresp.status >= 400) {\n' +
+    '      set beresp.ttl = 0s;\n' +
+    '      set var.cacheStrategy = "error";\n' +
+    '    }if (beresp.http.Cache-Control !~ "(stale-while-revalidate|immutable|no-cache|private)" &&\n' +
+    '    beresp.ttl > 0s) {\n' +
+    '      set beresp.stale_while_revalidate = 300s;\n' +
+    '    }set req.http.bareVary = regsub(\n' +
+    '    beresp.http.Vary,\n' +
+    '      "\\s*(,\\s*)?[Nn]ikkei-[Ff]lags(\\s*,)?\\s*",\n' +
+    '      " "\n' +
+    '    );if (req.http.bareVary ~ "[Nn]ikkei\\-") {\n' +
+    '      set beresp.http.Cache-Control = "no-cache";\n' +
+    '      set var.cacheStrategy = var.cacheStrategy ",varies";\n' +
+    '    }unset req.http.bareVary;if (req.url ~ "\\.rev\\-[0-9a-z]{6,10}(\\..+)?$" &&\n' +
+    '    beresp.status < 300) {\n' +
+    '      set beresp.http.Cache-Control = "max-age=31536000, immutable";\n' +
+    '      set beresp.ttl = 31536000s;\n' +
+    '      set var.cacheStrategy = "immutable";\n' +
+    '    }if (req.url ~ "polyfill\\.min\\.js" &&\n' +
+    '    beresp.status < 300) {\n' +
+    '      if (beresp.http.Vary !~ "User-Agent") {\n' +
+    '        set beresp.http.Vary = if(\n' +
+    '        beresp.http.Vary, beresp.http.Vary ", User-Agent", "User-Agent");\n' +
+    '      }\n' +
+    '    }if (beresp.http.Cache-Control !~ "(stale-if-error|immutable|private)") {\n' +
+    '      set beresp.stale_if_error = 86400s;\n' +
+    '    }\n' +
+    '  }\n' +
+    '  if (req.http.Nikkei-Routing-Override-Backend &&\n' +
+    '  req.http.Nikkei-Flags !~ "httpDebug=(true|1)") {\n' +
+    '    set beresp.ttl = 0s;\n' +
+    '    set beresp.stale_while_revalidate = 0s;\n' +
+    '    set var.cacheStrategy = "override-backend";\n' +
+    '  }\n' +
+    '  if (req.url ~ "polyfill\\.min\\.js" &&\n' +
+    '  beresp.status < 300) {\n' +
+    '    set beresp.http.Cache-Control = "no-cache";\n' +
+    '    set beresp.ttl = 0s;\n' +
+    '    set var.cacheStrategy = "ignoreing polyfill";\n' +
+    '  }\n' +
+    '  set beresp.http.Nikkei-Cache-Strategy = "ttl:" beresp.ttl "," var.cacheStrategy " swr:" beresp.stale_while_revalidate " sie:" beresp.stale_if_error;\n' +
+    '  if (beresp.ttl == 0s &&\n' +
+    '  beresp.stale_while_revalidate == 0s) {\n' +
+    '    return (pass);\n' +
+    '  } else {\n' +
+    '    return (deliver);\n' +
+    '  }\n' +
+    '}\n' +
+    'sub vcl_hit {\n' +
+    '  if (!obj.cacheable) {\n' +
+    '    return (pass);\n' +
+    '  }\n' +
+    '  return (deliver);\n' +
+    '}\n' +
+    'sub vcl_miss {\n' +
+    '  return (fetch);\n' +
+    '}\n' +
+    'sub vcl_pass {\n' +
+    '  set req.http.explicitPass = "1";\n' +
+    '  call haishin_pass;\n' +
+    '}\n' +
+    'sub vcl_deliver {\n' +
+    '  declare local var.serverTiming STRING;\n' +
+    '  call stale_deliver;\n' +
+    '  set req.http.Nikkei-Routing-Journey = req.http.Nikkei-Routing-Journey " (" fastly_info.state " " time.elapsed.msec "ms " resp.http.Nikkei-Cache-Strategy " hits:" obj.hits " age:" resp.http.Age ")";\n' +
+    '  set req.http.X-Cache = resp.http.X-Cache;\n' +
+    '  set req.http.X-Cache-Hits = resp.http.X-Cache-Hits;\n' +
+    '  set req.http.Vary = resp.http.Vary;\n' +
+    '  if (http_status_matches(\n' +
+    '  resp.status, "400,401,403,404,410,500,503") &&\n' +
+    '  !req.http.backendErrorStatusCode &&\n' +
+    '  req.http.X-Forwarded-Path !~ "^\\/api\\/") {\n' +
+    '    if (req.http.X-Forwarded-Path ~ "^\\/\\.resources\\/") {\n' +
+    '      set req.http.backendErrorServeBlank = "1";\n' +
+    '    }\n' +
+    '    set req.http.backendErrorStatusCode = resp.status;\n' +
+    '    set req.http.backendErrorStatusText = resp.response;\n' +
+    '    set req.url = "/static/errors/" resp.status;\n' +
+    '    if (resp.status == 500 &&\n' +
+    '    resp.http.Sentry-Error-Code) {\n' +
+    '      set req.url = req.url "?error=" resp.http.Sentry-Error-Code;\n' +
+    '    }\n' +
+    '    restart;\n' +
+    '  } else if (req.http.backendErrorStatusCode) {\n' +
+    '    set resp.status = std.atoi(\n' +
+    '    req.http.backendErrorStatusCode);\n' +
+    '    set resp.response = req.http.backendErrorStatusText;\n' +
+    '  }\n' +
+    '  if (req.http.willSetCookie) {\n' +
+    '    add resp.http.Set-Cookie = req.http.willSetCookie;\n' +
+    '  }\n' +
+    '  if (req.http.isSubResourceRequest == "false") {\n' +
+    '    call flag_deliver;\n' +
+    '    call auth_deliver;\n' +
+    '  }\n' +
+    '  call gift_deliver;\n' +
+    '  call cors_deliver;\n' +
+    '  call csrf_deliver;\n' +
+    '  call gzip_deliver;\n' +
+    '  call haishin_deliver;\n' +
+    '  if (req.http.Nikkei-Flags ~ "httpDebug=(true|1)") {\n' +
+    '    set req.http.Nikkei-Routing-Journey = regsuball(\n' +
+    '    req.http.Nikkei-Routing-Journey, "\\.0+([^0-9])", "\\1");\n' +
+    '    set req.http.Nikkei-Routing-Journey = regsuball(\n' +
+    '    req.http.Nikkei-Routing-Journey, "\\(null\\)", "-");\n' +
+    '    set resp.http.Nikkei-Routing-Journey = req.http.Nikkei-Routing-Journey;\n' +
+    '    set resp.http.Nikkei-Routing-CDN = resp.http.X-Served-By "; vcl=2019-05-12T14:23:18.735Z; " time.elapsed.msec "ms; restarts=" req.restarts ";";\n' +
+    '    set resp.http.Nikkei-SubResource-Request = req.http.isSubResourceRequest;\n' +
+    '    set resp.http.Debug-Vary = resp.http.Vary;\n' +
+    '    if (obj.hits > 0) {\n' +
+    '      set var.serverTiming = "cdn; desc=fastly-hit; dur=" time.to_first_byte;\n' +
+    '    } else {\n' +
+    '      set var.serverTiming = "cdn; desc=fastly-miss; dur=" time.to_first_byte;\n' +
+    '    }\n' +
+    '    if (resp.http.Server-Timing) {\n' +
+    '      add resp.http.Server-Timing = var.serverTiming;\n' +
+    '    } else {\n' +
+    '      set resp.http.Server-TIming = var.serverTiming;\n' +
+    '    }\n' +
+    '    set resp.http.Timing-Allow-Origin = req.http.X-Forwarded-Host;\n' +
+    '  } else {\n' +
+    '    unset resp.http.Nikkei-Flags-Used;unset resp.http.Nikkei-Cache-Strategy;\n' +
+    '  }\n' +
+    '  if (req.http.Nikkei-Flags ~ "permissionDebug=(true|1)") {\n' +
+    '    set resp.http.Nikkei-Permission-DSR2 = req.http.Nikkei-Permission-DSR2;\n' +
+    '    set resp.http.Nikkei-Permission-DSR3 = req.http.Nikkei-Permission-DSR3;\n' +
+    '    set resp.http.Nikkei-Permission-DSR3B = req.http.Nikkei-Permission-DSR3B;\n' +
+    '    set resp.http.Nikkei-Permission-DSR3P = req.http.Nikkei-Permission-DSR3P;\n' +
+    '    set resp.http.Nikkei-Permission-SS = req.http.Nikkei-Permission-SS;\n' +
+    '    set resp.http.Nikkei-Permission-MJ = req.http.Nikkei-Permission-MJ;\n' +
+    '    set resp.http.Nikkei-Permission-NBD = req.http.Nikkei-Permission-NBD;\n' +
+    '    set resp.http.Nikkei-Permission-VS = req.http.Nikkei-Permission-VS;\n' +
+    '    set resp.http.Nikkei-Permission-JW = req.http.Nikkei-Permission-JW;\n' +
+    '    set resp.http.Nikkei-Permission-Group = req.http.Nikkei-Permission-Group;\n' +
+    '  }\n' +
+    '  set resp.http.Vary = regsuball(\n' +
+    '  req.http.Vary, "(,\\s*)?Nikkei-[^, ;]+", "");\n' +
+    '  if (resp.http.Vary ~ "^\\s*$") {\n' +
+    '    unset resp.http.Vary;\n' +
+    '  }\n' +
+    '  unset resp.http.X-Served-By;\n' +
+    '  unset resp.http.X-Timer;\n' +
+    '  unset resp.http.Via;\n' +
+    '  unset resp.http.Age;\n' +
+    '  unset resp.http.X-Cache;\n' +
+    '  unset resp.http.X-Cache-Hits;\n' +
+    '  unset resp.http.Fastly-Restarts;\n' +
+    '  unset resp.http.Server;\n' +
+    '  unset resp.http.x-amz-id-2;\n' +
+    '  unset resp.http.x-amz-request-id;\n' +
+    '  if (!req.http.Fastly-FF &&\n' +
+    '  client.requests == 1) {\n' +
+    '    set client.socket.cwnd = 45;\n' +
+    '    set client.socket.congestion_algorithm = "bbr";\n' +
+    '  }\n' +
+    '  return (deliver);\n' +
+    '}\n' +
+    'sub vcl_error {\n' +
+    '  declare local var.responseCookie STRING;\n' +
+    '  declare local var.cookieDomain STRING;\n' +
+    '  set req.http.Nikkei-Routing-Journey = req.http.Nikkei-Routing-Journey " error:" obj.status;\n' +
+    '  call esi_error;\n' +
+    '  call stale_error;\n' +
+    '  call force_tls_error;\n' +
+    '  call healthcheck_error;\n' +
+    '  call robots_error;\n' +
+    '  call opt_in_opt_out_error;\n' +
+    '  call haishin_error;\n' +
+    '  if (obj.status == 750) {\n' +
+    '    set var.responseCookie = if(\n' +
+    '    obj.response ~ "^[^;]*;\\s+(.*?);?$", re.group.1, "");\n' +
+    '    if (var.responseCookie != "") {\n' +
+    '      set req.http.willSetCookie = var.responseCookie;\n' +
+    '    }\n' +
+    '    set obj.http.Location = regsub(\n' +
+    '    obj.response, "^([^;]*)(;.*)?$", "\\1");\n' +
+    '    set obj.response = "Found";\n' +
+    '    set obj.status = 302;\n' +
+    '  }\n' +
+    '  if (obj.status == 758) {\n' +
+    '    set obj.status = std.atoi(\n' +
+    '    req.http.backendErrorStatusCode);\n' +
+    '    set obj.response = req.http.backendErrorStatusText;\n' +
+    '    synthetic{""};\n' +
+    '  }\n' +
+    '  if (obj.status == 403) {\n' +
+    '    set obj.response = "[Fastly] Unauthorized";\n' +
+    '    set obj.http.Content-Type = "text/html; charset=utf-8";\n' +
+    '    synthetic{"[Fastly] Unauthorized"};\n' +
+    '  }\n' +
+    '  return (deliver);\n' +
+    '}\n' +
+    'sub vcl_log {\n' +
+    '  log{"syslog "} req.service_id {" fastly-log :: "} {"\ttimestamp_us:"} time.start.usec {"\thost:"} regsuball(\n' +
+    '  req.http.X-Forwarded-Host, {"\t"}, "") {"\tupstream_host:"} regsuball(\n' +
+    '  req.http.Host,\n' +
+    '    {"\t"},\n' +
+    '    ""\n' +
+    '  ) {"\tremote_addr:"} client.ip {"\tmethod:"} req.request {"\tpath_query:"} regsuball(\n' +
+    '  req.http.X-Forwarded-Path,\n' +
+    '    {"\t"},\n' +
+    '    ""\n' +
+    '  ) {"\tupstream_path_query:"} req.url {"\tstatus:"} resp.status {"\terror_message:"} regsuball(\n' +
+    '  req.http.backendErrorStatusText, {"\t"}, "") {"\treferer:"} regsuball(\n' +
+    '  req.http.Referer, {"\t"}, "") {"\tuser_agent:"} regsuball(\n' +
+    '  req.http.User-Agent,\n' +
+    '    {"\t"},\n' +
+    '    ""\n' +
+    '  ) {"\tres_bytes:"} resp.bytes_written {"\tres_body_bytes:"} resp.body_bytes_written {"\tres_cache_control:"} regsuball(\n' +
+    '  resp.http.Cache-Control, {"\t"}, "") {"\treq_cache_control:"} regsuball(\n' +
+    '  req.http.Cache-Control, {"\t"}, "") {"\tres_content_encoding:"} regsuball(\n' +
+    '  resp.http.Content-Encoding, {"\t"}, "") {"\tres_x_compress_hint:"} regsuball(\n' +
+    '  resp.http.x-compress-hint, {"\t"}, "") {"\tres_content_type:"} regsuball(\n' +
+    '  resp.http.Content-Type, {"\t"}, "") {"\tetag:"} regsuball(\n' +
+    '  resp.http.ETag, {"\t"}, "") {"\tlocation:"} regsuball(\n' +
+    '  resp.http.Location,\n' +
+    '    {"\t"},\n' +
+    '    ""\n' +
+    '  ) {"\ttaken_time_us:"} time.elapsed.usec {"\tupstream_taken_time:"} time.to_first_byte {"\tfastly_status_restarts:"} req.http.restarts {"\tfastly_edge_name:"} server.datacenter {"\tis_h2:"} fastly_info.is_h2 {"\th2_server_push:"} fastly_info.h2.is_push {"\tssl_protocol:"} tls.client.protocol {"\tssl_cipher:"} tls.client.cipher {"\thttp_protocol_version:"} resp.proto {"\taccept_language:"} regsuball(\n' +
+    '  req.http.Accept-Language, {"\t"}, "") {"\taccept_encoding:"} regsuball(\n' +
+    '  req.http.Accept-Encoding,\n' +
+    '    {"\t"},\n' +
+    '    ""\n' +
+    '  ) {"\tfastly_state:"} fastly_info.state {"\tfastly_x_cache:"} req.http.X-Cache {"\tfastly_x_cache_hits:"} req.http.X-Cache-Hits {"\tfastly_vary:"} req.http.Vary {"\tgeo_city:"} client.geo.city {"\tgeoip_latitude:"} client.geo.latitude {"\tgeoip_longitude:"} client.geo.longitude {"\tgeo_country_code:"} client.geo.country_code {"\tsocket_cwnd:"} client.socket.cwnd {"\tsocket_nexthop:"} client.socket.nexthop {"\tsocket_tcpi_rcv_mss:"} client.socket.tcpi_rcv_mss {"\tsocket_tcpi_snd_mss:"} client.socket.tcpi_snd_mss {"\tsocket_tcpi_rtt:"} client.socket.tcpi_rtt {"\tsocket_tcpi_rttvar:"} client.socket.tcpi_rttvar {"\tsocket_tcpi_rcv_rtt:"} client.socket.tcpi_rcv_rtt {"\tsocket_tcpi_rcv_space:"} client.socket.tcpi_rcv_space {"\tsocket_tcpi_last_data_sent:"} client.socket.tcpi_last_data_sent {"\tsocket_tcpi_total_retrans:"} client.socket.tcpi_total_retrans {"\tsocket_tcpi_delta_retrans:"} client.socket.tcpi_delta_retrans {"\tsocket_ploss:"} client.socket.ploss {"\tconnection_requests:"} client.requests {"\tdevice_id:"} regsuball(\n' +
+    '  req.http.Cookie:atlasId,\n' +
+    '    {"\t"},\n' +
+    '    ""\n' +
+    '  ) {"\tuser_serial_id:"} req.http.Nikkei-Auth-UserID {"\tuser_nk_opt:"} req.http.APIGW-Nkopt {"\tuser_ds_rank:"} req.http.Nikkei-Auth-Rank {"\tnavigation_preload:"} req.http.Service-Worker-Navigation-Preload;\n' +
+    '}',
+  'sub auth_recv {\n' +
+    '  declare local var.jwtString STRING;\n' +
+    '  declare local var.base64Header STRING;\n' +
+    '  declare local var.base64Payload STRING;\n' +
+    '  declare local var.signature STRING;\n' +
+    '  declare local var.validSignature STRING;\n' +
+    '  declare local var.payload STRING;\n' +
+    '  declare local var.expires STRING;\n' +
+    '  declare local var.issuedTimeString STRING;\n' +
+    '  declare local var.nidCookieTimeString STRING;\n' +
+    '  declare local var.issuedTime TIME;\n' +
+    '  declare local var.nidCookieTime TIME;\n' +
+    '  declare local var.errorResponse STRING;\n' +
+    '  declare local var.nkopt STRING;\n' +
+    '  if (req.http.Nikkei-Dev-Backend == "development") {\n' +
+    '    set var.jwtString = "pBkOoSRTgk37SbHCQGNdKA0s6hJj85YR6z4eyJnnoGraT1xlvD";\n' +
+    '  } else if (req.http.Nikkei-Dev-Backend == "production") {\n' +
+    '    set var.jwtString = "pBkOoSRTgk37SbHCQGNdKA0s6hJj85YR6z4eyJnnoGraT1xlvD";\n' +
+    '  } else {\n' +
+    '    set var.jwtString = "pBkOoSRTgk37SbHCQGNdKA0s6hJj85YR6z4eyJnnoGraT1xlvD";\n' +
+    '  }\n' +
+    '  if (req.url ~ "^/log(in|out)/?(\\?.*)?$" ||\n' +
+    '  req.url ~ "^/post\\-(un)?auth/?(\\?.*)?$") {\n' +
+    '    set req.http.Nikkei-Dev-Login = "on";\n' +
+    '  }\n' +
+    '  set req.http.Nikkei-Auth-Rank = "anonymous";\n' +
+    '  if (req.request == "GET" &&\n' +
+    '  req.url !~ "^/log(in|out)/?(\\?.*)?$" &&\n' +
+    '  req.url !~ "^/post\\-(un)?auth/?(\\?.*)?$" &&\n' +
+    '  req.url !~ "^/api/" &&\n' +
+    '  req.url !~ "^/\\.resources/") {\n' +
+    '    if (!req.http.Cookie:RNikkeiAuth &&\n' +
+    '    (\n' +
+    '      req.http.Cookie:NID-AUTHENTICATED ||\n' +
+    '      req.http.Cookie:NID-AUTOLOGIN\n' +
+    '    )) {\n' +
+    '      if (req.http.Referer !~ "precache-worker(-v\\d+)?\\.js$") {\n' +
+    '        set req.url = "/login?redirect_uri=" urlencode(\n' +
+    '        req.http.X-Forwarded-Path);\n' +
+    '        set req.backend = rnikkei_login_service_0;\n' +
+    '        set req.http.Nikkei-Routing-Journey = req.http.Nikkei-Routing-Journey "login-service:" req.url;\n' +
+    '        return (pass);\n' +
+    '      }\n' +
+    '    }\n' +
+    '  }\n' +
+    '  if (req.http.Cookie:RNikkeiAuth) {\n' +
+    '    if (req.http.Cookie:RNikkeiAuth !~ "(^[^\\.]+)\\.([^\\.]+)\\.([^\\.]+)$") {\n' +
+    '      set req.http.Nikkei-Auth-Valid = "false";\n' +
+    '    }\n' +
+    '    set var.base64Header = re.group.1;\n' +
+    '    set var.base64Payload = re.group.2;\n' +
+    '    set var.signature = digest.base64url_decode(\n' +
+    '    re.group.3);\n' +
+    '    set var.validSignature = digest.base64_decode(\n' +
+    '    digest.hmac_sha256_base64(var.jwtString, var.base64Header "." var.base64Payload));\n' +
+    '    set var.payload = digest.base64_decode(\n' +
+    '    var.base64Payload);\n' +
+    '    set var.expires = regsub(\n' +
+    '    var.payload, {"^.*?"exp"\\s*:\\s*(\\d+).*?$"}, "\\1");\n' +
+    '    if (var.signature != var.validSignature ||\n' +
+    '    time.is_after(\n' +
+    '    now, std.integer2time(std.atoi(var.expires)))) {\n' +
+    '      set req.http.Nikkei-Auth-Valid = "false";\n' +
+    '    }\n' +
+    '    set var.issuedTimeString = regsub(\n' +
+    '    var.payload, {"^.*?"iat"\\s*:\\s*(\\d+).*?$"}, "\\1");\n' +
+    '    set var.nidCookieTimeString = regsub(\n' +
+    '    req.http.Cookie:NID-AUTHENTICATED, "^.*TS:(.+)$", "\\1");\n' +
+    '    if (var.nidCookieTimeString != "") {\n' +
+    '      set var.issuedTime = time.add(\n' +
+    '      std.integer2time(std.atoi(var.issuedTimeString)), 9h);\n' +
+    '      set var.nidCookieTime = time.sub(\n' +
+    '      std.time(var.nidCookieTimeString, time.add(var.issuedTime, 1m)), 1m);\n' +
+    '      if (time.is_after(\n' +
+    '      var.nidCookieTime, var.issuedTime)) {\n' +
+    '        set req.http.Nikkei-Auth-Valid = "false";\n' +
+    '      }\n' +
+    '    }\n' +
+    '    if (req.http.Nikkei-Auth-Valid == "false") {\n' +
+    '      if (req.http.Cookie:NID-AUTHENTICATED &&\n' +
+    '      req.url !~ "^/log(in|out)/?(\\?.*)?$" &&\n' +
+    '      req.url !~ "^/post\\-(un)?auth/?(\\?.*)?$" &&\n' +
+    '      req.url !~ "^/api/" &&\n' +
+    '      req.url !~ "^/\\.resources/") {\n' +
+    '        set var.errorResponse = "/login?redirect_uri=" urlencode(\n' +
+    '        req.url) ";  RNikkeiAuth=deleted; expires=Thu, 01 Jan 1970 00:00:00 GMT";\n' +
+    '        error 750 var.errorResponse;\n' +
+    '      }\n' +
+    '    } else {\n' +
+    '      set req.http.Nikkei-Auth-UserID = regsub(\n' +
+    '      var.payload,\n' +
+    '        {"^.*?"sub"\\s*:\\s*"(\\w+)".*?$"},\n' +
+    '        "\\1"\n' +
+    '      );set req.http.Nikkei-Auth-Token = req.http.Cookie:RNikkeiAuth;set var.nkopt = regsub(\n' +
+    '      var.payload,\n' +
+    '        {"^.*?"nk_opt"\\s*:\\s*"([^"]+)".*?$"},\n' +
+    '        "\\1"\n' +
+    '      );if (req.url !~ "^/log(in|out)/?(\\?.*)?$" &&\n' +
+    '      req.url !~ "^/post\\-(un)?auth/?(\\?.*)?$" &&\n' +
+    '      req.url !~ "^/paper/?(\\?.*)?$" &&\n' +
+    '      req.url !~ "^/api/paper-viewer") {\n' +
+    '        if (var.nkopt !~ "\\|DS") {\n' +
+    '          error 750 "https://regist.nikkei.com/ds/etc/registhub.do?xp1=FT001&dps=3; RNikkeiAuth=deleted; expires=Thu, 01 Jan 1970 00:00:00 GMT";\n' +
+    '        }\n' +
+    '      }if (var.nkopt ~ "\\|DSR3.?:1") {\n' +
+    '        set req.http.Nikkei-Auth-Rank = "DSR3";\n' +
+    '      } else if (var.nkopt ~ "\\|DSR2.?:1") {\n' +
+    '        set req.http.Nikkei-Auth-Rank = "DSR2";\n' +
+    '      }set req.http.APIGW-Nkopt = var.nkopt;set req.http.Nikkei-Permission-DSR2 = if(\n' +
+    '      var.nkopt ~ "\\|DSR2:([^\\|]+)", re.group.1, "");set req.http.Nikkei-Permission-DSR3 = if(\n' +
+    '      var.nkopt ~ "\\|DSR3.?:([^\\|]+)", re.group.1, "");set req.http.Nikkei-Permission-DSR3B = if(\n' +
+    '      var.nkopt ~ "\\|DSR3B:([^\\|]+)", re.group.1, "");set req.http.Nikkei-Permission-DSR3N = if(\n' +
+    '      var.nkopt ~ "\\|DSR3N:([^\\|]+)", re.group.1, "");set req.http.Nikkei-Permission-DSR3P = if(\n' +
+    '      var.nkopt ~ "\\|DSR3P:([^\\|]+)", re.group.1, "");set req.http.Nikkei-Permission-SS = if(\n' +
+    '      var.nkopt ~ "\\|SSVLV20:([^\\|]+)", re.group.1, "");set req.http.Nikkei-Permission-MJ = if(\n' +
+    '      var.nkopt ~ "\\|MJVLV20:([^\\|]+)", re.group.1, "");set req.http.Nikkei-Permission-NBD = if(\n' +
+    '      var.nkopt ~ "\\|NBDLV20:([^\\|]+)", re.group.1, "");set req.http.Nikkei-Permission-JW = if(\n' +
+    '      var.nkopt ~ "\\|JWLV20:([^\\|]+)", re.group.1, "");set req.http.Nikkei-Permission-VS = if(\n' +
+    '      var.nkopt ~ "\\|VSVLV20:([^\\|]+)", re.group.1, "");set req.http.Nikkei-Permission-Group = if(\n' +
+    '      var.nkopt ~ "\\|DSR3B:1|GLLV(10|11|20):1", "1", "");\n' +
+    '    }\n' +
+    '  }\n' +
+    '  if (req.http.Nikkei-Auth-Override == "W9qpLmfC8BDbbM") {\n' +
+    '    set req.http.Nikkei-Auth-Valid = "true";\n' +
+    '    set req.http.Nikkei-Auth-UserID = "1";\n' +
+    '    set req.http.Nikkei-Auth-Rank = "DSR3";\n' +
+    '    set req.http.Nikkei-Auth-Token = "overridden";\n' +
+    '  }\n' +
+    '}\n' +
+    'sub auth_fetch {\n' +
+    '  declare local var.errorResponse STRING;\n' +
+    '  if (beresp.http.Nikkei-Unauthorized == "true") {\n' +
+    '    if (req.url &&\n' +
+    '    req.url !~ "^/log(in|out)/?(\\?.*)?$" &&\n' +
+    '    req.url !~ "^/post\\-(un)?auth/?(\\?.*)?$" &&\n' +
+    '    req.url !~ "^/api/" &&\n' +
+    '    req.url !~ "^/\\.resources/") {\n' +
+    '      if (req.url ~ "^/log(in|out)/?(\\?.*)?$" ||\n' +
+    '      req.url ~ "^/post\\-(un)?auth/?(\\?.*)?$") {\n' +
+    '        set var.errorResponse = "/login?redirect_uri=" urlencode(\n' +
+    '        "/");\n' +
+    '      } else {\n' +
+    '        set var.errorResponse = "/login?redirect_uri=" urlencode(\n' +
+    '        req.url);\n' +
+    '      }\n' +
+    '      set var.errorResponse = var.errorResponse ";  RNikkeiAuth=deleted; expires=Thu, 01 Jan 1970 00:00:00 GMT";\n' +
+    '      error 750 var.errorResponse;\n' +
+    '    }\n' +
+    '  }\n' +
+    '}\n' +
+    'sub auth_deliver {\n' +
+    '  declare local var.sessionCookie STRING;\n' +
+    '  if (req.http.Nikkei-Auth-Valid == "false") {\n' +
+    '    add resp.http.Set-Cookie = "RNikkeiAuth=deleted; expires=Thu, 01 Jan 1970 00:00:00 GMT";\n' +
+    '  }\n' +
+    '  set var.sessionCookie = setcookie.get_value_by_name(\n' +
+    '  resp, "RNikkeiAuth");\n' +
+    '  if (var.sessionCookie == "deleted") {\n' +
+    '    add resp.http.Set-Cookie = "RNikkeiUserInfo=deleted; expires=Thu, 01 Jan 1970 00:00:00 GMT";\n' +
+    '  }\n' +
+    '}',
+  'sub cors_deliver {\n' +
+    '  if (req.http.Access-Control-Allow-Headers) {\n' +
+    '    set resp.http.Access-Control-Allow-Headers = req.http.Access-Control-Allow-Headers;\n' +
+    '  }\n' +
+    '  if (req.http.Access-Control-Allow-Methods) {\n' +
+    '    set resp.http.Access-Control-Allow-Methods = req.http.Access-Control-Allow-Methods;\n' +
+    '  }\n' +
+    '  if (req.http.Access-Control-Allow-Origin) {\n' +
+    '    set resp.http.Access-Control-Allow-Origin = req.http.Access-Control-Allow-Origin;\n' +
+    '  }\n' +
+    '  if (req.http.Access-Control-Allow-Credentials) {\n' +
+    '    set resp.http.Access-Control-Allow-Credentials = req.http.Access-Control-Allow-Credentials;\n' +
+    '  }\n' +
+    '}',
+  'sub csp_deliver {\n' +
+    '  if (req.http.X-Forwarded-Host != "r.nikkei.com" &&\n' +
+    '  !req.http.X-Forwarded-Path ~ "^\\/\\.tools\\/" &&\n' +
+    '  !resp.http.Content-Type ~ "image\\/.*") {\n' +
+    '    set resp.http.X-Content-Type-Options = "nosniff";\n' +
+    '    set resp.http.X-XSS-Protection = "1; mode=block";\n' +
+    '    set resp.http.X-Frame-Options = "SAMEORIGIN";\n' +
+    '    set resp.http.Strict-Transport-Security = "max-age=2592000";\n' +
+    `    set resp.http.Content-Security-Policy-Report-Only = "default-src 'self' *.nikkei.com *.n8s.jp *.ft.com; script-src 'unsafe-eval' 'unsafe-inline' *.nikkei.com id.nikkei.co.jp id.nikkeibp.co.jp *.n8s.jp cdn.polyfill.io cdn.speedcurve.com cdnjs.cloudflare.com spdcrv.global.ssl.fastly.net dpm.demdex.net *.ampproject.org *.ampproject.net *.impact-ad.jp nikkei.d1.sc.omtrdc.net *.ravenjs.com *.teads.tv *.ft.com *.krxd.net *.evernote.com *.moatads.com *.goldspotmedia.com *.google-analytics.com; frame-src 'self' data: *.nikkei.com *.n8s.jp *.ampproject.net *.teads.tv *.impact-ad.jp *.krxd.net; connect-src 'self' *.nikkei.com cdn.polyfill.io cdn.speedcurve.com id.nikkeibp.co.jp *.ravenjs.com sentry.io *.n8s.jp *.teads.tv *.ft.com *.krxd.net; img-src 'self' data: blob: *.nikkei.com *.n8s.jp nikkei.d1.sc.omtrdc.net *.impact-ad.jp openseadragon.github.io assets.nikkei.jp *.teads.tv *.krxd.net *.akamaihd.net *.sumologic.com *.scorecardresearch.com *.moatads.com *.google-analytics.com; media-src 'self' data: blob: *.nikkei.com *.akamaihd.net *.teads.tv; font-src 'self' *.nikkei.com *.n8s.jp cdnjs.cloudflare.com; style-src 'unsafe-inline' *.nikkei.com *.n8s.jp cdnjs.cloudflare.com *.teads.tv; report-uri https://rnikkei.report-uri.io/r/default/csp/enforce";\n` +
+    '  }\n' +
+    '}',
+  'sub csrf_recv {\n' +
+    '  declare local var.validateHost STRING;\n' +
+    '  if (req.restarts == 0 &&\n' +
+    '  req.request == "POST" &&\n' +
+    '  req.http.X-Forwarded-Path ~ "^\\/api\\/") {\n' +
+    '    if (req.http.X-Forwarded-Path !~ "^\\/api\\/mail\\/" &&\n' +
+    '    req.http.X-Forwarded-Path !~ "^\\/api\\/config\\/" &&\n' +
+    '    req.http.X-Forwarded-Path !~ "^\\/api\\/push\\/v1\\/(notify|submit\\-from)" &&\n' +
+    '    req.http.X-Forwarded-Path !~ "^\\/api\\/paper\\-viewer\\/" &&\n' +
+    '    req.http.X-Forwarded-Path !~ "^\\/api\\/article\\/v1\\/preview") {\n' +
+    '      set req.http.Nikkei-CSRF-Status = "";\n' +
+    '      if (req.http.Origin) {\n' +
+    '        set var.validateHost = regsub(\n' +
+    '        req.http.Origin, "^https:\\/\\/([^\\/]*).*$", "\\1");\n' +
+    '        if (var.validateHost !~ "^(r|next|next\\-staging|next\\-dev[a|b]?)\\.nikkei\\.com$" &&\n' +
+    '        var.validateHost != "rnikkei-dev.n8s.jp") {\n' +
+    '          set req.http.Nikkei-CSRF-Status = "Blocked: forbidden Origin header";\n' +
+    '          error 403;\n' +
+    '        }\n' +
+    '      } else if (req.http.Referer) {\n' +
+    '        set var.validateHost = regsub(\n' +
+    '        req.http.Referer, "^https:\\/\\/([^\\/]*).*$", "\\1");\n' +
+    '        if (var.validateHost !~ "^(r|next|next\\-staging|next\\-dev[a|b]?)\\.nikkei\\.com$" &&\n' +
+    '        var.validateHost != "rnikkei-dev.n8s.jp") {\n' +
+    '          set req.http.Nikkei-CSRF-Status = "Blocked: forbidden Referer header";\n' +
+    '          error 403;\n' +
+    '        }\n' +
+    '      } else {\n' +
+    '        set req.http.Nikkei-CSRF-Status = "Blocked: headers are not present";error 403;\n' +
+    '      }\n' +
+    '    }\n' +
+    '  }\n' +
+    '}\n' +
+    'sub csrf_deliver {\n' +
+    '  if (req.http.Nikkei-CSRF-Status &&\n' +
+    '  resp.status != 200) {\n' +
+    '    set resp.http.Nikkei-CSRF-Status = req.http.Nikkei-CSRF-Status;\n' +
+    '  }\n' +
+    '}',
+  'sub dev_backend_recv {\n' +
+    '  declare local var.header STRING;\n' +
+    '  if (!req.http.Nikkei-Dev-Backend) {\n' +
+    '    if (req.http.X-Forwarded-Host == "next-dev.nikkei.com") {\n' +
+    '      set var.header = "development";\n' +
+    '    } else if (req.http.X-Forwarded-Host == "next-deva.nikkei.com") {\n' +
+    '      set var.header = "developmentA";\n' +
+    '    } else if (req.http.X-Forwarded-Host == "next-devb.nikkei.com") {\n' +
+    '      set var.header = "developmentB";\n' +
+    '    } else {\n' +
+    '      set var.header = "staging";\n' +
+    '    }\n' +
+    '    set req.http.Nikkei-Dev-Backend = var.header;\n' +
+    '  }\n' +
+    '}',
+  'sub esi_recv {\n' +
+    '  if (req.topurl) {\n' +
+    '    set req.http.Original-Request-Url = req.topurl;\n' +
+    '    set req.http.Esi = "true";\n' +
+    '    set req.backend = rnikkei_dynamic_critical_css_0;\n' +
+    '  }\n' +
+    '}\n' +
+    'sub esi_fetch {\n' +
+    '  if (beresp.http.Nikkei-ESI-Enabled) {\n' +
+    '    esi;\n' +
+    '    unset beresp.http.Nikkei-ESI-Enabled;\n' +
+    '  }\n' +
+    '  if (req.topurl &&\n' +
+    '  beresp.status != 200 &&\n' +
+    '  beresp.status != 202) {\n' +
+    '    set beresp.ttl = 0s;\n' +
+    '    error 806;\n' +
+    '  }\n' +
+    '}\n' +
+    'sub esi_error {\n' +
+    '  if (obj.status == 806) {\n' +
+    '    set obj.status = 200;\n' +
+    '    synthetic"";\n' +
+    '    return (deliver);\n' +
+    '  }\n' +
+    '}',
+  'sub firewall_recv {\n' +
+    '  set req.http.accessAccepted = "true";\n' +
+    '}\n' +
+    'sub firewall_fetch {\n' +
+    '  if (req.http.accessAccepted == "false") {\n' +
+    '    error 403;\n' +
+    '  }\n' +
+    '}',
+  'sub flag_recv {\n' +
+    '  declare local var.segId STRING;\n' +
+    '  if (req.request == "GET" &&\n' +
+    '  !req.http.Nikkei-Flags &&\n' +
+    '  !req.http.flagsAPIReqDone) {\n' +
+    '    if (req.http.Nikkei-Dev-Backend == "development") {\n' +
+    '      set req.backend = apigw_development;\n' +
+    '      set req.http.Host = "apigw-iddev.dev.n8s.jp";\n' +
+    '    } else if (req.http.Nikkei-Dev-Backend == "production") {\n' +
+    '      set req.backend = apigw_production;\n' +
+    '      set req.http.Host = "apigw.n8s.jp";\n' +
+    '    } else {\n' +
+    '      set req.backend = apigw_staging;set req.http.Host = "apigw.dev.n8s.jp";\n' +
+    '    }\n' +
+    '    set req.http.flagsOrigUrl = req.url;\n' +
+    '    set var.segId = if(\n' +
+    '    req.http.Nikkei-Auth-UserID, req.http.Nikkei-Auth-UserID, client.ip req.http.User-Agent);\n' +
+    '    set var.segId = digest.hash_sha256(\n' +
+    '    var.segId);\n' +
+    '    set var.segId = if(\n' +
+    '    var.segId ~ "(^..)", re.group.1, var.segId);\n' +
+    '    set req.url = "/flags/v1/rnikkei/allocate?output=diff&segid=" var.segId "&rank=" req.http.Nikkei-Auth-Rank;\n' +
+    '    set req.http.Nikkei-Routing-Journey = req.http.Nikkei-Routing-Journey "apigw:" req.url;\n' +
+    '    set req.http.Orig-If-Match = req.http.If-Match;\n' +
+    '    set req.http.Orig-If-None-Match = req.http.If-None-Match;\n' +
+    '    set req.http.Orig-If-Modified-Since = req.http.If-Modified-Since;\n' +
+    '    set req.http.Orig-If-Unmodified-Since = req.http.If-Unmodified-Since;\n' +
+    '    unset req.http.If-Match;\n' +
+    '    unset req.http.If-None-Match;\n' +
+    '    unset req.http.If-Modified-Since;\n' +
+    '    unset req.http.If-Unmodified-Since;\n' +
+    '    return (lookup);\n' +
+    '  }\n' +
+    '  if (req.http.Nikkei-Flags &&\n' +
+    '  req.http.Cookie:Nikkei-Flags-Override) {\n' +
+    '    set req.http.Nikkei-Flags = req.http.Nikkei-Flags urldecode(\n' +
+    '    req.http.Cookie:Nikkei-Flags-Override);\n' +
+    '  }\n' +
+    '}\n' +
+    'sub flag_deliver {\n' +
+    '  if (req.http.flagsOrigUrl) {\n' +
+    '    set req.http.Nikkei-Flags = if(\n' +
+    '    resp.http.Nikkei-APIGW-Result,\n' +
+    '      regsub(\n' +
+    '      resp.http.Nikkei-APIGW-Result, "^(.*?);?$", "\\1"),\n' +
+    '      ""\n' +
+    '    ) ";";\n' +
+    '    set req.url = req.http.flagsOrigUrl;\n' +
+    '    set req.http.flagsAPIReqDone = "1";\n' +
+    '    unset req.http.flagsOrigUrl;\n' +
+    '    set req.http.If-Match = req.http.Orig-If-Match;\n' +
+    '    set req.http.If-None-Match = req.http.Orig-If-None-Match;\n' +
+    '    set req.http.If-Modified-Since = req.http.Orig-If-Modified-Since;\n' +
+    '    set req.http.If-Unmodified-Since = req.http.Orig-If-Unmodified-Since;\n' +
+    '    unset req.http.Orig-If-Match;\n' +
+    '    unset req.http.Orig-If-None-Match;\n' +
+    '    unset req.http.Orig-If-Modified-Since;\n' +
+    '    unset req.http.Orig-If-Unmodified-Since;\n' +
+    '    restart;\n' +
+    '  }\n' +
+    '}',
+  'sub force_tls_recv {\n' +
+    '  if (!req.http.Fastly-SSL) {\n' +
+    '    error 802;\n' +
+    '  }\n' +
+    '}\n' +
+    'sub force_tls_error {\n' +
+    '  if (obj.status == 802) {\n' +
+    '    set obj.status = 301;\n' +
+    '    set obj.response = "Moved Permanently";\n' +
+    '    set obj.http.Location = "https://" req.http.host req.url;\n' +
+    '    synthetic{""};\n' +
+    '  }\n' +
+    '}',
+  'sub gift_recv {\n' +
+    '  declare local var.giftToken STRING;\n' +
+    '  declare local var.giftSessionTimestamp STRING;\n' +
+    '  declare local var.giftSessionSignature STRING;\n' +
+    '  declare local var.payload STRING;\n' +
+    '  declare local var.rawSignature STRING;\n' +
+    '  declare local var.signature STRING;\n' +
+    '  if (req.url ~ "\\/article\\/.+" &&\n' +
+    '  req.http.Cookie:Nikkei-Gift-Session) {\n' +
+    '    if (req.http.Cookie:Nikkei-Gift-Session !~ "([^\\.]+\\.[^\\.]+)\\.([^\\.]+)\\.([^\\.]+)") {\n' +
+    '      set req.http.giftSessionError = "invalid_token";\n' +
+    '    }\n' +
+    '    set var.giftToken = re.group.1;\n' +
+    '    set var.giftSessionTimestamp = re.group.2;\n' +
+    '    set var.giftSessionSignature = re.group.3;\n' +
+    '    if (var.giftToken == regsub(\n' +
+    '    req.url, ".*\\?.*gift=([^&]*).*", "\\1")) {\n' +
+    '      set req.url = regsub(\n' +
+    '      req.url, "(.*\\?.*)gift=.*", "\\1");\n' +
+    '    }\n' +
+    '    if (req.url !~ ".*\\?.*gift=([^&]*).*") {\n' +
+    '      if (time.is_after(\n' +
+    '      now, time.add(std.integer2time(std.atoi(var.giftSessionTimestamp)), 3600s))) {\n' +
+    '        set req.http.giftSessionError = req.http.giftSessionError "expired";\n' +
+    '      }\n' +
+    '      set var.payload = var.giftToken "." var.giftSessionTimestamp;\n' +
+    '      set var.rawSignature = var.payload "." req.http.User-Agent;\n' +
+    '      set var.signature = digest.hmac_sha256_base64(\n' +
+    '      var.rawSignature, "SRqfAiZml5G0Tjya12tHcl6kz0KR7ExvrzOca3qYdrc");\n' +
+    '      if (var.signature != var.giftSessionSignature) {\n' +
+    '        set req.http.giftSessionError = req.http.giftSessionError "invalid_signature";\n' +
+    '      }\n' +
+    '      if (!req.http.giftSessionError) {\n' +
+    '        if (req.url !~ ".*\\?.*") {\n' +
+    '          set req.url = req.url "?";\n' +
+    '        } else {\n' +
+    '          set req.url = req.url "&";\n' +
+    '        }\n' +
+    '        set req.url = req.url "gift=" var.giftToken;\n' +
+    '        set req.http.Nikkei-Gift-Session = "valid";\n' +
+    '      } else {\n' +
+    '        unset req.http.Nikkei-Gift-Session;\n' +
+    '      }\n' +
+    '    }\n' +
+    '  }\n' +
+    '}\n' +
+    'sub gift_deliver {\n' +
+    '  declare local var.giftToken STRING;\n' +
+    '  declare local var.payload STRING;\n' +
+    '  declare local var.rawSignature STRING;\n' +
+    '  declare local var.signature STRING;\n' +
+    '  if (req.url ~ ".*\\?.*gift=([^&]*).*") {\n' +
+    '    set var.giftToken = regsub(\n' +
+    '    req.url, ".*\\?.*gift=([^&]*).*", "\\1");\n' +
+    '  }\n' +
+    '  if (var.giftToken &&\n' +
+    '  !resp.http.Nikkei-Gift-Info &&\n' +
+    '  req.http.Nikkei-Gift-Session != "valid") {\n' +
+    '    set var.payload = var.giftToken "." now.sec;\n' +
+    '    set var.rawSignature = var.payload "." req.http.User-Agent;\n' +
+    '    set var.signature = digest.hmac_sha256_base64(\n' +
+    '    var.rawSignature, "SRqfAiZml5G0Tjya12tHcl6kz0KR7ExvrzOca3qYdrc");\n' +
+    '    add resp.http.Set-Cookie = "Nikkei-Gift-Session=" var.payload "." var.signature "; Path=/; Secure; HttpOnly; max-age=3600; expires=" time.add(\n' +
+    '    now, 3600s) ";";\n' +
+    '  }\n' +
+    '  if (req.http.giftSessionError) {\n' +
+    '    set resp.http.Nikkei-Gift-Info = req.http.giftSessionError;\n' +
+    '    add resp.http.Set-Cookie = "Nikkei-Gift-Session=deleted; expires=Thu, 01 Jan 1970 00:00:00 GMT";\n' +
+    '  }\n' +
+    '}',
+  'sub gzip_fetch {\n' +
+    '  if (beresp.http.Content-Type ~ "^(text/html|application/x-javascript|text/css|application/javascript|text/javascript|application/json|application/rss)") {\n' +
+    '    if (req.http.Esi == "true") {\n' +
+    '      set beresp.gzip = false;\n' +
+    '    } else {\n' +
+    '      if (req.http.Accept-Encoding ~ "gzip") {\n' +
+    '        set beresp.gzip = true;\n' +
+    '      }if (beresp.http.Vary !~ "Accept-Encoding") {\n' +
+    '        set beresp.http.Vary = if(\n' +
+    '        beresp.http.Vary, beresp.http.Vary ", Accept-Encoding", "Accept-Encoding");\n' +
+    '      }\n' +
+    '    }\n' +
+    '  }\n' +
+    '}\n' +
+    'sub gzip_deliver {\n' +
+    '  if (fastly_info.is_h2) {\n' +
+    '    if (req.url ~ "\\/mynews") {\n' +
+    '      set resp.http.x-compress-hint = "on";\n' +
+    '    }\n' +
+    '  }\n' +
+    '}',
+  'include "features_redirects-from-haishin";\n' +
+    'sub haishin_recv {\n' +
+    '  declare local var.isWWWDomain BOOL;\n' +
+    '  declare local var.isMigrationTargetPath BOOL;\n' +
+    '  set req.http.Kite-Device-Type = if(\n' +
+    '  (\n' +
+    '      req.http.user-agent ~ "(?i)iPhone|iPod|(Android.+Mobile)" &&\n' +
+    '      !(\n' +
+    '        req.http.user-agent ~ "(?i)iPad"\n' +
+    '      )\n' +
+    '    ),\n' +
+    '    "mobile",\n' +
+    '    "desktop"\n' +
+    '  );\n' +
+    '  set var.isWWWDomain = (\n' +
+    '    req.http.Host ~ "www\\.pre7\\.nikkei\\.com"\n' +
+    '  );\n' +
+    '  set var.isMigrationTargetPath = (\n' +
+    '    req.url.path == "/"\n' +
+    '  );\n' +
+    '  call opt_in_out;\n' +
+    '  if (var.isWWWDomain) {\n' +
+    '    set req.http.kite-isHaishin = "true";\n' +
+    '    set req.http.Nikkei-Dev-Backend = "development";\n' +
+    '    if (req.url.path ~ "^/(\\.resources|\\.tools|about|api|apple-touch-icon-120x120-precomposed\\.png|apple-touch-icon-120x120\\.png|columns|commentators|companies|editions|genres|healthcheck|hub|journalists|local-election2019|login|logout|mynews|persons|post-auth|post-unauth|precache-worker\\.js|push-worker\\.js|regions|search|sections|special|static|stories|tech|topics|usnk-summit2019|world|worldcup2018)(/.*)?$") {\n' +
+    '      set req.http.kite-isHaishin = "false";\n' +
+    '    }\n' +
+    '  }\n' +
+    '  call get_is_migrated;\n' +
+    '  if (var.isMigrationTargetPath &&\n' +
+    '  req.http.Nikkei-Kite-Is-Migrated == "1") {\n' +
+    '    if (!var.isWWWDomain) {\n' +
+    '      error 750 "https://www.pre7.nikkei.com";\n' +
+    '    }\n' +
+    '    set req.http.kite-isHaishin = "false";\n' +
+    '  }\n' +
+    '  if (req.http.kite-isHaishin == "true") {\n' +
+    '    call redirects_from_haisin_recv;\n' +
+    '    set req.backend = www_pre7_0;\n' +
+    '    set req.http.Host = "www.pre7.nikkei.com";\n' +
+    '    set req.http.User-Agent = if(\n' +
+    '    req.http.User-Agent, req.http.User-Agent " ", "") "s~nikkeilabs-exp";\n' +
+    '    return (pass);\n' +
+    '  }\n' +
+    '}\n' +
+    'sub haishin_pass {\n' +
+    '  unset bereq.http.kite-isHaishin;\n' +
+    '  call remove_vars_in_bereq;\n' +
+    '}\n' +
+    'sub haishin_fetch {\n' +
+    '  if (req.http.kite-isHaishin == "true") {\n' +
+    '    set beresp.ttl = 0s;\n' +
+    '    set beresp.http.Surrogate-Key = "haishin";\n' +
+    '    return (deliver);\n' +
+    '  }\n' +
+    '}\n' +
+    'sub haishin_error {\n' +
+    '  call redirects_from_haisin_error;\n' +
+    '}\n' +
+    'sub haishin_deliver {\n' +
+    '  call set_migration_cookie;\n' +
+    '  call set_migration_debug_log;\n' +
+    '  unset req.http.kite-isHaishin;\n' +
+    '}',
+  'sub healthcheck_recv {\n' +
+    '  if (req.request == "GET" &&\n' +
+    '  req.url ~ "^\\/healthcheck(\\/?\\?.*)?$") {\n' +
+    '    error 803;\n' +
+    '  }\n' +
+    '}\n' +
+    'sub healthcheck_error {\n' +
+    '  if (obj.status == 803) {\n' +
+    '    set obj.status = 200;\n' +
+    '    set obj.response = "OK";\n' +
+    '    synthetic{"CDN OK; Build date: 2019-05-12T14:23:18.735Z"};\n' +
+    '  }\n' +
+    '}',
+  'sub hide_registration_recv {\n' +
+    '  if (req.http.User-Agent ~ "(^Eight.*|nid_client_EIT|biz-jorte|nikkeiappli-iOS)" ||\n' +
+    '  req.http.Cookie:RnikkeiHideRegistration ||\n' +
+    '  req.url ~ "^.*\\?.*(hide-registration-in-this-session).*?$") {\n' +
+    '    set req.http.Nikkei-Hide-Registration = "true";\n' +
+    '  }\n' +
+    '  if (req.url ~ "^.*\\?.*(hide-registration-in-this-session).*?$") {\n' +
+    '    set req.http.willSetCookie = "RNikkeiHideRegistration=1; Path=/; Secure; HttpOnly";\n' +
+    '  }\n' +
+    '}',
+  'sub opt_in_out {\n' +
+    '  declare local var.whenMigrationCompletes STRING;\n' +
+    '  set var.whenMigrationCompletes = "Mon, 30 Sep 2019 15:00:00 GMT";\n' +
+    '  if (req.url.path == "/.tools/kite-opt-in") {\n' +
+    '    set req.http.kite-setCookie = "KiteOpt=1; Path=/; Domain=.nikkei.com; HttpOnly Expires=" var.whenMigrationCompletes ";";\n' +
+    '    error 750 "https://" req.http.host urldecode(\n' +
+    '    regsub(req.url.qs, ".*redirect_path=([^&]*).*", "\\1"));\n' +
+    '  } else if (req.url.path == "/.tools/kite-opt-out") {\n' +
+    '    set req.http.kite-setCookie = "KiteOpt=0; Path=/; Domain=.nikkei.com; HttpOnly Expires=" var.whenMigrationCompletes ";";\n' +
+    '    error 750 "https://" req.http.host urldecode(\n' +
+    '    regsub(req.url.qs, ".*redirect_path=([^&]*).*", "\\1"));\n' +
+    '  }\n' +
+    '}\n' +
+    'sub get_is_migrated {\n' +
+    '  set req.http.kite-opt = req.http.Cookie:KiteOpt;\n' +
+    '  set req.http.kite-force = req.http.Cookie:KiteForce;\n' +
+    '  if (req.http.Kite-Migration-Debug:opt) {\n' +
+    '    set req.http.kite-opt = req.http.Kite-Migration-Debug:opt;\n' +
+    '  }\n' +
+    '  if (req.http.Kite-Migration-Debug:force) {\n' +
+    '    set req.http.kite-force = req.http.Kite-Migration-Debug:force;\n' +
+    '  }\n' +
+    '  if (req.http.Kite-Migration-Debug) {\n' +
+    '    add req.http.kite-migrationDebugLog = "opt: " req.http.kite-opt;\n' +
+    '    add req.http.kite-migrationDebugLog = "force: " req.http.kite-force;\n' +
+    '  }\n' +
+    '  if (!req.http.kite-opt &&\n' +
+    '  !req.http.kite-force) {\n' +
+    '    if (req.http.Kite-Migration-Debug) {\n' +
+    '      add req.http.kite-migrationDebugLog = "shouldCheckSegment: true";\n' +
+    '    }\n' +
+    '    call force_migrate;\n' +
+    '  }\n' +
+    '  if (req.http.kite-opt == "1") {\n' +
+    '    set req.http.Nikkei-Kite-Is-Migrated = "1";\n' +
+    '  } else if (req.http.kite-opt == "0") {\n' +
+    '    set req.http.Nikkei-Kite-Is-Migrated = "0";\n' +
+    '  } else if (req.http.kite-force == "1") {\n' +
+    '    set req.http.Nikkei-Kite-Is-Migrated = "1";\n' +
+    '  } else {\n' +
+    '    set req.http.Nikkei-Kite-Is-Migrated = "0";\n' +
+    '  }\n' +
+    '}\n' +
+    'sub force_migrate {\n' +
+    '  declare local var.segId STRING;\n' +
+    '  declare local var.seg INTEGER;\n' +
+    '  declare local var.segBp FLOAT;\n' +
+    '  set var.segId = client.ip req.http.User-Agent;\n' +
+    '  if (req.http.Kite-Migration-Debug:segId) {\n' +
+    '    set var.segId = client.ip req.http.User-Agent req.http.Kite-Migration-Debug:segId;\n' +
+    '  }\n' +
+    '  set var.segId = digest.hash_sha256(\n' +
+    '  var.segId);\n' +
+    '  set var.segId = if(\n' +
+    '  var.segId ~ "(^..)", re.group.1, var.segId);\n' +
+    '  set var.seg = std.strtol(\n' +
+    '  var.segId, 16);\n' +
+    '  if (req.http.Kite-Migration-Debug:seg) {\n' +
+    '    set var.seg = std.strtol(\n' +
+    '    req.http.Kite-Migration-Debug:seg, 10);\n' +
+    '  }\n' +
+    '  set var.segBp = 0;\n' +
+    '  if (req.http.Kite-Migration-Debug:segBp) {\n' +
+    '    set var.segBp = std.strtol(\n' +
+    '    req.http.Kite-Migration-Debug:segBp, 10);\n' +
+    '  }\n' +
+    '  set var.segBp *= 2.55;\n' +
+    '  if (var.seg <= var.segBp) {\n' +
+    '    set req.http.kite-force = "1";\n' +
+    '    declare local var.whenMigrationCompletes STRING;\n' +
+    '    set var.whenMigrationCompletes = "Mon, 30 Sep 2019 15:00:00 GMT";\n' +
+    '    set req.http.kite-setCookie = "KiteForce=1; Path=/; Domain=.nikkei.com; HttpOnly; Expires=" var.whenMigrationCompletes ";";\n' +
+    '  } else {\n' +
+    '    set req.http.kite-force = "0";declare local var.oneDayLater STRING;set var.oneDayLater = time.add(\n' +
+    '    now,\n' +
+    '      12h\n' +
+    '    );set req.http.kite-setCookie = "KiteForce=0; Path=/; Domain=.nikkei.com; HttpOnly; Expires=" var.oneDayLater ";";\n' +
+    '  }\n' +
+    '}\n' +
+    'sub migrate_pro_user {\n' +
+    '  if (!req.http.kite-opt &&\n' +
+    '  (\n' +
+    '    (\n' +
+    '      req.http.Nikkei-Permission-DSR3B &&\n' +
+    '      req.http.Nikkei-Permission-DSR3B != ""\n' +
+    '    ) ||\n' +
+    '    (\n' +
+    '      req.http.Nikkei-Permission-DSR3N &&\n' +
+    '      req.http.Nikkei-Permission-DSR3N != ""\n' +
+    '    ) ||\n' +
+    '    (\n' +
+    '      req.http.Nikkei-Permission-Group &&\n' +
+    '      req.http.Nikkei-Permission-Group != ""\n' +
+    '    )\n' +
+    '  )) {\n' +
+    '    if (req.http.Kite-Migration-Debug) {\n' +
+    '      set req.http.kite-migrationDebugLog = req.http.kite-migrationDebugLog "optoutProGroup:true;";\n' +
+    '    }\n' +
+    '    declare local var.whenMigrationCompletes STRING;\n' +
+    '    set var.whenMigrationCompletes = "Mon, 30 Sep 2019 15:00:00 GMT";\n' +
+    '    set req.http.kite-setCookie = "KiteForce=0; Path=/; Domain=.nikkei.com; HttpOnly; Expires=" var.whenMigrationCompletes ";";\n' +
+    '  }\n' +
+    '}\n' +
+    'sub remove_vars_in_bereq {\n' +
+    '  unset bereq.http.kite-opt;\n' +
+    '  unset bereq.http.kite-force;\n' +
+    '  unset bereq.http.kite-setCookie;\n' +
+    '  unset bereq.http.Kite-Migration-Debug;\n' +
+    '}\n' +
+    'sub set_migration_debug_log {\n' +
+    '  if (req.http.Kite-Migration-Debug) {\n' +
+    '    add req.http.kite-migrationDebugLog = "backend: " req.backend;\n' +
+    '    add req.http.kite-migrationDebugLog = "path: " req.url.path;\n' +
+    '    add req.http.kite-migrationDebugLog = "isHaishin: " req.http.kite-isHaishin;\n' +
+    '    std.collect(\n' +
+    '    req.http.kite-migrationDebugLog, ";");\n' +
+    '    set resp.http.Kite-Migration-Debug-Log = req.http.kite-migrationDebugLog;\n' +
+    '    unset req.http.kite-migrationDebugLog;\n' +
+    '  }\n' +
+    '}\n' +
+    'sub set_migration_cookie {\n' +
+    '  if (req.http.kite-setCookie &&\n' +
+    '  !req.http.Kite-Migration-Debug:noSetCookie) {\n' +
+    '    add resp.http.Set-Cookie = req.http.kite-setCookie;\n' +
+    '    unset req.http.kite-setCookie;\n' +
+    '  }\n' +
+    '}',
+  'sub mynews_recv {\n' +
+    '  if (req.http.Cookie:Nikkei-MyNews-Config) {\n' +
+    '    set req.http.Nikkei-MyNews-Config = req.http.Cookie:Nikkei-MyNews-Config;\n' +
+    '  }\n' +
+    '}',
+  'sub navigation_recv {\n' +
+    '  declare local var.isMobile BOOL;\n' +
+    '  declare local var.navigation STRING;\n' +
+    '  set var.isMobile = false;\n' +
+    '  if (req.http.User-Agent ~ "(?i)iPhone|iPod|(Android.+Mobile)" &&\n' +
+    '  req.http.User-Agent !~ "(?i)iPad") {\n' +
+    '    set var.isMobile = true;\n' +
+    '  }\n' +
+    '  if (var.isMobile ||\n' +
+    '  req.http.Nikkei-Opt-In-User == "true") {\n' +
+    '    set var.navigation = "default";\n' +
+    '  } else {\n' +
+    '    set var.navigation = "www";\n' +
+    '  }\n' +
+    '  set req.http.Nikkei-Navigation-Menu = var.navigation;\n' +
+    '}',
+  'sub opt_in_opt_out_recv {\n' +
+    '  declare local var.optInSource STRING;\n' +
+    '  declare local var.optInRedirect STRING;\n' +
+    '  declare local var.cookieDomain STRING;\n' +
+    '  declare local var.optInRedirectWithCookie STRING;\n' +
+    '  declare local var.optOutRedirectWithCookie STRING;\n' +
+    '  declare local var.optInDestination STRING;\n' +
+    '  declare local var.siteEditionDestination STRING;\n' +
+    '  declare local var.redirectUrl STRING;\n' +
+    '  if (req.restarts == 0) {\n' +
+    '    if (req.request == "GET" &&\n' +
+    '    req.url ~ "^/.tools/opt\\-?in(\\?.*)?$") {\n' +
+    '      if (req.url !~ ".*\\?.*(source|src)=([^&]*).*?") {\n' +
+    '        set req.url = "/static/errors/400";\n' +
+    '        restart;\n' +
+    '      }\n' +
+    '      set var.optInSource = if(\n' +
+    '      req.url ~ "^.*\\?.*(source|src)=([^&]+).*?$", re.group.2, "www");\n' +
+    '      set var.optInRedirect = if(\n' +
+    '      req.url ~ "^.*\\?.*redir=([^&]+).*?$", urldecode(re.group.1), "/");\n' +
+    '      set var.optInRedirect = var.optInRedirect if(\n' +
+    '      var.optInRedirect ~ "\\?.*?$", "&", "?") "optin";\n' +
+    '      set var.cookieDomain = if(\n' +
+    '      req.http.X-Forwarded-Host ~ ".n8s.jp$", ".n8s.jp", ".nikkei.com");\n' +
+    '      set var.optInRedirectWithCookie = var.optInRedirect "; SiteEditionPreference=src=" var.optInSource "&dst=rnikkei; max-age=31536000; expires=" time.add(\n' +
+    '      now, 31536000s) "; path=/; domain=" var.cookieDomain ";";\n' +
+    '      error 750 var.optInRedirectWithCookie;\n' +
+    '    }\n' +
+    '    if (req.url ~ "^/.tools/opt-out$") {\n' +
+    '      if (req.http.Cookie:SiteEditionPreference) {\n' +
+    '        set var.optInSource = regsub(\n' +
+    '        req.http.Cookie:SiteEditionPreference, "^.*src=([^&]+).*$", "\\1");\n' +
+    '        set var.optInDestination = regsub(\n' +
+    '        req.http.Cookie:SiteEditionPreference, "^.*dst=([^&]+).*$", "\\1");\n' +
+    '        if (var.optInDestination == "rnikkei") {\n' +
+    '          set req.http.Nikkei-Routing-OptOutRedirect = var.optInSource;\n' +
+    '        } else {\n' +
+    '          set req.http.Nikkei-Routing-OptOutRedirect = var.optInDestination;\n' +
+    '        }\n' +
+    '      }\n' +
+    '      if (req.request == "POST") {\n' +
+    '        if (!req.http.Cookie:SiteEditionPreference) {\n' +
+    '          set req.url = "/static/errors/400";\n' +
+    '          restart;\n' +
+    '        }\n' +
+    '        set req.url = "/.tasks/feedback";\n' +
+    '      } else {\n' +
+    '        if (!req.http.Nikkei-Routing-OptOutRedirect) {\n' +
+    '          set req.http.Nikkei-Routing-OptOutRedirect = "mw";\n' +
+    '        }set var.redirectUrl = "http://" req.http.Nikkei-Routing-OptOutRedirect ".nikkei.com/";set var.cookieDomain = if(\n' +
+    '        req.http.X-Forwarded-Host ~ ".n8s.jp$",\n' +
+    '          ".n8s.jp",\n' +
+    '          ".nikkei.com"\n' +
+    '        );set var.optOutRedirectWithCookie = var.redirectUrl "; SiteEditionPreference=src=rnikkei&dst=" req.http.Nikkei-Routing-OptOutRedirect "; max-age=31536000; expires=" time.add(\n' +
+    '        now,\n' +
+    '          31536000s\n' +
+    '        ) "; path=/; domain=" var.cookieDomain ";";error 750 var.optOutRedirectWithCookie;\n' +
+    '      }\n' +
+    '    }\n' +
+    '    if (req.http.Cookie:SiteEditionPreference) {\n' +
+    '      set var.siteEditionDestination = regsub(\n' +
+    '      req.http.Cookie:SiteEditionPreference, ".*dst=([^&]+).*", "\\1");\n' +
+    '      if (var.siteEditionDestination == "rnikkei") {\n' +
+    '        set req.http.Nikkei-Opt-In-User = "true";\n' +
+    '      }\n' +
+    '    }\n' +
+    '  }\n' +
+    '}\n' +
+    'sub opt_in_opt_out_fetch {\n' +
+    '  declare local var.redirectUrl STRING;\n' +
+    '  declare local var.redirectWithCookie STRING;\n' +
+    '  if (req.http.Nikkei-Routing-OptOutRedirect) {\n' +
+    '    set var.redirectUrl = "http://" req.http.Nikkei-Routing-OptOutRedirect ".nikkei.com/";\n' +
+    '    set var.redirectWithCookie = var.redirectUrl "; SiteEditionPreference=src=rnikkei&dst=" req.http.Nikkei-Routing-OptOutRedirect "; max-age=31536000; expires=" time.add(\n' +
+    '    now, 31536000s) ";";\n' +
+    '    error 805 var.redirectWithCookie;\n' +
+    '  }\n' +
+    '}\n' +
+    'sub opt_in_opt_out_error {\n' +
+    '  declare local var.cookieDomain STRING;\n' +
+    '  if (obj.status == 805) {\n' +
+    '    set obj.status = 200;\n' +
+    '    set var.cookieDomain = if(\n' +
+    '    req.http.X-Forwarded-Host ~ ".n8s.jp$", ".n8s.jp", ".nikkei.com");\n' +
+    '    add obj.http.Set-Cookie = regsub(\n' +
+    '    obj.response, "^[^;]*;\\s*(.*)$", "\\1") "; Path=/; HttpOnly; domain=" var.cookieDomain;\n' +
+    '    set obj.http.Nikkei-Redirect = urldecode(\n' +
+    '    regsub(obj.response, "^([^;]*);.*$", "\\1"));\n' +
+    '    set obj.response = "OK";\n' +
+    '  }\n' +
+    '}',
+  'sub redirect_recv {\n' +
+    '  declare local var.redirectUrl STRING;\n' +
+    '  if (req.http.X-Forwarded-Host == "next.nikkei.com") {\n' +
+    '    set var.redirectUrl = "https://r.nikkei.com" req.url;\n' +
+    '    error 750 var.redirectUrl;\n' +
+    '  }\n' +
+    '  if (req.restarts == 0 &&\n' +
+    '  req.url != "/" &&\n' +
+    '  req.url !~ "^/.tools/" &&\n' +
+    '  req.url ~ "/$") {\n' +
+    '    set var.redirectUrl = regsub(\n' +
+    '    req.url, "/$", "");\n' +
+    '    error 750 var.redirectUrl;\n' +
+    '  }\n' +
+    '  if (req.url ~ "^/article/.+" &&\n' +
+    '  req.url !~ "^[^\\?]*\\?.*(type=my|disablepcview).*?$") {\n' +
+    '    if (req.http.Cookie:NK_DS_PC) {\n' +
+    '      set var.redirectUrl = "https://www.nikkei.com" req.url;\n' +
+    '      error 750 var.redirectUrl;\n' +
+    '    }\n' +
+    '  }\n' +
+    '}',
+  'sub redirects_from_haisin_recv {\n' +
+    '  if (req.url ~ "^/real2014($|\\?|/$|/\\?)") {\n' +
+    '    error 755 "841";\n' +
+    '  }\n' +
+    '  if (req.url ~ "^/r123sp($|\\?|/$|/\\?)") {\n' +
+    '    if ((\n' +
+    '      req.http.cookie ~ "(?i)NK_DS_PC=1"\n' +
+    '    ) &&\n' +
+    '    req.http.Kite-Device-Type == "mobile") {\n' +
+    '      error 755 "844";\n' +
+    '    } else if (!(\n' +
+    '      req.http.user-agent ~ "(?i)iPhone|iPod|(Android.+Mobile)"\n' +
+    '    ) ||\n' +
+    '    (\n' +
+    '      req.http.user-agent ~ "(?i)iPad"\n' +
+    '    )) {\n' +
+    '      error 755 "844";\n' +
+    '    }\n' +
+    '  } else if (req.url ~ "^/r123($|\\?|/$|/\\?)") {\n' +
+    '    if (!(\n' +
+    '      req.http.cookie ~ "(?i)NK_DS_PC=1"\n' +
+    '    ) &&\n' +
+    '    (\n' +
+    '      req.http.user-agent ~ "(?i)iPhone|iPod|(Android.+Mobile)"\n' +
+    '    ) &&\n' +
+    '    !(\n' +
+    '      req.http.user-agent ~ "(?i)iPad"\n' +
+    '    )) {\n' +
+    '      error 755 "845";\n' +
+    '    }\n' +
+    '  }\n' +
+    '  if (req.url ~ "(?i)^/paper/article/.*c=DLE") {\n' +
+    '    error 755 "846";\n' +
+    '  }\n' +
+    '  if (req.url ~ "^/guide/cp/") {\n' +
+    '    error 755 "847";\n' +
+    '  }\n' +
+    '  if ((\n' +
+    '    req.http.user-agent ~ "(?i)iPhone|iPod|(Android.+Mobile)|^Eight|nid_client_EIT"\n' +
+    '  ) &&\n' +
+    '  !(\n' +
+    '    req.http.user-agent ~ "(?i)iPad"\n' +
+    '  )) {\n' +
+    '    if (req.url ~ "^/edit/sports/wcup2014/($|\\?|index\\.html)") {\n' +
+    '      error 755 "930";\n' +
+    '    } else if (req.url ~ "^/edit/interactive/osensui0709(/|/index\\.html)($|\\?)") {\n' +
+    '      error 755 "931";\n' +
+    '    } else if (req.url ~ "^/edit/interactive/rd/[a-zA-Z0-9]+(/|/index\\.html)($|\\?)") {\n' +
+    '      error 755 "932";\n' +
+    '    } else if (req.url ~ "^/edit/50special/pc(/|/index\\.html)($|\\?)") {\n' +
+    '      error 755 "933";\n' +
+    '    }\n' +
+    '    if (!(\n' +
+    '      (\n' +
+    '        req.http.cookie ~ "(?i)NK_DS_PC=1"\n' +
+    '      ) ||\n' +
+    '      (\n' +
+    '        req.url ~ "(?i)(\\?|&)pye=1($|&)"\n' +
+    '      )\n' +
+    '    )) {\n' +
+    '      if (req.url ~ "(\\?|&)n_cid=[0-9a-zA-Z_]+($|&)") {\n' +
+    '        set req.http.ncid = regsub(\n' +
+    '        req.url, ".*(n_cid=[0-9a-zA-Z_]+)($|&).*", "\\1");\n' +
+    '      }\n' +
+    '      if (req.url ~ "^/($|\\?)") {\n' +
+    '        error 755 "850";\n' +
+    '      } else if (req.url ~ "^/article/") {\n' +
+    '        error 755 "851";\n' +
+    '      } else if (req.url ~ "^/paper/article/.*ng=.{28}") {\n' +
+    '        error 755 "852";\n' +
+    '      } else if (req.url ~ "^/paper/morning/.*b=[0-9]{8}") {\n' +
+    '        error 755 "853";\n' +
+    '      } else if (req.url ~ "^/paper/evening/.*b=[0-9]{8}") {\n' +
+    '        error 755 "854";\n' +
+    '      } else if (req.url ~ "^/paper/($|\\?)|^/paper/morning/($|\\?)|^/paper/evening/($|\\?)") {\n' +
+    '        error 755 "855";\n' +
+    '      } else if (req.url ~ "^/my/") {\n' +
+    '        error 755 "856";\n' +
+    '      } else if (req.url ~ "^/markets/") {\n' +
+    '        set req.http.X-DS-VIEW-MODE = "SMARTPHONE";\n' +
+    '      } else if (req.url ~ "^/(economy|sports|society|local|opinion|culture|business|international|technology)/") {\n' +
+    '        if (req.url ~ "^/sports/other(/)?\\?(.*&)?(uah=[0-9a-zA-Z_]+)($|&)") {\n' +
+    '          error 755 "859";\n' +
+    '        } else if (req.url !~ "^/(economy|sports|society|local|opinion|culture|business|international|technology)/archive" &&\n' +
+    '        req.url !~ "^/sports/(dosports|news|rio2016|other/news|other/column)") {\n' +
+    '          error 755 "857";\n' +
+    '        }\n' +
+    '      } else if (req.url ~ "^/theme(/)?\\?(.*&)?(dw=[0-9]+)($|&)") {\n' +
+    '        error 755 "858";\n' +
+    '      } else if (req.url ~ "^/edit/viewer/newyear2014/pc/(index\\.html|[a-zA-Z0-9\\._-]+/index\\.html)($|\\?)") {\n' +
+    '        error 755 "861";\n' +
+    '      }\n' +
+    '      unset req.http.ncid;\n' +
+    '    }\n' +
+    '  }\n' +
+    '  if (req.http.X-Forwarded-Proto ~ "(?i)^http$") {\n' +
+    '    if (!req.url ~ "^/(images/ns|dx)/") {\n' +
+    '      error 755 "800";\n' +
+    '    }\n' +
+    '  }\n' +
+    '}\n' +
+    'sub redirects_from_haisin_error {\n' +
+    '  if (obj.status == 755) {\n' +
+    '    if (obj.response == "850") {\n' +
+    '      if (req.http.ncid) {\n' +
+    '        set obj.http.Location = "https://next-dev.nikkei.com?" req.http.ncid;\n' +
+    '      } else {\n' +
+    '        set obj.http.Location = "https://next-dev.nikkei.com";\n' +
+    '      }\n' +
+    '      set obj.status = 302;\n' +
+    '    } else if (obj.response == "851") {\n' +
+    '      if (req.http.ncid) {\n' +
+    '        set obj.http.Location = "https://next-dev.nikkei.com" regsub(\n' +
+    '        req.url, "^(/article/[0-9a-zA-Z_]{28})($|/.*|\\?.*)", "\\1") "?" req.http.ncid;\n' +
+    '      } else {\n' +
+    '        set obj.http.Location = "https://next-dev.nikkei.com" regsub(\n' +
+    '        req.url, "^(/article/[0-9a-zA-Z_]{28})($|/.*|\\?.*)", "\\1");\n' +
+    '      }\n' +
+    '      set obj.status = 302;\n' +
+    '    } else if (obj.response == "852") {\n' +
+    '      if (req.http.ncid) {\n' +
+    '        set obj.http.Location = "https://next-dev.nikkei.com" regsub(\n' +
+    '        req.url, "^/paper/article/.*ng=(.{28}).*", "/article/\\1") "?" req.http.ncid;\n' +
+    '      } else {\n' +
+    '        set obj.http.Location = "https://next-dev.nikkei.com" regsub(\n' +
+    '        req.url, "^/paper/article/.*ng=(.{28}).*", "/article/\\1");\n' +
+    '      }\n' +
+    '      set obj.status = 302;\n' +
+    '    } else if (obj.response == "853") {\n' +
+    '      if (req.http.ncid) {\n' +
+    '        set obj.http.Location = "https://next-dev.nikkei.com/editions/paper" regsub(\n' +
+    '        req.url, "^/paper/morning/.*b=([0-9]{8}).*", "/\\1M101") "?" req.http.ncid;\n' +
+    '      } else {\n' +
+    '        set obj.http.Location = "https://next-dev.nikkei.com/editions/paper" regsub(\n' +
+    '        req.url, "^/paper/morning/.*b=([0-9]{8}).*", "/\\1M101");\n' +
+    '      }\n' +
+    '      set obj.status = 302;\n' +
+    '    } else if (obj.response == "854") {\n' +
+    '      if (req.http.ncid) {\n' +
+    '        set obj.http.Location = "https://next-dev.nikkei.com/editions/paper" regsub(\n' +
+    '        req.url, "^/paper/evening/.*b=([0-9]{8}).*", "/\\1E101") "?" req.http.ncid;\n' +
+    '      } else {\n' +
+    '        set obj.http.Location = "https://next-dev.nikkei.com/editions/paper" regsub(\n' +
+    '        req.url, "^/paper/evening/.*b=([0-9]{8}).*", "/\\1E101");\n' +
+    '      }\n' +
+    '      set obj.status = 302;\n' +
+    '    } else if (obj.response == "855") {\n' +
+    '      if (req.http.ncid) {\n' +
+    '        set obj.http.Location = "https://next-dev.nikkei.com/editions/paper?" req.http.ncid;\n' +
+    '      } else {\n' +
+    '        set obj.http.Location = "https://next-dev.nikkei.com/editions/paper";\n' +
+    '      }\n' +
+    '      set obj.status = 302;\n' +
+    '    } else if (obj.response == "856") {\n' +
+    '      if (req.http.ncid) {\n' +
+    '        set obj.http.Location = "https://next-dev.nikkei.com/mynews?" req.http.ncid;\n' +
+    '      } else {\n' +
+    '        set obj.http.Location = "https://next-dev.nikkei.com/mynews";\n' +
+    '      }\n' +
+    '      set obj.status = 302;\n' +
+    '    } else if (obj.response == "857") {\n' +
+    '      set req.http.encodepath = regsub(\n' +
+    '      req.url, "^(/[0-9a-zA-Z\\-]+/?[0-9a-zA-Z\\-]+)($|/.*|\\?.*)", "\\1");\n' +
+    '      if (req.http.ncid) {\n' +
+    '        set req.http.encodepath = req.http.encodepath "?" req.http.ncid;\n' +
+    '      } else {\n' +
+    '        set req.http.encodepath = req.http.encodepath;\n' +
+    '      }\n' +
+    '      set req.http.encodepath = regsuball(\n' +
+    '      req.http.encodepath, "/", "%252F");\n' +
+    '      set req.http.encodepath = regsuball(\n' +
+    '      req.http.encodepath, "\\?", "%253F");\n' +
+    '      set req.http.encodepath = regsuball(\n' +
+    '      req.http.encodepath, "&", "%2526");\n' +
+    '      set req.http.encodepath = regsuball(\n' +
+    '      req.http.encodepath, "=", "%253D");\n' +
+    '      set obj.http.Location = "https://next-dev.nikkei.com/.tools/www-redirect?path=" req.http.encodepath;\n' +
+    '      set obj.status = 302;\n' +
+    '    } else if (obj.response == "858") {\n' +
+    '      set req.http.dw = regsub(\n' +
+    '      req.url, "^/theme(/)?.*\\?.*(dw=[0-9]+)($|&.*)", "\\2");\n' +
+    '      if (req.http.ncid) {\n' +
+    '        set req.http.encodepath = "/theme/?" req.http.dw "&" req.http.ncid;\n' +
+    '      } else {\n' +
+    '        set req.http.encodepath = "/theme/?" req.http.dw;\n' +
+    '      }\n' +
+    '      set req.http.encodepath = regsuball(\n' +
+    '      req.http.encodepath, "/", "%252F");\n' +
+    '      set req.http.encodepath = regsuball(\n' +
+    '      req.http.encodepath, "\\?", "%253F");\n' +
+    '      set req.http.encodepath = regsuball(\n' +
+    '      req.http.encodepath, "&", "%2526");\n' +
+    '      set req.http.encodepath = regsuball(\n' +
+    '      req.http.encodepath, "=", "%253D");\n' +
+    '      set obj.http.Location = "https://next-dev.nikkei.com/.tools/www-redirect?path=" req.http.encodepath;\n' +
+    '      set obj.status = 302;\n' +
+    '    } else if (obj.response == "859") {\n' +
+    '      set req.http.encodepath = regsub(\n' +
+    '      req.url,\n' +
+    '        "^(/[0-9a-zA-Z\\-]+/?[0-9a-zA-Z\\-]+)(/)?\\?(.*&)?(uah=[0-9a-zA-Z_]+)($|&.*)",\n' +
+    '        "\\1/\\?\\4"\n' +
+    '      );\n' +
+    '      if (req.http.ncid) {\n' +
+    '        set req.http.encodepath = req.http.encodepath "&" req.http.ncid;\n' +
+    '      } else {\n' +
+    '        set req.http.encodepath = req.http.encodepath;\n' +
+    '      }\n' +
+    '      set req.http.encodepath = regsuball(\n' +
+    '      req.http.encodepath, "/", "%252F");\n' +
+    '      set req.http.encodepath = regsuball(\n' +
+    '      req.http.encodepath, "\\?", "%253F");\n' +
+    '      set req.http.encodepath = regsuball(\n' +
+    '      req.http.encodepath, "&", "%2526");\n' +
+    '      set req.http.encodepath = regsuball(\n' +
+    '      req.http.encodepath, "=", "%253D");\n' +
+    '      set obj.http.Location = "https://next-dev.nikkei.com/.tools/www-redirect?path=" req.http.encodepath;\n' +
+    '      set obj.status = 302;\n' +
+    '    } else if (obj.response == "861") {\n' +
+    '      set obj.http.Location = "https://www.pre7.nikkei.com" regsub(\n' +
+    '      req.url,\n' +
+    '        "^/edit/viewer/newyear2014/pc/(index\\.html|[a-zA-Z0-9\\._-]+/index\\.html)($|\\?)",\n' +
+    '        "/edit/viewer/newyear2014/mobile/\\1\\2"\n' +
+    '      );\n' +
+    '      set obj.status = 302;\n' +
+    '    } else if (obj.response == "862") {\n' +
+    '      set obj.http.Location = "http:///#!/shisan";\n' +
+    '      set obj.status = 302;\n' +
+    '    } else if (obj.response == "930") {\n' +
+    '      set obj.http.Location = "https://www.pre7.nikkei.com/edit/sports/wcup2014/index_sp.html";\n' +
+    '      set obj.status = 302;\n' +
+    '    } else if (obj.response == "931") {\n' +
+    '      set obj.http.Location = "https://www.pre7.nikkei.com" regsub(\n' +
+    '      req.url,\n' +
+    '        "^/edit/interactive/osensui0709(/|/index\\.html)($|\\?)",\n' +
+    '        "/edit/interactive/osensui0709/index_sp.html\\2"\n' +
+    '      );\n' +
+    '      set obj.status = 302;\n' +
+    '    } else if (obj.response == "932") {\n' +
+    '      set obj.http.Location = "https://www.pre7.nikkei.com" regsub(\n' +
+    '      req.url,\n' +
+    '        "^/edit/interactive/rd/([a-zA-Z0-9]+)(/|/index\\.html)($|\\?)",\n' +
+    '        "/edit/interactive/rd/\\1/index_sp.html\\3"\n' +
+    '      );\n' +
+    '      set obj.status = 302;\n' +
+    '    } else if (obj.response == "933") {\n' +
+    '      set obj.http.Location = "https://www.pre7.nikkei.com" regsub(\n' +
+    '      req.url, "^/edit/50special/pc(/|/index\\.html)($|\\?)", "/edit/50special/sp/index.html\\2");\n' +
+    '      set obj.status = 302;\n' +
+    '    } else if (obj.response == "841") {\n' +
+    '      set obj.http.Location = "https://www.pre7.nikkei.com/news/topic/archive/?uah=DF251220137171";\n' +
+    '      set obj.status = 301;\n' +
+    '    } else if (obj.response == "844") {\n' +
+    '      set obj.http.Location = "https://www.pre7.nikkei.com" regsub(\n' +
+    '      req.url, "^/r123sp(/)?($|\\?.*)", "/r123/\\2");\n' +
+    '      set obj.status = 302;\n' +
+    '    } else if (obj.response == "845") {\n' +
+    '      set obj.http.Location = "https://www.pre7.nikkei.com" regsub(\n' +
+    '      req.url, "^/r123(/)?($|\\?.*)", "/r123sp/\\2");\n' +
+    '      set obj.status = 302;\n' +
+    '    } else if (obj.response == "846") {\n' +
+    '      set obj.http.Location = "https://www.pre7.nikkei.com/paper/";\n' +
+    '      set obj.status = 302;\n' +
+    '    } else if (obj.response == "847") {\n' +
+    '      set obj.http.Location = "http://dsquare.nikkei.com/";\n' +
+    '      set obj.status = 301;\n' +
+    '    } else if (obj.response == "800") {\n' +
+    '      set obj.http.Location = "https://" req.http.host req.url;\n' +
+    '      set obj.status = 301;\n' +
+    '    }\n' +
+    '    unset req.http.encodepath;\n' +
+    '    unset req.http.dw;\n' +
+    '    unset req.http.ncid;\n' +
+    '    return (deliver);\n' +
+    '  }\n' +
+    '}',
+  'sub robots_recv {\n' +
+    '  if (req.request == "GET" &&\n' +
+    '  req.url ~ "^/robots.txt(\\?.*)?$") {\n' +
+    '    error 804;\n' +
+    '  }\n' +
+    '}\n' +
+    'sub robots_error {\n' +
+    '  if (obj.status == 804) {\n' +
+    '    set obj.status = 200;\n' +
+    '    set obj.response = "OK";\n' +
+    '    synthetic{"\n' +
+    'User-agent: *\n' +
+    'Disallow: /\n' +
+    '"};\n' +
+    '  }\n' +
+    '}',
+  'sub stale_fetch {\n' +
+    '  if (beresp.status >= 500 &&\n' +
+    '  beresp.status < 600) {\n' +
+    '    if (stale.exists) {\n' +
+    '      return (deliver_stale);\n' +
+    '    }\n' +
+    '  }\n' +
+    '}\n' +
+    'sub stale_deliver {\n' +
+    '  if (resp.status >= 500 &&\n' +
+    '  resp.status < 600) {\n' +
+    '    if (stale.exists) {\n' +
+    '      restart;\n' +
+    '    }\n' +
+    '  }\n' +
+    '}\n' +
+    'sub stale_error {\n' +
+    '  if (obj.status >= 500 &&\n' +
+    '  obj.status < 600) {\n' +
+    '    if (stale.exists) {\n' +
+    '      return (deliver_stale);\n' +
+    '    }\n' +
+    '  }\n' +
+    '}',
+  'table vanity_real_dict {\n' +
+    '  "/":"/hub/front",\n' +
+    '  "/technology":"/hub/tech",\n' +
+    '  "/asia":"/hub/asia",\n' +
+    '  "/business-leader":"/hub/business-leader",\n' +
+    '  "/economy":"/hub/economy",\n' +
+    '  "/companies":"/hub/companies",\n' +
+    '  "/business":"/hub/business",\n' +
+    '  "/markets":"/hub/markets",\n' +
+    '  "/world":"/hub/world",\n' +
+    '  "/sports":"/hub/sports",\n' +
+    '  "/society":"/hub/society",\n' +
+    '  "/local":"/hub/local",\n' +
+    '  "/opinion":"/hub/opinion",\n' +
+    '  "/tech":"/hub/tech",\n' +
+    '  "/culture":"/hub/culture",\n' +
+    '  "/status":"/static/marketing",\n' +
+    '  "/about":"/static/about",\n' +
+    '  "/economy/politics":"/sections/politics",\n' +
+    '  "/economy/economy":"/sections/economy",\n' +
+    '  "/economy/finance":"/sections/finance",\n' +
+    '  "/economy/financial-institutions":"/sections/finance",\n' +
+    '  "/economy/column":"/sections/economy-columns",\n' +
+    '  "/business/startups":"/sections/startup",\n' +
+    '  "/business/net-media":"/sections/net-media",\n' +
+    '  "/business/electronics":"/sections/electronics",\n' +
+    '  "/business/healthcare":"/sections/healthcare",\n' +
+    '  "/business/vehicles-machinery":"/sections/automobiles-machinery",\n' +
+    '  "/business/ecology":"/sections/ecology",\n' +
+    '  "/business/realestate":"/sections/realestate",\n' +
+    '  "/business/food-service":"/sections/food-service",\n' +
+    '  "/business/retail":"/sections/retail",\n' +
+    '  "/business/legal":"/sections/legal",\n' +
+    '  "/business/column":"/sections/companies-columns",\n' +
+    '  "/business/future":"/sections/mirai",\n' +
+    '  "/companies/net-media":"/sections/net-media",\n' +
+    '  "/companies/electronics":"/sections/electronics",\n' +
+    '  "/companies/automobiles-machinery":"/sections/automobiles-machinery",\n' +
+    '  "/companies/materials":"/sections/materials",\n' +
+    '  "/companies/environment-energy":"/sections/environment-energy",\n' +
+    '  "/companies/healthcare":"/sections/healthcare",\n' +
+    '  "/companies/realestate-services":"/sections/realestate-services",\n' +
+    '  "/companies/consumption":"/sections/consumption",\n' +
+    '  "/companies/finance":"/sections/finance",\n' +
+    '  "/markets/stocks":"/sections/stocks",\n' +
+    '  "/markets/companies":"/sections/markets-companies",\n' +
+    '  "/markets/earnings":"/sections/markets-companies",\n' +
+    '  "/markets/investment":"/sections/investment",\n' +
+    '  "/markets/forex":"/sections/forex",\n' +
+    '  "/markets/forex-interest":"/sections/forex",\n' +
+    '  "/markets/commodities":"/sections/commodities",\n' +
+    '  "/markets/products":"/sections/commodities",\n' +
+    '  "/markets/international-markets":"/sections/international-markets",\n' +
+    '  "/markets/international":"/sections/international-markets",\n' +
+    '  "/markets/columns":"/sections/markets-columns",\n' +
+    '  "/markets/column":"/sections/markets-columns",\n' +
+    '  "/tech/ai":"/sections/technology-ai",\n' +
+    '  "/tech/iot":"/sections/technology-iot",\n' +
+    '  "/tech/mobile":"/sections/technology-mobile",\n' +
+    '  "/tech/fintech":"/sections/technology-fintech",\n' +
+    '  "/tech/self-driving-vehicles":"/sections/technology-selfdriving",\n' +
+    '  "/tech/leading-edge":"/sections/technology-leadingedge",\n' +
+    '  "/tech/sharing-economy":"/sections/technology-sharing",\n' +
+    '  "/tech/column":"/sections/technology-columns",\n' +
+    '  "/technology/news":"/sections/technology-news",\n' +
+    '  "/technology/business":"/sections/technology-business",\n' +
+    '  "/technology/personal":"/sections/technology-personal",\n' +
+    '  "/technology/trend":"/sections/technology-trend",\n' +
+    '  "/technology/eco":"/sections/technology-eco",\n' +
+    '  "/world/china":"/sections/china",\n' +
+    '  "/world/china-taiwan":"/sections/china",\n' +
+    '  "/world/korea":"/sections/korea",\n' +
+    '  "/world/south-east-asia":"/sections/south-east-asia",\n' +
+    '  "/world/india-oceania":"/sections/india-oceania",\n' +
+    '  "/world/southwest-asia-oceania":"/sections/india-oceania",\n' +
+    '  "/world/europe":"/sections/europe",\n' +
+    '  "/world/north-america":"/sections/north-america",\n' +
+    '  "/world/central-and-south-america":"/sections/central-and-south-america",\n' +
+    '  "/world/middle-east-africa":"/sections/middle-east-africa",\n' +
+    '  "/world/columns":"/sections/world-columns",\n' +
+    '  "/world/column":"/sections/world-columns",\n' +
+    '  "/world/ft":"/sections/ft",\n' +
+    '  "/world/economist":"/sections/economist",\n' +
+    '  "/sports/pro-baseball":"/sections/pro-baseball",\n' +
+    '  "/sports/baseball":"/sections/pro-baseball",\n' +
+    '  "/sports/mlb":"/sections/mlb",\n' +
+    '  "/sports/soccer":"/sections/soccer",\n' +
+    '  "/sports/golf":"/sections/golf",\n' +
+    '  "/sports/rugby":"/sections/rugby",\n' +
+    '  "/sports/figure-skating":"/sections/figure-skating",\n' +
+    '  "/sports/koshien":"/sections/koshien",\n' +
+    '  "/sports/sumo":"/sections/sumo",\n' +
+    '  "/sports/horse-racing":"/sections/horse-racing",\n' +
+    '  "/sports/horseracing":"/sections/horse-racing",\n' +
+    '  "/sports/fighting-sports":"/sections/fighting-sports",\n' +
+    '  "/sports/general-sports":"/sections/general-sports",\n' +
+    '  "/sports/general":"/sections/general-sports",\n' +
+    '  "/sports/columns":"/sections/sports-columns",\n' +
+    '  "/sports/column":"/sections/sports-columns",\n' +
+    '  "/society/column":"/sections/society-columns",\n' +
+    '  "/society/society-news":"/sections/society-news",\n' +
+    '  "/society/condolence":"/sections/condolence",\n' +
+    '  "/local/column":"/sections/local-columns",\n' +
+    '  "/local/wide":"/sections/nation-wide",\n' +
+    '  "/local/tokyo":"/sections/tokyo",\n' +
+    '  "/local/kansai":"/sections/kansai",\n' +
+    '  "/local/chubu":"/sections/chubu",\n' +
+    '  "/local/hokkaido-tohoku":"/sections/hokkaido",\n' +
+    '  "/local/kita-kanto":"/sections/kita-kanto",\n' +
+    '  "/local/minami-kanto":"/sections/minami-kanto",\n' +
+    '  "/local/hokuriku":"/sections/hokuriku",\n' +
+    '  "/local/chugoku-shikoku":"/sections/chugoku",\n' +
+    '  "/local/kyushu-okinawa":"/sections/kyushu-okinawa",\n' +
+    '  "/opinion/editorial":"/sections/editorial",\n' +
+    '  "/opinion/shunju":"/sections/shunju",\n' +
+    '  "/opinion/deep-insight":"/sections/deep-insight",\n' +
+    '  "/opinion/kakushin":"/sections/opinion-kakushin",\n' +
+    '  "/opinion/chugai":"/sections/opinion-chugai",\n' +
+    '  "/opinion/commentary":"/sections/opinion-overview",\n' +
+    '  "/opinion/global-opinion":"/sections/opinion-global",\n' +
+    '  "/opinion/shiken-takken":"/sections/opinion-private",\n' +
+    '  "/opinion/ft":"/sections/opinion-ft",\n' +
+    '  "/opinion/manager-blogs":"/sections/manager-blogs",\n' +
+    '  "/opinion/commentators":"/sections/commentator",\n' +
+    '  "/opinion/ft-commentators":"/sections/ft-commentator",\n' +
+    '  "/opinion/asia":"/sections/read-asia",\n' +
+    '  "/opinion/economist360":"/sections/economist360",\n' +
+    '  "/culture/cover-story":"/sections/cover-story",\n' +
+    '  "/culture/tomorrow-topic":"/sections/tomorrow-topic",\n' +
+    '  "/culture/promenade":"/sections/promenade",\n' +
+    '  "/culture/beauty-ten":"/sections/beauty-ten",\n' +
+    '  "/culture/go-shogi":"/sections/go-shogi",\n' +
+    '  "/culture/opinion-review":"/sections/opinion-review",\n' +
+    '  "/culture/autobiography":"/sections/autobiography",\n' +
+    '  "/culture/ourai":"/sections/ourai",\n' +
+    '  "https://www.nikkei.com/pyeongchang2018/":"/topics/topic_DF_TA_17101904",\n' +
+    '  "/worldcup2018":"/special/worldcup2018",\n' +
+    '  "/worldcup2018/latest":"/sections/worldcup",\n' +
+    '  "/worldcup2018/columns":"/sections/worldcup-columns",\n' +
+    '  "/worldcup2018/schedule":"/special/worldcup2018/schedule",\n' +
+    '  "/worldcup2018/live":"/live-blog/worldcup2018",\n' +
+    '  "/usnk-summit2019?redirect&#x3D;1":"/article/DGXZZO4169683025022019000000",\n' +
+    '  "/usnk-summit2019?redirect&#x3D;2":"/article/DGXZZO41696830V20C19A2000000",\n' +
+    '  "/usnk-summit2019/live?redirect&#x3D;1":"/topics/topic_DF_TA_19022500",\n' +
+    '  "/usnk-summit2019":"/special/usnk-summit2019",\n' +
+    '  "/usnk-summit2019/live":"/special/usnk-summit2019/live",\n' +
+    '  "/local-election2019":"/special/local-election2019",\n' +
+    '  "/local-election2019?redirect&#x3D;1":"/topics/topic_DF_TA_19021200"\n' +
+    '}\n' +
+    'table real_vanity_dict {\n' +
+    '  "/hub/front":"/",\n' +
+    '  "/hub/tech":"/tech",\n' +
+    '  "/hub/asia":"/asia",\n' +
+    '  "/hub/business-leader":"/business-leader",\n' +
+    '  "/hub/economy":"/economy",\n' +
+    '  "/hub/companies":"/companies",\n' +
+    '  "/hub/business":"/business",\n' +
+    '  "/hub/markets":"/markets",\n' +
+    '  "/hub/world":"/world",\n' +
+    '  "/hub/sports":"/sports",\n' +
+    '  "/hub/society":"/society",\n' +
+    '  "/hub/local":"/local",\n' +
+    '  "/hub/opinion":"/opinion",\n' +
+    '  "/hub/culture":"/culture",\n' +
+    '  "/static/marketing":"/status",\n' +
+    '  "/static/about":"/about",\n' +
+    '  "/sections/politics":"/economy/politics",\n' +
+    '  "/sections/economy":"/economy/economy",\n' +
+    '  "/sections/finance":"/companies/finance",\n' +
+    '  "/sections/economy-columns":"/economy/column",\n' +
+    '  "/sections/startup":"/business/startups",\n' +
+    '  "/sections/net-media":"/companies/net-media",\n' +
+    '  "/sections/electronics":"/companies/electronics",\n' +
+    '  "/sections/healthcare":"/companies/healthcare",\n' +
+    '  "/sections/automobiles-machinery":"/companies/automobiles-machinery",\n' +
+    '  "/sections/ecology":"/business/ecology",\n' +
+    '  "/sections/realestate":"/business/realestate",\n' +
+    '  "/sections/food-service":"/business/food-service",\n' +
+    '  "/sections/retail":"/business/retail",\n' +
+    '  "/sections/legal":"/business/legal",\n' +
+    '  "/sections/companies-columns":"/business/column",\n' +
+    '  "/sections/mirai":"/business/future",\n' +
+    '  "/sections/materials":"/companies/materials",\n' +
+    '  "/sections/environment-energy":"/companies/environment-energy",\n' +
+    '  "/sections/realestate-services":"/companies/realestate-services",\n' +
+    '  "/sections/consumption":"/companies/consumption",\n' +
+    '  "/sections/stocks":"/markets/stocks",\n' +
+    '  "/sections/markets-companies":"/markets/earnings",\n' +
+    '  "/sections/investment":"/markets/investment",\n' +
+    '  "/sections/forex":"/markets/forex-interest",\n' +
+    '  "/sections/commodities":"/markets/products",\n' +
+    '  "/sections/international-markets":"/markets/international",\n' +
+    '  "/sections/markets-columns":"/markets/column",\n' +
+    '  "/sections/technology-ai":"/tech/ai",\n' +
+    '  "/sections/technology-iot":"/tech/iot",\n' +
+    '  "/sections/technology-mobile":"/tech/mobile",\n' +
+    '  "/sections/technology-fintech":"/tech/fintech",\n' +
+    '  "/sections/technology-selfdriving":"/tech/self-driving-vehicles",\n' +
+    '  "/sections/technology-leadingedge":"/tech/leading-edge",\n' +
+    '  "/sections/technology-sharing":"/tech/sharing-economy",\n' +
+    '  "/sections/technology-columns":"/tech/column",\n' +
+    '  "/sections/technology-news":"/technology/news",\n' +
+    '  "/sections/technology-business":"/technology/business",\n' +
+    '  "/sections/technology-personal":"/technology/personal",\n' +
+    '  "/sections/technology-trend":"/technology/trend",\n' +
+    '  "/sections/technology-eco":"/technology/eco",\n' +
+    '  "/sections/china":"/world/china-taiwan",\n' +
+    '  "/sections/korea":"/world/korea",\n' +
+    '  "/sections/south-east-asia":"/world/south-east-asia",\n' +
+    '  "/sections/india-oceania":"/world/southwest-asia-oceania",\n' +
+    '  "/sections/europe":"/world/europe",\n' +
+    '  "/sections/north-america":"/world/north-america",\n' +
+    '  "/sections/central-and-south-america":"/world/central-and-south-america",\n' +
+    '  "/sections/middle-east-africa":"/world/middle-east-africa",\n' +
+    '  "/sections/world-columns":"/world/column",\n' +
+    '  "/sections/ft":"/world/ft",\n' +
+    '  "/sections/economist":"/world/economist",\n' +
+    '  "/sections/pro-baseball":"/sports/baseball",\n' +
+    '  "/sections/mlb":"/sports/mlb",\n' +
+    '  "/sections/soccer":"/sports/soccer",\n' +
+    '  "/sections/golf":"/sports/golf",\n' +
+    '  "/sections/rugby":"/sports/rugby",\n' +
+    '  "/sections/figure-skating":"/sports/figure-skating",\n' +
+    '  "/sections/koshien":"/sports/koshien",\n' +
+    '  "/sections/sumo":"/sports/sumo",\n' +
+    '  "/sections/horse-racing":"/sports/horseracing",\n' +
+    '  "/sections/fighting-sports":"/sports/fighting-sports",\n' +
+    '  "/sections/general-sports":"/sports/general",\n' +
+    '  "/sections/sports-columns":"/sports/column",\n' +
+    '  "/sections/society-columns":"/society/column",\n' +
+    '  "/sections/society-news":"/society/society-news",\n' +
+    '  "/sections/condolence":"/society/condolence",\n' +
+    '  "/sections/local-columns":"/local/column",\n' +
+    '  "/sections/nation-wide":"/local/wide",\n' +
+    '  "/sections/tokyo":"/local/tokyo",\n' +
+    '  "/sections/kansai":"/local/kansai",\n' +
+    '  "/sections/chubu":"/local/chubu",\n' +
+    '  "/sections/hokkaido":"/local/hokkaido-tohoku",\n' +
+    '  "/sections/kita-kanto":"/local/kita-kanto",\n' +
+    '  "/sections/minami-kanto":"/local/minami-kanto",\n' +
+    '  "/sections/hokuriku":"/local/hokuriku",\n' +
+    '  "/sections/chugoku":"/local/chugoku-shikoku",\n' +
+    '  "/sections/kyushu-okinawa":"/local/kyushu-okinawa",\n' +
+    '  "/sections/editorial":"/opinion/editorial",\n' +
+    '  "/sections/shunju":"/opinion/shunju",\n' +
+    '  "/sections/deep-insight":"/opinion/deep-insight",\n' +
+    '  "/sections/opinion-kakushin":"/opinion/kakushin",\n' +
+    '  "/sections/opinion-chugai":"/opinion/chugai",\n' +
+    '  "/sections/opinion-overview":"/opinion/commentary",\n' +
+    '  "/sections/opinion-global":"/opinion/global-opinion",\n' +
+    '  "/sections/opinion-private":"/opinion/shiken-takken",\n' +
+    '  "/sections/opinion-ft":"/opinion/ft",\n' +
+    '  "/sections/manager-blogs":"/opinion/manager-blogs",\n' +
+    '  "/sections/commentator":"/opinion/commentators",\n' +
+    '  "/sections/ft-commentator":"/opinion/ft-commentators",\n' +
+    '  "/sections/read-asia":"/opinion/asia",\n' +
+    '  "/sections/economist360":"/opinion/economist360",\n' +
+    '  "/sections/cover-story":"/culture/cover-story",\n' +
+    '  "/sections/tomorrow-topic":"/culture/tomorrow-topic",\n' +
+    '  "/sections/promenade":"/culture/promenade",\n' +
+    '  "/sections/beauty-ten":"/culture/beauty-ten",\n' +
+    '  "/sections/go-shogi":"/culture/go-shogi",\n' +
+    '  "/sections/opinion-review":"/culture/opinion-review",\n' +
+    '  "/sections/autobiography":"/culture/autobiography",\n' +
+    '  "/sections/ourai":"/culture/ourai",\n' +
+    '  "/topics/topic_DF_TA_17101904":"https://www.nikkei.com/pyeongchang2018/",\n' +
+    '  "/special/worldcup2018":"/worldcup2018",\n' +
+    '  "/sections/worldcup":"/worldcup2018/latest",\n' +
+    '  "/sections/worldcup-columns":"/worldcup2018/columns",\n' +
+    '  "/special/worldcup2018/schedule":"/worldcup2018/schedule",\n' +
+    '  "/live-blog/worldcup2018":"/worldcup2018/live",\n' +
+    '  "/article/DGXZZO4169683025022019000000":"/usnk-summit2019?redirect&#x3D;1",\n' +
+    '  "/article/DGXZZO41696830V20C19A2000000":"/usnk-summit2019?redirect&#x3D;2",\n' +
+    '  "/topics/topic_DF_TA_19022500":"/usnk-summit2019/live?redirect&#x3D;1",\n' +
+    '  "/special/usnk-summit2019":"/usnk-summit2019",\n' +
+    '  "/special/usnk-summit2019/live":"/usnk-summit2019/live",\n' +
+    '  "/special/local-election2019":"/local-election2019",\n' +
+    '  "/topics/topic_DF_TA_19021200":"/local-election2019?redirect&#x3D;1"\n' +
+    '}\n' +
+    'sub vanity_url_recv {\n' +
+    '  declare local var.vanityToRealPath STRING;\n' +
+    '  declare local var.realToVanityPath STRING;\n' +
+    '  declare local var.X-Forwarded-PathQuery STRING;\n' +
+    '  declare local var.redirectUrl STRING;\n' +
+    '  if (req.restarts == 0) {\n' +
+    '    set var.vanityToRealPath = table.lookup(\n' +
+    '    vanity_real_dict, req.url.path);\n' +
+    '    set var.realToVanityPath = table.lookup(\n' +
+    '    real_vanity_dict, req.url.path);\n' +
+    '    set var.X-Forwarded-PathQuery = regsub(\n' +
+    '    req.url, "^[^\\?]*(\\?.*)?$", "\\1");\n' +
+    '    if (var.vanityToRealPath ~ ".+") {\n' +
+    '      set req.http.Nikkei-Routing-Journey = req.http.Nikkei-Routing-Journey "vanity:" req.url.path "=>" var.vanityToRealPath "; ";\n' +
+    '      set req.http.Nikkei-Vanity-OrigURL = req.url;\n' +
+    '      set req.url = var.vanityToRealPath var.X-Forwarded-PathQuery;\n' +
+    '    } else if (var.realToVanityPath ~ ".+") {\n' +
+    '      set var.redirectUrl = var.realToVanityPath var.X-Forwarded-PathQuery;\n' +
+    '      error 750 var.redirectUrl;\n' +
+    '    }\n' +
+    '  }\n' +
+    '}'
+]
