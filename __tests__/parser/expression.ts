@@ -4,6 +4,7 @@ import {
   BinaryExpression,
   LogicalExpression,
   Member,
+  UnaryExpression,
 } from '../../src/ast-nodes'
 import { parseIp } from '../../src/parser/statement/ip'
 
@@ -24,20 +25,21 @@ describe('Expression', () => {
         body: [
           { type: 'StringLiteral', value: '"a"' },
           { type: 'StringLiteral', value: '"b"' },
-          { type: 'StringLiteral', value: '"c"' },
+          // { type: 'StringLiteral', value: '"c"' },
         ],
       })
+
       expect(
         parse(`req.http.Host {"
-      a
-      "} true             100`)
+        a
+        "} true             100`)
       ).toMatchObject({
         type: 'ConcatExpression',
         body: [
-          { type: 'Identifier' },
+          { type: 'Member' },
           { type: 'StringLiteral' },
           { type: 'BooleanLiteral' },
-          { type: 'NumericLiteral' },
+          // { type: 'NumericLiteral' },
         ],
       })
     })
@@ -48,17 +50,13 @@ describe('Expression', () => {
       expect(parse('http_status_matches(resp.status, "404")')).toMatchObject({
         type: 'FunCallExpression',
         callee: { type: 'Identifier', name: 'http_status_matches' },
-        arguments: [{ type: 'Identifier' }, { type: 'StringLiteral' }],
+        arguments: [{ type: 'Member' }, { type: 'StringLiteral' }],
       })
 
-      expect(parse('if (req.http.b, a, b)')).toMatchObject({
+      expect(parse('if (req.http.a, var.b, var.c)')).toMatchObject({
         type: 'FunCallExpression',
         callee: { type: 'Identifier', name: 'if' },
-        arguments: [
-          { type: 'Identifier' },
-          { type: 'Identifier' },
-          { type: 'Identifier' },
-        ],
+        arguments: [{ type: 'Member' }, { type: 'Member' }, { type: 'Member' }],
       })
 
       //   expect(() =>
@@ -68,6 +66,18 @@ describe('Expression', () => {
       //   }
       // `)
       //   ).toThrowError(SyntaxError)
+    })
+  })
+
+  describe('UnaryExpression', () => {
+    it('should be parsed', () => {
+      expect(parse('!var.isSomething')).toMatchObject({
+        type: 'UnaryExpression',
+        operator: '!',
+        argument: {
+          type: 'Member',
+        },
+      } as UnaryExpression)
     })
   })
 
@@ -235,73 +245,8 @@ describe('Expression', () => {
     })
   })
 
-  describe('Ip', () => {
-    const parse = (str: string) => parseIp(new Parser(str))
-
-    it('should parse', () => {
-      expect(parse('"localhost"')).toMatchObject({
-        type: 'Ip',
-        value: 'localhost',
-      })
-      expect(() => parse('"localhost"/16')).toThrow(
-        /invalid ip address.*A prefix length is not supported for `localhost`/
-      )
-
-      // v4
-      expect(parse('"192.0.2.0"')).toMatchObject({
-        type: 'Ip',
-        value: '192.0.2.0',
-      })
-      expect(parse('"192.0.2.0"/16')).toMatchObject({
-        type: 'Ip',
-        value: '192.0.2.0',
-        cidr: 16,
-      })
-      expect(() => parse('"192.0.2.0"/33')).toThrow(
-        /IPv4 prefix length must be between 0 and 32/
-      )
-
-      // v6
-      expect(parse('"2001:db8::1"')).toMatchObject({
-        type: 'Ip',
-        value: '2001:db8::1',
-      })
-      expect(parse('"2001:db8::1"/16')).toMatchObject({
-        type: 'Ip',
-        value: '2001:db8::1',
-        cidr: 16,
-      })
-      expect(() => parse('"2001:db8::1"/129')).toThrow(
-        /IPv6 prefix length must be between 0 and 128/
-      )
-
-      /* 6to4 mapping for "192.0.2.4" */
-      expect(parse('"2002:c000:0204::"')).toMatchObject({
-        type: 'Ip',
-        value: '2002:c000:0204::',
-      })
-      expect(parse('"::FFFF:192.0.2.4"')).toMatchObject({
-        type: 'Ip',
-        value: '::FFFF:192.0.2.4',
-      })
-      expect(parse('"::1"')).toMatchObject({
-        type: 'Ip',
-        value: '::1',
-      })
-
-      /* unspecified address */
-      expect(parse('"::"')).toMatchObject({
-        type: 'Ip',
-        value: '::',
-      })
-
-      expect(() => parse('"0.0.0"')).toThrow(/invalid ip address/)
-      expect(() => parse('"invalid"')).toThrow(/invalid ip address/)
-    })
-  })
-
-  describe.only('Member', () => {
-    it.only('should be parsed', () => {
+  describe('Member', () => {
+    it('should be parsed', () => {
       expect(parse('a.b')).toMatchObject({
         type: 'Member',
         base: { type: 'Identifier', name: 'a' },
