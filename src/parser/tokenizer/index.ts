@@ -31,14 +31,14 @@ const getJoinedRegExp = (s: Array<string | RegExp>) =>
 
 const splitters = [
   /* spaces         */ / +/,
-  /* tabs           */ /	+/,
+  /* tabs           */ /\t+/,
   /* newline        */ '\n',
   /* line comment   */ /#[^\n]*|\/\/[^\n]*/,
   /* inline comment */ /\/\*[\s\S]*\*\//,
   /* string         */ /"[^\n]*?"/,
   /* multiline str  */ /{"[\s\S]*?"}/,
   /* ident          */ /[A-z][A-z\d-_]*/,
-  /* numeric        */ /[\d][\d\.]+/,
+  /* numeric        */ /[\d][\d.]+/,
   ...operators,
   ...symbols,
 ]
@@ -81,7 +81,7 @@ export class Tokenizer {
       }
 
       // only whitespaces or tabs
-      if (/^( |	)/.test(str)) {
+      if (/^( |\t)/.test(str)) {
         offset += str.length
         column += str.length
 
@@ -136,14 +136,14 @@ export class Tokenizer {
         const lines = str.split('\n')
         line += lines!.length - 1
         column = lines[lines.length - 1].length - (str.length - 1)
-      } else if (/^[\d\.]+$/.test(str)) {
+      } else if (/^[\d.]+$/.test(str)) {
         type = 'numeric'
       } else if (/^(#|\/\/|\/\*)/.test(str)) {
         type = 'comment'
       } else {
         type = 'ident'
 
-        if (!/^[A-Za-z][A-Za-z\d\.-_]*/.test(str)) {
+        if (!/^[A-Za-z][A-Za-z\d.-_]*/.test(str)) {
           err = 'invalid token'
         }
       }
