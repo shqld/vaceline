@@ -17,6 +17,6 @@ describe('hydrate', () => {
     const hydrated = hydrate(JSON.stringify(ast))
 
     expect(hydrated).toBeInstanceOf(Node)
-    expect(JSON.stringify(hydrated)).toStrictEqual(JSON.stringify(ast))
+    expect(JSON.stringify(hydrated)).toMatch(JSON.stringify(ast))
   })
 })

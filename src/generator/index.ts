@@ -1,17 +1,18 @@
-import { Node, File, Program } from '../nodes'
+import { Node } from '../nodes'
 import { Printer } from './printer'
+import { isNode } from '../utils/node'
 
-export const generate = (ast: File | Node): { code: string; map?: string } => {
+export const generate = (ast: Node): { code: string; map?: string } => {
   const p = new Printer()
 
-  if (ast instanceof File) {
+  if (isNode(ast, ['File'])) {
     return p.generate(ast.program)
   }
 
-  if (ast instanceof Program) {
+  if (isNode(ast, ['Program'])) {
     return p.generate(ast)
   }
 
   // TODO:
-  throw new Error('')
+  throw new Error(`Unexpected ast node: ${ast}`)
 }
