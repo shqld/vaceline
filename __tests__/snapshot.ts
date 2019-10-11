@@ -10,7 +10,7 @@ describe('hydrate', () => {
   )
 
   it('should', () => {
-    const ast = Parser.Program.tryParse(code)
+    const ast = parse(code)
 
     expect(ast).toMatchSnapshot('ast')
   })

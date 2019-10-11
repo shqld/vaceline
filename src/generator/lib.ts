@@ -1,4 +1,4 @@
-import { Node, Printable } from '../nodes'
+import { Node } from '../nodes'
 
 export interface PrintList {
   nodes: Array<Node>

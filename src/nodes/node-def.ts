@@ -1,5 +1,6 @@
 import { Node } from './node'
 import * as n from '../ast-nodes.d'
+import { isNode } from '../utils/node'
 
 type ExtractNodeFromDef<Def> = Def extends NodeDef<infer Node> ? Node : never
 
@@ -9,9 +10,8 @@ export type NodeAs<T extends NodeType> = ExtractNodeFromDef<NodeDefMap[T]>
 
 export interface NodeDef<T extends Node> {
   build(node: T, obj: Omit<T, keyof Node>): void
-  // print(): Printable | Array<Printable>
-  next(node: T): null | ReadonlyArray<Node | Array<Node>>
-  // next: Array<keyof Omit<T, keyof Node>>
+  print(node: T): Array<Node | string>
+  next(node: T): null | ReadonlyArray<Node>
 }
 
 export const nodeDefs = {
@@ -22,71 +22,87 @@ export const nodeDefs = {
       n.comments = o.comments
     },
     next: (n) => [n.program],
-    // next: ['program'],
+    print: (n) => [n.program],
   } as NodeDef<n.File>,
 
   Program: {
     build(node, obj) {
       node.body = obj.body
     },
-    next(node) {
-      return [node.body]
-    },
-    // next: ['body'],
+    next: (node) => node.body,
+    print: (n) => n.body,
   } as NodeDef<n.Program>,
 
   Comment: {
     build(node, obj) {
       node.body = obj.body
     },
+    next: () => null,
+    print: (n) => [n.body],
   } as NodeDef<n.Comment>,
 
   Block: {
     build(node, obj) {
       node.body = obj.body
     },
+    next: (n) => n.body,
+    print: (n) => ['{', ...n.body, '}'],
   } as NodeDef<n.Block>,
 
   BooleanLiteral: {
     build(node, obj) {
       node.value = obj.value
     },
+    next: (n) => null,
+    print: (n) => [n.value],
   } as NodeDef<n.BooleanLiteral>,
 
   StringLiteral: {
     build(node, obj) {
       node.value = obj.value
     },
+    next: (n) => null,
+    print: (n) => [n.value],
   } as NodeDef<n.StringLiteral>,
 
   MultilineLiteral: {
     build(node, obj) {
       node.value = obj.value
     },
+    next: (n) => null,
+    print: (n) => [n.value],
   } as NodeDef<n.MultilineLiteral>,
 
   DurationLiteral: {
     build(node, obj) {
       node.value = obj.value
     },
+    next: (n) => null,
+    print: (n) => [n.value],
   } as NodeDef<n.DurationLiteral>,
 
   NumericLiteral: {
     build(node, obj) {
       node.value = obj.value
     },
+    next: (n) => null,
+    print: (n) => [n.value],
   } as NodeDef<n.NumericLiteral>,
 
   Identifier: {
     build(node, obj) {
       node.name = obj.name
     },
+    next: (n) => null,
+    print: (n) => [n.name],
   } as NodeDef<n.Identifier>,
 
   Header: {
     build(node, obj) {
       node.name = obj.name
     },
+    next: (n) => null,
+    print: (n) => [n.name],
   } as NodeDef<n.Header>,
 
   Ip: {
@@ -94,6 +110,8 @@ export const nodeDefs = {
       node.value = obj.value
       node.cidr = obj.cidr
     },
+    next: (n) => null,
+    print: (n) => [n.value],
   } as NodeDef<n.Ip>,
 
   Member: {
@@ -101,18 +119,26 @@ export const nodeDefs = {
       node.base = obj.base
       node.member = obj.member
     },
+    next: (n) => [n.base, n.member],
+    print: (n) => [n.base, '.', n.member],
   } as NodeDef<n.Member>,
 
   BooleanExpression: {
     build(node, obj) {
       node.body = obj.body
     },
+    next: (n) => [n.body],
+    print: (n) => ['(', n.body, ')'],
   } as NodeDef<n.BooleanExpression>,
 
   UnaryExpression: {
     build(node, obj) {
       node.operator = obj.operator
       node.argument = obj.argument
+    },
+    next: (n) => [n.argument],
+    print: (n) => {
+      return [n.operator, n.argument]
     },
   } as NodeDef<n.UnaryExpression>,
 
@@ -121,6 +147,8 @@ export const nodeDefs = {
       node.callee = obj.callee
       node.arguments = obj.arguments
     },
+    next: (n) => null,
+    print: (n) => [n.callee, '.', n.arguments],
   } as NodeDef<n.FunCallExpression>,
 
   ConcatExpression: {

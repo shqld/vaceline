@@ -1,7 +1,8 @@
 import { Buffer, SourcePosition } from './buffer'
-import { Node, Printable, Mark, Identifier, Program } from '../nodes'
-import { WithLocation } from '../parser/typings'
+import { Node, nodeDefs, NodeType, NodeDef } from '../nodes'
 import { PrintList } from './lib'
+import { Program } from '../ast-nodes'
+import { NodeWithLocation } from '../nodes/node'
 
 export class Printer {
   buf: Buffer
@@ -39,7 +40,7 @@ export class Printer {
     this.buf.queue(str, loc)
   }
 
-  print(target: Printable | Array<Printable>, isProgram = false) {
+  print(target: Node | string | Array<Node | string>, isProgram = false) {
     if (Array.isArray(target)) {
       target.forEach((t) => this.print(t))
       return
@@ -80,12 +81,14 @@ export class Printer {
     }
 
     if (target instanceof Node) {
-      this.print(target.print())
+      const def: NodeDef<any> = nodeDefs[target.type as NodeType]
+
+      this.print(def.print(target))
       return
     }
 
     if (hasLocation(target)) {
-      this.append(target.value, target.loc.start)
+      this.append(target, target.loc.start)
       return
     }
 
@@ -96,7 +99,7 @@ export class Printer {
   }
 
   generate(ast: Program) {
-    this.print(ast.print(), true)
+    this.print(nodeDefs['Program'].print(ast), true)
 
     this.buf.append('\n')
 
@@ -106,5 +109,5 @@ export class Printer {
 
 // const isMark = (mark: any): mark is Mark => !(mark instanceof Node) && !!mark.loc
 const isList = (list: any): list is PrintList => !!list.isList
-const hasLocation = (target: any): target is Mark | WithLocation<Node> =>
+const hasLocation = (target: any): target is NodeWithLocation =>
   !!(target && target.loc)
