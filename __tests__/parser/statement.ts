@@ -10,7 +10,7 @@ import {
   RestartStatement,
   SyntheticStatement,
   TableStatement,
-} from '../../src/ast-nodes'
+} from '../../src/nodes'
 import { parseStmt } from '../../src/parser/statement/index'
 import { parseIp } from '../../src/parser/statement/ip'
 

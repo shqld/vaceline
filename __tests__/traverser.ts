@@ -3,9 +3,8 @@ import path from 'path'
 
 import { traverse } from '../src/traverser'
 import { parse } from '../src'
-import { Node, NodeType } from '../src/nodes'
+import { Node, NodeType, Identifier } from '../src/nodes'
 import { NodePath } from '../src/traverser/path'
-import { Identifier } from '../src/ast-nodes'
 
 const checkNode = (node: any, type: NodeType) => {
   expect(node).toBeInstanceOf(Node)
