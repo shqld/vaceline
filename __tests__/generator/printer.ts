@@ -2,7 +2,6 @@ import fs from 'fs'
 import path from 'path'
 
 import { Printer } from '../../src/generator/printer'
-import * as g from '../../src/generator/lib'
 import { Buffer } from '../../src/generator/buffer'
 
 const helloWorldText = fs.readFileSync(

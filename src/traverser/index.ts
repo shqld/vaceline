@@ -19,8 +19,9 @@ export const traverse = (
   }
 
   const def: NodeDef<any> = nodeDefs[node.type as NodeType]
-  assert(!!def, `${JSON.stringify(node)} is not valid Node`)
+  assert(!!def, `${JSON.stringify(node, null, 2)} is not valid Node`)
 
+  assert(!!def.next, `${node.type} is not found in node defs`)
   const next = def.next(node)
 
   if (!next) return

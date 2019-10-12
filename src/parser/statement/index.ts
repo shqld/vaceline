@@ -97,12 +97,14 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
       'Identifier',
       'Member',
     ])
+
     const valueType = p.validateToken(p.read(), 'ident').value
 
     ensureSemi(p)
 
     return p.finishNode(node, 'DeclareStatement', {
       id,
+      // @ts-ignore
       valueType,
     })
   }
