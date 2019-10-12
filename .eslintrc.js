@@ -6,6 +6,9 @@ module.exports = {
     sourceType: 'module',
     project: './tsconfig.json',
   },
+  env: {
+    es6: true,
+  },
   globals: {
     console: true,
     process: true,
