@@ -1,18 +1,19 @@
 import { Node } from '../nodes'
-import { Printer } from './printer'
-import { isNode } from '../utils/node'
+import { doc, Doc, util } from 'prettier'
+
+export const { builders } = doc
+
+const defaultPrintOptions = {
+  printWidth: 100,
+  tabWidth: 4,
+  useTabs: false,
+}
 
 export const generate = (ast: Node): { code: string; map?: string } => {
-  const p = new Printer()
+  const { formatted } = doc.printer.printDocToString(
+    ast.print(),
+    defaultPrintOptions
+  )
 
-  if (isNode(ast, ['File'])) {
-    return p.generate(ast.program)
-  }
-
-  if (isNode(ast, ['Program'])) {
-    return p.generate(ast)
-  }
-
-  // TODO:
-  throw new Error(`Unexpected ast node: ${ast}`)
+  return { code: formatted }
 }
