@@ -1,7 +1,5 @@
 import { Buffer, SourcePosition } from './buffer'
-import { Node, nodeDefs, NodeType, NodeDef } from '../nodes'
-import { Program } from '../ast-nodes'
-import { NodeWithLocation } from '../nodes/node'
+import { Node, NodeWithLoc, Program } from '../nodes'
 
 export class Printer {
   buf: Buffer
@@ -58,9 +56,8 @@ export class Printer {
     }
 
     if (target instanceof Node) {
-      const def: NodeDef<any> = nodeDefs[target.type as NodeType]
-
-      this.print(def.print(target))
+      // @ts-ignore FIXME:
+      this.print(target.print())
       return
     }
 
@@ -76,7 +73,8 @@ export class Printer {
   }
 
   generate(ast: Program) {
-    this.print(nodeDefs['Program'].print(ast), true)
+    // @ts-ignore FIXME:
+    this.print(ast.print(), true)
 
     this.buf.append('\n')
 
@@ -84,5 +82,5 @@ export class Printer {
   }
 }
 
-const hasLocation = (target: any): target is NodeWithLocation =>
+const hasLocation = (target: any): target is NodeWithLoc =>
   !!(target && target.loc)

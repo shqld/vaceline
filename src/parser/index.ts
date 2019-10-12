@@ -1,12 +1,18 @@
-import { Program, Statement } from '../ast-nodes'
 import { Tokenizer, Token, TokenType } from './tokenizer'
-import { Node, NodeType, NodeAs } from '../nodes'
+import {
+  Node,
+  Program,
+  Statement,
+  NodeType,
+  PlainNode,
+  NodeWithLoc,
+  NodeMap,
+} from '../nodes'
 import { createError } from './create-error'
 import { TokenReader } from './token-reader'
 
 import { isNode } from '../utils/node'
 import { isToken } from '../utils/token'
-import { PlainNode, NodeWithLoc } from '../nodes/node'
 import { parseStmt } from './statement/index'
 import { parseCompound } from './compound'
 import { buildDebug } from '../utils/debug'
@@ -39,6 +45,7 @@ export class Parser extends TokenReader {
   }
 
   startNode(): NodeWithLoc {
+    // @ts-ignore
     const node = new Node()
 
     const startToken = this.getCurrentToken()
@@ -48,17 +55,17 @@ export class Parser extends TokenReader {
 
     node.loc = {
       start,
-      end: null as any,
+      end: undefined,
     }
 
     return node as NodeWithLoc
   }
 
-  finishNode<T extends NodeType, N extends NodeAs<T>, V extends PlainNode<N>>(
-    node: NodeWithLoc,
-    type: T,
-    values: V
-  ): N {
+  finishNode<
+    T extends NodeType,
+    N extends InstanceType<NodeMap[T]>,
+    V extends PlainNode<N>
+  >(node: NodeWithLoc, type: T, values: V): N {
     node.loc.end = this.getCurrentToken()!.loc.end
 
     const finished = Node.build(node, type, values)
@@ -76,7 +83,7 @@ export class Parser extends TokenReader {
     node: Node,
     type: T,
     message?: string
-  ): NodeAs<T[number]> {
+  ): InstanceType<NodeMap[T[number]]> {
     if (!isNode(node, type)) {
       message = 'expected ' + type.join(', ') + (message ? message : '')
 
@@ -85,7 +92,7 @@ export class Parser extends TokenReader {
       throw createError(this.source, message, loc.start, loc.end)
     }
 
-    return node as NodeAs<T[number]>
+    return node
   }
 
   validateToken<T extends TokenType, U extends string>(

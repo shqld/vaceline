@@ -1,5 +1,4 @@
-import { Node, NodeType } from './nodes'
-import { PlainNode } from './nodes/node'
+import { Node } from './nodes'
 
 export const hydrate = (raw: string): Node =>
   JSON.parse(raw, (_, value) => {

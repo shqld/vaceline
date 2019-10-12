@@ -1,7 +1,7 @@
-import * as n from '../ast-nodes'
+import * as n from '../nodes'
 
 import { Token } from './tokenizer'
-import { NodeWithLoc } from '../nodes/node'
+import { NodeWithLoc } from '../nodes'
 import { createError } from './create-error'
 import { Parser } from '.'
 import { isToken } from '../utils/token'

@@ -1,4 +1,5 @@
-import * as n from '../../ast-nodes'
+import * as n from '../../nodes'
+import { NodeWithLoc } from '../../nodes'
 import { isToken } from '../../utils/token'
 
 import { parseExpr, parseIdentifier } from '../expression'
@@ -8,8 +9,6 @@ import { keywords, returnActions } from '../keywords'
 import { parseIp } from './ip'
 import { Token } from '../tokenizer'
 import { parseCompound } from '../compound'
-import { NodeWithLoc } from '../../nodes/node'
-import { parseLiteral } from '../literal'
 
 const ensureSemi = (p: Parser) => {
   p.validateToken(p.read(), 'symbol', ';')

@@ -1,44 +1,38 @@
 import { traverse } from '../..'
-import { Node, nodeDefs } from '../../nodes'
-import { hydrate } from '../../hydrate'
-import { NodePath } from '../../traverser/path'
-import { Member, FunCallExpression } from '../../ast-nodes'
+import {
+  Node,
+  Member,
+  FunCallExpression,
+  Identifier,
+  Header,
+} from '../../nodes'
 import { isNode } from '../../utils/node'
 
 const variable = (obj: 'req' | 'resp') =>
-  ({
-    type: 'Member',
-    base: {
-      type: 'Member',
-      base: {
-        type: 'Identifier',
+  new Member({
+    base: new Member({
+      base: new Identifier({
         name: obj,
-      },
-      member: {
-        type: 'Identifier',
+      }),
+      member: new Identifier({
         name: 'http',
-      },
-    },
-    member: {
-      type: 'Header',
+      }),
+    }),
+    member: new Header({
       name: 'Branch-Log',
-    },
-  } as Member)
+    }),
+  })
 
-const collectLogs = {
-  type: 'FunCallExpression',
-  callee: {
-    type: 'Member',
-    base: {
-      type: 'Identifier',
-      name: 'std',
-    },
-    member: {
-      type: 'Identifier',
-      name: 'collect',
-    },
-  },
-} as FunCallExpression
+// const collectLogs = new FunCallExpression({
+//   callee: new Member({
+//     base: new Identifier({
+//       name: 'std',
+//     }),
+//     member: new Identifier({
+//       name: 'collect',
+//     }),
+//   }),
+// })
 
 export default (ast: Node) => {
   traverse(ast, {
