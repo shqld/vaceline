@@ -1,44 +1,40 @@
 import { traverse } from '../..'
-import { Node, nodeDefs } from '../../nodes'
-import { hydrate } from '../../hydrate'
-import { NodePath } from '../../traverser/path'
-import { Member, FunCallExpression } from '../../ast-nodes'
+import {
+  Node,
+  Member,
+  Identifier,
+  Header,
+  SetStatement,
+  AddStatement,
+  StringLiteral,
+} from '../../nodes'
 import { isNode } from '../../utils/node'
 
 const variable = (obj: 'req' | 'resp') =>
-  ({
-    type: 'Member',
-    base: {
-      type: 'Member',
-      base: {
-        type: 'Identifier',
+  new Member({
+    base: new Member({
+      base: new Identifier({
         name: obj,
-      },
-      member: {
-        type: 'Identifier',
+      }),
+      member: new Identifier({
         name: 'http',
-      },
-    },
-    member: {
-      type: 'Header',
+      }),
+    }),
+    member: new Header({
       name: 'Branch-Log',
-    },
-  } as Member)
+    }),
+  })
 
-const collectLogs = {
-  type: 'FunCallExpression',
-  callee: {
-    type: 'Member',
-    base: {
-      type: 'Identifier',
-      name: 'std',
-    },
-    member: {
-      type: 'Identifier',
-      name: 'collect',
-    },
-  },
-} as FunCallExpression
+// const collectLogs = new FunCallExpression({
+//   callee: new Member({
+//     base: new Identifier({
+//       name: 'std',
+//     }),
+//     member: new Identifier({
+//       name: 'collect',
+//     }),
+//   }),
+// })
 
 export default (ast: Node) => {
   traverse(ast, {
@@ -46,25 +42,25 @@ export default (ast: Node) => {
       if (isNode(node, ['SubroutineStatement'])) {
         const loggerNode =
           node.id.name === 'vcl_deliver'
-            ? Node.create('SetStatement', {
+            ? new SetStatement({
                 operator: '=',
                 left: variable('resp'),
-                right: Node.create('StringLiteral', {
+                right: new StringLiteral({
                   value: 'std.collect(std)',
                 }),
               })
-            : Node.create('AddStatement', {
+            : new AddStatement({
                 operator: '=',
                 left: variable('req'),
-                right: Node.create('StringLiteral', { value: node.id.name }),
+                right: new StringLiteral({ value: node.id.name }),
               })
 
         node.body.unshift(loggerNode)
       } else if (isNode(node, ['IfStatement'])) {
-        const loggerNode = Node.create('AddStatement', {
+        const loggerNode = new AddStatement({
           operator: '=',
           left: variable('req'),
-          right: Node.create('StringLiteral', {
+          right: new StringLiteral({
             value: `${node.loc!.start.line}:${node.loc!.start.column}`,
           }),
         })

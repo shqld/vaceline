@@ -1,5 +1,4 @@
 import { Token } from './tokenizer'
-import { Location } from '../nodes'
 
 export class TokenReader {
   private tokens: Array<Token>

@@ -1,7 +1,7 @@
-import * as n from '../ast-nodes'
+import * as n from '../nodes'
 
 import { Token } from './tokenizer'
-import { NodeWithLoc } from '../nodes/node'
+import { NodeWithLoc } from '../nodes'
 import { createError } from './create-error'
 import { Parser } from '.'
 import { isToken } from '../utils/token'
@@ -12,20 +12,20 @@ export const parseLiteral = (
   node: NodeWithLoc = p.startNode()
 ): n.Literal | null => {
   if (token.type === 'boolean') {
-    return p.finishNode(node, 'BooleanLiteral', {
+    return p.finishNode(n.BooleanLiteral, node, {
       value: token.value,
     })
   }
 
   if (token.type === 'string') {
-    return p.finishNode(node, 'StringLiteral', {
+    return p.finishNode(n.StringLiteral, node, {
       value: token.value,
     })
   }
 
   if (token.type === 'numeric') {
     if (isToken(p.peek()!, 'ident', /ms|s|m|h|d|y/)) {
-      return p.finishNode(node, 'DurationLiteral', {
+      return p.finishNode(n.DurationLiteral, node, {
         value: token.value + p.read().value,
       })
     }
@@ -43,7 +43,7 @@ export const parseLiteral = (
         )
       }
 
-      return p.finishNode(node, 'NumericLiteral', {
+      return p.finishNode(n.NumericLiteral, node, {
         value: token.value,
       })
     }
