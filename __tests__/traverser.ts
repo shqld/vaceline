@@ -44,18 +44,6 @@ describe('Traverser', () => {
       },
     })
 
-    it('should `get` child node as NodePath', () => {
-      const path = paths[paths.length - 8]
-
-      checkNode(path.node, 'Member')
-
-      expect(path.get('object')).toBeInstanceOf(NodePath)
-      expect(path.get('object').node).toBe(path.node.object)
-
-      expect(path.get('property')).toBeInstanceOf(NodePath)
-      expect(path.get('property').node).toBe(path.node.property)
-    })
-
     it("shouldn't have `parent` & `parentPath` in the top node", () => {
       const path = paths[0]
 

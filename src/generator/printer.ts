@@ -1,6 +1,5 @@
 import { Buffer, SourcePosition } from './buffer'
 import { Node, nodeDefs, NodeType, NodeDef } from '../nodes'
-import { PrintList } from './lib'
 import { Program } from '../ast-nodes'
 import { NodeWithLocation } from '../nodes/node'
 
@@ -58,28 +57,6 @@ export class Printer {
       }
     }
 
-    if (isList(target)) {
-      if (!isProgram) {
-        this.indent()
-      }
-
-      target.nodes.forEach((node, i) => {
-        this.print(node)
-
-        if (target.sep && i !== target.nodes.length - 1) {
-          for (const s of target.sep) {
-            this.append(s)
-          }
-        }
-      })
-
-      if (!isProgram) {
-        this.dedent()
-      }
-
-      return
-    }
-
     if (target instanceof Node) {
       const def: NodeDef<any> = nodeDefs[target.type as NodeType]
 
@@ -107,7 +84,5 @@ export class Printer {
   }
 }
 
-// const isMark = (mark: any): mark is Mark => !(mark instanceof Node) && !!mark.loc
-const isList = (list: any): list is PrintList => !!list.isList
 const hasLocation = (target: any): target is NodeWithLocation =>
   !!(target && target.loc)

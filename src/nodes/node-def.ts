@@ -1,6 +1,5 @@
 import { Node } from './node'
 import * as n from '../ast-nodes.d'
-import { isNode } from '../utils/node'
 
 type ExtractNodeFromDef<Def> = Def extends NodeDef<infer Node> ? Node : never
 
@@ -148,13 +147,15 @@ export const nodeDefs = {
       node.arguments = obj.arguments
     },
     next: (n) => null,
-    print: (n) => [n.callee, '.', n.arguments],
+    print: (n) => [n.callee, '(', n.arguments, ')'],
   } as NodeDef<n.FunCallExpression>,
 
   ConcatExpression: {
     build(node, obj) {
       node.body = obj.body
     },
+    next: (n) => n.body,
+    print: (n) => n.body,
   } as NodeDef<n.ConcatExpression>,
 
   BinaryExpression: {
@@ -163,6 +164,8 @@ export const nodeDefs = {
       node.right = obj.right
       node.operator = obj.operator
     },
+    next: (n) => [n.left, n.right],
+    print: (n) => [n.left, n.operator, n.right],
   } as NodeDef<n.BinaryExpression>,
 
   LogicalExpression: {
@@ -171,30 +174,40 @@ export const nodeDefs = {
       node.right = obj.right
       node.operator = obj.operator
     },
+    next: (n) => [n.left, n.right],
+    print: (n) => [n.left, n.operator, n.right],
   } as NodeDef<n.LogicalExpression>,
 
   ExpressionStatement: {
     build(node, obj) {
       node.body = obj.body
     },
+    next: (n) => [n.body],
+    print: (n) => [n.body, ';'],
   } as NodeDef<n.ExpressionStatement>,
 
   IncludeStatement: {
     build(node, obj) {
       node.module = obj.module
     },
+    next: (n) => [n.module],
+    print: (n) => ['include', n.module, ';'],
   } as NodeDef<n.IncludeStatement>,
 
   ImportStatement: {
     build(node, obj) {
       node.module = obj.module
     },
+    next: (n) => [n.module],
+    print: (n) => ['import', n.module, ';'],
   } as NodeDef<n.ImportStatement>,
 
   CallStatement: {
     build(node, obj) {
       node.subroutine = obj.subroutine
     },
+    next: (n) => [n.subroutine],
+    print: (n) => ['call', n.subroutine, ';'],
   } as NodeDef<n.CallStatement>,
 
   DeclareStatement: {
@@ -202,6 +215,8 @@ export const nodeDefs = {
       node.id = obj.id
       node.valueType = obj.valueType
     },
+    next: (n) => [n.id],
+    print: (n) => ['declare', 'local', n.id, n.valueType, ';'],
   } as NodeDef<n.DeclareStatement>,
 
   AddStatement: {
@@ -210,6 +225,8 @@ export const nodeDefs = {
       node.right = obj.right
       node.operator = obj.operator
     },
+    next: (n) => [n.left, n.right],
+    print: (n) => ['add', n.left, n.operator, n.right, ';'],
   } as NodeDef<n.AddStatement>,
 
   SetStatement: {
@@ -218,18 +235,24 @@ export const nodeDefs = {
       node.right = obj.right
       node.operator = obj.operator
     },
+    next: (n) => [n.left, n.right],
+    print: (n) => ['set', n.left, n.operator, n.right, ';'],
   } as NodeDef<n.SetStatement>,
 
   UnsetStatement: {
     build(node, obj) {
       node.id = obj.id
     },
+    next: (n) => [n.id],
+    print: (n) => ['unset', n.id],
   } as NodeDef<n.UnsetStatement>,
 
   ReturnStatement: {
     build(node, obj) {
       node.action = obj.action
     },
+    next: (n) => null,
+    print: (n) => ['return', n.action, ';'],
   } as NodeDef<n.ReturnStatement>,
 
   ErrorStatement: {
@@ -237,22 +260,30 @@ export const nodeDefs = {
       node.status = obj.status
       node.message = obj.message
     },
+    next: (n) => [n.message],
+    print: (n) => ['error', n.status, n.message, ';'],
   } as NodeDef<n.ErrorStatement>,
 
   RestartStatement: {
     build(node, obj) {},
+    next: (n) => null,
+    print: (n) => ['restart', ';'],
   } as NodeDef<n.RestartStatement>,
 
   SyntheticStatement: {
     build(node, obj) {
       node.response = obj.response
     },
+    next: (n) => [n.response],
+    print: (n) => ['synthetic', n.response, ';'],
   } as NodeDef<n.SyntheticStatement>,
 
   LogStatement: {
     build(node, obj) {
       node.content = obj.content
     },
+    next: (n) => [n.content],
+    print: (n) => ['log', n.content, ';'],
   } as NodeDef<n.LogStatement>,
 
   IfStatement: {
@@ -261,6 +292,20 @@ export const nodeDefs = {
       node.consequent = obj.consequent
       node.alternative = obj.alternative
     },
+    next: (n) =>
+      [n.test, ...n.consequent, n.alternative].filter(Boolean).flat(2),
+    print: (n) => [
+      'if',
+      '(',
+      n.test,
+      ')',
+      '{',
+      n.consequent,
+      '}',
+      ...(Array.isArray(n.alternative)
+        ? ['else', ...n.alternative]
+        : ['else', '{', n.alternative, '}']),
+    ],
   } as NodeDef<n.IfStatement>,
 
   SubroutineStatement: {
@@ -268,6 +313,8 @@ export const nodeDefs = {
       node.id = obj.id
       node.body = obj.body
     },
+    next: (n) => [n.id, ...n.body],
+    print: (n) => ['sub', n.id, '{', ...n.body, '}'],
   } as NodeDef<n.SubroutineStatement>,
 
   AclStatement: {
@@ -275,6 +322,8 @@ export const nodeDefs = {
       node.id = obj.id
       node.body = obj.body
     },
+    next: (n) => [n.id, ...n.body],
+    print: (n) => ['acl', n.id, '{', ...n.body, '}'],
   } as NodeDef<n.AclStatement>,
 
   BackendStatement: {
@@ -282,6 +331,14 @@ export const nodeDefs = {
       node.id = obj.id
       node.body = obj.body
     },
+    next: (n) => [n.id, ...n.body.map((b) => b.value).flat(2)],
+    print: (n) => [
+      'backend',
+      n.id,
+      '{',
+      ...n.body.map((b) => [b.key, b.value]).flat(2),
+      '}',
+    ],
   } as NodeDef<n.BackendStatement>,
 
   TableStatement: {
@@ -289,5 +346,7 @@ export const nodeDefs = {
       node.id = obj.id
       node.body = obj.body
     },
+    next: (n) => [n.id, ...n.body],
+    print: (n) => ['table', n.id, '{', ...n.body, '}'],
   } as NodeDef<n.TableStatement>,
 } as const
