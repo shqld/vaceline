@@ -5,8 +5,7 @@ import {
   LogicalExpression,
   Member,
   UnaryExpression,
-} from '../../src/ast-nodes'
-import { parseIp } from '../../src/parser/statement/ip'
+} from '../../src/nodes'
 
 const parse = (source: string) => parseExpr(new Parser(source))
 

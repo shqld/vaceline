@@ -1,7 +1,6 @@
-import { Node } from '../nodes/node'
-import { NodeType, NodeAs } from '../nodes/node-def'
+import { NodeType, Node, NodeMap } from '../nodes'
 
 export const isNode = <T extends Array<NodeType>>(
   node: Node,
   types: T
-): node is NodeAs<T[number]> => types.includes(node.type as any)
+): node is NodeMap[T[number]] => types.includes(node.type as NodeType)

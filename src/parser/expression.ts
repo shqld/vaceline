@@ -1,9 +1,8 @@
-import { Node } from '../nodes'
-import * as n from '../ast-nodes.d'
+import { Node, NodeWithLoc } from '../nodes'
+import * as n from '../nodes'
 import { isToken } from '../utils/token'
 
 import { Token } from './tokenizer'
-import { NodeWithLoc } from '../nodes/node'
 import { createError } from './create-error'
 import { parseLiteral } from './literal'
 import * as ops from './tokenizer/operators'
@@ -70,7 +69,7 @@ export const parseExpr = (
     return expr
   }
 
-  return p.finishNode(node, 'ConcatExpression', {
+  return p.finishNode(n.ConcatExpression, node, {
     body: buf,
   })
 }
@@ -142,7 +141,7 @@ const parseOperatorExpr = (
 
   for (let i = 0; i < rpn.length; i++) {
     const item = rpn[i]
-    if (item instanceof Node) {
+    if (item instanceof n.BaseNode) {
       stack.push(item)
       continue
     }
@@ -150,15 +149,14 @@ const parseOperatorExpr = (
     const right = stack.pop()!
     const left = stack.pop()!
 
-    const expr = Node.create(
-      item.isBinary ? 'BinaryExpression' : 'LogicalExpression',
-      {
-        left,
-        right,
-        operator: item.value,
-      },
-      { start: left.loc!.start, end: right.loc!.end }
-    )
+    const nodeType = item.isBinary ? n.BinaryExpression : n.LogicalExpression
+    const expr = new nodeType({
+      left,
+      right,
+      operator: item.value,
+    })
+
+    expr.loc = { start: left.loc!.start, end: right.loc!.end }
 
     stack.push(expr)
   }
@@ -187,7 +185,7 @@ const parseHumbleExpr = (
 
       const args = parseCompound(p, parseExpr, ')', ',')
 
-      return p.finishNode(node, 'FunCallExpression', {
+      return p.finishNode(n.FunCallExpression, node, {
         callee: ident,
         arguments: args,
       })
@@ -201,7 +199,7 @@ const parseHumbleExpr = (
       const body = parseExpr(p)
       p.validateToken(p.read(), 'symbol', ')')
 
-      return p.finishNode(node, 'BooleanExpression', {
+      return p.finishNode(n.BooleanExpression, node, {
         body,
       })
     }
@@ -209,7 +207,7 @@ const parseHumbleExpr = (
 
   if (token.type === 'operator') {
     if (token.value === '!') {
-      return p.finishNode(node, 'UnaryExpression', {
+      return p.finishNode(n.UnaryExpression, node, {
         argument: parseExpr(p),
         operator: token.value,
       })
@@ -227,7 +225,7 @@ const parseHumbleExpr = (
 export const parseIdentifier = (
   p: Parser,
   token?: Token,
-  base: n.Identifier | n.Member = p.finishNode(p.startNode(), 'Identifier', {
+  base: n.Identifier | n.Member = p.finishNode(n.Identifier, p.startNode(), {
     name: token!.value,
   })
 ): n.Member | n.Identifier => {
@@ -238,21 +236,19 @@ export const parseIdentifier = (
   p.take()
 
   const memberTok = p.read()
-  const member = p.finishNode(p.startNode(), 'Identifier', {
+  const member = p.finishNode(n.Identifier, p.startNode(), {
     name: memberTok.value,
   })
 
-  const expr = Node.create(
-    'Member',
-    {
-      base,
-      member,
-    },
-    {
-      start: base.loc!.start,
-      end: member.loc!.end,
-    }
-  )
+  const expr = new n.Member({
+    base,
+    member,
+  })
+
+  expr.loc = {
+    start: base.loc!.start,
+    end: member.loc!.end,
+  }
 
   return parseIdentifier(p, undefined, expr)
 }

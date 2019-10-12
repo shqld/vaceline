@@ -3,12 +3,11 @@ import path from 'path'
 
 import { traverse } from '../src/traverser'
 import { parse } from '../src'
-import { Node, NodeType } from '../src/nodes'
+import { Node, NodeType, Identifier, BaseNode } from '../src/nodes'
 import { NodePath } from '../src/traverser/path'
-import { Identifier } from '../src/ast-nodes'
 
 const checkNode = (node: any, type: NodeType) => {
-  expect(node).toBeInstanceOf(Node)
+  expect(node).toBeInstanceOf(BaseNode)
   expect(node.type).toBe(type)
 }
 
@@ -55,7 +54,7 @@ describe('Traverser', () => {
       const path = paths[paths.length - 1]
 
       expect(path).toBeInstanceOf(NodePath)
-      expect(path.parent).toBeInstanceOf(Node)
+      expect(path.parent).toBeInstanceOf(BaseNode)
       expect(path.parentPath).toBeInstanceOf(NodePath)
     })
   })

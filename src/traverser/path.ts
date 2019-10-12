@@ -1,7 +1,6 @@
-import { Node } from '../nodes'
+import { Node, BaseNode, Identifier } from '../nodes'
 import { traverse } from '.'
 import { isNode } from '../utils/node'
-import { Identifier } from '../ast-nodes'
 
 export interface Handler {
   entry?(path: NodePath<any>): void
@@ -73,7 +72,7 @@ export class NodePath<T extends Node> implements TraversalContext {
   get<T extends Node>(this: NodePath<T>, field: keyof T): NodePath<any> {
     const prop = this.node[field]
 
-    if (!(prop instanceof Node)) {
+    if (!(prop instanceof BaseNode)) {
       throw new Error('asdf')
     }
 

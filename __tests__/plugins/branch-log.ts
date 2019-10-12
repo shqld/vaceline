@@ -4,11 +4,7 @@ import path from 'path'
 import { parse, generate, traverse } from '../../src'
 import BranchLogPlugin from '../../src/plugins/branch-log'
 import { NodePath } from '../../src/traverser/path'
-import {
-  SubroutineStatement,
-  IfStatement,
-  AddStatement,
-} from '../../src/ast-nodes'
+import { SubroutineStatement, IfStatement, AddStatement } from '../../src/nodes'
 import { isNode } from '../../src/utils/node'
 
 const code = fs.readFileSync(

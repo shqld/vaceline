@@ -2,6 +2,7 @@ import { Parser } from '..'
 import { isToken } from '../../utils/token'
 import isIp from 'is-ip'
 import { createError } from '../create-error'
+import { Ip } from '../../nodes'
 
 export const parseIp = (p: Parser, token = p.read()) => {
   const str = p.validateToken(token, 'string')
@@ -53,7 +54,7 @@ export const parseIp = (p: Parser, token = p.read()) => {
 
   p.validateToken(p.read(), 'symbol', ';')
 
-  return p.finishNode(node, 'Ip', {
+  return p.finishNode(Ip, node, {
     value,
     cidr,
   })
