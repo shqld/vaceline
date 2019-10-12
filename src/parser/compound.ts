@@ -10,6 +10,7 @@ export const parseCompound = <T>(
 ): Array<T> => {
   const compound: Array<T> = []
 
+  // eslint-disable-next-line no-constant-condition
   while (true) {
     const token = p.peek()
 
