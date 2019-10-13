@@ -11,20 +11,79 @@ export interface Location {
   end: Position
 }
 
-export type PlainNode<T extends Node> = Omit<T, keyof Node>
-export type NodeWithLoc<N extends Node = Node> = N & { loc: Location }
-export type NodeMap = typeof map
-export type NodeType = keyof NodeMap
+export type PlainNode<T extends BaseNode> = Omit<T, keyof BaseNode>
+export type NodeWithLoc<N extends BaseNode = BaseNode> = N & { loc: Location }
 
-export abstract class Node {
+export type NodeClassMap = typeof map
+export type NodeType = keyof NodeClassMap
+export type NodeMap = {
+  [K in keyof NodeClassMap]: InstanceType<NodeClassMap[K]>
+}
+
+export type Node =
+  | File
+  | Program
+  | Comment
+  | Block
+  // abstract base
+  | BaseExpression
+  | BaseStatement
+  // abstract group
+  | Literal
+  | Expression
+  | Statement
+
+export type Literal =
+  | BooleanLiteral
+  | StringLiteral
+  | MultilineLiteral
+  | DurationLiteral
+  | NumericLiteral
+
+export type Expression =
+  | Literal
+  | Identifier
+  | Header
+  | Ip
+  | Member
+  | BooleanExpression
+  | UnaryExpression
+  | FunCallExpression
+  | ConcatExpression
+  | BinaryExpression
+  | LogicalExpression
+
+export type Statement =
+  | ExpressionStatement
+  | IncludeStatement
+  | ImportStatement
+  | CallStatement
+  | DeclareStatement
+  | AddStatement
+  | SetStatement
+  | UnsetStatement
+  | ReturnStatement
+  | ErrorStatement
+  | RestartStatement
+  | SyntheticStatement
+  | LogStatement
+  | IfStatement
+  | SubroutineStatement
+  | AclStatement
+  | BackendStatement
+  | TableStatement
+
+export abstract class BaseNode {
+  // @ts-ignore
+  static name = 'Node'
   type!: string
   loc?: Location
 
   constructor() {}
 
-  abstract next(): Array<Node | undefined>
+  abstract next(): Array<BaseNode | undefined>
 
-  static create<T extends NodeType, U extends InstanceType<NodeMap[T]>>(
+  static create<T extends NodeType, U extends NodeMap[T]>(
     type: T,
     values: PlainNode<U>,
     loc?: Location
@@ -38,7 +97,7 @@ export abstract class Node {
     return node as U
   }
 
-  static build<T extends NodeType, N extends InstanceType<NodeMap[T]>>(
+  static build<T extends NodeType, N extends NodeMap[T]>(
     node: NodeWithLoc,
     type: T,
     values: PlainNode<N>
@@ -52,17 +111,17 @@ export abstract class Node {
   }
 }
 
-export abstract class Literal extends Node {}
-export abstract class Expression extends Node {}
-export abstract class Statement extends Node {}
+export abstract class BaseExpression extends BaseNode {}
+export abstract class BaseLiteral extends BaseExpression {}
+export abstract class BaseStatement extends BaseNode {}
 
-export class File extends Node {
+export class File extends BaseNode {
   type = 'File' as const
   filePath: string
   program: Program
   comments: Array<Token>
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<File>) {
     super()
 
     this.filePath = obj.filePath
@@ -75,11 +134,11 @@ export class File extends Node {
   }
 }
 
-export class Program extends Node {
+export class Program extends BaseNode {
   type = 'Program' as const
   body: Array<Statement | Comment>
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<Program>) {
     super()
 
     this.body = obj.body
@@ -90,12 +149,12 @@ export class Program extends Node {
   }
 }
 
-export class Comment extends Node {
+export class Comment extends BaseNode {
   type = 'Comment' as const
   // TODO: add `type` prop
   body: string
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<Comment>) {
     super()
 
     this.body = obj.body
@@ -106,11 +165,11 @@ export class Comment extends Node {
   }
 }
 
-export class Block extends Node {
+export class Block extends BaseNode {
   type = 'Block' as const
   body: Array<Statement | Comment>
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<Block>) {
     super()
 
     this.body = obj.body
@@ -121,11 +180,11 @@ export class Block extends Node {
   }
 }
 
-export class BooleanLiteral extends Literal {
+export class BooleanLiteral extends BaseLiteral {
   type = 'BooleanLiteral' as const
   value: string
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<BooleanLiteral>) {
     super()
 
     this.value = obj.value
@@ -136,11 +195,11 @@ export class BooleanLiteral extends Literal {
   }
 }
 
-export class StringLiteral extends Literal {
+export class StringLiteral extends BaseLiteral {
   type = 'StringLiteral' as const
   value: string
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<StringLiteral>) {
     super()
 
     this.value = obj.value
@@ -151,11 +210,11 @@ export class StringLiteral extends Literal {
   }
 }
 
-export class MultilineLiteral extends Literal {
+export class MultilineLiteral extends BaseLiteral {
   type = 'MultilineLiteral' as const
   value: string
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<MultilineLiteral>) {
     super()
 
     this.value = obj.value
@@ -166,11 +225,11 @@ export class MultilineLiteral extends Literal {
   }
 }
 
-export class DurationLiteral extends Literal {
+export class DurationLiteral extends BaseLiteral {
   type = 'DurationLiteral' as const
   value: string
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<DurationLiteral>) {
     super()
 
     this.value = obj.value
@@ -181,11 +240,11 @@ export class DurationLiteral extends Literal {
   }
 }
 
-export class NumericLiteral extends Literal {
+export class NumericLiteral extends BaseLiteral {
   type = 'NumericLiteral' as const
   value: string
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<NumericLiteral>) {
     super()
 
     this.value = obj.value
@@ -196,7 +255,7 @@ export class NumericLiteral extends Literal {
   }
 }
 
-export class Identifier extends Expression {
+export class Identifier extends BaseExpression {
   type = 'Identifier' as const
   name: string
 
@@ -211,11 +270,11 @@ export class Identifier extends Expression {
   }
 }
 
-export class Header extends Expression {
+export class Header extends BaseExpression {
   type = 'Header' as const
   name: string
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<Header>) {
     super()
 
     this.name = obj.name
@@ -226,12 +285,12 @@ export class Header extends Expression {
   }
 }
 
-export class Ip extends Expression {
+export class Ip extends BaseExpression {
   type = 'Ip' as const
   value: string
   cidr?: number
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<Ip>) {
     super()
 
     this.value = obj.value
@@ -243,12 +302,12 @@ export class Ip extends Expression {
   }
 }
 
-export class Member extends Expression {
+export class Member extends BaseExpression {
   type = 'Member' as const
   base: Identifier | Member
   member: Identifier | Header
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<Member>) {
     super()
 
     this.base = obj.base
@@ -260,11 +319,11 @@ export class Member extends Expression {
   }
 }
 
-export class BooleanExpression extends Expression {
+export class BooleanExpression extends BaseExpression {
   type = 'BooleanExpression' as const
   body: Expression
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<BooleanExpression>) {
     super()
 
     this.body = obj.body
@@ -275,12 +334,12 @@ export class BooleanExpression extends Expression {
   }
 }
 
-export class UnaryExpression extends Expression {
+export class UnaryExpression extends BaseExpression {
   type = 'UnaryExpression' as const
   operator: string
   argument: Expression
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<UnaryExpression>) {
     super()
 
     this.operator = obj.operator
@@ -292,12 +351,12 @@ export class UnaryExpression extends Expression {
   }
 }
 
-export class FunCallExpression extends Expression {
+export class FunCallExpression extends BaseExpression {
   type = 'FunCallExpression' as const
   callee: Member | Identifier
   arguments: Array<Expression>
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<FunCallExpression>) {
     super()
 
     this.callee = obj.callee
@@ -309,11 +368,11 @@ export class FunCallExpression extends Expression {
   }
 }
 
-export class ConcatExpression extends Expression {
+export class ConcatExpression extends BaseExpression {
   type = 'ConcatExpression' as const
   body: Array<Expression>
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<ConcatExpression>) {
     super()
 
     this.body = obj.body
@@ -324,13 +383,13 @@ export class ConcatExpression extends Expression {
   }
 }
 
-export class BinaryExpression extends Expression {
+export class BinaryExpression extends BaseExpression {
   type = 'BinaryExpression' as const
   left: Expression
   right: Expression
   operator: string
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<BinaryExpression>) {
     super()
 
     this.left = obj.left
@@ -343,13 +402,13 @@ export class BinaryExpression extends Expression {
   }
 }
 
-export class LogicalExpression extends Expression {
+export class LogicalExpression extends BaseExpression {
   type = 'LogicalExpression' as const
   left: Expression
   right: Expression
   operator: string
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<LogicalExpression>) {
     super()
 
     this.left = obj.left
@@ -362,11 +421,11 @@ export class LogicalExpression extends Expression {
   }
 }
 
-export class ExpressionStatement extends Statement {
+export class ExpressionStatement extends BaseStatement {
   type = 'ExpressionStatement' as const
   body: Expression
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<ExpressionStatement>) {
     super()
 
     this.body = obj.body
@@ -377,11 +436,11 @@ export class ExpressionStatement extends Statement {
   }
 }
 
-export class IncludeStatement extends Statement {
+export class IncludeStatement extends BaseStatement {
   type = 'IncludeStatement' as const
   module: StringLiteral
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<IncludeStatement>) {
     super()
 
     this.module = obj.module
@@ -392,11 +451,11 @@ export class IncludeStatement extends Statement {
   }
 }
 
-export class ImportStatement extends Statement {
+export class ImportStatement extends BaseStatement {
   type = 'ImportStatement' as const
   module: Identifier
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<ImportStatement>) {
     super()
 
     this.module = obj.module
@@ -407,11 +466,11 @@ export class ImportStatement extends Statement {
   }
 }
 
-export class CallStatement extends Statement {
+export class CallStatement extends BaseStatement {
   type = 'CallStatement' as const
   subroutine: Identifier
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<CallStatement>) {
     super()
 
     this.subroutine = obj.subroutine
@@ -422,12 +481,12 @@ export class CallStatement extends Statement {
   }
 }
 
-export class DeclareStatement extends Statement {
+export class DeclareStatement extends BaseStatement {
   type = 'DeclareStatement' as const
   id: Identifier | Member
   valueType: 'STRING' | 'BOOL' | 'BOOLEAN' | 'INTEGER' | 'FLOAT'
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<DeclareStatement>) {
     super()
 
     this.id = obj.id
@@ -439,13 +498,13 @@ export class DeclareStatement extends Statement {
   }
 }
 
-export class AddStatement extends Statement {
+export class AddStatement extends BaseStatement {
   type = 'AddStatement' as const
   left: Identifier | Member
   right: Expression
   operator: string
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<AddStatement>) {
     super()
 
     this.left = obj.left
@@ -458,13 +517,13 @@ export class AddStatement extends Statement {
   }
 }
 
-export class SetStatement extends Statement {
+export class SetStatement extends BaseStatement {
   type = 'SetStatement' as const
   left: Identifier | Member
   right: Expression
   operator: string
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<SetStatement>) {
     super()
 
     this.left = obj.left
@@ -477,11 +536,11 @@ export class SetStatement extends Statement {
   }
 }
 
-export class UnsetStatement extends Statement {
+export class UnsetStatement extends BaseStatement {
   type = 'UnsetStatement' as const
   id: Identifier | Member
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<UnsetStatement>) {
     super()
 
     this.id = obj.id
@@ -492,11 +551,11 @@ export class UnsetStatement extends Statement {
   }
 }
 
-export class ReturnStatement extends Statement {
+export class ReturnStatement extends BaseStatement {
   type = 'ReturnStatement' as const
   action: 'pass' | 'hit_for_pass' | 'lookup' | 'pipe' | 'deliver'
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<ReturnStatement>) {
     super()
 
     this.action = obj.action
@@ -507,12 +566,12 @@ export class ReturnStatement extends Statement {
   }
 }
 
-export class ErrorStatement extends Statement {
+export class ErrorStatement extends BaseStatement {
   type = 'ErrorStatement' as const
   status: number
   message?: Expression
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<ErrorStatement>) {
     super()
 
     this.status = obj.status
@@ -524,10 +583,10 @@ export class ErrorStatement extends Statement {
   }
 }
 
-export class RestartStatement extends Statement {
+export class RestartStatement extends BaseStatement {
   type = 'RestartStatement' as const
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<RestartStatement>) {
     super()
   }
 
@@ -536,11 +595,11 @@ export class RestartStatement extends Statement {
   }
 }
 
-export class SyntheticStatement extends Statement {
+export class SyntheticStatement extends BaseStatement {
   type = 'SyntheticStatement' as const
   response: Expression
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<SyntheticStatement>) {
     super()
 
     this.response = obj.response
@@ -551,11 +610,11 @@ export class SyntheticStatement extends Statement {
   }
 }
 
-export class LogStatement extends Statement {
+export class LogStatement extends BaseStatement {
   type = 'LogStatement' as const
   content: Expression
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<LogStatement>) {
     super()
 
     this.content = obj.content
@@ -566,13 +625,13 @@ export class LogStatement extends Statement {
   }
 }
 
-export class IfStatement extends Statement {
+export class IfStatement extends BaseStatement {
   type = 'IfStatement' as const
   test: Expression
   consequent: Array<Statement>
   alternative?: IfStatement | Array<Statement>
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<IfStatement>) {
     super()
 
     this.test = obj.test
@@ -587,12 +646,12 @@ export class IfStatement extends Statement {
   }
 }
 
-export class SubroutineStatement extends Statement {
+export class SubroutineStatement extends BaseStatement {
   type = 'SubroutineStatement' as const
   id: Identifier
   body: Array<Statement>
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<SubroutineStatement>) {
     super()
 
     this.id = obj.id
@@ -604,12 +663,12 @@ export class SubroutineStatement extends Statement {
   }
 }
 
-export class AclStatement extends Statement {
+export class AclStatement extends BaseStatement {
   type = 'AclStatement' as const
   id: Identifier
   body: Array<Ip>
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<AclStatement>) {
     super()
 
     this.id = obj.id
@@ -626,12 +685,12 @@ export type BackendDef = {
   value: Expression | Array<BackendDef>
 }
 
-export class BackendStatement extends Statement {
+export class BackendStatement extends BaseStatement {
   type = 'BackendStatement' as const
   id: Identifier
   body: Array<BackendDef>
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<BackendStatement>) {
     super()
 
     this.id = obj.id
@@ -645,12 +704,12 @@ export class BackendStatement extends Statement {
 
 export type TableDef = { key: string; value: string }
 
-export class TableStatement extends Statement {
+export class TableStatement extends BaseStatement {
   type = 'TableStatement' as const
   id: Identifier
   body: Array<TableDef>
 
-  constructor(obj: any) {
+  constructor(obj: PlainNode<TableStatement>) {
     super()
 
     this.id = obj.id
