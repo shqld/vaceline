@@ -8,6 +8,7 @@ import {
   NodeWithLoc,
   NodeMap,
   BaseNode,
+  Location,
 } from '../nodes'
 import { createError } from './create-error'
 import { TokenReader } from './token-reader'
@@ -42,33 +43,40 @@ export class Parser extends TokenReader {
 
     const body = parseCompound<Statement>(this, parseStmt)
 
-    return this.finishNode(node, 'Program', { body })
+    return this.finishNode(Program, node, { body })
   }
 
-  startNode(): NodeWithLoc {
+  // TODO: no need to create empty node just to keep start location
+  startNode(loc?: Location): NodeWithLoc<BaseNode> {
     const node = Object.create(BaseNode.prototype)
 
-    const startToken = this.getCurrentToken()
-    const start = startToken
-      ? startToken.loc.start
-      : { offset: 0, line: 1, column: 1 }
+    if (loc) {
+      node.loc = loc
+    } else {
+      const startToken = this.getCurrentToken()
+      const start = startToken
+        ? startToken.loc.start
+        : { offset: 0, line: 1, column: 1 }
 
-    node.loc = {
-      start,
-      end: undefined,
+      node.loc = {
+        start,
+        end: undefined,
+      }
     }
 
-    return node as NodeWithLoc
+    return node
   }
 
-  finishNode<T extends NodeType, N extends NodeMap[T], V extends PlainNode<N>>(
+  finishNode<N extends Node>(
+    type: Class<N>,
     node: NodeWithLoc,
-    type: T,
-    values: V
-  ): N {
+    values: PlainNode<N>
+  ): NodeWithLoc<N> {
     node.loc.end = this.getCurrentToken()!.loc.end
 
-    const finished = BaseNode.build(node, type, values)
+    const finished = new type(values)
+
+    Object.assign(finished, node)
 
     if (debug.enabled) {
       const log = { ...finished }
@@ -76,7 +84,7 @@ export class Parser extends TokenReader {
       debug(log)
     }
 
-    return finished
+    return finished as NodeWithLoc<N>
   }
 
   validateNode<T extends Array<NodeType>>(

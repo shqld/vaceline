@@ -22,7 +22,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(node, 'ExpressionStatement', {
+    return p.finishNode(n.ExpressionStatement, node, {
       body,
     })
   }
@@ -34,15 +34,14 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(
-      node,
-      token.value === 'add' ? 'AddStatement' : 'SetStatement',
-      {
-        left,
-        operator,
-        right,
-      }
-    )
+    const type: Class<n.Node> =
+      token.value === 'add' ? n.AddStatement : n.SetStatement
+
+    return p.finishNode(type, node, {
+      left,
+      operator,
+      right,
+    }) as n.AddStatement | n.SetStatement
   }
 
   if (token.value === 'unset') {
@@ -50,7 +49,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(node, 'UnsetStatement', {
+    return p.finishNode(n.UnsetStatement, node, {
       id,
     })
   }
@@ -60,7 +59,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(node, 'IncludeStatement', {
+    return p.finishNode(n.IncludeStatement, node, {
       module,
     })
   }
@@ -74,7 +73,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(node, 'ImportStatement', {
+    return p.finishNode(n.ImportStatement, node, {
       module,
     })
   }
@@ -84,7 +83,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(node, 'CallStatement', {
+    return p.finishNode(n.CallStatement, node, {
       subroutine,
     })
   }
@@ -101,7 +100,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(node, 'DeclareStatement', {
+    return p.finishNode(n.DeclareStatement, node, {
       id,
       // @ts-ignore
       valueType,
@@ -136,7 +135,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(node, 'ReturnStatement', { action })
+    return p.finishNode(n.ReturnStatement, node, { action })
   }
 
   if (token.value === 'error') {
@@ -146,7 +145,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
     if (isToken(p.peek(), 'symbol', ';')) {
       p.take()
 
-      return p.finishNode(node, 'ErrorStatement', {
+      return p.finishNode(n.ErrorStatement, node, {
         status,
       })
     }
@@ -155,7 +154,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(node, 'ErrorStatement', {
+    return p.finishNode(n.ErrorStatement, node, {
       status,
       message,
     })
@@ -164,7 +163,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
   if (token.value === 'restart') {
     ensureSemi(p)
 
-    return p.finishNode(node, 'RestartStatement', {})
+    return p.finishNode(n.RestartStatement, node, {})
   }
 
   if (token.value === 'synthetic') {
@@ -172,7 +171,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(node, 'SyntheticStatement', {
+    return p.finishNode(n.SyntheticStatement, node, {
       response,
     })
   }
@@ -182,7 +181,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(node, 'LogStatement', {
+    return p.finishNode(n.LogStatement, node, {
       content,
     })
   }
@@ -197,7 +196,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
 
     const body = parseCompound(p, parseStmt, '}')
 
-    return p.finishNode(node, 'SubroutineStatement', {
+    return p.finishNode(n.SubroutineStatement, node, {
       id,
       body,
     })
@@ -209,7 +208,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
 
     const body = parseCompound(p, parseIp, '}')
 
-    return p.finishNode(node, 'AclStatement', {
+    return p.finishNode(n.AclStatement, node, {
       id,
       body,
     })
@@ -222,7 +221,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
 
     const body = parseCompound(p, parseBackendDef, '}')
 
-    return p.finishNode(node, 'BackendStatement', {
+    return p.finishNode(n.BackendStatement, node, {
       id,
       body,
     })
@@ -288,7 +287,7 @@ const parseIfStatement = (p: Parser, node: NodeWithLoc): n.IfStatement => {
     }
   }
 
-  return p.finishNode(node, 'IfStatement', {
+  return p.finishNode(n.IfStatement, node, {
     test,
     consequent,
     alternative,
@@ -322,7 +321,7 @@ const parseTableStatement = (
 
   const body = parseCompound(p, parseTableDef, '}')
 
-  return p.finishNode(node, 'TableStatement', {
+  return p.finishNode(n.TableStatement, node, {
     id,
     body,
   })

@@ -69,7 +69,7 @@ export const parseExpr = (
     return expr
   }
 
-  return p.finishNode(node, 'ConcatExpression', {
+  return p.finishNode(n.ConcatExpression, node, {
     body: buf,
   })
 }
@@ -185,7 +185,7 @@ const parseHumbleExpr = (
 
       const args = parseCompound(p, parseExpr, ')', ',')
 
-      return p.finishNode(node, 'FunCallExpression', {
+      return p.finishNode(n.FunCallExpression, node, {
         callee: ident,
         arguments: args,
       })
@@ -199,7 +199,7 @@ const parseHumbleExpr = (
       const body = parseExpr(p)
       p.validateToken(p.read(), 'symbol', ')')
 
-      return p.finishNode(node, 'BooleanExpression', {
+      return p.finishNode(n.BooleanExpression, node, {
         body,
       })
     }
@@ -207,7 +207,7 @@ const parseHumbleExpr = (
 
   if (token.type === 'operator') {
     if (token.value === '!') {
-      return p.finishNode(node, 'UnaryExpression', {
+      return p.finishNode(n.UnaryExpression, node, {
         argument: parseExpr(p),
         operator: token.value,
       })
@@ -225,7 +225,7 @@ const parseHumbleExpr = (
 export const parseIdentifier = (
   p: Parser,
   token?: Token,
-  base: n.Identifier | n.Member = p.finishNode(p.startNode(), 'Identifier', {
+  base: n.Identifier | n.Member = p.finishNode(n.Identifier, p.startNode(), {
     name: token!.value,
   })
 ): n.Member | n.Identifier => {
@@ -236,7 +236,7 @@ export const parseIdentifier = (
   p.take()
 
   const memberTok = p.read()
-  const member = p.finishNode(p.startNode(), 'Identifier', {
+  const member = p.finishNode(n.Identifier, p.startNode(), {
     name: memberTok.value,
   })
 

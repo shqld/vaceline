@@ -79,32 +79,14 @@ export abstract class BaseNode {
 
   abstract next(): Array<BaseNode | undefined>
 
-  static create<T extends NodeType, U extends NodeMap[T]>(
-    type: T,
-    values: PlainNode<U>,
-    loc?: Location
-  ): U {
-    // @ts-ignore
-    const node = new map[type](values)
-
-    if (loc) {
-      node.loc = loc
-    }
-
-    return node as U
-  }
-
   static build<T extends NodeType, N extends NodeMap[T]>(
-    node: NodeWithLoc,
-    type: T,
+    node: N,
     values: PlainNode<N>
-  ): NodeWithLoc<N> {
-    node.type = type
+  ): N {
+    Object.setPrototypeOf(node, this.prototype)
     Object.assign(node, values)
 
-    Object.setPrototypeOf(node, map[type].prototype)
-
-    return node as NodeWithLoc<N>
+    return node
   }
 }
 
