@@ -3,7 +3,7 @@ import path from 'path'
 
 import { parse } from '../src'
 import { hydrate } from '../src/hydrate'
-import { Node } from '../src/nodes'
+import { BaseNode } from '../src/nodes'
 
 describe('hydrate', () => {
   const code = fs.readFileSync(
@@ -16,7 +16,7 @@ describe('hydrate', () => {
     const ast = parse(code)
     const hydrated = hydrate(JSON.stringify(ast))
 
-    expect(hydrated).toBeInstanceOf(Node)
+    expect(hydrated).toBeInstanceOf(BaseNode)
     expect(JSON.stringify(hydrated)).toMatch(JSON.stringify(ast))
   })
 })

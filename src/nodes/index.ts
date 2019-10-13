@@ -74,12 +74,8 @@ export type Statement =
   | TableStatement
 
 export abstract class BaseNode {
-  // @ts-ignore
-  static name = 'Node'
   type!: string
   loc?: Location
-
-  constructor() {}
 
   abstract next(): Array<BaseNode | undefined>
 
@@ -88,6 +84,7 @@ export abstract class BaseNode {
     values: PlainNode<U>,
     loc?: Location
   ): U {
+    // @ts-ignore
     const node = new map[type](values)
 
     if (loc) {

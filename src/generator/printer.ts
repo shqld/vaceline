@@ -1,5 +1,5 @@
 import { Buffer, SourcePosition } from './buffer'
-import { Node, NodeWithLoc, Program } from '../nodes'
+import { Node, NodeWithLoc, Program, BaseNode } from '../nodes'
 
 export class Printer {
   buf: Buffer
@@ -55,7 +55,7 @@ export class Printer {
       }
     }
 
-    if (target instanceof Node) {
+    if (target instanceof BaseNode) {
       // @ts-ignore FIXME:
       this.print(target.print())
       return

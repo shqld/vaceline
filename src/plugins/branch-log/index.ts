@@ -2,9 +2,11 @@ import { traverse } from '../..'
 import {
   Node,
   Member,
-  FunCallExpression,
   Identifier,
   Header,
+  SetStatement,
+  AddStatement,
+  StringLiteral,
 } from '../../nodes'
 import { isNode } from '../../utils/node'
 
@@ -40,25 +42,25 @@ export default (ast: Node) => {
       if (isNode(node, ['SubroutineStatement'])) {
         const loggerNode =
           node.id.name === 'vcl_deliver'
-            ? Node.create('SetStatement', {
+            ? new SetStatement({
                 operator: '=',
                 left: variable('resp'),
-                right: Node.create('StringLiteral', {
+                right: new StringLiteral({
                   value: 'std.collect(std)',
                 }),
               })
-            : Node.create('AddStatement', {
+            : new AddStatement({
                 operator: '=',
                 left: variable('req'),
-                right: Node.create('StringLiteral', { value: node.id.name }),
+                right: new StringLiteral({ value: node.id.name }),
               })
 
         node.body.unshift(loggerNode)
       } else if (isNode(node, ['IfStatement'])) {
-        const loggerNode = Node.create('AddStatement', {
+        const loggerNode = new AddStatement({
           operator: '=',
           left: variable('req'),
-          right: Node.create('StringLiteral', {
+          right: new StringLiteral({
             value: `${node.loc!.start.line}:${node.loc!.start.column}`,
           }),
         })

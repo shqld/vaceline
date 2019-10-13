@@ -141,7 +141,7 @@ const parseOperatorExpr = (
 
   for (let i = 0; i < rpn.length; i++) {
     const item = rpn[i]
-    if (item instanceof Node) {
+    if (item instanceof n.BaseNode) {
       stack.push(item)
       continue
     }
@@ -149,15 +149,14 @@ const parseOperatorExpr = (
     const right = stack.pop()!
     const left = stack.pop()!
 
-    const expr = Node.create(
-      item.isBinary ? 'BinaryExpression' : 'LogicalExpression',
-      {
-        left,
-        right,
-        operator: item.value,
-      },
-      { start: left.loc!.start, end: right.loc!.end }
-    )
+    const nodeType = item.isBinary ? n.BinaryExpression : n.LogicalExpression
+    const expr = new nodeType({
+      left,
+      right,
+      operator: item.value,
+    })
+
+    expr.loc = { start: left.loc!.start, end: right.loc!.end }
 
     stack.push(expr)
   }
@@ -241,17 +240,15 @@ export const parseIdentifier = (
     name: memberTok.value,
   })
 
-  const expr = Node.create(
-    'Member',
-    {
-      base,
-      member,
-    },
-    {
-      start: base.loc!.start,
-      end: member.loc!.end,
-    }
-  )
+  const expr = new n.Member({
+    base,
+    member,
+  })
+
+  expr.loc = {
+    start: base.loc!.start,
+    end: member.loc!.end,
+  }
 
   return parseIdentifier(p, undefined, expr)
 }

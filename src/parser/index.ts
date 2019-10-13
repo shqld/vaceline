@@ -7,6 +7,7 @@ import {
   PlainNode,
   NodeWithLoc,
   NodeMap,
+  BaseNode,
 } from '../nodes'
 import { createError } from './create-error'
 import { TokenReader } from './token-reader'
@@ -45,8 +46,7 @@ export class Parser extends TokenReader {
   }
 
   startNode(): NodeWithLoc {
-    // @ts-ignore
-    const node = new Node()
+    const node = Object.create(BaseNode.prototype)
 
     const startToken = this.getCurrentToken()
     const start = startToken
@@ -61,14 +61,14 @@ export class Parser extends TokenReader {
     return node as NodeWithLoc
   }
 
-  finishNode<
-    T extends NodeType,
-    N extends InstanceType<NodeMap[T]>,
-    V extends PlainNode<N>
-  >(node: NodeWithLoc, type: T, values: V): N {
+  finishNode<T extends NodeType, N extends NodeMap[T], V extends PlainNode<N>>(
+    node: NodeWithLoc,
+    type: T,
+    values: V
+  ): N {
     node.loc.end = this.getCurrentToken()!.loc.end
 
-    const finished = Node.build(node, type, values)
+    const finished = BaseNode.build(node, type, values)
 
     if (debug.enabled) {
       const log = { ...finished }
@@ -83,7 +83,7 @@ export class Parser extends TokenReader {
     node: Node,
     type: T,
     message?: string
-  ): InstanceType<NodeMap[T[number]]> {
+  ): NodeMap[T[number]] {
     if (!isNode(node, type)) {
       message = 'expected ' + type.join(', ') + (message ? message : '')
 
