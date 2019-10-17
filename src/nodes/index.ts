@@ -1,4 +1,6 @@
 import { Token } from '../parser/tokenizer'
+import { builders as b } from '../generator'
+import { Doc } from 'prettier'
 
 export interface Position {
   offset: number
@@ -78,6 +80,7 @@ export abstract class BaseNode {
   loc?: Location
 
   abstract next(): Array<BaseNode | undefined>
+  abstract print(): Doc
 
   static build<T extends NodeType, N extends NodeMap[T]>(
     node: N,
@@ -111,6 +114,10 @@ export class File extends BaseNode {
   next() {
     return [this.program]
   }
+
+  print() {
+    return b.join(this.program) as Doc
+  }
 }
 
 export class Program extends BaseNode {
@@ -125,6 +132,10 @@ export class Program extends BaseNode {
 
   next() {
     return this.body
+  }
+
+  print() {
+    return b.join(b.hardline, this.body) as Doc
   }
 }
 
@@ -142,6 +153,10 @@ export class Comment extends BaseNode {
   next() {
     return []
   }
+
+  print() {
+    return this.body as Doc
+  }
 }
 
 export class Block extends BaseNode {
@@ -156,6 +171,10 @@ export class Block extends BaseNode {
 
   next() {
     return this.body
+  }
+
+  print() {
+    return b.concat(['{', b.join(b.hardline, this.body), '}']) as Doc
   }
 }
 
@@ -172,6 +191,10 @@ export class BooleanLiteral extends BaseLiteral {
   next() {
     return []
   }
+
+  print() {
+    return this.value as Doc
+  }
 }
 
 export class StringLiteral extends BaseLiteral {
@@ -186,6 +209,10 @@ export class StringLiteral extends BaseLiteral {
 
   next() {
     return []
+  }
+
+  print() {
+    return this.value as Doc
   }
 }
 
@@ -202,6 +229,10 @@ export class MultilineLiteral extends BaseLiteral {
   next() {
     return []
   }
+
+  print() {
+    return this.value as Doc
+  }
 }
 
 export class DurationLiteral extends BaseLiteral {
@@ -216,6 +247,10 @@ export class DurationLiteral extends BaseLiteral {
 
   next() {
     return []
+  }
+
+  print() {
+    return this.value as Doc
   }
 }
 
@@ -232,6 +267,10 @@ export class NumericLiteral extends BaseLiteral {
   next() {
     return []
   }
+
+  print() {
+    return this.value as Doc
+  }
 }
 
 export class Identifier extends BaseExpression {
@@ -247,6 +286,10 @@ export class Identifier extends BaseExpression {
   next() {
     return []
   }
+
+  print() {
+    return this.name as Doc
+  }
 }
 
 export class Header extends BaseExpression {
@@ -261,6 +304,10 @@ export class Header extends BaseExpression {
 
   next() {
     return []
+  }
+
+  print() {
+    return this.name as Doc
   }
 }
 
@@ -279,6 +326,10 @@ export class Ip extends BaseExpression {
   next() {
     return []
   }
+
+  print() {
+    return this.cidr ? `${this.value}/${this.cidr}` : this.value
+  }
 }
 
 export class Member extends BaseExpression {
@@ -296,6 +347,10 @@ export class Member extends BaseExpression {
   next() {
     return [this.base, this.member]
   }
+
+  print() {
+    return b.concat([this.base, b.softline, '.', this.member]) as Doc
+  }
 }
 
 export class BooleanExpression extends BaseExpression {
@@ -310,6 +365,10 @@ export class BooleanExpression extends BaseExpression {
 
   next() {
     return [this.body]
+  }
+
+  print() {
+    return b.concat(['(', this.body, ')']) as Doc
   }
 }
 
@@ -328,6 +387,10 @@ export class UnaryExpression extends BaseExpression {
   next() {
     return [this.argument]
   }
+
+  print() {
+    return b.concat([this.operator, this.argument]) as Doc
+  }
 }
 
 export class FunCallExpression extends BaseExpression {
@@ -343,7 +406,11 @@ export class FunCallExpression extends BaseExpression {
   }
 
   next() {
-    return []
+    return [this.callee, ...this.arguments]
+  }
+
+  print() {
+    return b.concat([this.callee, '(', b.join(',', this.arguments), ')']) as Doc
   }
 }
 
@@ -359,6 +426,10 @@ export class ConcatExpression extends BaseExpression {
 
   next() {
     return this.body
+  }
+
+  print() {
+    return b.join(b.line, this.body) as Doc
   }
 }
 
@@ -379,6 +450,14 @@ export class BinaryExpression extends BaseExpression {
   next() {
     return [this.left, this.right]
   }
+
+  print() {
+    return b.concat([
+      this.left,
+      b.line,
+      b.group([this.operator, b.softline, this.right]),
+    ]) as Doc
+  }
 }
 
 export class LogicalExpression extends BaseExpression {
@@ -398,6 +477,14 @@ export class LogicalExpression extends BaseExpression {
   next() {
     return [this.left, this.right]
   }
+
+  print() {
+    return b.concat([
+      this.left,
+      b.line,
+      b.group([this.operator, b.softline, this.right]),
+    ]) as Doc
+  }
 }
 
 export class ExpressionStatement extends BaseStatement {
@@ -412,6 +499,10 @@ export class ExpressionStatement extends BaseStatement {
 
   next() {
     return [this.body]
+  }
+
+  print() {
+    return b.concat([this.body, ';']) as Doc
   }
 }
 
@@ -428,6 +519,10 @@ export class IncludeStatement extends BaseStatement {
   next() {
     return [this.module]
   }
+
+  print() {
+    return b.concat([this.module, ';']) as Doc
+  }
 }
 
 export class ImportStatement extends BaseStatement {
@@ -443,6 +538,10 @@ export class ImportStatement extends BaseStatement {
   next() {
     return [this.module]
   }
+
+  print() {
+    return b.concat([this.module, ';']) as Doc
+  }
 }
 
 export class CallStatement extends BaseStatement {
@@ -457,6 +556,10 @@ export class CallStatement extends BaseStatement {
 
   next() {
     return [this.subroutine]
+  }
+
+  print() {
+    return b.concat(['call', this.subroutine, ';']) as Doc
   }
 }
 
@@ -474,6 +577,10 @@ export class DeclareStatement extends BaseStatement {
 
   next() {
     return [this.id]
+  }
+
+  print() {
+    return b.concat(['declare', 'local', this.id, this.valueType, ';']) as Doc
   }
 }
 
@@ -494,6 +601,10 @@ export class AddStatement extends BaseStatement {
   next() {
     return [this.left, this.right]
   }
+
+  print() {
+    return b.concat(['add', this.left, this.operator, this.right, ';']) as Doc
+  }
 }
 
 export class SetStatement extends BaseStatement {
@@ -513,6 +624,10 @@ export class SetStatement extends BaseStatement {
   next() {
     return [this.left, this.right]
   }
+
+  print() {
+    return b.concat(['set', this.left, this.operator, this.right, ';']) as Doc
+  }
 }
 
 export class UnsetStatement extends BaseStatement {
@@ -528,6 +643,10 @@ export class UnsetStatement extends BaseStatement {
   next() {
     return [this.id]
   }
+
+  print() {
+    return b.concat(['unset', this.id, ';']) as Doc
+  }
 }
 
 export class ReturnStatement extends BaseStatement {
@@ -542,6 +661,10 @@ export class ReturnStatement extends BaseStatement {
 
   next() {
     return []
+  }
+
+  print() {
+    return b.concat(['return', this.action, ';']) as Doc
   }
 }
 
@@ -560,6 +683,10 @@ export class ErrorStatement extends BaseStatement {
   next() {
     return [this.message]
   }
+
+  print() {
+    return b.concat(['error', this.status, this.message, ';']) as Doc
+  }
 }
 
 export class RestartStatement extends BaseStatement {
@@ -571,6 +698,10 @@ export class RestartStatement extends BaseStatement {
 
   next() {
     return []
+  }
+
+  print() {
+    return 'restart;' as Doc
   }
 }
 
@@ -587,6 +718,10 @@ export class SyntheticStatement extends BaseStatement {
   next() {
     return [this.response]
   }
+
+  print() {
+    return b.concat(['synthetic', this.response, ';']) as Doc
+  }
 }
 
 export class LogStatement extends BaseStatement {
@@ -601,6 +736,10 @@ export class LogStatement extends BaseStatement {
 
   next() {
     return [this.content]
+  }
+
+  print() {
+    return b.concat(['log', this.content, ';']) as Doc
   }
 }
 
@@ -623,6 +762,28 @@ export class IfStatement extends BaseStatement {
       .filter(Boolean)
       .flat(2)
   }
+
+  print() {
+    const doc: Array<string | Node | Doc> = [
+      'if',
+      '(',
+      this.test,
+      ')',
+      '{',
+      b.join(b.hardline, this.consequent) as Doc,
+      '}',
+    ]
+
+    if (this.alternative) {
+      const alternative = Array.isArray(this.alternative)
+        ? ['else', ...this.alternative]
+        : ['else', '{', this.alternative, '}']
+
+      return b.concat([...doc, ...alternative]) as Doc
+    }
+
+    return b.concat(doc) as Doc
+  }
 }
 
 export class SubroutineStatement extends BaseStatement {
@@ -640,6 +801,10 @@ export class SubroutineStatement extends BaseStatement {
   next() {
     return [this.id, ...this.body]
   }
+
+  print() {
+    return b.concat(['sub', this.id, b.join(b.hardline, this.body)]) as Doc
+  }
 }
 
 export class AclStatement extends BaseStatement {
@@ -656,6 +821,10 @@ export class AclStatement extends BaseStatement {
 
   next() {
     return [this.id, ...this.body]
+  }
+
+  print() {
+    return b.concat(['acl', this.id, b.join(b.hardline, this.body), ';']) as Doc
   }
 }
 
@@ -682,6 +851,17 @@ export class BackendStatement extends BaseStatement {
       .map((b) => b.value)
       .flat(2)
   }
+
+  print() {
+    return b.concat([
+      'backend',
+      this.id,
+      b.join(
+        b.hardline,
+        this.body.map((bd) => b.concat([bd.key, ':', bd.value]))
+      ),
+    ]) as Doc
+  }
 }
 
 export type TableDef = { key: string; value: string }
@@ -700,6 +880,17 @@ export class TableStatement extends BaseStatement {
 
   next() {
     return [this.id]
+  }
+
+  print() {
+    return b.concat([
+      'table',
+      this.id,
+      b.join(
+        b.hardline,
+        this.body.map((td) => b.concat([td.key, ':', td.value]))
+      ),
+    ]) as Doc
   }
 }
 
