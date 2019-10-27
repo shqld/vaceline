@@ -124,12 +124,14 @@ export class File extends BaseNode {
 
 export class Program extends BaseNode {
   type = 'Program' as const
-  body: Array<Statement | Comment>
+  body: Array<Statement>
+  comments: Array<Comment>
 
   constructor(obj: PlainNode<Program>) {
     super()
 
     this.body = obj.body
+    this.comments = obj.comments
   }
 
   next() {
@@ -163,7 +165,7 @@ export class Comment extends BaseNode {
 
 export class Block extends BaseNode {
   type = 'Block' as const
-  body: Array<Statement | Comment>
+  body: Array<Statement>
 
   constructor(obj: PlainNode<Block>) {
     super()

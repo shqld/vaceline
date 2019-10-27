@@ -43,7 +43,10 @@ export class Parser extends TokenReader {
 
     const body = parseCompound<Statement>(this, parseStmt)
 
-    return this.finishNode(Program, node, { body })
+    return this.finishNode(Program, node, {
+      body,
+      comments: this.comments,
+    })
   }
 
   // TODO: no need to create empty node just to keep start location
