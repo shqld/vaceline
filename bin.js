@@ -15,7 +15,7 @@ const { parse, generate } = require('./dist')
 
 /* @type {import('yargs').Configuration} */
 const opts = yargs
-  .scriptName('vacel')
+  .scriptName('vaceline')
   .locale('en')
   .usage('$0 [source]', 'transpile VCL', (y) =>
     y.positional('source', {
@@ -60,9 +60,9 @@ const utils = {
 
 const main = async () => {
   if (opts.debug === true) {
-    debug.enable('vacel:*')
+    debug.enable('vaceline:*')
   } else if (typeof opts.debug === 'string') {
-    debug.enable(`vacel:${opts.debug}`)
+    debug.enable(`vaceline:${opts.debug}`)
   }
 
   let ast
