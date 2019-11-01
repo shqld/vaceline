@@ -7,7 +7,7 @@ backend vacel_origin {
 }
 
 sub vcl_recv {
-  set req.http.Vacel-Host = if(
+  set req.http.Vaceline-Host = if(
     req.http.X-Forwarded-Host,
     req.http.X-Forwarded-Host,
     req.http.Host
@@ -18,17 +18,17 @@ sub vcl_recv {
   declare local var.specialUser STRING;
 
   set var.isSpecialUser = (
-    req.http.Cookie:Vacel ~ "SPECIAL_KEY" &&
-    req.http.Vacel-Special-User
+    req.http.Cookie:Vaceline ~ "SPECIAL_KEY" &&
+    req.http.Vaceline-Special-User
   );
 
-  set var.specialUser = if(var.isSpecialUser, req.http.Vacel-Special-User);
+  set var.specialUser = if(var.isSpecialUser, req.http.Vaceline-Special-User);
 
   # Global Variables
   set req.http.vacelIsSpecialUser = if(var.isSpecialUser, "true", "false");
 
   # Http Header
-  set req.http.Vacel-Special-User = var.specialUser;
+  set req.http.Vaceline-Special-User = var.specialUser;
 }
 
 sub vcl_pass {

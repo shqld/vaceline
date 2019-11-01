@@ -1,12 +1,12 @@
 {
-  "name": "@vacel/core",
+  "name": "@vaceline/core",
   "version": "0.0.1",
   "main": "dist/index.js",
-  "repository": "git@github.com:azarashd/vacel.git",
+  "repository": "git@github.com:azarashd/vaceline.git",
   "author": "Sho Miyamoto <shqld8@gmail.com>",
   "license": "MIT",
   "bin": {
-    "vacel": "./bin.js"
+    "vaceline": "./bin.js"
   },
   "scripts": {
     "start": "yarn build | ./devnull && node bin.js",

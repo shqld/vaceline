@@ -1,10 +1,10 @@
 import debug, { Debugger, Formatters } from 'debug'
 
-const vacel = debug('vacel')
+const vaceline = debug('vaceline')
 
 // stderr is used by default but
 // it is for printing output(code|ast)
-vacel.log = console.log.bind(console)
+vaceline.log = console.log.bind(console)
 
 type BuildDebug = (
   ...scopes: Array<string>
@@ -22,4 +22,4 @@ const createBuildDebug = (base: Debugger) => (...scopes: Array<string>) => {
   return debug
 }
 
-export const buildDebug = createBuildDebug(vacel)
+export const buildDebug = createBuildDebug(vaceline)

@@ -1,6 +1,6 @@
-# Vacel — VCL Transpiler
+# Vaceline — VCL Transpiler
 
-Vacel is a tool for trasforming VCL with JS plugins via AST.
+Vaceline is a tool for trasforming VCL with JS plugins via AST.
 
 *NOTE: this project is currently in development.*
 
@@ -8,14 +8,14 @@ Vacel is a tool for trasforming VCL with JS plugins via AST.
 ## Usage
 
 ```sh
-yarn vacel path/to/VCL(dir|file)
-cat path/to/VCL | yarn vacel --stdin
+yarn vaceline path/to/VCL(dir|file)
+cat path/to/VCL | yarn vaceline --stdin
 ```
 
 ```sh
-$ yarn vacel --help
+$ yarn vaceline --help
 
-vacel [source]
+vaceline [source]
 
 transpile VCL
 
