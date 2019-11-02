@@ -27,7 +27,6 @@ export type NodeMap = {
 export type Node =
   | File
   | Program
-  | Comment
   // abstract base
   | BaseExpression
   | BaseStatement
@@ -136,26 +135,6 @@ export class Program extends BaseNode {
 
   print() {
     return b.join(b.hardline, this.body.map(printAst))
-  }
-}
-
-export class Comment extends BaseNode {
-  type = 'Comment' as const
-  // TODO: add `type` prop
-  body: string
-
-  constructor(obj: PlainNode<Comment>) {
-    super()
-
-    this.body = obj.body
-  }
-
-  next() {
-    return []
-  }
-
-  print() {
-    return this.body
   }
 }
 
@@ -975,7 +954,6 @@ export class TableStatement extends BaseStatement {
 export const map = {
   File,
   Program,
-  Comment,
   BooleanLiteral,
   StringLiteral,
   MultilineLiteral,
