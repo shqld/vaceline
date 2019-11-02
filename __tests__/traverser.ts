@@ -1,15 +1,9 @@
 import fs from 'fs'
 import path from 'path'
-
-import { traverse } from '../src/traverser'
+import { traverse, createPathArray } from '../src/traverser'
 import { parse } from '../src'
-import { Node, NodeType, Identifier, BaseNode } from '../src/nodes'
+import { Identifier, BaseNode } from '../src/nodes'
 import { NodePath } from '../src/traverser/path'
-
-const checkNode = (node: any, type: NodeType) => {
-  expect(node).toBeInstanceOf(BaseNode)
-  expect(node.type).toBe(type)
-}
 
 describe('Traverser', () => {
   const code = fs.readFileSync(
@@ -23,25 +17,19 @@ describe('Traverser', () => {
     let node: Identifier
 
     traverse(ast, {
-      entry(path: NodePath<any>) {
+      entry(path: NodePath) {
         if (path.isIdentifier({ name: 'specialUser' })) {
           node = path.node
         }
       },
     })
 
-    checkNode(node!, 'Identifier')
+    expect(node!).toBeInstanceOf(Identifier)
     expect(node!.name).toBe('specialUser')
   })
 
   describe('Path', () => {
-    const paths: Array<NodePath<any>> = []
-
-    traverse(ast, {
-      entry(path: NodePath<any>) {
-        paths.push(path)
-      },
-    })
+    const paths = createPathArray(ast)
 
     it("shouldn't have `parent` & `parentPath` in the top node", () => {
       const path = paths[0]
@@ -56,6 +44,18 @@ describe('Traverser', () => {
       expect(path).toBeInstanceOf(NodePath)
       expect(path.parent).toBeInstanceOf(BaseNode)
       expect(path.parentPath).toBeInstanceOf(NodePath)
+    })
+
+    it('should match traversed results', () => {
+      const traversalResults: Array<NodePath> = []
+
+      traverse(ast, {
+        entry(path: NodePath) {
+          traversalResults.push(path)
+        },
+      })
+
+      expect(paths).toMatchObject(traversalResults)
     })
   })
 })
