@@ -340,6 +340,32 @@ export class Member extends BaseExpression {
   }
 }
 
+export class ValuePair extends BaseExpression {
+  type = 'ValuePair' as const
+  base: Identifier | Member
+  name: Identifier
+
+  constructor(obj: PlainNode<ValuePair>) {
+    super()
+
+    this.base = obj.base
+    this.name = obj.name
+  }
+
+  next() {
+    return [this.base, this.name]
+  }
+
+  print() {
+    return b.concat([
+      printAst(this.base),
+      // b.softline,
+      ':',
+      printAst(this.name),
+    ])
+  }
+}
+
 export class BooleanExpression extends BaseExpression {
   type = 'BooleanExpression' as const
   body: Expression
@@ -979,6 +1005,7 @@ export const map = {
   Identifier,
   Ip,
   Member,
+  ValuePair,
   BooleanExpression,
   UnaryExpression,
   FunCallExpression,

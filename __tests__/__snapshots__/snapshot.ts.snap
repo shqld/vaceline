@@ -689,7 +689,7 @@ Program {
           "right": BooleanExpression {
             "body": LogicalExpression {
               "left": BinaryExpression {
-                "left": Member {
+                "left": ValuePair {
                   "base": Member {
                     "base": Member {
                       "base": Identifier {
@@ -780,7 +780,7 @@ Program {
                       "offset": 388,
                     },
                   },
-                  "member": Identifier {
+                  "name": Identifier {
                     "loc": Object {
                       "end": Object {
                         "column": 28,
@@ -796,7 +796,7 @@ Program {
                     "name": "Vaceline",
                     "type": "Identifier",
                   },
-                  "type": "Member",
+                  "type": "ValuePair",
                 },
                 "loc": Object {
                   "end": Object {

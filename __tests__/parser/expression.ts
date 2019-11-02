@@ -5,6 +5,7 @@ import {
   LogicalExpression,
   Member,
   UnaryExpression,
+  ValuePair,
 } from '../../src/nodes'
 
 const parse = (source: string) => parseExpr(new Parser(source))
@@ -261,6 +262,21 @@ describe('Expression', () => {
         },
         member: { type: 'Identifier', name: 'c' },
       } as Member)
+    })
+  })
+
+  describe('ValuePair', () => {
+    it('should be parsed', () => {
+      expect(parse('Cookie:Vaceline')).toMatchObject({
+        type: 'ValuePair',
+        base: { type: 'Identifier', name: 'Cookie' },
+        name: { type: 'Identifier', name: 'Vaceline' },
+      } as ValuePair)
+
+      // This is actually invalid (makes no sense)
+      // but apparently Fastly's Varnish doesn't throw any errors
+      // so maybe it's better to throw within linting.
+      // expect(() => parse('Cookie:Vaceline.invalid')).toThrow(/Unexpected token/)
     })
   })
 })

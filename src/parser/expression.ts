@@ -228,27 +228,50 @@ export const parseIdentifier = (
   base: n.Identifier | n.Member = p.finishNode(n.Identifier, p.startNode(), {
     name: token!.value,
   })
-): n.Member | n.Identifier => {
-  if (!isToken(p.peek(), 'symbol', '.') && !isToken(p.peek(), 'symbol', ':')) {
-    return base
+): n.Member | n.ValuePair | n.Identifier => {
+  // Member
+  if (isToken(p.peek(), 'symbol', '.')) {
+    p.take()
+
+    const memberTok = p.read()
+    const member = p.finishNode(n.Identifier, p.startNode(), {
+      name: memberTok.value,
+    })
+
+    const expr = new n.Member({
+      base,
+      member,
+    })
+
+    expr.loc = {
+      start: base.loc!.start,
+      end: member.loc!.end,
+    }
+
+    return parseIdentifier(p, undefined, expr)
   }
 
-  p.take()
+  // ValuePair
+  if (isToken(p.peek(), 'symbol', ':')) {
+    p.take()
 
-  const memberTok = p.read()
-  const member = p.finishNode(n.Identifier, p.startNode(), {
-    name: memberTok.value,
-  })
+    const nameTok = p.read()
+    const name = p.finishNode(n.Identifier, p.startNode(), {
+      name: nameTok.value,
+    })
 
-  const expr = new n.Member({
-    base,
-    member,
-  })
+    const expr = new n.ValuePair({
+      base,
+      name,
+    })
 
-  expr.loc = {
-    start: base.loc!.start,
-    end: member.loc!.end,
+    expr.loc = {
+      start: base.loc!.start,
+      end: name.loc!.end,
+    }
+
+    return expr
   }
 
-  return parseIdentifier(p, undefined, expr)
+  return base
 }
