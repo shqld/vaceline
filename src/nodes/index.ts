@@ -47,7 +47,6 @@ export type Literal =
 export type Expression =
   | Literal
   | Identifier
-  | Header
   | Ip
   | Member
   | BooleanExpression
@@ -294,25 +293,6 @@ export class Identifier extends BaseExpression {
   }
 }
 
-export class Header extends BaseExpression {
-  type = 'Header' as const
-  name: string
-
-  constructor(obj: PlainNode<Header>) {
-    super()
-
-    this.name = obj.name
-  }
-
-  next() {
-    return []
-  }
-
-  print() {
-    return this.name
-  }
-}
-
 export class Ip extends BaseExpression {
   type = 'Ip' as const
   value: string
@@ -337,7 +317,7 @@ export class Ip extends BaseExpression {
 export class Member extends BaseExpression {
   type = 'Member' as const
   base: Identifier | Member
-  member: Identifier | Header
+  member: Identifier
 
   constructor(obj: PlainNode<Member>) {
     super()
@@ -997,7 +977,6 @@ export const map = {
   DurationLiteral,
   NumericLiteral,
   Identifier,
-  Header,
   Ip,
   Member,
   BooleanExpression,
