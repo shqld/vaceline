@@ -45,7 +45,6 @@ export class Parser extends TokenReader {
 
     return this.finishNode(Program, node, {
       body,
-      comments: this.comments,
     })
   }
 

@@ -26,7 +26,7 @@ const symbols = [';', ':', '.', ',', '/', '{', '}', '(', ')', '+'] as const
 
 const escapeRegExp = (s: string | RegExp) =>
   s instanceof RegExp ? s.source : s.replace(/[-\\^$*+?.()|[\]{}]/g, '\\$&')
-const getJoinedRegExp = (s: Array<string | RegExp>) =>
+export const getJoinedRegExp = (s: Array<string | RegExp>) =>
   s.map(escapeRegExp).join('|')
 
 const splitters = [
@@ -176,6 +176,9 @@ export class Tokenizer {
           }
         )
       }
+
+      // TODO: implement comment handling
+      if (type === 'comment') continue
 
       const token = {
         type,

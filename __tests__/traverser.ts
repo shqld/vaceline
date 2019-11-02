@@ -18,14 +18,13 @@ describe('Traverser', () => {
 
     traverse(ast, {
       entry(path: NodePath) {
-        if (path.isIdentifier({ name: 'specialUser' })) {
+        if (path.node instanceof Identifier) {
           node = path.node
         }
       },
     })
 
     expect(node!).toBeInstanceOf(Identifier)
-    expect(node!.name).toBe('specialUser')
   })
 
   describe('Path', () => {

@@ -2034,9 +2034,9 @@ Program {
   ],
   "loc": Object {
     "end": Object {
-      "column": 3,
-      "line": 56,
-      "offset": 1056,
+      "column": 1,
+      "line": 50,
+      "offset": 1008,
     },
     "start": Object {
       "column": 1,
