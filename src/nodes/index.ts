@@ -28,7 +28,6 @@ export type Node =
   | File
   | Program
   | Comment
-  | Block
   // abstract base
   | BaseExpression
   | BaseStatement
@@ -157,25 +156,6 @@ export class Comment extends BaseNode {
 
   print() {
     return this.body
-  }
-}
-
-export class Block extends BaseNode {
-  type = 'Block' as const
-  body: Array<Statement>
-
-  constructor(obj: PlainNode<Block>) {
-    super()
-
-    this.body = obj.body
-  }
-
-  next() {
-    return this.body
-  }
-
-  print() {
-    return b.concat(['{', b.join(b.hardline, this.body.map(printAst)), '}'])
   }
 }
 
@@ -996,7 +976,6 @@ export const map = {
   File,
   Program,
   Comment,
-  Block,
   BooleanLiteral,
   StringLiteral,
   MultilineLiteral,
