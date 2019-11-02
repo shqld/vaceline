@@ -5,7 +5,7 @@ import { parse } from '../src'
 
 describe('hydrate', () => {
   const code = fs.readFileSync(
-    path.resolve('__tests__/__fixture__/test.vcl'),
+    path.resolve('__tests__/__fixture__/rough.vcl'),
     'utf8'
   )
 

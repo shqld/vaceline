@@ -7,7 +7,7 @@ import { NodePath } from '../src/traverser/path'
 
 describe('Traverser', () => {
   const code = fs.readFileSync(
-    path.resolve('__tests__/__fixture__/test.vcl'),
+    path.resolve('__tests__/__fixture__/rough.vcl'),
     'utf8'
   )
   const ast = parse(code)

@@ -6,7 +6,7 @@ import DebuggerPlugin from '../../src/plugins/debugger'
 import { Node } from '../../src/nodes'
 
 // const code = fs.readFileSync(
-//   path.resolve('__tests__/__fixture__/test.vcl'),
+//   path.resolve('__tests__/__fixture__/rough.vcl'),
 //   'utf8'
 // )
 // const ast: Node = parse(code)
