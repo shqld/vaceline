@@ -189,9 +189,9 @@ Program {
             },
             "loc": Object {
               "end": Object {
-                "column": 25,
+                "column": 28,
                 "line": 10,
-                "offset": 158,
+                "offset": 161,
               },
               "start": Object {
                 "column": 7,
@@ -202,9 +202,9 @@ Program {
             "member": Identifier {
               "loc": Object {
                 "end": Object {
-                  "column": 25,
+                  "column": 28,
                   "line": 10,
-                  "offset": 158,
+                  "offset": 161,
                 },
                 "start": Object {
                   "column": 16,
@@ -212,7 +212,7 @@ Program {
                   "offset": 149,
                 },
               },
-              "name": "Vacel-Host",
+              "name": "Vaceline-Host",
               "type": "Identifier",
             },
             "type": "Member",
@@ -221,7 +221,7 @@ Program {
             "end": Object {
               "column": 4,
               "line": 14,
-              "offset": 249,
+              "offset": 252,
             },
             "start": Object {
               "column": 3,
@@ -239,12 +239,12 @@ Program {
                       "end": Object {
                         "column": 7,
                         "line": 11,
-                        "offset": 172,
+                        "offset": 175,
                       },
                       "start": Object {
                         "column": 5,
                         "line": 11,
-                        "offset": 170,
+                        "offset": 173,
                       },
                     },
                     "name": "req",
@@ -254,26 +254,26 @@ Program {
                     "end": Object {
                       "column": 12,
                       "line": 11,
-                      "offset": 177,
+                      "offset": 180,
                     },
                     "start": Object {
                       "column": 5,
                       "line": 11,
-                      "offset": 170,
+                      "offset": 173,
                     },
                   },
                   "member": Identifier {
                     "loc": Object {
                       "end": Object {
                         "column": 12,
+                        "line": 11,
+                        "offset": 180,
+                      },
+                      "start": Object {
+                        "column": 9,
                         "line": 11,
                         "offset": 177,
                       },
-                      "start": Object {
-                        "column": 9,
-                        "line": 11,
-                        "offset": 174,
-                      },
                     },
                     "name": "http",
                     "type": "Identifier",
@@ -284,12 +284,12 @@ Program {
                   "end": Object {
                     "column": 29,
                     "line": 11,
-                    "offset": 194,
+                    "offset": 197,
                   },
                   "start": Object {
                     "column": 5,
                     "line": 11,
-                    "offset": 170,
+                    "offset": 173,
                   },
                 },
                 "member": Identifier {
@@ -297,12 +297,12 @@ Program {
                     "end": Object {
                       "column": 29,
                       "line": 11,
-                      "offset": 194,
+                      "offset": 197,
                     },
                     "start": Object {
                       "column": 14,
                       "line": 11,
-                      "offset": 179,
+                      "offset": 182,
                     },
                   },
                   "name": "X-Forwarded-Host",
@@ -317,12 +317,12 @@ Program {
                       "end": Object {
                         "column": 7,
                         "line": 12,
-                        "offset": 203,
+                        "offset": 206,
                       },
                       "start": Object {
                         "column": 5,
                         "line": 12,
-                        "offset": 201,
+                        "offset": 204,
                       },
                     },
                     "name": "req",
@@ -332,26 +332,26 @@ Program {
                     "end": Object {
                       "column": 12,
                       "line": 12,
-                      "offset": 208,
+                      "offset": 211,
                     },
                     "start": Object {
                       "column": 5,
                       "line": 12,
-                      "offset": 201,
+                      "offset": 204,
                     },
                   },
                   "member": Identifier {
                     "loc": Object {
                       "end": Object {
                         "column": 12,
+                        "line": 12,
+                        "offset": 211,
+                      },
+                      "start": Object {
+                        "column": 9,
                         "line": 12,
                         "offset": 208,
                       },
-                      "start": Object {
-                        "column": 9,
-                        "line": 12,
-                        "offset": 205,
-                      },
                     },
                     "name": "http",
                     "type": "Identifier",
@@ -362,12 +362,12 @@ Program {
                   "end": Object {
                     "column": 29,
                     "line": 12,
-                    "offset": 225,
+                    "offset": 228,
                   },
                   "start": Object {
                     "column": 5,
                     "line": 12,
-                    "offset": 201,
+                    "offset": 204,
                   },
                 },
                 "member": Identifier {
@@ -375,12 +375,12 @@ Program {
                     "end": Object {
                       "column": 29,
                       "line": 12,
-                      "offset": 225,
+                      "offset": 228,
                     },
                     "start": Object {
                       "column": 14,
                       "line": 12,
-                      "offset": 210,
+                      "offset": 213,
                     },
                   },
                   "name": "X-Forwarded-Host",
@@ -395,12 +395,12 @@ Program {
                       "end": Object {
                         "column": 7,
                         "line": 13,
-                        "offset": 234,
+                        "offset": 237,
                       },
                       "start": Object {
                         "column": 5,
                         "line": 13,
-                        "offset": 232,
+                        "offset": 235,
                       },
                     },
                     "name": "req",
@@ -410,12 +410,12 @@ Program {
                     "end": Object {
                       "column": 12,
                       "line": 13,
-                      "offset": 239,
+                      "offset": 242,
                     },
                     "start": Object {
                       "column": 5,
                       "line": 13,
-                      "offset": 232,
+                      "offset": 235,
                     },
                   },
                   "member": Identifier {
@@ -423,12 +423,12 @@ Program {
                       "end": Object {
                         "column": 12,
                         "line": 13,
-                        "offset": 239,
+                        "offset": 242,
                       },
                       "start": Object {
                         "column": 9,
                         "line": 13,
-                        "offset": 236,
+                        "offset": 239,
                       },
                     },
                     "name": "http",
@@ -440,12 +440,12 @@ Program {
                   "end": Object {
                     "column": 17,
                     "line": 13,
-                    "offset": 244,
+                    "offset": 247,
                   },
                   "start": Object {
                     "column": 5,
                     "line": 13,
-                    "offset": 232,
+                    "offset": 235,
                   },
                 },
                 "member": Identifier {
@@ -453,12 +453,12 @@ Program {
                     "end": Object {
                       "column": 17,
                       "line": 13,
-                      "offset": 244,
+                      "offset": 247,
                     },
                     "start": Object {
                       "column": 14,
                       "line": 13,
-                      "offset": 241,
+                      "offset": 244,
                     },
                   },
                   "name": "Host",
@@ -470,14 +470,14 @@ Program {
             "callee": Identifier {
               "loc": Object {
                 "end": Object {
-                  "column": 30,
+                  "column": 33,
                   "line": 10,
-                  "offset": 163,
+                  "offset": 166,
                 },
                 "start": Object {
-                  "column": 29,
+                  "column": 32,
                   "line": 10,
-                  "offset": 162,
+                  "offset": 165,
                 },
               },
               "name": "if",
@@ -487,12 +487,12 @@ Program {
               "end": Object {
                 "column": 3,
                 "line": 14,
-                "offset": 248,
+                "offset": 251,
               },
               "start": Object {
-                "column": 29,
+                "column": 32,
                 "line": 10,
-                "offset": 162,
+                "offset": 165,
               },
             },
             "type": "FunCallExpression",
@@ -506,12 +506,12 @@ Program {
                 "end": Object {
                   "column": 19,
                   "line": 17,
-                  "offset": 290,
+                  "offset": 293,
                 },
                 "start": Object {
                   "column": 17,
                   "line": 17,
-                  "offset": 288,
+                  "offset": 291,
                 },
               },
               "name": "var",
@@ -521,12 +521,12 @@ Program {
               "end": Object {
                 "column": 33,
                 "line": 17,
-                "offset": 304,
+                "offset": 307,
               },
               "start": Object {
                 "column": 17,
                 "line": 17,
-                "offset": 288,
+                "offset": 291,
               },
             },
             "member": Identifier {
@@ -534,12 +534,12 @@ Program {
                 "end": Object {
                   "column": 33,
                   "line": 17,
-                  "offset": 304,
+                  "offset": 307,
                 },
                 "start": Object {
                   "column": 21,
                   "line": 17,
-                  "offset": 292,
+                  "offset": 295,
                 },
               },
               "name": "isSpecialUser",
@@ -551,12 +551,12 @@ Program {
             "end": Object {
               "column": 39,
               "line": 17,
-              "offset": 310,
+              "offset": 313,
             },
             "start": Object {
               "column": 3,
               "line": 17,
-              "offset": 274,
+              "offset": 277,
             },
           },
           "type": "DeclareStatement",
@@ -569,12 +569,12 @@ Program {
                 "end": Object {
                   "column": 19,
                   "line": 18,
-                  "offset": 330,
+                  "offset": 333,
                 },
                 "start": Object {
                   "column": 17,
                   "line": 18,
-                  "offset": 328,
+                  "offset": 331,
                 },
               },
               "name": "var",
@@ -584,12 +584,12 @@ Program {
               "end": Object {
                 "column": 31,
                 "line": 18,
-                "offset": 342,
+                "offset": 345,
               },
               "start": Object {
                 "column": 17,
                 "line": 18,
-                "offset": 328,
+                "offset": 331,
               },
             },
             "member": Identifier {
@@ -597,12 +597,12 @@ Program {
                 "end": Object {
                   "column": 31,
                   "line": 18,
-                  "offset": 342,
+                  "offset": 345,
                 },
                 "start": Object {
                   "column": 21,
                   "line": 18,
-                  "offset": 332,
+                  "offset": 335,
                 },
               },
               "name": "specialUser",
@@ -614,12 +614,12 @@ Program {
             "end": Object {
               "column": 39,
               "line": 18,
-              "offset": 350,
+              "offset": 353,
             },
             "start": Object {
               "column": 3,
               "line": 18,
-              "offset": 314,
+              "offset": 317,
             },
           },
           "type": "DeclareStatement",
@@ -632,12 +632,12 @@ Program {
                 "end": Object {
                   "column": 9,
                   "line": 20,
-                  "offset": 361,
+                  "offset": 364,
                 },
                 "start": Object {
                   "column": 7,
                   "line": 20,
-                  "offset": 359,
+                  "offset": 362,
                 },
               },
               "name": "var",
@@ -647,12 +647,12 @@ Program {
               "end": Object {
                 "column": 23,
                 "line": 20,
-                "offset": 375,
+                "offset": 378,
               },
               "start": Object {
                 "column": 7,
                 "line": 20,
-                "offset": 359,
+                "offset": 362,
               },
             },
             "member": Identifier {
@@ -660,12 +660,12 @@ Program {
                 "end": Object {
                   "column": 23,
                   "line": 20,
-                  "offset": 375,
+                  "offset": 378,
                 },
                 "start": Object {
                   "column": 11,
                   "line": 20,
-                  "offset": 363,
+                  "offset": 366,
                 },
               },
               "name": "isSpecialUser",
@@ -677,12 +677,12 @@ Program {
             "end": Object {
               "column": 4,
               "line": 23,
-              "offset": 461,
+              "offset": 470,
             },
             "start": Object {
               "column": 3,
               "line": 20,
-              "offset": 355,
+              "offset": 358,
             },
           },
           "operator": "=",
@@ -697,12 +697,12 @@ Program {
                           "end": Object {
                             "column": 7,
                             "line": 21,
-                            "offset": 387,
+                            "offset": 390,
                           },
                           "start": Object {
                             "column": 5,
                             "line": 21,
-                            "offset": 385,
+                            "offset": 388,
                           },
                         },
                         "name": "req",
@@ -712,12 +712,12 @@ Program {
                         "end": Object {
                           "column": 12,
                           "line": 21,
-                          "offset": 392,
+                          "offset": 395,
                         },
                         "start": Object {
                           "column": 5,
                           "line": 21,
-                          "offset": 385,
+                          "offset": 388,
                         },
                       },
                       "member": Identifier {
@@ -725,12 +725,12 @@ Program {
                           "end": Object {
                             "column": 12,
                             "line": 21,
-                            "offset": 392,
+                            "offset": 395,
                           },
                           "start": Object {
                             "column": 9,
                             "line": 21,
-                            "offset": 389,
+                            "offset": 392,
                           },
                         },
                         "name": "http",
@@ -742,12 +742,12 @@ Program {
                       "end": Object {
                         "column": 19,
                         "line": 21,
-                        "offset": 399,
+                        "offset": 402,
                       },
                       "start": Object {
                         "column": 5,
                         "line": 21,
-                        "offset": 385,
+                        "offset": 388,
                       },
                     },
                     "member": Identifier {
@@ -755,12 +755,12 @@ Program {
                         "end": Object {
                           "column": 19,
                           "line": 21,
-                          "offset": 399,
+                          "offset": 402,
                         },
                         "start": Object {
                           "column": 14,
                           "line": 21,
-                          "offset": 394,
+                          "offset": 397,
                         },
                       },
                       "name": "Cookie",
@@ -770,58 +770,58 @@ Program {
                   },
                   "loc": Object {
                     "end": Object {
-                      "column": 25,
+                      "column": 28,
                       "line": 21,
-                      "offset": 405,
+                      "offset": 411,
                     },
                     "start": Object {
                       "column": 5,
                       "line": 21,
-                      "offset": 385,
+                      "offset": 388,
                     },
                   },
                   "member": Identifier {
                     "loc": Object {
                       "end": Object {
-                        "column": 25,
+                        "column": 28,
                         "line": 21,
-                        "offset": 405,
+                        "offset": 411,
                       },
                       "start": Object {
                         "column": 21,
                         "line": 21,
-                        "offset": 401,
+                        "offset": 404,
                       },
                     },
-                    "name": "Vacel",
+                    "name": "Vaceline",
                     "type": "Identifier",
                   },
                   "type": "Member",
                 },
                 "loc": Object {
                   "end": Object {
-                    "column": 41,
+                    "column": 44,
                     "line": 21,
-                    "offset": 421,
+                    "offset": 427,
                   },
                   "start": Object {
                     "column": 5,
                     "line": 21,
-                    "offset": 385,
+                    "offset": 388,
                   },
                 },
                 "operator": "~",
                 "right": StringLiteral {
                   "loc": Object {
                     "end": Object {
-                      "column": 41,
+                      "column": 44,
                       "line": 21,
-                      "offset": 421,
+                      "offset": 427,
                     },
                     "start": Object {
-                      "column": 29,
+                      "column": 32,
                       "line": 21,
-                      "offset": 409,
+                      "offset": 415,
                     },
                   },
                   "type": "StringLiteral",
@@ -831,14 +831,14 @@ Program {
               },
               "loc": Object {
                 "end": Object {
-                  "column": 31,
+                  "column": 34,
                   "line": 22,
-                  "offset": 456,
+                  "offset": 465,
                 },
                 "start": Object {
                   "column": 5,
                   "line": 21,
-                  "offset": 385,
+                  "offset": 388,
                 },
               },
               "operator": "&&",
@@ -849,12 +849,12 @@ Program {
                       "end": Object {
                         "column": 7,
                         "line": 22,
-                        "offset": 432,
+                        "offset": 438,
                       },
                       "start": Object {
                         "column": 5,
                         "line": 22,
-                        "offset": 430,
+                        "offset": 436,
                       },
                     },
                     "name": "req",
@@ -864,12 +864,12 @@ Program {
                     "end": Object {
                       "column": 12,
                       "line": 22,
-                      "offset": 437,
+                      "offset": 443,
                     },
                     "start": Object {
                       "column": 5,
                       "line": 22,
-                      "offset": 430,
+                      "offset": 436,
                     },
                   },
                   "member": Identifier {
@@ -877,12 +877,12 @@ Program {
                       "end": Object {
                         "column": 12,
                         "line": 22,
-                        "offset": 437,
+                        "offset": 443,
                       },
                       "start": Object {
                         "column": 9,
                         "line": 22,
-                        "offset": 434,
+                        "offset": 440,
                       },
                     },
                     "name": "http",
@@ -892,30 +892,30 @@ Program {
                 },
                 "loc": Object {
                   "end": Object {
-                    "column": 31,
+                    "column": 34,
                     "line": 22,
-                    "offset": 456,
+                    "offset": 465,
                   },
                   "start": Object {
                     "column": 5,
                     "line": 22,
-                    "offset": 430,
+                    "offset": 436,
                   },
                 },
                 "member": Identifier {
                   "loc": Object {
                     "end": Object {
-                      "column": 31,
+                      "column": 34,
                       "line": 22,
-                      "offset": 456,
+                      "offset": 465,
                     },
                     "start": Object {
                       "column": 14,
                       "line": 22,
-                      "offset": 439,
+                      "offset": 445,
                     },
                   },
-                  "name": "Vacel-Special-User",
+                  "name": "Vaceline-Special-User",
                   "type": "Identifier",
                 },
                 "type": "Member",
@@ -926,12 +926,12 @@ Program {
               "end": Object {
                 "column": 3,
                 "line": 23,
-                "offset": 460,
+                "offset": 469,
               },
               "start": Object {
                 "column": 27,
                 "line": 20,
-                "offset": 379,
+                "offset": 382,
               },
             },
             "type": "BooleanExpression",
@@ -945,12 +945,12 @@ Program {
                 "end": Object {
                   "column": 9,
                   "line": 25,
-                  "offset": 472,
+                  "offset": 481,
                 },
                 "start": Object {
                   "column": 7,
                   "line": 25,
-                  "offset": 470,
+                  "offset": 479,
                 },
               },
               "name": "var",
@@ -960,12 +960,12 @@ Program {
               "end": Object {
                 "column": 21,
                 "line": 25,
-                "offset": 484,
+                "offset": 493,
               },
               "start": Object {
                 "column": 7,
                 "line": 25,
-                "offset": 470,
+                "offset": 479,
               },
             },
             "member": Identifier {
@@ -973,12 +973,12 @@ Program {
                 "end": Object {
                   "column": 21,
                   "line": 25,
-                  "offset": 484,
+                  "offset": 493,
                 },
                 "start": Object {
                   "column": 11,
                   "line": 25,
-                  "offset": 474,
+                  "offset": 483,
                 },
               },
               "name": "specialUser",
@@ -988,14 +988,14 @@ Program {
           },
           "loc": Object {
             "end": Object {
-              "column": 75,
+              "column": 78,
               "line": 25,
-              "offset": 538,
+              "offset": 550,
             },
             "start": Object {
               "column": 3,
               "line": 25,
-              "offset": 466,
+              "offset": 475,
             },
           },
           "operator": "=",
@@ -1007,12 +1007,12 @@ Program {
                     "end": Object {
                       "column": 30,
                       "line": 25,
-                      "offset": 493,
+                      "offset": 502,
                     },
                     "start": Object {
                       "column": 28,
                       "line": 25,
-                      "offset": 491,
+                      "offset": 500,
                     },
                   },
                   "name": "var",
@@ -1022,12 +1022,12 @@ Program {
                   "end": Object {
                     "column": 44,
                     "line": 25,
-                    "offset": 507,
+                    "offset": 516,
                   },
                   "start": Object {
                     "column": 28,
                     "line": 25,
-                    "offset": 491,
+                    "offset": 500,
                   },
                 },
                 "member": Identifier {
@@ -1035,12 +1035,12 @@ Program {
                     "end": Object {
                       "column": 44,
                       "line": 25,
-                      "offset": 507,
+                      "offset": 516,
                     },
                     "start": Object {
                       "column": 32,
                       "line": 25,
-                      "offset": 495,
+                      "offset": 504,
                     },
                   },
                   "name": "isSpecialUser",
@@ -1055,12 +1055,12 @@ Program {
                       "end": Object {
                         "column": 49,
                         "line": 25,
-                        "offset": 512,
+                        "offset": 521,
                       },
                       "start": Object {
                         "column": 47,
                         "line": 25,
-                        "offset": 510,
+                        "offset": 519,
                       },
                     },
                     "name": "req",
@@ -1070,12 +1070,12 @@ Program {
                     "end": Object {
                       "column": 54,
                       "line": 25,
-                      "offset": 517,
+                      "offset": 526,
                     },
                     "start": Object {
                       "column": 47,
                       "line": 25,
-                      "offset": 510,
+                      "offset": 519,
                     },
                   },
                   "member": Identifier {
@@ -1083,12 +1083,12 @@ Program {
                       "end": Object {
                         "column": 54,
                         "line": 25,
-                        "offset": 517,
+                        "offset": 526,
                       },
                       "start": Object {
                         "column": 51,
                         "line": 25,
-                        "offset": 514,
+                        "offset": 523,
                       },
                     },
                     "name": "http",
@@ -1098,30 +1098,30 @@ Program {
                 },
                 "loc": Object {
                   "end": Object {
-                    "column": 73,
+                    "column": 76,
                     "line": 25,
-                    "offset": 536,
+                    "offset": 548,
                   },
                   "start": Object {
                     "column": 47,
                     "line": 25,
-                    "offset": 510,
+                    "offset": 519,
                   },
                 },
                 "member": Identifier {
                   "loc": Object {
                     "end": Object {
-                      "column": 73,
+                      "column": 76,
                       "line": 25,
-                      "offset": 536,
+                      "offset": 548,
                     },
                     "start": Object {
                       "column": 56,
                       "line": 25,
-                      "offset": 519,
+                      "offset": 528,
                     },
                   },
-                  "name": "Vacel-Special-User",
+                  "name": "Vaceline-Special-User",
                   "type": "Identifier",
                 },
                 "type": "Member",
@@ -1132,12 +1132,12 @@ Program {
                 "end": Object {
                   "column": 26,
                   "line": 25,
-                  "offset": 489,
+                  "offset": 498,
                 },
                 "start": Object {
                   "column": 25,
                   "line": 25,
-                  "offset": 488,
+                  "offset": 497,
                 },
               },
               "name": "if",
@@ -1145,14 +1145,14 @@ Program {
             },
             "loc": Object {
               "end": Object {
-                "column": 74,
+                "column": 77,
                 "line": 25,
-                "offset": 537,
+                "offset": 549,
               },
               "start": Object {
                 "column": 25,
                 "line": 25,
-                "offset": 488,
+                "offset": 497,
               },
             },
             "type": "FunCallExpression",
@@ -1167,12 +1167,12 @@ Program {
                   "end": Object {
                     "column": 9,
                     "line": 28,
-                    "offset": 570,
+                    "offset": 582,
                   },
                   "start": Object {
                     "column": 7,
                     "line": 28,
-                    "offset": 568,
+                    "offset": 580,
                   },
                 },
                 "name": "req",
@@ -1182,12 +1182,12 @@ Program {
                 "end": Object {
                   "column": 14,
                   "line": 28,
-                  "offset": 575,
+                  "offset": 587,
                 },
                 "start": Object {
                   "column": 7,
                   "line": 28,
-                  "offset": 568,
+                  "offset": 580,
                 },
               },
               "member": Identifier {
@@ -1195,12 +1195,12 @@ Program {
                   "end": Object {
                     "column": 14,
                     "line": 28,
-                    "offset": 575,
+                    "offset": 587,
                   },
                   "start": Object {
                     "column": 11,
                     "line": 28,
-                    "offset": 572,
+                    "offset": 584,
                   },
                 },
                 "name": "http",
@@ -1212,12 +1212,12 @@ Program {
               "end": Object {
                 "column": 33,
                 "line": 28,
-                "offset": 594,
+                "offset": 606,
               },
               "start": Object {
                 "column": 7,
                 "line": 28,
-                "offset": 568,
+                "offset": 580,
               },
             },
             "member": Identifier {
@@ -1225,12 +1225,12 @@ Program {
                 "end": Object {
                   "column": 33,
                   "line": 28,
-                  "offset": 594,
+                  "offset": 606,
                 },
                 "start": Object {
                   "column": 16,
                   "line": 28,
-                  "offset": 577,
+                  "offset": 589,
                 },
               },
               "name": "vacelIsSpecialUser",
@@ -1242,12 +1242,12 @@ Program {
             "end": Object {
               "column": 75,
               "line": 28,
-              "offset": 636,
+              "offset": 648,
             },
             "start": Object {
               "column": 3,
               "line": 28,
-              "offset": 564,
+              "offset": 576,
             },
           },
           "operator": "=",
@@ -1259,12 +1259,12 @@ Program {
                     "end": Object {
                       "column": 42,
                       "line": 28,
-                      "offset": 603,
+                      "offset": 615,
                     },
                     "start": Object {
                       "column": 40,
                       "line": 28,
-                      "offset": 601,
+                      "offset": 613,
                     },
                   },
                   "name": "var",
@@ -1274,12 +1274,12 @@ Program {
                   "end": Object {
                     "column": 56,
                     "line": 28,
-                    "offset": 617,
+                    "offset": 629,
                   },
                   "start": Object {
                     "column": 40,
                     "line": 28,
-                    "offset": 601,
+                    "offset": 613,
                   },
                 },
                 "member": Identifier {
@@ -1287,12 +1287,12 @@ Program {
                     "end": Object {
                       "column": 56,
                       "line": 28,
-                      "offset": 617,
+                      "offset": 629,
                     },
                     "start": Object {
                       "column": 44,
                       "line": 28,
-                      "offset": 605,
+                      "offset": 617,
                     },
                   },
                   "name": "isSpecialUser",
@@ -1305,12 +1305,12 @@ Program {
                   "end": Object {
                     "column": 64,
                     "line": 28,
-                    "offset": 625,
+                    "offset": 637,
                   },
                   "start": Object {
                     "column": 59,
                     "line": 28,
-                    "offset": 620,
+                    "offset": 632,
                   },
                 },
                 "type": "StringLiteral",
@@ -1321,12 +1321,12 @@ Program {
                   "end": Object {
                     "column": 73,
                     "line": 28,
-                    "offset": 634,
+                    "offset": 646,
                   },
                   "start": Object {
                     "column": 67,
                     "line": 28,
-                    "offset": 628,
+                    "offset": 640,
                   },
                 },
                 "type": "StringLiteral",
@@ -1338,12 +1338,12 @@ Program {
                 "end": Object {
                   "column": 38,
                   "line": 28,
-                  "offset": 599,
+                  "offset": 611,
                 },
                 "start": Object {
                   "column": 37,
                   "line": 28,
-                  "offset": 598,
+                  "offset": 610,
                 },
               },
               "name": "if",
@@ -1353,12 +1353,12 @@ Program {
               "end": Object {
                 "column": 74,
                 "line": 28,
-                "offset": 635,
+                "offset": 647,
               },
               "start": Object {
                 "column": 37,
                 "line": 28,
-                "offset": 598,
+                "offset": 610,
               },
             },
             "type": "FunCallExpression",
@@ -1373,12 +1373,12 @@ Program {
                   "end": Object {
                     "column": 9,
                     "line": 31,
-                    "offset": 663,
+                    "offset": 675,
                   },
                   "start": Object {
                     "column": 7,
                     "line": 31,
-                    "offset": 661,
+                    "offset": 673,
                   },
                 },
                 "name": "req",
@@ -1388,12 +1388,12 @@ Program {
                 "end": Object {
                   "column": 14,
                   "line": 31,
-                  "offset": 668,
+                  "offset": 680,
                 },
                 "start": Object {
                   "column": 7,
                   "line": 31,
-                  "offset": 661,
+                  "offset": 673,
                 },
               },
               "member": Identifier {
@@ -1401,12 +1401,12 @@ Program {
                   "end": Object {
                     "column": 14,
                     "line": 31,
-                    "offset": 668,
+                    "offset": 680,
                   },
                   "start": Object {
                     "column": 11,
                     "line": 31,
-                    "offset": 665,
+                    "offset": 677,
                   },
                 },
                 "name": "http",
@@ -1416,44 +1416,44 @@ Program {
             },
             "loc": Object {
               "end": Object {
-                "column": 33,
+                "column": 36,
                 "line": 31,
-                "offset": 687,
+                "offset": 702,
               },
               "start": Object {
                 "column": 7,
                 "line": 31,
-                "offset": 661,
+                "offset": 673,
               },
             },
             "member": Identifier {
               "loc": Object {
                 "end": Object {
-                  "column": 33,
+                  "column": 36,
                   "line": 31,
-                  "offset": 687,
+                  "offset": 702,
                 },
                 "start": Object {
                   "column": 16,
                   "line": 31,
-                  "offset": 670,
+                  "offset": 682,
                 },
               },
-              "name": "Vacel-Special-User",
+              "name": "Vaceline-Special-User",
               "type": "Identifier",
             },
             "type": "Member",
           },
           "loc": Object {
             "end": Object {
-              "column": 52,
+              "column": 55,
               "line": 31,
-              "offset": 706,
+              "offset": 721,
             },
             "start": Object {
               "column": 3,
               "line": 31,
-              "offset": 657,
+              "offset": 669,
             },
           },
           "operator": "=",
@@ -1461,14 +1461,14 @@ Program {
             "base": Identifier {
               "loc": Object {
                 "end": Object {
-                  "column": 39,
+                  "column": 42,
                   "line": 31,
-                  "offset": 693,
+                  "offset": 708,
                 },
                 "start": Object {
-                  "column": 37,
+                  "column": 40,
                   "line": 31,
-                  "offset": 691,
+                  "offset": 706,
                 },
               },
               "name": "var",
@@ -1476,27 +1476,27 @@ Program {
             },
             "loc": Object {
               "end": Object {
-                "column": 51,
+                "column": 54,
                 "line": 31,
-                "offset": 705,
+                "offset": 720,
               },
               "start": Object {
-                "column": 37,
+                "column": 40,
                 "line": 31,
-                "offset": 691,
+                "offset": 706,
               },
             },
             "member": Identifier {
               "loc": Object {
                 "end": Object {
-                  "column": 51,
+                  "column": 54,
                   "line": 31,
-                  "offset": 705,
+                  "offset": 720,
                 },
                 "start": Object {
-                  "column": 41,
+                  "column": 44,
                   "line": 31,
-                  "offset": 695,
+                  "offset": 710,
                 },
               },
               "name": "specialUser",
@@ -1527,7 +1527,7 @@ Program {
         "end": Object {
           "column": 1,
           "line": 32,
-          "offset": 708,
+          "offset": 723,
         },
         "start": Object {
           "column": 1,
@@ -1544,12 +1544,12 @@ Program {
             "end": Object {
               "column": 37,
               "line": 35,
-              "offset": 762,
+              "offset": 777,
             },
             "start": Object {
               "column": 3,
               "line": 35,
-              "offset": 728,
+              "offset": 743,
             },
           },
           "subroutine": Identifier {
@@ -1557,12 +1557,12 @@ Program {
               "end": Object {
                 "column": 36,
                 "line": 35,
-                "offset": 761,
+                "offset": 776,
               },
               "start": Object {
                 "column": 8,
                 "line": 35,
-                "offset": 733,
+                "offset": 748,
               },
             },
             "name": "remove_unused_vars_from_bereq",
@@ -1576,12 +1576,12 @@ Program {
           "end": Object {
             "column": 12,
             "line": 34,
-            "offset": 722,
+            "offset": 737,
           },
           "start": Object {
             "column": 5,
             "line": 34,
-            "offset": 715,
+            "offset": 730,
           },
         },
         "name": "vcl_pass",
@@ -1591,12 +1591,12 @@ Program {
         "end": Object {
           "column": 1,
           "line": 36,
-          "offset": 764,
+          "offset": 779,
         },
         "start": Object {
           "column": 1,
           "line": 34,
-          "offset": 711,
+          "offset": 726,
         },
       },
       "type": "SubroutineStatement",
@@ -1608,12 +1608,12 @@ Program {
             "end": Object {
               "column": 37,
               "line": 39,
-              "offset": 818,
+              "offset": 833,
             },
             "start": Object {
               "column": 3,
               "line": 39,
-              "offset": 784,
+              "offset": 799,
             },
           },
           "subroutine": Identifier {
@@ -1621,12 +1621,12 @@ Program {
               "end": Object {
                 "column": 36,
                 "line": 39,
-                "offset": 817,
+                "offset": 832,
               },
               "start": Object {
                 "column": 8,
                 "line": 39,
-                "offset": 789,
+                "offset": 804,
               },
             },
             "name": "remove_unused_vars_from_bereq",
@@ -1640,12 +1640,12 @@ Program {
           "end": Object {
             "column": 12,
             "line": 38,
-            "offset": 778,
+            "offset": 793,
           },
           "start": Object {
             "column": 5,
             "line": 38,
-            "offset": 771,
+            "offset": 786,
           },
         },
         "name": "vcl_miss",
@@ -1655,12 +1655,12 @@ Program {
         "end": Object {
           "column": 1,
           "line": 40,
-          "offset": 820,
+          "offset": 835,
         },
         "start": Object {
           "column": 1,
           "line": 38,
-          "offset": 767,
+          "offset": 782,
         },
       },
       "type": "SubroutineStatement",
@@ -1675,12 +1675,12 @@ Program {
                   "end": Object {
                     "column": 13,
                     "line": 43,
-                    "offset": 871,
+                    "offset": 886,
                   },
                   "start": Object {
                     "column": 9,
                     "line": 43,
-                    "offset": 867,
+                    "offset": 882,
                   },
                 },
                 "name": "bereq",
@@ -1690,12 +1690,12 @@ Program {
                 "end": Object {
                   "column": 18,
                   "line": 43,
-                  "offset": 876,
+                  "offset": 891,
                 },
                 "start": Object {
                   "column": 9,
                   "line": 43,
-                  "offset": 867,
+                  "offset": 882,
                 },
               },
               "member": Identifier {
@@ -1703,12 +1703,12 @@ Program {
                   "end": Object {
                     "column": 18,
                     "line": 43,
-                    "offset": 876,
+                    "offset": 891,
                   },
                   "start": Object {
                     "column": 15,
                     "line": 43,
-                    "offset": 873,
+                    "offset": 888,
                   },
                 },
                 "name": "http",
@@ -1720,12 +1720,12 @@ Program {
               "end": Object {
                 "column": 37,
                 "line": 43,
-                "offset": 895,
+                "offset": 910,
               },
               "start": Object {
                 "column": 9,
                 "line": 43,
-                "offset": 867,
+                "offset": 882,
               },
             },
             "member": Identifier {
@@ -1733,12 +1733,12 @@ Program {
                 "end": Object {
                   "column": 37,
                   "line": 43,
-                  "offset": 895,
+                  "offset": 910,
                 },
                 "start": Object {
                   "column": 20,
                   "line": 43,
-                  "offset": 878,
+                  "offset": 893,
                 },
               },
               "name": "vacelIsSpecialUser",
@@ -1750,12 +1750,12 @@ Program {
             "end": Object {
               "column": 38,
               "line": 43,
-              "offset": 896,
+              "offset": 911,
             },
             "start": Object {
               "column": 3,
               "line": 43,
-              "offset": 861,
+              "offset": 876,
             },
           },
           "type": "UnsetStatement",
@@ -1766,12 +1766,12 @@ Program {
           "end": Object {
             "column": 33,
             "line": 42,
-            "offset": 855,
+            "offset": 870,
           },
           "start": Object {
             "column": 5,
             "line": 42,
-            "offset": 827,
+            "offset": 842,
           },
         },
         "name": "remove_unused_vars_from_bereq",
@@ -1781,12 +1781,12 @@ Program {
         "end": Object {
           "column": 1,
           "line": 44,
-          "offset": 898,
+          "offset": 913,
         },
         "start": Object {
           "column": 1,
           "line": 42,
-          "offset": 823,
+          "offset": 838,
         },
       },
       "type": "SubroutineStatement",
@@ -1803,12 +1803,12 @@ Program {
                     "end": Object {
                       "column": 14,
                       "line": 48,
-                      "offset": 977,
+                      "offset": 992,
                     },
                     "start": Object {
                       "column": 9,
                       "line": 48,
-                      "offset": 972,
+                      "offset": 987,
                     },
                   },
                   "name": "beresp",
@@ -1818,12 +1818,12 @@ Program {
                   "end": Object {
                     "column": 18,
                     "line": 48,
-                    "offset": 981,
+                    "offset": 996,
                   },
                   "start": Object {
                     "column": 9,
                     "line": 48,
-                    "offset": 972,
+                    "offset": 987,
                   },
                 },
                 "member": Identifier {
@@ -1831,12 +1831,12 @@ Program {
                     "end": Object {
                       "column": 18,
                       "line": 48,
-                      "offset": 981,
+                      "offset": 996,
                     },
                     "start": Object {
                       "column": 16,
                       "line": 48,
-                      "offset": 979,
+                      "offset": 994,
                     },
                   },
                   "name": "ttl",
@@ -1848,12 +1848,12 @@ Program {
                 "end": Object {
                   "column": 24,
                   "line": 48,
-                  "offset": 987,
+                  "offset": 1002,
                 },
                 "start": Object {
                   "column": 5,
                   "line": 48,
-                  "offset": 968,
+                  "offset": 983,
                 },
               },
               "operator": "=",
@@ -1862,12 +1862,12 @@ Program {
                   "end": Object {
                     "column": 23,
                     "line": 48,
-                    "offset": 986,
+                    "offset": 1001,
                   },
                   "start": Object {
                     "column": 22,
                     "line": 48,
-                    "offset": 985,
+                    "offset": 1000,
                   },
                 },
                 "type": "DurationLiteral",
@@ -1880,12 +1880,12 @@ Program {
             "end": Object {
               "column": 3,
               "line": 49,
-              "offset": 991,
+              "offset": 1006,
             },
             "start": Object {
               "column": 3,
               "line": 47,
-              "offset": 919,
+              "offset": 934,
             },
           },
           "test": BinaryExpression {
@@ -1896,12 +1896,12 @@ Program {
                     "end": Object {
                       "column": 9,
                       "line": 47,
-                      "offset": 925,
+                      "offset": 940,
                     },
                     "start": Object {
                       "column": 7,
                       "line": 47,
-                      "offset": 923,
+                      "offset": 938,
                     },
                   },
                   "name": "req",
@@ -1911,12 +1911,12 @@ Program {
                   "end": Object {
                     "column": 14,
                     "line": 47,
-                    "offset": 930,
+                    "offset": 945,
                   },
                   "start": Object {
                     "column": 7,
                     "line": 47,
-                    "offset": 923,
+                    "offset": 938,
                   },
                 },
                 "member": Identifier {
@@ -1924,12 +1924,12 @@ Program {
                     "end": Object {
                       "column": 14,
                       "line": 47,
-                      "offset": 930,
+                      "offset": 945,
                     },
                     "start": Object {
                       "column": 11,
                       "line": 47,
-                      "offset": 927,
+                      "offset": 942,
                     },
                   },
                   "name": "http",
@@ -1941,12 +1941,12 @@ Program {
                 "end": Object {
                   "column": 33,
                   "line": 47,
-                  "offset": 949,
+                  "offset": 964,
                 },
                 "start": Object {
                   "column": 7,
                   "line": 47,
-                  "offset": 923,
+                  "offset": 938,
                 },
               },
               "member": Identifier {
@@ -1954,12 +1954,12 @@ Program {
                   "end": Object {
                     "column": 33,
                     "line": 47,
-                    "offset": 949,
+                    "offset": 964,
                   },
                   "start": Object {
                     "column": 16,
                     "line": 47,
-                    "offset": 932,
+                    "offset": 947,
                   },
                 },
                 "name": "vacelIsSpecialUser",
@@ -1971,12 +1971,12 @@ Program {
               "end": Object {
                 "column": 43,
                 "line": 47,
-                "offset": 959,
+                "offset": 974,
               },
               "start": Object {
                 "column": 7,
                 "line": 47,
-                "offset": 923,
+                "offset": 938,
               },
             },
             "operator": "==",
@@ -1985,12 +1985,12 @@ Program {
                 "end": Object {
                   "column": 43,
                   "line": 47,
-                  "offset": 959,
+                  "offset": 974,
                 },
                 "start": Object {
                   "column": 38,
                   "line": 47,
-                  "offset": 954,
+                  "offset": 969,
                 },
               },
               "type": "StringLiteral",
@@ -2006,12 +2006,12 @@ Program {
           "end": Object {
             "column": 13,
             "line": 46,
-            "offset": 913,
+            "offset": 928,
           },
           "start": Object {
             "column": 5,
             "line": 46,
-            "offset": 905,
+            "offset": 920,
           },
         },
         "name": "vcl_fetch",
@@ -2021,12 +2021,12 @@ Program {
         "end": Object {
           "column": 1,
           "line": 50,
-          "offset": 993,
+          "offset": 1008,
         },
         "start": Object {
           "column": 1,
           "line": 46,
-          "offset": 901,
+          "offset": 916,
         },
       },
       "type": "SubroutineStatement",
@@ -2036,7 +2036,7 @@ Program {
     "end": Object {
       "column": 3,
       "line": 56,
-      "offset": 1041,
+      "offset": 1056,
     },
     "start": Object {
       "column": 1,
