@@ -677,7 +677,10 @@ export class BackendStatement extends BaseStatement {
   }
 
   next() {
-    return this.body.map((b) => b.value).flat(2)
+    return this.body
+      .filter((b) => b.value instanceof BaseNode)
+      .map((b) => b.value)
+      .flat(2)
   }
 }
 

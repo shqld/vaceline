@@ -1,0 +1,2140 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(AclStatement) basic 1`] = `
+AclStatement {
+  "body": Array [
+    Ip {
+      "cidr": undefined,
+      "type": "Ip",
+      "value": "127.0.0.1",
+    },
+    Ip {
+      "cidr": undefined,
+      "type": "Ip",
+      "value": "localhost",
+    },
+  ],
+  "id": Identifier {
+    "name": "aaa",
+    "type": "Identifier",
+  },
+  "type": "AclStatement",
+}
+`;
+
+exports[`(AddStatement) TODO: cover operand types
+addition 1`] = `
+AddStatement {
+  "left": Member {
+    "base": Identifier {
+      "name": "var",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "vacel",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "operator": "+=",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"vacel\\"",
+  },
+  "type": "AddStatement",
+}
+`;
+
+exports[`(AddStatement) assignment 1`] = `
+AddStatement {
+  "left": Member {
+    "base": Identifier {
+      "name": "var",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "vacel",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "operator": "=",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"vacel\\"",
+  },
+  "type": "AddStatement",
+}
+`;
+
+exports[`(AddStatement) division 1`] = `
+AddStatement {
+  "left": Member {
+    "base": Identifier {
+      "name": "var",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "vacel",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "operator": "*=",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"vacel\\"",
+  },
+  "type": "AddStatement",
+}
+`;
+
+exports[`(AddStatement) multiplication 1`] = `
+AddStatement {
+  "left": Member {
+    "base": Identifier {
+      "name": "var",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "vacel",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "operator": "*=",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"vacel\\"",
+  },
+  "type": "AddStatement",
+}
+`;
+
+exports[`(AddStatement) substraction 1`] = `
+AddStatement {
+  "left": Member {
+    "base": Identifier {
+      "name": "var",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "vacel",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "operator": "-=",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"vacel\\"",
+  },
+  "type": "AddStatement",
+}
+`;
+
+exports[`(BackendStatement) basic 1`] = `
+BackendStatement {
+  "body": Array [
+    Object {
+      "key": "connect_timeout",
+      "value": DurationLiteral {
+        "type": "DurationLiteral",
+        "value": "1s",
+      },
+    },
+    Object {
+      "key": "dynamic",
+      "value": BooleanLiteral {
+        "type": "BooleanLiteral",
+        "value": "true",
+      },
+    },
+    Object {
+      "key": "port",
+      "value": StringLiteral {
+        "type": "StringLiteral",
+        "value": "\\"443\\"",
+      },
+    },
+    Object {
+      "key": "host",
+      "value": StringLiteral {
+        "type": "StringLiteral",
+        "value": "\\"vaceline.io\\"",
+      },
+    },
+    Object {
+      "key": "first_byte_timeout",
+      "value": DurationLiteral {
+        "type": "DurationLiteral",
+        "value": "5s",
+      },
+    },
+    Object {
+      "key": "max_connections",
+      "value": NumericLiteral {
+        "type": "NumericLiteral",
+        "value": "100",
+      },
+    },
+    Object {
+      "key": "between_bytes_timeout",
+      "value": DurationLiteral {
+        "type": "DurationLiteral",
+        "value": "10s",
+      },
+    },
+    Object {
+      "key": "share_key",
+      "value": StringLiteral {
+        "type": "StringLiteral",
+        "value": "\\"f8585BOxnGQDMbnkJoM1e\\"",
+      },
+    },
+    Object {
+      "key": "ssl",
+      "value": BooleanLiteral {
+        "type": "BooleanLiteral",
+        "value": "true",
+      },
+    },
+    Object {
+      "key": "probe",
+      "value": Array [
+        Object {
+          "key": "request",
+          "value": ConcatExpression {
+            "body": Array [
+              StringLiteral {
+                "loc": Object {
+                  "end": Object {
+                    "column": 42,
+                    "line": 12,
+                    "offset": 308,
+                  },
+                  "start": Object {
+                    "column": 16,
+                    "line": 12,
+                    "offset": 282,
+                  },
+                },
+                "type": "StringLiteral",
+                "value": "\\"GET /healthcheck HTTP/1.1\\"",
+              },
+              StringLiteral {
+                "loc": Object {
+                  "end": Object {
+                    "column": 62,
+                    "line": 12,
+                    "offset": 328,
+                  },
+                  "start": Object {
+                    "column": 44,
+                    "line": 12,
+                    "offset": 310,
+                  },
+                },
+                "type": "StringLiteral",
+                "value": "\\"Host: vaceline.io\\"",
+              },
+              StringLiteral {
+                "loc": Object {
+                  "end": Object {
+                    "column": 82,
+                    "line": 12,
+                    "offset": 348,
+                  },
+                  "start": Object {
+                    "column": 64,
+                    "line": 12,
+                    "offset": 330,
+                  },
+                },
+                "type": "StringLiteral",
+                "value": "\\"Connection: close\\"",
+              },
+              StringLiteral {
+                "loc": Object {
+                  "end": Object {
+                    "column": 117,
+                    "line": 12,
+                    "offset": 383,
+                  },
+                  "start": Object {
+                    "column": 84,
+                    "line": 12,
+                    "offset": 350,
+                  },
+                },
+                "type": "StringLiteral",
+                "value": "\\"User-Agent: Vaceline healthcheck\\"",
+              },
+            ],
+            "loc": Object {
+              "end": Object {
+                "column": 117,
+                "line": 12,
+                "offset": 383,
+              },
+              "start": Object {
+                "column": 16,
+                "line": 12,
+                "offset": 282,
+              },
+            },
+            "type": "ConcatExpression",
+          },
+        },
+        Object {
+          "key": "threshold",
+          "value": NumericLiteral {
+            "loc": Object {
+              "end": Object {
+                "column": 18,
+                "line": 13,
+                "offset": 403,
+              },
+              "start": Object {
+                "column": 18,
+                "line": 13,
+                "offset": 403,
+              },
+            },
+            "type": "NumericLiteral",
+            "value": "1",
+          },
+        },
+        Object {
+          "key": "window",
+          "value": NumericLiteral {
+            "loc": Object {
+              "end": Object {
+                "column": 15,
+                "line": 14,
+                "offset": 420,
+              },
+              "start": Object {
+                "column": 15,
+                "line": 14,
+                "offset": 420,
+              },
+            },
+            "type": "NumericLiteral",
+            "value": "2",
+          },
+        },
+        Object {
+          "key": "timeout",
+          "value": DurationLiteral {
+            "loc": Object {
+              "end": Object {
+                "column": 18,
+                "line": 15,
+                "offset": 440,
+              },
+              "start": Object {
+                "column": 16,
+                "line": 15,
+                "offset": 438,
+              },
+            },
+            "type": "DurationLiteral",
+            "value": "10s",
+          },
+        },
+        Object {
+          "key": "initial",
+          "value": NumericLiteral {
+            "loc": Object {
+              "end": Object {
+                "column": 16,
+                "line": 16,
+                "offset": 458,
+              },
+              "start": Object {
+                "column": 16,
+                "line": 16,
+                "offset": 458,
+              },
+            },
+            "type": "NumericLiteral",
+            "value": "1",
+          },
+        },
+        Object {
+          "key": "expected_response",
+          "value": NumericLiteral {
+            "loc": Object {
+              "end": Object {
+                "column": 28,
+                "line": 17,
+                "offset": 488,
+              },
+              "start": Object {
+                "column": 26,
+                "line": 17,
+                "offset": 486,
+              },
+            },
+            "type": "NumericLiteral",
+            "value": "200",
+          },
+        },
+        Object {
+          "key": "interval",
+          "value": DurationLiteral {
+            "loc": Object {
+              "end": Object {
+                "column": 19,
+                "line": 18,
+                "offset": 509,
+              },
+              "start": Object {
+                "column": 17,
+                "line": 18,
+                "offset": 507,
+              },
+            },
+            "type": "DurationLiteral",
+            "value": "60s",
+          },
+        },
+      ],
+    },
+  ],
+  "id": Identifier {
+    "loc": Object {
+      "end": Object {
+        "column": 24,
+        "line": 1,
+        "offset": 23,
+      },
+      "start": Object {
+        "column": 9,
+        "line": 1,
+        "offset": 8,
+      },
+    },
+    "name": "vaceline_backend",
+    "type": "Identifier",
+  },
+  "type": "BackendStatement",
+}
+`;
+
+exports[`(BinaryExpression) combinations 1`] = `
+BinaryExpression {
+  "left": BinaryExpression {
+    "left": BinaryExpression {
+      "left": Member {
+        "base": Member {
+          "base": Identifier {
+            "name": "req",
+            "type": "Identifier",
+          },
+          "member": Identifier {
+            "name": "http",
+            "type": "Identifier",
+          },
+          "type": "Member",
+        },
+        "member": Identifier {
+          "name": "Debug",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "operator": "==",
+      "right": StringLiteral {
+        "type": "StringLiteral",
+        "value": "\\"1\\"",
+      },
+      "type": "BinaryExpression",
+    },
+    "operator": "==",
+    "right": StringLiteral {
+      "type": "StringLiteral",
+      "value": "\\"2\\"",
+    },
+    "type": "BinaryExpression",
+  },
+  "operator": "==",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"3\\"",
+  },
+  "type": "BinaryExpression",
+}
+`;
+
+exports[`(BinaryExpression) equal 1`] = `
+BinaryExpression {
+  "left": Member {
+    "base": Member {
+      "base": Identifier {
+        "name": "req",
+        "type": "Identifier",
+      },
+      "member": Identifier {
+        "name": "http",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "member": Identifier {
+      "name": "Debug",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "operator": "==",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"1\\"",
+  },
+  "type": "BinaryExpression",
+}
+`;
+
+exports[`(BinaryExpression) match 1`] = `
+BinaryExpression {
+  "left": Member {
+    "base": Member {
+      "base": Identifier {
+        "name": "req",
+        "type": "Identifier",
+      },
+      "member": Identifier {
+        "name": "http",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "member": Identifier {
+      "name": "Debug",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "operator": "~",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"1\\"",
+  },
+  "type": "BinaryExpression",
+}
+`;
+
+exports[`(BinaryExpression) not equal 1`] = `
+BinaryExpression {
+  "left": Member {
+    "base": Member {
+      "base": Identifier {
+        "name": "req",
+        "type": "Identifier",
+      },
+      "member": Identifier {
+        "name": "http",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "member": Identifier {
+      "name": "Debug",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "operator": "!=",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"1\\"",
+  },
+  "type": "BinaryExpression",
+}
+`;
+
+exports[`(BooleanExpression) assign 1`] = `
+ConcatExpression {
+  "body": Array [
+    Identifier {
+      "name": "set",
+      "type": "Identifier",
+    },
+    Member {
+      "base": Identifier {
+        "name": "var",
+        "type": "Identifier",
+      },
+      "member": Identifier {
+        "name": "Debug",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+  ],
+  "type": "ConcatExpression",
+}
+`;
+
+exports[`(BooleanExpression) with binary 1`] = `
+BooleanExpression {
+  "body": BinaryExpression {
+    "left": Member {
+      "base": Member {
+        "base": Identifier {
+          "name": "req",
+          "type": "Identifier",
+        },
+        "member": Identifier {
+          "name": "http",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "member": Identifier {
+        "name": "Debug",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "operator": "==",
+    "right": StringLiteral {
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "type": "BinaryExpression",
+  },
+  "type": "BooleanExpression",
+}
+`;
+
+exports[`(BooleanExpression) with logical 1`] = `
+BooleanExpression {
+  "body": LogicalExpression {
+    "left": Member {
+      "base": Identifier {
+        "name": "var",
+        "type": "Identifier",
+      },
+      "member": Identifier {
+        "name": "Debug",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "operator": "&&",
+    "right": StringLiteral {
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "type": "LogicalExpression",
+  },
+  "type": "BooleanExpression",
+}
+`;
+
+exports[`(BooleanLiteral) false 1`] = `
+BooleanLiteral {
+  "type": "BooleanLiteral",
+  "value": "false",
+}
+`;
+
+exports[`(BooleanLiteral) true 1`] = `
+BooleanLiteral {
+  "type": "BooleanLiteral",
+  "value": "true",
+}
+`;
+
+exports[`(CallStatement) basic 1`] = `
+CallStatement {
+  "subroutine": Identifier {
+    "name": "vaceline_func",
+    "type": "Identifier",
+  },
+  "type": "CallStatement",
+}
+`;
+
+exports[`(ConcatExpression) expressions 1`] = `
+ConcatExpression {
+  "body": Array [
+    StringLiteral {
+      "type": "StringLiteral",
+      "value": "\\"a\\"",
+    },
+    NumericLiteral {
+      "type": "NumericLiteral",
+      "value": "1",
+    },
+    Member {
+      "base": Member {
+        "base": Identifier {
+          "name": "req",
+          "type": "Identifier",
+        },
+        "member": Identifier {
+          "name": "http",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "member": Identifier {
+        "name": "A",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+  ],
+  "type": "ConcatExpression",
+}
+`;
+
+exports[`(ConcatExpression) strings 1`] = `
+ConcatExpression {
+  "body": Array [
+    StringLiteral {
+      "type": "StringLiteral",
+      "value": "\\"a\\"",
+    },
+    StringLiteral {
+      "type": "StringLiteral",
+      "value": "\\"b\\"",
+    },
+  ],
+  "type": "ConcatExpression",
+}
+`;
+
+exports[`(DeclareStatement) bool 1`] = `
+DeclareStatement {
+  "id": Member {
+    "base": Identifier {
+      "name": "var",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "Vaceline",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "type": "DeclareStatement",
+  "valueType": "BOOL",
+}
+`;
+
+exports[`(DeclareStatement) float 1`] = `
+DeclareStatement {
+  "id": Member {
+    "base": Identifier {
+      "name": "var",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "Vaceline",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "type": "DeclareStatement",
+  "valueType": "FLOAT",
+}
+`;
+
+exports[`(DeclareStatement) integer 1`] = `
+DeclareStatement {
+  "id": Member {
+    "base": Identifier {
+      "name": "var",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "Vaceline",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "type": "DeclareStatement",
+  "valueType": "INTEGER",
+}
+`;
+
+exports[`(DeclareStatement) string 1`] = `
+DeclareStatement {
+  "id": Member {
+    "base": Identifier {
+      "name": "var",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "Vaceline",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "type": "DeclareStatement",
+  "valueType": "STRING",
+}
+`;
+
+exports[`(DurationLiteral) day 1`] = `
+DurationLiteral {
+  "type": "DurationLiteral",
+  "value": "1d",
+}
+`;
+
+exports[`(DurationLiteral) min 1`] = `
+DurationLiteral {
+  "type": "DurationLiteral",
+  "value": "1m",
+}
+`;
+
+exports[`(DurationLiteral) month 1`] = `
+NumericLiteral {
+  "type": "NumericLiteral",
+  "value": "1",
+}
+`;
+
+exports[`(DurationLiteral) ms 1`] = `
+DurationLiteral {
+  "type": "DurationLiteral",
+  "value": "1ms",
+}
+`;
+
+exports[`(DurationLiteral) s 1`] = `
+DurationLiteral {
+  "type": "DurationLiteral",
+  "value": "1s",
+}
+`;
+
+exports[`(DurationLiteral) year 1`] = `
+NumericLiteral {
+  "type": "NumericLiteral",
+  "value": "1",
+}
+`;
+
+exports[`(ErrorStatement) basic 1`] = `
+ErrorStatement {
+  "message": undefined,
+  "status": 404,
+  "type": "ErrorStatement",
+}
+`;
+
+exports[`(ErrorStatement) with response 1`] = `
+ErrorStatement {
+  "message": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"Not Found\\"",
+  },
+  "status": 404,
+  "type": "ErrorStatement",
+}
+`;
+
+exports[`(ErrorStatement) with variable response 1`] = `
+ErrorStatement {
+  "message": Member {
+    "base": Member {
+      "base": Identifier {
+        "name": "req",
+        "type": "Identifier",
+      },
+      "member": Identifier {
+        "name": "http",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "member": Identifier {
+      "name": "Debug",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "status": 800,
+  "type": "ErrorStatement",
+}
+`;
+
+exports[`(ExpressionStatement) with FunCallExpression 1`] = `
+LogStatement {
+  "content": BooleanExpression {
+    "body": Identifier {
+      "name": "a",
+      "type": "Identifier",
+    },
+    "type": "BooleanExpression",
+  },
+  "type": "LogStatement",
+}
+`;
+
+exports[`(ExpressionStatement) with Identifer 1`] = `
+ExpressionStatement {
+  "body": Identifier {
+    "name": "vaceline",
+    "type": "Identifier",
+  },
+  "type": "ExpressionStatement",
+}
+`;
+
+exports[`(ExpressionStatement) with Literal 1`] = `
+ExpressionStatement {
+  "body": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"string\\"",
+  },
+  "type": "ExpressionStatement",
+}
+`;
+
+exports[`(ExpressionStatement) with Member & Identifier 1`] = `
+ExpressionStatement {
+  "body": Member {
+    "base": Member {
+      "base": Identifier {
+        "name": "req",
+        "type": "Identifier",
+      },
+      "member": Identifier {
+        "name": "http",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "member": Identifier {
+      "name": "Vaceline",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "type": "ExpressionStatement",
+}
+`;
+
+exports[`(File) file 1`] = `
+Program {
+  "body": Array [
+    ExpressionStatement {
+      "body": StringLiteral {
+        "type": "StringLiteral",
+        "value": "\\"file\\"",
+      },
+      "type": "ExpressionStatement",
+    },
+  ],
+  "type": "Program",
+}
+`;
+
+exports[`(FunCallExpression) \`if\` func 1`] = `
+FunCallExpression {
+  "arguments": Array [
+    StringLiteral {
+      "loc": Object {
+        "end": Object {
+          "column": 6,
+          "line": 1,
+          "offset": 5,
+        },
+        "start": Object {
+          "column": 4,
+          "line": 1,
+          "offset": 3,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"a\\"",
+    },
+    StringLiteral {
+      "loc": Object {
+        "end": Object {
+          "column": 11,
+          "line": 1,
+          "offset": 10,
+        },
+        "start": Object {
+          "column": 9,
+          "line": 1,
+          "offset": 8,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"b\\"",
+    },
+    StringLiteral {
+      "loc": Object {
+        "end": Object {
+          "column": 16,
+          "line": 1,
+          "offset": 15,
+        },
+        "start": Object {
+          "column": 14,
+          "line": 1,
+          "offset": 13,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"c\\"",
+    },
+  ],
+  "callee": Identifier {
+    "loc": Object {
+      "end": Object {
+        "column": 2,
+        "line": 1,
+        "offset": 1,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "name": "if",
+    "type": "Identifier",
+  },
+  "type": "FunCallExpression",
+}
+`;
+
+exports[`(FunCallExpression) normal 1`] = `
+FunCallExpression {
+  "arguments": Array [
+    StringLiteral {
+      "loc": Object {
+        "end": Object {
+          "column": 8,
+          "line": 1,
+          "offset": 7,
+        },
+        "start": Object {
+          "column": 6,
+          "line": 1,
+          "offset": 5,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"a\\"",
+    },
+  ],
+  "callee": Identifier {
+    "loc": Object {
+      "end": Object {
+        "column": 4,
+        "line": 1,
+        "offset": 3,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "name": "func",
+    "type": "Identifier",
+  },
+  "type": "FunCallExpression",
+}
+`;
+
+exports[`(FunCallExpression) with multiple args 1`] = `
+FunCallExpression {
+  "arguments": Array [
+    StringLiteral {
+      "loc": Object {
+        "end": Object {
+          "column": 8,
+          "line": 1,
+          "offset": 7,
+        },
+        "start": Object {
+          "column": 6,
+          "line": 1,
+          "offset": 5,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"a\\"",
+    },
+    StringLiteral {
+      "loc": Object {
+        "end": Object {
+          "column": 13,
+          "line": 1,
+          "offset": 12,
+        },
+        "start": Object {
+          "column": 11,
+          "line": 1,
+          "offset": 10,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"b\\"",
+    },
+  ],
+  "callee": Identifier {
+    "loc": Object {
+      "end": Object {
+        "column": 4,
+        "line": 1,
+        "offset": 3,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "name": "func",
+    "type": "Identifier",
+  },
+  "type": "FunCallExpression",
+}
+`;
+
+exports[`(FunCallExpression) with whitespace 1`] = `
+FunCallExpression {
+  "arguments": Array [
+    StringLiteral {
+      "loc": Object {
+        "end": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+        "start": Object {
+          "column": 8,
+          "line": 1,
+          "offset": 7,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"a\\"",
+    },
+  ],
+  "callee": Identifier {
+    "loc": Object {
+      "end": Object {
+        "column": 4,
+        "line": 1,
+        "offset": 3,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "name": "func",
+    "type": "Identifier",
+  },
+  "type": "FunCallExpression",
+}
+`;
+
+exports[`(Identifier) normal 1`] = `
+Identifier {
+  "name": "vaceline",
+  "type": "Identifier",
+}
+`;
+
+exports[`(IfStatement) basic 1`] = `
+IfStatement {
+  "alternative": undefined,
+  "consequent": Array [
+    SetStatement {
+      "left": Member {
+        "base": Identifier {
+          "name": "var",
+          "type": "Identifier",
+        },
+        "member": Identifier {
+          "name": "value",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "operator": "=",
+      "right": NumericLiteral {
+        "type": "NumericLiteral",
+        "value": "1",
+      },
+      "type": "SetStatement",
+    },
+  ],
+  "test": Member {
+    "base": Identifier {
+      "name": "var",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "condition",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "type": "IfStatement",
+}
+`;
+
+exports[`(IfStatement) with else 1`] = `
+IfStatement {
+  "alternative": Array [
+    SetStatement {
+      "left": Member {
+        "base": Identifier {
+          "name": "var",
+          "type": "Identifier",
+        },
+        "member": Identifier {
+          "name": "value",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "operator": "=",
+      "right": NumericLiteral {
+        "type": "NumericLiteral",
+        "value": "2",
+      },
+      "type": "SetStatement",
+    },
+  ],
+  "consequent": Array [
+    SetStatement {
+      "left": Member {
+        "base": Identifier {
+          "name": "var",
+          "type": "Identifier",
+        },
+        "member": Identifier {
+          "name": "value",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "operator": "=",
+      "right": NumericLiteral {
+        "type": "NumericLiteral",
+        "value": "1",
+      },
+      "type": "SetStatement",
+    },
+  ],
+  "test": Member {
+    "base": Identifier {
+      "name": "var",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "condition",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "type": "IfStatement",
+}
+`;
+
+exports[`(IfStatement) with else if 1`] = `
+IfStatement {
+  "alternative": IfStatement {
+    "alternative": Array [
+      SetStatement {
+        "left": Member {
+          "base": Identifier {
+            "name": "var",
+            "type": "Identifier",
+          },
+          "member": Identifier {
+            "name": "value",
+            "type": "Identifier",
+          },
+          "type": "Member",
+        },
+        "operator": "=",
+        "right": NumericLiteral {
+          "type": "NumericLiteral",
+          "value": "0",
+        },
+        "type": "SetStatement",
+      },
+    ],
+    "consequent": Array [
+      SetStatement {
+        "left": Member {
+          "base": Identifier {
+            "name": "var",
+            "type": "Identifier",
+          },
+          "member": Identifier {
+            "name": "value",
+            "type": "Identifier",
+          },
+          "type": "Member",
+        },
+        "operator": "=",
+        "right": NumericLiteral {
+          "type": "NumericLiteral",
+          "value": "2",
+        },
+        "type": "SetStatement",
+      },
+    ],
+    "test": UnaryExpression {
+      "argument": Member {
+        "base": Identifier {
+          "name": "var",
+          "type": "Identifier",
+        },
+        "member": Identifier {
+          "name": "condition",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "operator": "!",
+      "type": "UnaryExpression",
+    },
+    "type": "IfStatement",
+  },
+  "consequent": Array [
+    SetStatement {
+      "left": Member {
+        "base": Identifier {
+          "name": "var",
+          "type": "Identifier",
+        },
+        "member": Identifier {
+          "name": "value",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "operator": "=",
+      "right": NumericLiteral {
+        "type": "NumericLiteral",
+        "value": "1",
+      },
+      "type": "SetStatement",
+    },
+  ],
+  "test": Member {
+    "base": Identifier {
+      "name": "var",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "condition",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "type": "IfStatement",
+}
+`;
+
+exports[`(ImportStatement) basic 1`] = `
+ImportStatement {
+  "module": Identifier {
+    "name": "module",
+    "type": "Identifier",
+  },
+  "type": "ImportStatement",
+}
+`;
+
+exports[`(IncludeStatement) basic 1`] = `
+IncludeStatement {
+  "module": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"external_library\\"",
+  },
+  "type": "IncludeStatement",
+}
+`;
+
+exports[`(Ip) 6to4 mapping 1`] = `
+StringLiteral {
+  "type": "StringLiteral",
+  "value": "\\"2002:c000:0204::\\"",
+}
+`;
+
+exports[`(Ip) 6to4 mapping 2`] = `
+StringLiteral {
+  "type": "StringLiteral",
+  "value": "\\"::FFFF:192.0.2.4\\"",
+}
+`;
+
+exports[`(Ip) 6to4 mapping 3`] = `
+StringLiteral {
+  "type": "StringLiteral",
+  "value": "\\"::1\\"",
+}
+`;
+
+exports[`(Ip) IPv4 1`] = `
+StringLiteral {
+  "type": "StringLiteral",
+  "value": "\\"192.0.2.0\\"",
+}
+`;
+
+exports[`(Ip) IPv4 with cidr 1`] = `
+StringLiteral {
+  "type": "StringLiteral",
+  "value": "\\"192.0.2.0\\"",
+}
+`;
+
+exports[`(Ip) IPv6 1`] = `
+StringLiteral {
+  "type": "StringLiteral",
+  "value": "\\"2001:db8::1\\"",
+}
+`;
+
+exports[`(Ip) IPv6 with cidr 1`] = `
+StringLiteral {
+  "type": "StringLiteral",
+  "value": "\\"2001:db8::1\\"",
+}
+`;
+
+exports[`(Ip) localhost 1`] = `
+StringLiteral {
+  "type": "StringLiteral",
+  "value": "\\"localhost\\"",
+}
+`;
+
+exports[`(Ip) unspecified address 1`] = `
+StringLiteral {
+  "type": "StringLiteral",
+  "value": "\\"::\\"",
+}
+`;
+
+exports[`(LogStatement) basic 1`] = `
+LogStatement {
+  "content": ConcatExpression {
+    "body": Array [
+      StringLiteral {
+        "type": "StringLiteral",
+        "value": "\\"log\\"",
+      },
+      Member {
+        "base": Identifier {
+          "name": "req",
+          "type": "Identifier",
+        },
+        "member": Identifier {
+          "name": "service_id",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      StringLiteral {
+        "type": "StringLiteral",
+        "value": "\\"vaceline-log :: \\"",
+      },
+      StringLiteral {
+        "type": "StringLiteral",
+        "value": "{\\"	timestamp_us:\\"}",
+      },
+      Member {
+        "base": Member {
+          "base": Identifier {
+            "name": "time",
+            "type": "Identifier",
+          },
+          "member": Identifier {
+            "name": "start",
+            "type": "Identifier",
+          },
+          "type": "Member",
+        },
+        "member": Identifier {
+          "name": "usec",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      StringLiteral {
+        "type": "StringLiteral",
+        "value": "{\\"	host:\\"}",
+      },
+      FunCallExpression {
+        "arguments": Array [
+          Member {
+            "base": Member {
+              "base": Identifier {
+                "loc": Object {
+                  "end": Object {
+                    "column": 24,
+                    "line": 3,
+                    "offset": 106,
+                  },
+                  "start": Object {
+                    "column": 22,
+                    "line": 3,
+                    "offset": 104,
+                  },
+                },
+                "name": "req",
+                "type": "Identifier",
+              },
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 3,
+                  "offset": 111,
+                },
+                "start": Object {
+                  "column": 22,
+                  "line": 3,
+                  "offset": 104,
+                },
+              },
+              "member": Identifier {
+                "loc": Object {
+                  "end": Object {
+                    "column": 29,
+                    "line": 3,
+                    "offset": 111,
+                  },
+                  "start": Object {
+                    "column": 26,
+                    "line": 3,
+                    "offset": 108,
+                  },
+                },
+                "name": "http",
+                "type": "Identifier",
+              },
+              "type": "Member",
+            },
+            "loc": Object {
+              "end": Object {
+                "column": 46,
+                "line": 3,
+                "offset": 128,
+              },
+              "start": Object {
+                "column": 22,
+                "line": 3,
+                "offset": 104,
+              },
+            },
+            "member": Identifier {
+              "loc": Object {
+                "end": Object {
+                  "column": 46,
+                  "line": 3,
+                  "offset": 128,
+                },
+                "start": Object {
+                  "column": 31,
+                  "line": 3,
+                  "offset": 113,
+                },
+              },
+              "name": "X-Forwarded-Host",
+              "type": "Identifier",
+            },
+            "type": "Member",
+          },
+          StringLiteral {
+            "loc": Object {
+              "end": Object {
+                "column": 5,
+                "line": 3,
+                "offset": 135,
+              },
+              "start": Object {
+                "column": 49,
+                "line": 3,
+                "offset": 131,
+              },
+            },
+            "type": "StringLiteral",
+            "value": "{\\"	\\"}",
+          },
+          StringLiteral {
+            "loc": Object {
+              "end": Object {
+                "column": 9,
+                "line": 3,
+                "offset": 139,
+              },
+              "start": Object {
+                "column": 8,
+                "line": 3,
+                "offset": 138,
+              },
+            },
+            "type": "StringLiteral",
+            "value": "\\"\\"",
+          },
+        ],
+        "callee": Identifier {
+          "loc": Object {
+            "end": Object {
+              "column": 20,
+              "line": 3,
+              "offset": 102,
+            },
+            "start": Object {
+              "column": 12,
+              "line": 3,
+              "offset": 94,
+            },
+          },
+          "name": "regsuball",
+          "type": "Identifier",
+        },
+        "type": "FunCallExpression",
+      },
+    ],
+    "type": "ConcatExpression",
+  },
+  "type": "LogStatement",
+}
+`;
+
+exports[`(LogicalExpression) and 1`] = `
+LogicalExpression {
+  "left": Member {
+    "base": Member {
+      "base": Identifier {
+        "name": "req",
+        "type": "Identifier",
+      },
+      "member": Identifier {
+        "name": "http",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "member": Identifier {
+      "name": "Debug",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "operator": "&&",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"1\\"",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`(LogicalExpression) combination 1`] = `
+LogicalExpression {
+  "left": Member {
+    "base": Member {
+      "base": Identifier {
+        "name": "req",
+        "type": "Identifier",
+      },
+      "member": Identifier {
+        "name": "http",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "member": Identifier {
+      "name": "Debug",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "operator": "||",
+  "right": LogicalExpression {
+    "left": StringLiteral {
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "operator": "&&",
+    "right": StringLiteral {
+      "type": "StringLiteral",
+      "value": "\\"2\\"",
+    },
+    "type": "LogicalExpression",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`(LogicalExpression) or 1`] = `
+LogicalExpression {
+  "left": Member {
+    "base": Member {
+      "base": Identifier {
+        "name": "req",
+        "type": "Identifier",
+      },
+      "member": Identifier {
+        "name": "http",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "member": Identifier {
+      "name": "Debug",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "operator": "||",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"1\\"",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`(Member) basic 1`] = `
+Member {
+  "base": Member {
+    "base": Identifier {
+      "name": "req",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "http",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "member": Identifier {
+    "name": "Vaceline",
+    "type": "Identifier",
+  },
+  "type": "Member",
+}
+`;
+
+exports[`(MultilineLiteral) basic 1`] = `
+StringLiteral {
+  "type": "StringLiteral",
+  "value": "{\\"
+  vaceline
+\\"}",
+}
+`;
+
+exports[`(NumericLiteral) integer 1`] = `
+NumericLiteral {
+  "type": "NumericLiteral",
+  "value": "10",
+}
+`;
+
+exports[`(NumericLiteral) zero 1`] = `
+NumericLiteral {
+  "type": "NumericLiteral",
+  "value": "0",
+}
+`;
+
+exports[`(Program) single handling 1`] = `
+Program {
+  "body": Array [
+    SubroutineStatement {
+      "body": Array [
+        DeclareStatement {
+          "id": Member {
+            "base": Identifier {
+              "name": "var",
+              "type": "Identifier",
+            },
+            "member": Identifier {
+              "name": "vacelinDebug",
+              "type": "Identifier",
+            },
+            "type": "Member",
+          },
+          "type": "DeclareStatement",
+          "valueType": "STRING",
+        },
+        IfStatement {
+          "alternative": undefined,
+          "consequent": Array [
+            AddStatement {
+              "left": Member {
+                "base": Identifier {
+                  "name": "var",
+                  "type": "Identifier",
+                },
+                "member": Identifier {
+                  "name": "vacelinDebug",
+                  "type": "Identifier",
+                },
+                "type": "Member",
+              },
+              "operator": "=",
+              "right": StringLiteral {
+                "type": "StringLiteral",
+                "value": "\\"Vacelin Debug Log\\"",
+              },
+              "type": "AddStatement",
+            },
+          ],
+          "test": BinaryExpression {
+            "left": Member {
+              "base": Member {
+                "base": Member {
+                  "base": Identifier {
+                    "name": "req",
+                    "type": "Identifier",
+                  },
+                  "member": Identifier {
+                    "name": "http",
+                    "type": "Identifier",
+                  },
+                  "type": "Member",
+                },
+                "member": Identifier {
+                  "name": "Vacelin",
+                  "type": "Identifier",
+                },
+                "type": "Member",
+              },
+              "member": Identifier {
+                "name": "Some",
+                "type": "Identifier",
+              },
+              "type": "Member",
+            },
+            "operator": "==",
+            "right": StringLiteral {
+              "type": "StringLiteral",
+              "value": "\\"Some\\"",
+            },
+            "type": "BinaryExpression",
+          },
+          "type": "IfStatement",
+        },
+      ],
+      "id": Identifier {
+        "name": "vcl_recv",
+        "type": "Identifier",
+      },
+      "type": "SubroutineStatement",
+    },
+  ],
+  "type": "Program",
+}
+`;
+
+exports[`(RestartStatement) basic 1`] = `
+RestartStatement {
+  "type": "RestartStatement",
+}
+`;
+
+exports[`(ReturnStatement) with parens 1`] = `
+ReturnStatement {
+  "action": "pass",
+  "type": "ReturnStatement",
+}
+`;
+
+exports[`(ReturnStatement) without parens 1`] = `
+ReturnStatement {
+  "action": "pass",
+  "type": "ReturnStatement",
+}
+`;
+
+exports[`(SetStatement) addition 1`] = `
+SetStatement {
+  "left": Member {
+    "base": Identifier {
+      "name": "var",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "vacel",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "operator": "+=",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"vacel\\"",
+  },
+  "type": "SetStatement",
+}
+`;
+
+exports[`(SetStatement) assignment 1`] = `
+SetStatement {
+  "left": Member {
+    "base": Identifier {
+      "name": "var",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "vacel",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "operator": "=",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"vacel\\"",
+  },
+  "type": "SetStatement",
+}
+`;
+
+exports[`(SetStatement) division 1`] = `
+SetStatement {
+  "left": Member {
+    "base": Identifier {
+      "name": "var",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "vacel",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "operator": "*=",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"vacel\\"",
+  },
+  "type": "SetStatement",
+}
+`;
+
+exports[`(SetStatement) multiplication 1`] = `
+SetStatement {
+  "left": Member {
+    "base": Identifier {
+      "name": "var",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "vacel",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "operator": "*=",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"vacel\\"",
+  },
+  "type": "SetStatement",
+}
+`;
+
+exports[`(SetStatement) substraction 1`] = `
+SetStatement {
+  "left": Member {
+    "base": Identifier {
+      "name": "var",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "vacel",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "operator": "-=",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"vacel\\"",
+  },
+  "type": "SetStatement",
+}
+`;
+
+exports[`(StringLiteral) basic 1`] = `
+StringLiteral {
+  "type": "StringLiteral",
+  "value": "\\"string\\"",
+}
+`;
+
+exports[`(StringLiteral) not a comment 1`] = `
+StringLiteral {
+  "type": "StringLiteral",
+  "value": "\\"# not a comment\\"",
+}
+`;
+
+exports[`(StringLiteral) not an inline comment 1`] = `
+StringLiteral {
+  "type": "StringLiteral",
+  "value": "\\"/* not an inline comment */\\"",
+}
+`;
+
+exports[`(SubroutineStatement) basic 1`] = `
+SubroutineStatement {
+  "body": Array [
+    SetStatement {
+      "left": Identifier {
+        "name": "vaceline",
+        "type": "Identifier",
+      },
+      "operator": "=",
+      "right": StringLiteral {
+        "type": "StringLiteral",
+        "value": "\\"aaa\\"",
+      },
+      "type": "SetStatement",
+    },
+  ],
+  "id": Identifier {
+    "name": "vcl_recv",
+    "type": "Identifier",
+  },
+  "type": "SubroutineStatement",
+}
+`;
+
+exports[`(SyntheticStatement) basic 1`] = `
+SyntheticStatement {
+  "response": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"\\"",
+  },
+  "type": "SyntheticStatement",
+}
+`;
+
+exports[`(TableStatement) single key-value 1`] = `
+TableStatement {
+  "body": Array [
+    Object {
+      "key": "\\"key\\"",
+      "value": "\\"value\\"",
+    },
+  ],
+  "id": Identifier {
+    "name": "vaceline_table",
+    "type": "Identifier",
+  },
+  "type": "TableStatement",
+}
+`;
+
+exports[`(TableStatement) single key-values 1`] = `
+TableStatement {
+  "body": Array [
+    Object {
+      "key": "\\"key\\"",
+      "value": "\\"value\\"",
+    },
+    Object {
+      "key": "\\"key2\\"",
+      "value": "\\"value2\\"",
+    },
+  ],
+  "id": Identifier {
+    "name": "vaceline_table",
+    "type": "Identifier",
+  },
+  "type": "TableStatement",
+}
+`;
+
+exports[`(TableStatement) with trailing comma 1`] = `
+TableStatement {
+  "body": Array [
+    Object {
+      "key": "\\"key\\"",
+      "value": "\\"value\\"",
+    },
+    Object {
+      "key": "\\"key2\\"",
+      "value": "\\"value2\\"",
+    },
+  ],
+  "id": Identifier {
+    "name": "vaceline_table",
+    "type": "Identifier",
+  },
+  "type": "TableStatement",
+}
+`;
+
+exports[`(UnaryExpression) boolean literal 1`] = `
+UnaryExpression {
+  "argument": BooleanLiteral {
+    "type": "BooleanLiteral",
+    "value": "true",
+  },
+  "operator": "!",
+  "type": "UnaryExpression",
+}
+`;
+
+exports[`(UnaryExpression) variable 1`] = `
+UnaryExpression {
+  "argument": Identifier {
+    "name": "condition",
+    "type": "Identifier",
+  },
+  "operator": "!",
+  "type": "UnaryExpression",
+}
+`;
+
+exports[`(UnsetStatement) member 1`] = `
+UnsetStatement {
+  "id": Member {
+    "base": Identifier {
+      "name": "var",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "value",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "type": "UnsetStatement",
+}
+`;
+
+exports[`(UnsetStatement) variable 1`] = `
+UnsetStatement {
+  "id": Identifier {
+    "name": "value",
+    "type": "Identifier",
+  },
+  "type": "UnsetStatement",
+}
+`;
