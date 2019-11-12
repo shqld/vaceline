@@ -887,8 +887,11 @@ export class BackendStatement extends BaseStatement {
 
   next() {
     return this.body
-      .filter((b) => b.value instanceof BaseNode)
-      .map((b) => b.value)
+      .map((b) =>
+        Array.isArray(b.value)
+          ? b.value.map((subBody) => subBody.value)
+          : b.value
+      )
       .flat(2)
   }
 

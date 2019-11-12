@@ -207,100 +207,28 @@ BackendStatement {
           "value": ConcatExpression {
             "body": Array [
               StringLiteral {
-                "loc": Object {
-                  "end": Object {
-                    "column": 42,
-                    "line": 12,
-                    "offset": 308,
-                  },
-                  "start": Object {
-                    "column": 16,
-                    "line": 12,
-                    "offset": 282,
-                  },
-                },
                 "type": "StringLiteral",
                 "value": "\\"GET /healthcheck HTTP/1.1\\"",
               },
               StringLiteral {
-                "loc": Object {
-                  "end": Object {
-                    "column": 62,
-                    "line": 12,
-                    "offset": 328,
-                  },
-                  "start": Object {
-                    "column": 44,
-                    "line": 12,
-                    "offset": 310,
-                  },
-                },
                 "type": "StringLiteral",
                 "value": "\\"Host: vaceline.io\\"",
               },
               StringLiteral {
-                "loc": Object {
-                  "end": Object {
-                    "column": 82,
-                    "line": 12,
-                    "offset": 348,
-                  },
-                  "start": Object {
-                    "column": 64,
-                    "line": 12,
-                    "offset": 330,
-                  },
-                },
                 "type": "StringLiteral",
                 "value": "\\"Connection: close\\"",
               },
               StringLiteral {
-                "loc": Object {
-                  "end": Object {
-                    "column": 117,
-                    "line": 12,
-                    "offset": 383,
-                  },
-                  "start": Object {
-                    "column": 84,
-                    "line": 12,
-                    "offset": 350,
-                  },
-                },
                 "type": "StringLiteral",
                 "value": "\\"User-Agent: Vaceline healthcheck\\"",
               },
             ],
-            "loc": Object {
-              "end": Object {
-                "column": 117,
-                "line": 12,
-                "offset": 383,
-              },
-              "start": Object {
-                "column": 16,
-                "line": 12,
-                "offset": 282,
-              },
-            },
             "type": "ConcatExpression",
           },
         },
         Object {
           "key": "threshold",
           "value": NumericLiteral {
-            "loc": Object {
-              "end": Object {
-                "column": 18,
-                "line": 13,
-                "offset": 403,
-              },
-              "start": Object {
-                "column": 18,
-                "line": 13,
-                "offset": 403,
-              },
-            },
             "type": "NumericLiteral",
             "value": "1",
           },
@@ -308,18 +236,6 @@ BackendStatement {
         Object {
           "key": "window",
           "value": NumericLiteral {
-            "loc": Object {
-              "end": Object {
-                "column": 15,
-                "line": 14,
-                "offset": 420,
-              },
-              "start": Object {
-                "column": 15,
-                "line": 14,
-                "offset": 420,
-              },
-            },
             "type": "NumericLiteral",
             "value": "2",
           },
@@ -327,18 +243,6 @@ BackendStatement {
         Object {
           "key": "timeout",
           "value": DurationLiteral {
-            "loc": Object {
-              "end": Object {
-                "column": 18,
-                "line": 15,
-                "offset": 440,
-              },
-              "start": Object {
-                "column": 16,
-                "line": 15,
-                "offset": 438,
-              },
-            },
             "type": "DurationLiteral",
             "value": "10s",
           },
@@ -346,18 +250,6 @@ BackendStatement {
         Object {
           "key": "initial",
           "value": NumericLiteral {
-            "loc": Object {
-              "end": Object {
-                "column": 16,
-                "line": 16,
-                "offset": 458,
-              },
-              "start": Object {
-                "column": 16,
-                "line": 16,
-                "offset": 458,
-              },
-            },
             "type": "NumericLiteral",
             "value": "1",
           },
@@ -365,18 +257,6 @@ BackendStatement {
         Object {
           "key": "expected_response",
           "value": NumericLiteral {
-            "loc": Object {
-              "end": Object {
-                "column": 28,
-                "line": 17,
-                "offset": 488,
-              },
-              "start": Object {
-                "column": 26,
-                "line": 17,
-                "offset": 486,
-              },
-            },
             "type": "NumericLiteral",
             "value": "200",
           },
@@ -384,18 +264,6 @@ BackendStatement {
         Object {
           "key": "interval",
           "value": DurationLiteral {
-            "loc": Object {
-              "end": Object {
-                "column": 19,
-                "line": 18,
-                "offset": 509,
-              },
-              "start": Object {
-                "column": 17,
-                "line": 18,
-                "offset": 507,
-              },
-            },
             "type": "DurationLiteral",
             "value": "60s",
           },
