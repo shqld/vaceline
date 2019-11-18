@@ -47,6 +47,7 @@ export type Expression =
   | Identifier
   | Ip
   | Member
+  | ValuePair
   | BooleanExpression
   | UnaryExpression
   | FunCallExpression
@@ -372,7 +373,7 @@ export class UnaryExpression extends BaseExpression {
 
 export class FunCallExpression extends BaseExpression {
   type = 'FunCallExpression' as const
-  callee: Member | Identifier
+  callee: Member | Identifier | ValuePair
   arguments: Array<Expression>
 
   constructor(obj: PlainNode<FunCallExpression>) {
