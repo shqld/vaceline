@@ -894,7 +894,7 @@ export class BackendStatement extends BaseStatement {
 
   static printDef(def: BackendDef): Doc {
     const value = Array.isArray(def.value)
-      ? this.printBody(def.value)
+      ? BackendStatement.printBody(def.value)
       : b.concat([def.value.print(), ';'])
 
     return b.concat(['.', def.key, ' = ', value])
@@ -904,7 +904,10 @@ export class BackendStatement extends BaseStatement {
     return b.concat([
       '{',
       b.indent(
-        b.concat([b.hardline, b.join(b.hardline, defs.map(this.printDef))])
+        b.concat([
+          b.hardline,
+          b.join(b.hardline, defs.map(BackendStatement.printDef)),
+        ])
       ),
       b.hardline,
       '}',
