@@ -5080,7 +5080,7 @@ Program {
             },
           },
           "test": BinaryExpression {
-            "left": Member {
+            "left": ValuePair {
               "base": Member {
                 "base": Member {
                   "base": Identifier {
@@ -5171,7 +5171,7 @@ Program {
                   "offset": 63,
                 },
               },
-              "member": Identifier {
+              "name": Identifier {
                 "loc": Object {
                   "end": Object {
                     "column": 27,
@@ -5187,7 +5187,7 @@ Program {
                 "name": "Some",
                 "type": "Identifier",
               },
-              "type": "Member",
+              "type": "ValuePair",
             },
             "loc": Object {
               "end": Object {
@@ -6205,5 +6205,55 @@ UnsetStatement {
     },
   },
   "type": "UnsetStatement",
+}
+`;
+
+exports[`(ValuePair) basic: basic 1`] = `
+ValuePair {
+  "base": Identifier {
+    "loc": Object {
+      "end": Object {
+        "column": 6,
+        "line": 1,
+        "offset": 5,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "name": "Cookie",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 14,
+      "line": 1,
+      "offset": 13,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "name": Identifier {
+    "loc": Object {
+      "end": Object {
+        "column": 14,
+        "line": 1,
+        "offset": 13,
+      },
+      "start": Object {
+        "column": 8,
+        "line": 1,
+        "offset": 7,
+      },
+    },
+    "name": "Vacelin",
+    "type": "Identifier",
+  },
+  "type": "ValuePair",
 }
 `;

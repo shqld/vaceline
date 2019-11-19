@@ -1575,7 +1575,7 @@ Program {
             },
           ],
           "test": BinaryExpression {
-            "left": Member {
+            "left": ValuePair {
               "base": Member {
                 "base": Member {
                   "base": Identifier {
@@ -1594,11 +1594,11 @@ Program {
                 },
                 "type": "Member",
               },
-              "member": Identifier {
+              "name": Identifier {
                 "name": "Some",
                 "type": "Identifier",
               },
-              "type": "Member",
+              "type": "ValuePair",
             },
             "operator": "==",
             "right": StringLiteral {
@@ -1908,5 +1908,19 @@ UnsetStatement {
     "type": "Identifier",
   },
   "type": "UnsetStatement",
+}
+`;
+
+exports[`(ValuePair) basic 1`] = `
+ValuePair {
+  "base": Identifier {
+    "name": "Cookie",
+    "type": "Identifier",
+  },
+  "name": Identifier {
+    "name": "Vacelin",
+    "type": "Identifier",
+  },
+  "type": "ValuePair",
 }
 `;
