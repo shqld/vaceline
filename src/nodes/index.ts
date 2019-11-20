@@ -680,7 +680,8 @@ export class ReturnStatement extends BaseStatement {
   }
 
   print() {
-    return b.concat(['return', this.action, ';'])
+    // TODO: handle the optional parens
+    return b.concat(['return ', '(', this.action, ')', ';'])
   }
 }
 
