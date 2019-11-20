@@ -958,12 +958,22 @@ export class TableStatement extends BaseStatement {
 
   print() {
     return b.concat([
-      'table',
+      'table ',
       printAst(this.id),
-      b.join(
-        b.hardline,
-        this.body.map((td) => b.concat([td.key, ':', td.value]))
+      ' {',
+      b.indent(
+        b.concat([
+          b.hardline,
+          b.join(
+            b.concat([',', b.hardline]),
+            this.body.map((td) => b.concat([td.key, ':', td.value]))
+          ),
+          // TODO: handle trailing comma
+          // ',',
+        ])
       ),
+      b.hardline,
+      '}',
     ])
   }
 }

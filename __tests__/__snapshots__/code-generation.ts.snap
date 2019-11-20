@@ -945,7 +945,9 @@ table vaceline_table {
 }
 
 ---------- (output) --------------------------------------------------------------
-tablevaceline_table"key":"value"
+table vaceline_table {
+  "key":"value"
+}
 `;
 
 exports[`(TableStatement) format 2`] = `
@@ -956,60 +958,10 @@ table vaceline_table {
 }
 
 ---------- (output) --------------------------------------------------------------
-tablevaceline_table"key":"value"
-"key2":"value2"
-`;
-
-exports[`(TableStatement) format 3`] = `
----------- (input) ---------------------------------------------------------------
 table vaceline_table {
-  "key": "value",
-  "key2": "value2",
+  "key":"value",
+  "key2":"value2"
 }
-
----------- (output) --------------------------------------------------------------
-tablevaceline_table"key":"value"
-"key2":"value2"
-`;
-
-exports[`(TableStatement) single key-value 1`] = `
----------- (input) ---------------------------------------------------------------
-table vaceline_table {
-  "key": "value"
-}
-
----------- (output) --------------------------------------------------------------
-tablevaceline_table"key":"value"
-
---------------------------------------------------------------------------------
-`;
-
-exports[`(TableStatement) single key-values 1`] = `
----------- (input) ---------------------------------------------------------------
-table vaceline_table {
-  "key": "value",
-  "key2": "value2"
-}
-
----------- (output) --------------------------------------------------------------
-tablevaceline_table"key":"value"
-"key2":"value2"
-
---------------------------------------------------------------------------------
-`;
-
-exports[`(TableStatement) with trailing comma 1`] = `
----------- (input) ---------------------------------------------------------------
-table vaceline_table {
-  "key": "value",
-  "key2": "value2",
-}
-
----------- (output) --------------------------------------------------------------
-tablevaceline_table"key":"value"
-"key2":"value2"
-
---------------------------------------------------------------------------------
 `;
 
 exports[`(UnaryExpression) format 1`] = `

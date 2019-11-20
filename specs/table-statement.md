@@ -15,11 +15,11 @@ table vaceline_table {
 }
 ```
 
-with trailing comma
+<!-- with trailing comma
 
 ```vcl
 table vaceline_table {
   "key": "value",
   "key2": "value2",
 }
-```
+``` -->
