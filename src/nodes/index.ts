@@ -270,7 +270,7 @@ export class Ip extends BaseExpression {
   }
 
   print() {
-    return this.cidr ? `${this.value}/${this.cidr}` : this.value
+    return this.cidr ? `"${this.value}/${this.cidr}"` : `"${this.value}"`
   }
 }
 
@@ -861,10 +861,20 @@ export class AclStatement extends BaseStatement {
 
   print() {
     return b.concat([
-      'acl',
+      'acl ',
       printAst(this.id),
-      b.join(b.hardline, this.body.map(printAst)),
-      ';',
+      ' {',
+      b.indent(
+        b.concat([
+          b.hardline,
+          b.join(
+            b.hardline,
+            this.body.map(printAst).map((ip) => b.concat([ip, ';']))
+          ),
+        ])
+      ),
+      b.hardline,
+      '}',
     ])
   }
 }
