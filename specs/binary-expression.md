@@ -16,14 +16,12 @@ match
 req.http.Debug ~ "1"
 ```
 
-TODO: other operations
+<!-- TODO: other operations -->
 
-TODO: combinations
+<!-- TODO: combinations -->
 
 combinations
 
 ```vcl
-req.http.Debug == "1" == "2" == "3";
+req.http.Debug == "1" == "2" == "3"
 ```
-
-TODO:

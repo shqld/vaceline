@@ -6,7 +6,8 @@ export const parseCompound = <T>(
   p: Parser,
   parse: (p: Parser, token: Token) => T,
   until?: string,
-  delimiter?: string
+  delimiter?: string,
+  semi: boolean = false
 ): Array<T> => {
   const compound: Array<T> = []
 
@@ -35,6 +36,8 @@ export const parseCompound = <T>(
 
       break
     }
+
+    if (semi) p.validateToken(p.read(), 'symbol', ';')
 
     if (until && isToken(p.peek(), 'symbol', until)) {
       p.take()

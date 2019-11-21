@@ -4,11 +4,11 @@ with parens
 return (pass);
 ```
 
-without parens
+<!-- TODO: without parens
 
 ```vcl
 return pass;
-```
+``` -->
 
 <!-- TODO: other types -->
 

@@ -3,7 +3,6 @@ import {
   Node,
   Member,
   Identifier,
-  Header,
   SetStatement,
   AddStatement,
   StringLiteral,
@@ -20,7 +19,7 @@ const variable = (obj: 'req' | 'resp') =>
         name: 'http',
       }),
     }),
-    member: new Header({
+    member: new Identifier({
       name: 'Branch-Log',
     }),
   })

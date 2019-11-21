@@ -1,7 +1,6 @@
 import fs from 'fs'
 import path from 'path'
 
-import { Printer } from '../../src/generator/printer'
 import { Buffer } from '../../src/generator/buffer'
 
 describe('Buffer', () => {

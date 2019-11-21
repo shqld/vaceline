@@ -8,7 +8,7 @@ import { SubroutineStatement, IfStatement, AddStatement } from '../../src/nodes'
 import { isNode } from '../../src/utils/node'
 
 const code = fs.readFileSync(
-  path.resolve('__tests__/__fixture__/test.vcl'),
+  path.resolve('__tests__/__fixture__/rough.vcl'),
   'utf8'
 )
 const ast = parse(code)

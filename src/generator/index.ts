@@ -1,18 +1,19 @@
-import { Node } from '../nodes'
-import { Printer } from './printer'
-import { isNode } from '../utils/node'
+import { BaseNode } from '../nodes'
+import { doc as docHelpers } from 'prettier'
 
-export const generate = (ast: Node): { code: string; map?: string } => {
-  const p = new Printer()
+export const { builders } = docHelpers
 
-  if (isNode(ast, ['File'])) {
-    return p.generate(ast.program)
-  }
+const defaultPrintOptions = {
+  printWidth: 100,
+  tabWidth: 2,
+  useTabs: false,
+}
 
-  if (isNode(ast, ['Program'])) {
-    return p.generate(ast)
-  }
+export const generate = (ast: BaseNode): { code: string; map?: string } => {
+  const { formatted } = docHelpers.printer.printDocToString(
+    ast.print(),
+    defaultPrintOptions
+  )
 
-  // TODO:
-  throw new Error(`Unexpected ast node: ${ast}`)
+  return { code: formatted }
 }

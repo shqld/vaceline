@@ -186,13 +186,6 @@ BackendStatement {
       },
     },
     Object {
-      "key": "share_key",
-      "value": StringLiteral {
-        "type": "StringLiteral",
-        "value": "\\"f8585BOxnGQDMbnkJoM1e\\"",
-      },
-    },
-    Object {
       "key": "ssl",
       "value": BooleanLiteral {
         "type": "BooleanLiteral",
@@ -207,100 +200,28 @@ BackendStatement {
           "value": ConcatExpression {
             "body": Array [
               StringLiteral {
-                "loc": Object {
-                  "end": Object {
-                    "column": 42,
-                    "line": 12,
-                    "offset": 308,
-                  },
-                  "start": Object {
-                    "column": 16,
-                    "line": 12,
-                    "offset": 282,
-                  },
-                },
                 "type": "StringLiteral",
                 "value": "\\"GET /healthcheck HTTP/1.1\\"",
               },
               StringLiteral {
-                "loc": Object {
-                  "end": Object {
-                    "column": 62,
-                    "line": 12,
-                    "offset": 328,
-                  },
-                  "start": Object {
-                    "column": 44,
-                    "line": 12,
-                    "offset": 310,
-                  },
-                },
                 "type": "StringLiteral",
                 "value": "\\"Host: vaceline.io\\"",
               },
               StringLiteral {
-                "loc": Object {
-                  "end": Object {
-                    "column": 82,
-                    "line": 12,
-                    "offset": 348,
-                  },
-                  "start": Object {
-                    "column": 64,
-                    "line": 12,
-                    "offset": 330,
-                  },
-                },
                 "type": "StringLiteral",
                 "value": "\\"Connection: close\\"",
               },
               StringLiteral {
-                "loc": Object {
-                  "end": Object {
-                    "column": 117,
-                    "line": 12,
-                    "offset": 383,
-                  },
-                  "start": Object {
-                    "column": 84,
-                    "line": 12,
-                    "offset": 350,
-                  },
-                },
                 "type": "StringLiteral",
                 "value": "\\"User-Agent: Vaceline healthcheck\\"",
               },
             ],
-            "loc": Object {
-              "end": Object {
-                "column": 117,
-                "line": 12,
-                "offset": 383,
-              },
-              "start": Object {
-                "column": 16,
-                "line": 12,
-                "offset": 282,
-              },
-            },
             "type": "ConcatExpression",
           },
         },
         Object {
           "key": "threshold",
           "value": NumericLiteral {
-            "loc": Object {
-              "end": Object {
-                "column": 18,
-                "line": 13,
-                "offset": 403,
-              },
-              "start": Object {
-                "column": 18,
-                "line": 13,
-                "offset": 403,
-              },
-            },
             "type": "NumericLiteral",
             "value": "1",
           },
@@ -308,18 +229,6 @@ BackendStatement {
         Object {
           "key": "window",
           "value": NumericLiteral {
-            "loc": Object {
-              "end": Object {
-                "column": 15,
-                "line": 14,
-                "offset": 420,
-              },
-              "start": Object {
-                "column": 15,
-                "line": 14,
-                "offset": 420,
-              },
-            },
             "type": "NumericLiteral",
             "value": "2",
           },
@@ -327,18 +236,6 @@ BackendStatement {
         Object {
           "key": "timeout",
           "value": DurationLiteral {
-            "loc": Object {
-              "end": Object {
-                "column": 18,
-                "line": 15,
-                "offset": 440,
-              },
-              "start": Object {
-                "column": 16,
-                "line": 15,
-                "offset": 438,
-              },
-            },
             "type": "DurationLiteral",
             "value": "10s",
           },
@@ -346,18 +243,6 @@ BackendStatement {
         Object {
           "key": "initial",
           "value": NumericLiteral {
-            "loc": Object {
-              "end": Object {
-                "column": 16,
-                "line": 16,
-                "offset": 458,
-              },
-              "start": Object {
-                "column": 16,
-                "line": 16,
-                "offset": 458,
-              },
-            },
             "type": "NumericLiteral",
             "value": "1",
           },
@@ -365,18 +250,6 @@ BackendStatement {
         Object {
           "key": "expected_response",
           "value": NumericLiteral {
-            "loc": Object {
-              "end": Object {
-                "column": 28,
-                "line": 17,
-                "offset": 488,
-              },
-              "start": Object {
-                "column": 26,
-                "line": 17,
-                "offset": 486,
-              },
-            },
             "type": "NumericLiteral",
             "value": "200",
           },
@@ -384,18 +257,6 @@ BackendStatement {
         Object {
           "key": "interval",
           "value": DurationLiteral {
-            "loc": Object {
-              "end": Object {
-                "column": 19,
-                "line": 18,
-                "offset": 509,
-              },
-              "start": Object {
-                "column": 17,
-                "line": 18,
-                "offset": 507,
-              },
-            },
             "type": "DurationLiteral",
             "value": "60s",
           },
@@ -555,29 +416,6 @@ BinaryExpression {
 }
 `;
 
-exports[`(BooleanExpression) assign 1`] = `
-ConcatExpression {
-  "body": Array [
-    Identifier {
-      "name": "set",
-      "type": "Identifier",
-    },
-    Member {
-      "base": Identifier {
-        "name": "var",
-        "type": "Identifier",
-      },
-      "member": Identifier {
-        "name": "Debug",
-        "type": "Identifier",
-      },
-      "type": "Member",
-    },
-  ],
-  "type": "ConcatExpression",
-}
-`;
-
 exports[`(BooleanExpression) with binary 1`] = `
 BooleanExpression {
   "body": BinaryExpression {
@@ -704,6 +542,10 @@ ConcatExpression {
       "type": "StringLiteral",
       "value": "\\"b\\"",
     },
+    StringLiteral {
+      "type": "StringLiteral",
+      "value": "\\"c\\"",
+    },
   ],
   "type": "ConcatExpression",
 }
@@ -796,9 +638,18 @@ DurationLiteral {
 `;
 
 exports[`(DurationLiteral) month 1`] = `
-NumericLiteral {
-  "type": "NumericLiteral",
-  "value": "1",
+ConcatExpression {
+  "body": Array [
+    NumericLiteral {
+      "type": "NumericLiteral",
+      "value": "1",
+    },
+    Identifier {
+      "name": "M",
+      "type": "Identifier",
+    },
+  ],
+  "type": "ConcatExpression",
 }
 `;
 
@@ -817,9 +668,18 @@ DurationLiteral {
 `;
 
 exports[`(DurationLiteral) year 1`] = `
-NumericLiteral {
-  "type": "NumericLiteral",
-  "value": "1",
+ConcatExpression {
+  "body": Array [
+    NumericLiteral {
+      "type": "NumericLiteral",
+      "value": "1",
+    },
+    Identifier {
+      "name": "Y",
+      "type": "Identifier",
+    },
+  ],
+  "type": "ConcatExpression",
 }
 `;
 
@@ -943,67 +803,19 @@ exports[`(FunCallExpression) \`if\` func 1`] = `
 FunCallExpression {
   "arguments": Array [
     StringLiteral {
-      "loc": Object {
-        "end": Object {
-          "column": 6,
-          "line": 1,
-          "offset": 5,
-        },
-        "start": Object {
-          "column": 4,
-          "line": 1,
-          "offset": 3,
-        },
-      },
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
     StringLiteral {
-      "loc": Object {
-        "end": Object {
-          "column": 11,
-          "line": 1,
-          "offset": 10,
-        },
-        "start": Object {
-          "column": 9,
-          "line": 1,
-          "offset": 8,
-        },
-      },
       "type": "StringLiteral",
       "value": "\\"b\\"",
     },
     StringLiteral {
-      "loc": Object {
-        "end": Object {
-          "column": 16,
-          "line": 1,
-          "offset": 15,
-        },
-        "start": Object {
-          "column": 14,
-          "line": 1,
-          "offset": 13,
-        },
-      },
       "type": "StringLiteral",
       "value": "\\"c\\"",
     },
   ],
   "callee": Identifier {
-    "loc": Object {
-      "end": Object {
-        "column": 2,
-        "line": 1,
-        "offset": 1,
-      },
-      "start": Object {
-        "column": 1,
-        "line": 1,
-        "offset": 0,
-      },
-    },
     "name": "if",
     "type": "Identifier",
   },
@@ -1015,35 +827,11 @@ exports[`(FunCallExpression) normal 1`] = `
 FunCallExpression {
   "arguments": Array [
     StringLiteral {
-      "loc": Object {
-        "end": Object {
-          "column": 8,
-          "line": 1,
-          "offset": 7,
-        },
-        "start": Object {
-          "column": 6,
-          "line": 1,
-          "offset": 5,
-        },
-      },
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
   ],
   "callee": Identifier {
-    "loc": Object {
-      "end": Object {
-        "column": 4,
-        "line": 1,
-        "offset": 3,
-      },
-      "start": Object {
-        "column": 1,
-        "line": 1,
-        "offset": 0,
-      },
-    },
     "name": "func",
     "type": "Identifier",
   },
@@ -1055,51 +843,15 @@ exports[`(FunCallExpression) with multiple args 1`] = `
 FunCallExpression {
   "arguments": Array [
     StringLiteral {
-      "loc": Object {
-        "end": Object {
-          "column": 8,
-          "line": 1,
-          "offset": 7,
-        },
-        "start": Object {
-          "column": 6,
-          "line": 1,
-          "offset": 5,
-        },
-      },
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
     StringLiteral {
-      "loc": Object {
-        "end": Object {
-          "column": 13,
-          "line": 1,
-          "offset": 12,
-        },
-        "start": Object {
-          "column": 11,
-          "line": 1,
-          "offset": 10,
-        },
-      },
       "type": "StringLiteral",
       "value": "\\"b\\"",
     },
   ],
   "callee": Identifier {
-    "loc": Object {
-      "end": Object {
-        "column": 4,
-        "line": 1,
-        "offset": 3,
-      },
-      "start": Object {
-        "column": 1,
-        "line": 1,
-        "offset": 0,
-      },
-    },
     "name": "func",
     "type": "Identifier",
   },
@@ -1111,35 +863,11 @@ exports[`(FunCallExpression) with whitespace 1`] = `
 FunCallExpression {
   "arguments": Array [
     StringLiteral {
-      "loc": Object {
-        "end": Object {
-          "column": 10,
-          "line": 1,
-          "offset": 9,
-        },
-        "start": Object {
-          "column": 8,
-          "line": 1,
-          "offset": 7,
-        },
-      },
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
   ],
   "callee": Identifier {
-    "loc": Object {
-      "end": Object {
-        "column": 4,
-        "line": 1,
-        "offset": 3,
-      },
-      "start": Object {
-        "column": 1,
-        "line": 1,
-        "offset": 0,
-      },
-    },
     "name": "func",
     "type": "Identifier",
   },
@@ -1399,9 +1127,10 @@ StringLiteral {
 `;
 
 exports[`(Ip) IPv4 with cidr 1`] = `
-StringLiteral {
-  "type": "StringLiteral",
-  "value": "\\"192.0.2.0\\"",
+Ip {
+  "cidr": 16,
+  "type": "Ip",
+  "value": "192.0.2.0",
 }
 `;
 
@@ -1413,9 +1142,10 @@ StringLiteral {
 `;
 
 exports[`(Ip) IPv6 with cidr 1`] = `
-StringLiteral {
-  "type": "StringLiteral",
-  "value": "\\"2001:db8::1\\"",
+Ip {
+  "cidr": 16,
+  "type": "Ip",
+  "value": "2001:db8::1",
 }
 `;
 
@@ -1487,127 +1217,31 @@ LogStatement {
           Member {
             "base": Member {
               "base": Identifier {
-                "loc": Object {
-                  "end": Object {
-                    "column": 24,
-                    "line": 3,
-                    "offset": 106,
-                  },
-                  "start": Object {
-                    "column": 22,
-                    "line": 3,
-                    "offset": 104,
-                  },
-                },
                 "name": "req",
                 "type": "Identifier",
               },
-              "loc": Object {
-                "end": Object {
-                  "column": 29,
-                  "line": 3,
-                  "offset": 111,
-                },
-                "start": Object {
-                  "column": 22,
-                  "line": 3,
-                  "offset": 104,
-                },
-              },
               "member": Identifier {
-                "loc": Object {
-                  "end": Object {
-                    "column": 29,
-                    "line": 3,
-                    "offset": 111,
-                  },
-                  "start": Object {
-                    "column": 26,
-                    "line": 3,
-                    "offset": 108,
-                  },
-                },
                 "name": "http",
                 "type": "Identifier",
               },
               "type": "Member",
             },
-            "loc": Object {
-              "end": Object {
-                "column": 46,
-                "line": 3,
-                "offset": 128,
-              },
-              "start": Object {
-                "column": 22,
-                "line": 3,
-                "offset": 104,
-              },
-            },
             "member": Identifier {
-              "loc": Object {
-                "end": Object {
-                  "column": 46,
-                  "line": 3,
-                  "offset": 128,
-                },
-                "start": Object {
-                  "column": 31,
-                  "line": 3,
-                  "offset": 113,
-                },
-              },
               "name": "X-Forwarded-Host",
               "type": "Identifier",
             },
             "type": "Member",
           },
           StringLiteral {
-            "loc": Object {
-              "end": Object {
-                "column": 5,
-                "line": 3,
-                "offset": 135,
-              },
-              "start": Object {
-                "column": 49,
-                "line": 3,
-                "offset": 131,
-              },
-            },
             "type": "StringLiteral",
             "value": "{\\"	\\"}",
           },
           StringLiteral {
-            "loc": Object {
-              "end": Object {
-                "column": 9,
-                "line": 3,
-                "offset": 139,
-              },
-              "start": Object {
-                "column": 8,
-                "line": 3,
-                "offset": 138,
-              },
-            },
             "type": "StringLiteral",
             "value": "\\"\\"",
           },
         ],
         "callee": Identifier {
-          "loc": Object {
-            "end": Object {
-              "column": 20,
-              "line": 3,
-              "offset": 102,
-            },
-            "start": Object {
-              "column": 12,
-              "line": 3,
-              "offset": 94,
-            },
-          },
           "name": "regsuball",
           "type": "Identifier",
         },
@@ -1803,7 +1437,7 @@ Program {
             },
           ],
           "test": BinaryExpression {
-            "left": Member {
+            "left": ValuePair {
               "base": Member {
                 "base": Member {
                   "base": Identifier {
@@ -1822,11 +1456,11 @@ Program {
                 },
                 "type": "Member",
               },
-              "member": Identifier {
+              "name": Identifier {
                 "name": "Some",
                 "type": "Identifier",
               },
-              "type": "Member",
+              "type": "ValuePair",
             },
             "operator": "==",
             "right": StringLiteral {
@@ -1856,13 +1490,6 @@ RestartStatement {
 `;
 
 exports[`(ReturnStatement) with parens 1`] = `
-ReturnStatement {
-  "action": "pass",
-  "type": "ReturnStatement",
-}
-`;
-
-exports[`(ReturnStatement) without parens 1`] = `
 ReturnStatement {
   "action": "pass",
   "type": "ReturnStatement",
@@ -2070,26 +1697,6 @@ TableStatement {
 }
 `;
 
-exports[`(TableStatement) with trailing comma 1`] = `
-TableStatement {
-  "body": Array [
-    Object {
-      "key": "\\"key\\"",
-      "value": "\\"value\\"",
-    },
-    Object {
-      "key": "\\"key2\\"",
-      "value": "\\"value2\\"",
-    },
-  ],
-  "id": Identifier {
-    "name": "vaceline_table",
-    "type": "Identifier",
-  },
-  "type": "TableStatement",
-}
-`;
-
 exports[`(UnaryExpression) boolean literal 1`] = `
 UnaryExpression {
   "argument": BooleanLiteral {
@@ -2136,5 +1743,19 @@ UnsetStatement {
     "type": "Identifier",
   },
   "type": "UnsetStatement",
+}
+`;
+
+exports[`(ValuePair) basic 1`] = `
+ValuePair {
+  "base": Identifier {
+    "name": "Cookie",
+    "type": "Identifier",
+  },
+  "name": Identifier {
+    "name": "Vacelin",
+    "type": "Identifier",
+  },
+  "type": "ValuePair",
 }
 `;

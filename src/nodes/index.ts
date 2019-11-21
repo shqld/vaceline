@@ -1,4 +1,6 @@
 import { Token } from '../parser/tokenizer'
+import { builders as b } from '../generator'
+import { Doc } from 'prettier'
 
 export interface Position {
   offset: number
@@ -10,6 +12,8 @@ export interface Location {
   start: Position
   end: Position
 }
+
+const printAst = (n: BaseNode) => n.print()
 
 export type PlainNode<T extends BaseNode> = Omit<T, keyof BaseNode>
 export type NodeWithLoc<N extends BaseNode = BaseNode> = N & { loc: Location }
@@ -23,8 +27,6 @@ export type NodeMap = {
 export type Node =
   | File
   | Program
-  | Comment
-  | Block
   // abstract base
   | BaseExpression
   | BaseStatement
@@ -43,9 +45,9 @@ export type Literal =
 export type Expression =
   | Literal
   | Identifier
-  | Header
   | Ip
   | Member
+  | ValuePair
   | BooleanExpression
   | UnaryExpression
   | FunCallExpression
@@ -78,6 +80,7 @@ export abstract class BaseNode {
   loc?: Location
 
   abstract next(): Array<BaseNode | undefined>
+  abstract print(): Doc
 
   static build<T extends NodeType, N extends NodeMap[T]>(
     node: N,
@@ -111,11 +114,15 @@ export class File extends BaseNode {
   next() {
     return [this.program]
   }
+
+  print() {
+    return printAst(this.program)
+  }
 }
 
 export class Program extends BaseNode {
   type = 'Program' as const
-  body: Array<Statement | Comment>
+  body: Array<Statement>
 
   constructor(obj: PlainNode<Program>) {
     super()
@@ -126,36 +133,9 @@ export class Program extends BaseNode {
   next() {
     return this.body
   }
-}
 
-export class Comment extends BaseNode {
-  type = 'Comment' as const
-  // TODO: add `type` prop
-  body: string
-
-  constructor(obj: PlainNode<Comment>) {
-    super()
-
-    this.body = obj.body
-  }
-
-  next() {
-    return []
-  }
-}
-
-export class Block extends BaseNode {
-  type = 'Block' as const
-  body: Array<Statement | Comment>
-
-  constructor(obj: PlainNode<Block>) {
-    super()
-
-    this.body = obj.body
-  }
-
-  next() {
-    return this.body
+  print() {
+    return b.join(b.hardline, this.body.map(printAst))
   }
 }
 
@@ -172,6 +152,10 @@ export class BooleanLiteral extends BaseLiteral {
   next() {
     return []
   }
+
+  print() {
+    return this.value
+  }
 }
 
 export class StringLiteral extends BaseLiteral {
@@ -186,6 +170,10 @@ export class StringLiteral extends BaseLiteral {
 
   next() {
     return []
+  }
+
+  print() {
+    return this.value
   }
 }
 
@@ -202,6 +190,10 @@ export class MultilineLiteral extends BaseLiteral {
   next() {
     return []
   }
+
+  print() {
+    return this.value
+  }
 }
 
 export class DurationLiteral extends BaseLiteral {
@@ -216,6 +208,10 @@ export class DurationLiteral extends BaseLiteral {
 
   next() {
     return []
+  }
+
+  print() {
+    return this.value
   }
 }
 
@@ -232,6 +228,10 @@ export class NumericLiteral extends BaseLiteral {
   next() {
     return []
   }
+
+  print() {
+    return this.value
+  }
 }
 
 export class Identifier extends BaseExpression {
@@ -247,20 +247,9 @@ export class Identifier extends BaseExpression {
   next() {
     return []
   }
-}
 
-export class Header extends BaseExpression {
-  type = 'Header' as const
-  name: string
-
-  constructor(obj: PlainNode<Header>) {
-    super()
-
-    this.name = obj.name
-  }
-
-  next() {
-    return []
+  print() {
+    return this.name
   }
 }
 
@@ -279,12 +268,16 @@ export class Ip extends BaseExpression {
   next() {
     return []
   }
+
+  print() {
+    return this.cidr ? `"${this.value}"/${this.cidr}` : `"${this.value}"`
+  }
 }
 
 export class Member extends BaseExpression {
   type = 'Member' as const
   base: Identifier | Member
-  member: Identifier | Header
+  member: Identifier
 
   constructor(obj: PlainNode<Member>) {
     super()
@@ -295,6 +288,41 @@ export class Member extends BaseExpression {
 
   next() {
     return [this.base, this.member]
+  }
+
+  print() {
+    return b.concat([
+      printAst(this.base),
+      // b.softline,
+      '.',
+      printAst(this.member),
+    ])
+  }
+}
+
+export class ValuePair extends BaseExpression {
+  type = 'ValuePair' as const
+  base: Identifier | Member
+  name: Identifier
+
+  constructor(obj: PlainNode<ValuePair>) {
+    super()
+
+    this.base = obj.base
+    this.name = obj.name
+  }
+
+  next() {
+    return [this.base, this.name]
+  }
+
+  print() {
+    return b.concat([
+      printAst(this.base),
+      // b.softline,
+      ':',
+      printAst(this.name),
+    ])
   }
 }
 
@@ -310,6 +338,15 @@ export class BooleanExpression extends BaseExpression {
 
   next() {
     return [this.body]
+  }
+
+  print() {
+    return b.concat([
+      '(',
+      b.indent(b.concat([b.softline, printAst(this.body)])),
+      b.softline,
+      ')',
+    ])
   }
 }
 
@@ -328,11 +365,15 @@ export class UnaryExpression extends BaseExpression {
   next() {
     return [this.argument]
   }
+
+  print() {
+    return b.concat([this.operator, printAst(this.argument)])
+  }
 }
 
 export class FunCallExpression extends BaseExpression {
   type = 'FunCallExpression' as const
-  callee: Member | Identifier
+  callee: Member | Identifier | ValuePair
   arguments: Array<Expression>
 
   constructor(obj: PlainNode<FunCallExpression>) {
@@ -343,7 +384,26 @@ export class FunCallExpression extends BaseExpression {
   }
 
   next() {
-    return []
+    return [this.callee, ...this.arguments]
+  }
+
+  print() {
+    return b.concat([
+      printAst(this.callee),
+      '(',
+      b.softline,
+      b.group(
+        b.concat([
+          b.indent(
+            b.concat([
+              b.join(b.concat([',', b.line]), this.arguments.map(printAst)),
+            ])
+          ),
+          b.ifBreak(b.line, ''),
+        ])
+      ),
+      ')',
+    ])
   }
 }
 
@@ -359,6 +419,10 @@ export class ConcatExpression extends BaseExpression {
 
   next() {
     return this.body
+  }
+
+  print() {
+    return b.join(' ', this.body.map(printAst))
   }
 }
 
@@ -379,6 +443,14 @@ export class BinaryExpression extends BaseExpression {
   next() {
     return [this.left, this.right]
   }
+
+  print() {
+    return b.concat([
+      printAst(this.left),
+      ' ',
+      b.concat([this.operator, ' ', printAst(this.right)]),
+    ])
+  }
 }
 
 export class LogicalExpression extends BaseExpression {
@@ -398,6 +470,14 @@ export class LogicalExpression extends BaseExpression {
   next() {
     return [this.left, this.right]
   }
+
+  print() {
+    return b.concat([
+      printAst(this.left),
+      ' ',
+      b.concat([this.operator, b.line, printAst(this.right)]),
+    ])
+  }
 }
 
 export class ExpressionStatement extends BaseStatement {
@@ -412,6 +492,10 @@ export class ExpressionStatement extends BaseStatement {
 
   next() {
     return [this.body]
+  }
+
+  print() {
+    return b.concat([printAst(this.body), ';'])
   }
 }
 
@@ -428,6 +512,10 @@ export class IncludeStatement extends BaseStatement {
   next() {
     return [this.module]
   }
+
+  print() {
+    return b.concat(['include ', printAst(this.module), ';'])
+  }
 }
 
 export class ImportStatement extends BaseStatement {
@@ -443,6 +531,10 @@ export class ImportStatement extends BaseStatement {
   next() {
     return [this.module]
   }
+
+  print() {
+    return b.concat(['import ', printAst(this.module), ';'])
+  }
 }
 
 export class CallStatement extends BaseStatement {
@@ -457,6 +549,10 @@ export class CallStatement extends BaseStatement {
 
   next() {
     return [this.subroutine]
+  }
+
+  print() {
+    return b.concat(['call ', printAst(this.subroutine), ';'])
   }
 }
 
@@ -474,6 +570,17 @@ export class DeclareStatement extends BaseStatement {
 
   next() {
     return [this.id]
+  }
+
+  print() {
+    return b.concat([
+      'declare ',
+      'local ',
+      printAst(this.id),
+      ' ',
+      this.valueType,
+      ';',
+    ])
   }
 }
 
@@ -494,6 +601,18 @@ export class AddStatement extends BaseStatement {
   next() {
     return [this.left, this.right]
   }
+
+  print() {
+    return b.concat([
+      'add ',
+      printAst(this.left),
+      ' ',
+      this.operator,
+      ' ',
+      printAst(this.right),
+      ';',
+    ])
+  }
 }
 
 export class SetStatement extends BaseStatement {
@@ -513,6 +632,18 @@ export class SetStatement extends BaseStatement {
   next() {
     return [this.left, this.right]
   }
+
+  print() {
+    return b.concat([
+      'set ',
+      printAst(this.left),
+      ' ',
+      this.operator,
+      ' ',
+      printAst(this.right),
+      ';',
+    ])
+  }
 }
 
 export class UnsetStatement extends BaseStatement {
@@ -528,6 +659,10 @@ export class UnsetStatement extends BaseStatement {
   next() {
     return [this.id]
   }
+
+  print() {
+    return b.concat(['unset ', printAst(this.id), ';'])
+  }
 }
 
 export class ReturnStatement extends BaseStatement {
@@ -542,6 +677,11 @@ export class ReturnStatement extends BaseStatement {
 
   next() {
     return []
+  }
+
+  print() {
+    // TODO: handle the optional parens
+    return b.concat(['return ', '(', this.action, ')', ';'])
   }
 }
 
@@ -560,6 +700,17 @@ export class ErrorStatement extends BaseStatement {
   next() {
     return [this.message]
   }
+
+  print() {
+    return b.concat([
+      b.join(' ', [
+        'error',
+        this.status.toString(),
+        this.message && printAst(this.message),
+      ].filter(Boolean) as Doc[]),
+      ';',
+    ])
+  }
 }
 
 export class RestartStatement extends BaseStatement {
@@ -571,6 +722,10 @@ export class RestartStatement extends BaseStatement {
 
   next() {
     return []
+  }
+
+  print() {
+    return 'restart;'
   }
 }
 
@@ -587,6 +742,10 @@ export class SyntheticStatement extends BaseStatement {
   next() {
     return [this.response]
   }
+
+  print() {
+    return b.concat(['synthetic', printAst(this.response), ';'])
+  }
 }
 
 export class LogStatement extends BaseStatement {
@@ -601,6 +760,10 @@ export class LogStatement extends BaseStatement {
 
   next() {
     return [this.content]
+  }
+
+  print() {
+    return b.concat(['log', printAst(this.content), ';'])
   }
 }
 
@@ -623,6 +786,41 @@ export class IfStatement extends BaseStatement {
       .filter(Boolean)
       .flat(2)
   }
+
+  print() {
+    const doc: Array<Doc> = [
+      'if ',
+      '(',
+      printAst(this.test),
+      ') ',
+      '{',
+      b.indent(
+        b.concat([
+          b.hardline,
+          b.join(b.hardline, this.consequent.map(printAst)),
+        ])
+      ),
+      b.hardline,
+      '}',
+    ]
+
+    if (this.alternative) {
+      const alternative = Array.isArray(this.alternative)
+        ? [
+            ' else {',
+            b.indent(
+              b.concat([b.hardline, b.concat(this.alternative.map(printAst))])
+            ),
+            b.hardline,
+            '}',
+          ]
+        : [' else ', printAst(this.alternative)]
+
+      return b.concat([...doc, ...alternative])
+    }
+
+    return b.concat(doc)
+  }
 }
 
 export class SubroutineStatement extends BaseStatement {
@@ -640,6 +838,19 @@ export class SubroutineStatement extends BaseStatement {
   next() {
     return [this.id, ...this.body]
   }
+
+  print() {
+    return b.concat([
+      'sub ',
+      printAst(this.id),
+      ' {',
+      b.indent(
+        b.concat([b.hardline, b.join(b.hardline, this.body.map(printAst))])
+      ),
+      b.hardline,
+      '}',
+    ])
+  }
 }
 
 export class AclStatement extends BaseStatement {
@@ -656,6 +867,25 @@ export class AclStatement extends BaseStatement {
 
   next() {
     return [this.id, ...this.body]
+  }
+
+  print() {
+    return b.concat([
+      'acl ',
+      printAst(this.id),
+      ' {',
+      b.indent(
+        b.concat([
+          b.hardline,
+          b.join(
+            b.hardline,
+            this.body.map(printAst).map((ip) => b.concat([ip, ';']))
+          ),
+        ])
+      ),
+      b.hardline,
+      '}',
+    ])
   }
 }
 
@@ -678,9 +908,43 @@ export class BackendStatement extends BaseStatement {
 
   next() {
     return this.body
-      .filter((b) => b.value instanceof BaseNode)
-      .map((b) => b.value)
+      .map((b) =>
+        Array.isArray(b.value)
+          ? b.value.map((subBody) => subBody.value)
+          : b.value
+      )
       .flat(2)
+  }
+
+  static printDef(def: BackendDef): Doc {
+    const value = Array.isArray(def.value)
+      ? BackendStatement.printBody(def.value)
+      : b.concat([def.value.print(), ';'])
+
+    return b.concat(['.', def.key, ' = ', value])
+  }
+
+  static printBody(defs: Array<BackendDef>): Doc {
+    return b.concat([
+      '{',
+      b.indent(
+        b.concat([
+          b.hardline,
+          b.join(b.hardline, defs.map(BackendStatement.printDef)),
+        ])
+      ),
+      b.hardline,
+      '}',
+    ])
+  }
+
+  print() {
+    return b.concat([
+      'backend ',
+      printAst(this.id),
+      ' ',
+      BackendStatement.printBody(this.body),
+    ])
   }
 }
 
@@ -701,22 +965,41 @@ export class TableStatement extends BaseStatement {
   next() {
     return [this.id]
   }
+
+  print() {
+    return b.concat([
+      'table ',
+      printAst(this.id),
+      ' {',
+      b.indent(
+        b.concat([
+          b.hardline,
+          b.join(
+            b.concat([',', b.hardline]),
+            this.body.map((td) => b.concat([td.key, ':', td.value]))
+          ),
+          // TODO: handle trailing comma
+          // ',',
+        ])
+      ),
+      b.hardline,
+      '}',
+    ])
+  }
 }
 
 export const map = {
   File,
   Program,
-  Comment,
-  Block,
   BooleanLiteral,
   StringLiteral,
   MultilineLiteral,
   DurationLiteral,
   NumericLiteral,
   Identifier,
-  Header,
   Ip,
   Member,
+  ValuePair,
   BooleanExpression,
   UnaryExpression,
   FunCallExpression,
