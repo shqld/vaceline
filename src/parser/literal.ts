@@ -5,12 +5,13 @@ import { NodeWithLoc } from '../nodes'
 import { createError } from './create-error'
 import { Parser } from '.'
 import { isToken } from '../utils/token'
+import { parseIp } from './statement/ip'
 
 export const parseLiteral = (
   p: Parser,
   token: Token = p.read(),
   node: NodeWithLoc = p.startNode()
-): n.Literal | null => {
+): n.Literal | n.Ip | null => {
   if (token.type === 'boolean') {
     return p.finishNode(n.BooleanLiteral, node, {
       value: token.value,
@@ -18,6 +19,10 @@ export const parseLiteral = (
   }
 
   if (token.type === 'string') {
+    if (isToken(p.peek()!, 'symbol', '/')) {
+      return parseIp(p, token)
+    }
+
     return p.finishNode(n.StringLiteral, node, {
       value: token.value,
     })

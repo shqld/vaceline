@@ -206,7 +206,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
     const id = p.validateNode(parseExpr(p, p.read(), true), ['Identifier'])
     p.validateToken(p.read(), 'symbol', '{')
 
-    const body = parseCompound(p, parseIp, '}')
+    const body = parseCompound(p, parseIp, '}', undefined, true)
 
     return p.finishNode(n.AclStatement, node, {
       id,

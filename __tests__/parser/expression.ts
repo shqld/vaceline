@@ -25,7 +25,7 @@ describe('Expression', () => {
         body: [
           { type: 'StringLiteral', value: '"a"' },
           { type: 'StringLiteral', value: '"b"' },
-          // { type: 'StringLiteral', value: '"c"' },
+          { type: 'StringLiteral', value: '"c"' },
         ],
       })
 
@@ -39,7 +39,7 @@ describe('Expression', () => {
           { type: 'Member' },
           { type: 'StringLiteral' },
           { type: 'BooleanLiteral' },
-          // { type: 'NumericLiteral' },
+          { type: 'NumericLiteral' },
         ],
       })
     })

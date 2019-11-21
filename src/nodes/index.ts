@@ -270,7 +270,7 @@ export class Ip extends BaseExpression {
   }
 
   print() {
-    return this.cidr ? `"${this.value}/${this.cidr}"` : `"${this.value}"`
+    return this.cidr ? `"${this.value}"/${this.cidr}` : `"${this.value}"`
   }
 }
 
@@ -422,7 +422,7 @@ export class ConcatExpression extends BaseExpression {
   }
 
   print() {
-    return b.join(b.line, this.body.map(printAst))
+    return b.join(' ', this.body.map(printAst))
   }
 }
 
@@ -533,7 +533,7 @@ export class ImportStatement extends BaseStatement {
   }
 
   print() {
-    return b.concat([printAst(this.module), ';'])
+    return b.concat(['import ', printAst(this.module), ';'])
   }
 }
 
@@ -703,11 +703,13 @@ export class ErrorStatement extends BaseStatement {
 
   print() {
     return b.concat([
-      'error',
-      this.status.toString(),
-      this.message && printAst(this.message),
+      b.join(' ', [
+        'error',
+        this.status.toString(),
+        this.message && printAst(this.message),
+      ].filter(Boolean) as Doc[]),
       ';',
-    ].filter(Boolean) as Doc[])
+    ])
   }
 }
 
@@ -804,8 +806,15 @@ export class IfStatement extends BaseStatement {
 
     if (this.alternative) {
       const alternative = Array.isArray(this.alternative)
-        ? ['else', ...this.alternative.map(printAst)]
-        : ['else', '{', printAst(this.alternative), '}']
+        ? [
+            ' else {',
+            b.indent(
+              b.concat([b.hardline, b.concat(this.alternative.map(printAst))])
+            ),
+            b.hardline,
+            '}',
+          ]
+        : [' else ', printAst(this.alternative)]
 
       return b.concat([...doc, ...alternative])
     }

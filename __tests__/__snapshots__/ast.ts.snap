@@ -416,29 +416,6 @@ BinaryExpression {
 }
 `;
 
-exports[`(BooleanExpression) assign 1`] = `
-ConcatExpression {
-  "body": Array [
-    Identifier {
-      "name": "set",
-      "type": "Identifier",
-    },
-    Member {
-      "base": Identifier {
-        "name": "var",
-        "type": "Identifier",
-      },
-      "member": Identifier {
-        "name": "Debug",
-        "type": "Identifier",
-      },
-      "type": "Member",
-    },
-  ],
-  "type": "ConcatExpression",
-}
-`;
-
 exports[`(BooleanExpression) with binary 1`] = `
 BooleanExpression {
   "body": BinaryExpression {
@@ -565,6 +542,10 @@ ConcatExpression {
       "type": "StringLiteral",
       "value": "\\"b\\"",
     },
+    StringLiteral {
+      "type": "StringLiteral",
+      "value": "\\"c\\"",
+    },
   ],
   "type": "ConcatExpression",
 }
@@ -657,9 +638,18 @@ DurationLiteral {
 `;
 
 exports[`(DurationLiteral) month 1`] = `
-NumericLiteral {
-  "type": "NumericLiteral",
-  "value": "1",
+ConcatExpression {
+  "body": Array [
+    NumericLiteral {
+      "type": "NumericLiteral",
+      "value": "1",
+    },
+    Identifier {
+      "name": "M",
+      "type": "Identifier",
+    },
+  ],
+  "type": "ConcatExpression",
 }
 `;
 
@@ -678,9 +668,18 @@ DurationLiteral {
 `;
 
 exports[`(DurationLiteral) year 1`] = `
-NumericLiteral {
-  "type": "NumericLiteral",
-  "value": "1",
+ConcatExpression {
+  "body": Array [
+    NumericLiteral {
+      "type": "NumericLiteral",
+      "value": "1",
+    },
+    Identifier {
+      "name": "Y",
+      "type": "Identifier",
+    },
+  ],
+  "type": "ConcatExpression",
 }
 `;
 
@@ -1128,9 +1127,10 @@ StringLiteral {
 `;
 
 exports[`(Ip) IPv4 with cidr 1`] = `
-StringLiteral {
-  "type": "StringLiteral",
-  "value": "\\"192.0.2.0\\"",
+Ip {
+  "cidr": 16,
+  "type": "Ip",
+  "value": "192.0.2.0",
 }
 `;
 
@@ -1142,9 +1142,10 @@ StringLiteral {
 `;
 
 exports[`(Ip) IPv6 with cidr 1`] = `
-StringLiteral {
-  "type": "StringLiteral",
-  "value": "\\"2001:db8::1\\"",
+Ip {
+  "cidr": 16,
+  "type": "Ip",
+  "value": "2001:db8::1",
 }
 `;
 
@@ -1495,13 +1496,6 @@ ReturnStatement {
 }
 `;
 
-exports[`(ReturnStatement) without parens 1`] = `
-ReturnStatement {
-  "action": "pass",
-  "type": "ReturnStatement",
-}
-`;
-
 exports[`(SetStatement) addition 1`] = `
 SetStatement {
   "left": Member {
@@ -1684,26 +1678,6 @@ TableStatement {
 `;
 
 exports[`(TableStatement) single key-values 1`] = `
-TableStatement {
-  "body": Array [
-    Object {
-      "key": "\\"key\\"",
-      "value": "\\"value\\"",
-    },
-    Object {
-      "key": "\\"key2\\"",
-      "value": "\\"value2\\"",
-    },
-  ],
-  "id": Identifier {
-    "name": "vaceline_table",
-    "type": "Identifier",
-  },
-  "type": "TableStatement",
-}
-`;
-
-exports[`(TableStatement) with trailing comma 1`] = `
 TableStatement {
   "body": Array [
     Object {

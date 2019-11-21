@@ -9,9 +9,3 @@ with logical
 ```vcl
 (var.Debug && "1")
 ```
-
-assign
-
-```vcl
-set var.Debug = (req.http.Debug == "1")
-```

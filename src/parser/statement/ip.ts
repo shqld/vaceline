@@ -52,8 +52,6 @@ export const parseIp = (p: Parser, token = p.read()) => {
     }
   }
 
-  p.validateToken(p.read(), 'symbol', ';')
-
   return p.finishNode(Ip, node, {
     value,
     cidr,

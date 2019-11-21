@@ -13,7 +13,7 @@ req.http.Debug || "1"
 combination
 
 ```vcl
-req.http.Debug || "1" && "2";
+req.http.Debug || "1" && "2"
 ```
 
 TODO: combination with BinaryExpression

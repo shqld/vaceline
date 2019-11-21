@@ -38,19 +38,22 @@ export const parseExpr = (
 
   const buf = [expr]
 
-  while (!p.isNextEOF()) {
-    let token = p.read()
+  let nextToken = p.peek()
 
-    if (isToken(token, 'symbol', ';')) {
+  while (nextToken) {
+    p.take()
+
+    if (isToken(nextToken, 'symbol', ';')) {
       break
     }
 
-    if (isToken(token, 'symbol', '+')) {
-      token = p.read()
+    if (isToken(nextToken, 'symbol', '+')) {
+      nextToken = p.read()
     }
 
     try {
-      buf.push(parseHumbleExpr(p, token))
+      const expr = parseHumbleExpr(p, nextToken)
+      buf.push(expr)
       backup = p.getCursor()
     } catch (err) {
       if (err instanceof SyntaxError) {
@@ -59,6 +62,8 @@ export const parseExpr = (
         throw err
       }
     }
+
+    nextToken = p.peek()
   }
 
   // backtrack to the backed-up cursor
