@@ -784,21 +784,6 @@ ExpressionStatement {
 }
 `;
 
-exports[`(File) file 1`] = `
-Program {
-  "body": Array [
-    ExpressionStatement {
-      "body": StringLiteral {
-        "type": "StringLiteral",
-        "value": "\\"file\\"",
-      },
-      "type": "ExpressionStatement",
-    },
-  ],
-  "type": "Program",
-}
-`;
-
 exports[`(FunCallExpression) \`if\` func 1`] = `
 FunCallExpression {
   "arguments": Array [

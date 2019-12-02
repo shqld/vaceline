@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-import { parse, generate, traverse } from '../../src'
+import { parse, generate, traverse } from '../../src/lib'
 import BranchLogPlugin from '../../src/plugins/branch-log'
 import { NodePath } from '../../src/traverser/path'
 import { SubroutineStatement, IfStatement, AddStatement } from '../../src/nodes'

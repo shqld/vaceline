@@ -1,6 +1,6 @@
 import { wrap as wrapRaw } from 'jest-snapshot-serializer-raw'
 import { testdocs } from './helpers/snapshot'
-import { generate } from '../src'
+import { generate } from '../src/lib'
 import { Tokenizer } from '../src/parser/tokenizer'
 
 for (const testdoc of testdocs) {

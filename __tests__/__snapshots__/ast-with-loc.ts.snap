@@ -2693,57 +2693,6 @@ ExpressionStatement {
 }
 `;
 
-exports[`(File) file: file 1`] = `
-Program {
-  "body": Array [
-    ExpressionStatement {
-      "body": StringLiteral {
-        "loc": Object {
-          "end": Object {
-            "column": 6,
-            "line": 2,
-            "offset": 18,
-          },
-          "start": Object {
-            "column": 1,
-            "line": 2,
-            "offset": 13,
-          },
-        },
-        "type": "StringLiteral",
-        "value": "\\"file\\"",
-      },
-      "loc": Object {
-        "end": Object {
-          "column": 7,
-          "line": 2,
-          "offset": 19,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 2,
-          "offset": 13,
-        },
-      },
-      "type": "ExpressionStatement",
-    },
-  ],
-  "loc": Object {
-    "end": Object {
-      "column": 7,
-      "line": 2,
-      "offset": 19,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
-  },
-  "type": "Program",
-}
-`;
-
 exports[`(FunCallExpression) \`if\` func: \`if\` func 1`] = `
 FunCallExpression {
   "arguments": Array [

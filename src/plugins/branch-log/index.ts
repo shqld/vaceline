@@ -1,4 +1,4 @@
-import { traverse } from '../..'
+import { traverse } from '../../lib'
 import {
   Node,
   Member,

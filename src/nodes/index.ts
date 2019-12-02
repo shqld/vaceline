@@ -25,7 +25,6 @@ export type NodeMap = {
 }
 
 export type Node =
-  | File
   | Program
   // abstract base
   | BaseExpression
@@ -96,29 +95,6 @@ export abstract class BaseNode {
 export abstract class BaseExpression extends BaseNode {}
 export abstract class BaseLiteral extends BaseExpression {}
 export abstract class BaseStatement extends BaseNode {}
-
-export class File extends BaseNode {
-  type = 'File' as const
-  filePath: string
-  program: Program
-  comments: Array<Token>
-
-  constructor(obj: PlainNode<File>) {
-    super()
-
-    this.filePath = obj.filePath
-    this.program = obj.program
-    this.comments = obj.comments
-  }
-
-  next() {
-    return [this.program]
-  }
-
-  print() {
-    return printAst(this.program)
-  }
-}
 
 export class Program extends BaseNode {
   type = 'Program' as const
@@ -989,7 +965,6 @@ export class TableStatement extends BaseStatement {
 }
 
 export const map = {
-  File,
   Program,
   BooleanLiteral,
   StringLiteral,

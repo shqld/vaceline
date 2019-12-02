@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-import { parse, generate, traverse } from '../../src'
+import { parse, generate, traverse } from '../../src/lib'
 import DebuggerPlugin from '../../src/plugins/debugger'
 import { Node } from '../../src/nodes'
 

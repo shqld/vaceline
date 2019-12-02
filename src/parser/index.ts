@@ -21,7 +21,7 @@ import { buildDebug } from '../utils/debug'
 
 const debug = buildDebug('parser')
 
-export const parse = (source: string) => new Parser(source).parse()
+export const parse = (source: string): Program => new Parser(source).parse()
 
 export class Parser extends TokenReader {
   source: string
@@ -35,10 +35,6 @@ export class Parser extends TokenReader {
   }
 
   parse(): Program {
-    return this.parseProgram()
-  }
-
-  private parseProgram(): Program {
     const node = this.startNode()
 
     const body = parseCompound<Statement>(this, parseStmt)

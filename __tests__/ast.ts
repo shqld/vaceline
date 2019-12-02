@@ -1,5 +1,5 @@
 import { testdocs } from './helpers/snapshot'
-import { traverse } from '../src'
+import { traverse } from '../src/lib'
 
 for (const testdoc of testdocs) {
   for (const testcase of testdoc.basic) {

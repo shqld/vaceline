@@ -6,10 +6,8 @@ import { Identifier, BaseNode } from '../src/nodes'
 import { NodePath } from '../src/traverser/path'
 
 describe('Traverser', () => {
-  const code = fs.readFileSync(
-    path.resolve('__tests__/__fixture__/rough.vcl'),
-    'utf8'
-  )
+  const codePath = path.resolve('__tests__/__fixture__/rough.vcl')
+  const code = fs.readFileSync(codePath, 'utf8')
   const ast = parse(code)
 
   // it('should traverse every node', () => {})
