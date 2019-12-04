@@ -6,10 +6,10 @@
   "author": "Sho Miyamoto <shqld8@gmail.com>",
   "license": "MIT",
   "bin": {
-    "vaceline": "./bin.js"
+    "vaceline": "./dist/cli/index.js"
   },
   "scripts": {
-    "start": "yarn build | ./devnull && node bin.js",
+    "start": "yarn build -s && node dist/cli",
     "build": "rimraf dist && yarn babel src -d dist -x .ts,.js",
     "test": "yarn lint && yarn type && yarn jest",
     "lint": "yarn eslint src --ext .ts",
