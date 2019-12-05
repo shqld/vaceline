@@ -1,4 +1,0 @@
-#! /usr/bin/env node
-
-const devnull = require('dev-null')()
-process.stdin.pipe(devnull)
