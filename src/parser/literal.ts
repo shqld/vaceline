@@ -1,65 +1,60 @@
-import * as p from 'parsimmon'
-
-import * as u from '../utils/index'
 import * as n from '../nodes'
-import { helpers as h, wrappers as w, symbols as s } from './lib'
 
-import {
-  LanguageWithLocation,
-  Language,
-  TypedPartialRule,
-  Literal,
-} from './typings'
-import { createNode } from './create-node'
+import { Token } from './tokenizer'
+import { NodeWithLoc } from '../nodes'
+import { createError } from './create-error'
+import { Parser } from '.'
+import { isToken } from '../utils/token'
+import { parseIp } from './statement/ip'
 
-export const literal: TypedPartialRule<
-  LanguageWithLocation<Language>,
-  LanguageWithLocation<Literal>
-> = {
-  literal: (r) =>
-    p.alt(
-      r.BooleanLiteral,
-      r.StringLiteral,
-      r.DurationLiteral,
-      r.NumericLiteral,
-      r.IpLiteral,
-      r.MultilineLiteral
-    ),
+export const parseLiteral = (
+  p: Parser,
+  token: Token = p.read(),
+  node: NodeWithLoc = p.startNode()
+): n.Literal | n.Ip | null => {
+  if (token.type === 'boolean') {
+    return p.finishNode(n.BooleanLiteral, node, {
+      value: token.value,
+    })
+  }
 
-  BooleanLiteral: () =>
-    h
-      .oneOfWords('true', 'false')
-      .map((value) => ({ value }))
-      .thru(createNode(n.BooleanLiteral)),
+  if (token.type === 'string') {
+    if (isToken(p.peek()!, 'symbol', '/')) {
+      return parseIp(p, token)
+    }
 
-  IpLiteral: () =>
-    p
-      .regexp(/"[a-fA-F0-9:.]+"(\/\d+)?/)
-      .map((value) => ({ value }))
-      .thru(createNode(n.NumericLiteral)),
+    return p.finishNode(n.StringLiteral, node, {
+      value: token.value,
+    })
+  }
 
-  // TODO: Do not allow multiline
-  StringLiteral: () =>
-    p
-      .regexp(/"((?:\\.|.)*?)"/, 1)
-      .map((value) => ({ value }))
-      .thru(createNode(n.StringLiteral)),
+  if (token.type === 'numeric') {
+    if (isToken(p.peek()!, 'ident', /ms|s|m|h|d|y/)) {
+      return p.finishNode(n.DurationLiteral, node, {
+        value: token.value + p.read().value,
+      })
+    }
 
-  MultilineLiteral: () =>
-    p
-      .regexp(/{"((?:\\.|.|\n|")*?)"}/, 1)
-      .map((value) => ({ value }))
-      .thru(createNode(n.MultilineLiteral)),
+    if (!Number.isNaN(Number(token.value))) {
+      if (
+        token.value.startsWith('.') ||
+        (token.value.length !== 1 && token.value.startsWith('0'))
+      ) {
+        throw createError(
+          p.source,
+          'invalid number',
+          node.loc.start,
+          node.loc.end
+        )
+      }
 
-  DurationLiteral: () =>
-    p
-      .regexp(/\d+(ms|s|m|h|d|w|y)/)
-      .map((value) => ({ value }))
-      .thru(createNode(n.DurationLiteral)),
+      return p.finishNode(n.NumericLiteral, node, {
+        value: token.value,
+      })
+    }
 
-  NumericLiteral: () =>
-    p
-      .regexp(/\d+(\.\d+)?/)
-      .map((value) => ({ value }))
-      .thru(createNode(n.NumericLiteral)),
+    throw createError(p.source, 'invalid token', node.loc.start, node.loc.end)
+  }
+
+  return null
 }

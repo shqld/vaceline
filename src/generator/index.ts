@@ -1,17 +1,19 @@
-import { Node, File, Program } from '../nodes'
-import { Printer } from './printer'
+import { BaseNode } from '../nodes'
+import { doc as docHelpers } from 'prettier'
 
-export const generate = (ast: File | Node): { code: string; map?: string } => {
-  const p = new Printer()
+export const { builders } = docHelpers
 
-  if (ast instanceof File) {
-    return p.generate(ast.program)
-  }
+const defaultPrintOptions = {
+  printWidth: 100,
+  tabWidth: 2,
+  useTabs: false,
+}
 
-  if (ast instanceof Program) {
-    return p.generate(ast)
-  }
+export const generate = (ast: BaseNode): { code: string; map?: string } => {
+  const { formatted } = docHelpers.printer.printDocToString(
+    ast.print(),
+    defaultPrintOptions
+  )
 
-  // TODO:
-  throw new Error('')
+  return { code: formatted }
 }

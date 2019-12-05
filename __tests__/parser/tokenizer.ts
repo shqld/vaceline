@@ -5,69 +5,69 @@ import chalk from 'chalk'
 const tokenize = (str: string) => new Tokenizer(str.trim()).tokenize()
 
 describe('Tokenizer', () => {
-  it('should tokenize a single identifier', () => {
+  it('should tokenize a single ident', () => {
     const str = 'ident'.repeat(1)
 
-    expect(tokenize(str)).toStrictEqual([
+    expect(tokenize(str)).toMatchObject([
       {
-        type: 'identifier',
+        type: 'ident',
         value: 'ident',
-        start: 0,
-        end: 4,
         loc: {
           end: {
-            column: 5,
+            offset: 4,
             line: 1,
+            column: 5,
           },
           start: {
-            column: 1,
+            offset: 0,
             line: 1,
+            column: 1,
           },
         },
       },
     ])
   })
 
-  it('should tokenize a single identifier', () => {
+  it('should tokenize a single ident', () => {
     const str = 'ident ident '.repeat(1)
 
-    expect(tokenize(str)).toStrictEqual([
+    expect(tokenize(str)).toMatchObject([
       {
-        type: 'identifier',
+        type: 'ident',
         value: 'ident',
-        start: 0,
-        end: 4,
         loc: {
           end: {
-            column: 5,
+            offset: 4,
             line: 1,
+            column: 5,
           },
           start: {
-            column: 1,
+            offset: 0,
             line: 1,
+            column: 1,
           },
         },
       },
       {
-        type: 'identifier',
+        type: 'ident',
         value: 'ident',
-        start: 6,
-        end: 10,
         loc: {
+          start: {
+            offset: 6,
+            line: 1,
+            column: 7,
+          },
           end: {
+            offset: 10,
             column: 11,
             line: 1,
           },
-          start: {
-            column: 7,
-            line: 1,
-          },
         },
       },
     ])
   })
 
-  it('should tokenize multiple identifiers', () => {
+  it('should tokenize multiple idents', () => {
     expect(
       tokenize(
         `
@@ -75,68 +75,68 @@ ident   ident  i
 ident
             `
       )
-    ).toStrictEqual([
+    ).toMatchObject([
       {
-        type: 'identifier',
+        type: 'ident',
         value: 'ident',
-        start: 0,
-        end: 4,
         loc: {
-          end: {
-            column: 5,
-            line: 1,
-          },
           start: {
-            column: 1,
+            offset: 0,
             line: 1,
+            column: 1,
+          },
+          end: {
+            offset: 4,
+            line: 1,
+            column: 5,
           },
         },
       },
       {
-        type: 'identifier',
+        type: 'ident',
         value: 'ident',
-        start: 8,
-        end: 12,
         loc: {
           end: {
+            offset: 12,
+            line: 1,
             column: 13,
-            line: 1,
           },
           start: {
+            offset: 8,
+            line: 1,
             column: 9,
-            line: 1,
           },
         },
       },
       {
-        type: 'identifier',
+        type: 'ident',
         value: 'i',
-        start: 15,
-        end: 15,
         loc: {
-          end: {
-            column: 16,
-            line: 1,
-          },
           start: {
-            column: 16,
+            offset: 15,
             line: 1,
+            column: 16,
+          },
+          end: {
+            offset: 15,
+            line: 1,
+            column: 16,
           },
         },
       },
       {
-        type: 'identifier',
+        type: 'ident',
         value: 'ident',
-        start: 17,
-        end: 21,
         loc: {
-          end: {
-            column: 5,
-            line: 2,
-          },
           start: {
-            column: 1,
+            offset: 17,
             line: 2,
+            column: 1,
+          },
+          end: {
+            offset: 21,
+            line: 2,
+            column: 5,
           },
         },
       },
@@ -149,35 +149,35 @@ ident
     it('should tokenize quoted string', () => {
       const str = '"hello" "world"'.repeat(1)
 
-      expect(tokenize(str)).toStrictEqual([
+      expect(tokenize(str)).toMatchObject([
         {
           type: 'string',
           value: '"hello"',
-          start: 0,
-          end: 6,
           loc: {
-            end: {
-              column: 7,
-              line: 1,
-            },
             start: {
-              column: 1,
+              offset: 0,
               line: 1,
+              column: 1,
+            },
+            end: {
+              offset: 6,
+              line: 1,
+              column: 7,
             },
           },
         },
         {
           type: 'string',
           value: '"world"',
-          start: 8,
-          end: 14,
           loc: {
-            end: {
-              column: 15,
+            start: {
+              offset: 8,
+              column: 9,
               line: 1,
             },
-            start: {
-              column: 9,
+            end: {
+              offset: 14,
+              column: 15,
               line: 1,
             },
           },
@@ -204,36 +204,36 @@ llo"
 llo"} "hello"
         `
         )
-      ).toStrictEqual([
+      ).toMatchObject([
         {
           type: 'string',
           value: '{"he\nllo"}',
-          start: 0,
-          end: 9,
           loc: {
-            end: {
-              column: 5,
-              line: 2,
-            },
             start: {
-              column: 1,
+              offset: 0,
               line: 1,
+              column: 1,
+            },
+            end: {
+              offset: 9,
+              line: 2,
+              column: 5,
             },
           },
         },
         {
           type: 'string',
           value: '"hello"',
-          start: 11,
-          end: 17,
           loc: {
-            end: {
-              column: 13,
-              line: 2,
-            },
             start: {
-              column: 7,
+              offset: 11,
               line: 2,
+              column: 7,
+            },
+            end: {
+              offset: 17,
+              line: 2,
+              column: 13,
             },
           },
         },
@@ -241,92 +241,75 @@ llo"} "hello"
     })
 
     it('should tokenize boolean', () => {
-      const tokens = tokenize(`
-true
-false`)
-
-      expect(tokens.shift()).toStrictEqual(
-        expect.objectContaining({
+      expect(
+        tokenize(`
+          true
+          false`)
+      ).toMatchObject([
+        {
           type: 'boolean',
           value: 'true',
-        })
-      )
-      expect(tokens.shift()).toStrictEqual(
-        expect.objectContaining({
+        },
+        {
           type: 'boolean',
           value: 'false',
-        })
-      )
+        },
+      ])
     })
 
     it('should tokenize numeric', () => {
-      expect(tokenize('100').pop()).toStrictEqual(
-        expect.objectContaining({ type: 'numeric', value: '100' })
-      )
+      expect(tokenize('100')).toMatchObject([{ type: 'numeric', value: '100' }])
 
-      expect(tokenize('100.01').pop()).toStrictEqual(
-        expect.objectContaining({ type: 'numeric', value: '100.01' })
-      )
-
-      expect(() => tokenize('.11').pop()).toThrow(/invalid token/)
+      expect(tokenize('100.01')).toMatchObject([
+        { type: 'numeric', value: '100.01' },
+      ])
     })
   })
 
-  describe('comment', () => {
+  describe.skip('comment', () => {
     it('should tokenize', () => {
-      const tokens = tokenize(`
+      expect(
+        tokenize(`
 before# comment
 before// comment after
 before/* comment */after
       `)
-
-      expect(tokens.shift()).toStrictEqual(
-        expect.objectContaining({ type: 'identifier', value: 'before' })
-      )
-      expect(tokens.shift()).toStrictEqual(
-        expect.objectContaining({ type: 'comment', value: '# comment' })
-      )
-      expect(tokens.shift()).toStrictEqual(
-        expect.objectContaining({ type: 'identifier', value: 'before' })
-      )
-      expect(tokens.shift()).toStrictEqual(
-        expect.objectContaining({ type: 'comment', value: '// comment after' })
-      )
-      expect(tokens.shift()).toStrictEqual(
-        expect.objectContaining({ type: 'identifier', value: 'before' })
-      )
-      expect(tokens.shift()).toStrictEqual(
-        expect.objectContaining({ type: 'comment', value: '/* comment */' })
-      )
-      expect(tokens.shift()).toStrictEqual(
-        expect.objectContaining({ type: 'identifier', value: 'after' })
-      )
+      ).toMatchObject([
+        { type: 'ident', value: 'before' },
+        { type: 'comment', value: '# comment' },
+        { type: 'ident', value: 'before' },
+        { type: 'comment', value: '// comment after' },
+        { type: 'ident', value: 'before' },
+        { type: 'comment', value: '/* comment */' },
+        { type: 'ident', value: 'after' },
+      ])
     })
   })
 
-  describe('error', () => {
-    chalk.enabled = false
+  describe('error-handling', () => {
+    it('should emit SyntaxError', () => {
+      chalk.enabled = false
 
-    try {
-      tokenize(
-        `
+      expect(() =>
+        tokenize(
+          `
 ident1
 ident2
-ident3 invalid&
+ident3 %%%
 ident4
 `
-      )
-    } catch (err) {
-      expect(err.message).toStrictEqual(
+        )
+      ).toThrow(
         `
 invalid token
 
+  1 | ident1
   2 | ident2
-> 3 | ident3 invalid&
-             ^
+> 3 | ident3 %%%
+             ^^^
   4 | ident4
       `.trim()
       )
-    }
+    })
   })
 })

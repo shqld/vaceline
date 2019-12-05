@@ -1,16 +1,18 @@
-import * as nodes from './nodes'
+import { Node, BaseNode } from './nodes'
 
-export const hydrate = (raw: string): nodes.Node =>
+export const hydrate = (raw: string): Node =>
   JSON.parse(raw, (_, value) => {
-    if (value && value.type) {
-      // @ts-ignore
-      const Node = nodes[value.type]
+    if (value && typeof value.type === 'string') {
+      // const node = Node.create(value.type as NodeType, value)
 
-      if (!Node.create) {
-        throw new Error('Unexpected JSON structure: ' + value.type)
-      }
+      // if (!node) {
+      //   throw new Error('Unexpected JSON structure: ' + value.type)
+      // }
 
-      return Node.create(value)
+      const node = Object.create(BaseNode.prototype)
+      Object.assign(node, value)
+
+      return node
     } else {
       return value
     }

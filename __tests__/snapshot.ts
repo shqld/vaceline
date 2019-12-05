@@ -1,13 +1,14 @@
 import fs from 'fs'
 import path from 'path'
 
-import { Parser } from '../src/parser'
+import { parse } from '../src'
 
 describe('hydrate', () => {
-  const code = fs.readFileSync(path.resolve('__tests__/__fixture__/test.vcl'), 'utf8')
+  const codePath = path.resolve('__tests__/__fixture__/rough.vcl')
+  const code = fs.readFileSync(codePath, 'utf8')
 
   it('should', () => {
-    const ast = Parser.Program.tryParse(code)
+    const ast = parse(code)
 
     expect(ast).toMatchSnapshot('ast')
   })

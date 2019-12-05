@@ -1,173 +1,282 @@
-import * as p from 'parsimmon'
-import * as u from '../utils/index'
+import { Node, NodeWithLoc } from '../nodes'
 import * as n from '../nodes'
-import { helpers as h, wrappers as w, symbols as s } from './lib'
+import { isToken } from '../utils/token'
 
-import { WithLocation, LanguageWithLocation, TypedPartialRule } from './typings'
-import { Language, Expression } from './typings'
-import { createNode } from './create-node'
+import { Token } from './tokenizer'
+import { createError } from './create-error'
+import { parseLiteral } from './literal'
+import * as ops from './tokenizer/operators'
+import { Parser } from '.'
+import { buildDebug } from '../utils/debug'
+import { parseCompound } from './compound'
 
-const expressions = (r: p.TypedLanguage<LanguageWithLocation<Language>>) => [
-  r.LogicalExpression,
-  r.BinaryExpression,
-  r.ConcatExpression,
-  r.BooleanExpression,
-  r.UnaryExpression,
-  r.FunCallExpression,
-  r.MemberExpression,
-  r.literal,
-  r.Header,
-  r.Identifier,
-]
+const debug = buildDebug('parser', 'expression')
 
-export const expression: TypedPartialRule<
-  LanguageWithLocation<Language>,
-  LanguageWithLocation<Expression>
-> = {
-  expression: (r) => p.alt(...expressions(r)).desc('Expression'),
+interface Stack<T> {
+  [I: number]: T
+  push: Array<T>['push']
+  pop: Array<T>['pop']
+  length: Array<T>['length']
+}
 
-  Header: () =>
-    p
-      .lookahead(p.letters.then(p.alt(p.string('-'), p.string(':'))))
-      .then(p.regex(/^[A-z][A-z0-9-:]*/i).map((name) => ({ name })))
-      .thru(createNode(n.Header)),
+export const parseExpr = (
+  p: Parser,
+  token: Token = p.read(),
+  shortcut = false
+): n.Expression => {
+  const expr = parseOperatorExpr(p, token)
 
-  Identifier: () =>
-    p
-      .regex(/^[a-z0-9][\w\d]*/i)
-      .map((name) => ({ name }))
-      .thru(createNode(n.Identifier)),
+  if (shortcut) return expr
 
-  MemberExpression: (r) =>
-    p
-      .seq(
-        r.Identifier.skip(p.string('.')),
-        p.alt(r.MemberExpression, r.Header, r.Identifier)
-      )
-      .map(([object, property]) => ({
-        object,
-        property,
-      }))
-      .thru(createNode(n.MemberExpression)),
+  const node = p.startNode()
 
-  BooleanExpression: (r) =>
-    r.expression
-      .thru(w.paren)
-      .map(([lparen, body, rparen]) => ({ lparen, body, rparen }))
-      .thru(createNode(n.BooleanExpression)),
+  if (isToken(token, 'symbol', ';')) {
+    return expr
+  }
 
-  // TODO: array -> nest
-  ConcatExpression: (r) =>
-    p
-      .alt(...expressions(r).filter((p) => p !== r.ConcatExpression)) // term
-      .thru(w.margin)
-      .atLeast(2)
-      .map((body) => ({ body }))
-      .thru(createNode(n.ConcatExpression)),
+  let backup = p.getCursor()
 
-  FunCallExpression: (r) =>
-    h
-      .grease(
-        p.alt(r.MemberExpression, r.Identifier),
-        r.expression
-          .thru(w.margin)
-          .sepBy(s.comma)
-          .thru(w.paren)
-      )
-      .map(([callee, [lparen, args, rparen]]) => ({
-        callee,
+  const buf = [expr]
+
+  let nextToken = p.peek()
+
+  while (nextToken) {
+    p.take()
+
+    if (isToken(nextToken, 'symbol', ';')) {
+      break
+    }
+
+    if (isToken(nextToken, 'symbol', '+')) {
+      nextToken = p.read()
+    }
+
+    try {
+      const expr = parseHumbleExpr(p, nextToken)
+      buf.push(expr)
+      backup = p.getCursor()
+    } catch (err) {
+      if (err instanceof SyntaxError) {
+        break
+      } else {
+        throw err
+      }
+    }
+
+    nextToken = p.peek()
+  }
+
+  // backtrack to the backed-up cursor
+  p.jumpTo(backup)
+
+  // the next token wasn't an expression
+  if (buf.length === 1) {
+    return expr
+  }
+
+  return p.finishNode(n.ConcatExpression, node, {
+    body: buf,
+  })
+}
+
+const parseOperatorExpr = (
+  p: Parser,
+  token: Token = p.read(),
+  shortcut = false
+): n.Expression => {
+  const expr = parseHumbleExpr(p, token)
+
+  if (shortcut) return expr
+
+  if (isToken(token, 'symbol', ';')) {
+    return expr
+  }
+
+  // let node = p.startNode()
+  let backup = p.getCursor()
+
+  type Operator = Token & {
+    type: 'operator'
+    precedence: number
+    isBinary: boolean
+  }
+
+  const rpn: Array<n.Expression | Operator> = [expr]
+  const opStack: Stack<Operator> = []
+
+  // covert expression sequence into rpn
+  while (!p.isNextEOF()) {
+    const op = p.peek()! as Operator
+
+    const isBinary = ops.binary.has(op.value)
+    const isLogical = !isBinary && ops.logical.has(op.value)
+
+    if (!isBinary && !isLogical) break
+
+    p.take()
+
+    op.precedence = ops.getPrecedence(op.value)
+    op.isBinary = isBinary
+
+    while (op.precedence >= (opStack[opStack.length - 1] || {}).precedence) {
+      rpn.push(opStack.pop()!)
+    }
+
+    opStack.push(op)
+
+    try {
+      rpn.push(parseHumbleExpr(p))
+    } catch (err) {
+      if (err instanceof SyntaxError) {
+        p.jumpTo(backup)
+        break
+      }
+      throw err
+    }
+
+    backup = p.getCursor()
+  }
+
+  while (opStack.length) {
+    rpn.push(opStack.pop()!)
+  }
+
+  // calculate rpn
+  const stack: Stack<n.Expression> = []
+
+  for (let i = 0; i < rpn.length; i++) {
+    const item = rpn[i]
+    if (item instanceof n.BaseNode) {
+      stack.push(item)
+      continue
+    }
+
+    const right = stack.pop()!
+    const left = stack.pop()!
+
+    const nodeType = item.isBinary ? n.BinaryExpression : n.LogicalExpression
+    const expr = new nodeType({
+      left,
+      right,
+      operator: item.value,
+    })
+
+    expr.loc = { start: left.loc!.start, end: right.loc!.end }
+
+    stack.push(expr)
+  }
+
+  if (stack.length !== 1) {
+    throw new Error()
+  }
+
+  return stack[0]
+}
+
+const parseHumbleExpr = (
+  p: Parser,
+  token: Token = p.read(),
+  node: NodeWithLoc = p.startNode()
+): n.Expression => {
+  const literal = parseLiteral(p, token)
+
+  if (literal) return literal
+
+  if (token.type === 'ident') {
+    const ident = parseIdentifier(p, token)
+
+    if (isToken(p.peek(), 'symbol', '(')) {
+      p.take()
+
+      const args = parseCompound(p, parseExpr, ')', ',')
+
+      return p.finishNode(n.FunCallExpression, node, {
+        callee: ident,
         arguments: args,
-        lparen,
-        rparen,
-      }))
-      .thru(createNode(n.FunCallExpression)),
+      })
+    }
 
-  UnaryExpression: (r) =>
-    h
-      .grease(s.unop, r.expression)
-      .map(([operator, argument]) => ({
-        operator,
-        argument,
-      }))
-      .thru(createNode(n.UnaryExpression)),
+    return ident
+  }
 
-  /*
-    NOTE: Accept the input as an array and then reduce to make left-to-right
-          in order to avoid infinity recursion because of left association
-  */
-  BinaryExpression: (r) => {
-    /*
-      NOTE: BinaryExpression NEVER has LogicalExpression nor ConcatExpression as its child(i.e. terminator)
-            except for ones wrapped with parens as BooleanExpression.
-     */
-    const term = p.alt(
-      ...expressions(r).filter(
-        (p) =>
-          p !== r.LogicalExpression &&
-          p !== r.ConcatExpression &&
-          p !== r.BinaryExpression
-      )
-    )
+  if (token.type === 'symbol') {
+    if (token.value === '(') {
+      const body = parseExpr(p)
+      p.validateToken(p.read(), 'symbol', ')')
 
-    return p
-      .lookahead(h.grease(term, s.binop))
-      .then(h.grease(term, h.grease(s.binop, term).atLeast(1)))
-      .map(([first, follow]) =>
-        follow.reduce(
-          (left, [operator, right]) =>
-            n.BinaryExpression.create(
-              {
-                left,
-                operator,
-                right,
-              },
-              {
-                start: left.loc.start,
-                end: right.loc.end,
-              }
-            ),
-          first
-        )
-      ) as p.Parser<WithLocation<n.BinaryExpression>>
-  },
+      return p.finishNode(n.BooleanExpression, node, {
+        body,
+      })
+    }
+  }
 
-  /*
-    NOTE: Accept the input as an array and then reduce to make left-to-right
-          in order to avoid infinity recursion because of left recursion
-  */
-  LogicalExpression: (r) => {
-    // terminator
-    const term = p.alt(
-      ...expressions(r).filter(
-        (p) => p !== r.LogicalExpression && p !== r.ConcatExpression
-      )
-    )
+  if (token.type === 'operator') {
+    if (token.value === '!') {
+      return p.finishNode(n.UnaryExpression, node, {
+        argument: parseExpr(p),
+        operator: token.value,
+      })
+    }
+  }
 
-    return p
-      .lookahead(h.grease(term, s.logop))
-      .then(h.grease(term, h.grease(s.logop, term).atLeast(1)))
-      .map(([first, follow]) =>
-        follow.reduce(
-          (left, [operator, right]) =>
-            n.LogicalExpression.create(
-              {
-                left,
-                operator,
-                right,
-              },
-              {
-                start: left.loc.start,
-                end: right.loc.end,
-              }
-            ),
-          first
-        )
-      ) as p.Parser<WithLocation<n.LogicalExpression>>
-  },
+  throw createError(
+    p.source,
+    '[expr] not implemented yet',
+    node.loc.start,
+    node.loc.end
+  )
+}
 
-  StructDefinitionExpression: (r) =>
-    r.MemberAssignStatement.thru(w.list)
-      .thru(w.bracket)
-      .map(([lbracket, body, rbracket]) => ({ lbracket, body, rbracket }))
-      .thru(createNode(n.StructDefinitionExpression)),
+export const parseIdentifier = (
+  p: Parser,
+  token?: Token,
+  base: n.Identifier | n.Member = p.finishNode(n.Identifier, p.startNode(), {
+    name: token!.value,
+  })
+): n.Member | n.ValuePair | n.Identifier => {
+  // Member
+  if (isToken(p.peek(), 'symbol', '.')) {
+    p.take()
+
+    const memberTok = p.read()
+    const member = p.finishNode(n.Identifier, p.startNode(), {
+      name: memberTok.value,
+    })
+
+    const expr = new n.Member({
+      base,
+      member,
+    })
+
+    expr.loc = {
+      start: base.loc!.start,
+      end: member.loc!.end,
+    }
+
+    return parseIdentifier(p, undefined, expr)
+  }
+
+  // ValuePair
+  if (isToken(p.peek(), 'symbol', ':')) {
+    p.take()
+
+    const nameTok = p.read()
+    const name = p.finishNode(n.Identifier, p.startNode(), {
+      name: nameTok.value,
+    })
+
+    const expr = new n.ValuePair({
+      base,
+      name,
+    })
+
+    expr.loc = {
+      start: base.loc!.start,
+      end: name.loc!.end,
+    }
+
+    return expr
+  }
+
+  return base
 }

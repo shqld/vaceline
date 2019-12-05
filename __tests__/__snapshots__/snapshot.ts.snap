@@ -6,9 +6,9 @@ Program {
     IncludeStatement {
       "loc": Object {
         "end": Object {
-          "column": 1,
-          "line": 2,
-          "offset": 26,
+          "column": 25,
+          "line": 1,
+          "offset": 24,
         },
         "start": Object {
           "column": 1,
@@ -19,9 +19,9 @@ Program {
       "module": StringLiteral {
         "loc": Object {
           "end": Object {
-            "column": 25,
+            "column": 24,
             "line": 1,
-            "offset": 24,
+            "offset": 23,
           },
           "start": Object {
             "column": 9,
@@ -29,21 +29,17 @@ Program {
             "offset": 8,
           },
         },
-        "next": [Function],
-        "print": [Function],
         "type": "StringLiteral",
-        "value": "vacel_module_a",
+        "value": "\\"vacel_module_a\\"",
       },
-      "next": [Function],
-      "print": [Function],
       "type": "IncludeStatement",
     },
     IncludeStatement {
       "loc": Object {
         "end": Object {
-          "column": 1,
-          "line": 4,
-          "offset": 53,
+          "column": 25,
+          "line": 2,
+          "offset": 50,
         },
         "start": Object {
           "column": 1,
@@ -54,9 +50,9 @@ Program {
       "module": StringLiteral {
         "loc": Object {
           "end": Object {
-            "column": 25,
+            "column": 24,
             "line": 2,
-            "offset": 50,
+            "offset": 49,
           },
           "start": Object {
             "column": 9,
@@ -64,142 +60,58 @@ Program {
             "offset": 34,
           },
         },
-        "next": [Function],
-        "print": [Function],
         "type": "StringLiteral",
-        "value": "vecel_module_b",
+        "value": "\\"vecel_module_b\\"",
       },
-      "next": [Function],
-      "print": [Function],
       "type": "IncludeStatement",
     },
     BackendStatement {
-      "body": StructDefinitionExpression {
-        "body": Array [
-          Comment {
-            "body": " .ssh = true;",
+      "body": Array [
+        Object {
+          "key": "ssh",
+          "value": BooleanLiteral {
             "loc": Object {
               "end": Object {
-                "column": 1,
-                "line": 6,
-                "offset": 93,
-              },
-              "start": Object {
-                "column": 3,
+                "column": 13,
                 "line": 5,
-                "offset": 78,
-              },
-            },
-            "next": [Function],
-            "print": [Function],
-            "type": "Comment",
-          },
-          MemberAssignStatement {
-            "id": Identifier {
-              "loc": Object {
-                "end": Object {
-                  "column": 8,
-                  "line": 6,
-                  "offset": 100,
-                },
-                "start": Object {
-                  "column": 4,
-                  "line": 6,
-                  "offset": 96,
-                },
-              },
-              "name": "host",
-              "next": [Function],
-              "print": [Function],
-              "type": "Identifier",
-            },
-            "loc": Object {
-              "end": Object {
-                "column": 1,
-                "line": 7,
-                "offset": 118,
+                "offset": 88,
               },
               "start": Object {
-                "column": 3,
+                "column": 10,
+                "line": 5,
+                "offset": 85,
+              },
+            },
+            "type": "BooleanLiteral",
+            "value": "true",
+          },
+        },
+        Object {
+          "key": "host",
+          "value": StringLiteral {
+            "loc": Object {
+              "end": Object {
+                "column": 23,
                 "line": 6,
-                "offset": 95,
+                "offset": 113,
+              },
+              "start": Object {
+                "column": 11,
+                "line": 6,
+                "offset": 101,
               },
             },
-            "next": [Function],
-            "print": [Function],
-            "type": "MemberAssignStatement",
-            "value": StringLiteral {
-              "loc": Object {
-                "end": Object {
-                  "column": 24,
-                  "line": 6,
-                  "offset": 116,
-                },
-                "start": Object {
-                  "column": 11,
-                  "line": 6,
-                  "offset": 103,
-                },
-              },
-              "next": [Function],
-              "print": [Function],
-              "type": "StringLiteral",
-              "value": "example.com",
-            },
-          },
-        ],
-        "lbracket": Object {
-          "loc": Object {
-            "end": Object {
-              "column": 3,
-              "line": 5,
-              "offset": 78,
-            },
-            "start": Object {
-              "column": 22,
-              "line": 4,
-              "offset": 74,
-            },
-          },
-          "value": "{",
-        },
-        "loc": Object {
-          "end": Object {
-            "column": 1,
-            "line": 9,
-            "offset": 121,
-          },
-          "start": Object {
-            "column": 22,
-            "line": 4,
-            "offset": 74,
+            "type": "StringLiteral",
+            "value": "\\"example.com\\"",
           },
         },
-        "next": [Function],
-        "print": [Function],
-        "rbracket": Object {
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 9,
-              "offset": 121,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 7,
-              "offset": 118,
-            },
-          },
-          "value": "}",
-        },
-        "type": "StructDefinitionExpression",
-      },
+      ],
       "id": Identifier {
         "loc": Object {
           "end": Object {
-            "column": 21,
+            "column": 20,
             "line": 4,
-            "offset": 73,
+            "offset": 72,
           },
           "start": Object {
             "column": 9,
@@ -208,15 +120,13 @@ Program {
           },
         },
         "name": "vacel_origin",
-        "next": [Function],
-        "print": [Function],
         "type": "Identifier",
       },
       "loc": Object {
         "end": Object {
           "column": 1,
-          "line": 9,
-          "offset": 121,
+          "line": 7,
+          "offset": 116,
         },
         "start": Object {
           "column": 1,
@@ -224,2674 +134,1909 @@ Program {
           "offset": 53,
         },
       },
-      "next": [Function],
-      "print": [Function],
       "type": "BackendStatement",
     },
     SubroutineStatement {
-      "body": Block {
-        "body": Array [
-          SetStatement {
-            "left": MemberExpression {
-              "loc": Object {
-                "end": Object {
-                  "column": 26,
-                  "line": 10,
-                  "offset": 161,
-                },
-                "start": Object {
-                  "column": 7,
-                  "line": 10,
-                  "offset": 142,
-                },
-              },
-              "next": [Function],
-              "object": Identifier {
+      "body": Array [
+        SetStatement {
+          "left": Member {
+            "base": Member {
+              "base": Identifier {
                 "loc": Object {
                   "end": Object {
-                    "column": 10,
+                    "column": 9,
                     "line": 10,
-                    "offset": 145,
+                    "offset": 142,
                   },
                   "start": Object {
                     "column": 7,
                     "line": 10,
-                    "offset": 142,
+                    "offset": 140,
                   },
                 },
                 "name": "req",
-                "next": [Function],
-                "print": [Function],
                 "type": "Identifier",
               },
-              "print": [Function],
-              "property": MemberExpression {
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 10,
+                  "offset": 147,
+                },
+                "start": Object {
+                  "column": 7,
+                  "line": 10,
+                  "offset": 140,
+                },
+              },
+              "member": Identifier {
                 "loc": Object {
                   "end": Object {
-                    "column": 26,
+                    "column": 14,
                     "line": 10,
-                    "offset": 161,
+                    "offset": 147,
                   },
                   "start": Object {
                     "column": 11,
                     "line": 10,
-                    "offset": 146,
+                    "offset": 144,
                   },
                 },
-                "next": [Function],
-                "object": Identifier {
-                  "loc": Object {
-                    "end": Object {
-                      "column": 15,
-                      "line": 10,
-                      "offset": 150,
-                    },
-                    "start": Object {
-                      "column": 11,
-                      "line": 10,
-                      "offset": 146,
-                    },
-                  },
-                  "name": "http",
-                  "next": [Function],
-                  "print": [Function],
-                  "type": "Identifier",
-                },
-                "print": [Function],
-                "property": Header {
-                  "loc": Object {
-                    "end": Object {
-                      "column": 26,
-                      "line": 10,
-                      "offset": 161,
-                    },
-                    "start": Object {
-                      "column": 16,
-                      "line": 10,
-                      "offset": 151,
-                    },
-                  },
-                  "name": "Vaceline-Host",
-                  "next": [Function],
-                  "print": [Function],
-                  "type": "Header",
-                },
-                "type": "MemberExpression",
+                "name": "http",
+                "type": "Identifier",
               },
-              "type": "MemberExpression",
+              "type": "Member",
             },
             "loc": Object {
               "end": Object {
-                "column": 3,
-                "line": 16,
-                "offset": 256,
+                "column": 28,
+                "line": 10,
+                "offset": 161,
               },
               "start": Object {
-                "column": 3,
+                "column": 7,
                 "line": 10,
-                "offset": 138,
+                "offset": 140,
               },
             },
-            "next": [Function],
-            "operator": "=",
-            "print": [Function],
-            "right": FunCallExpression {
-              "arguments": Array [
-                MemberExpression {
-                  "loc": Object {
-                    "end": Object {
-                      "column": 30,
-                      "line": 11,
-                      "offset": 197,
-                    },
-                    "start": Object {
-                      "column": 5,
-                      "line": 11,
-                      "offset": 172,
-                    },
-                  },
-                  "next": [Function],
-                  "object": Identifier {
+            "member": Identifier {
+              "loc": Object {
+                "end": Object {
+                  "column": 28,
+                  "line": 10,
+                  "offset": 161,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 10,
+                  "offset": 149,
+                },
+              },
+              "name": "Vaceline-Host",
+              "type": "Identifier",
+            },
+            "type": "Member",
+          },
+          "loc": Object {
+            "end": Object {
+              "column": 4,
+              "line": 14,
+              "offset": 252,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 10,
+              "offset": 136,
+            },
+          },
+          "operator": "=",
+          "right": FunCallExpression {
+            "arguments": Array [
+              Member {
+                "base": Member {
+                  "base": Identifier {
                     "loc": Object {
                       "end": Object {
-                        "column": 8,
+                        "column": 7,
                         "line": 11,
                         "offset": 175,
                       },
                       "start": Object {
                         "column": 5,
                         "line": 11,
-                        "offset": 172,
+                        "offset": 173,
                       },
                     },
                     "name": "req",
-                    "next": [Function],
-                    "print": [Function],
                     "type": "Identifier",
                   },
-                  "print": [Function],
-                  "property": MemberExpression {
+                  "loc": Object {
+                    "end": Object {
+                      "column": 12,
+                      "line": 11,
+                      "offset": 180,
+                    },
+                    "start": Object {
+                      "column": 5,
+                      "line": 11,
+                      "offset": 173,
+                    },
+                  },
+                  "member": Identifier {
                     "loc": Object {
                       "end": Object {
-                        "column": 30,
+                        "column": 12,
                         "line": 11,
-                        "offset": 197,
+                        "offset": 180,
                       },
                       "start": Object {
                         "column": 9,
                         "line": 11,
-                        "offset": 176,
+                        "offset": 177,
                       },
                     },
-                    "next": [Function],
-                    "object": Identifier {
-                      "loc": Object {
-                        "end": Object {
-                          "column": 13,
-                          "line": 11,
-                          "offset": 180,
-                        },
-                        "start": Object {
-                          "column": 9,
-                          "line": 11,
-                          "offset": 176,
-                        },
-                      },
-                      "name": "http",
-                      "next": [Function],
-                      "print": [Function],
-                      "type": "Identifier",
-                    },
-                    "print": [Function],
-                    "property": Header {
-                      "loc": Object {
-                        "end": Object {
-                          "column": 30,
-                          "line": 11,
-                          "offset": 197,
-                        },
-                        "start": Object {
-                          "column": 14,
-                          "line": 11,
-                          "offset": 181,
-                        },
-                      },
-                      "name": "X-Forwarded-Host",
-                      "next": [Function],
-                      "print": [Function],
-                      "type": "Header",
-                    },
-                    "type": "MemberExpression",
+                    "name": "http",
+                    "type": "Identifier",
                   },
-                  "type": "MemberExpression",
+                  "type": "Member",
                 },
-                MemberExpression {
+                "loc": Object {
+                  "end": Object {
+                    "column": 29,
+                    "line": 11,
+                    "offset": 197,
+                  },
+                  "start": Object {
+                    "column": 5,
+                    "line": 11,
+                    "offset": 173,
+                  },
+                },
+                "member": Identifier {
                   "loc": Object {
                     "end": Object {
-                      "column": 30,
-                      "line": 12,
-                      "offset": 228,
+                      "column": 29,
+                      "line": 11,
+                      "offset": 197,
                     },
                     "start": Object {
-                      "column": 5,
-                      "line": 12,
-                      "offset": 203,
+                      "column": 14,
+                      "line": 11,
+                      "offset": 182,
                     },
                   },
-                  "next": [Function],
-                  "object": Identifier {
+                  "name": "X-Forwarded-Host",
+                  "type": "Identifier",
+                },
+                "type": "Member",
+              },
+              Member {
+                "base": Member {
+                  "base": Identifier {
                     "loc": Object {
                       "end": Object {
-                        "column": 8,
+                        "column": 7,
                         "line": 12,
                         "offset": 206,
                       },
                       "start": Object {
                         "column": 5,
                         "line": 12,
-                        "offset": 203,
+                        "offset": 204,
                       },
                     },
                     "name": "req",
-                    "next": [Function],
-                    "print": [Function],
                     "type": "Identifier",
                   },
-                  "print": [Function],
-                  "property": MemberExpression {
+                  "loc": Object {
+                    "end": Object {
+                      "column": 12,
+                      "line": 12,
+                      "offset": 211,
+                    },
+                    "start": Object {
+                      "column": 5,
+                      "line": 12,
+                      "offset": 204,
+                    },
+                  },
+                  "member": Identifier {
                     "loc": Object {
                       "end": Object {
-                        "column": 30,
+                        "column": 12,
                         "line": 12,
-                        "offset": 228,
+                        "offset": 211,
                       },
                       "start": Object {
                         "column": 9,
                         "line": 12,
-                        "offset": 207,
+                        "offset": 208,
                       },
                     },
-                    "next": [Function],
-                    "object": Identifier {
-                      "loc": Object {
-                        "end": Object {
-                          "column": 13,
-                          "line": 12,
-                          "offset": 211,
-                        },
-                        "start": Object {
-                          "column": 9,
-                          "line": 12,
-                          "offset": 207,
-                        },
-                      },
-                      "name": "http",
-                      "next": [Function],
-                      "print": [Function],
-                      "type": "Identifier",
-                    },
-                    "print": [Function],
-                    "property": Header {
-                      "loc": Object {
-                        "end": Object {
-                          "column": 30,
-                          "line": 12,
-                          "offset": 228,
-                        },
-                        "start": Object {
-                          "column": 14,
-                          "line": 12,
-                          "offset": 212,
-                        },
-                      },
-                      "name": "X-Forwarded-Host",
-                      "next": [Function],
-                      "print": [Function],
-                      "type": "Header",
-                    },
-                    "type": "MemberExpression",
+                    "name": "http",
+                    "type": "Identifier",
                   },
-                  "type": "MemberExpression",
+                  "type": "Member",
                 },
-                MemberExpression {
+                "loc": Object {
+                  "end": Object {
+                    "column": 29,
+                    "line": 12,
+                    "offset": 228,
+                  },
+                  "start": Object {
+                    "column": 5,
+                    "line": 12,
+                    "offset": 204,
+                  },
+                },
+                "member": Identifier {
                   "loc": Object {
                     "end": Object {
-                      "column": 18,
-                      "line": 13,
-                      "offset": 247,
+                      "column": 29,
+                      "line": 12,
+                      "offset": 228,
                     },
                     "start": Object {
-                      "column": 5,
-                      "line": 13,
-                      "offset": 234,
+                      "column": 14,
+                      "line": 12,
+                      "offset": 213,
                     },
                   },
-                  "next": [Function],
-                  "object": Identifier {
+                  "name": "X-Forwarded-Host",
+                  "type": "Identifier",
+                },
+                "type": "Member",
+              },
+              Member {
+                "base": Member {
+                  "base": Identifier {
                     "loc": Object {
                       "end": Object {
-                        "column": 8,
+                        "column": 7,
                         "line": 13,
                         "offset": 237,
                       },
                       "start": Object {
                         "column": 5,
                         "line": 13,
-                        "offset": 234,
+                        "offset": 235,
                       },
                     },
                     "name": "req",
-                    "next": [Function],
-                    "print": [Function],
                     "type": "Identifier",
                   },
-                  "print": [Function],
-                  "property": MemberExpression {
+                  "loc": Object {
+                    "end": Object {
+                      "column": 12,
+                      "line": 13,
+                      "offset": 242,
+                    },
+                    "start": Object {
+                      "column": 5,
+                      "line": 13,
+                      "offset": 235,
+                    },
+                  },
+                  "member": Identifier {
                     "loc": Object {
                       "end": Object {
-                        "column": 18,
+                        "column": 12,
                         "line": 13,
-                        "offset": 247,
+                        "offset": 242,
                       },
                       "start": Object {
                         "column": 9,
                         "line": 13,
-                        "offset": 238,
+                        "offset": 239,
                       },
                     },
-                    "next": [Function],
-                    "object": Identifier {
-                      "loc": Object {
-                        "end": Object {
-                          "column": 13,
-                          "line": 13,
-                          "offset": 242,
-                        },
-                        "start": Object {
-                          "column": 9,
-                          "line": 13,
-                          "offset": 238,
-                        },
-                      },
-                      "name": "http",
-                      "next": [Function],
-                      "print": [Function],
-                      "type": "Identifier",
-                    },
-                    "print": [Function],
-                    "property": Identifier {
-                      "loc": Object {
-                        "end": Object {
-                          "column": 18,
-                          "line": 13,
-                          "offset": 247,
-                        },
-                        "start": Object {
-                          "column": 14,
-                          "line": 13,
-                          "offset": 243,
-                        },
-                      },
-                      "name": "Host",
-                      "next": [Function],
-                      "print": [Function],
-                      "type": "Identifier",
-                    },
-                    "type": "MemberExpression",
+                    "name": "http",
+                    "type": "Identifier",
                   },
-                  "type": "MemberExpression",
+                  "type": "Member",
                 },
-              ],
-              "callee": Identifier {
                 "loc": Object {
                   "end": Object {
-                    "column": 31,
-                    "line": 10,
-                    "offset": 166,
+                    "column": 17,
+                    "line": 13,
+                    "offset": 247,
                   },
                   "start": Object {
-                    "column": 29,
-                    "line": 10,
-                    "offset": 164,
+                    "column": 5,
+                    "line": 13,
+                    "offset": 235,
                   },
                 },
-                "name": "if",
-                "next": [Function],
-                "print": [Function],
-                "type": "Identifier",
+                "member": Identifier {
+                  "loc": Object {
+                    "end": Object {
+                      "column": 17,
+                      "line": 13,
+                      "offset": 247,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 13,
+                      "offset": 244,
+                    },
+                  },
+                  "name": "Host",
+                  "type": "Identifier",
+                },
+                "type": "Member",
               },
+            ],
+            "callee": Identifier {
               "loc": Object {
                 "end": Object {
-                  "column": 4,
-                  "line": 14,
-                  "offset": 251,
+                  "column": 33,
+                  "line": 10,
+                  "offset": 166,
                 },
                 "start": Object {
-                  "column": 29,
+                  "column": 32,
                   "line": 10,
-                  "offset": 164,
+                  "offset": 165,
                 },
               },
-              "lparen": Object {
-                "loc": Object {
-                  "end": Object {
-                    "column": 5,
-                    "line": 11,
-                    "offset": 172,
-                  },
-                  "start": Object {
-                    "column": 31,
-                    "line": 10,
-                    "offset": 166,
-                  },
-                },
-                "value": "(",
-              },
-              "next": [Function],
-              "print": [Function],
-              "rparen": Object {
-                "loc": Object {
-                  "end": Object {
-                    "column": 4,
-                    "line": 14,
-                    "offset": 251,
-                  },
-                  "start": Object {
-                    "column": 3,
-                    "line": 14,
-                    "offset": 250,
-                  },
-                },
-                "value": ")",
-              },
-              "type": "FunCallExpression",
+              "name": "if",
+              "type": "Identifier",
             },
-            "type": "SetStatement",
-          },
-          Comment {
-            "body": " Local Variables",
             "loc": Object {
               "end": Object {
-                "column": 1,
-                "line": 17,
-                "offset": 274,
+                "column": 3,
+                "line": 14,
+                "offset": 251,
               },
               "start": Object {
-                "column": 3,
-                "line": 16,
-                "offset": 256,
+                "column": 32,
+                "line": 10,
+                "offset": 165,
               },
             },
-            "next": [Function],
-            "print": [Function],
-            "type": "Comment",
+            "type": "FunCallExpression",
           },
-          DeclareStatement {
-            "id": MemberExpression {
+          "type": "SetStatement",
+        },
+        DeclareStatement {
+          "id": Member {
+            "base": Identifier {
               "loc": Object {
                 "end": Object {
-                  "column": 34,
+                  "column": 19,
+                  "line": 17,
+                  "offset": 293,
+                },
+                "start": Object {
+                  "column": 17,
+                  "line": 17,
+                  "offset": 291,
+                },
+              },
+              "name": "var",
+              "type": "Identifier",
+            },
+            "loc": Object {
+              "end": Object {
+                "column": 33,
+                "line": 17,
+                "offset": 307,
+              },
+              "start": Object {
+                "column": 17,
+                "line": 17,
+                "offset": 291,
+              },
+            },
+            "member": Identifier {
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
                   "line": 17,
                   "offset": 307,
                 },
                 "start": Object {
-                  "column": 17,
+                  "column": 21,
                   "line": 17,
-                  "offset": 290,
+                  "offset": 295,
                 },
               },
-              "next": [Function],
-              "object": Identifier {
-                "loc": Object {
-                  "end": Object {
-                    "column": 20,
-                    "line": 17,
-                    "offset": 293,
-                  },
-                  "start": Object {
-                    "column": 17,
-                    "line": 17,
-                    "offset": 290,
-                  },
+              "name": "isSpecialUser",
+              "type": "Identifier",
+            },
+            "type": "Member",
+          },
+          "loc": Object {
+            "end": Object {
+              "column": 39,
+              "line": 17,
+              "offset": 313,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 17,
+              "offset": 277,
+            },
+          },
+          "type": "DeclareStatement",
+          "valueType": "BOOL",
+        },
+        DeclareStatement {
+          "id": Member {
+            "base": Identifier {
+              "loc": Object {
+                "end": Object {
+                  "column": 19,
+                  "line": 18,
+                  "offset": 333,
                 },
-                "name": "var",
-                "next": [Function],
-                "print": [Function],
-                "type": "Identifier",
-              },
-              "print": [Function],
-              "property": Identifier {
-                "loc": Object {
-                  "end": Object {
-                    "column": 34,
-                    "line": 17,
-                    "offset": 307,
-                  },
-                  "start": Object {
-                    "column": 21,
-                    "line": 17,
-                    "offset": 294,
-                  },
+                "start": Object {
+                  "column": 17,
+                  "line": 18,
+                  "offset": 331,
                 },
-                "name": "isSpecialUser",
-                "next": [Function],
-                "print": [Function],
-                "type": "Identifier",
               },
-              "type": "MemberExpression",
+              "name": "var",
+              "type": "Identifier",
             },
             "loc": Object {
               "end": Object {
-                "column": 3,
+                "column": 31,
                 "line": 18,
-                "offset": 316,
+                "offset": 345,
               },
               "start": Object {
-                "column": 3,
-                "line": 17,
-                "offset": 276,
+                "column": 17,
+                "line": 18,
+                "offset": 331,
               },
             },
-            "next": [Function],
-            "print": [Function],
-            "type": "DeclareStatement",
-            "valueType": "BOOL",
-          },
-          DeclareStatement {
-            "id": MemberExpression {
+            "member": Identifier {
               "loc": Object {
                 "end": Object {
-                  "column": 32,
+                  "column": 31,
                   "line": 18,
                   "offset": 345,
                 },
                 "start": Object {
-                  "column": 17,
+                  "column": 21,
                   "line": 18,
-                  "offset": 330,
+                  "offset": 335,
                 },
               },
-              "next": [Function],
-              "object": Identifier {
-                "loc": Object {
-                  "end": Object {
-                    "column": 20,
-                    "line": 18,
-                    "offset": 333,
-                  },
-                  "start": Object {
-                    "column": 17,
-                    "line": 18,
-                    "offset": 330,
-                  },
-                },
-                "name": "var",
-                "next": [Function],
-                "print": [Function],
-                "type": "Identifier",
-              },
-              "print": [Function],
-              "property": Identifier {
-                "loc": Object {
-                  "end": Object {
-                    "column": 32,
-                    "line": 18,
-                    "offset": 345,
-                  },
-                  "start": Object {
-                    "column": 21,
-                    "line": 18,
-                    "offset": 334,
-                  },
-                },
-                "name": "specialUser",
-                "next": [Function],
-                "print": [Function],
-                "type": "Identifier",
-              },
-              "type": "MemberExpression",
+              "name": "specialUser",
+              "type": "Identifier",
             },
-            "loc": Object {
-              "end": Object {
-                "column": 3,
-                "line": 20,
-                "offset": 357,
-              },
-              "start": Object {
-                "column": 3,
-                "line": 18,
-                "offset": 316,
-              },
-            },
-            "next": [Function],
-            "print": [Function],
-            "type": "DeclareStatement",
-            "valueType": "STRING",
+            "type": "Member",
           },
-          SetStatement {
-            "left": MemberExpression {
+          "loc": Object {
+            "end": Object {
+              "column": 39,
+              "line": 18,
+              "offset": 353,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 18,
+              "offset": 317,
+            },
+          },
+          "type": "DeclareStatement",
+          "valueType": "STRING",
+        },
+        SetStatement {
+          "left": Member {
+            "base": Identifier {
               "loc": Object {
                 "end": Object {
-                  "column": 24,
+                  "column": 9,
                   "line": 20,
-                  "offset": 378,
+                  "offset": 364,
                 },
                 "start": Object {
                   "column": 7,
                   "line": 20,
-                  "offset": 361,
+                  "offset": 362,
                 },
               },
-              "next": [Function],
-              "object": Identifier {
-                "loc": Object {
-                  "end": Object {
-                    "column": 10,
-                    "line": 20,
-                    "offset": 364,
-                  },
-                  "start": Object {
-                    "column": 7,
-                    "line": 20,
-                    "offset": 361,
-                  },
-                },
-                "name": "var",
-                "next": [Function],
-                "print": [Function],
-                "type": "Identifier",
-              },
-              "print": [Function],
-              "property": Identifier {
-                "loc": Object {
-                  "end": Object {
-                    "column": 24,
-                    "line": 20,
-                    "offset": 378,
-                  },
-                  "start": Object {
-                    "column": 11,
-                    "line": 20,
-                    "offset": 365,
-                  },
-                },
-                "name": "isSpecialUser",
-                "next": [Function],
-                "print": [Function],
-                "type": "Identifier",
-              },
-              "type": "MemberExpression",
+              "name": "var",
+              "type": "Identifier",
             },
             "loc": Object {
               "end": Object {
-                "column": 3,
-                "line": 25,
-                "offset": 468,
+                "column": 23,
+                "line": 20,
+                "offset": 378,
               },
               "start": Object {
-                "column": 3,
+                "column": 7,
                 "line": 20,
-                "offset": 357,
+                "offset": 362,
               },
             },
-            "next": [Function],
-            "operator": "=",
-            "print": [Function],
-            "right": BooleanExpression {
-              "body": LogicalExpression {
-                "left": BinaryExpression {
-                  "left": MemberExpression {
-                    "loc": Object {
-                      "end": Object {
-                        "column": 26,
-                        "line": 21,
-                        "offset": 408,
+            "member": Identifier {
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 20,
+                  "offset": 378,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 20,
+                  "offset": 366,
+                },
+              },
+              "name": "isSpecialUser",
+              "type": "Identifier",
+            },
+            "type": "Member",
+          },
+          "loc": Object {
+            "end": Object {
+              "column": 4,
+              "line": 23,
+              "offset": 470,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 20,
+              "offset": 358,
+            },
+          },
+          "operator": "=",
+          "right": BooleanExpression {
+            "body": LogicalExpression {
+              "left": BinaryExpression {
+                "left": ValuePair {
+                  "base": Member {
+                    "base": Member {
+                      "base": Identifier {
+                        "loc": Object {
+                          "end": Object {
+                            "column": 7,
+                            "line": 21,
+                            "offset": 390,
+                          },
+                          "start": Object {
+                            "column": 5,
+                            "line": 21,
+                            "offset": 388,
+                          },
+                        },
+                        "name": "req",
+                        "type": "Identifier",
                       },
-                      "start": Object {
-                        "column": 5,
-                        "line": 21,
-                        "offset": 387,
-                      },
-                    },
-                    "next": [Function],
-                    "object": Identifier {
                       "loc": Object {
                         "end": Object {
-                          "column": 8,
+                          "column": 12,
                           "line": 21,
-                          "offset": 390,
+                          "offset": 395,
                         },
                         "start": Object {
                           "column": 5,
                           "line": 21,
-                          "offset": 387,
+                          "offset": 388,
                         },
                       },
-                      "name": "req",
-                      "next": [Function],
-                      "print": [Function],
-                      "type": "Identifier",
-                    },
-                    "print": [Function],
-                    "property": MemberExpression {
-                      "loc": Object {
-                        "end": Object {
-                          "column": 26,
-                          "line": 21,
-                          "offset": 408,
-                        },
-                        "start": Object {
-                          "column": 9,
-                          "line": 21,
-                          "offset": 391,
-                        },
-                      },
-                      "next": [Function],
-                      "object": Identifier {
+                      "member": Identifier {
                         "loc": Object {
                           "end": Object {
-                            "column": 13,
+                            "column": 12,
                             "line": 21,
                             "offset": 395,
                           },
                           "start": Object {
                             "column": 9,
                             "line": 21,
-                            "offset": 391,
+                            "offset": 392,
                           },
                         },
                         "name": "http",
-                        "next": [Function],
-                        "print": [Function],
                         "type": "Identifier",
                       },
-                      "print": [Function],
-                      "property": Header {
-                        "loc": Object {
-                          "end": Object {
-                            "column": 26,
-                            "line": 21,
-                            "offset": 408,
-                          },
-                          "start": Object {
-                            "column": 14,
-                            "line": 21,
-                            "offset": 396,
-                          },
-                        },
-                        "name": "Cookie:Vaceline",
-                        "next": [Function],
-                        "print": [Function],
-                        "type": "Header",
-                      },
-                      "type": "MemberExpression",
+                      "type": "Member",
                     },
-                    "type": "MemberExpression",
+                    "loc": Object {
+                      "end": Object {
+                        "column": 19,
+                        "line": 21,
+                        "offset": 402,
+                      },
+                      "start": Object {
+                        "column": 5,
+                        "line": 21,
+                        "offset": 388,
+                      },
+                    },
+                    "member": Identifier {
+                      "loc": Object {
+                        "end": Object {
+                          "column": 19,
+                          "line": 21,
+                          "offset": 402,
+                        },
+                        "start": Object {
+                          "column": 14,
+                          "line": 21,
+                          "offset": 397,
+                        },
+                      },
+                      "name": "Cookie",
+                      "type": "Identifier",
+                    },
+                    "type": "Member",
                   },
                   "loc": Object {
                     "end": Object {
-                      "column": 42,
+                      "column": 28,
                       "line": 21,
-                      "offset": 424,
+                      "offset": 411,
                     },
                     "start": Object {
                       "column": 5,
                       "line": 21,
-                      "offset": 387,
+                      "offset": 388,
                     },
                   },
-                  "next": [Function],
-                  "operator": "~",
-                  "print": [Function],
-                  "right": StringLiteral {
+                  "name": Identifier {
                     "loc": Object {
                       "end": Object {
-                        "column": 42,
-                        "line": 21,
-                        "offset": 424,
-                      },
-                      "start": Object {
-                        "column": 29,
+                        "column": 28,
                         "line": 21,
                         "offset": 411,
                       },
+                      "start": Object {
+                        "column": 21,
+                        "line": 21,
+                        "offset": 404,
+                      },
                     },
-                    "next": [Function],
-                    "print": [Function],
-                    "type": "StringLiteral",
-                    "value": "SPECIAL_KEY",
+                    "name": "Vaceline",
+                    "type": "Identifier",
                   },
-                  "type": "BinaryExpression",
+                  "type": "ValuePair",
                 },
                 "loc": Object {
                   "end": Object {
-                    "column": 32,
-                    "line": 22,
-                    "offset": 459,
+                    "column": 44,
+                    "line": 21,
+                    "offset": 427,
                   },
                   "start": Object {
                     "column": 5,
                     "line": 21,
-                    "offset": 387,
+                    "offset": 388,
                   },
                 },
-                "next": [Function],
-                "operator": "&&",
-                "print": [Function],
-                "right": MemberExpression {
+                "operator": "~",
+                "right": StringLiteral {
                   "loc": Object {
                     "end": Object {
-                      "column": 32,
-                      "line": 22,
-                      "offset": 459,
+                      "column": 44,
+                      "line": 21,
+                      "offset": 427,
                     },
                     "start": Object {
-                      "column": 5,
-                      "line": 22,
-                      "offset": 432,
+                      "column": 32,
+                      "line": 21,
+                      "offset": 415,
                     },
                   },
-                  "next": [Function],
-                  "object": Identifier {
+                  "type": "StringLiteral",
+                  "value": "\\"SPECIAL_KEY\\"",
+                },
+                "type": "BinaryExpression",
+              },
+              "loc": Object {
+                "end": Object {
+                  "column": 34,
+                  "line": 22,
+                  "offset": 465,
+                },
+                "start": Object {
+                  "column": 5,
+                  "line": 21,
+                  "offset": 388,
+                },
+              },
+              "operator": "&&",
+              "right": Member {
+                "base": Member {
+                  "base": Identifier {
                     "loc": Object {
                       "end": Object {
-                        "column": 8,
+                        "column": 7,
                         "line": 22,
-                        "offset": 435,
+                        "offset": 438,
                       },
                       "start": Object {
                         "column": 5,
                         "line": 22,
-                        "offset": 432,
+                        "offset": 436,
                       },
                     },
                     "name": "req",
-                    "next": [Function],
-                    "print": [Function],
                     "type": "Identifier",
                   },
-                  "print": [Function],
-                  "property": MemberExpression {
+                  "loc": Object {
+                    "end": Object {
+                      "column": 12,
+                      "line": 22,
+                      "offset": 443,
+                    },
+                    "start": Object {
+                      "column": 5,
+                      "line": 22,
+                      "offset": 436,
+                    },
+                  },
+                  "member": Identifier {
                     "loc": Object {
                       "end": Object {
-                        "column": 32,
+                        "column": 12,
                         "line": 22,
-                        "offset": 459,
+                        "offset": 443,
                       },
                       "start": Object {
                         "column": 9,
                         "line": 22,
-                        "offset": 436,
+                        "offset": 440,
                       },
                     },
-                    "next": [Function],
-                    "object": Identifier {
-                      "loc": Object {
-                        "end": Object {
-                          "column": 13,
-                          "line": 22,
-                          "offset": 440,
-                        },
-                        "start": Object {
-                          "column": 9,
-                          "line": 22,
-                          "offset": 436,
-                        },
-                      },
-                      "name": "http",
-                      "next": [Function],
-                      "print": [Function],
-                      "type": "Identifier",
-                    },
-                    "print": [Function],
-                    "property": Header {
-                      "loc": Object {
-                        "end": Object {
-                          "column": 32,
-                          "line": 22,
-                          "offset": 459,
-                        },
-                        "start": Object {
-                          "column": 14,
-                          "line": 22,
-                          "offset": 441,
-                        },
-                      },
-                      "name": "Vaceline-Special-User",
-                      "next": [Function],
-                      "print": [Function],
-                      "type": "Header",
-                    },
-                    "type": "MemberExpression",
+                    "name": "http",
+                    "type": "Identifier",
                   },
-                  "type": "MemberExpression",
+                  "type": "Member",
                 },
-                "type": "LogicalExpression",
-              },
-              "loc": Object {
-                "end": Object {
-                  "column": 4,
-                  "line": 23,
-                  "offset": 463,
-                },
-                "start": Object {
-                  "column": 27,
-                  "line": 20,
-                  "offset": 381,
-                },
-              },
-              "lparen": Object {
                 "loc": Object {
                   "end": Object {
+                    "column": 34,
+                    "line": 22,
+                    "offset": 465,
+                  },
+                  "start": Object {
                     "column": 5,
-                    "line": 21,
-                    "offset": 387,
-                  },
-                  "start": Object {
-                    "column": 27,
-                    "line": 20,
-                    "offset": 381,
+                    "line": 22,
+                    "offset": 436,
                   },
                 },
-                "value": "(",
+                "member": Identifier {
+                  "loc": Object {
+                    "end": Object {
+                      "column": 34,
+                      "line": 22,
+                      "offset": 465,
+                    },
+                    "start": Object {
+                      "column": 14,
+                      "line": 22,
+                      "offset": 445,
+                    },
+                  },
+                  "name": "Vaceline-Special-User",
+                  "type": "Identifier",
+                },
+                "type": "Member",
               },
-              "next": [Function],
-              "print": [Function],
-              "rparen": Object {
-                "loc": Object {
-                  "end": Object {
-                    "column": 4,
-                    "line": 23,
-                    "offset": 463,
-                  },
-                  "start": Object {
-                    "column": 3,
-                    "line": 23,
-                    "offset": 462,
-                  },
-                },
-                "value": ")",
-              },
-              "type": "BooleanExpression",
-            },
-            "type": "SetStatement",
-          },
-          SetStatement {
-            "left": MemberExpression {
-              "loc": Object {
-                "end": Object {
-                  "column": 22,
-                  "line": 25,
-                  "offset": 487,
-                },
-                "start": Object {
-                  "column": 7,
-                  "line": 25,
-                  "offset": 472,
-                },
-              },
-              "next": [Function],
-              "object": Identifier {
-                "loc": Object {
-                  "end": Object {
-                    "column": 10,
-                    "line": 25,
-                    "offset": 475,
-                  },
-                  "start": Object {
-                    "column": 7,
-                    "line": 25,
-                    "offset": 472,
-                  },
-                },
-                "name": "var",
-                "next": [Function],
-                "print": [Function],
-                "type": "Identifier",
-              },
-              "print": [Function],
-              "property": Identifier {
-                "loc": Object {
-                  "end": Object {
-                    "column": 22,
-                    "line": 25,
-                    "offset": 487,
-                  },
-                  "start": Object {
-                    "column": 11,
-                    "line": 25,
-                    "offset": 476,
-                  },
-                },
-                "name": "specialUser",
-                "next": [Function],
-                "print": [Function],
-                "type": "Identifier",
-              },
-              "type": "MemberExpression",
+              "type": "LogicalExpression",
             },
             "loc": Object {
               "end": Object {
                 "column": 3,
-                "line": 27,
-                "offset": 545,
+                "line": 23,
+                "offset": 469,
               },
               "start": Object {
-                "column": 3,
-                "line": 25,
-                "offset": 468,
+                "column": 27,
+                "line": 20,
+                "offset": 382,
               },
             },
-            "next": [Function],
-            "operator": "=",
-            "print": [Function],
-            "right": FunCallExpression {
-              "arguments": Array [
-                MemberExpression {
+            "type": "BooleanExpression",
+          },
+          "type": "SetStatement",
+        },
+        SetStatement {
+          "left": Member {
+            "base": Identifier {
+              "loc": Object {
+                "end": Object {
+                  "column": 9,
+                  "line": 25,
+                  "offset": 481,
+                },
+                "start": Object {
+                  "column": 7,
+                  "line": 25,
+                  "offset": 479,
+                },
+              },
+              "name": "var",
+              "type": "Identifier",
+            },
+            "loc": Object {
+              "end": Object {
+                "column": 21,
+                "line": 25,
+                "offset": 493,
+              },
+              "start": Object {
+                "column": 7,
+                "line": 25,
+                "offset": 479,
+              },
+            },
+            "member": Identifier {
+              "loc": Object {
+                "end": Object {
+                  "column": 21,
+                  "line": 25,
+                  "offset": 493,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 25,
+                  "offset": 483,
+                },
+              },
+              "name": "specialUser",
+              "type": "Identifier",
+            },
+            "type": "Member",
+          },
+          "loc": Object {
+            "end": Object {
+              "column": 78,
+              "line": 25,
+              "offset": 550,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 25,
+              "offset": 475,
+            },
+          },
+          "operator": "=",
+          "right": FunCallExpression {
+            "arguments": Array [
+              Member {
+                "base": Identifier {
                   "loc": Object {
                     "end": Object {
-                      "column": 45,
+                      "column": 30,
                       "line": 25,
-                      "offset": 510,
+                      "offset": 502,
                     },
                     "start": Object {
                       "column": 28,
                       "line": 25,
-                      "offset": 493,
+                      "offset": 500,
                     },
                   },
-                  "next": [Function],
-                  "object": Identifier {
-                    "loc": Object {
-                      "end": Object {
-                        "column": 31,
-                        "line": 25,
-                        "offset": 496,
-                      },
-                      "start": Object {
-                        "column": 28,
-                        "line": 25,
-                        "offset": 493,
-                      },
-                    },
-                    "name": "var",
-                    "next": [Function],
-                    "print": [Function],
-                    "type": "Identifier",
-                  },
-                  "print": [Function],
-                  "property": Identifier {
-                    "loc": Object {
-                      "end": Object {
-                        "column": 45,
-                        "line": 25,
-                        "offset": 510,
-                      },
-                      "start": Object {
-                        "column": 32,
-                        "line": 25,
-                        "offset": 497,
-                      },
-                    },
-                    "name": "isSpecialUser",
-                    "next": [Function],
-                    "print": [Function],
-                    "type": "Identifier",
-                  },
-                  "type": "MemberExpression",
+                  "name": "var",
+                  "type": "Identifier",
                 },
-                MemberExpression {
+                "loc": Object {
+                  "end": Object {
+                    "column": 44,
+                    "line": 25,
+                    "offset": 516,
+                  },
+                  "start": Object {
+                    "column": 28,
+                    "line": 25,
+                    "offset": 500,
+                  },
+                },
+                "member": Identifier {
                   "loc": Object {
                     "end": Object {
-                      "column": 74,
+                      "column": 44,
                       "line": 25,
-                      "offset": 539,
+                      "offset": 516,
                     },
                     "start": Object {
-                      "column": 47,
+                      "column": 32,
                       "line": 25,
-                      "offset": 512,
+                      "offset": 504,
                     },
                   },
-                  "next": [Function],
-                  "object": Identifier {
+                  "name": "isSpecialUser",
+                  "type": "Identifier",
+                },
+                "type": "Member",
+              },
+              Member {
+                "base": Member {
+                  "base": Identifier {
                     "loc": Object {
                       "end": Object {
-                        "column": 50,
+                        "column": 49,
                         "line": 25,
-                        "offset": 515,
+                        "offset": 521,
                       },
                       "start": Object {
                         "column": 47,
                         "line": 25,
-                        "offset": 512,
+                        "offset": 519,
                       },
                     },
                     "name": "req",
-                    "next": [Function],
-                    "print": [Function],
                     "type": "Identifier",
                   },
-                  "print": [Function],
-                  "property": MemberExpression {
+                  "loc": Object {
+                    "end": Object {
+                      "column": 54,
+                      "line": 25,
+                      "offset": 526,
+                    },
+                    "start": Object {
+                      "column": 47,
+                      "line": 25,
+                      "offset": 519,
+                    },
+                  },
+                  "member": Identifier {
                     "loc": Object {
                       "end": Object {
-                        "column": 74,
+                        "column": 54,
                         "line": 25,
-                        "offset": 539,
+                        "offset": 526,
                       },
                       "start": Object {
                         "column": 51,
                         "line": 25,
-                        "offset": 516,
+                        "offset": 523,
                       },
                     },
-                    "next": [Function],
-                    "object": Identifier {
-                      "loc": Object {
-                        "end": Object {
-                          "column": 55,
-                          "line": 25,
-                          "offset": 520,
-                        },
-                        "start": Object {
-                          "column": 51,
-                          "line": 25,
-                          "offset": 516,
-                        },
-                      },
-                      "name": "http",
-                      "next": [Function],
-                      "print": [Function],
-                      "type": "Identifier",
-                    },
-                    "print": [Function],
-                    "property": Header {
-                      "loc": Object {
-                        "end": Object {
-                          "column": 74,
-                          "line": 25,
-                          "offset": 539,
-                        },
-                        "start": Object {
-                          "column": 56,
-                          "line": 25,
-                          "offset": 521,
-                        },
-                      },
-                      "name": "Vaceline-Special-User",
-                      "next": [Function],
-                      "print": [Function],
-                      "type": "Header",
-                    },
-                    "type": "MemberExpression",
+                    "name": "http",
+                    "type": "Identifier",
                   },
-                  "type": "MemberExpression",
+                  "type": "Member",
                 },
-              ],
-              "callee": Identifier {
                 "loc": Object {
                   "end": Object {
-                    "column": 27,
+                    "column": 76,
                     "line": 25,
-                    "offset": 492,
+                    "offset": 548,
                   },
                   "start": Object {
-                    "column": 25,
+                    "column": 47,
                     "line": 25,
-                    "offset": 490,
+                    "offset": 519,
                   },
                 },
-                "name": "if",
-                "next": [Function],
-                "print": [Function],
-                "type": "Identifier",
+                "member": Identifier {
+                  "loc": Object {
+                    "end": Object {
+                      "column": 76,
+                      "line": 25,
+                      "offset": 548,
+                    },
+                    "start": Object {
+                      "column": 56,
+                      "line": 25,
+                      "offset": 528,
+                    },
+                  },
+                  "name": "Vaceline-Special-User",
+                  "type": "Identifier",
+                },
+                "type": "Member",
               },
+            ],
+            "callee": Identifier {
               "loc": Object {
                 "end": Object {
-                  "column": 75,
+                  "column": 26,
                   "line": 25,
-                  "offset": 540,
+                  "offset": 498,
                 },
                 "start": Object {
                   "column": 25,
                   "line": 25,
-                  "offset": 490,
+                  "offset": 497,
                 },
               },
-              "lparen": Object {
-                "loc": Object {
-                  "end": Object {
-                    "column": 28,
-                    "line": 25,
-                    "offset": 493,
-                  },
-                  "start": Object {
-                    "column": 27,
-                    "line": 25,
-                    "offset": 492,
-                  },
-                },
-                "value": "(",
-              },
-              "next": [Function],
-              "print": [Function],
-              "rparen": Object {
-                "loc": Object {
-                  "end": Object {
-                    "column": 75,
-                    "line": 25,
-                    "offset": 540,
-                  },
-                  "start": Object {
-                    "column": 74,
-                    "line": 25,
-                    "offset": 539,
-                  },
-                },
-                "value": ")",
-              },
-              "type": "FunCallExpression",
+              "name": "if",
+              "type": "Identifier",
             },
-            "type": "SetStatement",
-          },
-          Comment {
-            "body": " Global Variables",
             "loc": Object {
               "end": Object {
-                "column": 1,
-                "line": 28,
-                "offset": 564,
+                "column": 77,
+                "line": 25,
+                "offset": 549,
               },
               "start": Object {
-                "column": 3,
-                "line": 27,
-                "offset": 545,
+                "column": 25,
+                "line": 25,
+                "offset": 497,
               },
             },
-            "next": [Function],
-            "print": [Function],
-            "type": "Comment",
+            "type": "FunCallExpression",
           },
-          SetStatement {
-            "left": MemberExpression {
-              "loc": Object {
-                "end": Object {
-                  "column": 34,
-                  "line": 28,
-                  "offset": 597,
-                },
-                "start": Object {
-                  "column": 7,
-                  "line": 28,
-                  "offset": 570,
-                },
-              },
-              "next": [Function],
-              "object": Identifier {
+          "type": "SetStatement",
+        },
+        SetStatement {
+          "left": Member {
+            "base": Member {
+              "base": Identifier {
                 "loc": Object {
                   "end": Object {
-                    "column": 10,
+                    "column": 9,
                     "line": 28,
-                    "offset": 573,
+                    "offset": 582,
                   },
                   "start": Object {
                     "column": 7,
                     "line": 28,
-                    "offset": 570,
+                    "offset": 580,
                   },
                 },
                 "name": "req",
-                "next": [Function],
-                "print": [Function],
                 "type": "Identifier",
               },
-              "print": [Function],
-              "property": MemberExpression {
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 28,
+                  "offset": 587,
+                },
+                "start": Object {
+                  "column": 7,
+                  "line": 28,
+                  "offset": 580,
+                },
+              },
+              "member": Identifier {
                 "loc": Object {
                   "end": Object {
-                    "column": 34,
+                    "column": 14,
                     "line": 28,
-                    "offset": 597,
+                    "offset": 587,
                   },
                   "start": Object {
                     "column": 11,
                     "line": 28,
-                    "offset": 574,
+                    "offset": 584,
                   },
                 },
-                "next": [Function],
-                "object": Identifier {
-                  "loc": Object {
-                    "end": Object {
-                      "column": 15,
-                      "line": 28,
-                      "offset": 578,
-                    },
-                    "start": Object {
-                      "column": 11,
-                      "line": 28,
-                      "offset": 574,
-                    },
-                  },
-                  "name": "http",
-                  "next": [Function],
-                  "print": [Function],
-                  "type": "Identifier",
-                },
-                "print": [Function],
-                "property": Identifier {
-                  "loc": Object {
-                    "end": Object {
-                      "column": 34,
-                      "line": 28,
-                      "offset": 597,
-                    },
-                    "start": Object {
-                      "column": 16,
-                      "line": 28,
-                      "offset": 579,
-                    },
-                  },
-                  "name": "vacelIsSpecialUser",
-                  "next": [Function],
-                  "print": [Function],
-                  "type": "Identifier",
-                },
-                "type": "MemberExpression",
+                "name": "http",
+                "type": "Identifier",
               },
-              "type": "MemberExpression",
+              "type": "Member",
             },
             "loc": Object {
               "end": Object {
-                "column": 3,
-                "line": 30,
-                "offset": 643,
+                "column": 33,
+                "line": 28,
+                "offset": 606,
               },
               "start": Object {
-                "column": 3,
+                "column": 7,
                 "line": 28,
-                "offset": 566,
+                "offset": 580,
               },
             },
-            "next": [Function],
-            "operator": "=",
-            "print": [Function],
-            "right": FunCallExpression {
-              "arguments": Array [
-                MemberExpression {
+            "member": Identifier {
+              "loc": Object {
+                "end": Object {
+                  "column": 33,
+                  "line": 28,
+                  "offset": 606,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 28,
+                  "offset": 589,
+                },
+              },
+              "name": "vacelIsSpecialUser",
+              "type": "Identifier",
+            },
+            "type": "Member",
+          },
+          "loc": Object {
+            "end": Object {
+              "column": 75,
+              "line": 28,
+              "offset": 648,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 28,
+              "offset": 576,
+            },
+          },
+          "operator": "=",
+          "right": FunCallExpression {
+            "arguments": Array [
+              Member {
+                "base": Identifier {
                   "loc": Object {
                     "end": Object {
-                      "column": 57,
+                      "column": 42,
                       "line": 28,
-                      "offset": 620,
+                      "offset": 615,
                     },
                     "start": Object {
                       "column": 40,
                       "line": 28,
-                      "offset": 603,
+                      "offset": 613,
                     },
                   },
-                  "next": [Function],
-                  "object": Identifier {
-                    "loc": Object {
-                      "end": Object {
-                        "column": 43,
-                        "line": 28,
-                        "offset": 606,
-                      },
-                      "start": Object {
-                        "column": 40,
-                        "line": 28,
-                        "offset": 603,
-                      },
-                    },
-                    "name": "var",
-                    "next": [Function],
-                    "print": [Function],
-                    "type": "Identifier",
-                  },
-                  "print": [Function],
-                  "property": Identifier {
-                    "loc": Object {
-                      "end": Object {
-                        "column": 57,
-                        "line": 28,
-                        "offset": 620,
-                      },
-                      "start": Object {
-                        "column": 44,
-                        "line": 28,
-                        "offset": 607,
-                      },
-                    },
-                    "name": "isSpecialUser",
-                    "next": [Function],
-                    "print": [Function],
-                    "type": "Identifier",
-                  },
-                  "type": "MemberExpression",
+                  "name": "var",
+                  "type": "Identifier",
                 },
-                StringLiteral {
-                  "loc": Object {
-                    "end": Object {
-                      "column": 65,
-                      "line": 28,
-                      "offset": 628,
-                    },
-                    "start": Object {
-                      "column": 59,
-                      "line": 28,
-                      "offset": 622,
-                    },
-                  },
-                  "next": [Function],
-                  "print": [Function],
-                  "type": "StringLiteral",
-                  "value": "true",
-                },
-                StringLiteral {
-                  "loc": Object {
-                    "end": Object {
-                      "column": 74,
-                      "line": 28,
-                      "offset": 637,
-                    },
-                    "start": Object {
-                      "column": 67,
-                      "line": 28,
-                      "offset": 630,
-                    },
-                  },
-                  "next": [Function],
-                  "print": [Function],
-                  "type": "StringLiteral",
-                  "value": "false",
-                },
-              ],
-              "callee": Identifier {
                 "loc": Object {
                   "end": Object {
-                    "column": 39,
+                    "column": 56,
                     "line": 28,
-                    "offset": 602,
+                    "offset": 629,
                   },
                   "start": Object {
-                    "column": 37,
+                    "column": 40,
                     "line": 28,
-                    "offset": 600,
+                    "offset": 613,
                   },
                 },
-                "name": "if",
-                "next": [Function],
-                "print": [Function],
-                "type": "Identifier",
+                "member": Identifier {
+                  "loc": Object {
+                    "end": Object {
+                      "column": 56,
+                      "line": 28,
+                      "offset": 629,
+                    },
+                    "start": Object {
+                      "column": 44,
+                      "line": 28,
+                      "offset": 617,
+                    },
+                  },
+                  "name": "isSpecialUser",
+                  "type": "Identifier",
+                },
+                "type": "Member",
               },
+              StringLiteral {
+                "loc": Object {
+                  "end": Object {
+                    "column": 64,
+                    "line": 28,
+                    "offset": 637,
+                  },
+                  "start": Object {
+                    "column": 59,
+                    "line": 28,
+                    "offset": 632,
+                  },
+                },
+                "type": "StringLiteral",
+                "value": "\\"true\\"",
+              },
+              StringLiteral {
+                "loc": Object {
+                  "end": Object {
+                    "column": 73,
+                    "line": 28,
+                    "offset": 646,
+                  },
+                  "start": Object {
+                    "column": 67,
+                    "line": 28,
+                    "offset": 640,
+                  },
+                },
+                "type": "StringLiteral",
+                "value": "\\"false\\"",
+              },
+            ],
+            "callee": Identifier {
               "loc": Object {
                 "end": Object {
-                  "column": 75,
+                  "column": 38,
                   "line": 28,
-                  "offset": 638,
+                  "offset": 611,
                 },
                 "start": Object {
                   "column": 37,
                   "line": 28,
-                  "offset": 600,
+                  "offset": 610,
                 },
               },
-              "lparen": Object {
-                "loc": Object {
-                  "end": Object {
-                    "column": 40,
-                    "line": 28,
-                    "offset": 603,
-                  },
-                  "start": Object {
-                    "column": 39,
-                    "line": 28,
-                    "offset": 602,
-                  },
-                },
-                "value": "(",
-              },
-              "next": [Function],
-              "print": [Function],
-              "rparen": Object {
-                "loc": Object {
-                  "end": Object {
-                    "column": 75,
-                    "line": 28,
-                    "offset": 638,
-                  },
-                  "start": Object {
-                    "column": 74,
-                    "line": 28,
-                    "offset": 637,
-                  },
-                },
-                "value": ")",
-              },
-              "type": "FunCallExpression",
+              "name": "if",
+              "type": "Identifier",
             },
-            "type": "SetStatement",
-          },
-          Comment {
-            "body": " Http Header",
             "loc": Object {
               "end": Object {
-                "column": 1,
-                "line": 31,
-                "offset": 657,
+                "column": 74,
+                "line": 28,
+                "offset": 647,
               },
               "start": Object {
-                "column": 3,
-                "line": 30,
-                "offset": 643,
+                "column": 37,
+                "line": 28,
+                "offset": 610,
               },
             },
-            "next": [Function],
-            "print": [Function],
-            "type": "Comment",
+            "type": "FunCallExpression",
           },
-          SetStatement {
-            "left": MemberExpression {
-              "loc": Object {
-                "end": Object {
-                  "column": 34,
-                  "line": 31,
-                  "offset": 690,
-                },
-                "start": Object {
-                  "column": 7,
-                  "line": 31,
-                  "offset": 663,
-                },
-              },
-              "next": [Function],
-              "object": Identifier {
+          "type": "SetStatement",
+        },
+        SetStatement {
+          "left": Member {
+            "base": Member {
+              "base": Identifier {
                 "loc": Object {
                   "end": Object {
-                    "column": 10,
+                    "column": 9,
                     "line": 31,
-                    "offset": 666,
+                    "offset": 675,
                   },
                   "start": Object {
                     "column": 7,
                     "line": 31,
-                    "offset": 663,
+                    "offset": 673,
                   },
                 },
                 "name": "req",
-                "next": [Function],
-                "print": [Function],
                 "type": "Identifier",
               },
-              "print": [Function],
-              "property": MemberExpression {
+              "loc": Object {
+                "end": Object {
+                  "column": 14,
+                  "line": 31,
+                  "offset": 680,
+                },
+                "start": Object {
+                  "column": 7,
+                  "line": 31,
+                  "offset": 673,
+                },
+              },
+              "member": Identifier {
                 "loc": Object {
                   "end": Object {
-                    "column": 34,
+                    "column": 14,
                     "line": 31,
-                    "offset": 690,
+                    "offset": 680,
                   },
                   "start": Object {
                     "column": 11,
                     "line": 31,
-                    "offset": 667,
+                    "offset": 677,
                   },
                 },
-                "next": [Function],
-                "object": Identifier {
-                  "loc": Object {
-                    "end": Object {
-                      "column": 15,
-                      "line": 31,
-                      "offset": 671,
-                    },
-                    "start": Object {
-                      "column": 11,
-                      "line": 31,
-                      "offset": 667,
-                    },
-                  },
-                  "name": "http",
-                  "next": [Function],
-                  "print": [Function],
-                  "type": "Identifier",
-                },
-                "print": [Function],
-                "property": Header {
-                  "loc": Object {
-                    "end": Object {
-                      "column": 34,
-                      "line": 31,
-                      "offset": 690,
-                    },
-                    "start": Object {
-                      "column": 16,
-                      "line": 31,
-                      "offset": 672,
-                    },
-                  },
-                  "name": "Vaceline-Special-User",
-                  "next": [Function],
-                  "print": [Function],
-                  "type": "Header",
-                },
-                "type": "MemberExpression",
+                "name": "http",
+                "type": "Identifier",
               },
-              "type": "MemberExpression",
+              "type": "Member",
             },
             "loc": Object {
               "end": Object {
-                "column": 1,
-                "line": 32,
-                "offset": 710,
+                "column": 36,
+                "line": 31,
+                "offset": 702,
               },
               "start": Object {
-                "column": 3,
+                "column": 7,
                 "line": 31,
-                "offset": 659,
+                "offset": 673,
               },
             },
-            "next": [Function],
-            "operator": "=",
-            "print": [Function],
-            "right": MemberExpression {
+            "member": Identifier {
               "loc": Object {
                 "end": Object {
-                  "column": 52,
+                  "column": 36,
+                  "line": 31,
+                  "offset": 702,
+                },
+                "start": Object {
+                  "column": 16,
+                  "line": 31,
+                  "offset": 682,
+                },
+              },
+              "name": "Vaceline-Special-User",
+              "type": "Identifier",
+            },
+            "type": "Member",
+          },
+          "loc": Object {
+            "end": Object {
+              "column": 55,
+              "line": 31,
+              "offset": 721,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 31,
+              "offset": 669,
+            },
+          },
+          "operator": "=",
+          "right": Member {
+            "base": Identifier {
+              "loc": Object {
+                "end": Object {
+                  "column": 42,
                   "line": 31,
                   "offset": 708,
                 },
                 "start": Object {
-                  "column": 37,
+                  "column": 40,
                   "line": 31,
-                  "offset": 693,
+                  "offset": 706,
                 },
               },
-              "next": [Function],
-              "object": Identifier {
-                "loc": Object {
-                  "end": Object {
-                    "column": 40,
-                    "line": 31,
-                    "offset": 696,
-                  },
-                  "start": Object {
-                    "column": 37,
-                    "line": 31,
-                    "offset": 693,
-                  },
-                },
-                "name": "var",
-                "next": [Function],
-                "print": [Function],
-                "type": "Identifier",
+              "name": "var",
+              "type": "Identifier",
+            },
+            "loc": Object {
+              "end": Object {
+                "column": 54,
+                "line": 31,
+                "offset": 720,
               },
-              "print": [Function],
-              "property": Identifier {
-                "loc": Object {
-                  "end": Object {
-                    "column": 52,
-                    "line": 31,
-                    "offset": 708,
-                  },
-                  "start": Object {
-                    "column": 41,
-                    "line": 31,
-                    "offset": 697,
-                  },
-                },
-                "name": "specialUser",
-                "next": [Function],
-                "print": [Function],
-                "type": "Identifier",
+              "start": Object {
+                "column": 40,
+                "line": 31,
+                "offset": 706,
               },
-              "type": "MemberExpression",
             },
-            "type": "SetStatement",
+            "member": Identifier {
+              "loc": Object {
+                "end": Object {
+                  "column": 54,
+                  "line": 31,
+                  "offset": 720,
+                },
+                "start": Object {
+                  "column": 44,
+                  "line": 31,
+                  "offset": 710,
+                },
+              },
+              "name": "specialUser",
+              "type": "Identifier",
+            },
+            "type": "Member",
           },
-        ],
-        "lbracket": Object {
-          "loc": Object {
-            "end": Object {
-              "column": 3,
-              "line": 10,
-              "offset": 138,
-            },
-            "start": Object {
-              "column": 14,
-              "line": 9,
-              "offset": 134,
-            },
-          },
-          "value": "{",
+          "type": "SetStatement",
         },
-        "loc": Object {
-          "end": Object {
-            "column": 1,
-            "line": 34,
-            "offset": 713,
-          },
-          "start": Object {
-            "column": 14,
-            "line": 9,
-            "offset": 134,
-          },
-        },
-        "next": [Function],
-        "print": [Function],
-        "rbracket": Object {
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 34,
-              "offset": 713,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 32,
-              "offset": 710,
-            },
-          },
-          "value": "}",
-        },
-        "type": "Block",
-      },
+      ],
       "id": Identifier {
         "loc": Object {
           "end": Object {
-            "column": 13,
+            "column": 12,
             "line": 9,
-            "offset": 133,
+            "offset": 130,
           },
           "start": Object {
             "column": 5,
             "line": 9,
-            "offset": 125,
+            "offset": 123,
           },
         },
         "name": "vcl_recv",
-        "next": [Function],
-        "print": [Function],
         "type": "Identifier",
       },
       "loc": Object {
         "end": Object {
           "column": 1,
-          "line": 34,
-          "offset": 713,
+          "line": 32,
+          "offset": 723,
         },
         "start": Object {
           "column": 1,
           "line": 9,
-          "offset": 121,
+          "offset": 119,
         },
       },
-      "next": [Function],
-      "print": [Function],
       "type": "SubroutineStatement",
     },
     SubroutineStatement {
-      "body": Block {
-        "body": Array [
-          CallStatement {
-            "loc": Object {
-              "end": Object {
-                "column": 1,
-                "line": 36,
-                "offset": 766,
-              },
-              "start": Object {
-                "column": 3,
-                "line": 35,
-                "offset": 730,
-              },
-            },
-            "next": [Function],
-            "print": [Function],
-            "subroutine": Identifier {
-              "loc": Object {
-                "end": Object {
-                  "column": 37,
-                  "line": 35,
-                  "offset": 764,
-                },
-                "start": Object {
-                  "column": 8,
-                  "line": 35,
-                  "offset": 735,
-                },
-              },
-              "name": "remove_unused_vars_from_bereq",
-              "next": [Function],
-              "print": [Function],
-              "type": "Identifier",
-            },
-            "type": "CallStatement",
-          },
-        ],
-        "lbracket": Object {
+      "body": Array [
+        CallStatement {
           "loc": Object {
             "end": Object {
+              "column": 37,
+              "line": 35,
+              "offset": 777,
+            },
+            "start": Object {
               "column": 3,
               "line": 35,
-              "offset": 730,
-            },
-            "start": Object {
-              "column": 14,
-              "line": 34,
-              "offset": 726,
+              "offset": 743,
             },
           },
-          "value": "{",
+          "subroutine": Identifier {
+            "loc": Object {
+              "end": Object {
+                "column": 36,
+                "line": 35,
+                "offset": 776,
+              },
+              "start": Object {
+                "column": 8,
+                "line": 35,
+                "offset": 748,
+              },
+            },
+            "name": "remove_unused_vars_from_bereq",
+            "type": "Identifier",
+          },
+          "type": "CallStatement",
         },
-        "loc": Object {
-          "end": Object {
-            "column": 1,
-            "line": 38,
-            "offset": 769,
-          },
-          "start": Object {
-            "column": 14,
-            "line": 34,
-            "offset": 726,
-          },
-        },
-        "next": [Function],
-        "print": [Function],
-        "rbracket": Object {
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 38,
-              "offset": 769,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 36,
-              "offset": 766,
-            },
-          },
-          "value": "}",
-        },
-        "type": "Block",
-      },
+      ],
       "id": Identifier {
         "loc": Object {
           "end": Object {
-            "column": 13,
+            "column": 12,
             "line": 34,
-            "offset": 725,
+            "offset": 737,
           },
           "start": Object {
             "column": 5,
             "line": 34,
-            "offset": 717,
+            "offset": 730,
           },
         },
         "name": "vcl_pass",
-        "next": [Function],
-        "print": [Function],
         "type": "Identifier",
       },
       "loc": Object {
         "end": Object {
           "column": 1,
-          "line": 38,
-          "offset": 769,
+          "line": 36,
+          "offset": 779,
         },
         "start": Object {
           "column": 1,
           "line": 34,
-          "offset": 713,
+          "offset": 726,
         },
       },
-      "next": [Function],
-      "print": [Function],
       "type": "SubroutineStatement",
     },
     SubroutineStatement {
-      "body": Block {
-        "body": Array [
-          CallStatement {
-            "loc": Object {
-              "end": Object {
-                "column": 1,
-                "line": 40,
-                "offset": 822,
-              },
-              "start": Object {
-                "column": 3,
-                "line": 39,
-                "offset": 786,
-              },
-            },
-            "next": [Function],
-            "print": [Function],
-            "subroutine": Identifier {
-              "loc": Object {
-                "end": Object {
-                  "column": 37,
-                  "line": 39,
-                  "offset": 820,
-                },
-                "start": Object {
-                  "column": 8,
-                  "line": 39,
-                  "offset": 791,
-                },
-              },
-              "name": "remove_unused_vars_from_bereq",
-              "next": [Function],
-              "print": [Function],
-              "type": "Identifier",
-            },
-            "type": "CallStatement",
-          },
-        ],
-        "lbracket": Object {
+      "body": Array [
+        CallStatement {
           "loc": Object {
             "end": Object {
+              "column": 37,
+              "line": 39,
+              "offset": 833,
+            },
+            "start": Object {
               "column": 3,
               "line": 39,
-              "offset": 786,
-            },
-            "start": Object {
-              "column": 14,
-              "line": 38,
-              "offset": 782,
+              "offset": 799,
             },
           },
-          "value": "{",
+          "subroutine": Identifier {
+            "loc": Object {
+              "end": Object {
+                "column": 36,
+                "line": 39,
+                "offset": 832,
+              },
+              "start": Object {
+                "column": 8,
+                "line": 39,
+                "offset": 804,
+              },
+            },
+            "name": "remove_unused_vars_from_bereq",
+            "type": "Identifier",
+          },
+          "type": "CallStatement",
         },
-        "loc": Object {
-          "end": Object {
-            "column": 1,
-            "line": 42,
-            "offset": 825,
-          },
-          "start": Object {
-            "column": 14,
-            "line": 38,
-            "offset": 782,
-          },
-        },
-        "next": [Function],
-        "print": [Function],
-        "rbracket": Object {
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 42,
-              "offset": 825,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 40,
-              "offset": 822,
-            },
-          },
-          "value": "}",
-        },
-        "type": "Block",
-      },
+      ],
       "id": Identifier {
         "loc": Object {
           "end": Object {
-            "column": 13,
+            "column": 12,
             "line": 38,
-            "offset": 781,
+            "offset": 793,
           },
           "start": Object {
             "column": 5,
             "line": 38,
-            "offset": 773,
+            "offset": 786,
           },
         },
         "name": "vcl_miss",
-        "next": [Function],
-        "print": [Function],
         "type": "Identifier",
       },
       "loc": Object {
         "end": Object {
           "column": 1,
-          "line": 42,
-          "offset": 825,
+          "line": 40,
+          "offset": 835,
         },
         "start": Object {
           "column": 1,
           "line": 38,
-          "offset": 769,
+          "offset": 782,
         },
       },
-      "next": [Function],
-      "print": [Function],
       "type": "SubroutineStatement",
     },
     SubroutineStatement {
-      "body": Block {
-        "body": Array [
-          UnsetStatement {
-            "id": MemberExpression {
-              "loc": Object {
-                "end": Object {
-                  "column": 38,
-                  "line": 43,
-                  "offset": 898,
-                },
-                "start": Object {
-                  "column": 9,
-                  "line": 43,
-                  "offset": 869,
-                },
-              },
-              "next": [Function],
-              "object": Identifier {
+      "body": Array [
+        UnsetStatement {
+          "id": Member {
+            "base": Member {
+              "base": Identifier {
                 "loc": Object {
                   "end": Object {
-                    "column": 14,
+                    "column": 13,
                     "line": 43,
-                    "offset": 874,
+                    "offset": 886,
                   },
                   "start": Object {
                     "column": 9,
                     "line": 43,
-                    "offset": 869,
+                    "offset": 882,
                   },
                 },
                 "name": "bereq",
-                "next": [Function],
-                "print": [Function],
                 "type": "Identifier",
               },
-              "print": [Function],
-              "property": MemberExpression {
+              "loc": Object {
+                "end": Object {
+                  "column": 18,
+                  "line": 43,
+                  "offset": 891,
+                },
+                "start": Object {
+                  "column": 9,
+                  "line": 43,
+                  "offset": 882,
+                },
+              },
+              "member": Identifier {
                 "loc": Object {
                   "end": Object {
-                    "column": 38,
+                    "column": 18,
                     "line": 43,
-                    "offset": 898,
+                    "offset": 891,
                   },
                   "start": Object {
                     "column": 15,
                     "line": 43,
-                    "offset": 875,
+                    "offset": 888,
                   },
                 },
-                "next": [Function],
-                "object": Identifier {
-                  "loc": Object {
-                    "end": Object {
-                      "column": 19,
-                      "line": 43,
-                      "offset": 879,
-                    },
-                    "start": Object {
-                      "column": 15,
-                      "line": 43,
-                      "offset": 875,
-                    },
-                  },
-                  "name": "http",
-                  "next": [Function],
-                  "print": [Function],
-                  "type": "Identifier",
-                },
-                "print": [Function],
-                "property": Identifier {
-                  "loc": Object {
-                    "end": Object {
-                      "column": 38,
-                      "line": 43,
-                      "offset": 898,
-                    },
-                    "start": Object {
-                      "column": 20,
-                      "line": 43,
-                      "offset": 880,
-                    },
-                  },
-                  "name": "vacelIsSpecialUser",
-                  "next": [Function],
-                  "print": [Function],
-                  "type": "Identifier",
-                },
-                "type": "MemberExpression",
+                "name": "http",
+                "type": "Identifier",
               },
-              "type": "MemberExpression",
+              "type": "Member",
             },
             "loc": Object {
               "end": Object {
-                "column": 1,
-                "line": 44,
-                "offset": 900,
+                "column": 37,
+                "line": 43,
+                "offset": 910,
               },
               "start": Object {
-                "column": 3,
+                "column": 9,
                 "line": 43,
-                "offset": 863,
+                "offset": 882,
               },
             },
-            "next": [Function],
-            "print": [Function],
-            "type": "UnsetStatement",
+            "member": Identifier {
+              "loc": Object {
+                "end": Object {
+                  "column": 37,
+                  "line": 43,
+                  "offset": 910,
+                },
+                "start": Object {
+                  "column": 20,
+                  "line": 43,
+                  "offset": 893,
+                },
+              },
+              "name": "vacelIsSpecialUser",
+              "type": "Identifier",
+            },
+            "type": "Member",
           },
-        ],
-        "lbracket": Object {
           "loc": Object {
             "end": Object {
+              "column": 38,
+              "line": 43,
+              "offset": 911,
+            },
+            "start": Object {
               "column": 3,
               "line": 43,
-              "offset": 863,
-            },
-            "start": Object {
-              "column": 35,
-              "line": 42,
-              "offset": 859,
+              "offset": 876,
             },
           },
-          "value": "{",
+          "type": "UnsetStatement",
         },
-        "loc": Object {
-          "end": Object {
-            "column": 1,
-            "line": 46,
-            "offset": 903,
-          },
-          "start": Object {
-            "column": 35,
-            "line": 42,
-            "offset": 859,
-          },
-        },
-        "next": [Function],
-        "print": [Function],
-        "rbracket": Object {
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 46,
-              "offset": 903,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 44,
-              "offset": 900,
-            },
-          },
-          "value": "}",
-        },
-        "type": "Block",
-      },
+      ],
       "id": Identifier {
         "loc": Object {
           "end": Object {
-            "column": 34,
+            "column": 33,
             "line": 42,
-            "offset": 858,
+            "offset": 870,
           },
           "start": Object {
             "column": 5,
             "line": 42,
-            "offset": 829,
+            "offset": 842,
           },
         },
         "name": "remove_unused_vars_from_bereq",
-        "next": [Function],
-        "print": [Function],
         "type": "Identifier",
       },
       "loc": Object {
         "end": Object {
           "column": 1,
-          "line": 46,
-          "offset": 903,
+          "line": 44,
+          "offset": 913,
         },
         "start": Object {
           "column": 1,
           "line": 42,
-          "offset": 825,
+          "offset": 838,
         },
       },
-      "next": [Function],
-      "print": [Function],
       "type": "SubroutineStatement",
     },
     SubroutineStatement {
-      "body": Block {
-        "body": Array [
-          IfStatement {
-            "alternative": null,
-            "consequent": Block {
-              "body": Array [
-                SetStatement {
-                  "left": MemberExpression {
-                    "loc": Object {
-                      "end": Object {
-                        "column": 19,
-                        "line": 48,
-                        "offset": 984,
-                      },
-                      "start": Object {
-                        "column": 9,
-                        "line": 48,
-                        "offset": 974,
-                      },
-                    },
-                    "next": [Function],
-                    "object": Identifier {
-                      "loc": Object {
-                        "end": Object {
-                          "column": 15,
-                          "line": 48,
-                          "offset": 980,
-                        },
-                        "start": Object {
-                          "column": 9,
-                          "line": 48,
-                          "offset": 974,
-                        },
-                      },
-                      "name": "beresp",
-                      "next": [Function],
-                      "print": [Function],
-                      "type": "Identifier",
-                    },
-                    "print": [Function],
-                    "property": Identifier {
-                      "loc": Object {
-                        "end": Object {
-                          "column": 19,
-                          "line": 48,
-                          "offset": 984,
-                        },
-                        "start": Object {
-                          "column": 16,
-                          "line": 48,
-                          "offset": 981,
-                        },
-                      },
-                      "name": "ttl",
-                      "next": [Function],
-                      "print": [Function],
-                      "type": "Identifier",
-                    },
-                    "type": "MemberExpression",
-                  },
+      "body": Array [
+        IfStatement {
+          "alternative": undefined,
+          "consequent": Array [
+            SetStatement {
+              "left": Member {
+                "base": Identifier {
                   "loc": Object {
                     "end": Object {
-                      "column": 3,
-                      "line": 49,
-                      "offset": 993,
+                      "column": 14,
+                      "line": 48,
+                      "offset": 992,
                     },
                     "start": Object {
-                      "column": 5,
+                      "column": 9,
                       "line": 48,
-                      "offset": 970,
+                      "offset": 987,
                     },
                   },
-                  "next": [Function],
-                  "operator": "=",
-                  "print": [Function],
-                  "right": DurationLiteral {
-                    "loc": Object {
-                      "end": Object {
-                        "column": 24,
-                        "line": 48,
-                        "offset": 989,
-                      },
-                      "start": Object {
-                        "column": 22,
-                        "line": 48,
-                        "offset": 987,
-                      },
-                    },
-                    "next": [Function],
-                    "print": [Function],
-                    "type": "DurationLiteral",
-                    "value": "0s",
-                  },
-                  "type": "SetStatement",
+                  "name": "beresp",
+                  "type": "Identifier",
                 },
-              ],
-              "lbracket": Object {
                 "loc": Object {
                   "end": Object {
-                    "column": 5,
+                    "column": 18,
                     "line": 48,
-                    "offset": 970,
+                    "offset": 996,
                   },
                   "start": Object {
-                    "column": 46,
-                    "line": 47,
-                    "offset": 964,
+                    "column": 9,
+                    "line": 48,
+                    "offset": 987,
                   },
                 },
-                "value": "{",
-              },
-              "loc": Object {
-                "end": Object {
-                  "column": 1,
-                  "line": 50,
-                  "offset": 995,
-                },
-                "start": Object {
-                  "column": 46,
-                  "line": 47,
-                  "offset": 964,
-                },
-              },
-              "next": [Function],
-              "print": [Function],
-              "rbracket": Object {
-                "loc": Object {
-                  "end": Object {
-                    "column": 1,
-                    "line": 50,
-                    "offset": 995,
-                  },
-                  "start": Object {
-                    "column": 3,
-                    "line": 49,
-                    "offset": 993,
-                  },
-                },
-                "value": "}",
-              },
-              "type": "Block",
-            },
-            "loc": Object {
-              "end": Object {
-                "column": 1,
-                "line": 50,
-                "offset": 995,
-              },
-              "start": Object {
-                "column": 3,
-                "line": 47,
-                "offset": 921,
-              },
-            },
-            "lparen": Object {
-              "loc": Object {
-                "end": Object {
-                  "column": 7,
-                  "line": 47,
-                  "offset": 925,
-                },
-                "start": Object {
-                  "column": 6,
-                  "line": 47,
-                  "offset": 924,
-                },
-              },
-              "value": "(",
-            },
-            "next": [Function],
-            "print": [Function],
-            "rparen": Object {
-              "loc": Object {
-                "end": Object {
-                  "column": 46,
-                  "line": 47,
-                  "offset": 964,
-                },
-                "start": Object {
-                  "column": 44,
-                  "line": 47,
-                  "offset": 962,
-                },
-              },
-              "value": ")",
-            },
-            "test": BinaryExpression {
-              "left": MemberExpression {
-                "loc": Object {
-                  "end": Object {
-                    "column": 34,
-                    "line": 47,
-                    "offset": 952,
-                  },
-                  "start": Object {
-                    "column": 7,
-                    "line": 47,
-                    "offset": 925,
-                  },
-                },
-                "next": [Function],
-                "object": Identifier {
+                "member": Identifier {
                   "loc": Object {
                     "end": Object {
-                      "column": 10,
+                      "column": 18,
+                      "line": 48,
+                      "offset": 996,
+                    },
+                    "start": Object {
+                      "column": 16,
+                      "line": 48,
+                      "offset": 994,
+                    },
+                  },
+                  "name": "ttl",
+                  "type": "Identifier",
+                },
+                "type": "Member",
+              },
+              "loc": Object {
+                "end": Object {
+                  "column": 24,
+                  "line": 48,
+                  "offset": 1002,
+                },
+                "start": Object {
+                  "column": 5,
+                  "line": 48,
+                  "offset": 983,
+                },
+              },
+              "operator": "=",
+              "right": DurationLiteral {
+                "loc": Object {
+                  "end": Object {
+                    "column": 23,
+                    "line": 48,
+                    "offset": 1001,
+                  },
+                  "start": Object {
+                    "column": 22,
+                    "line": 48,
+                    "offset": 1000,
+                  },
+                },
+                "type": "DurationLiteral",
+                "value": "0s",
+              },
+              "type": "SetStatement",
+            },
+          ],
+          "loc": Object {
+            "end": Object {
+              "column": 3,
+              "line": 49,
+              "offset": 1006,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 47,
+              "offset": 934,
+            },
+          },
+          "test": BinaryExpression {
+            "left": Member {
+              "base": Member {
+                "base": Identifier {
+                  "loc": Object {
+                    "end": Object {
+                      "column": 9,
                       "line": 47,
-                      "offset": 928,
+                      "offset": 940,
                     },
                     "start": Object {
                       "column": 7,
                       "line": 47,
-                      "offset": 925,
+                      "offset": 938,
                     },
                   },
                   "name": "req",
-                  "next": [Function],
-                  "print": [Function],
                   "type": "Identifier",
                 },
-                "print": [Function],
-                "property": MemberExpression {
+                "loc": Object {
+                  "end": Object {
+                    "column": 14,
+                    "line": 47,
+                    "offset": 945,
+                  },
+                  "start": Object {
+                    "column": 7,
+                    "line": 47,
+                    "offset": 938,
+                  },
+                },
+                "member": Identifier {
                   "loc": Object {
                     "end": Object {
-                      "column": 34,
+                      "column": 14,
                       "line": 47,
-                      "offset": 952,
+                      "offset": 945,
                     },
                     "start": Object {
                       "column": 11,
                       "line": 47,
-                      "offset": 929,
+                      "offset": 942,
                     },
                   },
-                  "next": [Function],
-                  "object": Identifier {
-                    "loc": Object {
-                      "end": Object {
-                        "column": 15,
-                        "line": 47,
-                        "offset": 933,
-                      },
-                      "start": Object {
-                        "column": 11,
-                        "line": 47,
-                        "offset": 929,
-                      },
-                    },
-                    "name": "http",
-                    "next": [Function],
-                    "print": [Function],
-                    "type": "Identifier",
-                  },
-                  "print": [Function],
-                  "property": Identifier {
-                    "loc": Object {
-                      "end": Object {
-                        "column": 34,
-                        "line": 47,
-                        "offset": 952,
-                      },
-                      "start": Object {
-                        "column": 16,
-                        "line": 47,
-                        "offset": 934,
-                      },
-                    },
-                    "name": "vacelIsSpecialUser",
-                    "next": [Function],
-                    "print": [Function],
-                    "type": "Identifier",
-                  },
-                  "type": "MemberExpression",
+                  "name": "http",
+                  "type": "Identifier",
                 },
-                "type": "MemberExpression",
+                "type": "Member",
               },
               "loc": Object {
                 "end": Object {
-                  "column": 44,
+                  "column": 33,
                   "line": 47,
-                  "offset": 962,
+                  "offset": 964,
                 },
                 "start": Object {
                   "column": 7,
                   "line": 47,
-                  "offset": 925,
+                  "offset": 938,
                 },
               },
-              "next": [Function],
-              "operator": "==",
-              "print": [Function],
-              "right": StringLiteral {
+              "member": Identifier {
                 "loc": Object {
                   "end": Object {
-                    "column": 44,
+                    "column": 33,
                     "line": 47,
-                    "offset": 962,
+                    "offset": 964,
                   },
                   "start": Object {
-                    "column": 38,
+                    "column": 16,
                     "line": 47,
-                    "offset": 956,
+                    "offset": 947,
                   },
                 },
-                "next": [Function],
-                "print": [Function],
-                "type": "StringLiteral",
-                "value": "true",
+                "name": "vacelIsSpecialUser",
+                "type": "Identifier",
               },
-              "type": "BinaryExpression",
+              "type": "Member",
             },
-            "type": "IfStatement",
+            "loc": Object {
+              "end": Object {
+                "column": 43,
+                "line": 47,
+                "offset": 974,
+              },
+              "start": Object {
+                "column": 7,
+                "line": 47,
+                "offset": 938,
+              },
+            },
+            "operator": "==",
+            "right": StringLiteral {
+              "loc": Object {
+                "end": Object {
+                  "column": 43,
+                  "line": 47,
+                  "offset": 974,
+                },
+                "start": Object {
+                  "column": 38,
+                  "line": 47,
+                  "offset": 969,
+                },
+              },
+              "type": "StringLiteral",
+              "value": "\\"true\\"",
+            },
+            "type": "BinaryExpression",
           },
-        ],
-        "lbracket": Object {
-          "loc": Object {
-            "end": Object {
-              "column": 3,
-              "line": 47,
-              "offset": 921,
-            },
-            "start": Object {
-              "column": 15,
-              "line": 46,
-              "offset": 917,
-            },
-          },
-          "value": "{",
+          "type": "IfStatement",
         },
-        "loc": Object {
-          "end": Object {
-            "column": 1,
-            "line": 52,
-            "offset": 998,
-          },
-          "start": Object {
-            "column": 15,
-            "line": 46,
-            "offset": 917,
-          },
-        },
-        "next": [Function],
-        "print": [Function],
-        "rbracket": Object {
-          "loc": Object {
-            "end": Object {
-              "column": 1,
-              "line": 52,
-              "offset": 998,
-            },
-            "start": Object {
-              "column": 1,
-              "line": 50,
-              "offset": 995,
-            },
-          },
-          "value": "}",
-        },
-        "type": "Block",
-      },
+      ],
       "id": Identifier {
         "loc": Object {
           "end": Object {
-            "column": 14,
+            "column": 13,
             "line": 46,
-            "offset": 916,
+            "offset": 928,
           },
           "start": Object {
             "column": 5,
             "line": 46,
-            "offset": 907,
+            "offset": 920,
           },
         },
         "name": "vcl_fetch",
-        "next": [Function],
-        "print": [Function],
         "type": "Identifier",
       },
       "loc": Object {
         "end": Object {
           "column": 1,
-          "line": 52,
-          "offset": 998,
+          "line": 50,
+          "offset": 1008,
         },
         "start": Object {
           "column": 1,
           "line": 46,
-          "offset": 903,
+          "offset": 916,
         },
       },
-      "next": [Function],
-      "print": [Function],
       "type": "SubroutineStatement",
-    },
-    Comment {
-      "body": " sub vcl_error {",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 53,
-          "offset": 1016,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 52,
-          "offset": 998,
-        },
-      },
-      "next": [Function],
-      "print": [Function],
-      "type": "Comment",
-    },
-    Comment {
-      "body": " }",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 54,
-          "offset": 1020,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 53,
-          "offset": 1016,
-        },
-      },
-      "next": [Function],
-      "print": [Function],
-      "type": "Comment",
-    },
-    Comment {
-      "body": " sub vcl_deliver {",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 56,
-          "offset": 1041,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 55,
-          "offset": 1021,
-        },
-      },
-      "next": [Function],
-      "print": [Function],
-      "type": "Comment",
-    },
-    Comment {
-      "body": " }",
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 57,
-          "offset": 1045,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 56,
-          "offset": 1041,
-        },
-      },
-      "next": [Function],
-      "print": [Function],
-      "type": "Comment",
     },
   ],
   "loc": Object {
     "end": Object {
       "column": 1,
-      "line": 57,
-      "offset": 1045,
+      "line": 50,
+      "offset": 1008,
     },
     "start": Object {
       "column": 1,
@@ -2899,8 +2044,6 @@ Program {
       "offset": 0,
     },
   },
-  "next": [Function],
-  "print": [Function],
   "type": "Program",
 }
 `;

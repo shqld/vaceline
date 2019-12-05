@@ -1,14 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-import { Printer } from '../../src/generator/printer'
-import * as g from '../../src/generator/lib'
 import { Buffer } from '../../src/generator/buffer'
-
-const helloWorldText = fs.readFileSync(
-  path.resolve('__tests__/__fixture__/hello_world.txt'),
-  'utf8'
-)
 
 describe('Buffer', () => {
   it('should buf correctly', () => {
@@ -64,17 +57,4 @@ describe('Buffer', () => {
   // it('should keep source position', () => {
   //   const b = new Buffer()
   // })
-})
-
-describe('Printer', () => {
-  it('should', () => {
-    const p = new Printer()
-
-    p.print(['message:', '\n', '  ', 'hello,', ' ', 'world.'])
-
-    p.buf.flush()
-    const result = p.buf.get()
-
-    expect(result).toBe(helloWorldText)
-  })
 })

@@ -1,13 +1,14 @@
 import fs from 'fs'
 import path from 'path'
 
-import { parse, generate, traverse } from '../../src'
+import { parse, generate, traverse } from '../../src/lib'
 import BranchLogPlugin from '../../src/plugins/branch-log'
 import { NodePath } from '../../src/traverser/path'
-import { SubroutineStatement, AddStatement, IfStatement } from '../../src/nodes'
+import { SubroutineStatement, IfStatement, AddStatement } from '../../src/nodes'
+import { isNode } from '../../src/utils/node'
 
 const code = fs.readFileSync(
-  path.resolve('__tests__/__fixture__/test.vcl'),
+  path.resolve('__tests__/__fixture__/rough.vcl'),
   'utf8'
 )
 const ast = parse(code)
@@ -18,22 +19,20 @@ describe('BranchLogPlugin', () => {
 
     traverse(ast, {
       entry({ node }: NodePath<SubroutineStatement | IfStatement>) {
-        if (node instanceof SubroutineStatement) {
-          const loggerNode = node.body.body[0]
+        if (isNode(node, ['SubroutineStatement'])) {
+          const loggerNode = node.body[0]
 
-          expect(loggerNode).toBeInstanceOf(AddStatement)
-          expect(loggerNode).toHaveProperty(
-            'left.property.property.name',
-            'Branch-Log'
-          )
-        } else if (node instanceof IfStatement) {
-          const loggerNode = node.consequent.body[0]
+          expect(loggerNode).toMatchObject({
+            type: 'AddStatement',
+            left: { member: { name: 'Branch-Log' } },
+          } as AddStatement)
+        } else if (isNode(node, ['IfStatement'])) {
+          const loggerNode = node.consequent[0]
 
-          expect(loggerNode).toBeInstanceOf(AddStatement)
-          expect(loggerNode).toHaveProperty(
-            'left.property.property.name',
-            'Branch-Log'
-          )
+          expect(loggerNode).toMatchObject({
+            type: 'AddStatement',
+            left: { member: { name: 'Branch-Log' } },
+          } as AddStatement)
         }
       },
     })

@@ -1,8 +1,9 @@
-import { Node } from '../nodes'
+import { Node, BaseNode } from '../nodes'
 import { NodePath, TraversalContext, Handler } from './path'
+import { assert } from '../utils/assert'
 
 export const traverse = (
-  node: Node,
+  ast: BaseNode,
   handler: Handler,
   context: TraversalContext = {
     parent: null,
@@ -11,34 +12,58 @@ export const traverse = (
     state: null,
   }
 ): void => {
-  const path = NodePath.create(node, context)
-
-  if (handler.entry) {
-    handler.entry.call(context.state, path)
+  const handle = (path: NodePath, context: TraversalContext) => {
+    if (handler.entry) {
+      handler.entry.call(context.state, path)
+    }
   }
 
-  const next = node.next()
+  traverseNode(ast, handle, context)
+}
 
-  if (!next) return
+// Create traversal path array recursively
+export const createPathArray = (
+  ast: BaseNode,
+  context: TraversalContext = {
+    parent: null,
+    parentPath: null,
+    inList: false,
+    state: null,
+  }
+): Array<NodePath> => {
+  const paths: Array<NodePath> = []
+  const appendPath = (path: NodePath) => paths.push(path)
 
-  next.forEach((nextNode) => {
-    if (Array.isArray(nextNode)) {
-      return nextNode.forEach((n, i) =>
-        traverse(n, handler, {
-          ...context,
-          parent: node,
-          parentPath: path,
-          inList: true,
-          key: i,
-        })
-      )
-    }
+  traverseNode(ast, appendPath, context)
 
-    return traverse(nextNode, handler, {
+  return paths
+}
+
+export const traverseNode = (
+  node: BaseNode,
+  callback: (path: NodePath, context: TraversalContext) => void,
+  context: TraversalContext = {
+    parent: null,
+    parentPath: null,
+    inList: false,
+    state: null,
+  }
+): void => {
+  const path = new NodePath(node, context)
+
+  // If sobroutine, ..., then set `inList` true
+
+  callback(path, context)
+
+  const nextNodes = node.next()
+
+  for (const nextNode of nextNodes) {
+    if (!nextNode) continue
+
+    traverseNode(nextNode, callback, {
       ...context,
       parent: node,
       parentPath: path,
-      inList: false,
     })
-  })
+  }
 }

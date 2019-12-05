@@ -1,471 +1,1002 @@
-import * as g from '../generator/lib'
-import { Index } from 'parsimmon'
-import { WithLocation } from '../parser/typings'
+import { Token } from '../parser/tokenizer'
+import { builders as b } from '../generator'
+import { Doc } from 'prettier'
 
-export type SourceLocation = {
-  start: Index
-  end: Index
+export interface Position {
+  offset: number
+  line: number
+  column: number
 }
 
-export interface Mark {
-  value: string
-  loc: SourceLocation
+export interface Location {
+  start: Position
+  end: Position
 }
 
-export type Printable = string | g.PrintList | Mark | Node
+const printAst = (n: BaseNode) => n.print()
 
-export type Plain<N> = Emit<N, keyof Node>
+export type PlainNode<T extends BaseNode> = Omit<T, keyof BaseNode>
+export type NodeWithLoc<N extends BaseNode = BaseNode> = N & { loc: Location }
 
-export abstract class Node {
+export type NodeClassMap = typeof map
+export type NodeType = keyof NodeClassMap
+export type NodeMap = {
+  [K in keyof NodeClassMap]: InstanceType<NodeClassMap[K]>
+}
+
+export type Node =
+  | Program
+  // abstract base
+  | BaseExpression
+  | BaseStatement
+  // abstract group
+  | Literal
+  | Expression
+  | Statement
+
+export type Literal =
+  | BooleanLiteral
+  | StringLiteral
+  | MultilineLiteral
+  | DurationLiteral
+  | NumericLiteral
+
+export type Expression =
+  | Literal
+  | Identifier
+  | Ip
+  | Member
+  | ValuePair
+  | BooleanExpression
+  | UnaryExpression
+  | FunCallExpression
+  | ConcatExpression
+  | BinaryExpression
+  | LogicalExpression
+
+export type Statement =
+  | ExpressionStatement
+  | IncludeStatement
+  | ImportStatement
+  | CallStatement
+  | DeclareStatement
+  | AddStatement
+  | SetStatement
+  | UnsetStatement
+  | ReturnStatement
+  | ErrorStatement
+  | RestartStatement
+  | SyntheticStatement
+  | LogStatement
+  | IfStatement
+  | SubroutineStatement
+  | AclStatement
+  | BackendStatement
+  | TableStatement
+
+export abstract class BaseNode {
   type!: string
-  loc?: SourceLocation
+  loc?: Location
 
-  abstract print: () => Printable | Array<Printable>
-  abstract next: () => null | Array<Node | /* List */ Array<Node>>
+  abstract next(): Array<BaseNode | undefined>
+  abstract print(): Doc
 
-  static create<T extends Node>(this: { new (): T }, fields: Plain<T>): T
-  static create<T extends Node>(
-    this: { new (): T },
-    fields: Plain<T>,
-    loc: SourceLocation
-  ): WithLocation<T>
+  static build<T extends NodeType, N extends NodeMap[T]>(
+    node: N,
+    values: PlainNode<N>
+  ): N {
+    Object.setPrototypeOf(node, this.prototype)
+    Object.assign(node, values)
 
-  static create<T extends Node>(
-    this: { new (): T },
-    fields: Plain<T>,
-    loc?: SourceLocation
-  ) {
-    const node = new this()
-    node.loc = loc
-    return Object.assign(node, fields)
+    return node
   }
 }
-export abstract class Statement extends Node {}
-export abstract class Expression extends Node {}
-export abstract class Value extends Node {}
-export abstract class Literal extends Node {}
 
-export class File extends Node {
-  type = 'File'
-  filePath!: string
-  program!: Program
+export abstract class BaseExpression extends BaseNode {}
+export abstract class BaseLiteral extends BaseExpression {}
+export abstract class BaseStatement extends BaseNode {}
 
-  print = () => this.program
-  next = () => [this.program]
+export class Program extends BaseNode {
+  type = 'Program' as const
+  body: Array<Statement>
+
+  constructor(obj: PlainNode<Program>) {
+    super()
+
+    this.body = obj.body
+  }
+
+  next() {
+    return this.body
+  }
+
+  print() {
+    return b.join(b.hardline, this.body.map(printAst))
+  }
 }
 
-export class Program extends Node {
-  type = 'Program'
-  body!: Array<Statement | Comment>
+export class BooleanLiteral extends BaseLiteral {
+  type = 'BooleanLiteral' as const
+  value: string
 
-  print = () => g.list(this.body)
-  next = () => [this.body]
+  constructor(obj: PlainNode<BooleanLiteral>) {
+    super()
+
+    this.value = obj.value
+  }
+
+  next() {
+    return []
+  }
+
+  print() {
+    return this.value
+  }
 }
 
-export class Comment extends Node {
-  type = 'Comment'
-  // TODO: add `type` prop
-  body!: string
+export class StringLiteral extends BaseLiteral {
+  type = 'StringLiteral' as const
+  value: string
 
-  print = () => ['#', this.body]
-  next = () => null
+  constructor(obj: PlainNode<StringLiteral>) {
+    super()
+
+    this.value = obj.value
+  }
+
+  next() {
+    return []
+  }
+
+  print() {
+    return this.value
+  }
 }
 
-// TODO: remove this node
-export class Block extends Node {
-  type = 'Block'
-  body!: Array<Statement | Comment>
-  lbracket!: Mark
-  rbracket!: Mark
+export class MultilineLiteral extends BaseLiteral {
+  type = 'MultilineLiteral' as const
+  value: string
 
-  print = () => [this.lbracket, g.list(this.body), this.rbracket]
-  next = () => [this.body]
+  constructor(obj: PlainNode<MultilineLiteral>) {
+    super()
+
+    this.value = obj.value
+  }
+
+  next() {
+    return []
+  }
+
+  print() {
+    return this.value
+  }
 }
 
-export class BooleanLiteral extends Literal {
-  type = 'BooleanLiteral'
-  value!: string
+export class DurationLiteral extends BaseLiteral {
+  type = 'DurationLiteral' as const
+  value: string
 
-  print = () => this.value
-  next = () => null
+  constructor(obj: PlainNode<DurationLiteral>) {
+    super()
+
+    this.value = obj.value
+  }
+
+  next() {
+    return []
+  }
+
+  print() {
+    return this.value
+  }
 }
 
-export class StringLiteral extends Literal {
-  type = 'StringLiteral'
-  value!: string
+export class NumericLiteral extends BaseLiteral {
+  type = 'NumericLiteral' as const
+  value: string
 
-  print = () => '"' + this.value + '"'
-  next = () => null
+  constructor(obj: PlainNode<NumericLiteral>) {
+    super()
+
+    this.value = obj.value
+  }
+
+  next() {
+    return []
+  }
+
+  print() {
+    return this.value
+  }
 }
 
-// TODO: merge with StringLiteral
-export class MultilineLiteral extends Literal {
-  type = 'MultilineLiteral'
-  value!: string
+export class Identifier extends BaseExpression {
+  type = 'Identifier' as const
+  name: string
 
-  print = () => this.value
-  next = () => null
+  constructor(obj: PlainNode<Identifier>) {
+    super()
+
+    this.name = obj.name
+  }
+
+  next() {
+    return []
+  }
+
+  print() {
+    return this.name
+  }
 }
 
-export class DurationLiteral extends Literal {
-  type = 'DurationLiteral'
-  value!: string
+export class Ip extends BaseExpression {
+  type = 'Ip' as const
+  value: string
+  cidr?: number
 
-  print = () => this.value
-  next = () => null
+  constructor(obj: PlainNode<Ip>) {
+    super()
+
+    this.value = obj.value
+    this.cidr = obj.cidr
+  }
+
+  next() {
+    return []
+  }
+
+  print() {
+    return this.cidr ? `"${this.value}"/${this.cidr}` : `"${this.value}"`
+  }
 }
 
-export class NumericLiteral extends Literal {
-  type = 'NumericLiteral'
-  value!: string
+export class Member extends BaseExpression {
+  type = 'Member' as const
+  base: Identifier | Member
+  member: Identifier
 
-  print = () => this.value
-  next = () => null
+  constructor(obj: PlainNode<Member>) {
+    super()
+
+    this.base = obj.base
+    this.member = obj.member
+  }
+
+  next() {
+    return [this.base, this.member]
+  }
+
+  print() {
+    return b.concat([
+      printAst(this.base),
+      // b.softline,
+      '.',
+      printAst(this.member),
+    ])
+  }
 }
 
-export class IpLiteral extends Literal {
-  type = 'IpLiteral'
-  value!: string
+export class ValuePair extends BaseExpression {
+  type = 'ValuePair' as const
+  base: Identifier | Member
+  name: Identifier
 
-  print = () => '"' + this.value + '"'
-  next = () => null
+  constructor(obj: PlainNode<ValuePair>) {
+    super()
+
+    this.base = obj.base
+    this.name = obj.name
+  }
+
+  next() {
+    return [this.base, this.name]
+  }
+
+  print() {
+    return b.concat([
+      printAst(this.base),
+      // b.softline,
+      ':',
+      printAst(this.name),
+    ])
+  }
 }
 
-export class Identifier extends Value {
-  type = 'Identifier'
-  name!: string
+export class BooleanExpression extends BaseExpression {
+  type = 'BooleanExpression' as const
+  body: Expression
 
-  print = () => this.name
-  next = () => null
+  constructor(obj: PlainNode<BooleanExpression>) {
+    super()
+
+    this.body = obj.body
+  }
+
+  next() {
+    return [this.body]
+  }
+
+  print() {
+    return b.concat([
+      '(',
+      b.indent(b.concat([b.softline, printAst(this.body)])),
+      b.softline,
+      ')',
+    ])
+  }
 }
 
-export class Header extends Value {
-  type = 'Header'
-  name!: string
+export class UnaryExpression extends BaseExpression {
+  type = 'UnaryExpression' as const
+  operator: string
+  argument: Expression
 
-  print = () => this.name
-  next = () => null
+  constructor(obj: PlainNode<UnaryExpression>) {
+    super()
+
+    this.operator = obj.operator
+    this.argument = obj.argument
+  }
+
+  next() {
+    return [this.argument]
+  }
+
+  print() {
+    return b.concat([this.operator, printAst(this.argument)])
+  }
 }
 
-export class MemberExpression extends Value {
-  type = 'MemberExpression'
-  object!: Identifier
-  property!: Identifier | Header | MemberExpression
+export class FunCallExpression extends BaseExpression {
+  type = 'FunCallExpression' as const
+  callee: Member | Identifier | ValuePair
+  arguments: Array<Expression>
 
-  print = () => [this.object, '.', this.property]
-  next = () => [this.object, this.property]
+  constructor(obj: PlainNode<FunCallExpression>) {
+    super()
+
+    this.callee = obj.callee
+    this.arguments = obj.arguments
+  }
+
+  next() {
+    return [this.callee, ...this.arguments]
+  }
+
+  print() {
+    return b.concat([
+      printAst(this.callee),
+      '(',
+      b.softline,
+      b.group(
+        b.concat([
+          b.indent(
+            b.concat([
+              b.join(b.concat([',', b.line]), this.arguments.map(printAst)),
+            ])
+          ),
+          b.ifBreak(b.line, ''),
+        ])
+      ),
+      ')',
+    ])
+  }
 }
 
-export class BooleanExpression extends Value {
-  type = 'BooleanExpression'
-  body!: Expression
-  lparen!: Mark
-  rparen!: Mark
+export class ConcatExpression extends BaseExpression {
+  type = 'ConcatExpression' as const
+  body: Array<Expression>
 
-  print = () => [this.lparen, this.body, this.rparen]
-  next = () => [this.body]
+  constructor(obj: PlainNode<ConcatExpression>) {
+    super()
+
+    this.body = obj.body
+  }
+
+  next() {
+    return this.body
+  }
+
+  print() {
+    return b.join(' ', this.body.map(printAst))
+  }
 }
 
-export class UnaryExpression extends Value {
-  type = 'UnaryExpression'
-  operator!: string
-  argument!: Value
+export class BinaryExpression extends BaseExpression {
+  type = 'BinaryExpression' as const
+  left: Expression
+  right: Expression
+  operator: string
 
-  print = () => [this.operator, this.argument]
-  next = () => [this.argument]
+  constructor(obj: PlainNode<BinaryExpression>) {
+    super()
+
+    this.left = obj.left
+    this.right = obj.right
+    this.operator = obj.operator
+  }
+
+  next() {
+    return [this.left, this.right]
+  }
+
+  print() {
+    return b.concat([
+      printAst(this.left),
+      ' ',
+      b.concat([this.operator, ' ', printAst(this.right)]),
+    ])
+  }
 }
 
-export class FunCallExpression extends Value {
-  type = 'FunCallExpression'
-  callee!: MemberExpression | Identifier
-  arguments!: Array<Expression>
-  lparen!: Mark
-  rparen!: Mark
+export class LogicalExpression extends BaseExpression {
+  type = 'LogicalExpression' as const
+  left: Expression
+  right: Expression
+  operator: string
 
-  print = () => [
-    this.callee,
-    this.lparen,
-    g.list(this.arguments, ', '),
-    this.rparen,
-  ]
-  next = () => [this.callee, this.arguments]
+  constructor(obj: PlainNode<LogicalExpression>) {
+    super()
+
+    this.left = obj.left
+    this.right = obj.right
+    this.operator = obj.operator
+  }
+
+  next() {
+    return [this.left, this.right]
+  }
+
+  print() {
+    return b.concat([
+      printAst(this.left),
+      ' ',
+      b.concat([this.operator, b.line, printAst(this.right)]),
+    ])
+  }
 }
 
-export class ConcatExpression extends Expression {
-  type = 'ConcatExpression'
-  body!: Array<Value>
+export class ExpressionStatement extends BaseStatement {
+  type = 'ExpressionStatement' as const
+  body: Expression
 
-  print = () => g.list(this.body)
-  next = () => this.body
+  constructor(obj: PlainNode<ExpressionStatement>) {
+    super()
+
+    this.body = obj.body
+  }
+
+  next() {
+    return [this.body]
+  }
+
+  print() {
+    return b.concat([printAst(this.body), ';'])
+  }
 }
 
-export class BinaryExpression extends Expression {
-  type = 'BinaryExpression'
-  left!: Expression
-  right!: Expression
-  operator!: string
+export class IncludeStatement extends BaseStatement {
+  type = 'IncludeStatement' as const
+  module: StringLiteral
 
-  print = () => [this.left, ' ', this.operator, ' ', this.right]
-  next = () => [this.left, this.right]
+  constructor(obj: PlainNode<IncludeStatement>) {
+    super()
+
+    this.module = obj.module
+  }
+
+  next() {
+    return [this.module]
+  }
+
+  print() {
+    return b.concat(['include ', printAst(this.module), ';'])
+  }
 }
 
-export class LogicalExpression extends Expression {
-  type = 'LogicalExpression'
-  left!: Expression
-  right!: Expression
-  operator!: string
+export class ImportStatement extends BaseStatement {
+  type = 'ImportStatement' as const
+  module: Identifier
 
-  print = () => g.list([this.left, this.right], ' ' + this.operator + ' ')
-  next = () => [this.left, this.right]
+  constructor(obj: PlainNode<ImportStatement>) {
+    super()
+
+    this.module = obj.module
+  }
+
+  next() {
+    return [this.module]
+  }
+
+  print() {
+    return b.concat(['import ', printAst(this.module), ';'])
+  }
 }
 
-export class ExpressionStatement extends Statement {
-  type = 'ExpressionStatement'
-  body!: Expression
+export class CallStatement extends BaseStatement {
+  type = 'CallStatement' as const
+  subroutine: Identifier
 
-  print = () => [this.body, ';']
-  next = () => [this.body]
+  constructor(obj: PlainNode<CallStatement>) {
+    super()
+
+    this.subroutine = obj.subroutine
+  }
+
+  next() {
+    return [this.subroutine]
+  }
+
+  print() {
+    return b.concat(['call ', printAst(this.subroutine), ';'])
+  }
 }
 
-export class IncludeStatement extends Statement {
-  type = 'IncludeStatement'
-  module!: StringLiteral
+export class DeclareStatement extends BaseStatement {
+  type = 'DeclareStatement' as const
+  id: Identifier | Member
+  valueType: 'STRING' | 'BOOL' | 'BOOLEAN' | 'INTEGER' | 'FLOAT'
 
-  print = () => ['include', ' ', this.module, ';']
-  next = () => [this.module]
-}
-export class ImportStatement extends Statement {
-  type = 'ImportStatement'
-  module!: Identifier
+  constructor(obj: PlainNode<DeclareStatement>) {
+    super()
 
-  print = () => ['import', ' ', this.module, ';']
-  next = () => [this.module]
-}
+    this.id = obj.id
+    this.valueType = obj.valueType
+  }
 
-export class CallStatement extends Statement {
-  type = 'CallStatement'
-  subroutine!: Identifier
+  next() {
+    return [this.id]
+  }
 
-  print = () => ['call', ' ', this.subroutine, ';']
-  next = () => [this.subroutine]
-}
-
-export type ValueType = 'STRING' | 'BOOL' | 'BOOLEAN' | 'INTEGER' | 'FLOAT'
-
-export class DeclareStatement extends Statement {
-  type = 'DeclareStatement'
-  id!: Identifier | MemberExpression
-  valueType!: ValueType
-
-  print = () => [
-    'declare',
-    ' ',
-    'local',
-    ' ',
-    this.id,
-    ' ',
-    this.valueType,
-    ';',
-  ]
-  next = () => [this.id]
+  print() {
+    return b.concat([
+      'declare ',
+      'local ',
+      printAst(this.id),
+      ' ',
+      this.valueType,
+      ';',
+    ])
+  }
 }
 
-export class AddStatement extends Statement {
-  type = 'AddStatement'
-  left!: Identifier | MemberExpression
-  right!: Expression
-  operator!: string
+export class AddStatement extends BaseStatement {
+  type = 'AddStatement' as const
+  left: Identifier | Member
+  right: Expression
+  operator: string
 
-  print = () => [
-    'add',
-    ' ',
-    this.left,
-    ' ',
-    this.operator,
-    ' ',
-    this.right,
-    ';',
-  ]
-  next = () => [this.left, this.right]
+  constructor(obj: PlainNode<AddStatement>) {
+    super()
+
+    this.left = obj.left
+    this.right = obj.right
+    this.operator = obj.operator
+  }
+
+  next() {
+    return [this.left, this.right]
+  }
+
+  print() {
+    return b.concat([
+      'add ',
+      printAst(this.left),
+      ' ',
+      this.operator,
+      ' ',
+      printAst(this.right),
+      ';',
+    ])
+  }
 }
 
-export class SetStatement extends Statement {
-  type = 'SetStatement'
-  left!: Identifier | MemberExpression
-  right!: Expression
-  operator!: string
+export class SetStatement extends BaseStatement {
+  type = 'SetStatement' as const
+  left: Identifier | Member
+  right: Expression
+  operator: string
 
-  print = () => [
-    'set',
-    ' ',
-    this.left,
-    ' ',
-    this.operator,
-    ' ',
-    this.right,
-    ';',
-  ]
-  next = () => [this.left, this.right]
+  constructor(obj: PlainNode<SetStatement>) {
+    super()
+
+    this.left = obj.left
+    this.right = obj.right
+    this.operator = obj.operator
+  }
+
+  next() {
+    return [this.left, this.right]
+  }
+
+  print() {
+    return b.concat([
+      'set ',
+      printAst(this.left),
+      ' ',
+      this.operator,
+      ' ',
+      printAst(this.right),
+      ';',
+    ])
+  }
 }
 
-export class UnsetStatement extends Statement {
-  type = 'UnsetStatement'
-  id!: Identifier | MemberExpression
+export class UnsetStatement extends BaseStatement {
+  type = 'UnsetStatement' as const
+  id: Identifier | Member
 
-  print = () => ['unset', ' ', this.id, ';']
-  next = () => [this.id]
-}
-export type ReturnAction =
-  | 'pass'
-  | 'hit_for_pass'
-  | 'lookup'
-  | 'pipe'
-  | 'deliver'
+  constructor(obj: PlainNode<UnsetStatement>) {
+    super()
 
-export class ReturnStatement extends Statement {
-  type = 'ReturnStatement'
-  action!: ReturnAction
+    this.id = obj.id
+  }
 
-  print = () => ['return', ' ', '(', this.action, ');']
-  next = () => null
+  next() {
+    return [this.id]
+  }
+
+  print() {
+    return b.concat(['unset ', printAst(this.id), ';'])
+  }
 }
 
-export class ErrorStatement extends Statement {
-  type = 'ErrorStatement'
-  status!: Literal
+export class ReturnStatement extends BaseStatement {
+  type = 'ReturnStatement' as const
+  action: 'pass' | 'hit_for_pass' | 'lookup' | 'pipe' | 'deliver'
+
+  constructor(obj: PlainNode<ReturnStatement>) {
+    super()
+
+    this.action = obj.action
+  }
+
+  next() {
+    return []
+  }
+
+  print() {
+    // TODO: handle the optional parens
+    return b.concat(['return ', '(', this.action, ')', ';'])
+  }
+}
+
+export class ErrorStatement extends BaseStatement {
+  type = 'ErrorStatement' as const
+  status: number
   message?: Expression
 
-  print = () =>
-    this.message
-      ? ['error', ' ', this.status, ' ', this.message, ';']
-      : ['error', ' ', this.status, ';']
-  next = () => (this.message ? [this.status, this.message] : [this.status])
+  constructor(obj: PlainNode<ErrorStatement>) {
+    super()
+
+    this.status = obj.status
+    this.message = obj.message
+  }
+
+  next() {
+    return [this.message]
+  }
+
+  print() {
+    return b.concat([
+      b.join(' ', [
+        'error',
+        this.status.toString(),
+        this.message && printAst(this.message),
+      ].filter(Boolean) as Doc[]),
+      ';',
+    ])
+  }
 }
 
-export class RestartStatement extends Statement {
-  type = 'RestartStatement'
+export class RestartStatement extends BaseStatement {
+  type = 'RestartStatement' as const
 
-  print = () => ['restart;']
-  next = () => null
+  constructor(obj: PlainNode<RestartStatement>) {
+    super()
+  }
+
+  next() {
+    return []
+  }
+
+  print() {
+    return 'restart;'
+  }
 }
 
-export class SyntheticStatement extends Statement {
-  type = 'SyntheticStatement'
-  response!: Expression
+export class SyntheticStatement extends BaseStatement {
+  type = 'SyntheticStatement' as const
+  response: Expression
 
-  print = () => ['synthetic', ' ', this.response, ';']
-  next = () => [this.response]
+  constructor(obj: PlainNode<SyntheticStatement>) {
+    super()
+
+    this.response = obj.response
+  }
+
+  next() {
+    return [this.response]
+  }
+
+  print() {
+    return b.concat(['synthetic', printAst(this.response), ';'])
+  }
 }
 
-export class LogStatement extends Statement {
-  type = 'LogStatement'
-  content!: Expression
+export class LogStatement extends BaseStatement {
+  type = 'LogStatement' as const
+  content: Expression
 
-  print = () => ['log', ' ', this.content, ';']
-  next = () => [this.content]
+  constructor(obj: PlainNode<LogStatement>) {
+    super()
+
+    this.content = obj.content
+  }
+
+  next() {
+    return [this.content]
+  }
+
+  print() {
+    return b.concat(['log', printAst(this.content), ';'])
+  }
 }
 
-export class IfStatement extends Statement {
-  type = 'IfStatement'
-  test!: Expression
-  consequent!: Block
-  alternative?: IfStatement | Block
-  lparen!: Mark
-  rparen!: Mark
+export class IfStatement extends BaseStatement {
+  type = 'IfStatement' as const
+  test: Expression
+  consequent: Array<Statement>
+  alternative?: IfStatement | Array<Statement>
 
-  print = (): Array<Printable> =>
-    this.alternative
-      ? [
-          'if',
-          ' ',
-          this.lparen,
-          this.test,
-          this.rparen,
-          ' ',
-          this.consequent,
-          ' ',
-          'else',
-          ' ',
-          this.alternative,
-        ]
-      : ['if', ' ', this.lparen, this.test, this.rparen, ' ', this.consequent]
-  next = (): Array<Node> =>
-    this.alternative
-      ? [this.test, this.consequent, this.alternative]
-      : [this.test, this.consequent]
+  constructor(obj: PlainNode<IfStatement>) {
+    super()
+
+    this.test = obj.test
+    this.consequent = obj.consequent
+    this.alternative = obj.alternative
+  }
+
+  next() {
+    return [this.test, ...this.consequent, this.alternative]
+      .filter(Boolean)
+      .flat(2)
+  }
+
+  print() {
+    const doc: Array<Doc> = [
+      'if ',
+      '(',
+      printAst(this.test),
+      ') ',
+      '{',
+      b.indent(
+        b.concat([
+          b.hardline,
+          b.join(b.hardline, this.consequent.map(printAst)),
+        ])
+      ),
+      b.hardline,
+      '}',
+    ]
+
+    if (this.alternative) {
+      const alternative = Array.isArray(this.alternative)
+        ? [
+            ' else {',
+            b.indent(
+              b.concat([b.hardline, b.concat(this.alternative.map(printAst))])
+            ),
+            b.hardline,
+            '}',
+          ]
+        : [' else ', printAst(this.alternative)]
+
+      return b.concat([...doc, ...alternative])
+    }
+
+    return b.concat(doc)
+  }
 }
 
-export class SubroutineStatement extends Statement {
-  type = 'SubroutineStatement'
-  id!: Identifier
-  body!: Block
+export class SubroutineStatement extends BaseStatement {
+  type = 'SubroutineStatement' as const
+  id: Identifier
+  body: Array<Statement>
 
-  print = () => ['sub', ' ', this.id, ' ', this.body]
-  next = () => [this.id, this.body]
+  constructor(obj: PlainNode<SubroutineStatement>) {
+    super()
+
+    this.id = obj.id
+    this.body = obj.body
+  }
+
+  next() {
+    return [this.id, ...this.body]
+  }
+
+  print() {
+    return b.concat([
+      'sub ',
+      printAst(this.id),
+      ' {',
+      b.indent(
+        b.concat([b.hardline, b.join(b.hardline, this.body.map(printAst))])
+      ),
+      b.hardline,
+      '}',
+    ])
+  }
 }
 
-export class AclStatement extends Statement {
-  type = 'AclStatement'
-  id!: Identifier
-  body!: Array<IpLiteral>
-  lbracket!: Mark
-  rbracket!: Mark
+export class AclStatement extends BaseStatement {
+  type = 'AclStatement' as const
+  id: Identifier
+  body: Array<Ip>
 
-  print = () => [
-    'acl',
-    ' ',
-    this.id,
-    ' ',
-    this.lbracket,
-    g.list(this.body, ';'),
-    this.rbracket,
-  ]
-  next = () => [this.id, this.body]
+  constructor(obj: PlainNode<AclStatement>) {
+    super()
+
+    this.id = obj.id
+    this.body = obj.body
+  }
+
+  next() {
+    return [this.id, ...this.body]
+  }
+
+  print() {
+    return b.concat([
+      'acl ',
+      printAst(this.id),
+      ' {',
+      b.indent(
+        b.concat([
+          b.hardline,
+          b.join(
+            b.hardline,
+            this.body.map(printAst).map((ip) => b.concat([ip, ';']))
+          ),
+        ])
+      ),
+      b.hardline,
+      '}',
+    ])
+  }
 }
 
-export class CustomStatement extends Statement {
-  type = 'CustomStatement'
-  directive!: string
-  body!: Array<Node>
-
-  print = () => [this.directive, ' ', g.list(this.body, ' '), ';']
-  next = () => this.body
+export type BackendDef = {
+  key: string
+  value: Expression | Array<BackendDef>
 }
 
-export class StructDefinitionExpression extends Expression {
-  type = 'StructDefinitionExpression'
-  body!: Array<MemberAssignStatement>
-  lbracket!: Mark
-  rbracket!: Mark
+export class BackendStatement extends BaseStatement {
+  type = 'BackendStatement' as const
+  id: Identifier
+  body: Array<BackendDef>
 
-  print = (): [Mark, g.PrintList, Mark] => [
-    this.lbracket,
-    g.list(this.body),
-    this.rbracket,
-  ]
-  next = () => this.body
+  constructor(obj: PlainNode<BackendStatement>) {
+    super()
+
+    this.id = obj.id
+    this.body = obj.body
+  }
+
+  next() {
+    return this.body
+      .map((b) =>
+        Array.isArray(b.value)
+          ? b.value.map((subBody) => subBody.value)
+          : b.value
+      )
+      .flat(2)
+  }
+
+  static printDef(def: BackendDef): Doc {
+    const value = Array.isArray(def.value)
+      ? BackendStatement.printBody(def.value)
+      : b.concat([def.value.print(), ';'])
+
+    return b.concat(['.', def.key, ' = ', value])
+  }
+
+  static printBody(defs: Array<BackendDef>): Doc {
+    return b.concat([
+      '{',
+      b.indent(
+        b.concat([
+          b.hardline,
+          b.join(b.hardline, defs.map(BackendStatement.printDef)),
+        ])
+      ),
+      b.hardline,
+      '}',
+    ])
+  }
+
+  print() {
+    return b.concat([
+      'backend ',
+      printAst(this.id),
+      ' ',
+      BackendStatement.printBody(this.body),
+    ])
+  }
 }
 
-export class MemberAssignStatement extends Statement {
-  type = 'MemberAssignStatement'
-  id!: Identifier
-  value!: Literal | StructDefinitionExpression
+export type TableDef = { key: string; value: string }
 
-  print = (): [
-    string,
-    Identifier,
-    string,
-    Literal | StructDefinitionExpression,
-    string
-  ] => ['.', this.id, ' = ', this.value, ';']
-  next = () => [this.id, this.value]
+export class TableStatement extends BaseStatement {
+  type = 'TableStatement' as const
+  id: Identifier
+  body: Array<TableDef>
+
+  constructor(obj: PlainNode<TableStatement>) {
+    super()
+
+    this.id = obj.id
+    this.body = obj.body
+  }
+
+  next() {
+    return [this.id]
+  }
+
+  print() {
+    return b.concat([
+      'table ',
+      printAst(this.id),
+      ' {',
+      b.indent(
+        b.concat([
+          b.hardline,
+          b.join(
+            b.concat([',', b.hardline]),
+            this.body.map((td) => b.concat([td.key, ':', td.value]))
+          ),
+          // TODO: handle trailing comma
+          // ',',
+        ])
+      ),
+      b.hardline,
+      '}',
+    ])
+  }
 }
 
-export class BackendStatement extends Statement {
-  type = 'BackendStatement'
-  id!: Identifier
-  body!: StructDefinitionExpression
-
-  print = () => ['backend', ' ', this.id, ' ', this.body]
-  next = () => [this.id, this.body]
-}
+export const map = {
+  Program,
+  BooleanLiteral,
+  StringLiteral,
+  MultilineLiteral,
+  DurationLiteral,
+  NumericLiteral,
+  Identifier,
+  Ip,
+  Member,
+  ValuePair,
+  BooleanExpression,
+  UnaryExpression,
+  FunCallExpression,
+  ConcatExpression,
+  BinaryExpression,
+  LogicalExpression,
+  ExpressionStatement,
+  IncludeStatement,
+  ImportStatement,
+  CallStatement,
+  DeclareStatement,
+  AddStatement,
+  SetStatement,
+  UnsetStatement,
+  ReturnStatement,
+  ErrorStatement,
+  RestartStatement,
+  SyntheticStatement,
+  LogStatement,
+  IfStatement,
+  SubroutineStatement,
+  AclStatement,
+  BackendStatement,
+  TableStatement,
+} as const
