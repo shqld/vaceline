@@ -2,7 +2,6 @@
 
 import fs, { promises, read } from 'fs'
 import path from 'path'
-import assert from 'assert'
 import * as stream from 'stream'
 import { promisify } from 'util'
 
@@ -13,6 +12,8 @@ import { optionParser, Options } from './options'
 import * as utils from './utils'
 
 import { parse, transformFile } from '..'
+
+import '../polyfill'
 
 // const pipeline = promisify(stream.pipeline)
 const writeFile = fs.promises ? fs.promises.writeFile : promisify(fs.writeFile)
@@ -26,16 +27,13 @@ const createStream = (...strs: Array<string>) => {
 }
 
 async function main() {
-  const opts = optionParser.parse() as Options
+  const opts = optionParser.argv
+  const shouldOutputToFile = !!opts.d
 
   if (opts.debug === true) {
     debug.enable('vaceline:*')
   } else if (typeof opts.debug === 'string') {
     debug.enable(`vaceline:${opts.debug}:*`)
-  }
-
-  if (opts.source) {
-    assert(fs.existsSync(opts.source), 'File not found: ' + opts.source)
   }
 
   const inputPaths = opts.source
@@ -44,14 +42,9 @@ async function main() {
       : [opts.source]
     : ['/dev/stdin']
 
-  const shouldOutputToFile = !!opts.d
+  let writings: Array<Promise<void>> = []
 
-  let writings: Array<Promise<void>>
-
-  if (shouldOutputToFile) {
-    writings = []
-    if (!fs.existsSync(opts.d)) mkdirp.sync(opts.d)
-  }
+  if (shouldOutputToFile && !fs.existsSync(opts.d)) mkdirp.sync(opts.d)
 
   for (const filePath of inputPaths) {
     const readablePath =
@@ -68,12 +61,22 @@ async function main() {
     console.timeEnd(readablePath)
 
     if (shouldOutputToFile) {
-      const outputPath = path.join(
-        opts.d,
-        opts.source
-          ? path.join(path.relative(path.resolve(opts.source), filePath))
-          : ''
-      )
+      const additionalExt = opts.ast ? '.json' : ''
+
+      const outputPath =
+        path.join(
+          opts.d,
+          opts.source
+            ? path.join(
+                opts.source === filePath
+                  ? // input source is a file
+                    path.basename(filePath)
+                  : // input source is a directory, keep nested structure
+                    path.relative(opts.source, filePath)
+              )
+            : // input is from stdin so we cannot determine the filename
+              'index.vcl'
+        ) + additionalExt
 
       writings!.push(writeFile(outputPath, output))
 
