@@ -265,18 +265,6 @@ BackendStatement {
     },
   ],
   "id": Identifier {
-    "loc": Object {
-      "end": Object {
-        "column": 24,
-        "line": 1,
-        "offset": 23,
-      },
-      "start": Object {
-        "column": 9,
-        "line": 1,
-        "offset": 8,
-      },
-    },
     "name": "vaceline_backend",
     "type": "Identifier",
   },

@@ -6,6 +6,8 @@ export const readdirr = (dirPath: string): Array<string> =>
   fs.statSync(dirPath).isDirectory()
     ? fs
         .readdirSync(dirPath)
-        .map((p) => readdirr(path.join(dirPath, p)))
-        .flat(Infinity)
+        .reduce(
+          (acc, p) => acc.concat(readdirr(path.join(dirPath, p))),
+          [] as Array<string>
+        )
     : [dirPath]

@@ -1,6 +1,7 @@
 import { Token } from '../parser/tokenizer'
 import { builders as b } from '../generator'
 import { Doc } from 'prettier'
+import { flatten } from 'array-flatten'
 
 export interface Position {
   offset: number
@@ -758,9 +759,9 @@ export class IfStatement extends BaseStatement {
   }
 
   next() {
-    return [this.test, ...this.consequent, this.alternative]
-      .filter(Boolean)
-      .flat(2)
+    return flatten(
+      [this.test, ...this.consequent, this.alternative].filter(Boolean)
+    )
   }
 
   print() {
@@ -867,7 +868,12 @@ export class AclStatement extends BaseStatement {
 
 export type BackendDef = {
   key: string
-  value: Expression | Array<BackendDef>
+  value: Expression | Array<NestedBackendDef>
+}
+// TODO: reconsider the type structure
+// Nested defs cannot be nested children anymore
+interface NestedBackendDef extends BackendDef {
+  value: Expression
 }
 
 export class BackendStatement extends BaseStatement {
@@ -883,13 +889,15 @@ export class BackendStatement extends BaseStatement {
   }
 
   next() {
-    return this.body
-      .map((b) =>
-        Array.isArray(b.value)
-          ? b.value.map((subBody) => subBody.value)
-          : b.value
+    const bodies = flatten(
+      this.body.map((b) =>
+        Array.isArray(b.value) ? b.value.map((def) => def.value) : b.value
       )
-      .flat(2)
+    )
+
+    bodies.unshift(this.id)
+
+    return bodies
   }
 
   static printDef(def: BackendDef): Doc {
