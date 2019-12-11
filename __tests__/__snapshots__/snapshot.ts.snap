@@ -67,8 +67,21 @@ Program {
     },
     BackendStatement {
       "body": Array [
-        Object {
+        BackendDefinition {
           "key": "ssh",
+          "loc": Object {
+            "end": Object {
+              "column": 14,
+              "line": 5,
+              "offset": 89,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 5,
+              "offset": 78,
+            },
+          },
+          "type": "BackendDefinition",
           "value": BooleanLiteral {
             "loc": Object {
               "end": Object {
@@ -86,8 +99,21 @@ Program {
             "value": "true",
           },
         },
-        Object {
+        BackendDefinition {
           "key": "host",
+          "loc": Object {
+            "end": Object {
+              "column": 24,
+              "line": 6,
+              "offset": 114,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 6,
+              "offset": 93,
+            },
+          },
+          "type": "BackendDefinition",
           "value": StringLiteral {
             "loc": Object {
               "end": Object {

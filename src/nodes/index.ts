@@ -866,20 +866,47 @@ export class AclStatement extends BaseStatement {
   }
 }
 
-export type BackendDef = {
+export class BackendDefinition extends BaseNode {
+  type = 'BackendDefinition' as const
   key: string
-  value: Expression | Array<NestedBackendDef>
-}
-// TODO: reconsider the type structure
-// Nested defs cannot be nested children anymore
-interface NestedBackendDef extends BackendDef {
-  value: Expression
+  value: Expression | Array<BackendDefinition>
+
+  constructor(obj: PlainNode<BackendDefinition>) {
+    super()
+
+    this.key = obj.key
+    this.value = obj.value
+  }
+
+  next() {
+    return Array.isArray(this.value)
+      ? this.value.map((d) => d.value as Expression)
+      : [this.value]
+  }
+
+  print(): Doc {
+    const printedValue = Array.isArray(this.value)
+      ? b.concat([
+          '{',
+          b.indent(
+            b.concat([
+              b.hardline,
+              b.join(b.hardline, this.value.map((v) => v.print())),
+            ])
+          ),
+          b.hardline,
+          '}',
+        ])
+      : b.concat([this.value.print(), ';'])
+
+    return b.concat(['.', this.key, ' = ', printedValue])
+  }
 }
 
 export class BackendStatement extends BaseStatement {
   type = 'BackendStatement' as const
   id: Identifier
-  body: Array<BackendDef>
+  body: Array<BackendDefinition>
 
   constructor(obj: PlainNode<BackendStatement>) {
     super()
@@ -900,34 +927,22 @@ export class BackendStatement extends BaseStatement {
     return bodies
   }
 
-  static printDef(def: BackendDef): Doc {
-    const value = Array.isArray(def.value)
-      ? BackendStatement.printBody(def.value)
-      : b.concat([def.value.print(), ';'])
-
-    return b.concat(['.', def.key, ' = ', value])
-  }
-
-  static printBody(defs: Array<BackendDef>): Doc {
-    return b.concat([
-      '{',
-      b.indent(
-        b.concat([
-          b.hardline,
-          b.join(b.hardline, defs.map(BackendStatement.printDef)),
-        ])
-      ),
-      b.hardline,
-      '}',
-    ])
-  }
-
   print() {
     return b.concat([
       'backend ',
       printAst(this.id),
       ' ',
-      BackendStatement.printBody(this.body),
+      b.concat([
+        '{',
+        b.indent(
+          b.concat([
+            b.hardline,
+            b.join(b.hardline, this.body.map((d) => d.print())),
+          ])
+        ),
+        b.hardline,
+        '}',
+      ]),
     ])
   }
 }
@@ -1005,6 +1020,7 @@ export const map = {
   IfStatement,
   SubroutineStatement,
   AclStatement,
+  BackendDefinition,
   BackendStatement,
   TableStatement,
 } as const

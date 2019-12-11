@@ -239,7 +239,8 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
   )
 }
 
-const parseBackendDef = (p: Parser, token = p.read()): n.BackendDef => {
+const parseBackendDef = (p: Parser, token = p.read()): n.BackendDefinition => {
+  const node = p.startNode()
   p.validateToken(token, 'symbol', '.')
   const key = p.validateNode(parseExpr(p), ['Identifier']).name
   p.validateToken(p.read(), 'operator', '=')
@@ -254,7 +255,7 @@ const parseBackendDef = (p: Parser, token = p.read()): n.BackendDef => {
     ensureSemi(p)
   }
 
-  return { key, value }
+  return p.finishNode(n.BackendDefinition, node, { key, value })
 }
 
 const parseIfStatement = (p: Parser, node: NodeWithLoc): n.IfStatement => {
