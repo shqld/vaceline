@@ -5,6 +5,9 @@
   "repository": "git@github.com:shqld/vaceline.git",
   "author": "Sho Miyamoto <me@shomiyamoto.dev>",
   "license": "MIT",
+  "files": [
+    "dist"
+  ],
   "bin": {
     "vaceline": "./dist/cli/index.js"
   },
