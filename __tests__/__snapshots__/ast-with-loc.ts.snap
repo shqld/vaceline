@@ -297,7 +297,7 @@ AddStatement {
       "offset": 0,
     },
   },
-  "operator": "*=",
+  "operator": "/=",
   "right": StringLiteral {
     "loc": Object {
       "end": Object {

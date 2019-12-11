@@ -80,7 +80,7 @@ AddStatement {
     },
     "type": "Member",
   },
-  "operator": "*=",
+  "operator": "/=",
   "right": StringLiteral {
     "type": "StringLiteral",
     "value": "\\"vacel\\"",
