@@ -2394,58 +2394,6 @@ DurationLiteral {
 }
 `;
 
-exports[`(DurationLiteral) month: month 1`] = `
-ConcatExpression {
-  "body": Array [
-    NumericLiteral {
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
-      },
-      "type": "NumericLiteral",
-      "value": "1",
-    },
-    Identifier {
-      "loc": Object {
-        "end": Object {
-          "column": 2,
-          "line": 1,
-          "offset": 1,
-        },
-        "start": Object {
-          "column": 2,
-          "line": 1,
-          "offset": 1,
-        },
-      },
-      "name": "M",
-      "type": "Identifier",
-    },
-  ],
-  "loc": Object {
-    "end": Object {
-      "column": 2,
-      "line": 1,
-      "offset": 1,
-    },
-    "start": Object {
-      "column": 1,
-      "line": 1,
-      "offset": 0,
-    },
-  },
-  "type": "ConcatExpression",
-}
-`;
-
 exports[`(DurationLiteral) ms: ms 1`] = `
 DurationLiteral {
   "loc": Object {
@@ -2484,42 +2432,27 @@ DurationLiteral {
 }
 `;
 
+exports[`(DurationLiteral) with space between: with space between 1`] = `
+DurationLiteral {
+  "loc": Object {
+    "end": Object {
+      "column": 5,
+      "line": 1,
+      "offset": 4,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "DurationLiteral",
+  "value": "1m",
+}
+`;
+
 exports[`(DurationLiteral) year: year 1`] = `
-ConcatExpression {
-  "body": Array [
-    NumericLiteral {
-      "loc": Object {
-        "end": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 1,
-          "offset": 0,
-        },
-      },
-      "type": "NumericLiteral",
-      "value": "1",
-    },
-    Identifier {
-      "loc": Object {
-        "end": Object {
-          "column": 2,
-          "line": 1,
-          "offset": 1,
-        },
-        "start": Object {
-          "column": 2,
-          "line": 1,
-          "offset": 1,
-        },
-      },
-      "name": "Y",
-      "type": "Identifier",
-    },
-  ],
+DurationLiteral {
   "loc": Object {
     "end": Object {
       "column": 2,
@@ -2532,7 +2465,8 @@ ConcatExpression {
       "offset": 0,
     },
   },
-  "type": "ConcatExpression",
+  "type": "DurationLiteral",
+  "value": "1y",
 }
 `;
 
@@ -3974,27 +3908,27 @@ exports[`(IncludeStatement) basic: basic 1`] = `
 IncludeStatement {
   "loc": Object {
     "end": Object {
-      "column": 29,
+      "column": 27,
       "line": 1,
-      "offset": 28,
+      "offset": 26,
     },
     "start": Object {
-      "column": 3,
+      "column": 1,
       "line": 1,
-      "offset": 2,
+      "offset": 0,
     },
   },
   "module": StringLiteral {
     "loc": Object {
       "end": Object {
-        "column": 28,
+        "column": 26,
         "line": 1,
-        "offset": 27,
+        "offset": 25,
       },
       "start": Object {
-        "column": 11,
+        "column": 9,
         "line": 1,
-        "offset": 10,
+        "offset": 8,
       },
     },
     "type": "StringLiteral",
@@ -6120,14 +6054,14 @@ UnaryExpression {
   "argument": BooleanLiteral {
     "loc": Object {
       "end": Object {
-        "column": 7,
+        "column": 5,
         "line": 1,
-        "offset": 6,
+        "offset": 4,
       },
       "start": Object {
-        "column": 4,
+        "column": 2,
         "line": 1,
-        "offset": 3,
+        "offset": 1,
       },
     },
     "type": "BooleanLiteral",
@@ -6135,14 +6069,14 @@ UnaryExpression {
   },
   "loc": Object {
     "end": Object {
-      "column": 7,
+      "column": 5,
       "line": 1,
-      "offset": 6,
+      "offset": 4,
     },
     "start": Object {
-      "column": 3,
+      "column": 1,
       "line": 1,
-      "offset": 2,
+      "offset": 0,
     },
   },
   "operator": "!",
@@ -6155,14 +6089,14 @@ UnaryExpression {
   "argument": Identifier {
     "loc": Object {
       "end": Object {
-        "column": 12,
+        "column": 10,
         "line": 1,
-        "offset": 11,
+        "offset": 9,
       },
       "start": Object {
-        "column": 4,
+        "column": 2,
         "line": 1,
-        "offset": 3,
+        "offset": 1,
       },
     },
     "name": "condition",
@@ -6170,14 +6104,14 @@ UnaryExpression {
   },
   "loc": Object {
     "end": Object {
-      "column": 12,
+      "column": 10,
       "line": 1,
-      "offset": 11,
+      "offset": 9,
     },
     "start": Object {
-      "column": 3,
+      "column": 1,
       "line": 1,
-      "offset": 2,
+      "offset": 0,
     },
   },
   "operator": "!",

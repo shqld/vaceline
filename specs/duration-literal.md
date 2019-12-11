@@ -22,16 +22,16 @@ day
 1d
 ```
 
-month
-
-```vcl
-1M
-```
-
 year
 
 ```vcl
-1Y
+1y
+```
+
+with space between
+
+```vcl
+1   m
 ```
 
 ## abnormal

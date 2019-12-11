@@ -135,9 +135,7 @@ exports[`(BooleanExpression) format 1`] = `
 (req.http.Debug == "1")
 
 ---------- (output) --------------------------------------------------------------
-(
-  req.http.Debug == "1"
-)
+(req.http.Debug == "1")
 `;
 
 exports[`(BooleanExpression) format 2`] = `
@@ -145,10 +143,7 @@ exports[`(BooleanExpression) format 2`] = `
 (var.Debug && "1")
 
 ---------- (output) --------------------------------------------------------------
-(
-  var.Debug &&
-  "1"
-)
+(var.Debug && "1")
 `;
 
 exports[`(BooleanLiteral) format 1`] = `
@@ -257,18 +252,18 @@ exports[`(DurationLiteral) format 4`] = `
 
 exports[`(DurationLiteral) format 5`] = `
 ---------- (input) ---------------------------------------------------------------
-1M
+1y
 
 ---------- (output) --------------------------------------------------------------
-1 M
+1y
 `;
 
 exports[`(DurationLiteral) format 6`] = `
 ---------- (input) ---------------------------------------------------------------
-1Y
+1   m
 
 ---------- (output) --------------------------------------------------------------
-1 Y
+1m
 `;
 
 exports[`(ErrorStatement) format 1`] = `
@@ -324,9 +319,7 @@ exports[`(ExpressionStatement) format 4`] = `
 log(a);
 
 ---------- (output) --------------------------------------------------------------
-log(
-  a
-);
+log (a);
 `;
 
 exports[`(FunCallExpression) format 1`] = `
@@ -334,8 +327,7 @@ exports[`(FunCallExpression) format 1`] = `
 func("a")
 
 ---------- (output) --------------------------------------------------------------
-func(
-"a")
+func("a")
 `;
 
 exports[`(FunCallExpression) format 2`] = `
@@ -343,8 +335,7 @@ exports[`(FunCallExpression) format 2`] = `
 func  ("a")
 
 ---------- (output) --------------------------------------------------------------
-func(
-"a")
+func("a")
 `;
 
 exports[`(FunCallExpression) format 3`] = `
@@ -352,8 +343,7 @@ exports[`(FunCallExpression) format 3`] = `
 func("a", "b")
 
 ---------- (output) --------------------------------------------------------------
-func(
-"a", "b")
+func("a", "b")
 `;
 
 exports[`(FunCallExpression) format 4`] = `
@@ -361,8 +351,7 @@ exports[`(FunCallExpression) format 4`] = `
 if("a", "b", "c")
 
 ---------- (output) --------------------------------------------------------------
-if(
-"a", "b", "c")
+if("a", "b", "c")
 `;
 
 exports[`(Identifier) format 1`] = `
@@ -431,7 +420,7 @@ import module;
 
 exports[`(IncludeStatement) format 1`] = `
 ---------- (input) ---------------------------------------------------------------
-  include "external_library";
+include "external_library";
 
 ---------- (output) --------------------------------------------------------------
 include "external_library";
@@ -516,8 +505,10 @@ log "log" req.service_id "vaceline-log :: "
   {"	host:"} regsuball(req.http.X-Forwarded-Host, {"	"}, "");
 
 ---------- (output) --------------------------------------------------------------
-log"log" req.service_id "vaceline-log :: " {"	timestamp_us:"} time.start.usec {"	host:"} regsuball(
-req.http.X-Forwarded-Host, {"	"}, "");
+log "log" req.service_id "vaceline-log :: " {"	timestamp_us:"} time.start.usec {"	host:"} regsuball(req.http.X-Forwarded-Host,
+  {"	"},
+  ""
+);
 `;
 
 exports[`(LogicalExpression) format 1`] = `
@@ -525,8 +516,7 @@ exports[`(LogicalExpression) format 1`] = `
 req.http.Debug && "1"
 
 ---------- (output) --------------------------------------------------------------
-req.http.Debug &&
-"1"
+req.http.Debug && "1"
 `;
 
 exports[`(LogicalExpression) format 2`] = `
@@ -534,8 +524,7 @@ exports[`(LogicalExpression) format 2`] = `
 req.http.Debug || "1"
 
 ---------- (output) --------------------------------------------------------------
-req.http.Debug ||
-"1"
+req.http.Debug || "1"
 `;
 
 exports[`(LogicalExpression) format 3`] = `
@@ -543,9 +532,7 @@ exports[`(LogicalExpression) format 3`] = `
 req.http.Debug || "1" && "2"
 
 ---------- (output) --------------------------------------------------------------
-req.http.Debug ||
-"1" &&
-"2"
+req.http.Debug || "1" && "2"
 `;
 
 exports[`(Member) format 1`] = `
@@ -700,7 +687,7 @@ exports[`(SyntheticStatement) format 1`] = `
 synthetic "";
 
 ---------- (output) --------------------------------------------------------------
-synthetic"";
+synthetic "";
 `;
 
 exports[`(TableStatement) format 1`] = `
@@ -731,7 +718,7 @@ table vaceline_table {
 
 exports[`(UnaryExpression) format 1`] = `
 ---------- (input) ---------------------------------------------------------------
-  !true
+!true
 
 ---------- (output) --------------------------------------------------------------
 !true
@@ -739,7 +726,7 @@ exports[`(UnaryExpression) format 1`] = `
 
 exports[`(UnaryExpression) format 2`] = `
 ---------- (input) ---------------------------------------------------------------
-  !condition
+!condition
 
 ---------- (output) --------------------------------------------------------------
 !condition

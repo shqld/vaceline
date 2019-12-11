@@ -1,11 +1,11 @@
 boolean literal
 
 ```vcl
-  !true
+!true
 ```
 
 variable
 
 ```vcl
-  !condition
+!condition
 ```

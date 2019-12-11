@@ -833,22 +833,6 @@ DurationLiteral {
 }
 `;
 
-exports[`(DurationLiteral) month 1`] = `
-ConcatExpression {
-  "body": Array [
-    NumericLiteral {
-      "type": "NumericLiteral",
-      "value": "1",
-    },
-    Identifier {
-      "name": "M",
-      "type": "Identifier",
-    },
-  ],
-  "type": "ConcatExpression",
-}
-`;
-
 exports[`(DurationLiteral) ms 1`] = `
 DurationLiteral {
   "type": "DurationLiteral",
@@ -863,19 +847,17 @@ DurationLiteral {
 }
 `;
 
+exports[`(DurationLiteral) with space between 1`] = `
+DurationLiteral {
+  "type": "DurationLiteral",
+  "value": "1m",
+}
+`;
+
 exports[`(DurationLiteral) year 1`] = `
-ConcatExpression {
-  "body": Array [
-    NumericLiteral {
-      "type": "NumericLiteral",
-      "value": "1",
-    },
-    Identifier {
-      "name": "Y",
-      "type": "Identifier",
-    },
-  ],
-  "type": "ConcatExpression",
+DurationLiteral {
+  "type": "DurationLiteral",
+  "value": "1y",
 }
 `;
 

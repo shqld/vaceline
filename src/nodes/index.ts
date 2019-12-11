@@ -318,12 +318,7 @@ export class BooleanExpression extends BaseExpression {
   }
 
   print() {
-    return b.concat([
-      '(',
-      b.indent(b.concat([b.softline, printAst(this.body)])),
-      b.softline,
-      ')',
-    ])
+    return b.concat(['(', b.indent(b.concat([printAst(this.body)])), ')'])
   }
 }
 
@@ -368,7 +363,6 @@ export class FunCallExpression extends BaseExpression {
     return b.concat([
       printAst(this.callee),
       '(',
-      b.softline,
       b.group(
         b.concat([
           b.indent(
@@ -452,7 +446,7 @@ export class LogicalExpression extends BaseExpression {
     return b.concat([
       printAst(this.left),
       ' ',
-      b.concat([this.operator, b.line, printAst(this.right)]),
+      b.concat([this.operator, ' ', printAst(this.right)]),
     ])
   }
 }
@@ -721,7 +715,7 @@ export class SyntheticStatement extends BaseStatement {
   }
 
   print() {
-    return b.concat(['synthetic', printAst(this.response), ';'])
+    return b.concat(['synthetic ', printAst(this.response), ';'])
   }
 }
 
@@ -740,7 +734,7 @@ export class LogStatement extends BaseStatement {
   }
 
   print() {
-    return b.concat(['log', printAst(this.content), ';'])
+    return b.concat(['log ', printAst(this.content), ';'])
   }
 }
 

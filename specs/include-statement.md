@@ -1,7 +1,7 @@
 basic
 
 ```vcl
-  include "external_library";
+include "external_library";
 ```
 
 ## abnormal
