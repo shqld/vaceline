@@ -26,7 +26,7 @@ add var.vacel *= "vacel";
 division
 
 ```vcl
-add var.vacel *= "vacel";
+add var.vacel /= "vacel";
 ```
 
 TODO: match, ...
