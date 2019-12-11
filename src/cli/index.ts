@@ -13,8 +13,6 @@ import * as utils from './utils'
 
 import { parse, transformFile } from '..'
 
-import '../polyfill'
-
 // const pipeline = promisify(stream.pipeline)
 const writeFile = fs.promises ? fs.promises.writeFile : promisify(fs.writeFile)
 
