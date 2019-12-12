@@ -13,7 +13,7 @@ export const parseIdentifier = (
       name: token!.value,
     }
   )
-): n.Member | n.ValuePair | n.Identifier => {
+): n.NodeWithLoc<n.Member | n.ValuePair | n.Identifier> => {
   // Member
   if (isToken(p.peek(), 'symbol', '.')) {
     p.take()

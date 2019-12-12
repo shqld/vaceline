@@ -20,7 +20,7 @@ export const parseExpr = (
   p: Parser,
   token: Token = p.read(),
   shortcut = false
-): n.Expression => {
+): n.NodeWithLoc<n.Expression> => {
   const expr = parseOperatorExpr(p, token)
 
   if (shortcut) return expr

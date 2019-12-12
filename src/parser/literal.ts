@@ -11,7 +11,7 @@ export const parseLiteral = (
   p: Parser,
   token: Token = p.read(),
   node: NodeWithLoc = p.startNode()
-): n.Literal | n.Ip | null => {
+): n.NodeWithLoc<n.Literal | n.Ip> | null => {
   if (token.type === 'boolean') {
     return p.finishNode(n.BooleanLiteral, node, {
       value: token.value,
