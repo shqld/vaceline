@@ -10,7 +10,7 @@ export const parseOperatorExpr = (
   p: Parser,
   token: Token = p.read(),
   shortcut = false
-): n.Expression => {
+): n.NodeWithLoc<n.Expression> => {
   const expr = parseHumbleExpr(p, token)
 
   if (shortcut) return expr
@@ -28,7 +28,7 @@ export const parseOperatorExpr = (
     isBinary: boolean
   }
 
-  const rpn: Array<n.Expression | OperatorToken> = [expr]
+  const rpn: Array<n.NodeWithLoc<n.Expression> | OperatorToken> = [expr]
   const opStack: Stack<OperatorToken> = []
 
   let op: OperatorToken | null
@@ -70,7 +70,7 @@ export const parseOperatorExpr = (
   }
 
   // calculate rpn
-  const stack: Stack<n.Expression> = []
+  const stack: Stack<n.NodeWithLoc<n.Expression>> = []
 
   for (let i = 0; i < rpn.length; i++) {
     const item = rpn[i]
@@ -89,7 +89,7 @@ export const parseOperatorExpr = (
       left,
       right,
       operator: item.value,
-    })
+    }) as n.NodeWithLoc<n.BinaryExpression | n.LogicalExpression>
 
     expr.loc = { start: left.loc.start, end: right.loc.end }
 

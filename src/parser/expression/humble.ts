@@ -12,7 +12,7 @@ export const parseHumbleExpr = (
   p: Parser,
   token: Token = p.read(),
   node: n.NodeWithLoc = p.startNode()
-): n.Expression => {
+): n.NodeWithLoc<n.Expression> => {
   const literal = parseLiteral(p, token)
 
   if (literal) return literal

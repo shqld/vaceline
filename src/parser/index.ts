@@ -26,8 +26,8 @@ export const parse = (source: string): Program => new Parser(source).parse()
 export class Parser extends TokenReader {
   source: string
 
-  constructor(source: string, opts: { keywords?: Array<string> } = {}) {
-    const tokens = new Tokenizer(source, opts).tokenize()
+  constructor(source: string /* opts: { keywords?: Array<string> } = {} */) {
+    const tokens = new Tokenizer(source).tokenize()
 
     super(tokens)
 
