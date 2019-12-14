@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 
-import fs, { promises, read } from 'fs'
+import fs from 'fs'
 import path from 'path'
 import * as stream from 'stream'
 import { promisify } from 'util'
@@ -8,7 +8,7 @@ import { promisify } from 'util'
 import mkdirp from 'mkdirp'
 import debug from 'debug'
 
-import { optionParser, Options } from './options'
+import { optionParser } from './options'
 import * as utils from './utils'
 
 import { parse, transformFile } from '..'
@@ -40,7 +40,7 @@ async function main() {
       : [opts.source]
     : ['/dev/stdin']
 
-  let writings: Array<Promise<void>> = []
+  const writings: Array<Promise<void>> = []
 
   if (shouldOutputToFile && !fs.existsSync(opts.d)) mkdirp.sync(opts.d)
 
@@ -76,7 +76,7 @@ async function main() {
               'index.vcl'
         ) + additionalExt
 
-      writings!.push(writeFile(outputPath, output))
+      writings.push(writeFile(outputPath, output))
 
       continue
     }
@@ -90,13 +90,14 @@ async function main() {
     )
   }
 
-  await Promise.all(writings!)
+  await Promise.all(writings)
 
-  console.log(`Successfully compiled ${writings!.length} files with Vaceline.`)
+  console.log(`Successfully compiled ${writings.length} files with Vaceline.`)
 }
 
 const logError = (err: Error) => console.error(err.stack)
-// @ts-ignore
+// eslint-disable-next-line
+// @ts-ignore wrong type info for `process.on` in node/global.d.ts
 process.on('unhandledRejection', logError)
 process.on('uncaughtException', logError)
 

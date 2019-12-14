@@ -60,7 +60,9 @@ export default (ast: Node) => {
           operator: '=',
           left: variable('req'),
           right: new StringLiteral({
-            value: `${node.loc!.start.line}:${node.loc!.start.column}`,
+            value: node.loc
+              ? `${node.loc.start.line}:${node.loc.start.column}`
+              : 'synthethic',
           }),
         })
 

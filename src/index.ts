@@ -17,7 +17,7 @@ interface TransformResult {
 
 export { parse, generate as transformFromAst }
 
-export const transform = (code: string, options = {}): TransformResult => {
+export const transform = (code: string /*, options = {}*/): TransformResult => {
   const ast = parse(code)
 
   const result: Partial<TransformResult> = generate(ast)
@@ -28,8 +28,8 @@ export const transform = (code: string, options = {}): TransformResult => {
 }
 
 export const transformFile = (
-  filePath: string,
-  options = {}
+  filePath: string
+  // options = {}
 ): TransformResult => {
   const inputPath = resolvePath(filePath)
   assert(existsSync(inputPath), 'File not found: ' + inputPath)

@@ -2,13 +2,14 @@ import * as n from '../../nodes'
 import { NodeWithLoc } from '../../nodes'
 import { isToken } from '../../utils/token'
 
-import { parseExpr, parseIdentifier } from '../expression'
+import { parseExpr } from '../expression'
 import { createError } from '../create-error'
 import { Parser } from '..'
 import { keywords, returnActions } from '../keywords'
 import { parseIp } from './ip'
 import { Token } from '../tokenizer'
 import { parseCompound } from '../compound'
+import { parseIdentifier } from '../expression/identifier'
 
 const ensureSemi = (p: Parser) => {
   p.validateToken(p.read(), 'symbol', ';')
@@ -96,13 +97,13 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
       'Member',
     ])
 
-    const valueType = p.validateToken(p.read(), 'ident').value
+    const valueType = p.validateToken(p.read(), 'ident')
+      .value as n.DeclareValueType
 
     ensureSemi(p)
 
     return p.finishNode(n.DeclareStatement, node, {
       id,
-      // @ts-ignore
       valueType,
     })
   }
@@ -131,7 +132,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
       )
     }
 
-    const action = returnActionToken.value as any
+    const action = returnActionToken.value as n.ReturnActionName
 
     ensureSemi(p)
 
@@ -247,7 +248,7 @@ const parseBackendDef = (p: Parser, token = p.read()): n.BackendDefinition => {
 
   let value
 
-  if (isToken(p.peek()!, 'symbol', '{')) {
+  if (isToken(p.peek(), 'symbol', '{')) {
     p.take()
     value = parseCompound(p, parseBackendDef, '}')
   } else {

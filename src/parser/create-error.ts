@@ -1,5 +1,4 @@
 import chalk from 'chalk'
-import { assert } from '../utils/assert'
 import { Position } from '../nodes'
 
 const MARGIN = 2
@@ -31,7 +30,7 @@ export const createError = (
     ' '.repeat('> '.length + pad + ' | '.length + loc.column - 1) +
     chalk.redBright.bold(VERTICAL_MARK.repeat(loc.range))
 
-  const errorLocationDisplay: Array<String> = []
+  const errorLocationDisplay: Array<string> = []
 
   lines.slice(topLine, bottomLine).forEach((lineStr, num) => {
     const currentLine = topLine + num + 1

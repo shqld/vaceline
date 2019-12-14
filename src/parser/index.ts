@@ -70,7 +70,7 @@ export class Parser extends TokenReader {
     node: NodeWithLoc,
     values: PlainNode<N>
   ): NodeWithLoc<N> {
-    node.loc.end = this.getCurrentToken()!.loc.end
+    node.loc.end = this.getCurrentToken().loc.end
 
     const finished = new type(values)
 
@@ -86,14 +86,14 @@ export class Parser extends TokenReader {
   }
 
   validateNode<T extends Array<NodeType>>(
-    node: Node,
+    node: NodeWithLoc,
     type: T,
     message?: string
   ): NodeMap[T[number]] {
     if (!isNode(node, type)) {
       message = 'expected ' + type.join(', ') + (message ? message : '')
 
-      const loc = node.loc!
+      const loc = node.loc
 
       throw createError(this.source, message, loc.start, loc.end)
     }
