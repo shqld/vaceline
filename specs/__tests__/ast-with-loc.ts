@@ -1,4 +1,4 @@
-import { testdocs } from './helpers/snapshot'
+import { testdocs } from '../../__tests__/helpers/snapshot'
 
 for (const testdoc of testdocs) {
   for (const testcase of testdoc.basic) {

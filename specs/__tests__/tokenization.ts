@@ -1,5 +1,5 @@
-import { testdocs } from './helpers/snapshot'
-import { Tokenizer, Token } from '../src/parser/tokenizer'
+import { testdocs } from '../../__tests__/helpers/snapshot'
+import { Tokenizer, Token } from '../../src/parser/tokenizer'
 
 for (const testdoc of testdocs) {
   for (const testcase of testdoc.basic) {
