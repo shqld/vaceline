@@ -23,7 +23,7 @@ export const parseIp = (p: Parser, token = p.read()) => {
 
   let cidr = undefined
 
-  if (isToken(p.peek()!, 'symbol', '/')) {
+  if (isToken(p.peek(), 'symbol', '/')) {
     p.take()
 
     const token = p.validateToken(p.read(), 'numeric')

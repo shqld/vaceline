@@ -1,5 +1,5 @@
 import { Parser } from '../../src/parser'
-import { parseExpr } from '../../src/parser/expression'
+import { parseExpr } from '../../src/parser/expression/index'
 import {
   BinaryExpression,
   LogicalExpression,

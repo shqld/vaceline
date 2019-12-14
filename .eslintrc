@@ -24,7 +24,8 @@
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/member-delimiter-style": "off",
     "@typescript-eslint/explicit-member-accessibility": "off",
-    "@typescript-eslint/array-type": ["error", "generic"],
-    "@typescript-eslint/no-use-before-define": "warn"
+    "@typescript-eslint/array-type": ["error", { "default": "generic" }],
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/no-non-null-assertion": "error"
   }
 }

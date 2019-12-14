@@ -61,8 +61,4 @@ export class TokenReader {
   take(): void {
     this.cur++
   }
-
-  isNextEOF(): boolean {
-    return this.tokens.length <= this.cur + 1
-  }
 }

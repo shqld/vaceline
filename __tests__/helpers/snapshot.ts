@@ -17,7 +17,7 @@ import {
 } from '../../src/nodes'
 // @ts-ignore
 import { parse as parseMarkdown } from '@textlint/markdown-to-ast'
-import { parseExpr } from '../../src/parser/expression'
+import { parseExpr } from '../../src/parser/expression/index'
 import { parseStmt } from '../../src/parser/statement'
 import { parse as parseNode } from '../../src'
 import { Parser } from '../../src/parser'

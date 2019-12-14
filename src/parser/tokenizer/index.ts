@@ -1,5 +1,5 @@
 import { createError } from '../create-error'
-import { Location, Position } from '../../nodes'
+import { Location } from '../../nodes'
 import { operators } from './operators'
 import { buildDebug } from '../../utils/debug'
 
@@ -54,7 +54,7 @@ export class Tokenizer {
   raw: string
   source: ReadonlyArray<string>
 
-  constructor(raw: string, opts: { keywords?: Array<string> } = {}) {
+  constructor(raw: string /* opts: { keywords?: Array<string> } = {} */) {
     this.raw = raw
     this.source = raw.split(reSplitter)
 
@@ -97,28 +97,21 @@ export class Tokenizer {
         continue
       }
 
-      let err: string
-
-      let startOffset: number,
-        startLine: number,
-        startColumn: number,
-        endOffset: number,
-        endLine: number,
-        endColumn: number
+      let err: string | undefined = undefined
 
       /** determine token start */
 
-      startOffset = offset
-      startLine = line
-      startColumn = column
+      const startOffset = offset
+      const startLine = line
+      const startColumn = column
 
       /** determine token type */
 
       let type: TokenType
 
-      if (matchers.symbols.has(str as any)) {
+      if ((matchers.symbols as Set<string>).has(str)) {
         type = 'symbol'
-      } else if (matchers.operators.has(str as any)) {
+      } else if ((matchers.operators as Set<string>).has(str)) {
         type = 'operator'
       } else if (/^(true|false)$/.test(str)) {
         type = 'boolean'
@@ -134,7 +127,7 @@ export class Tokenizer {
 
         // string can have newline inside
         const lines = str.split('\n')
-        line += lines!.length - 1
+        line += lines.length - 1
         column = lines[lines.length - 1].length - (str.length - 1)
       } else if (/^[\d.]+$/.test(str)) {
         type = 'numeric'
@@ -155,11 +148,10 @@ export class Tokenizer {
 
       /** determine token end */
 
-      endOffset = offset - 1
-      endLine = line
-      endColumn = column - 1
+      const endOffset = offset - 1
+      const endLine = line
+      const endColumn = column - 1
 
-      // @ts-ignore
       if (err) {
         throw createError(
           this.raw,

@@ -7,7 +7,7 @@ export const parseCompound = <T>(
   parse: (p: Parser, token: Token) => T,
   until?: string,
   delimiter?: string,
-  semi: boolean = false
+  semi = false
 ): Array<T> => {
   const compound: Array<T> = []
 

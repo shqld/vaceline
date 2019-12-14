@@ -19,7 +19,7 @@ export const parseLiteral = (
   }
 
   if (token.type === 'string') {
-    if (isToken(p.peek()!, 'symbol', '/')) {
+    if (isToken(p.peek(), 'symbol', '/')) {
       return parseIp(p, token)
     }
 
@@ -29,7 +29,7 @@ export const parseLiteral = (
   }
 
   if (token.type === 'numeric') {
-    if (isToken(p.peek()!, 'ident', /ms|s|m|h|d|y/)) {
+    if (isToken(p.peek(), 'ident', /ms|s|m|h|d|y/)) {
       return p.finishNode(n.DurationLiteral, node, {
         value: token.value + p.read().value,
       })

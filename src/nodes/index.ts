@@ -1,4 +1,3 @@
-import { Token } from '../parser/tokenizer'
 import { builders as b } from '../generator'
 import { Doc } from 'prettier'
 import { flatten } from 'array-flatten'
@@ -527,10 +526,17 @@ export class CallStatement extends BaseStatement {
   }
 }
 
+export type DeclareValueType =
+  | 'STRING'
+  | 'BOOL'
+  | 'BOOLEAN'
+  | 'INTEGER'
+  | 'FLOAT'
+
 export class DeclareStatement extends BaseStatement {
   type = 'DeclareStatement' as const
   id: Identifier | Member
-  valueType: 'STRING' | 'BOOL' | 'BOOLEAN' | 'INTEGER' | 'FLOAT'
+  valueType: DeclareValueType
 
   constructor(obj: PlainNode<DeclareStatement>) {
     super()
@@ -636,9 +642,16 @@ export class UnsetStatement extends BaseStatement {
   }
 }
 
+export type ReturnActionName =
+  | 'pass'
+  | 'hit_for_pass'
+  | 'lookup'
+  | 'pipe'
+  | 'deliver'
+
 export class ReturnStatement extends BaseStatement {
   type = 'ReturnStatement' as const
-  action: 'pass' | 'hit_for_pass' | 'lookup' | 'pipe' | 'deliver'
+  action: ReturnActionName
 
   constructor(obj: PlainNode<ReturnStatement>) {
     super()
@@ -674,11 +687,14 @@ export class ErrorStatement extends BaseStatement {
 
   print() {
     return b.concat([
-      b.join(' ', [
-        'error',
-        this.status.toString(),
-        this.message && printAst(this.message),
-      ].filter(Boolean) as Doc[]),
+      b.join(
+        ' ',
+        [
+          'error',
+          this.status.toString(),
+          this.message && printAst(this.message),
+        ].filter(Boolean) as Array<Doc>
+      ),
       ';',
     ])
   }
@@ -687,7 +703,7 @@ export class ErrorStatement extends BaseStatement {
 export class RestartStatement extends BaseStatement {
   type = 'RestartStatement' as const
 
-  constructor(obj: PlainNode<RestartStatement>) {
+  constructor(/* obj: PlainNode<RestartStatement> */) {
     super()
   }
 
@@ -885,7 +901,10 @@ export class BackendDefinition extends BaseNode {
           b.indent(
             b.concat([
               b.hardline,
-              b.join(b.hardline, this.value.map((v) => v.print())),
+              b.join(
+                b.hardline,
+                this.value.map((v) => v.print())
+              ),
             ])
           ),
           b.hardline,
@@ -931,7 +950,10 @@ export class BackendStatement extends BaseStatement {
         b.indent(
           b.concat([
             b.hardline,
-            b.join(b.hardline, this.body.map((d) => d.print())),
+            b.join(
+              b.hardline,
+              this.body.map((d) => d.print())
+            ),
           ])
         ),
         b.hardline,
@@ -941,7 +963,10 @@ export class BackendStatement extends BaseStatement {
   }
 }
 
-export type TableDef = { key: string; value: string }
+export interface TableDef {
+  key: string
+  value: string
+}
 
 export class TableStatement extends BaseStatement {
   type = 'TableStatement' as const

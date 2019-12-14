@@ -1,6 +1,34 @@
-import { Node, BaseNode } from '../nodes'
+import { BaseNode } from '../nodes'
 import { NodePath, TraversalContext, Handler } from './path'
-import { assert } from '../utils/assert'
+
+export const traverseNode = (
+  node: BaseNode,
+  callback: (path: NodePath, context: TraversalContext) => void,
+  context: TraversalContext = {
+    parent: null,
+    parentPath: null,
+    inList: false,
+    state: null,
+  }
+): void => {
+  const path = new NodePath(node, context)
+
+  // If sobroutine, ..., then set `inList` true
+
+  callback(path, context)
+
+  const nextNodes = node.next()
+
+  for (const nextNode of nextNodes) {
+    if (!nextNode) continue
+
+    traverseNode(nextNode, callback, {
+      ...context,
+      parent: node,
+      parentPath: path,
+    })
+  }
+}
 
 export const traverse = (
   ast: BaseNode,
@@ -37,33 +65,4 @@ export const createPathArray = (
   traverseNode(ast, appendPath, context)
 
   return paths
-}
-
-export const traverseNode = (
-  node: BaseNode,
-  callback: (path: NodePath, context: TraversalContext) => void,
-  context: TraversalContext = {
-    parent: null,
-    parentPath: null,
-    inList: false,
-    state: null,
-  }
-): void => {
-  const path = new NodePath(node, context)
-
-  // If sobroutine, ..., then set `inList` true
-
-  callback(path, context)
-
-  const nextNodes = node.next()
-
-  for (const nextNode of nextNodes) {
-    if (!nextNode) continue
-
-    traverseNode(nextNode, callback, {
-      ...context,
-      parent: node,
-      parentPath: path,
-    })
-  }
 }
