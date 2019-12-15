@@ -34,7 +34,7 @@
     "scope-enum": [
       2,
       "always",
-      ["parser", "generator", "traverser", "plugin", "spec"]
+      ["ast", "spec", "parser", "generator", "traverser", "plugin", "cli"]
     ]
   }
 }
