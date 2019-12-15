@@ -1827,8 +1827,21 @@ SyntheticStatement {
 exports[`(TableStatement) single key-value 1`] = `
 TableStatement {
   "body": Array [
-    Object {
+    TableDefinition {
       "key": "\\"key\\"",
+      "loc": Object {
+        "end": Object {
+          "column": 16,
+          "line": 2,
+          "offset": 38,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 2,
+          "offset": 25,
+        },
+      },
+      "type": "TableDefinition",
       "value": "\\"value\\"",
     },
   ],
@@ -1843,12 +1856,38 @@ TableStatement {
 exports[`(TableStatement) single key-values 1`] = `
 TableStatement {
   "body": Array [
-    Object {
+    TableDefinition {
       "key": "\\"key\\"",
+      "loc": Object {
+        "end": Object {
+          "column": 17,
+          "line": 2,
+          "offset": 39,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 2,
+          "offset": 25,
+        },
+      },
+      "type": "TableDefinition",
       "value": "\\"value\\"",
     },
-    Object {
+    TableDefinition {
       "key": "\\"key2\\"",
+      "loc": Object {
+        "end": Object {
+          "column": 18,
+          "line": 3,
+          "offset": 58,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 3,
+          "offset": 43,
+        },
+      },
+      "type": "TableDefinition",
       "value": "\\"value2\\"",
     },
   ],

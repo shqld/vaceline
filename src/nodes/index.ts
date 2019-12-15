@@ -963,15 +963,31 @@ export class BackendStatement extends BaseStatement {
   }
 }
 
-export interface TableDef {
+export class TableDefinition extends BaseNode {
+  type = 'TableDefinition' as const
   key: string
   value: string
+
+  next() {
+    return []
+  }
+
+  constructor(obj: PlainNode<TableDefinition>) {
+    super()
+
+    this.key = obj.key
+    this.value = obj.value
+  }
+
+  print() {
+    return b.concat([this.key, ':', this.value])
+  }
 }
 
 export class TableStatement extends BaseStatement {
   type = 'TableStatement' as const
   id: Identifier
-  body: Array<TableDef>
+  body: Array<TableDefinition>
 
   constructor(obj: PlainNode<TableStatement>) {
     super()
@@ -994,7 +1010,7 @@ export class TableStatement extends BaseStatement {
           b.hardline,
           b.join(
             b.concat([',', b.hardline]),
-            this.body.map((td) => b.concat([td.key, ':', td.value]))
+            this.body.map((td) => printAst(td))
           ),
           // TODO: handle trailing comma
           // ',',
@@ -1041,5 +1057,6 @@ export const map = {
   AclStatement,
   BackendDefinition,
   BackendStatement,
+  TableDefinition,
   TableStatement,
 } as const
