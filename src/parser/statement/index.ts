@@ -296,7 +296,9 @@ const parseIfStatement = (p: Parser, node: NodeWithLoc): n.IfStatement => {
   })
 }
 
-const parseTableDef = (p: Parser, token: Token): n.TableDef => {
+const parseTableDef = (p: Parser, token: Token): n.TableDefinition => {
+  const node = p.startNode()
+
   const key = p.validateToken(token, 'string').value
 
   p.validateToken(p.read(), 'symbol', ':')
@@ -307,10 +309,10 @@ const parseTableDef = (p: Parser, token: Token): n.TableDef => {
     p.take()
   }
 
-  return {
+  return p.finishNode(n.TableDefinition, node, {
     key,
     value,
-  }
+  })
 }
 
 const parseTableStatement = (
