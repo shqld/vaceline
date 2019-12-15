@@ -1,6 +1,5 @@
 import { builders as b } from '../generator'
 import { Doc } from 'prettier'
-import { flatten } from 'array-flatten'
 
 export interface Position {
   offset: number
@@ -74,11 +73,21 @@ export type Statement =
   | BackendStatement
   | TableStatement
 
+const flat = <T>(arr: Array<T>) =>
+  arr.reduce((acc, cur) => acc.concat(cur), [] as Array<T>)
+
 export abstract class BaseNode {
   type!: string
   loc?: Location
 
-  abstract next(): Array<BaseNode | undefined>
+  next(): Array<Node> {
+    return flat(
+      Object.values(this).filter(
+        (v) => Array.isArray(v) || v instanceof BaseNode
+      )
+    )
+  }
+
   abstract print(): Doc
 
   static build<T extends NodeType, N extends NodeMap[T]>(
@@ -106,10 +115,6 @@ export class Program extends BaseNode {
     this.body = obj.body
   }
 
-  next() {
-    return this.body
-  }
-
   print() {
     return b.join(b.hardline, this.body.map(printAst))
   }
@@ -123,10 +128,6 @@ export class BooleanLiteral extends BaseLiteral {
     super()
 
     this.value = obj.value
-  }
-
-  next() {
-    return []
   }
 
   print() {
@@ -144,10 +145,6 @@ export class StringLiteral extends BaseLiteral {
     this.value = obj.value
   }
 
-  next() {
-    return []
-  }
-
   print() {
     return this.value
   }
@@ -161,10 +158,6 @@ export class MultilineLiteral extends BaseLiteral {
     super()
 
     this.value = obj.value
-  }
-
-  next() {
-    return []
   }
 
   print() {
@@ -182,10 +175,6 @@ export class DurationLiteral extends BaseLiteral {
     this.value = obj.value
   }
 
-  next() {
-    return []
-  }
-
   print() {
     return this.value
   }
@@ -201,10 +190,6 @@ export class NumericLiteral extends BaseLiteral {
     this.value = obj.value
   }
 
-  next() {
-    return []
-  }
-
   print() {
     return this.value
   }
@@ -218,10 +203,6 @@ export class Identifier extends BaseExpression {
     super()
 
     this.name = obj.name
-  }
-
-  next() {
-    return []
   }
 
   print() {
@@ -241,10 +222,6 @@ export class Ip extends BaseExpression {
     this.cidr = obj.cidr
   }
 
-  next() {
-    return []
-  }
-
   print() {
     return this.cidr ? `"${this.value}"/${this.cidr}` : `"${this.value}"`
   }
@@ -260,10 +237,6 @@ export class Member extends BaseExpression {
 
     this.base = obj.base
     this.member = obj.member
-  }
-
-  next() {
-    return [this.base, this.member]
   }
 
   print() {
@@ -288,10 +261,6 @@ export class ValuePair extends BaseExpression {
     this.name = obj.name
   }
 
-  next() {
-    return [this.base, this.name]
-  }
-
   print() {
     return b.concat([
       printAst(this.base),
@@ -312,10 +281,6 @@ export class BooleanExpression extends BaseExpression {
     this.body = obj.body
   }
 
-  next() {
-    return [this.body]
-  }
-
   print() {
     return b.concat(['(', b.indent(b.concat([printAst(this.body)])), ')'])
   }
@@ -333,10 +298,6 @@ export class UnaryExpression extends BaseExpression {
     this.argument = obj.argument
   }
 
-  next() {
-    return [this.argument]
-  }
-
   print() {
     return b.concat([this.operator, printAst(this.argument)])
   }
@@ -352,10 +313,6 @@ export class FunCallExpression extends BaseExpression {
 
     this.callee = obj.callee
     this.arguments = obj.arguments
-  }
-
-  next() {
-    return [this.callee, ...this.arguments]
   }
 
   print() {
@@ -387,10 +344,6 @@ export class ConcatExpression extends BaseExpression {
     this.body = obj.body
   }
 
-  next() {
-    return this.body
-  }
-
   print() {
     return b.join(' ', this.body.map(printAst))
   }
@@ -408,10 +361,6 @@ export class BinaryExpression extends BaseExpression {
     this.left = obj.left
     this.right = obj.right
     this.operator = obj.operator
-  }
-
-  next() {
-    return [this.left, this.right]
   }
 
   print() {
@@ -437,10 +386,6 @@ export class LogicalExpression extends BaseExpression {
     this.operator = obj.operator
   }
 
-  next() {
-    return [this.left, this.right]
-  }
-
   print() {
     return b.concat([
       printAst(this.left),
@@ -460,10 +405,6 @@ export class ExpressionStatement extends BaseStatement {
     this.body = obj.body
   }
 
-  next() {
-    return [this.body]
-  }
-
   print() {
     return b.concat([printAst(this.body), ';'])
   }
@@ -477,10 +418,6 @@ export class IncludeStatement extends BaseStatement {
     super()
 
     this.module = obj.module
-  }
-
-  next() {
-    return [this.module]
   }
 
   print() {
@@ -498,10 +435,6 @@ export class ImportStatement extends BaseStatement {
     this.module = obj.module
   }
 
-  next() {
-    return [this.module]
-  }
-
   print() {
     return b.concat(['import ', printAst(this.module), ';'])
   }
@@ -515,10 +448,6 @@ export class CallStatement extends BaseStatement {
     super()
 
     this.subroutine = obj.subroutine
-  }
-
-  next() {
-    return [this.subroutine]
   }
 
   print() {
@@ -545,10 +474,6 @@ export class DeclareStatement extends BaseStatement {
     this.valueType = obj.valueType
   }
 
-  next() {
-    return [this.id]
-  }
-
   print() {
     return b.concat([
       'declare ',
@@ -573,10 +498,6 @@ export class AddStatement extends BaseStatement {
     this.left = obj.left
     this.right = obj.right
     this.operator = obj.operator
-  }
-
-  next() {
-    return [this.left, this.right]
   }
 
   print() {
@@ -606,10 +527,6 @@ export class SetStatement extends BaseStatement {
     this.operator = obj.operator
   }
 
-  next() {
-    return [this.left, this.right]
-  }
-
   print() {
     return b.concat([
       'set ',
@@ -631,10 +548,6 @@ export class UnsetStatement extends BaseStatement {
     super()
 
     this.id = obj.id
-  }
-
-  next() {
-    return [this.id]
   }
 
   print() {
@@ -659,10 +572,6 @@ export class ReturnStatement extends BaseStatement {
     this.action = obj.action
   }
 
-  next() {
-    return []
-  }
-
   print() {
     // TODO: handle the optional parens
     return b.concat(['return ', '(', this.action, ')', ';'])
@@ -679,10 +588,6 @@ export class ErrorStatement extends BaseStatement {
 
     this.status = obj.status
     this.message = obj.message
-  }
-
-  next() {
-    return [this.message]
   }
 
   print() {
@@ -707,10 +612,6 @@ export class RestartStatement extends BaseStatement {
     super()
   }
 
-  next() {
-    return []
-  }
-
   print() {
     return 'restart;'
   }
@@ -726,10 +627,6 @@ export class SyntheticStatement extends BaseStatement {
     this.response = obj.response
   }
 
-  next() {
-    return [this.response]
-  }
-
   print() {
     return b.concat(['synthetic ', printAst(this.response), ';'])
   }
@@ -743,10 +640,6 @@ export class LogStatement extends BaseStatement {
     super()
 
     this.content = obj.content
-  }
-
-  next() {
-    return [this.content]
   }
 
   print() {
@@ -766,12 +659,6 @@ export class IfStatement extends BaseStatement {
     this.test = obj.test
     this.consequent = obj.consequent
     this.alternative = obj.alternative
-  }
-
-  next() {
-    return flatten(
-      [this.test, ...this.consequent, this.alternative].filter(Boolean)
-    )
   }
 
   print() {
@@ -822,10 +709,6 @@ export class SubroutineStatement extends BaseStatement {
     this.body = obj.body
   }
 
-  next() {
-    return [this.id, ...this.body]
-  }
-
   print() {
     return b.concat([
       'sub ',
@@ -850,10 +733,6 @@ export class AclStatement extends BaseStatement {
 
     this.id = obj.id
     this.body = obj.body
-  }
-
-  next() {
-    return [this.id, ...this.body]
   }
 
   print() {
@@ -886,12 +765,6 @@ export class BackendDefinition extends BaseNode {
 
     this.key = obj.key
     this.value = obj.value
-  }
-
-  next() {
-    return Array.isArray(this.value)
-      ? this.value.map((d) => d.value as Expression)
-      : [this.value]
   }
 
   print(): Doc {
@@ -928,18 +801,6 @@ export class BackendStatement extends BaseStatement {
     this.body = obj.body
   }
 
-  next() {
-    const bodies = flatten(
-      this.body.map((b) =>
-        Array.isArray(b.value) ? b.value.map((def) => def.value) : b.value
-      )
-    )
-
-    bodies.unshift(this.id)
-
-    return bodies
-  }
-
   print() {
     return b.concat([
       'backend ',
@@ -968,10 +829,6 @@ export class TableDefinition extends BaseNode {
   key: string
   value: string
 
-  next() {
-    return []
-  }
-
   constructor(obj: PlainNode<TableDefinition>) {
     super()
 
@@ -994,10 +851,6 @@ export class TableStatement extends BaseStatement {
 
     this.id = obj.id
     this.body = obj.body
-  }
-
-  next() {
-    return [this.id]
   }
 
   print() {

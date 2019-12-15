@@ -138,18 +138,6 @@ BackendStatement {
   "body": Array [
     BackendDefinition {
       "key": "connect_timeout",
-      "loc": Object {
-        "end": Object {
-          "column": 24,
-          "line": 2,
-          "offset": 50,
-        },
-        "start": Object {
-          "column": 3,
-          "line": 2,
-          "offset": 29,
-        },
-      },
       "type": "BackendDefinition",
       "value": DurationLiteral {
         "type": "DurationLiteral",
@@ -158,18 +146,6 @@ BackendStatement {
     },
     BackendDefinition {
       "key": "dynamic",
-      "loc": Object {
-        "end": Object {
-          "column": 18,
-          "line": 3,
-          "offset": 69,
-        },
-        "start": Object {
-          "column": 3,
-          "line": 3,
-          "offset": 54,
-        },
-      },
       "type": "BackendDefinition",
       "value": BooleanLiteral {
         "type": "BooleanLiteral",
@@ -178,18 +154,6 @@ BackendStatement {
     },
     BackendDefinition {
       "key": "port",
-      "loc": Object {
-        "end": Object {
-          "column": 16,
-          "line": 4,
-          "offset": 86,
-        },
-        "start": Object {
-          "column": 3,
-          "line": 4,
-          "offset": 73,
-        },
-      },
       "type": "BackendDefinition",
       "value": StringLiteral {
         "type": "StringLiteral",
@@ -198,18 +162,6 @@ BackendStatement {
     },
     BackendDefinition {
       "key": "host",
-      "loc": Object {
-        "end": Object {
-          "column": 24,
-          "line": 5,
-          "offset": 111,
-        },
-        "start": Object {
-          "column": 3,
-          "line": 5,
-          "offset": 90,
-        },
-      },
       "type": "BackendDefinition",
       "value": StringLiteral {
         "type": "StringLiteral",
@@ -218,18 +170,6 @@ BackendStatement {
     },
     BackendDefinition {
       "key": "first_byte_timeout",
-      "loc": Object {
-        "end": Object {
-          "column": 27,
-          "line": 6,
-          "offset": 139,
-        },
-        "start": Object {
-          "column": 3,
-          "line": 6,
-          "offset": 115,
-        },
-      },
       "type": "BackendDefinition",
       "value": DurationLiteral {
         "type": "DurationLiteral",
@@ -238,18 +178,6 @@ BackendStatement {
     },
     BackendDefinition {
       "key": "max_connections",
-      "loc": Object {
-        "end": Object {
-          "column": 25,
-          "line": 7,
-          "offset": 165,
-        },
-        "start": Object {
-          "column": 3,
-          "line": 7,
-          "offset": 143,
-        },
-      },
       "type": "BackendDefinition",
       "value": NumericLiteral {
         "type": "NumericLiteral",
@@ -258,18 +186,6 @@ BackendStatement {
     },
     BackendDefinition {
       "key": "between_bytes_timeout",
-      "loc": Object {
-        "end": Object {
-          "column": 31,
-          "line": 8,
-          "offset": 197,
-        },
-        "start": Object {
-          "column": 3,
-          "line": 8,
-          "offset": 169,
-        },
-      },
       "type": "BackendDefinition",
       "value": DurationLiteral {
         "type": "DurationLiteral",
@@ -278,18 +194,6 @@ BackendStatement {
     },
     BackendDefinition {
       "key": "ssl",
-      "loc": Object {
-        "end": Object {
-          "column": 14,
-          "line": 9,
-          "offset": 212,
-        },
-        "start": Object {
-          "column": 3,
-          "line": 9,
-          "offset": 201,
-        },
-      },
       "type": "BackendDefinition",
       "value": BooleanLiteral {
         "type": "BooleanLiteral",
@@ -298,34 +202,10 @@ BackendStatement {
     },
     BackendDefinition {
       "key": "probe",
-      "loc": Object {
-        "end": Object {
-          "column": 3,
-          "line": 18,
-          "offset": 474,
-        },
-        "start": Object {
-          "column": 3,
-          "line": 10,
-          "offset": 216,
-        },
-      },
       "type": "BackendDefinition",
       "value": Array [
         BackendDefinition {
           "key": "request",
-          "loc": Object {
-            "end": Object {
-              "column": 118,
-              "line": 11,
-              "offset": 344,
-            },
-            "start": Object {
-              "column": 5,
-              "line": 11,
-              "offset": 231,
-            },
-          },
           "type": "BackendDefinition",
           "value": ConcatExpression {
             "body": Array [
@@ -351,18 +231,6 @@ BackendStatement {
         },
         BackendDefinition {
           "key": "threshold",
-          "loc": Object {
-            "end": Object {
-              "column": 19,
-              "line": 12,
-              "offset": 364,
-            },
-            "start": Object {
-              "column": 5,
-              "line": 12,
-              "offset": 350,
-            },
-          },
           "type": "BackendDefinition",
           "value": NumericLiteral {
             "type": "NumericLiteral",
@@ -371,18 +239,6 @@ BackendStatement {
         },
         BackendDefinition {
           "key": "window",
-          "loc": Object {
-            "end": Object {
-              "column": 16,
-              "line": 13,
-              "offset": 381,
-            },
-            "start": Object {
-              "column": 5,
-              "line": 13,
-              "offset": 370,
-            },
-          },
           "type": "BackendDefinition",
           "value": NumericLiteral {
             "type": "NumericLiteral",
@@ -391,18 +247,6 @@ BackendStatement {
         },
         BackendDefinition {
           "key": "timeout",
-          "loc": Object {
-            "end": Object {
-              "column": 19,
-              "line": 14,
-              "offset": 401,
-            },
-            "start": Object {
-              "column": 5,
-              "line": 14,
-              "offset": 387,
-            },
-          },
           "type": "BackendDefinition",
           "value": DurationLiteral {
             "type": "DurationLiteral",
@@ -411,18 +255,6 @@ BackendStatement {
         },
         BackendDefinition {
           "key": "initial",
-          "loc": Object {
-            "end": Object {
-              "column": 17,
-              "line": 15,
-              "offset": 419,
-            },
-            "start": Object {
-              "column": 5,
-              "line": 15,
-              "offset": 407,
-            },
-          },
           "type": "BackendDefinition",
           "value": NumericLiteral {
             "type": "NumericLiteral",
@@ -431,18 +263,6 @@ BackendStatement {
         },
         BackendDefinition {
           "key": "expected_response",
-          "loc": Object {
-            "end": Object {
-              "column": 29,
-              "line": 16,
-              "offset": 449,
-            },
-            "start": Object {
-              "column": 5,
-              "line": 16,
-              "offset": 425,
-            },
-          },
           "type": "BackendDefinition",
           "value": NumericLiteral {
             "type": "NumericLiteral",
@@ -451,18 +271,6 @@ BackendStatement {
         },
         BackendDefinition {
           "key": "interval",
-          "loc": Object {
-            "end": Object {
-              "column": 20,
-              "line": 17,
-              "offset": 470,
-            },
-            "start": Object {
-              "column": 5,
-              "line": 17,
-              "offset": 455,
-            },
-          },
           "type": "BackendDefinition",
           "value": DurationLiteral {
             "type": "DurationLiteral",
@@ -1829,18 +1637,6 @@ TableStatement {
   "body": Array [
     TableDefinition {
       "key": "\\"key\\"",
-      "loc": Object {
-        "end": Object {
-          "column": 16,
-          "line": 2,
-          "offset": 38,
-        },
-        "start": Object {
-          "column": 3,
-          "line": 2,
-          "offset": 25,
-        },
-      },
       "type": "TableDefinition",
       "value": "\\"value\\"",
     },
@@ -1858,35 +1654,11 @@ TableStatement {
   "body": Array [
     TableDefinition {
       "key": "\\"key\\"",
-      "loc": Object {
-        "end": Object {
-          "column": 17,
-          "line": 2,
-          "offset": 39,
-        },
-        "start": Object {
-          "column": 3,
-          "line": 2,
-          "offset": 25,
-        },
-      },
       "type": "TableDefinition",
       "value": "\\"value\\"",
     },
     TableDefinition {
       "key": "\\"key2\\"",
-      "loc": Object {
-        "end": Object {
-          "column": 18,
-          "line": 3,
-          "offset": 58,
-        },
-        "start": Object {
-          "column": 3,
-          "line": 3,
-          "offset": 43,
-        },
-      },
       "type": "TableDefinition",
       "value": "\\"value2\\"",
     },
