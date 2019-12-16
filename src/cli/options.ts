@@ -7,8 +7,9 @@ export interface Options {
   source: string
   stdin: boolean
   ast: boolean
-  d: string
+  outDir: string
   debug: boolean
+  silent: boolean
 }
 
 export const optionParser = yargs
@@ -61,9 +62,9 @@ export const optionParser = yargs
         desc: 'Output as AST',
         coerce: Boolean,
       })
-      .option('d', {
+      .option('out-dir', {
         type: 'string',
-        alias: 'out-dir',
+        alias: 'd',
         desc: 'Output dir',
         coerce: path.resolve,
         normalize: true,
@@ -74,6 +75,12 @@ export const optionParser = yargs
       //   desc: 'Output File',
       //   coerce: path.resolve,
       // })
+      .option('silent', {
+        type: 'boolean',
+        alias: 's',
+        desc: 'Disable any logging',
+        coerce: Boolean,
+      })
       .option('debug', {
         type: 'boolean',
         desc: 'Enable debug logging',
