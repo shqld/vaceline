@@ -8,7 +8,7 @@ import { promisify } from 'util'
 import mkdirp from 'mkdirp'
 import debug from 'debug'
 
-import { optionParser } from './options'
+import { optionParser, Options } from './options'
 import * as utils from './utils'
 
 import { parse, transformFile } from '..'
@@ -24,9 +24,8 @@ const createStream = (...strs: Array<string>) => {
   return readable
 }
 
-async function main() {
-  const opts = optionParser.argv
-  const shouldOutputToFile = !!opts.d
+async function main(opts: Options) {
+  const shouldOutputToFile = !!opts.outDir
 
   if (opts.debug === true) {
     debug.enable('vaceline:*')
@@ -42,7 +41,8 @@ async function main() {
 
   const writings: Array<Promise<void>> = []
 
-  if (shouldOutputToFile && !fs.existsSync(opts.d)) mkdirp.sync(opts.d)
+  if (shouldOutputToFile && !fs.existsSync(opts.outDir))
+    mkdirp.sync(opts.outDir)
 
   for (const filePath of inputPaths) {
     const readablePath =
@@ -50,20 +50,20 @@ async function main() {
         ? 'stdin'
         : path.relative(path.resolve(), filePath)
 
-    console.time(readablePath)
+    if (!opts.silent) console.time(readablePath)
 
     const output = opts.ast
       ? JSON.stringify(parse(fs.readFileSync(filePath, 'utf8')), null, 2)
       : transformFile(filePath).code
 
-    console.timeEnd(readablePath)
+    if (!opts.silent) console.timeEnd(readablePath)
 
     if (shouldOutputToFile) {
       const additionalExt = opts.ast ? '.json' : ''
 
       const outputPath =
         path.join(
-          opts.d,
+          opts.outDir,
           opts.source
             ? path.join(
                 opts.source === filePath
@@ -92,13 +92,16 @@ async function main() {
 
   await Promise.all(writings)
 
-  console.log(`Successfully compiled ${writings.length} files with Vaceline.`)
+  if (!opts.silent)
+    console.log(`Successfully compiled ${writings.length} files with Vaceline.`)
 }
 
-const logError = (err: Error) => console.error(err.stack)
+const opts = optionParser.argv
+
+const logError = (err: Error) => opts.silent || console.error(err.stack)
 // eslint-disable-next-line
 // @ts-ignore wrong type info for `process.on` in node/global.d.ts
 process.on('unhandledRejection', logError)
 process.on('uncaughtException', logError)
 
-main()
+main(opts)
