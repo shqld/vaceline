@@ -511,15 +511,19 @@ export class AddStatement extends BaseStatement {
   }
 
   print() {
-    return b.concat([
-      'add ',
-      printAst(this.left),
-      ' ',
-      this.operator,
-      ' ',
-      printAst(this.right),
-      ';',
-    ])
+    return b.group(
+      b.indent(
+        b.concat([
+          'add ',
+          printAst(this.left),
+          ' ',
+          this.operator,
+          b.line,
+          printAst(this.right),
+          ';',
+        ])
+      )
+    )
   }
 }
 
@@ -538,15 +542,19 @@ export class SetStatement extends BaseStatement {
   }
 
   print() {
-    return b.concat([
-      'set ',
-      printAst(this.left),
-      ' ',
-      this.operator,
-      ' ',
-      printAst(this.right),
-      ';',
-    ])
+    return b.group(
+      b.indent(
+        b.concat([
+          'set ',
+          printAst(this.left),
+          ' ',
+          this.operator,
+          b.line,
+          printAst(this.right),
+          ';',
+        ])
+      )
+    )
   }
 }
 
