@@ -682,9 +682,15 @@ export class IfStatement extends BaseStatement {
   print() {
     const doc: Array<Doc> = [
       'if ',
-      '(',
-      printAst(this.test),
-      ') ',
+      b.group(
+        b.concat([
+          b.indent(
+            b.concat(['(', b.ifBreak(b.hardline, ''), printAst(this.test)])
+          ),
+          b.ifBreak(b.hardline, ''),
+          ') ',
+        ])
+      ),
       '{',
       b.indent(
         b.concat([
