@@ -177,7 +177,7 @@ req.http.Debug == "1" == "2" == "3"
 req.http.Debug == "1" == "2" == "3"
 `;
 
-exports[`(BooleanExpression) format 1`] = `
+exports[`(BooleanExpression) format<long> 1`] = `
 ---------- (input) ---------------------------------------------------------------
 (req.http.Debug == "1")
 
@@ -185,12 +185,32 @@ exports[`(BooleanExpression) format 1`] = `
 (req.http.Debug == "1")
 `;
 
-exports[`(BooleanExpression) format 2`] = `
+exports[`(BooleanExpression) format<long> 2`] = `
 ---------- (input) ---------------------------------------------------------------
 (var.Debug && "1")
 
 ---------- (output) --------------------------------------------------------------
 (var.Debug && "1")
+`;
+
+exports[`(BooleanExpression) format<short> 1`] = `
+---------- (input) ---------------------------------------------------------------
+(req.http.Debug == "1")
+
+---------- (output) --------------------------------------------------------------
+(
+  req.http.Debug == "1"
+)
+`;
+
+exports[`(BooleanExpression) format<short> 2`] = `
+---------- (input) ---------------------------------------------------------------
+(var.Debug && "1")
+
+---------- (output) --------------------------------------------------------------
+(
+  var.Debug && "1"
+)
 `;
 
 exports[`(BooleanLiteral) format 1`] = `
@@ -381,12 +401,22 @@ exports[`(ExpressionStatement) format 3`] = `
 "string";
 `;
 
-exports[`(ExpressionStatement) format 4`] = `
+exports[`(ExpressionStatement) format<long> 1`] = `
 ---------- (input) ---------------------------------------------------------------
 log(a);
 
 ---------- (output) --------------------------------------------------------------
 log (a);
+`;
+
+exports[`(ExpressionStatement) format<short> 1`] = `
+---------- (input) ---------------------------------------------------------------
+log(a);
+
+---------- (output) --------------------------------------------------------------
+log (
+  a
+);
 `;
 
 exports[`(FunCallExpression) format<long> 1`] = `

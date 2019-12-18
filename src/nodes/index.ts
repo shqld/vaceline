@@ -282,7 +282,15 @@ export class BooleanExpression extends BaseExpression {
   }
 
   print() {
-    return b.concat(['(', b.indent(b.concat([printAst(this.body)])), ')'])
+    return b.group(
+      b.concat([
+        b.indent(
+          b.concat(['(', b.ifBreak(b.softline, ''), printAst(this.body)])
+        ),
+        b.ifBreak(b.softline, ''),
+        ')',
+      ])
+    )
   }
 }
 
