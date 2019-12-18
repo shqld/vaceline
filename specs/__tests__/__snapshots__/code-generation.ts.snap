@@ -322,7 +322,7 @@ log(a);
 log (a);
 `;
 
-exports[`(FunCallExpression) format 1`] = `
+exports[`(FunCallExpression) format<long> 1`] = `
 ---------- (input) ---------------------------------------------------------------
 func("a")
 
@@ -330,7 +330,7 @@ func("a")
 func("a")
 `;
 
-exports[`(FunCallExpression) format 2`] = `
+exports[`(FunCallExpression) format<long> 2`] = `
 ---------- (input) ---------------------------------------------------------------
 func  ("a")
 
@@ -338,7 +338,7 @@ func  ("a")
 func("a")
 `;
 
-exports[`(FunCallExpression) format 3`] = `
+exports[`(FunCallExpression) format<long> 3`] = `
 ---------- (input) ---------------------------------------------------------------
 func("a", "b")
 
@@ -346,12 +346,51 @@ func("a", "b")
 func("a", "b")
 `;
 
-exports[`(FunCallExpression) format 4`] = `
+exports[`(FunCallExpression) format<long> 4`] = `
 ---------- (input) ---------------------------------------------------------------
 if("a", "b", "c")
 
 ---------- (output) --------------------------------------------------------------
 if("a", "b", "c")
+`;
+
+exports[`(FunCallExpression) format<short> 1`] = `
+---------- (input) ---------------------------------------------------------------
+func("a")
+
+---------- (output) --------------------------------------------------------------
+func("a"
+)
+`;
+
+exports[`(FunCallExpression) format<short> 2`] = `
+---------- (input) ---------------------------------------------------------------
+func  ("a")
+
+---------- (output) --------------------------------------------------------------
+func("a"
+)
+`;
+
+exports[`(FunCallExpression) format<short> 3`] = `
+---------- (input) ---------------------------------------------------------------
+func("a", "b")
+
+---------- (output) --------------------------------------------------------------
+func("a",
+  "b"
+)
+`;
+
+exports[`(FunCallExpression) format<short> 4`] = `
+---------- (input) ---------------------------------------------------------------
+if("a", "b", "c")
+
+---------- (output) --------------------------------------------------------------
+if("a",
+  "b",
+  "c"
+)
 `;
 
 exports[`(Identifier) format 1`] = `
@@ -498,7 +537,17 @@ exports[`(Ip) format 9`] = `
 "::"
 `;
 
-exports[`(LogStatement) format 1`] = `
+exports[`(LogStatement) format<long> 1`] = `
+---------- (input) ---------------------------------------------------------------
+log "log" req.service_id "vaceline-log :: "
+  {"	timestamp_us:"} time.start.usec
+  {"	host:"} regsuball(req.http.X-Forwarded-Host, {"	"}, "");
+
+---------- (output) --------------------------------------------------------------
+log "log" req.service_id "vaceline-log :: " {"	timestamp_us:"} time.start.usec {"	host:"} regsuball(req.http.X-Forwarded-Host, {"	"}, "");
+`;
+
+exports[`(LogStatement) format<short> 1`] = `
 ---------- (input) ---------------------------------------------------------------
 log "log" req.service_id "vaceline-log :: "
   {"	timestamp_us:"} time.start.usec
