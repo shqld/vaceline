@@ -347,7 +347,7 @@ export class ConcatExpression extends BaseExpression {
   }
 
   print() {
-    return b.join(' ', this.body.map(printAst))
+    return b.group(b.indent(b.join(b.line, this.body.map(printAst))))
   }
 }
 
