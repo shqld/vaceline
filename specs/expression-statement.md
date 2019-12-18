@@ -19,7 +19,7 @@ with Literal
 with FunCallExpression
 
 ```vcl
-log(a);
+func(a);
 ```
 
 # TODO: other expression, maybe
