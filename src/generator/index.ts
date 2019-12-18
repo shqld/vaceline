@@ -1,5 +1,5 @@
 import { BaseNode } from '../nodes'
-import { doc as docHelpers } from 'prettier'
+import { doc as docHelpers, Options as PrintOptions } from 'prettier'
 
 export const { builders } = docHelpers
 
@@ -9,10 +9,13 @@ const defaultPrintOptions = {
   useTabs: false,
 }
 
-export const generate = (ast: BaseNode): { code: string; map?: string } => {
+export const generate = (
+  ast: BaseNode,
+  options?: PrintOptions
+): { code: string; map?: string } => {
   const { formatted } = docHelpers.printer.printDocToString(
     ast.print(),
-    defaultPrintOptions
+    options ? { ...defaultPrintOptions, ...options } : defaultPrintOptions
   )
 
   return { code: formatted }

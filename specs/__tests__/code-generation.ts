@@ -23,9 +23,24 @@ for (const testdoc of testdocs) {
         expect(output).toStrictEqual(input)
       })
 
-      it('format', () => {
-        expect(wrap(testcase.code, code)).toMatchSnapshot()
-      })
+      const formatted = {
+        long: generate(ast, { printWidth: Infinity }).code,
+        short: generate(ast, { printWidth: 0 }).code,
+      }
+
+      if (formatted.short === formatted.long) {
+        it('format', () => {
+          expect(wrap(testcase.code, formatted.long)).toMatchSnapshot()
+        })
+      } else {
+        it('format<long>', () => {
+          expect(wrap(testcase.code, formatted.long)).toMatchSnapshot()
+        })
+
+        it('format<short>', () => {
+          expect(wrap(testcase.code, formatted.short)).toMatchSnapshot()
+        })
+      }
     })
   }
 }
