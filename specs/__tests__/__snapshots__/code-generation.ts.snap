@@ -359,7 +359,8 @@ exports[`(FunCallExpression) format<short> 1`] = `
 func("a")
 
 ---------- (output) --------------------------------------------------------------
-func("a"
+func(
+  "a",
 )
 `;
 
@@ -368,7 +369,8 @@ exports[`(FunCallExpression) format<short> 2`] = `
 func  ("a")
 
 ---------- (output) --------------------------------------------------------------
-func("a"
+func(
+  "a",
 )
 `;
 
@@ -377,8 +379,9 @@ exports[`(FunCallExpression) format<short> 3`] = `
 func("a", "b")
 
 ---------- (output) --------------------------------------------------------------
-func("a",
-  "b"
+func(
+  "a",
+  "b",
 )
 `;
 
@@ -387,9 +390,10 @@ exports[`(FunCallExpression) format<short> 4`] = `
 if("a", "b", "c")
 
 ---------- (output) --------------------------------------------------------------
-if("a",
+if(
+  "a",
   "b",
-  "c"
+  "c",
 )
 `;
 
@@ -554,9 +558,10 @@ log "log" req.service_id "vaceline-log :: "
   {"	host:"} regsuball(req.http.X-Forwarded-Host, {"	"}, "");
 
 ---------- (output) --------------------------------------------------------------
-log "log" req.service_id "vaceline-log :: " {"	timestamp_us:"} time.start.usec {"	host:"} regsuball(req.http.X-Forwarded-Host,
+log "log" req.service_id "vaceline-log :: " {"	timestamp_us:"} time.start.usec {"	host:"} regsuball(
+  req.http.X-Forwarded-Host,
   {"	"},
-  ""
+  "",
 );
 `;
 

@@ -323,7 +323,9 @@ export class FunCallExpression extends BaseExpression {
         b.concat([
           b.indent(
             b.concat([
+              b.ifBreak(b.line, ''),
               b.join(b.concat([',', b.line]), this.arguments.map(printAst)),
+              b.ifBreak(',', ''),
             ])
           ),
           b.ifBreak(b.line, ''),
