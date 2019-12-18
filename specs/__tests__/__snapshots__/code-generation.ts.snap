@@ -54,7 +54,7 @@ add var.vacel /= "vacel";
 add var.vacel /= "vacel";
 `;
 
-exports[`(BackendStatement) format 1`] = `
+exports[`(BackendStatement) format<long> 1`] = `
 ---------- (input) ---------------------------------------------------------------
 backend vaceline_backend {
   .connect_timeout = 1s;
@@ -88,6 +88,53 @@ backend vaceline_backend {
   .ssl = true;
   .probe = {
     .request = "GET /healthcheck HTTP/1.1" "Host: vaceline.io" "Connection: close" "User-Agent: Vaceline healthcheck";
+    .threshold = 1;
+    .window = 2;
+    .timeout = 10s;
+    .initial = 1;
+    .expected_response = 200;
+    .interval = 60s;
+  }
+}
+`;
+
+exports[`(BackendStatement) format<short> 1`] = `
+---------- (input) ---------------------------------------------------------------
+backend vaceline_backend {
+  .connect_timeout = 1s;
+  .dynamic = true;
+  .port = "443";
+  .host = "vaceline.io";
+  .first_byte_timeout = 5s;
+  .max_connections = 100;
+  .between_bytes_timeout = 10s;
+  .ssl = true;
+  .probe = {
+    .request = "GET /healthcheck HTTP/1.1" "Host: vaceline.io" "Connection: close" "User-Agent: Vaceline healthcheck";
+    .threshold = 1;
+    .window = 2;
+    .timeout = 10s;
+    .initial = 1;
+    .expected_response = 200;
+    .interval = 60s;
+  }
+}
+
+---------- (output) --------------------------------------------------------------
+backend vaceline_backend {
+  .connect_timeout = 1s;
+  .dynamic = true;
+  .port = "443";
+  .host = "vaceline.io";
+  .first_byte_timeout = 5s;
+  .max_connections = 100;
+  .between_bytes_timeout = 10s;
+  .ssl = true;
+  .probe = {
+    .request = "GET /healthcheck HTTP/1.1"
+      "Host: vaceline.io"
+      "Connection: close"
+      "User-Agent: Vaceline healthcheck";
     .threshold = 1;
     .window = 2;
     .timeout = 10s;
@@ -170,7 +217,7 @@ call vaceline_func;
 call vaceline_func;
 `;
 
-exports[`(ConcatExpression) format 1`] = `
+exports[`(ConcatExpression) format<long> 1`] = `
 ---------- (input) ---------------------------------------------------------------
 "a" "b" "c"
 
@@ -178,12 +225,32 @@ exports[`(ConcatExpression) format 1`] = `
 "a" "b" "c"
 `;
 
-exports[`(ConcatExpression) format 2`] = `
+exports[`(ConcatExpression) format<long> 2`] = `
 ---------- (input) ---------------------------------------------------------------
 "a" 1 req.http.A
 
 ---------- (output) --------------------------------------------------------------
 "a" 1 req.http.A
+`;
+
+exports[`(ConcatExpression) format<short> 1`] = `
+---------- (input) ---------------------------------------------------------------
+"a" "b" "c"
+
+---------- (output) --------------------------------------------------------------
+"a"
+  "b"
+  "c"
+`;
+
+exports[`(ConcatExpression) format<short> 2`] = `
+---------- (input) ---------------------------------------------------------------
+"a" 1 req.http.A
+
+---------- (output) --------------------------------------------------------------
+"a"
+  1
+  req.http.A
 `;
 
 exports[`(DeclareStatement) format 1`] = `
@@ -558,11 +625,17 @@ log "log" req.service_id "vaceline-log :: "
   {"	host:"} regsuball(req.http.X-Forwarded-Host, {"	"}, "");
 
 ---------- (output) --------------------------------------------------------------
-log "log" req.service_id "vaceline-log :: " {"	timestamp_us:"} time.start.usec {"	host:"} regsuball(
-  req.http.X-Forwarded-Host,
-  {"	"},
-  "",
-);
+log "log"
+  req.service_id
+  "vaceline-log :: "
+  {"	timestamp_us:"}
+  time.start.usec
+  {"	host:"}
+  regsuball(
+    req.http.X-Forwarded-Host,
+    {"	"},
+    "",
+  );
 `;
 
 exports[`(LogicalExpression) format 1`] = `
