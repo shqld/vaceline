@@ -714,15 +714,21 @@ ErrorStatement {
 `;
 
 exports[`(ExpressionStatement) with FunCallExpression 1`] = `
-LogStatement {
-  "content": BooleanExpression {
-    "body": Identifier {
-      "name": "a",
+ExpressionStatement {
+  "body": FunCallExpression {
+    "arguments": Array [
+      Identifier {
+        "name": "a",
+        "type": "Identifier",
+      },
+    ],
+    "callee": Identifier {
+      "name": "func",
       "type": "Identifier",
     },
-    "type": "BooleanExpression",
+    "type": "FunCallExpression",
   },
-  "type": "LogStatement",
+  "type": "ExpressionStatement",
 }
 `;
 

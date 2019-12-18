@@ -5124,9 +5124,9 @@ Array [
   Object {
     "loc": Object {
       "end": Object {
-        "column": 3,
+        "column": 4,
         "line": 1,
-        "offset": 2,
+        "offset": 3,
       },
       "start": Object {
         "column": 1,
@@ -5139,14 +5139,14 @@ Array [
   Object {
     "loc": Object {
       "end": Object {
-        "column": 4,
+        "column": 5,
         "line": 1,
-        "offset": 3,
+        "offset": 4,
       },
       "start": Object {
-        "column": 4,
+        "column": 5,
         "line": 1,
-        "offset": 3,
+        "offset": 4,
       },
     },
     "type": "symbol",
@@ -5154,14 +5154,14 @@ Array [
   Object {
     "loc": Object {
       "end": Object {
-        "column": 5,
+        "column": 6,
         "line": 1,
-        "offset": 4,
+        "offset": 5,
       },
       "start": Object {
-        "column": 5,
+        "column": 6,
         "line": 1,
-        "offset": 4,
+        "offset": 5,
       },
     },
     "type": "ident",
@@ -5169,14 +5169,14 @@ Array [
   Object {
     "loc": Object {
       "end": Object {
-        "column": 6,
+        "column": 7,
         "line": 1,
-        "offset": 5,
+        "offset": 6,
       },
       "start": Object {
-        "column": 6,
+        "column": 7,
         "line": 1,
-        "offset": 5,
+        "offset": 6,
       },
     },
     "type": "symbol",
@@ -5184,14 +5184,14 @@ Array [
   Object {
     "loc": Object {
       "end": Object {
-        "column": 7,
+        "column": 8,
         "line": 1,
-        "offset": 6,
+        "offset": 7,
       },
       "start": Object {
-        "column": 7,
+        "column": 8,
         "line": 1,
-        "offset": 6,
+        "offset": 7,
       },
     },
     "type": "symbol",
@@ -5368,7 +5368,7 @@ exports[`(ExpressionStatement) with FunCallExpression 1`] = `
 Array [
   Object {
     "type": "ident",
-    "value": "log",
+    "value": "func",
   },
   Object {
     "type": "symbol",
