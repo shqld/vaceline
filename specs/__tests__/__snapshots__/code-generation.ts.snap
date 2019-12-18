@@ -14,7 +14,7 @@ acl aaa {
 }
 `;
 
-exports[`(AddStatement) format 1`] = `
+exports[`(AddStatement) format<long> 1`] = `
 ---------- (input) ---------------------------------------------------------------
 add var.vacel = "vacel";
 
@@ -22,7 +22,7 @@ add var.vacel = "vacel";
 add var.vacel = "vacel";
 `;
 
-exports[`(AddStatement) format 2`] = `
+exports[`(AddStatement) format<long> 2`] = `
 ---------- (input) ---------------------------------------------------------------
 add var.vacel += "vacel";
 
@@ -30,7 +30,7 @@ add var.vacel += "vacel";
 add var.vacel += "vacel";
 `;
 
-exports[`(AddStatement) format 3`] = `
+exports[`(AddStatement) format<long> 3`] = `
 ---------- (input) ---------------------------------------------------------------
 add var.vacel -= "vacel";
 
@@ -38,7 +38,7 @@ add var.vacel -= "vacel";
 add var.vacel -= "vacel";
 `;
 
-exports[`(AddStatement) format 4`] = `
+exports[`(AddStatement) format<long> 4`] = `
 ---------- (input) ---------------------------------------------------------------
 add var.vacel *= "vacel";
 
@@ -46,12 +46,57 @@ add var.vacel *= "vacel";
 add var.vacel *= "vacel";
 `;
 
-exports[`(AddStatement) format 5`] = `
+exports[`(AddStatement) format<long> 5`] = `
 ---------- (input) ---------------------------------------------------------------
 add var.vacel /= "vacel";
 
 ---------- (output) --------------------------------------------------------------
 add var.vacel /= "vacel";
+`;
+
+exports[`(AddStatement) format<short> 1`] = `
+---------- (input) ---------------------------------------------------------------
+add var.vacel = "vacel";
+
+---------- (output) --------------------------------------------------------------
+add var.vacel =
+  "vacel";
+`;
+
+exports[`(AddStatement) format<short> 2`] = `
+---------- (input) ---------------------------------------------------------------
+add var.vacel += "vacel";
+
+---------- (output) --------------------------------------------------------------
+add var.vacel +=
+  "vacel";
+`;
+
+exports[`(AddStatement) format<short> 3`] = `
+---------- (input) ---------------------------------------------------------------
+add var.vacel -= "vacel";
+
+---------- (output) --------------------------------------------------------------
+add var.vacel -=
+  "vacel";
+`;
+
+exports[`(AddStatement) format<short> 4`] = `
+---------- (input) ---------------------------------------------------------------
+add var.vacel *= "vacel";
+
+---------- (output) --------------------------------------------------------------
+add var.vacel *=
+  "vacel";
+`;
+
+exports[`(AddStatement) format<short> 5`] = `
+---------- (input) ---------------------------------------------------------------
+add var.vacel /= "vacel";
+
+---------- (output) --------------------------------------------------------------
+add var.vacel /=
+  "vacel";
 `;
 
 exports[`(BackendStatement) format<long> 1`] = `
@@ -502,7 +547,7 @@ vaceline
 vaceline
 `;
 
-exports[`(IfStatement) format 1`] = `
+exports[`(IfStatement) format<long> 1`] = `
 ---------- (input) ---------------------------------------------------------------
 if (var.condition) {
   set var.value = 1;
@@ -514,7 +559,7 @@ if (var.condition) {
 }
 `;
 
-exports[`(IfStatement) format 2`] = `
+exports[`(IfStatement) format<long> 2`] = `
 ---------- (input) ---------------------------------------------------------------
 if (var.condition) {
   set var.value = 1;
@@ -530,7 +575,7 @@ if (var.condition) {
 }
 `;
 
-exports[`(IfStatement) format 3`] = `
+exports[`(IfStatement) format<long> 3`] = `
 ---------- (input) ---------------------------------------------------------------
 if (var.condition) {
   set var.value = 1;
@@ -547,6 +592,60 @@ if (var.condition) {
   set var.value = 2;
 } else {
   set var.value = 0;
+}
+`;
+
+exports[`(IfStatement) format<short> 1`] = `
+---------- (input) ---------------------------------------------------------------
+if (var.condition) {
+  set var.value = 1;
+}
+
+---------- (output) --------------------------------------------------------------
+if (var.condition) {
+  set var.value =
+    1;
+}
+`;
+
+exports[`(IfStatement) format<short> 2`] = `
+---------- (input) ---------------------------------------------------------------
+if (var.condition) {
+  set var.value = 1;
+} else {
+  set var.value = 2;
+}
+
+---------- (output) --------------------------------------------------------------
+if (var.condition) {
+  set var.value =
+    1;
+} else {
+  set var.value =
+    2;
+}
+`;
+
+exports[`(IfStatement) format<short> 3`] = `
+---------- (input) ---------------------------------------------------------------
+if (var.condition) {
+  set var.value = 1;
+} else if (!var.condition) {
+  set var.value = 2;
+} else {
+  set var.value = 0;
+}
+
+---------- (output) --------------------------------------------------------------
+if (var.condition) {
+  set var.value =
+    1;
+} else if (!var.condition) {
+  set var.value =
+    2;
+} else {
+  set var.value =
+    0;
 }
 `;
 
@@ -728,7 +827,7 @@ exports[`(NumericLiteral) format 2`] = `
 0
 `;
 
-exports[`(Program) format 1`] = `
+exports[`(Program) format<long> 1`] = `
 ---------- (input) ---------------------------------------------------------------
 sub vcl_recv {
   declare local var.vacelinDebug STRING;
@@ -743,6 +842,26 @@ sub vcl_recv {
   declare local var.vacelinDebug STRING;
   if (req.http.Vacelin:Some == "Some") {
     add var.vacelinDebug = "Vacelin Debug Log";
+  }
+}
+`;
+
+exports[`(Program) format<short> 1`] = `
+---------- (input) ---------------------------------------------------------------
+sub vcl_recv {
+  declare local var.vacelinDebug STRING;
+
+  if (req.http.Vacelin:Some == "Some") {
+    add var.vacelinDebug = "Vacelin Debug Log";
+  }
+}
+
+---------- (output) --------------------------------------------------------------
+sub vcl_recv {
+  declare local var.vacelinDebug STRING;
+  if (req.http.Vacelin:Some == "Some") {
+    add var.vacelinDebug =
+      "Vacelin Debug Log";
   }
 }
 `;
@@ -763,7 +882,7 @@ return (pass);
 return (pass);
 `;
 
-exports[`(SetStatement) format 1`] = `
+exports[`(SetStatement) format<long> 1`] = `
 ---------- (input) ---------------------------------------------------------------
 set var.vacel = "vacel";
 
@@ -771,7 +890,7 @@ set var.vacel = "vacel";
 set var.vacel = "vacel";
 `;
 
-exports[`(SetStatement) format 2`] = `
+exports[`(SetStatement) format<long> 2`] = `
 ---------- (input) ---------------------------------------------------------------
 set var.vacel += "vacel";
 
@@ -779,7 +898,7 @@ set var.vacel += "vacel";
 set var.vacel += "vacel";
 `;
 
-exports[`(SetStatement) format 3`] = `
+exports[`(SetStatement) format<long> 3`] = `
 ---------- (input) ---------------------------------------------------------------
 set var.vacel -= "vacel";
 
@@ -787,7 +906,7 @@ set var.vacel -= "vacel";
 set var.vacel -= "vacel";
 `;
 
-exports[`(SetStatement) format 4`] = `
+exports[`(SetStatement) format<long> 4`] = `
 ---------- (input) ---------------------------------------------------------------
 set var.vacel *= "vacel";
 
@@ -795,12 +914,57 @@ set var.vacel *= "vacel";
 set var.vacel *= "vacel";
 `;
 
-exports[`(SetStatement) format 5`] = `
+exports[`(SetStatement) format<long> 5`] = `
 ---------- (input) ---------------------------------------------------------------
 set var.vacel *= "vacel";
 
 ---------- (output) --------------------------------------------------------------
 set var.vacel *= "vacel";
+`;
+
+exports[`(SetStatement) format<short> 1`] = `
+---------- (input) ---------------------------------------------------------------
+set var.vacel = "vacel";
+
+---------- (output) --------------------------------------------------------------
+set var.vacel =
+  "vacel";
+`;
+
+exports[`(SetStatement) format<short> 2`] = `
+---------- (input) ---------------------------------------------------------------
+set var.vacel += "vacel";
+
+---------- (output) --------------------------------------------------------------
+set var.vacel +=
+  "vacel";
+`;
+
+exports[`(SetStatement) format<short> 3`] = `
+---------- (input) ---------------------------------------------------------------
+set var.vacel -= "vacel";
+
+---------- (output) --------------------------------------------------------------
+set var.vacel -=
+  "vacel";
+`;
+
+exports[`(SetStatement) format<short> 4`] = `
+---------- (input) ---------------------------------------------------------------
+set var.vacel *= "vacel";
+
+---------- (output) --------------------------------------------------------------
+set var.vacel *=
+  "vacel";
+`;
+
+exports[`(SetStatement) format<short> 5`] = `
+---------- (input) ---------------------------------------------------------------
+set var.vacel *= "vacel";
+
+---------- (output) --------------------------------------------------------------
+set var.vacel *=
+  "vacel";
 `;
 
 exports[`(StringLiteral) format 1`] = `
@@ -827,7 +991,7 @@ exports[`(StringLiteral) format 3`] = `
 "/* not an inline comment */"
 `;
 
-exports[`(SubroutineStatement) format 1`] = `
+exports[`(SubroutineStatement) format<long> 1`] = `
 ---------- (input) ---------------------------------------------------------------
 sub vcl_recv {
   set vaceline = "aaa";
@@ -836,6 +1000,19 @@ sub vcl_recv {
 ---------- (output) --------------------------------------------------------------
 sub vcl_recv {
   set vaceline = "aaa";
+}
+`;
+
+exports[`(SubroutineStatement) format<short> 1`] = `
+---------- (input) ---------------------------------------------------------------
+sub vcl_recv {
+  set vaceline = "aaa";
+}
+
+---------- (output) --------------------------------------------------------------
+sub vcl_recv {
+  set vaceline =
+    "aaa";
 }
 `;
 
