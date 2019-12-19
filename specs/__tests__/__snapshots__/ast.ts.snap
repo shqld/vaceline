@@ -288,48 +288,48 @@ BackendStatement {
 }
 `;
 
-exports[`(BinaryExpression) combinations 1`] = `
-BinaryExpression {
+exports[`(BinaryExpression) combination with LogicalExpression 1`] = `
+LogicalExpression {
   "left": BinaryExpression {
-    "left": BinaryExpression {
-      "left": Member {
-        "base": Member {
-          "base": Identifier {
-            "name": "req",
-            "type": "Identifier",
-          },
-          "member": Identifier {
-            "name": "http",
-            "type": "Identifier",
-          },
-          "type": "Member",
+    "left": Member {
+      "base": Member {
+        "base": Identifier {
+          "name": "req",
+          "type": "Identifier",
         },
         "member": Identifier {
-          "name": "Debug",
+          "name": "http",
           "type": "Identifier",
         },
         "type": "Member",
       },
-      "operator": "==",
-      "right": StringLiteral {
-        "type": "StringLiteral",
-        "value": "\\"1\\"",
+      "member": Identifier {
+        "name": "Debug",
+        "type": "Identifier",
       },
-      "type": "BinaryExpression",
+      "type": "Member",
     },
     "operator": "==",
     "right": StringLiteral {
       "type": "StringLiteral",
-      "value": "\\"2\\"",
+      "value": "\\"1\\"",
     },
     "type": "BinaryExpression",
   },
-  "operator": "==",
-  "right": StringLiteral {
-    "type": "StringLiteral",
-    "value": "\\"3\\"",
+  "operator": "&&",
+  "right": BinaryExpression {
+    "left": StringLiteral {
+      "type": "StringLiteral",
+      "value": "\\"2\\"",
+    },
+    "operator": "==",
+    "right": StringLiteral {
+      "type": "StringLiteral",
+      "value": "\\"3\\"",
+    },
+    "type": "BinaryExpression",
   },
-  "type": "BinaryExpression",
+  "type": "LogicalExpression",
 }
 `;
 
@@ -386,6 +386,51 @@ BinaryExpression {
   "right": StringLiteral {
     "type": "StringLiteral",
     "value": "\\"1\\"",
+  },
+  "type": "BinaryExpression",
+}
+`;
+
+exports[`(BinaryExpression) multiple 1`] = `
+BinaryExpression {
+  "left": BinaryExpression {
+    "left": BinaryExpression {
+      "left": Member {
+        "base": Member {
+          "base": Identifier {
+            "name": "req",
+            "type": "Identifier",
+          },
+          "member": Identifier {
+            "name": "http",
+            "type": "Identifier",
+          },
+          "type": "Member",
+        },
+        "member": Identifier {
+          "name": "Debug",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "operator": "==",
+      "right": StringLiteral {
+        "type": "StringLiteral",
+        "value": "\\"1\\"",
+      },
+      "type": "BinaryExpression",
+    },
+    "operator": "==",
+    "right": StringLiteral {
+      "type": "StringLiteral",
+      "value": "\\"2\\"",
+    },
+    "type": "BinaryExpression",
+  },
+  "operator": "==",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"3\\"",
   },
   "type": "BinaryExpression",
 }
