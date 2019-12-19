@@ -5399,6 +5399,169 @@ LogicalExpression {
 
 exports[`(Member) basic: basic 1`] = `
 Member {
+  "base": Identifier {
+    "loc": Object {
+      "end": Object {
+        "column": 3,
+        "line": 1,
+        "offset": 2,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "name": "req",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 11,
+      "line": 1,
+      "offset": 10,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "member": Identifier {
+    "loc": Object {
+      "end": Object {
+        "column": 11,
+        "line": 1,
+        "offset": 10,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "name": "backend",
+    "type": "Identifier",
+  },
+  "type": "Member",
+}
+`;
+
+exports[`(Member) deep in BinaryExpression: deep in BinaryExpression 1`] = `
+BinaryExpression {
+  "left": Member {
+    "base": Member {
+      "base": Identifier {
+        "loc": Object {
+          "end": Object {
+            "column": 3,
+            "line": 1,
+            "offset": 2,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 1,
+            "offset": 0,
+          },
+        },
+        "name": "req",
+        "type": "Identifier",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 8,
+          "line": 1,
+          "offset": 7,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "member": Identifier {
+        "loc": Object {
+          "end": Object {
+            "column": 8,
+            "line": 1,
+            "offset": 7,
+          },
+          "start": Object {
+            "column": 5,
+            "line": 1,
+            "offset": 4,
+          },
+        },
+        "name": "http",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 14,
+        "line": 1,
+        "offset": 13,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "member": Identifier {
+      "loc": Object {
+        "end": Object {
+          "column": 14,
+          "line": 1,
+          "offset": 13,
+        },
+        "start": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+      },
+      "name": "Debug",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 25,
+      "line": 1,
+      "offset": 24,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "==",
+  "right": StringLiteral {
+    "loc": Object {
+      "end": Object {
+        "column": 25,
+        "line": 1,
+        "offset": 24,
+      },
+      "start": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"debug\\"",
+  },
+  "type": "BinaryExpression",
+}
+`;
+
+exports[`(Member) deep: deep 1`] = `
+Member {
   "base": Member {
     "base": Identifier {
       "loc": Object {
@@ -5448,9 +5611,9 @@ Member {
   },
   "loc": Object {
     "end": Object {
-      "column": 17,
+      "column": 14,
       "line": 1,
-      "offset": 16,
+      "offset": 13,
     },
     "start": Object {
       "column": 1,
@@ -5461,9 +5624,9 @@ Member {
   "member": Identifier {
     "loc": Object {
       "end": Object {
-        "column": 17,
+        "column": 14,
         "line": 1,
-        "offset": 16,
+        "offset": 13,
       },
       "start": Object {
         "column": 10,
@@ -5471,10 +5634,92 @@ Member {
         "offset": 9,
       },
     },
-    "name": "Vaceline",
+    "name": "Debug",
     "type": "Identifier",
   },
   "type": "Member",
+}
+`;
+
+exports[`(Member) in BinaryExpression: in BinaryExpression 1`] = `
+BinaryExpression {
+  "left": Member {
+    "base": Identifier {
+      "loc": Object {
+        "end": Object {
+          "column": 3,
+          "line": 1,
+          "offset": 2,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "name": "req",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 11,
+        "line": 1,
+        "offset": 10,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "member": Identifier {
+      "loc": Object {
+        "end": Object {
+          "column": 11,
+          "line": 1,
+          "offset": 10,
+        },
+        "start": Object {
+          "column": 5,
+          "line": 1,
+          "offset": 4,
+        },
+      },
+      "name": "backend",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 22,
+      "line": 1,
+      "offset": 21,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "==",
+  "right": Identifier {
+    "loc": Object {
+      "end": Object {
+        "column": 22,
+        "line": 1,
+        "offset": 21,
+      },
+      "start": Object {
+        "column": 16,
+        "line": 1,
+        "offset": 15,
+      },
+    },
+    "name": "backend",
+    "type": "Identifier",
+  },
+  "type": "BinaryExpression",
 }
 `;
 

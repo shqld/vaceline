@@ -9664,6 +9664,56 @@ Array [
   Object {
     "loc": Object {
       "end": Object {
+        "column": 11,
+        "line": 1,
+        "offset": 10,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "type": "ident",
+  },
+]
+`;
+
+exports[`(Member) <loc>deep 1`] = `
+Array [
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 3,
+        "line": 1,
+        "offset": 2,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 4,
+        "line": 1,
+        "offset": 3,
+      },
+      "start": Object {
+        "column": 4,
+        "line": 1,
+        "offset": 3,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
         "column": 8,
         "line": 1,
         "offset": 7,
@@ -9694,14 +9744,204 @@ Array [
   Object {
     "loc": Object {
       "end": Object {
-        "column": 17,
+        "column": 14,
         "line": 1,
-        "offset": 16,
+        "offset": 13,
       },
       "start": Object {
         "column": 10,
         "line": 1,
         "offset": 9,
+      },
+    },
+    "type": "ident",
+  },
+]
+`;
+
+exports[`(Member) <loc>deep in BinaryExpression 1`] = `
+Array [
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 3,
+        "line": 1,
+        "offset": 2,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 4,
+        "line": 1,
+        "offset": 3,
+      },
+      "start": Object {
+        "column": 4,
+        "line": 1,
+        "offset": 3,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 8,
+        "line": 1,
+        "offset": 7,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 9,
+        "line": 1,
+        "offset": 8,
+      },
+      "start": Object {
+        "column": 9,
+        "line": 1,
+        "offset": 8,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 14,
+        "line": 1,
+        "offset": 13,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 1,
+        "offset": 9,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+      "start": Object {
+        "column": 16,
+        "line": 1,
+        "offset": 15,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 25,
+        "line": 1,
+        "offset": 24,
+      },
+      "start": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+    },
+    "type": "string",
+  },
+]
+`;
+
+exports[`(Member) <loc>in BinaryExpression 1`] = `
+Array [
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 3,
+        "line": 1,
+        "offset": 2,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 4,
+        "line": 1,
+        "offset": 3,
+      },
+      "start": Object {
+        "column": 4,
+        "line": 1,
+        "offset": 3,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 11,
+        "line": 1,
+        "offset": 10,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 14,
+        "line": 1,
+        "offset": 13,
+      },
+      "start": Object {
+        "column": 13,
+        "line": 1,
+        "offset": 12,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 22,
+        "line": 1,
+        "offset": 21,
+      },
+      "start": Object {
+        "column": 16,
+        "line": 1,
+        "offset": 15,
       },
     },
     "type": "ident",
@@ -9721,6 +9961,23 @@ Array [
   },
   Object {
     "type": "ident",
+    "value": "backend",
+  },
+]
+`;
+
+exports[`(Member) deep 1`] = `
+Array [
+  Object {
+    "type": "ident",
+    "value": "req",
+  },
+  Object {
+    "type": "symbol",
+    "value": ".",
+  },
+  Object {
+    "type": "ident",
     "value": "http",
   },
   Object {
@@ -9729,7 +9986,65 @@ Array [
   },
   Object {
     "type": "ident",
-    "value": "Vaceline",
+    "value": "Debug",
+  },
+]
+`;
+
+exports[`(Member) deep in BinaryExpression 1`] = `
+Array [
+  Object {
+    "type": "ident",
+    "value": "req",
+  },
+  Object {
+    "type": "symbol",
+    "value": ".",
+  },
+  Object {
+    "type": "ident",
+    "value": "http",
+  },
+  Object {
+    "type": "symbol",
+    "value": ".",
+  },
+  Object {
+    "type": "ident",
+    "value": "Debug",
+  },
+  Object {
+    "type": "operator",
+    "value": "==",
+  },
+  Object {
+    "type": "string",
+    "value": "\\"debug\\"",
+  },
+]
+`;
+
+exports[`(Member) in BinaryExpression 1`] = `
+Array [
+  Object {
+    "type": "ident",
+    "value": "req",
+  },
+  Object {
+    "type": "symbol",
+    "value": ".",
+  },
+  Object {
+    "type": "ident",
+    "value": "backend",
+  },
+  Object {
+    "type": "operator",
+    "value": "==",
+  },
+  Object {
+    "type": "ident",
+    "value": "backend",
   },
 ]
 `;
