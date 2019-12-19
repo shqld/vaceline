@@ -1,5 +1,23 @@
 basic
 
 ```vcl
-req.http.Vaceline
+req.backend
+```
+
+deep
+
+```vcl
+req.http.Debug
+```
+
+in BinaryExpression
+
+```vcl
+req.backend == backend
+```
+
+deep in BinaryExpression
+
+```vcl
+req.http.Debug == "debug"
 ```

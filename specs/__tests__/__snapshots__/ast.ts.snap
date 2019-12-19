@@ -1474,6 +1474,20 @@ LogicalExpression {
 
 exports[`(Member) basic 1`] = `
 Member {
+  "base": Identifier {
+    "name": "req",
+    "type": "Identifier",
+  },
+  "member": Identifier {
+    "name": "backend",
+    "type": "Identifier",
+  },
+  "type": "Member",
+}
+`;
+
+exports[`(Member) deep 1`] = `
+Member {
   "base": Member {
     "base": Identifier {
       "name": "req",
@@ -1486,10 +1500,61 @@ Member {
     "type": "Member",
   },
   "member": Identifier {
-    "name": "Vaceline",
+    "name": "Debug",
     "type": "Identifier",
   },
   "type": "Member",
+}
+`;
+
+exports[`(Member) deep in BinaryExpression 1`] = `
+BinaryExpression {
+  "left": Member {
+    "base": Member {
+      "base": Identifier {
+        "name": "req",
+        "type": "Identifier",
+      },
+      "member": Identifier {
+        "name": "http",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "member": Identifier {
+      "name": "Debug",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "operator": "==",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"debug\\"",
+  },
+  "type": "BinaryExpression",
+}
+`;
+
+exports[`(Member) in BinaryExpression 1`] = `
+BinaryExpression {
+  "left": Member {
+    "base": Identifier {
+      "name": "req",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "backend",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "operator": "==",
+  "right": Identifier {
+    "name": "backend",
+    "type": "Identifier",
+  },
+  "type": "BinaryExpression",
 }
 `;
 
