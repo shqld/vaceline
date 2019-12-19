@@ -374,11 +374,18 @@ export class BinaryExpression extends BaseExpression {
   }
 
   print() {
-    return b.concat([
-      printAst(this.left),
-      ' ',
-      b.concat([this.operator, ' ', printAst(this.right)]),
-    ])
+    const left =
+      this.left instanceof BinaryExpression
+        ? b.concat(['(', printAst(this.left), ')'])
+        : printAst(this.left)
+
+    return b.group(
+      b.concat([
+        left,
+        ' ',
+        b.indent(b.concat([this.operator, b.line, printAst(this.right)])),
+      ])
+    )
   }
 }
 

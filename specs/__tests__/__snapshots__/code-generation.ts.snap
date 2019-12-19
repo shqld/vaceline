@@ -190,7 +190,7 @@ backend vaceline_backend {
 }
 `;
 
-exports[`(BinaryExpression) format 1`] = `
+exports[`(BinaryExpression) format<long> 1`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Debug == "1"
 
@@ -198,7 +198,7 @@ req.http.Debug == "1"
 req.http.Debug == "1"
 `;
 
-exports[`(BinaryExpression) format 2`] = `
+exports[`(BinaryExpression) format<long> 2`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Debug != "1"
 
@@ -206,7 +206,7 @@ req.http.Debug != "1"
 req.http.Debug != "1"
 `;
 
-exports[`(BinaryExpression) format 3`] = `
+exports[`(BinaryExpression) format<long> 3`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Debug ~ "1"
 
@@ -214,20 +214,68 @@ req.http.Debug ~ "1"
 req.http.Debug ~ "1"
 `;
 
-exports[`(BinaryExpression) format 4`] = `
+exports[`(BinaryExpression) format<long> 4`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Debug == "1" == "2" == "3"
 
 ---------- (output) --------------------------------------------------------------
-req.http.Debug == "1" == "2" == "3"
+((req.http.Debug == "1") == "2") == "3"
 `;
 
-exports[`(BinaryExpression) format 5`] = `
+exports[`(BinaryExpression) format<long> 5`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Debug == "1" && "2" == "3"
 
 ---------- (output) --------------------------------------------------------------
 req.http.Debug == "1" && "2" == "3"
+`;
+
+exports[`(BinaryExpression) format<short> 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Debug == "1"
+
+---------- (output) --------------------------------------------------------------
+req.http.Debug ==
+  "1"
+`;
+
+exports[`(BinaryExpression) format<short> 2`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Debug != "1"
+
+---------- (output) --------------------------------------------------------------
+req.http.Debug !=
+  "1"
+`;
+
+exports[`(BinaryExpression) format<short> 3`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Debug ~ "1"
+
+---------- (output) --------------------------------------------------------------
+req.http.Debug ~
+  "1"
+`;
+
+exports[`(BinaryExpression) format<short> 4`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Debug == "1" == "2" == "3"
+
+---------- (output) --------------------------------------------------------------
+((req.http.Debug ==
+  "1") ==
+  "2") ==
+  "3"
+`;
+
+exports[`(BinaryExpression) format<short> 5`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Debug == "1" && "2" == "3"
+
+---------- (output) --------------------------------------------------------------
+req.http.Debug ==
+  "1" && "2" ==
+  "3"
 `;
 
 exports[`(BooleanExpression) format<long> 1`] = `
@@ -252,7 +300,8 @@ exports[`(BooleanExpression) format<short> 1`] = `
 
 ---------- (output) --------------------------------------------------------------
 (
-  req.http.Debug == "1"
+  req.http.Debug ==
+    "1"
 )
 `;
 
@@ -876,7 +925,8 @@ sub vcl_recv {
 sub vcl_recv {
   declare local var.vacelinDebug STRING;
   if (
-    req.http.Vacelin:Some == "Some"
+    req.http.Vacelin:Some ==
+      "Some"
   ) {
     add var.vacelinDebug =
       "Vacelin Debug Log";
