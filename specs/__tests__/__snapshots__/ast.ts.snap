@@ -1307,23 +1307,55 @@ LogicalExpression {
 
 exports[`(LogicalExpression) combination 1`] = `
 LogicalExpression {
-  "left": Member {
-    "base": Member {
-      "base": Identifier {
-        "name": "req",
-        "type": "Identifier",
-      },
-      "member": Identifier {
-        "name": "http",
-        "type": "Identifier",
-      },
-      "type": "Member",
-    },
-    "member": Identifier {
-      "name": "Debug",
+  "left": LogicalExpression {
+    "left": Identifier {
+      "name": "debug",
       "type": "Identifier",
     },
-    "type": "Member",
+    "operator": "&&",
+    "right": StringLiteral {
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "type": "LogicalExpression",
+  },
+  "operator": "||",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"2\\"",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`(LogicalExpression) combination with BinaryExpression 1`] = `
+LogicalExpression {
+  "left": BinaryExpression {
+    "left": Identifier {
+      "name": "debug",
+      "type": "Identifier",
+    },
+    "operator": "==",
+    "right": StringLiteral {
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "type": "BinaryExpression",
+  },
+  "operator": "&&",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"2\\"",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`(LogicalExpression) combination2 1`] = `
+LogicalExpression {
+  "left": Identifier {
+    "name": "debug",
+    "type": "Identifier",
   },
   "operator": "||",
   "right": LogicalExpression {
@@ -1337,6 +1369,75 @@ LogicalExpression {
       "value": "\\"2\\"",
     },
     "type": "LogicalExpression",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`(LogicalExpression) combination2 with BinaryExpression 1`] = `
+LogicalExpression {
+  "left": BinaryExpression {
+    "left": Identifier {
+      "name": "debug",
+      "type": "Identifier",
+    },
+    "operator": "==",
+    "right": StringLiteral {
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "type": "BinaryExpression",
+  },
+  "operator": "||",
+  "right": StringLiteral {
+    "type": "StringLiteral",
+    "value": "\\"2\\"",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`(LogicalExpression) combination3 1`] = `
+LogicalExpression {
+  "left": Identifier {
+    "name": "debug",
+    "type": "Identifier",
+  },
+  "operator": "&&",
+  "right": BinaryExpression {
+    "left": StringLiteral {
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "operator": "==",
+    "right": StringLiteral {
+      "type": "StringLiteral",
+      "value": "\\"2\\"",
+    },
+    "type": "BinaryExpression",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`(LogicalExpression) combination4 1`] = `
+LogicalExpression {
+  "left": Identifier {
+    "name": "debug",
+    "type": "Identifier",
+  },
+  "operator": "||",
+  "right": BinaryExpression {
+    "left": StringLiteral {
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "operator": "==",
+    "right": StringLiteral {
+      "type": "StringLiteral",
+      "value": "\\"2\\"",
+    },
+    "type": "BinaryExpression",
   },
   "type": "LogicalExpression",
 }

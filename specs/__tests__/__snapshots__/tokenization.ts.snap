@@ -8828,9 +8828,9 @@ Array [
   Object {
     "loc": Object {
       "end": Object {
-        "column": 3,
+        "column": 5,
         "line": 1,
-        "offset": 2,
+        "offset": 4,
       },
       "start": Object {
         "column": 1,
@@ -8843,17 +8843,82 @@ Array [
   Object {
     "loc": Object {
       "end": Object {
-        "column": 4,
+        "column": 8,
         "line": 1,
-        "offset": 3,
+        "offset": 7,
       },
       "start": Object {
-        "column": 4,
+        "column": 7,
         "line": 1,
-        "offset": 3,
+        "offset": 6,
       },
     },
-    "type": "symbol",
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 12,
+        "line": 1,
+        "offset": 11,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 1,
+        "offset": 9,
+      },
+    },
+    "type": "string",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 15,
+        "line": 1,
+        "offset": 14,
+      },
+      "start": Object {
+        "column": 14,
+        "line": 1,
+        "offset": 13,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+      "start": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+    },
+    "type": "string",
+  },
+]
+`;
+
+exports[`(LogicalExpression) <loc>combination with BinaryExpression 1`] = `
+Array [
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "type": "ident",
   },
   Object {
     "loc": Object {
@@ -8863,34 +8928,19 @@ Array [
         "offset": 7,
       },
       "start": Object {
-        "column": 5,
+        "column": 7,
         "line": 1,
-        "offset": 4,
+        "offset": 6,
       },
     },
-    "type": "ident",
+    "type": "operator",
   },
   Object {
     "loc": Object {
       "end": Object {
-        "column": 9,
+        "column": 12,
         "line": 1,
-        "offset": 8,
-      },
-      "start": Object {
-        "column": 9,
-        "line": 1,
-        "offset": 8,
-      },
-    },
-    "type": "symbol",
-  },
-  Object {
-    "loc": Object {
-      "end": Object {
-        "column": 14,
-        "line": 1,
-        "offset": 13,
+        "offset": 11,
       },
       "start": Object {
         "column": 10,
@@ -8898,19 +8948,19 @@ Array [
         "offset": 9,
       },
     },
-    "type": "ident",
+    "type": "string",
   },
   Object {
     "loc": Object {
       "end": Object {
-        "column": 17,
+        "column": 15,
         "line": 1,
-        "offset": 16,
+        "offset": 14,
       },
       "start": Object {
-        "column": 16,
+        "column": 14,
         "line": 1,
-        "offset": 15,
+        "offset": 13,
       },
     },
     "type": "operator",
@@ -8918,14 +8968,64 @@ Array [
   Object {
     "loc": Object {
       "end": Object {
-        "column": 21,
-        "line": 1,
-        "offset": 20,
-      },
-      "start": Object {
         "column": 19,
         "line": 1,
         "offset": 18,
+      },
+      "start": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+    },
+    "type": "string",
+  },
+]
+`;
+
+exports[`(LogicalExpression) <loc>combination2 1`] = `
+Array [
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 8,
+        "line": 1,
+        "offset": 7,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 1,
+        "offset": 6,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 12,
+        "line": 1,
+        "offset": 11,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 1,
+        "offset": 9,
       },
     },
     "type": "string",
@@ -8933,14 +9033,14 @@ Array [
   Object {
     "loc": Object {
       "end": Object {
-        "column": 24,
+        "column": 15,
         "line": 1,
-        "offset": 23,
+        "offset": 14,
       },
       "start": Object {
-        "column": 23,
+        "column": 14,
         "line": 1,
-        "offset": 22,
+        "offset": 13,
       },
     },
     "type": "operator",
@@ -8948,14 +9048,254 @@ Array [
   Object {
     "loc": Object {
       "end": Object {
-        "column": 28,
+        "column": 19,
         "line": 1,
-        "offset": 27,
+        "offset": 18,
       },
       "start": Object {
-        "column": 26,
+        "column": 17,
         "line": 1,
-        "offset": 25,
+        "offset": 16,
+      },
+    },
+    "type": "string",
+  },
+]
+`;
+
+exports[`(LogicalExpression) <loc>combination2 with BinaryExpression 1`] = `
+Array [
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 8,
+        "line": 1,
+        "offset": 7,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 1,
+        "offset": 6,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 12,
+        "line": 1,
+        "offset": 11,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 1,
+        "offset": 9,
+      },
+    },
+    "type": "string",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 15,
+        "line": 1,
+        "offset": 14,
+      },
+      "start": Object {
+        "column": 14,
+        "line": 1,
+        "offset": 13,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+      "start": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+    },
+    "type": "string",
+  },
+]
+`;
+
+exports[`(LogicalExpression) <loc>combination3 1`] = `
+Array [
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 8,
+        "line": 1,
+        "offset": 7,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 1,
+        "offset": 6,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 12,
+        "line": 1,
+        "offset": 11,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 1,
+        "offset": 9,
+      },
+    },
+    "type": "string",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 15,
+        "line": 1,
+        "offset": 14,
+      },
+      "start": Object {
+        "column": 14,
+        "line": 1,
+        "offset": 13,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+      "start": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+    },
+    "type": "string",
+  },
+]
+`;
+
+exports[`(LogicalExpression) <loc>combination4 1`] = `
+Array [
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 8,
+        "line": 1,
+        "offset": 7,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 1,
+        "offset": 6,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 12,
+        "line": 1,
+        "offset": 11,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 1,
+        "offset": 9,
+      },
+    },
+    "type": "string",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 15,
+        "line": 1,
+        "offset": 14,
+      },
+      "start": Object {
+        "column": 14,
+        "line": 1,
+        "offset": 13,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+      "start": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
       },
     },
     "type": "string",
@@ -9110,23 +9450,57 @@ exports[`(LogicalExpression) combination 1`] = `
 Array [
   Object {
     "type": "ident",
-    "value": "req",
+    "value": "debug",
   },
   Object {
-    "type": "symbol",
-    "value": ".",
+    "type": "operator",
+    "value": "&&",
   },
+  Object {
+    "type": "string",
+    "value": "\\"1\\"",
+  },
+  Object {
+    "type": "operator",
+    "value": "||",
+  },
+  Object {
+    "type": "string",
+    "value": "\\"2\\"",
+  },
+]
+`;
+
+exports[`(LogicalExpression) combination with BinaryExpression 1`] = `
+Array [
   Object {
     "type": "ident",
-    "value": "http",
+    "value": "debug",
   },
   Object {
-    "type": "symbol",
-    "value": ".",
+    "type": "operator",
+    "value": "==",
   },
+  Object {
+    "type": "string",
+    "value": "\\"1\\"",
+  },
+  Object {
+    "type": "operator",
+    "value": "&&",
+  },
+  Object {
+    "type": "string",
+    "value": "\\"2\\"",
+  },
+]
+`;
+
+exports[`(LogicalExpression) combination2 1`] = `
+Array [
   Object {
     "type": "ident",
-    "value": "Debug",
+    "value": "debug",
   },
   Object {
     "type": "operator",
@@ -9139,6 +9513,81 @@ Array [
   Object {
     "type": "operator",
     "value": "&&",
+  },
+  Object {
+    "type": "string",
+    "value": "\\"2\\"",
+  },
+]
+`;
+
+exports[`(LogicalExpression) combination2 with BinaryExpression 1`] = `
+Array [
+  Object {
+    "type": "ident",
+    "value": "debug",
+  },
+  Object {
+    "type": "operator",
+    "value": "==",
+  },
+  Object {
+    "type": "string",
+    "value": "\\"1\\"",
+  },
+  Object {
+    "type": "operator",
+    "value": "||",
+  },
+  Object {
+    "type": "string",
+    "value": "\\"2\\"",
+  },
+]
+`;
+
+exports[`(LogicalExpression) combination3 1`] = `
+Array [
+  Object {
+    "type": "ident",
+    "value": "debug",
+  },
+  Object {
+    "type": "operator",
+    "value": "&&",
+  },
+  Object {
+    "type": "string",
+    "value": "\\"1\\"",
+  },
+  Object {
+    "type": "operator",
+    "value": "==",
+  },
+  Object {
+    "type": "string",
+    "value": "\\"2\\"",
+  },
+]
+`;
+
+exports[`(LogicalExpression) combination4 1`] = `
+Array [
+  Object {
+    "type": "ident",
+    "value": "debug",
+  },
+  Object {
+    "type": "operator",
+    "value": "||",
+  },
+  Object {
+    "type": "string",
+    "value": "\\"1\\"",
+  },
+  Object {
+    "type": "operator",
+    "value": "==",
   },
   Object {
     "type": "string",

@@ -4786,31 +4786,15 @@ LogicalExpression {
 }
 `;
 
-exports[`(LogicalExpression) combination: combination 1`] = `
+exports[`(LogicalExpression) combination with BinaryExpression: combination with BinaryExpression 1`] = `
 LogicalExpression {
-  "left": Member {
-    "base": Member {
-      "base": Identifier {
-        "loc": Object {
-          "end": Object {
-            "column": 3,
-            "line": 1,
-            "offset": 2,
-          },
-          "start": Object {
-            "column": 1,
-            "line": 1,
-            "offset": 0,
-          },
-        },
-        "name": "req",
-        "type": "Identifier",
-      },
+  "left": BinaryExpression {
+    "left": Identifier {
       "loc": Object {
         "end": Object {
-          "column": 8,
+          "column": 5,
           "line": 1,
-          "offset": 7,
+          "offset": 4,
         },
         "start": Object {
           "column": 1,
@@ -4818,29 +4802,14 @@ LogicalExpression {
           "offset": 0,
         },
       },
-      "member": Identifier {
-        "loc": Object {
-          "end": Object {
-            "column": 8,
-            "line": 1,
-            "offset": 7,
-          },
-          "start": Object {
-            "column": 5,
-            "line": 1,
-            "offset": 4,
-          },
-        },
-        "name": "http",
-        "type": "Identifier",
-      },
-      "type": "Member",
+      "name": "debug",
+      "type": "Identifier",
     },
     "loc": Object {
       "end": Object {
-        "column": 14,
+        "column": 12,
         "line": 1,
-        "offset": 13,
+        "offset": 11,
       },
       "start": Object {
         "column": 1,
@@ -4848,12 +4817,13 @@ LogicalExpression {
         "offset": 0,
       },
     },
-    "member": Identifier {
+    "operator": "==",
+    "right": StringLiteral {
       "loc": Object {
         "end": Object {
-          "column": 14,
+          "column": 12,
           "line": 1,
-          "offset": 13,
+          "offset": 11,
         },
         "start": Object {
           "column": 10,
@@ -4861,16 +4831,233 @@ LogicalExpression {
           "offset": 9,
         },
       },
-      "name": "Debug",
-      "type": "Identifier",
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
     },
-    "type": "Member",
+    "type": "BinaryExpression",
   },
   "loc": Object {
     "end": Object {
-      "column": 28,
+      "column": 19,
       "line": 1,
-      "offset": 27,
+      "offset": 18,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "&&",
+  "right": StringLiteral {
+    "loc": Object {
+      "end": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+      "start": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"2\\"",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`(LogicalExpression) combination: combination 1`] = `
+LogicalExpression {
+  "left": LogicalExpression {
+    "left": Identifier {
+      "loc": Object {
+        "end": Object {
+          "column": 5,
+          "line": 1,
+          "offset": 4,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "name": "debug",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 12,
+        "line": 1,
+        "offset": 11,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "operator": "&&",
+    "right": StringLiteral {
+      "loc": Object {
+        "end": Object {
+          "column": 12,
+          "line": 1,
+          "offset": 11,
+        },
+        "start": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "type": "LogicalExpression",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 19,
+      "line": 1,
+      "offset": 18,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "||",
+  "right": StringLiteral {
+    "loc": Object {
+      "end": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+      "start": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"2\\"",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`(LogicalExpression) combination2 with BinaryExpression: combination2 with BinaryExpression 1`] = `
+LogicalExpression {
+  "left": BinaryExpression {
+    "left": Identifier {
+      "loc": Object {
+        "end": Object {
+          "column": 5,
+          "line": 1,
+          "offset": 4,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "name": "debug",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 12,
+        "line": 1,
+        "offset": 11,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "operator": "==",
+    "right": StringLiteral {
+      "loc": Object {
+        "end": Object {
+          "column": 12,
+          "line": 1,
+          "offset": 11,
+        },
+        "start": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "type": "BinaryExpression",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 19,
+      "line": 1,
+      "offset": 18,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "||",
+  "right": StringLiteral {
+    "loc": Object {
+      "end": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+      "start": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"2\\"",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`(LogicalExpression) combination2: combination2 1`] = `
+LogicalExpression {
+  "left": Identifier {
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "name": "debug",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 19,
+      "line": 1,
+      "offset": 18,
     },
     "start": Object {
       "column": 1,
@@ -4883,14 +5070,14 @@ LogicalExpression {
     "left": StringLiteral {
       "loc": Object {
         "end": Object {
-          "column": 21,
+          "column": 12,
           "line": 1,
-          "offset": 20,
+          "offset": 11,
         },
         "start": Object {
-          "column": 19,
+          "column": 10,
           "line": 1,
-          "offset": 18,
+          "offset": 9,
         },
       },
       "type": "StringLiteral",
@@ -4898,34 +5085,200 @@ LogicalExpression {
     },
     "loc": Object {
       "end": Object {
-        "column": 28,
-        "line": 1,
-        "offset": 27,
-      },
-      "start": Object {
         "column": 19,
         "line": 1,
         "offset": 18,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 1,
+        "offset": 9,
       },
     },
     "operator": "&&",
     "right": StringLiteral {
       "loc": Object {
         "end": Object {
-          "column": 28,
+          "column": 19,
           "line": 1,
-          "offset": 27,
+          "offset": 18,
         },
         "start": Object {
-          "column": 26,
+          "column": 17,
           "line": 1,
-          "offset": 25,
+          "offset": 16,
         },
       },
       "type": "StringLiteral",
       "value": "\\"2\\"",
     },
     "type": "LogicalExpression",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`(LogicalExpression) combination3: combination3 1`] = `
+LogicalExpression {
+  "left": Identifier {
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "name": "debug",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 19,
+      "line": 1,
+      "offset": 18,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "&&",
+  "right": BinaryExpression {
+    "left": StringLiteral {
+      "loc": Object {
+        "end": Object {
+          "column": 12,
+          "line": 1,
+          "offset": 11,
+        },
+        "start": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 1,
+        "offset": 9,
+      },
+    },
+    "operator": "==",
+    "right": StringLiteral {
+      "loc": Object {
+        "end": Object {
+          "column": 19,
+          "line": 1,
+          "offset": 18,
+        },
+        "start": Object {
+          "column": 17,
+          "line": 1,
+          "offset": 16,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"2\\"",
+    },
+    "type": "BinaryExpression",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`(LogicalExpression) combination4: combination4 1`] = `
+LogicalExpression {
+  "left": Identifier {
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "name": "debug",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 19,
+      "line": 1,
+      "offset": 18,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "||",
+  "right": BinaryExpression {
+    "left": StringLiteral {
+      "loc": Object {
+        "end": Object {
+          "column": 12,
+          "line": 1,
+          "offset": 11,
+        },
+        "start": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 1,
+        "offset": 9,
+      },
+    },
+    "operator": "==",
+    "right": StringLiteral {
+      "loc": Object {
+        "end": Object {
+          "column": 19,
+          "line": 1,
+          "offset": 18,
+        },
+        "start": Object {
+          "column": 17,
+          "line": 1,
+          "offset": 16,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"2\\"",
+    },
+    "type": "BinaryExpression",
   },
   "type": "LogicalExpression",
 }
