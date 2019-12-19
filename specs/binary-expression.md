@@ -20,8 +20,14 @@ req.http.Debug ~ "1"
 
 <!-- TODO: combinations -->
 
-combinations
+multiple
 
 ```vcl
 req.http.Debug == "1" == "2" == "3"
+```
+
+combination with LogicalExpression
+
+```vcl
+req.http.Debug == "1" && "2" == "3"
 ```
