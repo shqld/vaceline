@@ -10,17 +10,19 @@ for (const testdoc of testdocs) {
       const { code } = generate(ast)
 
       it(testcase.name, () => {
-        if (
-          testdoc.name === 'BinaryExpression' &&
-          testcase.name === 'multiple'
-        ) {
-          // no test because of parens auto insertion
-          return
-        }
-
         const output = new Tokenizer(code)
           .tokenize()
-          .filter((token) => token.type !== 'comment')
+          .filter((token) => {
+            if (
+              testdoc.name === 'BinaryExpression' ||
+              testdoc.name === 'LogicalExpression'
+            ) {
+              // strip parens auto-inserted
+              return token.value !== '(' && token.value !== ')'
+            }
+
+            return token.type !== 'comment'
+          })
           .map((token) => token.value)
 
         const input = new Tokenizer(testcase.code)

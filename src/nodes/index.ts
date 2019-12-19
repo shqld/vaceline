@@ -404,11 +404,23 @@ export class LogicalExpression extends BaseExpression {
   }
 
   print() {
-    return b.concat([
-      printAst(this.left),
-      ' ',
-      b.concat([this.operator, ' ', printAst(this.right)]),
-    ])
+    const left =
+      this.left instanceof LogicalExpression &&
+      this.operator === '||' &&
+      this.left.operator === '&&'
+        ? b.concat(['(', printAst(this.left), ')'])
+        : printAst(this.left)
+
+    const right =
+      this.right instanceof LogicalExpression &&
+      this.operator === '||' &&
+      this.right.operator === '&&'
+        ? b.concat(['(', printAst(this.right), ')'])
+        : printAst(this.right)
+
+    return b.group(
+      b.concat([left, ' ', b.indent(b.concat([this.operator, b.line, right]))])
+    )
   }
 }
 
