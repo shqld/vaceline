@@ -235,7 +235,9 @@ exports[`(BinaryExpression) format<short> 1`] = `
 req.http.Debug == "1"
 
 ---------- (output) --------------------------------------------------------------
-req.http.Debug ==
+req
+  .http
+  .Debug ==
   "1"
 `;
 
@@ -244,7 +246,9 @@ exports[`(BinaryExpression) format<short> 2`] = `
 req.http.Debug != "1"
 
 ---------- (output) --------------------------------------------------------------
-req.http.Debug !=
+req
+  .http
+  .Debug !=
   "1"
 `;
 
@@ -253,7 +257,9 @@ exports[`(BinaryExpression) format<short> 3`] = `
 req.http.Debug ~ "1"
 
 ---------- (output) --------------------------------------------------------------
-req.http.Debug ~
+req
+  .http
+  .Debug ~
   "1"
 `;
 
@@ -262,7 +268,9 @@ exports[`(BinaryExpression) format<short> 4`] = `
 req.http.Debug == "1" == "2" == "3"
 
 ---------- (output) --------------------------------------------------------------
-((req.http.Debug ==
+((req
+  .http
+  .Debug ==
   "1") ==
   "2") ==
   "3"
@@ -273,7 +281,9 @@ exports[`(BinaryExpression) format<short> 5`] = `
 req.http.Debug == "1" && "2" == "3"
 
 ---------- (output) --------------------------------------------------------------
-req.http.Debug ==
+req
+  .http
+  .Debug ==
   "1" &&
   "2" ==
     "3"
@@ -301,7 +311,9 @@ exports[`(BooleanExpression) format<short> 1`] = `
 
 ---------- (output) --------------------------------------------------------------
 (
-  req.http.Debug ==
+  req
+    .http
+    .Debug ==
     "1"
 )
 `;
@@ -374,7 +386,9 @@ exports[`(ConcatExpression) format<short> 2`] = `
 ---------- (output) --------------------------------------------------------------
 "a"
   1
-  req.http.A
+  req
+    .http
+    .A
 `;
 
 exports[`(DeclareStatement) format 1`] = `
@@ -473,12 +487,22 @@ error 404 "Not Found";
 error 404 "Not Found";
 `;
 
-exports[`(ErrorStatement) format 3`] = `
+exports[`(ErrorStatement) format<long> 1`] = `
 ---------- (input) ---------------------------------------------------------------
 error 800 req.http.Debug;
 
 ---------- (output) --------------------------------------------------------------
 error 800 req.http.Debug;
+`;
+
+exports[`(ErrorStatement) format<short> 1`] = `
+---------- (input) ---------------------------------------------------------------
+error 800 req.http.Debug;
+
+---------- (output) --------------------------------------------------------------
+error 800 req
+  .http
+  .Debug;
 `;
 
 exports[`(ExpressionStatement) format 1`] = `
@@ -491,14 +515,6 @@ vaceline;
 
 exports[`(ExpressionStatement) format 2`] = `
 ---------- (input) ---------------------------------------------------------------
-req.http.Vaceline;
-
----------- (output) --------------------------------------------------------------
-req.http.Vaceline;
-`;
-
-exports[`(ExpressionStatement) format 3`] = `
----------- (input) ---------------------------------------------------------------
 "string";
 
 ---------- (output) --------------------------------------------------------------
@@ -507,6 +523,14 @@ exports[`(ExpressionStatement) format 3`] = `
 
 exports[`(ExpressionStatement) format<long> 1`] = `
 ---------- (input) ---------------------------------------------------------------
+req.http.Vaceline;
+
+---------- (output) --------------------------------------------------------------
+req.http.Vaceline;
+`;
+
+exports[`(ExpressionStatement) format<long> 2`] = `
+---------- (input) ---------------------------------------------------------------
 func(a);
 
 ---------- (output) --------------------------------------------------------------
@@ -514,6 +538,16 @@ func(a);
 `;
 
 exports[`(ExpressionStatement) format<short> 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Vaceline;
+
+---------- (output) --------------------------------------------------------------
+req
+  .http
+  .Vaceline;
+`;
+
+exports[`(ExpressionStatement) format<short> 2`] = `
 ---------- (input) ---------------------------------------------------------------
 func(a);
 
@@ -825,10 +859,14 @@ log "log"
   req.service_id
   "vaceline-log :: "
   {"	timestamp_us:"}
-  time.start.usec
+  time
+    .start
+    .usec
   {"	host:"}
   regsuball(
-    req.http.X-Forwarded-Host,
+    req
+      .http
+      .X-Forwarded-Host,
     {"	"},
     "",
   );
@@ -903,7 +941,9 @@ exports[`(LogicalExpression) format<short> 1`] = `
 req.http.Debug && "1"
 
 ---------- (output) --------------------------------------------------------------
-req.http.Debug &&
+req
+  .http
+  .Debug &&
   "1"
 `;
 
@@ -912,7 +952,9 @@ exports[`(LogicalExpression) format<short> 2`] = `
 req.http.Debug || "1"
 
 ---------- (output) --------------------------------------------------------------
-req.http.Debug ||
+req
+  .http
+  .Debug ||
   "1"
 `;
 
@@ -984,23 +1026,23 @@ req.backend
 req.backend
 `;
 
-exports[`(Member) format 2`] = `
----------- (input) ---------------------------------------------------------------
-req.http.Debug
-
----------- (output) --------------------------------------------------------------
-req.http.Debug
-`;
-
 exports[`(Member) format<long> 1`] = `
 ---------- (input) ---------------------------------------------------------------
-req.backend == backend
+req.http.Debug
 
 ---------- (output) --------------------------------------------------------------
-req.backend == backend
+req.http.Debug
 `;
 
 exports[`(Member) format<long> 2`] = `
+---------- (input) ---------------------------------------------------------------
+req.backend == backend
+
+---------- (output) --------------------------------------------------------------
+req.backend == backend
+`;
+
+exports[`(Member) format<long> 3`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Debug == "debug"
 
@@ -1010,6 +1052,16 @@ req.http.Debug == "debug"
 
 exports[`(Member) format<short> 1`] = `
 ---------- (input) ---------------------------------------------------------------
+req.http.Debug
+
+---------- (output) --------------------------------------------------------------
+req
+  .http
+  .Debug
+`;
+
+exports[`(Member) format<short> 2`] = `
+---------- (input) ---------------------------------------------------------------
 req.backend == backend
 
 ---------- (output) --------------------------------------------------------------
@@ -1017,12 +1069,14 @@ req.backend ==
   backend
 `;
 
-exports[`(Member) format<short> 2`] = `
+exports[`(Member) format<short> 3`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Debug == "debug"
 
 ---------- (output) --------------------------------------------------------------
-req.http.Debug ==
+req
+  .http
+  .Debug ==
   "debug"
 `;
 
@@ -1087,7 +1141,9 @@ sub vcl_recv {
 sub vcl_recv {
   declare local var.vacelinDebug STRING;
   if (
-    req.http.Vacelin:Some ==
+    req
+      .http
+      .Vacelin:Some ==
       "Some"
   ) {
     add var.vacelinDebug =

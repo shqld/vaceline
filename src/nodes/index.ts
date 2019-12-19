@@ -89,6 +89,7 @@ export abstract class BaseNode {
   }
 
   abstract print(): Doc
+  abstract print(options?: object): Doc
 
   static build<T extends NodeType, N extends NodeMap[T]>(
     node: N,
@@ -131,7 +132,7 @@ export class BooleanLiteral extends BaseLiteral {
   }
 
   print() {
-    return this.value
+    return this.value as Doc
   }
 }
 
@@ -239,12 +240,28 @@ export class Member extends BaseExpression {
     this.member = obj.member
   }
 
-  print() {
+  print({ neverBreak = false, broken = false } = {}): Doc {
+    const shouldBreak =
+      !neverBreak &&
+      // break if child is also a Member or if also parent is already broken
+      (this.base instanceof Member || broken)
+
     return b.concat([
-      printAst(this.base),
-      // b.softline,
-      '.',
-      printAst(this.member),
+      b.group(
+        b.concat([
+          this.base.print({
+            neverBreak,
+            broken: shouldBreak,
+          }),
+          b.indent(
+            b.concat([
+              shouldBreak ? b.softline : '',
+              '.',
+              printAst(this.member),
+            ])
+          ),
+        ])
+      ),
     ])
   }
 }
@@ -262,12 +279,7 @@ export class ValuePair extends BaseExpression {
   }
 
   print() {
-    return b.concat([
-      printAst(this.base),
-      // b.softline,
-      ':',
-      printAst(this.name),
-    ])
+    return b.concat([printAst(this.base), ':', printAst(this.name)])
   }
 }
 
@@ -373,11 +385,11 @@ export class BinaryExpression extends BaseExpression {
     this.operator = obj.operator
   }
 
-  print() {
+  print(): Doc {
     const left =
       this.left instanceof BinaryExpression
-        ? b.concat(['(', printAst(this.left), ')'])
-        : printAst(this.left)
+        ? b.concat(['(', this.left.print(), ')'])
+        : this.left.print()
 
     return b.group(
       b.concat([
@@ -507,7 +519,7 @@ export class DeclareStatement extends BaseStatement {
     return b.concat([
       'declare ',
       'local ',
-      printAst(this.id),
+      this.id.print({ neverBreak: true }),
       ' ',
       this.valueType,
       ';',
@@ -534,11 +546,11 @@ export class AddStatement extends BaseStatement {
       b.indent(
         b.concat([
           'add ',
-          printAst(this.left),
+          this.left.print({ neverBreak: true }),
           ' ',
           this.operator,
           b.line,
-          printAst(this.right),
+          this.right.print({ neverBreak: true }),
           ';',
         ])
       )
@@ -565,11 +577,11 @@ export class SetStatement extends BaseStatement {
       b.indent(
         b.concat([
           'set ',
-          printAst(this.left),
+          this.left.print({ neverBreak: true }),
           ' ',
           this.operator,
           b.line,
-          printAst(this.right),
+          this.right.print({ neverBreak: true }),
           ';',
         ])
       )
@@ -588,7 +600,7 @@ export class UnsetStatement extends BaseStatement {
   }
 
   print() {
-    return b.concat(['unset ', printAst(this.id), ';'])
+    return b.concat(['unset ', this.id.print({ neverBreak: true }), ';'])
   }
 }
 
