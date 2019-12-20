@@ -4065,6 +4065,392 @@ IfStatement {
 }
 `;
 
+exports[`(IfStatement) with empty lines: with empty lines 1`] = `
+IfStatement {
+  "alternative": IfStatement {
+    "alternative": Array [
+      SetStatement {
+        "left": Member {
+          "base": Identifier {
+            "loc": Object {
+              "end": Object {
+                "column": 9,
+                "line": 11,
+                "offset": 114,
+              },
+              "start": Object {
+                "column": 7,
+                "line": 11,
+                "offset": 112,
+              },
+            },
+            "name": "var",
+            "type": "Identifier",
+          },
+          "loc": Object {
+            "end": Object {
+              "column": 15,
+              "line": 11,
+              "offset": 120,
+            },
+            "start": Object {
+              "column": 7,
+              "line": 11,
+              "offset": 112,
+            },
+          },
+          "member": Identifier {
+            "loc": Object {
+              "end": Object {
+                "column": 15,
+                "line": 11,
+                "offset": 120,
+              },
+              "start": Object {
+                "column": 11,
+                "line": 11,
+                "offset": 116,
+              },
+            },
+            "name": "value",
+            "type": "Identifier",
+          },
+          "type": "Member",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 20,
+            "line": 11,
+            "offset": 125,
+          },
+          "start": Object {
+            "column": 3,
+            "line": 11,
+            "offset": 108,
+          },
+        },
+        "operator": "=",
+        "right": NumericLiteral {
+          "loc": Object {
+            "end": Object {
+              "column": 19,
+              "line": 11,
+              "offset": 124,
+            },
+            "start": Object {
+              "column": 19,
+              "line": 11,
+              "offset": 124,
+            },
+          },
+          "type": "NumericLiteral",
+          "value": "0",
+        },
+        "type": "SetStatement",
+      },
+    ],
+    "consequent": Array [
+      SetStatement {
+        "left": Member {
+          "base": Identifier {
+            "loc": Object {
+              "end": Object {
+                "column": 9,
+                "line": 7,
+                "offset": 82,
+              },
+              "start": Object {
+                "column": 7,
+                "line": 7,
+                "offset": 80,
+              },
+            },
+            "name": "var",
+            "type": "Identifier",
+          },
+          "loc": Object {
+            "end": Object {
+              "column": 15,
+              "line": 7,
+              "offset": 88,
+            },
+            "start": Object {
+              "column": 7,
+              "line": 7,
+              "offset": 80,
+            },
+          },
+          "member": Identifier {
+            "loc": Object {
+              "end": Object {
+                "column": 15,
+                "line": 7,
+                "offset": 88,
+              },
+              "start": Object {
+                "column": 11,
+                "line": 7,
+                "offset": 84,
+              },
+            },
+            "name": "value",
+            "type": "Identifier",
+          },
+          "type": "Member",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 20,
+            "line": 7,
+            "offset": 93,
+          },
+          "start": Object {
+            "column": 3,
+            "line": 7,
+            "offset": 76,
+          },
+        },
+        "operator": "=",
+        "right": NumericLiteral {
+          "loc": Object {
+            "end": Object {
+              "column": 19,
+              "line": 7,
+              "offset": 92,
+            },
+            "start": Object {
+              "column": 19,
+              "line": 7,
+              "offset": 92,
+            },
+          },
+          "type": "NumericLiteral",
+          "value": "2",
+        },
+        "type": "SetStatement",
+      },
+    ],
+    "loc": Object {
+      "end": Object {
+        "column": 1,
+        "line": 13,
+        "offset": 128,
+      },
+      "start": Object {
+        "column": 8,
+        "line": 5,
+        "offset": 51,
+      },
+    },
+    "test": UnaryExpression {
+      "argument": Member {
+        "base": Identifier {
+          "loc": Object {
+            "end": Object {
+              "column": 15,
+              "line": 5,
+              "offset": 58,
+            },
+            "start": Object {
+              "column": 13,
+              "line": 5,
+              "offset": 56,
+            },
+          },
+          "name": "var",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 25,
+            "line": 5,
+            "offset": 68,
+          },
+          "start": Object {
+            "column": 13,
+            "line": 5,
+            "offset": 56,
+          },
+        },
+        "member": Identifier {
+          "loc": Object {
+            "end": Object {
+              "column": 25,
+              "line": 5,
+              "offset": 68,
+            },
+            "start": Object {
+              "column": 17,
+              "line": 5,
+              "offset": 60,
+            },
+          },
+          "name": "condition",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 25,
+          "line": 5,
+          "offset": 68,
+        },
+        "start": Object {
+          "column": 12,
+          "line": 5,
+          "offset": 55,
+        },
+      },
+      "operator": "!",
+      "type": "UnaryExpression",
+    },
+    "type": "IfStatement",
+  },
+  "consequent": Array [
+    SetStatement {
+      "left": Member {
+        "base": Identifier {
+          "loc": Object {
+            "end": Object {
+              "column": 9,
+              "line": 3,
+              "offset": 30,
+            },
+            "start": Object {
+              "column": 7,
+              "line": 3,
+              "offset": 28,
+            },
+          },
+          "name": "var",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 15,
+            "line": 3,
+            "offset": 36,
+          },
+          "start": Object {
+            "column": 7,
+            "line": 3,
+            "offset": 28,
+          },
+        },
+        "member": Identifier {
+          "loc": Object {
+            "end": Object {
+              "column": 15,
+              "line": 3,
+              "offset": 36,
+            },
+            "start": Object {
+              "column": 11,
+              "line": 3,
+              "offset": 32,
+            },
+          },
+          "name": "value",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 20,
+          "line": 3,
+          "offset": 41,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 3,
+          "offset": 24,
+        },
+      },
+      "operator": "=",
+      "right": NumericLiteral {
+        "loc": Object {
+          "end": Object {
+            "column": 19,
+            "line": 3,
+            "offset": 40,
+          },
+          "start": Object {
+            "column": 19,
+            "line": 3,
+            "offset": 40,
+          },
+        },
+        "type": "NumericLiteral",
+        "value": "1",
+      },
+      "type": "SetStatement",
+    },
+  ],
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 13,
+      "offset": 128,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "test": Member {
+    "base": Identifier {
+      "loc": Object {
+        "end": Object {
+          "column": 7,
+          "line": 1,
+          "offset": 6,
+        },
+        "start": Object {
+          "column": 5,
+          "line": 1,
+          "offset": 4,
+        },
+      },
+      "name": "var",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "member": Identifier {
+      "loc": Object {
+        "end": Object {
+          "column": 17,
+          "line": 1,
+          "offset": 16,
+        },
+        "start": Object {
+          "column": 9,
+          "line": 1,
+          "offset": 8,
+        },
+      },
+      "name": "condition",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "type": "IfStatement",
+}
+`;
+
 exports[`(ImportStatement) basic: basic 1`] = `
 ImportStatement {
   "loc": Object {
@@ -5850,6 +6236,85 @@ Program {
           "type": "DeclareStatement",
           "valueType": "STRING",
         },
+        SetStatement {
+          "left": Member {
+            "base": Identifier {
+              "loc": Object {
+                "end": Object {
+                  "column": 9,
+                  "line": 3,
+                  "offset": 64,
+                },
+                "start": Object {
+                  "column": 7,
+                  "line": 3,
+                  "offset": 62,
+                },
+              },
+              "name": "var",
+              "type": "Identifier",
+            },
+            "loc": Object {
+              "end": Object {
+                "column": 23,
+                "line": 3,
+                "offset": 78,
+              },
+              "start": Object {
+                "column": 7,
+                "line": 3,
+                "offset": 62,
+              },
+            },
+            "member": Identifier {
+              "loc": Object {
+                "end": Object {
+                  "column": 23,
+                  "line": 3,
+                  "offset": 78,
+                },
+                "start": Object {
+                  "column": 11,
+                  "line": 3,
+                  "offset": 66,
+                },
+              },
+              "name": "vacelineDebug",
+              "type": "Identifier",
+            },
+            "type": "Member",
+          },
+          "loc": Object {
+            "end": Object {
+              "column": 36,
+              "line": 3,
+              "offset": 91,
+            },
+            "start": Object {
+              "column": 3,
+              "line": 3,
+              "offset": 58,
+            },
+          },
+          "operator": "=",
+          "right": StringLiteral {
+            "loc": Object {
+              "end": Object {
+                "column": 35,
+                "line": 3,
+                "offset": 90,
+              },
+              "start": Object {
+                "column": 27,
+                "line": 3,
+                "offset": 82,
+              },
+            },
+            "type": "StringLiteral",
+            "value": "\\"initial\\"",
+          },
+          "type": "SetStatement",
+        },
         IfStatement {
           "alternative": undefined,
           "consequent": Array [
@@ -5859,13 +6324,13 @@ Program {
                   "loc": Object {
                     "end": Object {
                       "column": 11,
-                      "line": 5,
-                      "offset": 108,
+                      "line": 6,
+                      "offset": 145,
                     },
                     "start": Object {
                       "column": 9,
-                      "line": 5,
-                      "offset": 106,
+                      "line": 6,
+                      "offset": 143,
                     },
                   },
                   "name": "var",
@@ -5874,26 +6339,26 @@ Program {
                 "loc": Object {
                   "end": Object {
                     "column": 24,
-                    "line": 5,
-                    "offset": 121,
+                    "line": 6,
+                    "offset": 158,
                   },
                   "start": Object {
                     "column": 9,
-                    "line": 5,
-                    "offset": 106,
+                    "line": 6,
+                    "offset": 143,
                   },
                 },
                 "member": Identifier {
                   "loc": Object {
                     "end": Object {
                       "column": 24,
-                      "line": 5,
-                      "offset": 121,
+                      "line": 6,
+                      "offset": 158,
                     },
                     "start": Object {
                       "column": 13,
-                      "line": 5,
-                      "offset": 110,
+                      "line": 6,
+                      "offset": 147,
                     },
                   },
                   "name": "vacelinDebug",
@@ -5904,13 +6369,13 @@ Program {
               "loc": Object {
                 "end": Object {
                   "column": 47,
-                  "line": 5,
-                  "offset": 144,
+                  "line": 6,
+                  "offset": 181,
                 },
                 "start": Object {
                   "column": 5,
-                  "line": 5,
-                  "offset": 102,
+                  "line": 6,
+                  "offset": 139,
                 },
               },
               "operator": "=",
@@ -5918,13 +6383,13 @@ Program {
                 "loc": Object {
                   "end": Object {
                     "column": 46,
-                    "line": 5,
-                    "offset": 143,
+                    "line": 6,
+                    "offset": 180,
                   },
                   "start": Object {
                     "column": 28,
-                    "line": 5,
-                    "offset": 125,
+                    "line": 6,
+                    "offset": 162,
                   },
                 },
                 "type": "StringLiteral",
@@ -5936,13 +6401,13 @@ Program {
           "loc": Object {
             "end": Object {
               "column": 3,
-              "line": 6,
-              "offset": 148,
+              "line": 7,
+              "offset": 185,
             },
             "start": Object {
               "column": 3,
-              "line": 4,
-              "offset": 59,
+              "line": 5,
+              "offset": 96,
             },
           },
           "test": BinaryExpression {
@@ -5953,13 +6418,13 @@ Program {
                     "loc": Object {
                       "end": Object {
                         "column": 9,
-                        "line": 4,
-                        "offset": 65,
+                        "line": 5,
+                        "offset": 102,
                       },
                       "start": Object {
                         "column": 7,
-                        "line": 4,
-                        "offset": 63,
+                        "line": 5,
+                        "offset": 100,
                       },
                     },
                     "name": "req",
@@ -5968,26 +6433,26 @@ Program {
                   "loc": Object {
                     "end": Object {
                       "column": 14,
-                      "line": 4,
-                      "offset": 70,
+                      "line": 5,
+                      "offset": 107,
                     },
                     "start": Object {
                       "column": 7,
-                      "line": 4,
-                      "offset": 63,
+                      "line": 5,
+                      "offset": 100,
                     },
                   },
                   "member": Identifier {
                     "loc": Object {
                       "end": Object {
                         "column": 14,
-                        "line": 4,
-                        "offset": 70,
+                        "line": 5,
+                        "offset": 107,
                       },
                       "start": Object {
                         "column": 11,
-                        "line": 4,
-                        "offset": 67,
+                        "line": 5,
+                        "offset": 104,
                       },
                     },
                     "name": "http",
@@ -5998,26 +6463,26 @@ Program {
                 "loc": Object {
                   "end": Object {
                     "column": 22,
-                    "line": 4,
-                    "offset": 78,
+                    "line": 5,
+                    "offset": 115,
                   },
                   "start": Object {
                     "column": 7,
-                    "line": 4,
-                    "offset": 63,
+                    "line": 5,
+                    "offset": 100,
                   },
                 },
                 "member": Identifier {
                   "loc": Object {
                     "end": Object {
                       "column": 22,
-                      "line": 4,
-                      "offset": 78,
+                      "line": 5,
+                      "offset": 115,
                     },
                     "start": Object {
                       "column": 16,
-                      "line": 4,
-                      "offset": 72,
+                      "line": 5,
+                      "offset": 109,
                     },
                   },
                   "name": "Vacelin",
@@ -6028,26 +6493,26 @@ Program {
               "loc": Object {
                 "end": Object {
                   "column": 27,
-                  "line": 4,
-                  "offset": 83,
+                  "line": 5,
+                  "offset": 120,
                 },
                 "start": Object {
                   "column": 7,
-                  "line": 4,
-                  "offset": 63,
+                  "line": 5,
+                  "offset": 100,
                 },
               },
               "name": Identifier {
                 "loc": Object {
                   "end": Object {
                     "column": 27,
-                    "line": 4,
-                    "offset": 83,
+                    "line": 5,
+                    "offset": 120,
                   },
                   "start": Object {
                     "column": 24,
-                    "line": 4,
-                    "offset": 80,
+                    "line": 5,
+                    "offset": 117,
                   },
                 },
                 "name": "Some",
@@ -6058,13 +6523,13 @@ Program {
             "loc": Object {
               "end": Object {
                 "column": 37,
-                "line": 4,
-                "offset": 93,
+                "line": 5,
+                "offset": 130,
               },
               "start": Object {
                 "column": 7,
-                "line": 4,
-                "offset": 63,
+                "line": 5,
+                "offset": 100,
               },
             },
             "operator": "==",
@@ -6072,13 +6537,13 @@ Program {
               "loc": Object {
                 "end": Object {
                   "column": 37,
-                  "line": 4,
-                  "offset": 93,
+                  "line": 5,
+                  "offset": 130,
                 },
                 "start": Object {
                   "column": 32,
-                  "line": 4,
-                  "offset": 88,
+                  "line": 5,
+                  "offset": 125,
                 },
               },
               "type": "StringLiteral",
@@ -6108,8 +6573,8 @@ Program {
       "loc": Object {
         "end": Object {
           "column": 1,
-          "line": 7,
-          "offset": 150,
+          "line": 8,
+          "offset": 187,
         },
         "start": Object {
           "column": 1,
@@ -6123,8 +6588,486 @@ Program {
   "loc": Object {
     "end": Object {
       "column": 1,
-      "line": 7,
-      "offset": 150,
+      "line": 8,
+      "offset": 187,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "Program",
+}
+`;
+
+exports[`(Program) with empty lines: with empty lines 1`] = `
+Program {
+  "body": Array [
+    DeclareStatement {
+      "id": Member {
+        "base": Identifier {
+          "loc": Object {
+            "end": Object {
+              "column": 17,
+              "line": 1,
+              "offset": 16,
+            },
+            "start": Object {
+              "column": 15,
+              "line": 1,
+              "offset": 14,
+            },
+          },
+          "name": "var",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 30,
+            "line": 1,
+            "offset": 29,
+          },
+          "start": Object {
+            "column": 15,
+            "line": 1,
+            "offset": 14,
+          },
+        },
+        "member": Identifier {
+          "loc": Object {
+            "end": Object {
+              "column": 30,
+              "line": 1,
+              "offset": 29,
+            },
+            "start": Object {
+              "column": 19,
+              "line": 1,
+              "offset": 18,
+            },
+          },
+          "name": "vacelinDebug",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 38,
+          "line": 1,
+          "offset": 37,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "DeclareStatement",
+      "valueType": "STRING",
+    },
+    SetStatement {
+      "left": Member {
+        "base": Identifier {
+          "loc": Object {
+            "end": Object {
+              "column": 7,
+              "line": 2,
+              "offset": 45,
+            },
+            "start": Object {
+              "column": 5,
+              "line": 2,
+              "offset": 43,
+            },
+          },
+          "name": "var",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 21,
+            "line": 2,
+            "offset": 59,
+          },
+          "start": Object {
+            "column": 5,
+            "line": 2,
+            "offset": 43,
+          },
+        },
+        "member": Identifier {
+          "loc": Object {
+            "end": Object {
+              "column": 21,
+              "line": 2,
+              "offset": 59,
+            },
+            "start": Object {
+              "column": 9,
+              "line": 2,
+              "offset": 47,
+            },
+          },
+          "name": "vacelineDebug",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 28,
+          "line": 2,
+          "offset": 66,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 39,
+        },
+      },
+      "operator": "=",
+      "right": StringLiteral {
+        "loc": Object {
+          "end": Object {
+            "column": 27,
+            "line": 2,
+            "offset": 65,
+          },
+          "start": Object {
+            "column": 25,
+            "line": 2,
+            "offset": 63,
+          },
+        },
+        "type": "StringLiteral",
+        "value": "\\"1\\"",
+      },
+      "type": "SetStatement",
+    },
+    SetStatement {
+      "left": Member {
+        "base": Identifier {
+          "loc": Object {
+            "end": Object {
+              "column": 7,
+              "line": 4,
+              "offset": 75,
+            },
+            "start": Object {
+              "column": 5,
+              "line": 4,
+              "offset": 73,
+            },
+          },
+          "name": "var",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 21,
+            "line": 4,
+            "offset": 89,
+          },
+          "start": Object {
+            "column": 5,
+            "line": 4,
+            "offset": 73,
+          },
+        },
+        "member": Identifier {
+          "loc": Object {
+            "end": Object {
+              "column": 21,
+              "line": 4,
+              "offset": 89,
+            },
+            "start": Object {
+              "column": 9,
+              "line": 4,
+              "offset": 77,
+            },
+          },
+          "name": "vacelineDebug",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 28,
+          "line": 4,
+          "offset": 96,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 4,
+          "offset": 69,
+        },
+      },
+      "operator": "=",
+      "right": StringLiteral {
+        "loc": Object {
+          "end": Object {
+            "column": 27,
+            "line": 4,
+            "offset": 95,
+          },
+          "start": Object {
+            "column": 25,
+            "line": 4,
+            "offset": 93,
+          },
+        },
+        "type": "StringLiteral",
+        "value": "\\"2\\"",
+      },
+      "type": "SetStatement",
+    },
+    SetStatement {
+      "left": Member {
+        "base": Identifier {
+          "loc": Object {
+            "end": Object {
+              "column": 7,
+              "line": 7,
+              "offset": 106,
+            },
+            "start": Object {
+              "column": 5,
+              "line": 7,
+              "offset": 104,
+            },
+          },
+          "name": "var",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 21,
+            "line": 7,
+            "offset": 120,
+          },
+          "start": Object {
+            "column": 5,
+            "line": 7,
+            "offset": 104,
+          },
+        },
+        "member": Identifier {
+          "loc": Object {
+            "end": Object {
+              "column": 21,
+              "line": 7,
+              "offset": 120,
+            },
+            "start": Object {
+              "column": 9,
+              "line": 7,
+              "offset": 108,
+            },
+          },
+          "name": "vacelineDebug",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 28,
+          "line": 7,
+          "offset": 127,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 7,
+          "offset": 100,
+        },
+      },
+      "operator": "=",
+      "right": StringLiteral {
+        "loc": Object {
+          "end": Object {
+            "column": 27,
+            "line": 7,
+            "offset": 126,
+          },
+          "start": Object {
+            "column": 25,
+            "line": 7,
+            "offset": 124,
+          },
+        },
+        "type": "StringLiteral",
+        "value": "\\"3\\"",
+      },
+      "type": "SetStatement",
+    },
+    SetStatement {
+      "left": Member {
+        "base": Identifier {
+          "loc": Object {
+            "end": Object {
+              "column": 7,
+              "line": 11,
+              "offset": 138,
+            },
+            "start": Object {
+              "column": 5,
+              "line": 11,
+              "offset": 136,
+            },
+          },
+          "name": "var",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 21,
+            "line": 11,
+            "offset": 152,
+          },
+          "start": Object {
+            "column": 5,
+            "line": 11,
+            "offset": 136,
+          },
+        },
+        "member": Identifier {
+          "loc": Object {
+            "end": Object {
+              "column": 21,
+              "line": 11,
+              "offset": 152,
+            },
+            "start": Object {
+              "column": 9,
+              "line": 11,
+              "offset": 140,
+            },
+          },
+          "name": "vacelineDebug",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 28,
+          "line": 11,
+          "offset": 159,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 11,
+          "offset": 132,
+        },
+      },
+      "operator": "=",
+      "right": StringLiteral {
+        "loc": Object {
+          "end": Object {
+            "column": 27,
+            "line": 11,
+            "offset": 158,
+          },
+          "start": Object {
+            "column": 25,
+            "line": 11,
+            "offset": 156,
+          },
+        },
+        "type": "StringLiteral",
+        "value": "\\"4\\"",
+      },
+      "type": "SetStatement",
+    },
+    SetStatement {
+      "left": Member {
+        "base": Identifier {
+          "loc": Object {
+            "end": Object {
+              "column": 7,
+              "line": 16,
+              "offset": 171,
+            },
+            "start": Object {
+              "column": 5,
+              "line": 16,
+              "offset": 169,
+            },
+          },
+          "name": "var",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 21,
+            "line": 16,
+            "offset": 185,
+          },
+          "start": Object {
+            "column": 5,
+            "line": 16,
+            "offset": 169,
+          },
+        },
+        "member": Identifier {
+          "loc": Object {
+            "end": Object {
+              "column": 21,
+              "line": 16,
+              "offset": 185,
+            },
+            "start": Object {
+              "column": 9,
+              "line": 16,
+              "offset": 173,
+            },
+          },
+          "name": "vacelineDebug",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 28,
+          "line": 16,
+          "offset": 192,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 16,
+          "offset": 165,
+        },
+      },
+      "operator": "=",
+      "right": StringLiteral {
+        "loc": Object {
+          "end": Object {
+            "column": 27,
+            "line": 16,
+            "offset": 191,
+          },
+          "start": Object {
+            "column": 25,
+            "line": 16,
+            "offset": 189,
+          },
+        },
+        "type": "StringLiteral",
+        "value": "\\"5\\"",
+      },
+      "type": "SetStatement",
+    },
+  ],
+  "loc": Object {
+    "end": Object {
+      "column": 28,
+      "line": 16,
+      "offset": 192,
     },
     "start": Object {
       "column": 1,
@@ -6691,6 +7634,54 @@ SubroutineStatement {
       },
       "type": "SetStatement",
     },
+    SetStatement {
+      "left": Identifier {
+        "loc": Object {
+          "end": Object {
+            "column": 14,
+            "line": 3,
+            "offset": 52,
+          },
+          "start": Object {
+            "column": 7,
+            "line": 3,
+            "offset": 45,
+          },
+        },
+        "name": "vaceline",
+        "type": "Identifier",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 23,
+          "line": 3,
+          "offset": 61,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 3,
+          "offset": 41,
+        },
+      },
+      "operator": "=",
+      "right": StringLiteral {
+        "loc": Object {
+          "end": Object {
+            "column": 22,
+            "line": 3,
+            "offset": 60,
+          },
+          "start": Object {
+            "column": 18,
+            "line": 3,
+            "offset": 56,
+          },
+        },
+        "type": "StringLiteral",
+        "value": "\\"bbb\\"",
+      },
+      "type": "SetStatement",
+    },
   ],
   "id": Identifier {
     "loc": Object {
@@ -6711,8 +7702,140 @@ SubroutineStatement {
   "loc": Object {
     "end": Object {
       "column": 1,
-      "line": 3,
-      "offset": 39,
+      "line": 4,
+      "offset": 63,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "SubroutineStatement",
+}
+`;
+
+exports[`(SubroutineStatement) with empty lines: with empty lines 1`] = `
+SubroutineStatement {
+  "body": Array [
+    SetStatement {
+      "left": Identifier {
+        "loc": Object {
+          "end": Object {
+            "column": 14,
+            "line": 2,
+            "offset": 28,
+          },
+          "start": Object {
+            "column": 7,
+            "line": 2,
+            "offset": 21,
+          },
+        },
+        "name": "vaceline",
+        "type": "Identifier",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 23,
+          "line": 2,
+          "offset": 37,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 2,
+          "offset": 17,
+        },
+      },
+      "operator": "=",
+      "right": StringLiteral {
+        "loc": Object {
+          "end": Object {
+            "column": 22,
+            "line": 2,
+            "offset": 36,
+          },
+          "start": Object {
+            "column": 18,
+            "line": 2,
+            "offset": 32,
+          },
+        },
+        "type": "StringLiteral",
+        "value": "\\"aaa\\"",
+      },
+      "type": "SetStatement",
+    },
+    SetStatement {
+      "left": Identifier {
+        "loc": Object {
+          "end": Object {
+            "column": 14,
+            "line": 5,
+            "offset": 54,
+          },
+          "start": Object {
+            "column": 7,
+            "line": 5,
+            "offset": 47,
+          },
+        },
+        "name": "vaceline",
+        "type": "Identifier",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 23,
+          "line": 5,
+          "offset": 63,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 5,
+          "offset": 43,
+        },
+      },
+      "operator": "=",
+      "right": StringLiteral {
+        "loc": Object {
+          "end": Object {
+            "column": 22,
+            "line": 5,
+            "offset": 62,
+          },
+          "start": Object {
+            "column": 18,
+            "line": 5,
+            "offset": 58,
+          },
+        },
+        "type": "StringLiteral",
+        "value": "\\"bbb\\"",
+      },
+      "type": "SetStatement",
+    },
+  ],
+  "id": Identifier {
+    "loc": Object {
+      "end": Object {
+        "column": 12,
+        "line": 1,
+        "offset": 11,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "name": "vcl_recv",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 8,
+      "offset": 67,
     },
     "start": Object {
       "column": 1,
