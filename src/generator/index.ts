@@ -14,7 +14,7 @@ export const generate = (
   options?: Partial<docHelpers.printer.Options>
 ): { code: string; map?: string } => {
   const { formatted } = docHelpers.printer.printDocToString(
-    ast.print({}),
+    ast.print({ lineNum: 1 }),
     options ? { ...defaultPrintOptions, ...options } : defaultPrintOptions
   )
 

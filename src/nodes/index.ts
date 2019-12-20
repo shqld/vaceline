@@ -12,8 +12,9 @@ export interface Location {
   end: Position
 }
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface State {}
+interface State {
+  lineNum: number
+}
 
 export type PlainNode<T extends BaseNode> = Omit<T, keyof BaseNode>
 export type NodeWithLoc<N extends BaseNode = BaseNode> = N & { loc: Location }
@@ -77,6 +78,28 @@ export type Statement =
 const flat = <T>(arr: Array<T>) =>
   arr.reduce((acc, cur) => acc.concat(cur), [] as Array<T>)
 
+const printStatements = (state: State, stmts: Array<BaseStatement>): Doc => {
+  const doc = []
+
+  for (const stmt of stmts) {
+    if (stmt.loc && stmt.loc.start.line > state.lineNum) {
+      let delta = stmt.loc.start.line - state.lineNum
+      while (delta--) {
+        doc.push(b.hardline)
+      }
+
+      state.lineNum = stmt.loc.start.line
+    }
+
+    doc.push(stmt.print(state), b.hardline)
+    state.lineNum++
+  }
+
+  doc.pop()
+
+  return b.concat(doc)
+}
+
 export abstract class BaseNode {
   type!: string
   loc?: Location
@@ -89,7 +112,7 @@ export abstract class BaseNode {
     )
   }
 
-  abstract print(state: Partial<State>): Doc
+  abstract print(state: State): Doc
 
   static build<T extends NodeType, N extends NodeMap[T]>(
     node: N,
@@ -117,10 +140,7 @@ export class Program extends BaseNode {
   }
 
   print(state: State) {
-    return b.join(
-      b.hardline,
-      this.body.map((n) => n.print(state))
-    )
+    return printStatements(state, this.body)
   }
 }
 
@@ -732,15 +752,7 @@ export class IfStatement extends BaseStatement {
         ])
       ),
       '{',
-      b.indent(
-        b.concat([
-          b.hardline,
-          b.join(
-            b.hardline,
-            this.consequent.map((n) => n.print(state))
-          ),
-        ])
-      ),
+      b.indent(printStatements(state, this.consequent)),
       b.hardline,
       '}',
     ]
@@ -749,12 +761,7 @@ export class IfStatement extends BaseStatement {
       const alternative = Array.isArray(this.alternative)
         ? [
             ' else {',
-            b.indent(
-              b.concat([
-                b.hardline,
-                b.concat(this.alternative.map((n) => n.print(state))),
-              ])
-            ),
+            b.indent(printStatements(state, this.alternative)),
             b.hardline,
             '}',
           ]
@@ -784,15 +791,7 @@ export class SubroutineStatement extends BaseStatement {
       'sub ',
       this.id.print(),
       ' {',
-      b.indent(
-        b.concat([
-          b.hardline,
-          b.join(
-            b.hardline,
-            this.body.map((n) => n.print(state))
-          ),
-        ])
-      ),
+      b.indent(printStatements(state, this.body)),
       b.hardline,
       '}',
     ])
