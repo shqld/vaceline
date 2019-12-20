@@ -8,7 +8,7 @@ import { promisify } from 'util'
 import mkdirp from 'mkdirp'
 import debug from 'debug'
 
-import { optionParser, Options } from './options'
+import { optionParser, CliOptions } from './options'
 import * as utils from './utils'
 
 import { parse, transformFile } from '..'
@@ -24,7 +24,7 @@ const createStream = (...strs: Array<string>) => {
   return readable
 }
 
-async function main(opts: Options) {
+async function main(opts: CliOptions) {
   const shouldOutputToFile = !!opts.outDir
 
   if (opts.debug === true) {
@@ -54,7 +54,7 @@ async function main(opts: Options) {
 
     const output = opts.ast
       ? JSON.stringify(parse(fs.readFileSync(filePath, 'utf8')), null, 2)
-      : transformFile(filePath).code
+      : transformFile(filePath, opts).code
 
     if (!opts.silent) console.timeEnd(readablePath)
 

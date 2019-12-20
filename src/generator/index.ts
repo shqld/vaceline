@@ -3,7 +3,11 @@ import { doc as docHelpers } from 'prettier'
 
 export const { builders } = docHelpers
 
-const defaultPrintOptions: docHelpers.printer.Options = {
+type FormatOptions = docHelpers.printer.Options
+
+export type GenerateOptions = {} & FormatOptions
+
+const defaultGenerateOptions: GenerateOptions = {
   printWidth: 100,
   tabWidth: 2,
   useTabs: false,
@@ -11,11 +15,17 @@ const defaultPrintOptions: docHelpers.printer.Options = {
 
 export const generate = (
   ast: BaseNode,
-  options?: Partial<docHelpers.printer.Options>
+  options: Partial<GenerateOptions> = defaultGenerateOptions
 ): { code: string; map?: string } => {
   const { formatted } = docHelpers.printer.printDocToString(
-    ast.print({ lineNum: 1 }),
-    options ? { ...defaultPrintOptions, ...options } : defaultPrintOptions
+    ast.print({
+      lineNum: 1,
+    }),
+    {
+      printWidth: options.printWidth ?? defaultGenerateOptions.printWidth,
+      tabWidth: options.tabWidth ?? defaultGenerateOptions.tabWidth,
+      useTabs: options.useTabs ?? defaultGenerateOptions.useTabs,
+    }
   )
 
   return { code: formatted }
