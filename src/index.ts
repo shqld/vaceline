@@ -8,6 +8,7 @@ import {
   // traverse,
 } from './lib'
 import { Program } from './nodes'
+import { GenerateOptions } from './generator'
 
 interface TransformResult {
   code: string
@@ -17,10 +18,15 @@ interface TransformResult {
 
 export { parse, generate as transformFromAst }
 
-export const transform = (code: string /*, options = {}*/): TransformResult => {
+export type Options = {} & GenerateOptions
+
+export const transform = (
+  code: string,
+  options: Partial<Options> = {}
+): TransformResult => {
   const ast = parse(code)
 
-  const result: Partial<TransformResult> = generate(ast)
+  const result: Partial<TransformResult> = generate(ast, options)
 
   result.ast = ast
 
@@ -28,14 +34,14 @@ export const transform = (code: string /*, options = {}*/): TransformResult => {
 }
 
 export const transformFile = (
-  filePath: string
-  // options = {}
+  filePath: string,
+  options: Partial<Options> = {}
 ): TransformResult => {
   const inputPath = resolvePath(filePath)
   assert(existsSync(inputPath), 'File not found: ' + inputPath)
 
   const ast = parse(readFileSync(filePath, 'utf8'))
-  const result: Partial<TransformResult> = generate(ast)
+  const result: Partial<TransformResult> = generate(ast, options)
 
   result.ast = ast
 

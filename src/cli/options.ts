@@ -2,8 +2,9 @@ import fs from 'fs'
 import path from 'path'
 import yargs from 'yargs'
 import assert from 'assert'
+import { GenerateOptions } from '../generator'
 
-export interface Options {
+export type CliOptions = GenerateOptions & {
   source: string
   stdin: boolean
   ast: boolean
@@ -35,7 +36,7 @@ export const optionParser = yargs
         desc: 'Source file/dir to transpile',
         coerce: path.resolve,
       })
-      .check((opts: Partial<Options>) => {
+      .check((opts: Partial<CliOptions>) => {
         if (!opts.stdin) {
           assert(opts.source, new Error('source must be present'))
           assert(
@@ -79,11 +80,31 @@ export const optionParser = yargs
         type: 'boolean',
         alias: 's',
         desc: 'Disable any logging',
-        coerce: Boolean,
+        default: false,
       })
       .option('debug', {
         type: 'boolean',
         desc: 'Enable debug logging',
-        coerce: Boolean,
+        default: false,
       })
-  ) as yargs.Argv<Options>
+      .option('minify', {
+        type: 'boolean',
+        default: true,
+      })
+      .option('no-comments', {
+        type: 'boolean',
+        default: true,
+      })
+      .option('printWidth', {
+        type: 'number',
+        default: 80,
+      })
+      .option('tabWidth', {
+        type: 'number',
+        default: 2,
+      })
+      .option('useTabs', {
+        type: 'boolean',
+        default: false,
+      })
+  ) as yargs.Argv<CliOptions>
