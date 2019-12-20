@@ -706,10 +706,15 @@ if (var.condition) {
 
 ---------- (output) --------------------------------------------------------------
 if (var.condition) {
+
   set var.value = 1;
 } else if (!var.condition) {
+
+
   set var.value = 2;
 } else {
+
+
   set var.value = 0;
 }
 `;
@@ -796,14 +801,19 @@ if (var.condition) {
 if (
   var.condition
 ) {
+
   set var.value =
     1;
 } else if (
   !var.condition
 ) {
+
+
   set var.value =
     2;
 } else {
+
+
   set var.value =
     0;
 }
@@ -1182,6 +1192,7 @@ sub vcl_recv {
 sub vcl_recv {
   declare local var.vacelinDebug STRING;
   set var.vacelineDebug = "initial";
+
   if (req.http.Vacelin:Some == "Some") {
     add var.vacelinDebug = "Vacelin Debug Log";
   }
@@ -1210,9 +1221,19 @@ set var.vacelineDebug = "5";
 ---------- (output) --------------------------------------------------------------
 declare local var.vacelinDebug STRING;
 set var.vacelineDebug = "1";
+
 set var.vacelineDebug = "2";
+
+
 set var.vacelineDebug = "3";
+
+
+
 set var.vacelineDebug = "4";
+
+
+
+
 set var.vacelineDebug = "5";
 `;
 
@@ -1232,6 +1253,7 @@ sub vcl_recv {
   declare local var.vacelinDebug STRING;
   set var.vacelineDebug =
     "initial";
+
   if (
     req
       .http
@@ -1267,12 +1289,22 @@ set var.vacelineDebug = "5";
 declare local var.vacelinDebug STRING;
 set var.vacelineDebug =
   "1";
+
 set var.vacelineDebug =
   "2";
+
+
 set var.vacelineDebug =
   "3";
+
+
+
 set var.vacelineDebug =
   "4";
+
+
+
+
 set var.vacelineDebug =
   "5";
 `;
@@ -1430,6 +1462,8 @@ sub vcl_recv {
 ---------- (output) --------------------------------------------------------------
 sub vcl_recv {
   set vaceline = "aaa";
+
+
   set vaceline = "bbb";
 }
 `;
@@ -1465,6 +1499,8 @@ sub vcl_recv {
 sub vcl_recv {
   set vaceline =
     "aaa";
+
+
   set vaceline =
     "bbb";
 }
