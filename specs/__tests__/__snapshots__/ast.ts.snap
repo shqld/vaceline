@@ -1100,6 +1100,104 @@ IfStatement {
 }
 `;
 
+exports[`(IfStatement) with empty lines 1`] = `
+IfStatement {
+  "alternative": IfStatement {
+    "alternative": Array [
+      SetStatement {
+        "left": Member {
+          "base": Identifier {
+            "name": "var",
+            "type": "Identifier",
+          },
+          "member": Identifier {
+            "name": "value",
+            "type": "Identifier",
+          },
+          "type": "Member",
+        },
+        "operator": "=",
+        "right": NumericLiteral {
+          "type": "NumericLiteral",
+          "value": "0",
+        },
+        "type": "SetStatement",
+      },
+    ],
+    "consequent": Array [
+      SetStatement {
+        "left": Member {
+          "base": Identifier {
+            "name": "var",
+            "type": "Identifier",
+          },
+          "member": Identifier {
+            "name": "value",
+            "type": "Identifier",
+          },
+          "type": "Member",
+        },
+        "operator": "=",
+        "right": NumericLiteral {
+          "type": "NumericLiteral",
+          "value": "2",
+        },
+        "type": "SetStatement",
+      },
+    ],
+    "test": UnaryExpression {
+      "argument": Member {
+        "base": Identifier {
+          "name": "var",
+          "type": "Identifier",
+        },
+        "member": Identifier {
+          "name": "condition",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "operator": "!",
+      "type": "UnaryExpression",
+    },
+    "type": "IfStatement",
+  },
+  "consequent": Array [
+    SetStatement {
+      "left": Member {
+        "base": Identifier {
+          "name": "var",
+          "type": "Identifier",
+        },
+        "member": Identifier {
+          "name": "value",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "operator": "=",
+      "right": NumericLiteral {
+        "type": "NumericLiteral",
+        "value": "1",
+      },
+      "type": "SetStatement",
+    },
+  ],
+  "test": Member {
+    "base": Identifier {
+      "name": "var",
+      "type": "Identifier",
+    },
+    "member": Identifier {
+      "name": "condition",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "type": "IfStatement",
+}
+`;
+
 exports[`(ImportStatement) basic 1`] = `
 ImportStatement {
   "module": Identifier {
@@ -1601,6 +1699,25 @@ Program {
           "type": "DeclareStatement",
           "valueType": "STRING",
         },
+        SetStatement {
+          "left": Member {
+            "base": Identifier {
+              "name": "var",
+              "type": "Identifier",
+            },
+            "member": Identifier {
+              "name": "vacelineDebug",
+              "type": "Identifier",
+            },
+            "type": "Member",
+          },
+          "operator": "=",
+          "right": StringLiteral {
+            "type": "StringLiteral",
+            "value": "\\"initial\\"",
+          },
+          "type": "SetStatement",
+        },
         IfStatement {
           "alternative": undefined,
           "consequent": Array [
@@ -1665,6 +1782,124 @@ Program {
         "type": "Identifier",
       },
       "type": "SubroutineStatement",
+    },
+  ],
+  "type": "Program",
+}
+`;
+
+exports[`(Program) with empty lines 1`] = `
+Program {
+  "body": Array [
+    DeclareStatement {
+      "id": Member {
+        "base": Identifier {
+          "name": "var",
+          "type": "Identifier",
+        },
+        "member": Identifier {
+          "name": "vacelinDebug",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "type": "DeclareStatement",
+      "valueType": "STRING",
+    },
+    SetStatement {
+      "left": Member {
+        "base": Identifier {
+          "name": "var",
+          "type": "Identifier",
+        },
+        "member": Identifier {
+          "name": "vacelineDebug",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "operator": "=",
+      "right": StringLiteral {
+        "type": "StringLiteral",
+        "value": "\\"1\\"",
+      },
+      "type": "SetStatement",
+    },
+    SetStatement {
+      "left": Member {
+        "base": Identifier {
+          "name": "var",
+          "type": "Identifier",
+        },
+        "member": Identifier {
+          "name": "vacelineDebug",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "operator": "=",
+      "right": StringLiteral {
+        "type": "StringLiteral",
+        "value": "\\"2\\"",
+      },
+      "type": "SetStatement",
+    },
+    SetStatement {
+      "left": Member {
+        "base": Identifier {
+          "name": "var",
+          "type": "Identifier",
+        },
+        "member": Identifier {
+          "name": "vacelineDebug",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "operator": "=",
+      "right": StringLiteral {
+        "type": "StringLiteral",
+        "value": "\\"3\\"",
+      },
+      "type": "SetStatement",
+    },
+    SetStatement {
+      "left": Member {
+        "base": Identifier {
+          "name": "var",
+          "type": "Identifier",
+        },
+        "member": Identifier {
+          "name": "vacelineDebug",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "operator": "=",
+      "right": StringLiteral {
+        "type": "StringLiteral",
+        "value": "\\"4\\"",
+      },
+      "type": "SetStatement",
+    },
+    SetStatement {
+      "left": Member {
+        "base": Identifier {
+          "name": "var",
+          "type": "Identifier",
+        },
+        "member": Identifier {
+          "name": "vacelineDebug",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "operator": "=",
+      "right": StringLiteral {
+        "type": "StringLiteral",
+        "value": "\\"5\\"",
+      },
+      "type": "SetStatement",
     },
   ],
   "type": "Program",
@@ -1827,6 +2062,54 @@ SubroutineStatement {
       "right": StringLiteral {
         "type": "StringLiteral",
         "value": "\\"aaa\\"",
+      },
+      "type": "SetStatement",
+    },
+    SetStatement {
+      "left": Identifier {
+        "name": "vaceline",
+        "type": "Identifier",
+      },
+      "operator": "=",
+      "right": StringLiteral {
+        "type": "StringLiteral",
+        "value": "\\"bbb\\"",
+      },
+      "type": "SetStatement",
+    },
+  ],
+  "id": Identifier {
+    "name": "vcl_recv",
+    "type": "Identifier",
+  },
+  "type": "SubroutineStatement",
+}
+`;
+
+exports[`(SubroutineStatement) with empty lines 1`] = `
+SubroutineStatement {
+  "body": Array [
+    SetStatement {
+      "left": Identifier {
+        "name": "vaceline",
+        "type": "Identifier",
+      },
+      "operator": "=",
+      "right": StringLiteral {
+        "type": "StringLiteral",
+        "value": "\\"aaa\\"",
+      },
+      "type": "SetStatement",
+    },
+    SetStatement {
+      "left": Identifier {
+        "name": "vaceline",
+        "type": "Identifier",
+      },
+      "operator": "=",
+      "right": StringLiteral {
+        "type": "StringLiteral",
+        "value": "\\"bbb\\"",
       },
       "type": "SetStatement",
     },

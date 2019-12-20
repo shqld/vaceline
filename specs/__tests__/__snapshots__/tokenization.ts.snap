@@ -7395,6 +7395,641 @@ Array [
 ]
 `;
 
+exports[`(IfStatement) <loc>with empty lines 1`] = `
+Array [
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 2,
+        "line": 1,
+        "offset": 1,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 4,
+        "line": 1,
+        "offset": 3,
+      },
+      "start": Object {
+        "column": 4,
+        "line": 1,
+        "offset": 3,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 7,
+        "line": 1,
+        "offset": 6,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 8,
+        "line": 1,
+        "offset": 7,
+      },
+      "start": Object {
+        "column": 8,
+        "line": 1,
+        "offset": 7,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+      "start": Object {
+        "column": 9,
+        "line": 1,
+        "offset": 8,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 18,
+        "line": 1,
+        "offset": 17,
+      },
+      "start": Object {
+        "column": 18,
+        "line": 1,
+        "offset": 17,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 20,
+        "line": 1,
+        "offset": 19,
+      },
+      "start": Object {
+        "column": 20,
+        "line": 1,
+        "offset": 19,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 3,
+        "offset": 26,
+      },
+      "start": Object {
+        "column": 3,
+        "line": 3,
+        "offset": 24,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 9,
+        "line": 3,
+        "offset": 30,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 3,
+        "offset": 28,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 10,
+        "line": 3,
+        "offset": 31,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 3,
+        "offset": 31,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 15,
+        "line": 3,
+        "offset": 36,
+      },
+      "start": Object {
+        "column": 11,
+        "line": 3,
+        "offset": 32,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 17,
+        "line": 3,
+        "offset": 38,
+      },
+      "start": Object {
+        "column": 17,
+        "line": 3,
+        "offset": 38,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 19,
+        "line": 3,
+        "offset": 40,
+      },
+      "start": Object {
+        "column": 19,
+        "line": 3,
+        "offset": 40,
+      },
+    },
+    "type": "numeric",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 20,
+        "line": 3,
+        "offset": 41,
+      },
+      "start": Object {
+        "column": 20,
+        "line": 3,
+        "offset": 41,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 1,
+        "line": 5,
+        "offset": 44,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 5,
+        "offset": 44,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 6,
+        "line": 5,
+        "offset": 49,
+      },
+      "start": Object {
+        "column": 3,
+        "line": 5,
+        "offset": 46,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 9,
+        "line": 5,
+        "offset": 52,
+      },
+      "start": Object {
+        "column": 8,
+        "line": 5,
+        "offset": 51,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 11,
+        "line": 5,
+        "offset": 54,
+      },
+      "start": Object {
+        "column": 11,
+        "line": 5,
+        "offset": 54,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 12,
+        "line": 5,
+        "offset": 55,
+      },
+      "start": Object {
+        "column": 12,
+        "line": 5,
+        "offset": 55,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 15,
+        "line": 5,
+        "offset": 58,
+      },
+      "start": Object {
+        "column": 13,
+        "line": 5,
+        "offset": 56,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 16,
+        "line": 5,
+        "offset": 59,
+      },
+      "start": Object {
+        "column": 16,
+        "line": 5,
+        "offset": 59,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 25,
+        "line": 5,
+        "offset": 68,
+      },
+      "start": Object {
+        "column": 17,
+        "line": 5,
+        "offset": 60,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 26,
+        "line": 5,
+        "offset": 69,
+      },
+      "start": Object {
+        "column": 26,
+        "line": 5,
+        "offset": 69,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 28,
+        "line": 5,
+        "offset": 71,
+      },
+      "start": Object {
+        "column": 28,
+        "line": 5,
+        "offset": 71,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 7,
+        "offset": 78,
+      },
+      "start": Object {
+        "column": 3,
+        "line": 7,
+        "offset": 76,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 9,
+        "line": 7,
+        "offset": 82,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 7,
+        "offset": 80,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 10,
+        "line": 7,
+        "offset": 83,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 7,
+        "offset": 83,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 15,
+        "line": 7,
+        "offset": 88,
+      },
+      "start": Object {
+        "column": 11,
+        "line": 7,
+        "offset": 84,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 17,
+        "line": 7,
+        "offset": 90,
+      },
+      "start": Object {
+        "column": 17,
+        "line": 7,
+        "offset": 90,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 19,
+        "line": 7,
+        "offset": 92,
+      },
+      "start": Object {
+        "column": 19,
+        "line": 7,
+        "offset": 92,
+      },
+    },
+    "type": "numeric",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 20,
+        "line": 7,
+        "offset": 93,
+      },
+      "start": Object {
+        "column": 20,
+        "line": 7,
+        "offset": 93,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 1,
+        "line": 9,
+        "offset": 96,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 9,
+        "offset": 96,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 6,
+        "line": 9,
+        "offset": 101,
+      },
+      "start": Object {
+        "column": 3,
+        "line": 9,
+        "offset": 98,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 8,
+        "line": 9,
+        "offset": 103,
+      },
+      "start": Object {
+        "column": 8,
+        "line": 9,
+        "offset": 103,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 11,
+        "offset": 110,
+      },
+      "start": Object {
+        "column": 3,
+        "line": 11,
+        "offset": 108,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 9,
+        "line": 11,
+        "offset": 114,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 11,
+        "offset": 112,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 10,
+        "line": 11,
+        "offset": 115,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 11,
+        "offset": 115,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 15,
+        "line": 11,
+        "offset": 120,
+      },
+      "start": Object {
+        "column": 11,
+        "line": 11,
+        "offset": 116,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 17,
+        "line": 11,
+        "offset": 122,
+      },
+      "start": Object {
+        "column": 17,
+        "line": 11,
+        "offset": 122,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 19,
+        "line": 11,
+        "offset": 124,
+      },
+      "start": Object {
+        "column": 19,
+        "line": 11,
+        "offset": 124,
+      },
+    },
+    "type": "numeric",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 20,
+        "line": 11,
+        "offset": 125,
+      },
+      "start": Object {
+        "column": 20,
+        "line": 11,
+        "offset": 125,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 1,
+        "line": 13,
+        "offset": 128,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 13,
+        "offset": 128,
+      },
+    },
+    "type": "symbol",
+  },
+]
+`;
+
 exports[`(IfStatement) basic 1`] = `
 Array [
   Object {
@@ -7566,6 +8201,179 @@ Array [
 `;
 
 exports[`(IfStatement) with else if 1`] = `
+Array [
+  Object {
+    "type": "ident",
+    "value": "if",
+  },
+  Object {
+    "type": "symbol",
+    "value": "(",
+  },
+  Object {
+    "type": "ident",
+    "value": "var",
+  },
+  Object {
+    "type": "symbol",
+    "value": ".",
+  },
+  Object {
+    "type": "ident",
+    "value": "condition",
+  },
+  Object {
+    "type": "symbol",
+    "value": ")",
+  },
+  Object {
+    "type": "symbol",
+    "value": "{",
+  },
+  Object {
+    "type": "ident",
+    "value": "set",
+  },
+  Object {
+    "type": "ident",
+    "value": "var",
+  },
+  Object {
+    "type": "symbol",
+    "value": ".",
+  },
+  Object {
+    "type": "ident",
+    "value": "value",
+  },
+  Object {
+    "type": "operator",
+    "value": "=",
+  },
+  Object {
+    "type": "numeric",
+    "value": "1",
+  },
+  Object {
+    "type": "symbol",
+    "value": ";",
+  },
+  Object {
+    "type": "symbol",
+    "value": "}",
+  },
+  Object {
+    "type": "ident",
+    "value": "else",
+  },
+  Object {
+    "type": "ident",
+    "value": "if",
+  },
+  Object {
+    "type": "symbol",
+    "value": "(",
+  },
+  Object {
+    "type": "operator",
+    "value": "!",
+  },
+  Object {
+    "type": "ident",
+    "value": "var",
+  },
+  Object {
+    "type": "symbol",
+    "value": ".",
+  },
+  Object {
+    "type": "ident",
+    "value": "condition",
+  },
+  Object {
+    "type": "symbol",
+    "value": ")",
+  },
+  Object {
+    "type": "symbol",
+    "value": "{",
+  },
+  Object {
+    "type": "ident",
+    "value": "set",
+  },
+  Object {
+    "type": "ident",
+    "value": "var",
+  },
+  Object {
+    "type": "symbol",
+    "value": ".",
+  },
+  Object {
+    "type": "ident",
+    "value": "value",
+  },
+  Object {
+    "type": "operator",
+    "value": "=",
+  },
+  Object {
+    "type": "numeric",
+    "value": "2",
+  },
+  Object {
+    "type": "symbol",
+    "value": ";",
+  },
+  Object {
+    "type": "symbol",
+    "value": "}",
+  },
+  Object {
+    "type": "ident",
+    "value": "else",
+  },
+  Object {
+    "type": "symbol",
+    "value": "{",
+  },
+  Object {
+    "type": "ident",
+    "value": "set",
+  },
+  Object {
+    "type": "ident",
+    "value": "var",
+  },
+  Object {
+    "type": "symbol",
+    "value": ".",
+  },
+  Object {
+    "type": "ident",
+    "value": "value",
+  },
+  Object {
+    "type": "operator",
+    "value": "=",
+  },
+  Object {
+    "type": "numeric",
+    "value": "0",
+  },
+  Object {
+    "type": "symbol",
+    "value": ";",
+  },
+  Object {
+    "type": "symbol",
+    "value": "}",
+  },
+]
+`;
+
+exports[`(IfStatement) with empty lines 1`] = `
 Array [
   Object {
     "type": "ident",
@@ -10293,14 +11101,119 @@ Array [
   Object {
     "loc": Object {
       "end": Object {
-        "column": 4,
-        "line": 4,
+        "column": 5,
+        "line": 3,
         "offset": 60,
       },
       "start": Object {
         "column": 3,
-        "line": 4,
-        "offset": 59,
+        "line": 3,
+        "offset": 58,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 9,
+        "line": 3,
+        "offset": 64,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 3,
+        "offset": 62,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 10,
+        "line": 3,
+        "offset": 65,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 3,
+        "offset": 65,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 23,
+        "line": 3,
+        "offset": 78,
+      },
+      "start": Object {
+        "column": 11,
+        "line": 3,
+        "offset": 66,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 25,
+        "line": 3,
+        "offset": 80,
+      },
+      "start": Object {
+        "column": 25,
+        "line": 3,
+        "offset": 80,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 35,
+        "line": 3,
+        "offset": 90,
+      },
+      "start": Object {
+        "column": 27,
+        "line": 3,
+        "offset": 82,
+      },
+    },
+    "type": "string",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 36,
+        "line": 3,
+        "offset": 91,
+      },
+      "start": Object {
+        "column": 36,
+        "line": 3,
+        "offset": 91,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 4,
+        "line": 5,
+        "offset": 97,
+      },
+      "start": Object {
+        "column": 3,
+        "line": 5,
+        "offset": 96,
       },
     },
     "type": "ident",
@@ -10309,13 +11222,13 @@ Array [
     "loc": Object {
       "end": Object {
         "column": 6,
-        "line": 4,
-        "offset": 62,
+        "line": 5,
+        "offset": 99,
       },
       "start": Object {
         "column": 6,
-        "line": 4,
-        "offset": 62,
+        "line": 5,
+        "offset": 99,
       },
     },
     "type": "symbol",
@@ -10324,13 +11237,13 @@ Array [
     "loc": Object {
       "end": Object {
         "column": 9,
-        "line": 4,
-        "offset": 65,
+        "line": 5,
+        "offset": 102,
       },
       "start": Object {
         "column": 7,
-        "line": 4,
-        "offset": 63,
+        "line": 5,
+        "offset": 100,
       },
     },
     "type": "ident",
@@ -10339,13 +11252,13 @@ Array [
     "loc": Object {
       "end": Object {
         "column": 10,
-        "line": 4,
-        "offset": 66,
+        "line": 5,
+        "offset": 103,
       },
       "start": Object {
         "column": 10,
-        "line": 4,
-        "offset": 66,
+        "line": 5,
+        "offset": 103,
       },
     },
     "type": "symbol",
@@ -10354,13 +11267,13 @@ Array [
     "loc": Object {
       "end": Object {
         "column": 14,
-        "line": 4,
-        "offset": 70,
+        "line": 5,
+        "offset": 107,
       },
       "start": Object {
         "column": 11,
-        "line": 4,
-        "offset": 67,
+        "line": 5,
+        "offset": 104,
       },
     },
     "type": "ident",
@@ -10369,13 +11282,13 @@ Array [
     "loc": Object {
       "end": Object {
         "column": 15,
-        "line": 4,
-        "offset": 71,
+        "line": 5,
+        "offset": 108,
       },
       "start": Object {
         "column": 15,
-        "line": 4,
-        "offset": 71,
+        "line": 5,
+        "offset": 108,
       },
     },
     "type": "symbol",
@@ -10384,13 +11297,13 @@ Array [
     "loc": Object {
       "end": Object {
         "column": 22,
-        "line": 4,
-        "offset": 78,
+        "line": 5,
+        "offset": 115,
       },
       "start": Object {
         "column": 16,
-        "line": 4,
-        "offset": 72,
+        "line": 5,
+        "offset": 109,
       },
     },
     "type": "ident",
@@ -10399,13 +11312,13 @@ Array [
     "loc": Object {
       "end": Object {
         "column": 23,
-        "line": 4,
-        "offset": 79,
+        "line": 5,
+        "offset": 116,
       },
       "start": Object {
         "column": 23,
-        "line": 4,
-        "offset": 79,
+        "line": 5,
+        "offset": 116,
       },
     },
     "type": "symbol",
@@ -10414,13 +11327,13 @@ Array [
     "loc": Object {
       "end": Object {
         "column": 27,
-        "line": 4,
-        "offset": 83,
+        "line": 5,
+        "offset": 120,
       },
       "start": Object {
         "column": 24,
-        "line": 4,
-        "offset": 80,
+        "line": 5,
+        "offset": 117,
       },
     },
     "type": "ident",
@@ -10429,13 +11342,13 @@ Array [
     "loc": Object {
       "end": Object {
         "column": 30,
-        "line": 4,
-        "offset": 86,
+        "line": 5,
+        "offset": 123,
       },
       "start": Object {
         "column": 29,
-        "line": 4,
-        "offset": 85,
+        "line": 5,
+        "offset": 122,
       },
     },
     "type": "operator",
@@ -10444,131 +11357,11 @@ Array [
     "loc": Object {
       "end": Object {
         "column": 37,
-        "line": 4,
-        "offset": 93,
+        "line": 5,
+        "offset": 130,
       },
       "start": Object {
         "column": 32,
-        "line": 4,
-        "offset": 88,
-      },
-    },
-    "type": "string",
-  },
-  Object {
-    "loc": Object {
-      "end": Object {
-        "column": 38,
-        "line": 4,
-        "offset": 94,
-      },
-      "start": Object {
-        "column": 38,
-        "line": 4,
-        "offset": 94,
-      },
-    },
-    "type": "symbol",
-  },
-  Object {
-    "loc": Object {
-      "end": Object {
-        "column": 40,
-        "line": 4,
-        "offset": 96,
-      },
-      "start": Object {
-        "column": 40,
-        "line": 4,
-        "offset": 96,
-      },
-    },
-    "type": "symbol",
-  },
-  Object {
-    "loc": Object {
-      "end": Object {
-        "column": 7,
-        "line": 5,
-        "offset": 104,
-      },
-      "start": Object {
-        "column": 5,
-        "line": 5,
-        "offset": 102,
-      },
-    },
-    "type": "ident",
-  },
-  Object {
-    "loc": Object {
-      "end": Object {
-        "column": 11,
-        "line": 5,
-        "offset": 108,
-      },
-      "start": Object {
-        "column": 9,
-        "line": 5,
-        "offset": 106,
-      },
-    },
-    "type": "ident",
-  },
-  Object {
-    "loc": Object {
-      "end": Object {
-        "column": 12,
-        "line": 5,
-        "offset": 109,
-      },
-      "start": Object {
-        "column": 12,
-        "line": 5,
-        "offset": 109,
-      },
-    },
-    "type": "symbol",
-  },
-  Object {
-    "loc": Object {
-      "end": Object {
-        "column": 24,
-        "line": 5,
-        "offset": 121,
-      },
-      "start": Object {
-        "column": 13,
-        "line": 5,
-        "offset": 110,
-      },
-    },
-    "type": "ident",
-  },
-  Object {
-    "loc": Object {
-      "end": Object {
-        "column": 26,
-        "line": 5,
-        "offset": 123,
-      },
-      "start": Object {
-        "column": 26,
-        "line": 5,
-        "offset": 123,
-      },
-    },
-    "type": "operator",
-  },
-  Object {
-    "loc": Object {
-      "end": Object {
-        "column": 46,
-        "line": 5,
-        "offset": 143,
-      },
-      "start": Object {
-        "column": 28,
         "line": 5,
         "offset": 125,
       },
@@ -10578,14 +11371,134 @@ Array [
   Object {
     "loc": Object {
       "end": Object {
-        "column": 47,
+        "column": 38,
         "line": 5,
-        "offset": 144,
+        "offset": 131,
+      },
+      "start": Object {
+        "column": 38,
+        "line": 5,
+        "offset": 131,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 40,
+        "line": 5,
+        "offset": 133,
+      },
+      "start": Object {
+        "column": 40,
+        "line": 5,
+        "offset": 133,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 7,
+        "line": 6,
+        "offset": 141,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 6,
+        "offset": 139,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 11,
+        "line": 6,
+        "offset": 145,
+      },
+      "start": Object {
+        "column": 9,
+        "line": 6,
+        "offset": 143,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 12,
+        "line": 6,
+        "offset": 146,
+      },
+      "start": Object {
+        "column": 12,
+        "line": 6,
+        "offset": 146,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 24,
+        "line": 6,
+        "offset": 158,
+      },
+      "start": Object {
+        "column": 13,
+        "line": 6,
+        "offset": 147,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 26,
+        "line": 6,
+        "offset": 160,
+      },
+      "start": Object {
+        "column": 26,
+        "line": 6,
+        "offset": 160,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 46,
+        "line": 6,
+        "offset": 180,
+      },
+      "start": Object {
+        "column": 28,
+        "line": 6,
+        "offset": 162,
+      },
+    },
+    "type": "string",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 47,
+        "line": 6,
+        "offset": 181,
       },
       "start": Object {
         "column": 47,
-        "line": 5,
-        "offset": 144,
+        "line": 6,
+        "offset": 181,
       },
     },
     "type": "symbol",
@@ -10594,13 +11507,13 @@ Array [
     "loc": Object {
       "end": Object {
         "column": 3,
-        "line": 6,
-        "offset": 148,
+        "line": 7,
+        "offset": 185,
       },
       "start": Object {
         "column": 3,
-        "line": 6,
-        "offset": 148,
+        "line": 7,
+        "offset": 185,
       },
     },
     "type": "symbol",
@@ -10609,13 +11522,648 @@ Array [
     "loc": Object {
       "end": Object {
         "column": 1,
+        "line": 8,
+        "offset": 187,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 8,
+        "offset": 187,
+      },
+    },
+    "type": "symbol",
+  },
+]
+`;
+
+exports[`(Program) <loc>with empty lines 1`] = `
+Array [
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 7,
+        "line": 1,
+        "offset": 6,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 13,
+        "line": 1,
+        "offset": 12,
+      },
+      "start": Object {
+        "column": 9,
+        "line": 1,
+        "offset": 8,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+      "start": Object {
+        "column": 15,
+        "line": 1,
+        "offset": 14,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 18,
+        "line": 1,
+        "offset": 17,
+      },
+      "start": Object {
+        "column": 18,
+        "line": 1,
+        "offset": 17,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 30,
+        "line": 1,
+        "offset": 29,
+      },
+      "start": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 37,
+        "line": 1,
+        "offset": 36,
+      },
+      "start": Object {
+        "column": 32,
+        "line": 1,
+        "offset": 31,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 38,
+        "line": 1,
+        "offset": 37,
+      },
+      "start": Object {
+        "column": 38,
+        "line": 1,
+        "offset": 37,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 3,
+        "line": 2,
+        "offset": 41,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 2,
+        "offset": 39,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 7,
+        "line": 2,
+        "offset": 45,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 2,
+        "offset": 43,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 8,
+        "line": 2,
+        "offset": 46,
+      },
+      "start": Object {
+        "column": 8,
+        "line": 2,
+        "offset": 46,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 21,
+        "line": 2,
+        "offset": 59,
+      },
+      "start": Object {
+        "column": 9,
+        "line": 2,
+        "offset": 47,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 23,
+        "line": 2,
+        "offset": 61,
+      },
+      "start": Object {
+        "column": 23,
+        "line": 2,
+        "offset": 61,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 27,
+        "line": 2,
+        "offset": 65,
+      },
+      "start": Object {
+        "column": 25,
+        "line": 2,
+        "offset": 63,
+      },
+    },
+    "type": "string",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 28,
+        "line": 2,
+        "offset": 66,
+      },
+      "start": Object {
+        "column": 28,
+        "line": 2,
+        "offset": 66,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 3,
+        "line": 4,
+        "offset": 71,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 4,
+        "offset": 69,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 7,
+        "line": 4,
+        "offset": 75,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 4,
+        "offset": 73,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 8,
+        "line": 4,
+        "offset": 76,
+      },
+      "start": Object {
+        "column": 8,
+        "line": 4,
+        "offset": 76,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 21,
+        "line": 4,
+        "offset": 89,
+      },
+      "start": Object {
+        "column": 9,
+        "line": 4,
+        "offset": 77,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 23,
+        "line": 4,
+        "offset": 91,
+      },
+      "start": Object {
+        "column": 23,
+        "line": 4,
+        "offset": 91,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 27,
+        "line": 4,
+        "offset": 95,
+      },
+      "start": Object {
+        "column": 25,
+        "line": 4,
+        "offset": 93,
+      },
+    },
+    "type": "string",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 28,
+        "line": 4,
+        "offset": 96,
+      },
+      "start": Object {
+        "column": 28,
+        "line": 4,
+        "offset": 96,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 3,
         "line": 7,
-        "offset": 150,
+        "offset": 102,
       },
       "start": Object {
         "column": 1,
         "line": 7,
-        "offset": 150,
+        "offset": 100,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 7,
+        "line": 7,
+        "offset": 106,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 7,
+        "offset": 104,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 8,
+        "line": 7,
+        "offset": 107,
+      },
+      "start": Object {
+        "column": 8,
+        "line": 7,
+        "offset": 107,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 21,
+        "line": 7,
+        "offset": 120,
+      },
+      "start": Object {
+        "column": 9,
+        "line": 7,
+        "offset": 108,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 23,
+        "line": 7,
+        "offset": 122,
+      },
+      "start": Object {
+        "column": 23,
+        "line": 7,
+        "offset": 122,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 27,
+        "line": 7,
+        "offset": 126,
+      },
+      "start": Object {
+        "column": 25,
+        "line": 7,
+        "offset": 124,
+      },
+    },
+    "type": "string",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 28,
+        "line": 7,
+        "offset": 127,
+      },
+      "start": Object {
+        "column": 28,
+        "line": 7,
+        "offset": 127,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 3,
+        "line": 11,
+        "offset": 134,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 11,
+        "offset": 132,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 7,
+        "line": 11,
+        "offset": 138,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 11,
+        "offset": 136,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 8,
+        "line": 11,
+        "offset": 139,
+      },
+      "start": Object {
+        "column": 8,
+        "line": 11,
+        "offset": 139,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 21,
+        "line": 11,
+        "offset": 152,
+      },
+      "start": Object {
+        "column": 9,
+        "line": 11,
+        "offset": 140,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 23,
+        "line": 11,
+        "offset": 154,
+      },
+      "start": Object {
+        "column": 23,
+        "line": 11,
+        "offset": 154,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 27,
+        "line": 11,
+        "offset": 158,
+      },
+      "start": Object {
+        "column": 25,
+        "line": 11,
+        "offset": 156,
+      },
+    },
+    "type": "string",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 28,
+        "line": 11,
+        "offset": 159,
+      },
+      "start": Object {
+        "column": 28,
+        "line": 11,
+        "offset": 159,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 3,
+        "line": 16,
+        "offset": 167,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 16,
+        "offset": 165,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 7,
+        "line": 16,
+        "offset": 171,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 16,
+        "offset": 169,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 8,
+        "line": 16,
+        "offset": 172,
+      },
+      "start": Object {
+        "column": 8,
+        "line": 16,
+        "offset": 172,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 21,
+        "line": 16,
+        "offset": 185,
+      },
+      "start": Object {
+        "column": 9,
+        "line": 16,
+        "offset": 173,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 23,
+        "line": 16,
+        "offset": 187,
+      },
+      "start": Object {
+        "column": 23,
+        "line": 16,
+        "offset": 187,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 27,
+        "line": 16,
+        "offset": 191,
+      },
+      "start": Object {
+        "column": 25,
+        "line": 16,
+        "offset": 189,
+      },
+    },
+    "type": "string",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 28,
+        "line": 16,
+        "offset": 192,
+      },
+      "start": Object {
+        "column": 28,
+        "line": 16,
+        "offset": 192,
       },
     },
     "type": "symbol",
@@ -10660,6 +12208,34 @@ Array [
   Object {
     "type": "ident",
     "value": "STRING",
+  },
+  Object {
+    "type": "symbol",
+    "value": ";",
+  },
+  Object {
+    "type": "ident",
+    "value": "set",
+  },
+  Object {
+    "type": "ident",
+    "value": "var",
+  },
+  Object {
+    "type": "symbol",
+    "value": ".",
+  },
+  Object {
+    "type": "ident",
+    "value": "vacelineDebug",
+  },
+  Object {
+    "type": "operator",
+    "value": "=",
+  },
+  Object {
+    "type": "string",
+    "value": "\\"initial\\"",
   },
   Object {
     "type": "symbol",
@@ -10752,6 +12328,179 @@ Array [
   Object {
     "type": "symbol",
     "value": "}",
+  },
+]
+`;
+
+exports[`(Program) with empty lines 1`] = `
+Array [
+  Object {
+    "type": "ident",
+    "value": "declare",
+  },
+  Object {
+    "type": "ident",
+    "value": "local",
+  },
+  Object {
+    "type": "ident",
+    "value": "var",
+  },
+  Object {
+    "type": "symbol",
+    "value": ".",
+  },
+  Object {
+    "type": "ident",
+    "value": "vacelinDebug",
+  },
+  Object {
+    "type": "ident",
+    "value": "STRING",
+  },
+  Object {
+    "type": "symbol",
+    "value": ";",
+  },
+  Object {
+    "type": "ident",
+    "value": "set",
+  },
+  Object {
+    "type": "ident",
+    "value": "var",
+  },
+  Object {
+    "type": "symbol",
+    "value": ".",
+  },
+  Object {
+    "type": "ident",
+    "value": "vacelineDebug",
+  },
+  Object {
+    "type": "operator",
+    "value": "=",
+  },
+  Object {
+    "type": "string",
+    "value": "\\"1\\"",
+  },
+  Object {
+    "type": "symbol",
+    "value": ";",
+  },
+  Object {
+    "type": "ident",
+    "value": "set",
+  },
+  Object {
+    "type": "ident",
+    "value": "var",
+  },
+  Object {
+    "type": "symbol",
+    "value": ".",
+  },
+  Object {
+    "type": "ident",
+    "value": "vacelineDebug",
+  },
+  Object {
+    "type": "operator",
+    "value": "=",
+  },
+  Object {
+    "type": "string",
+    "value": "\\"2\\"",
+  },
+  Object {
+    "type": "symbol",
+    "value": ";",
+  },
+  Object {
+    "type": "ident",
+    "value": "set",
+  },
+  Object {
+    "type": "ident",
+    "value": "var",
+  },
+  Object {
+    "type": "symbol",
+    "value": ".",
+  },
+  Object {
+    "type": "ident",
+    "value": "vacelineDebug",
+  },
+  Object {
+    "type": "operator",
+    "value": "=",
+  },
+  Object {
+    "type": "string",
+    "value": "\\"3\\"",
+  },
+  Object {
+    "type": "symbol",
+    "value": ";",
+  },
+  Object {
+    "type": "ident",
+    "value": "set",
+  },
+  Object {
+    "type": "ident",
+    "value": "var",
+  },
+  Object {
+    "type": "symbol",
+    "value": ".",
+  },
+  Object {
+    "type": "ident",
+    "value": "vacelineDebug",
+  },
+  Object {
+    "type": "operator",
+    "value": "=",
+  },
+  Object {
+    "type": "string",
+    "value": "\\"4\\"",
+  },
+  Object {
+    "type": "symbol",
+    "value": ";",
+  },
+  Object {
+    "type": "ident",
+    "value": "set",
+  },
+  Object {
+    "type": "ident",
+    "value": "var",
+  },
+  Object {
+    "type": "symbol",
+    "value": ".",
+  },
+  Object {
+    "type": "ident",
+    "value": "vacelineDebug",
+  },
+  Object {
+    "type": "operator",
+    "value": "=",
+  },
+  Object {
+    "type": "string",
+    "value": "\\"5\\"",
+  },
+  Object {
+    "type": "symbol",
+    "value": ";",
   },
 ]
 `;
@@ -11836,14 +13585,304 @@ Array [
   Object {
     "loc": Object {
       "end": Object {
-        "column": 1,
+        "column": 5,
         "line": 3,
-        "offset": 39,
+        "offset": 43,
+      },
+      "start": Object {
+        "column": 3,
+        "line": 3,
+        "offset": 41,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 14,
+        "line": 3,
+        "offset": 52,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 3,
+        "offset": 45,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 16,
+        "line": 3,
+        "offset": 54,
+      },
+      "start": Object {
+        "column": 16,
+        "line": 3,
+        "offset": 54,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 22,
+        "line": 3,
+        "offset": 60,
+      },
+      "start": Object {
+        "column": 18,
+        "line": 3,
+        "offset": 56,
+      },
+    },
+    "type": "string",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 23,
+        "line": 3,
+        "offset": 61,
+      },
+      "start": Object {
+        "column": 23,
+        "line": 3,
+        "offset": 61,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 1,
+        "line": 4,
+        "offset": 63,
       },
       "start": Object {
         "column": 1,
-        "line": 3,
-        "offset": 39,
+        "line": 4,
+        "offset": 63,
+      },
+    },
+    "type": "symbol",
+  },
+]
+`;
+
+exports[`(SubroutineStatement) <loc>with empty lines 1`] = `
+Array [
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 3,
+        "line": 1,
+        "offset": 2,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 12,
+        "line": 1,
+        "offset": 11,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 14,
+        "line": 1,
+        "offset": 13,
+      },
+      "start": Object {
+        "column": 14,
+        "line": 1,
+        "offset": 13,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 2,
+        "offset": 19,
+      },
+      "start": Object {
+        "column": 3,
+        "line": 2,
+        "offset": 17,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 14,
+        "line": 2,
+        "offset": 28,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 2,
+        "offset": 21,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 16,
+        "line": 2,
+        "offset": 30,
+      },
+      "start": Object {
+        "column": 16,
+        "line": 2,
+        "offset": 30,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 22,
+        "line": 2,
+        "offset": 36,
+      },
+      "start": Object {
+        "column": 18,
+        "line": 2,
+        "offset": 32,
+      },
+    },
+    "type": "string",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 23,
+        "line": 2,
+        "offset": 37,
+      },
+      "start": Object {
+        "column": 23,
+        "line": 2,
+        "offset": 37,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 5,
+        "offset": 45,
+      },
+      "start": Object {
+        "column": 3,
+        "line": 5,
+        "offset": 43,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 14,
+        "line": 5,
+        "offset": 54,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 5,
+        "offset": 47,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 16,
+        "line": 5,
+        "offset": 56,
+      },
+      "start": Object {
+        "column": 16,
+        "line": 5,
+        "offset": 56,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 22,
+        "line": 5,
+        "offset": 62,
+      },
+      "start": Object {
+        "column": 18,
+        "line": 5,
+        "offset": 58,
+      },
+    },
+    "type": "string",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 23,
+        "line": 5,
+        "offset": 63,
+      },
+      "start": Object {
+        "column": 23,
+        "line": 5,
+        "offset": 63,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 1,
+        "line": 8,
+        "offset": 67,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 8,
+        "offset": 67,
       },
     },
     "type": "symbol",
@@ -11880,6 +13919,87 @@ Array [
   Object {
     "type": "string",
     "value": "\\"aaa\\"",
+  },
+  Object {
+    "type": "symbol",
+    "value": ";",
+  },
+  Object {
+    "type": "ident",
+    "value": "set",
+  },
+  Object {
+    "type": "ident",
+    "value": "vaceline",
+  },
+  Object {
+    "type": "operator",
+    "value": "=",
+  },
+  Object {
+    "type": "string",
+    "value": "\\"bbb\\"",
+  },
+  Object {
+    "type": "symbol",
+    "value": ";",
+  },
+  Object {
+    "type": "symbol",
+    "value": "}",
+  },
+]
+`;
+
+exports[`(SubroutineStatement) with empty lines 1`] = `
+Array [
+  Object {
+    "type": "ident",
+    "value": "sub",
+  },
+  Object {
+    "type": "ident",
+    "value": "vcl_recv",
+  },
+  Object {
+    "type": "symbol",
+    "value": "{",
+  },
+  Object {
+    "type": "ident",
+    "value": "set",
+  },
+  Object {
+    "type": "ident",
+    "value": "vaceline",
+  },
+  Object {
+    "type": "operator",
+    "value": "=",
+  },
+  Object {
+    "type": "string",
+    "value": "\\"aaa\\"",
+  },
+  Object {
+    "type": "symbol",
+    "value": ";",
+  },
+  Object {
+    "type": "ident",
+    "value": "set",
+  },
+  Object {
+    "type": "ident",
+    "value": "vaceline",
+  },
+  Object {
+    "type": "operator",
+    "value": "=",
+  },
+  Object {
+    "type": "string",
+    "value": "\\"bbb\\"",
   },
   Object {
     "type": "symbol",
