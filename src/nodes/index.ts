@@ -1,6 +1,3 @@
-import { builders as b } from '../generator'
-import { Doc } from 'prettier'
-
 export interface Position {
   offset: number
   line: number
@@ -12,10 +9,6 @@ export interface Location {
   end: Position
 }
 
-interface State {
-  lineNum: number
-}
-
 export type PlainNode<T extends BaseNode> = Omit<T, keyof BaseNode>
 export type NodeWithLoc<N extends BaseNode = BaseNode> = N & { loc: Location }
 
@@ -25,15 +18,7 @@ export type NodeMap = {
   [K in keyof NodeClassMap]: InstanceType<NodeClassMap[K]>
 }
 
-export type Node =
-  | Program
-  // abstract base
-  | BaseExpression
-  | BaseStatement
-  // abstract group
-  | Literal
-  | Expression
-  | Statement
+export type Node = Program | Literal | Expression | Statement
 
 export type Literal =
   | BooleanLiteral
@@ -78,28 +63,6 @@ export type Statement =
 const flat = <T>(arr: Array<T>) =>
   arr.reduce((acc, cur) => acc.concat(cur), [] as Array<T>)
 
-const printStatements = (state: State, stmts: Array<BaseStatement>): Doc => {
-  const doc = []
-
-  for (const stmt of stmts) {
-    if (stmt.loc && stmt.loc.start.line > state.lineNum) {
-      let delta = stmt.loc.start.line - state.lineNum
-      while (delta--) {
-        doc.push(b.hardline)
-      }
-
-      state.lineNum = stmt.loc.start.line
-    }
-
-    doc.push(stmt.print(state), b.hardline)
-    state.lineNum++
-  }
-
-  doc.pop()
-
-  return b.concat(doc)
-}
-
 export abstract class BaseNode {
   type!: string
   loc?: Location
@@ -111,8 +74,6 @@ export abstract class BaseNode {
       )
     )
   }
-
-  abstract print(state: State): Doc
 
   static build<T extends NodeType, N extends NodeMap[T]>(
     node: N,
@@ -138,10 +99,6 @@ export class Program extends BaseNode {
 
     this.body = obj.body
   }
-
-  print(state: State) {
-    return printStatements(state, this.body)
-  }
 }
 
 export class BooleanLiteral extends BaseLiteral {
@@ -152,10 +109,6 @@ export class BooleanLiteral extends BaseLiteral {
     super()
 
     this.value = obj.value
-  }
-
-  print() {
-    return this.value as Doc
   }
 }
 
@@ -168,10 +121,6 @@ export class StringLiteral extends BaseLiteral {
 
     this.value = obj.value
   }
-
-  print() {
-    return this.value
-  }
 }
 
 export class MultilineLiteral extends BaseLiteral {
@@ -182,10 +131,6 @@ export class MultilineLiteral extends BaseLiteral {
     super()
 
     this.value = obj.value
-  }
-
-  print() {
-    return this.value
   }
 }
 
@@ -198,10 +143,6 @@ export class DurationLiteral extends BaseLiteral {
 
     this.value = obj.value
   }
-
-  print() {
-    return this.value
-  }
 }
 
 export class NumericLiteral extends BaseLiteral {
@@ -213,10 +154,6 @@ export class NumericLiteral extends BaseLiteral {
 
     this.value = obj.value
   }
-
-  print() {
-    return this.value
-  }
 }
 
 export class Identifier extends BaseExpression {
@@ -227,10 +164,6 @@ export class Identifier extends BaseExpression {
     super()
 
     this.name = obj.name
-  }
-
-  print() {
-    return this.name
   }
 }
 
@@ -245,10 +178,6 @@ export class Ip extends BaseExpression {
     this.value = obj.value
     this.cidr = obj.cidr
   }
-
-  print() {
-    return this.cidr ? `"${this.value}"/${this.cidr}` : `"${this.value}"`
-  }
 }
 
 export class Member extends BaseExpression {
@@ -261,27 +190,6 @@ export class Member extends BaseExpression {
 
     this.base = obj.base
     this.member = obj.member
-  }
-
-  print(state: State, { neverBreak = false, broken = false } = {}): Doc {
-    const shouldBreak =
-      !neverBreak &&
-      // break if child is also a Member or if also parent is already broken
-      (this.base instanceof Member || broken)
-
-    return b.concat([
-      b.group(
-        b.concat([
-          this.base.print(state, {
-            neverBreak,
-            broken: shouldBreak,
-          }),
-          b.indent(
-            b.concat([shouldBreak ? b.softline : '', '.', this.member.print()])
-          ),
-        ])
-      ),
-    ])
   }
 }
 
@@ -296,10 +204,6 @@ export class ValuePair extends BaseExpression {
     this.base = obj.base
     this.name = obj.name
   }
-
-  print(state: State) {
-    return b.concat([this.base.print(state), ':', this.name.print()])
-  }
 }
 
 export class BooleanExpression extends BaseExpression {
@@ -310,18 +214,6 @@ export class BooleanExpression extends BaseExpression {
     super()
 
     this.body = obj.body
-  }
-
-  print(state: State): Doc {
-    return b.group(
-      b.concat([
-        b.indent(
-          b.concat(['(', b.ifBreak(b.softline, ''), this.body.print(state)])
-        ),
-        b.ifBreak(b.softline, ''),
-        ')',
-      ])
-    )
   }
 }
 
@@ -336,10 +228,6 @@ export class UnaryExpression extends BaseExpression {
     this.operator = obj.operator
     this.argument = obj.argument
   }
-
-  print(state: State): Doc {
-    return b.concat([this.operator, this.argument.print(state)])
-  }
 }
 
 export class FunCallExpression extends BaseExpression {
@@ -353,29 +241,6 @@ export class FunCallExpression extends BaseExpression {
     this.callee = obj.callee
     this.arguments = obj.arguments
   }
-
-  print(state: State): Doc {
-    return b.concat([
-      this.callee.print(state),
-      '(',
-      b.group(
-        b.concat([
-          b.indent(
-            b.concat([
-              b.ifBreak(b.line, ''),
-              b.join(
-                b.concat([',', b.line]),
-                this.arguments.map((n) => n.print(state))
-              ),
-              b.ifBreak(',', ''),
-            ])
-          ),
-          b.ifBreak(b.line, ''),
-        ])
-      ),
-      ')',
-    ])
-  }
 }
 
 export class ConcatExpression extends BaseExpression {
@@ -386,17 +251,6 @@ export class ConcatExpression extends BaseExpression {
     super()
 
     this.body = obj.body
-  }
-
-  print(state: State): Doc {
-    return b.group(
-      b.indent(
-        b.join(
-          b.line,
-          this.body.map((n) => n.print(state))
-        )
-      )
-    )
   }
 }
 
@@ -413,21 +267,6 @@ export class BinaryExpression extends BaseExpression {
     this.right = obj.right
     this.operator = obj.operator
   }
-
-  print(state: State): Doc {
-    const left =
-      this.left instanceof BinaryExpression
-        ? b.concat(['(', this.left.print(state), ')'])
-        : this.left.print(state)
-
-    return b.group(
-      b.concat([
-        left,
-        ' ',
-        b.indent(b.concat([this.operator, b.line, this.right.print(state)])),
-      ])
-    )
-  }
 }
 
 export class LogicalExpression extends BaseExpression {
@@ -443,26 +282,6 @@ export class LogicalExpression extends BaseExpression {
     this.right = obj.right
     this.operator = obj.operator
   }
-
-  print(state: State): Doc {
-    const left =
-      this.left instanceof LogicalExpression &&
-      this.operator === '||' &&
-      this.left.operator === '&&'
-        ? b.concat(['(', this.left.print(state), ')'])
-        : this.left.print(state)
-
-    const right =
-      this.right instanceof LogicalExpression &&
-      this.operator === '||' &&
-      this.right.operator === '&&'
-        ? b.concat(['(', this.right.print(state), ')'])
-        : this.right.print(state)
-
-    return b.group(
-      b.concat([left, ' ', b.indent(b.concat([this.operator, b.line, right]))])
-    )
-  }
 }
 
 export class ExpressionStatement extends BaseStatement {
@@ -473,10 +292,6 @@ export class ExpressionStatement extends BaseStatement {
     super()
 
     this.body = obj.body
-  }
-
-  print(state: State): Doc {
-    return b.concat([this.body.print(state), ';'])
   }
 }
 
@@ -489,10 +304,6 @@ export class IncludeStatement extends BaseStatement {
 
     this.module = obj.module
   }
-
-  print() {
-    return b.concat(['include ', this.module.print(), ';'])
-  }
 }
 
 export class ImportStatement extends BaseStatement {
@@ -504,10 +315,6 @@ export class ImportStatement extends BaseStatement {
 
     this.module = obj.module
   }
-
-  print() {
-    return b.concat(['import ', this.module.print(), ';'])
-  }
 }
 
 export class CallStatement extends BaseStatement {
@@ -518,10 +325,6 @@ export class CallStatement extends BaseStatement {
     super()
 
     this.subroutine = obj.subroutine
-  }
-
-  print() {
-    return b.concat(['call ', this.subroutine.print(), ';'])
   }
 }
 
@@ -543,17 +346,6 @@ export class DeclareStatement extends BaseStatement {
     this.id = obj.id
     this.valueType = obj.valueType
   }
-
-  print(state: State) {
-    return b.concat([
-      'declare ',
-      'local ',
-      this.id.print(state, { neverBreak: true }),
-      ' ',
-      this.valueType,
-      ';',
-    ])
-  }
 }
 
 export class AddStatement extends BaseStatement {
@@ -568,22 +360,6 @@ export class AddStatement extends BaseStatement {
     this.left = obj.left
     this.right = obj.right
     this.operator = obj.operator
-  }
-
-  print(state: State) {
-    return b.group(
-      b.indent(
-        b.concat([
-          'add ',
-          this.left.print(state, { neverBreak: true }),
-          ' ',
-          this.operator,
-          b.line,
-          this.right.print(state, { neverBreak: true }),
-          ';',
-        ])
-      )
-    )
   }
 }
 
@@ -600,22 +376,6 @@ export class SetStatement extends BaseStatement {
     this.right = obj.right
     this.operator = obj.operator
   }
-
-  print(state: State) {
-    return b.group(
-      b.indent(
-        b.concat([
-          'set ',
-          this.left.print(state, { neverBreak: true }),
-          ' ',
-          this.operator,
-          b.line,
-          this.right.print(state, { neverBreak: true }),
-          ';',
-        ])
-      )
-    )
-  }
 }
 
 export class UnsetStatement extends BaseStatement {
@@ -626,10 +386,6 @@ export class UnsetStatement extends BaseStatement {
     super()
 
     this.id = obj.id
-  }
-
-  print(state: State) {
-    return b.concat(['unset ', this.id.print(state, { neverBreak: true }), ';'])
   }
 }
 
@@ -649,11 +405,6 @@ export class ReturnStatement extends BaseStatement {
 
     this.action = obj.action
   }
-
-  print() {
-    // TODO: handle the optional parens
-    return b.concat(['return ', '(', this.action, ')', ';'])
-  }
 }
 
 export class ErrorStatement extends BaseStatement {
@@ -667,20 +418,6 @@ export class ErrorStatement extends BaseStatement {
     this.status = obj.status
     this.message = obj.message
   }
-
-  print(state: State) {
-    return b.concat([
-      b.join(
-        ' ',
-        [
-          'error',
-          this.status.toString(),
-          this.message && this.message.print(state),
-        ].filter(Boolean) as Array<Doc>
-      ),
-      ';',
-    ])
-  }
 }
 
 export class RestartStatement extends BaseStatement {
@@ -688,10 +425,6 @@ export class RestartStatement extends BaseStatement {
 
   constructor(/* obj: PlainNode<RestartStatement> */) {
     super()
-  }
-
-  print() {
-    return 'restart;'
   }
 }
 
@@ -704,10 +437,6 @@ export class SyntheticStatement extends BaseStatement {
 
     this.response = obj.response
   }
-
-  print(state: State) {
-    return b.concat(['synthetic ', this.response.print(state), ';'])
-  }
 }
 
 export class LogStatement extends BaseStatement {
@@ -718,10 +447,6 @@ export class LogStatement extends BaseStatement {
     super()
 
     this.content = obj.content
-  }
-
-  print(state: State) {
-    return b.concat(['log ', this.content.print(state), ';'])
   }
 }
 
@@ -738,40 +463,6 @@ export class IfStatement extends BaseStatement {
     this.consequent = obj.consequent
     this.alternative = obj.alternative
   }
-
-  print(state: State): Doc {
-    const doc = [
-      'if ',
-      b.group(
-        b.concat([
-          b.indent(
-            b.concat(['(', b.ifBreak(b.hardline, ''), this.test.print(state)])
-          ),
-          b.ifBreak(b.hardline, ''),
-          ') ',
-        ])
-      ),
-      '{',
-      b.indent(printStatements(state, this.consequent)),
-      b.hardline,
-      '}',
-    ]
-
-    if (this.alternative) {
-      const alternative = Array.isArray(this.alternative)
-        ? [
-            ' else {',
-            b.indent(printStatements(state, this.alternative)),
-            b.hardline,
-            '}',
-          ]
-        : [' else ', this.alternative.print(state)]
-
-      return b.concat([...doc, ...alternative])
-    }
-
-    return b.concat(doc)
-  }
 }
 
 export class SubroutineStatement extends BaseStatement {
@@ -784,17 +475,6 @@ export class SubroutineStatement extends BaseStatement {
 
     this.id = obj.id
     this.body = obj.body
-  }
-
-  print(state: State): Doc {
-    return b.concat([
-      'sub ',
-      this.id.print(),
-      ' {',
-      b.indent(printStatements(state, this.body)),
-      b.hardline,
-      '}',
-    ])
   }
 }
 
@@ -809,25 +489,6 @@ export class AclStatement extends BaseStatement {
     this.id = obj.id
     this.body = obj.body
   }
-
-  print() {
-    return b.concat([
-      'acl ',
-      this.id.print(),
-      ' {',
-      b.indent(
-        b.concat([
-          b.hardline,
-          b.join(
-            b.hardline,
-            this.body.map((n) => n.print()).map((ip) => b.concat([ip, ';']))
-          ),
-        ])
-      ),
-      b.hardline,
-      '}',
-    ])
-  }
 }
 
 export class BackendDefinition extends BaseNode {
@@ -840,27 +501,6 @@ export class BackendDefinition extends BaseNode {
 
     this.key = obj.key
     this.value = obj.value
-  }
-
-  print(state: State): Doc {
-    const printedValue = Array.isArray(this.value)
-      ? b.concat([
-          '{',
-          b.indent(
-            b.concat([
-              b.hardline,
-              b.join(
-                b.hardline,
-                this.value.map((v) => v.print(state))
-              ),
-            ])
-          ),
-          b.hardline,
-          '}',
-        ])
-      : b.concat([this.value.print(state), ';'])
-
-    return b.concat(['.', this.key, ' = ', printedValue])
   }
 }
 
@@ -875,28 +515,6 @@ export class BackendStatement extends BaseStatement {
     this.id = obj.id
     this.body = obj.body
   }
-
-  print(state: State) {
-    return b.concat([
-      'backend ',
-      this.id.print(),
-      ' ',
-      b.concat([
-        '{',
-        b.indent(
-          b.concat([
-            b.hardline,
-            b.join(
-              b.hardline,
-              this.body.map((d) => d.print(state))
-            ),
-          ])
-        ),
-        b.hardline,
-        '}',
-      ]),
-    ])
-  }
 }
 
 export class TableDefinition extends BaseNode {
@@ -910,10 +528,6 @@ export class TableDefinition extends BaseNode {
     this.key = obj.key
     this.value = obj.value
   }
-
-  print() {
-    return b.concat([this.key, ':', this.value])
-  }
 }
 
 export class TableStatement extends BaseStatement {
@@ -926,27 +540,6 @@ export class TableStatement extends BaseStatement {
 
     this.id = obj.id
     this.body = obj.body
-  }
-
-  print() {
-    return b.concat([
-      'table ',
-      this.id.print(),
-      ' {',
-      b.indent(
-        b.concat([
-          b.hardline,
-          b.join(
-            b.concat([',', b.hardline]),
-            this.body.map((td) => td.print())
-          ),
-          // TODO: handle trailing comma
-          // ',',
-        ])
-      ),
-      b.hardline,
-      '}',
-    ])
   }
 }
 
