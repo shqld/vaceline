@@ -1,5 +1,6 @@
 import { Position } from '../nodes'
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const colors = require('../utils/colors')
 
 const MARGIN = 2

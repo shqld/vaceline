@@ -1,4 +1,5 @@
 /// <reference lib="dom"/>
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 import { parse, traverse, generate } from '../lib'
 

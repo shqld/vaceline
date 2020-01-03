@@ -14,7 +14,7 @@ export interface BrowserOptions {
 export const browser = merge(core, {
   target: 'web',
   resolve: {
-    extensions: ['.browser.ts'],
+    extensions: ['.browser.ts', '.ts', '.js'],
   },
   module: {
     rules: [

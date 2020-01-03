@@ -9,8 +9,8 @@ const isDev = process.env.NODE_ENV === 'development'
 export const server = merge(core, {
   target: 'node',
   devtool: 'source-map',
-  output: {
-    filename: '[name].js', // no contenthash for server scripts
+  resolve: {
+    extensions: ['.node.ts', '.ts', '.js'],
   },
   module: {
     rules: [
