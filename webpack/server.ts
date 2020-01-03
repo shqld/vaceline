@@ -9,9 +9,6 @@ const isDev = process.env.NODE_ENV === 'development'
 export const server = merge(core, {
   target: 'node',
   devtool: 'source-map',
-  resolve: {
-    extensions: ['.node.ts', '.ts', '.js'],
-  },
   module: {
     rules: [
       {
@@ -28,10 +25,10 @@ export const server = merge(core, {
   externals: [nodeExternals({})],
   plugins: [
     new DefinePlugin({
-      'BUILD_ENVS.BUILD_PLATFORM': `'server'`,
+      BUILD_PLATFORM: `'node'`,
     }),
     new WebpackBar({
-      name: 'server',
+      name: 'node',
       color: 'blue',
     }),
   ].filter(Boolean),

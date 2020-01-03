@@ -24,7 +24,7 @@ export const core: Configuration = {
   },
   plugins: [
     new DefinePlugin({
-      'BUILD_ENVS.BUILD_ENV': `'${isDev ? 'development' : 'production'}'`,
+      BUILD_ENV: `'${isDev ? 'development' : 'production'}'`,
     }),
   ],
   stats: 'normal',
