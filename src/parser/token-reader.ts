@@ -33,7 +33,6 @@ export class TokenReader {
     const token = this.tokens[this.cur++]
 
     if (!token) {
-      console.log(this.tokens[this.cur - 2])
       throw new SyntaxError('Unexpected EOF')
     }
 

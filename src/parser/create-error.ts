@@ -1,5 +1,6 @@
-import chalk from 'chalk'
 import { Position } from '../nodes'
+
+const colors = require('../utils/colors')
 
 const MARGIN = 2
 const HORIZONTAL_MARK = '> '
@@ -28,7 +29,7 @@ export const createError = (
 
   const verticalMark =
     ' '.repeat('> '.length + pad + ' | '.length + loc.column - 1) +
-    chalk.redBright.bold(VERTICAL_MARK.repeat(loc.range))
+    colors.red(VERTICAL_MARK.repeat(loc.range))
 
   const errorLocationDisplay: Array<string> = []
 
@@ -41,12 +42,12 @@ export const createError = (
 
     // `> `
     const horizontalMark = isTargetLine
-      ? chalk.redBright.bold(HORIZONTAL_MARK)
+      ? colors.red(HORIZONTAL_MARK)
       : ' '.repeat(HORIZONTAL_MARK.length)
 
     // `> 90 | source`
     errorLocationDisplay.push(
-      horizontalMark + chalk.gray(lineIndicator) + lineStr
+      horizontalMark + colors.gray(lineIndicator) + lineStr
     )
 
     if (isTargetLine) errorLocationDisplay.push(verticalMark)
