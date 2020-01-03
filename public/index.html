@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script defer type="module" src="./dist/index.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
+    />
+    <title>Vaceline</title>
+  </head>
+  <body>
+    <section class="section">
+      <h1 class="title">Vaceline</h1>
+
+      <div class="columns">
+        <div class="column">
+          <div id="source" class="container">
+            <div class="control">
+              <h2 class="subtitle">source</h2>
+              <textarea
+                class="textarea is-primary"
+                placeholder="Your VCL"
+                rows="10"
+              ></textarea>
+            </div>
+            <button class="button">Transpile</button>
+          </div>
+        </div>
+
+        <div class="column">
+          <div id="result" class="container">
+            <div class="control">
+              <h2 class="subtitle">result</h2>
+              <textarea
+                class="textarea"
+                rows="10"
+                placeholder="The result will be output here"
+                disabled
+                readonly
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

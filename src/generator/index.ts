@@ -1,9 +1,7 @@
-import { doc as docHelpers } from 'prettier'
+import { printer, PrinterOptions } from 'prettier/doc'
 import { Node } from '../nodes/defs'
 
-type FormatOptions = docHelpers.printer.Options
-
-export type GenerateOptions = {} & FormatOptions
+export type GenerateOptions = {} & PrinterOptions
 
 const defaultGenerateOptions: GenerateOptions = {
   printWidth: 100,
@@ -15,7 +13,7 @@ export const generate = (
   ast: Node,
   options: Partial<GenerateOptions> = defaultGenerateOptions
 ): { code: string; map?: string } => {
-  const { formatted } = docHelpers.printer.printDocToString(
+  const { formatted } = printer.printDocToString(
     ast.print({
       lineNum: 1,
     }),
