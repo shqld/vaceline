@@ -1,7 +1,5 @@
+import * as chalk from '../utils/chalk'
 import { Position } from '../nodes'
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const colors = require('../utils/colors')
 
 const MARGIN = 2
 const HORIZONTAL_MARK = '> '
@@ -30,7 +28,7 @@ export const createError = (
 
   const verticalMark =
     ' '.repeat('> '.length + pad + ' | '.length + loc.column - 1) +
-    colors.red(VERTICAL_MARK.repeat(loc.range))
+    chalk.red(VERTICAL_MARK.repeat(loc.range))
 
   const errorLocationDisplay: Array<string> = []
 
@@ -43,12 +41,12 @@ export const createError = (
 
     // `> `
     const horizontalMark = isTargetLine
-      ? colors.red(HORIZONTAL_MARK)
+      ? chalk.red(HORIZONTAL_MARK)
       : ' '.repeat(HORIZONTAL_MARK.length)
 
     // `> 90 | source`
     errorLocationDisplay.push(
-      horizontalMark + colors.gray(lineIndicator) + lineStr
+      horizontalMark + chalk.gray(lineIndicator) + lineStr
     )
 
     if (isTargetLine) errorLocationDisplay.push(verticalMark)

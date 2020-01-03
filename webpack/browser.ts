@@ -13,9 +13,6 @@ export interface BrowserOptions {
 
 export const browser = merge(core, {
   target: 'web',
-  resolve: {
-    extensions: ['.browser.ts', '.ts', '.js'],
-  },
   module: {
     rules: [
       {
@@ -32,7 +29,7 @@ export const browser = merge(core, {
   },
   plugins: [
     new DefinePlugin({
-      'BUILD_ENVS.BUILD_PLATFORM': `'browser'`,
+      BUILD_PLATFORM: `'browser'`,
     }),
     new VisualizerPlugin(),
     new WebpackBar({
