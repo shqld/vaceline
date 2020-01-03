@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`(AclStatement) basic: basic 1`] = `
-AclStatement {
+Node {
   "body": Array [
-    Ip {
+    Node {
       "cidr": undefined,
       "loc": Object {
         "end": Object {
@@ -20,7 +20,7 @@ AclStatement {
       "type": "Ip",
       "value": "127.0.0.1",
     },
-    Ip {
+    Node {
       "cidr": undefined,
       "loc": Object {
         "end": Object {
@@ -38,7 +38,7 @@ AclStatement {
       "value": "localhost",
     },
   ],
-  "id": Identifier {
+  "id": Node {
     "loc": Object {
       "end": Object {
         "column": 7,
@@ -73,9 +73,9 @@ AclStatement {
 exports[`(AddStatement) TODO: cover operand types
 addition: TODO: cover operand types
 addition 1`] = `
-AddStatement {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -103,7 +103,7 @@ AddStatement {
         "offset": 4,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -134,7 +134,7 @@ AddStatement {
     },
   },
   "operator": "+=",
-  "right": StringLiteral {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 24,
@@ -155,9 +155,9 @@ AddStatement {
 `;
 
 exports[`(AddStatement) assignment: assignment 1`] = `
-AddStatement {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -185,7 +185,7 @@ AddStatement {
         "offset": 4,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -216,7 +216,7 @@ AddStatement {
     },
   },
   "operator": "=",
-  "right": StringLiteral {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 23,
@@ -237,9 +237,9 @@ AddStatement {
 `;
 
 exports[`(AddStatement) division: division 1`] = `
-AddStatement {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -267,7 +267,7 @@ AddStatement {
         "offset": 4,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -298,7 +298,7 @@ AddStatement {
     },
   },
   "operator": "/=",
-  "right": StringLiteral {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 24,
@@ -319,9 +319,9 @@ AddStatement {
 `;
 
 exports[`(AddStatement) multiplication: multiplication 1`] = `
-AddStatement {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -349,7 +349,7 @@ AddStatement {
         "offset": 4,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -380,7 +380,7 @@ AddStatement {
     },
   },
   "operator": "*=",
-  "right": StringLiteral {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 24,
@@ -401,9 +401,9 @@ AddStatement {
 `;
 
 exports[`(AddStatement) substraction: substraction 1`] = `
-AddStatement {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -431,7 +431,7 @@ AddStatement {
         "offset": 4,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -462,7 +462,7 @@ AddStatement {
     },
   },
   "operator": "-=",
-  "right": StringLiteral {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 24,
@@ -483,9 +483,9 @@ AddStatement {
 `;
 
 exports[`(BackendStatement) basic: basic 1`] = `
-BackendStatement {
+Node {
   "body": Array [
-    BackendDefinition {
+    Node {
       "key": "connect_timeout",
       "loc": Object {
         "end": Object {
@@ -500,7 +500,7 @@ BackendStatement {
         },
       },
       "type": "BackendDefinition",
-      "value": DurationLiteral {
+      "value": Node {
         "loc": Object {
           "end": Object {
             "column": 23,
@@ -517,7 +517,7 @@ BackendStatement {
         "value": "1s",
       },
     },
-    BackendDefinition {
+    Node {
       "key": "dynamic",
       "loc": Object {
         "end": Object {
@@ -532,7 +532,7 @@ BackendStatement {
         },
       },
       "type": "BackendDefinition",
-      "value": BooleanLiteral {
+      "value": Node {
         "loc": Object {
           "end": Object {
             "column": 17,
@@ -549,7 +549,7 @@ BackendStatement {
         "value": "true",
       },
     },
-    BackendDefinition {
+    Node {
       "key": "port",
       "loc": Object {
         "end": Object {
@@ -564,7 +564,7 @@ BackendStatement {
         },
       },
       "type": "BackendDefinition",
-      "value": StringLiteral {
+      "value": Node {
         "loc": Object {
           "end": Object {
             "column": 15,
@@ -581,7 +581,7 @@ BackendStatement {
         "value": "\\"443\\"",
       },
     },
-    BackendDefinition {
+    Node {
       "key": "host",
       "loc": Object {
         "end": Object {
@@ -596,7 +596,7 @@ BackendStatement {
         },
       },
       "type": "BackendDefinition",
-      "value": StringLiteral {
+      "value": Node {
         "loc": Object {
           "end": Object {
             "column": 23,
@@ -613,7 +613,7 @@ BackendStatement {
         "value": "\\"vaceline.io\\"",
       },
     },
-    BackendDefinition {
+    Node {
       "key": "first_byte_timeout",
       "loc": Object {
         "end": Object {
@@ -628,7 +628,7 @@ BackendStatement {
         },
       },
       "type": "BackendDefinition",
-      "value": DurationLiteral {
+      "value": Node {
         "loc": Object {
           "end": Object {
             "column": 26,
@@ -645,7 +645,7 @@ BackendStatement {
         "value": "5s",
       },
     },
-    BackendDefinition {
+    Node {
       "key": "max_connections",
       "loc": Object {
         "end": Object {
@@ -660,7 +660,7 @@ BackendStatement {
         },
       },
       "type": "BackendDefinition",
-      "value": NumericLiteral {
+      "value": Node {
         "loc": Object {
           "end": Object {
             "column": 24,
@@ -677,7 +677,7 @@ BackendStatement {
         "value": "100",
       },
     },
-    BackendDefinition {
+    Node {
       "key": "between_bytes_timeout",
       "loc": Object {
         "end": Object {
@@ -692,7 +692,7 @@ BackendStatement {
         },
       },
       "type": "BackendDefinition",
-      "value": DurationLiteral {
+      "value": Node {
         "loc": Object {
           "end": Object {
             "column": 30,
@@ -709,7 +709,7 @@ BackendStatement {
         "value": "10s",
       },
     },
-    BackendDefinition {
+    Node {
       "key": "ssl",
       "loc": Object {
         "end": Object {
@@ -724,7 +724,7 @@ BackendStatement {
         },
       },
       "type": "BackendDefinition",
-      "value": BooleanLiteral {
+      "value": Node {
         "loc": Object {
           "end": Object {
             "column": 13,
@@ -741,7 +741,7 @@ BackendStatement {
         "value": "true",
       },
     },
-    BackendDefinition {
+    Node {
       "key": "probe",
       "loc": Object {
         "end": Object {
@@ -757,7 +757,7 @@ BackendStatement {
       },
       "type": "BackendDefinition",
       "value": Array [
-        BackendDefinition {
+        Node {
           "key": "request",
           "loc": Object {
             "end": Object {
@@ -772,9 +772,9 @@ BackendStatement {
             },
           },
           "type": "BackendDefinition",
-          "value": ConcatExpression {
+          "value": Node {
             "body": Array [
-              StringLiteral {
+              Node {
                 "loc": Object {
                   "end": Object {
                     "column": 42,
@@ -790,7 +790,7 @@ BackendStatement {
                 "type": "StringLiteral",
                 "value": "\\"GET /healthcheck HTTP/1.1\\"",
               },
-              StringLiteral {
+              Node {
                 "loc": Object {
                   "end": Object {
                     "column": 62,
@@ -806,7 +806,7 @@ BackendStatement {
                 "type": "StringLiteral",
                 "value": "\\"Host: vaceline.io\\"",
               },
-              StringLiteral {
+              Node {
                 "loc": Object {
                   "end": Object {
                     "column": 82,
@@ -822,7 +822,7 @@ BackendStatement {
                 "type": "StringLiteral",
                 "value": "\\"Connection: close\\"",
               },
-              StringLiteral {
+              Node {
                 "loc": Object {
                   "end": Object {
                     "column": 117,
@@ -854,7 +854,7 @@ BackendStatement {
             "type": "ConcatExpression",
           },
         },
-        BackendDefinition {
+        Node {
           "key": "threshold",
           "loc": Object {
             "end": Object {
@@ -869,7 +869,7 @@ BackendStatement {
             },
           },
           "type": "BackendDefinition",
-          "value": NumericLiteral {
+          "value": Node {
             "loc": Object {
               "end": Object {
                 "column": 18,
@@ -886,7 +886,7 @@ BackendStatement {
             "value": "1",
           },
         },
-        BackendDefinition {
+        Node {
           "key": "window",
           "loc": Object {
             "end": Object {
@@ -901,7 +901,7 @@ BackendStatement {
             },
           },
           "type": "BackendDefinition",
-          "value": NumericLiteral {
+          "value": Node {
             "loc": Object {
               "end": Object {
                 "column": 15,
@@ -918,7 +918,7 @@ BackendStatement {
             "value": "2",
           },
         },
-        BackendDefinition {
+        Node {
           "key": "timeout",
           "loc": Object {
             "end": Object {
@@ -933,7 +933,7 @@ BackendStatement {
             },
           },
           "type": "BackendDefinition",
-          "value": DurationLiteral {
+          "value": Node {
             "loc": Object {
               "end": Object {
                 "column": 18,
@@ -950,7 +950,7 @@ BackendStatement {
             "value": "10s",
           },
         },
-        BackendDefinition {
+        Node {
           "key": "initial",
           "loc": Object {
             "end": Object {
@@ -965,7 +965,7 @@ BackendStatement {
             },
           },
           "type": "BackendDefinition",
-          "value": NumericLiteral {
+          "value": Node {
             "loc": Object {
               "end": Object {
                 "column": 16,
@@ -982,7 +982,7 @@ BackendStatement {
             "value": "1",
           },
         },
-        BackendDefinition {
+        Node {
           "key": "expected_response",
           "loc": Object {
             "end": Object {
@@ -997,7 +997,7 @@ BackendStatement {
             },
           },
           "type": "BackendDefinition",
-          "value": NumericLiteral {
+          "value": Node {
             "loc": Object {
               "end": Object {
                 "column": 28,
@@ -1014,7 +1014,7 @@ BackendStatement {
             "value": "200",
           },
         },
-        BackendDefinition {
+        Node {
           "key": "interval",
           "loc": Object {
             "end": Object {
@@ -1029,7 +1029,7 @@ BackendStatement {
             },
           },
           "type": "BackendDefinition",
-          "value": DurationLiteral {
+          "value": Node {
             "loc": Object {
               "end": Object {
                 "column": 19,
@@ -1049,7 +1049,7 @@ BackendStatement {
       ],
     },
   ],
-  "id": Identifier {
+  "id": Node {
     "loc": Object {
       "end": Object {
         "column": 24,
@@ -1082,11 +1082,11 @@ BackendStatement {
 `;
 
 exports[`(BinaryExpression) combination with LogicalExpression: combination with LogicalExpression 1`] = `
-LogicalExpression {
-  "left": BinaryExpression {
-    "left": Member {
-      "base": Member {
-        "base": Identifier {
+Node {
+  "left": Node {
+    "left": Node {
+      "base": Node {
+        "base": Node {
           "loc": Object {
             "end": Object {
               "column": 3,
@@ -1114,7 +1114,7 @@ LogicalExpression {
             "offset": 0,
           },
         },
-        "member": Identifier {
+        "member": Node {
           "loc": Object {
             "end": Object {
               "column": 8,
@@ -1144,7 +1144,7 @@ LogicalExpression {
           "offset": 0,
         },
       },
-      "member": Identifier {
+      "member": Node {
         "loc": Object {
           "end": Object {
             "column": 14,
@@ -1175,7 +1175,7 @@ LogicalExpression {
       },
     },
     "operator": "==",
-    "right": StringLiteral {
+    "right": Node {
       "loc": Object {
         "end": Object {
           "column": 21,
@@ -1206,8 +1206,8 @@ LogicalExpression {
     },
   },
   "operator": "&&",
-  "right": BinaryExpression {
-    "left": StringLiteral {
+  "right": Node {
+    "left": Node {
       "loc": Object {
         "end": Object {
           "column": 28,
@@ -1236,7 +1236,7 @@ LogicalExpression {
       },
     },
     "operator": "==",
-    "right": StringLiteral {
+    "right": Node {
       "loc": Object {
         "end": Object {
           "column": 35,
@@ -1259,10 +1259,10 @@ LogicalExpression {
 `;
 
 exports[`(BinaryExpression) equal: equal 1`] = `
-BinaryExpression {
-  "left": Member {
-    "base": Member {
-      "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
+      "base": Node {
         "loc": Object {
           "end": Object {
             "column": 3,
@@ -1290,7 +1290,7 @@ BinaryExpression {
           "offset": 0,
         },
       },
-      "member": Identifier {
+      "member": Node {
         "loc": Object {
           "end": Object {
             "column": 8,
@@ -1320,7 +1320,7 @@ BinaryExpression {
         "offset": 0,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 14,
@@ -1351,7 +1351,7 @@ BinaryExpression {
     },
   },
   "operator": "==",
-  "right": StringLiteral {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 21,
@@ -1372,10 +1372,10 @@ BinaryExpression {
 `;
 
 exports[`(BinaryExpression) match: match 1`] = `
-BinaryExpression {
-  "left": Member {
-    "base": Member {
-      "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
+      "base": Node {
         "loc": Object {
           "end": Object {
             "column": 3,
@@ -1403,7 +1403,7 @@ BinaryExpression {
           "offset": 0,
         },
       },
-      "member": Identifier {
+      "member": Node {
         "loc": Object {
           "end": Object {
             "column": 8,
@@ -1433,7 +1433,7 @@ BinaryExpression {
         "offset": 0,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 14,
@@ -1464,7 +1464,7 @@ BinaryExpression {
     },
   },
   "operator": "~",
-  "right": StringLiteral {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 20,
@@ -1485,12 +1485,12 @@ BinaryExpression {
 `;
 
 exports[`(BinaryExpression) multiple: multiple 1`] = `
-BinaryExpression {
-  "left": BinaryExpression {
-    "left": BinaryExpression {
-      "left": Member {
-        "base": Member {
-          "base": Identifier {
+Node {
+  "left": Node {
+    "left": Node {
+      "left": Node {
+        "base": Node {
+          "base": Node {
             "loc": Object {
               "end": Object {
                 "column": 3,
@@ -1518,7 +1518,7 @@ BinaryExpression {
               "offset": 0,
             },
           },
-          "member": Identifier {
+          "member": Node {
             "loc": Object {
               "end": Object {
                 "column": 8,
@@ -1548,7 +1548,7 @@ BinaryExpression {
             "offset": 0,
           },
         },
-        "member": Identifier {
+        "member": Node {
           "loc": Object {
             "end": Object {
               "column": 14,
@@ -1579,7 +1579,7 @@ BinaryExpression {
         },
       },
       "operator": "==",
-      "right": StringLiteral {
+      "right": Node {
         "loc": Object {
           "end": Object {
             "column": 21,
@@ -1610,7 +1610,7 @@ BinaryExpression {
       },
     },
     "operator": "==",
-    "right": StringLiteral {
+    "right": Node {
       "loc": Object {
         "end": Object {
           "column": 28,
@@ -1641,7 +1641,7 @@ BinaryExpression {
     },
   },
   "operator": "==",
-  "right": StringLiteral {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 35,
@@ -1662,10 +1662,10 @@ BinaryExpression {
 `;
 
 exports[`(BinaryExpression) not equal: not equal 1`] = `
-BinaryExpression {
-  "left": Member {
-    "base": Member {
-      "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
+      "base": Node {
         "loc": Object {
           "end": Object {
             "column": 3,
@@ -1693,7 +1693,7 @@ BinaryExpression {
           "offset": 0,
         },
       },
-      "member": Identifier {
+      "member": Node {
         "loc": Object {
           "end": Object {
             "column": 8,
@@ -1723,7 +1723,7 @@ BinaryExpression {
         "offset": 0,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 14,
@@ -1754,7 +1754,7 @@ BinaryExpression {
     },
   },
   "operator": "!=",
-  "right": StringLiteral {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 21,
@@ -1775,11 +1775,11 @@ BinaryExpression {
 `;
 
 exports[`(BooleanExpression) with binary: with binary 1`] = `
-BooleanExpression {
-  "body": BinaryExpression {
-    "left": Member {
-      "base": Member {
-        "base": Identifier {
+Node {
+  "body": Node {
+    "left": Node {
+      "base": Node {
+        "base": Node {
           "loc": Object {
             "end": Object {
               "column": 4,
@@ -1807,7 +1807,7 @@ BooleanExpression {
             "offset": 1,
           },
         },
-        "member": Identifier {
+        "member": Node {
           "loc": Object {
             "end": Object {
               "column": 9,
@@ -1837,7 +1837,7 @@ BooleanExpression {
           "offset": 1,
         },
       },
-      "member": Identifier {
+      "member": Node {
         "loc": Object {
           "end": Object {
             "column": 15,
@@ -1868,7 +1868,7 @@ BooleanExpression {
       },
     },
     "operator": "==",
-    "right": StringLiteral {
+    "right": Node {
       "loc": Object {
         "end": Object {
           "column": 22,
@@ -1903,10 +1903,10 @@ BooleanExpression {
 `;
 
 exports[`(BooleanExpression) with logical: with logical 1`] = `
-BooleanExpression {
-  "body": LogicalExpression {
-    "left": Member {
-      "base": Identifier {
+Node {
+  "body": Node {
+    "left": Node {
+      "base": Node {
         "loc": Object {
           "end": Object {
             "column": 4,
@@ -1934,7 +1934,7 @@ BooleanExpression {
           "offset": 1,
         },
       },
-      "member": Identifier {
+      "member": Node {
         "loc": Object {
           "end": Object {
             "column": 10,
@@ -1965,7 +1965,7 @@ BooleanExpression {
       },
     },
     "operator": "&&",
-    "right": StringLiteral {
+    "right": Node {
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -2000,7 +2000,7 @@ BooleanExpression {
 `;
 
 exports[`(BooleanLiteral) false: false 1`] = `
-BooleanLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 5,
@@ -2019,7 +2019,7 @@ BooleanLiteral {
 `;
 
 exports[`(BooleanLiteral) true: true 1`] = `
-BooleanLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 4,
@@ -2038,7 +2038,7 @@ BooleanLiteral {
 `;
 
 exports[`(CallStatement) basic: basic 1`] = `
-CallStatement {
+Node {
   "loc": Object {
     "end": Object {
       "column": 19,
@@ -2051,7 +2051,7 @@ CallStatement {
       "offset": 0,
     },
   },
-  "subroutine": Identifier {
+  "subroutine": Node {
     "loc": Object {
       "end": Object {
         "column": 18,
@@ -2072,9 +2072,9 @@ CallStatement {
 `;
 
 exports[`(ConcatExpression) expressions: expressions 1`] = `
-ConcatExpression {
+Node {
   "body": Array [
-    StringLiteral {
+    Node {
       "loc": Object {
         "end": Object {
           "column": 3,
@@ -2090,7 +2090,7 @@ ConcatExpression {
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
-    NumericLiteral {
+    Node {
       "loc": Object {
         "end": Object {
           "column": 5,
@@ -2106,9 +2106,9 @@ ConcatExpression {
       "type": "NumericLiteral",
       "value": "1",
     },
-    Member {
-      "base": Member {
-        "base": Identifier {
+    Node {
+      "base": Node {
+        "base": Node {
           "loc": Object {
             "end": Object {
               "column": 9,
@@ -2136,7 +2136,7 @@ ConcatExpression {
             "offset": 6,
           },
         },
-        "member": Identifier {
+        "member": Node {
           "loc": Object {
             "end": Object {
               "column": 14,
@@ -2166,7 +2166,7 @@ ConcatExpression {
           "offset": 6,
         },
       },
-      "member": Identifier {
+      "member": Node {
         "loc": Object {
           "end": Object {
             "column": 16,
@@ -2202,9 +2202,9 @@ ConcatExpression {
 `;
 
 exports[`(ConcatExpression) strings: strings 1`] = `
-ConcatExpression {
+Node {
   "body": Array [
-    StringLiteral {
+    Node {
       "loc": Object {
         "end": Object {
           "column": 3,
@@ -2220,7 +2220,7 @@ ConcatExpression {
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
-    StringLiteral {
+    Node {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -2236,7 +2236,7 @@ ConcatExpression {
       "type": "StringLiteral",
       "value": "\\"b\\"",
     },
-    StringLiteral {
+    Node {
       "loc": Object {
         "end": Object {
           "column": 11,
@@ -2270,9 +2270,9 @@ ConcatExpression {
 `;
 
 exports[`(DeclareStatement) bool: bool 1`] = `
-DeclareStatement {
-  "id": Member {
-    "base": Identifier {
+Node {
+  "id": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -2300,7 +2300,7 @@ DeclareStatement {
         "offset": 14,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 26,
@@ -2336,9 +2336,9 @@ DeclareStatement {
 `;
 
 exports[`(DeclareStatement) float: float 1`] = `
-DeclareStatement {
-  "id": Member {
-    "base": Identifier {
+Node {
+  "id": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -2366,7 +2366,7 @@ DeclareStatement {
         "offset": 14,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 26,
@@ -2402,9 +2402,9 @@ DeclareStatement {
 `;
 
 exports[`(DeclareStatement) integer: integer 1`] = `
-DeclareStatement {
-  "id": Member {
-    "base": Identifier {
+Node {
+  "id": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -2432,7 +2432,7 @@ DeclareStatement {
         "offset": 14,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 26,
@@ -2468,9 +2468,9 @@ DeclareStatement {
 `;
 
 exports[`(DeclareStatement) string: string 1`] = `
-DeclareStatement {
-  "id": Member {
-    "base": Identifier {
+Node {
+  "id": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -2498,7 +2498,7 @@ DeclareStatement {
         "offset": 14,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 26,
@@ -2534,7 +2534,7 @@ DeclareStatement {
 `;
 
 exports[`(DurationLiteral) day: day 1`] = `
-DurationLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 2,
@@ -2553,7 +2553,7 @@ DurationLiteral {
 `;
 
 exports[`(DurationLiteral) min: min 1`] = `
-DurationLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 2,
@@ -2572,7 +2572,7 @@ DurationLiteral {
 `;
 
 exports[`(DurationLiteral) ms: ms 1`] = `
-DurationLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 3,
@@ -2591,7 +2591,7 @@ DurationLiteral {
 `;
 
 exports[`(DurationLiteral) s: s 1`] = `
-DurationLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 2,
@@ -2610,7 +2610,7 @@ DurationLiteral {
 `;
 
 exports[`(DurationLiteral) with space between: with space between 1`] = `
-DurationLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 5,
@@ -2629,7 +2629,7 @@ DurationLiteral {
 `;
 
 exports[`(DurationLiteral) year: year 1`] = `
-DurationLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 2,
@@ -2648,7 +2648,7 @@ DurationLiteral {
 `;
 
 exports[`(ErrorStatement) basic: basic 1`] = `
-ErrorStatement {
+Node {
   "loc": Object {
     "end": Object {
       "column": 10,
@@ -2668,7 +2668,7 @@ ErrorStatement {
 `;
 
 exports[`(ErrorStatement) with response: with response 1`] = `
-ErrorStatement {
+Node {
   "loc": Object {
     "end": Object {
       "column": 22,
@@ -2681,7 +2681,7 @@ ErrorStatement {
       "offset": 0,
     },
   },
-  "message": StringLiteral {
+  "message": Node {
     "loc": Object {
       "end": Object {
         "column": 21,
@@ -2703,7 +2703,7 @@ ErrorStatement {
 `;
 
 exports[`(ErrorStatement) with variable response: with variable response 1`] = `
-ErrorStatement {
+Node {
   "loc": Object {
     "end": Object {
       "column": 25,
@@ -2716,9 +2716,9 @@ ErrorStatement {
       "offset": 0,
     },
   },
-  "message": Member {
-    "base": Member {
-      "base": Identifier {
+  "message": Node {
+    "base": Node {
+      "base": Node {
         "loc": Object {
           "end": Object {
             "column": 13,
@@ -2746,7 +2746,7 @@ ErrorStatement {
           "offset": 10,
         },
       },
-      "member": Identifier {
+      "member": Node {
         "loc": Object {
           "end": Object {
             "column": 18,
@@ -2776,7 +2776,7 @@ ErrorStatement {
         "offset": 10,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 24,
@@ -2800,10 +2800,10 @@ ErrorStatement {
 `;
 
 exports[`(ExpressionStatement) with FunCallExpression: with FunCallExpression 1`] = `
-ExpressionStatement {
-  "body": FunCallExpression {
-    "arguments": Array [
-      Identifier {
+Node {
+  "body": Node {
+    "args": Array [
+      Node {
         "loc": Object {
           "end": Object {
             "column": 6,
@@ -2820,7 +2820,7 @@ ExpressionStatement {
         "type": "Identifier",
       },
     ],
-    "callee": Identifier {
+    "callee": Node {
       "loc": Object {
         "end": Object {
           "column": 4,
@@ -2867,8 +2867,8 @@ ExpressionStatement {
 `;
 
 exports[`(ExpressionStatement) with Identifer: with Identifer 1`] = `
-ExpressionStatement {
-  "body": Identifier {
+Node {
+  "body": Node {
     "loc": Object {
       "end": Object {
         "column": 8,
@@ -2901,8 +2901,8 @@ ExpressionStatement {
 `;
 
 exports[`(ExpressionStatement) with Literal: with Literal 1`] = `
-ExpressionStatement {
-  "body": StringLiteral {
+Node {
+  "body": Node {
     "loc": Object {
       "end": Object {
         "column": 8,
@@ -2935,10 +2935,10 @@ ExpressionStatement {
 `;
 
 exports[`(ExpressionStatement) with Member & Identifier: with Member & Identifier 1`] = `
-ExpressionStatement {
-  "body": Member {
-    "base": Member {
-      "base": Identifier {
+Node {
+  "body": Node {
+    "base": Node {
+      "base": Node {
         "loc": Object {
           "end": Object {
             "column": 3,
@@ -2966,7 +2966,7 @@ ExpressionStatement {
           "offset": 0,
         },
       },
-      "member": Identifier {
+      "member": Node {
         "loc": Object {
           "end": Object {
             "column": 8,
@@ -2996,7 +2996,7 @@ ExpressionStatement {
         "offset": 0,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -3031,9 +3031,9 @@ ExpressionStatement {
 `;
 
 exports[`(FunCallExpression) \`if\` func: \`if\` func 1`] = `
-FunCallExpression {
-  "arguments": Array [
-    StringLiteral {
+Node {
+  "args": Array [
+    Node {
       "loc": Object {
         "end": Object {
           "column": 6,
@@ -3049,7 +3049,7 @@ FunCallExpression {
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
-    StringLiteral {
+    Node {
       "loc": Object {
         "end": Object {
           "column": 11,
@@ -3065,7 +3065,7 @@ FunCallExpression {
       "type": "StringLiteral",
       "value": "\\"b\\"",
     },
-    StringLiteral {
+    Node {
       "loc": Object {
         "end": Object {
           "column": 16,
@@ -3082,7 +3082,7 @@ FunCallExpression {
       "value": "\\"c\\"",
     },
   ],
-  "callee": Identifier {
+  "callee": Node {
     "loc": Object {
       "end": Object {
         "column": 2,
@@ -3115,9 +3115,9 @@ FunCallExpression {
 `;
 
 exports[`(FunCallExpression) normal: normal 1`] = `
-FunCallExpression {
-  "arguments": Array [
-    StringLiteral {
+Node {
+  "args": Array [
+    Node {
       "loc": Object {
         "end": Object {
           "column": 8,
@@ -3134,7 +3134,7 @@ FunCallExpression {
       "value": "\\"a\\"",
     },
   ],
-  "callee": Identifier {
+  "callee": Node {
     "loc": Object {
       "end": Object {
         "column": 4,
@@ -3167,9 +3167,9 @@ FunCallExpression {
 `;
 
 exports[`(FunCallExpression) with multiple args: with multiple args 1`] = `
-FunCallExpression {
-  "arguments": Array [
-    StringLiteral {
+Node {
+  "args": Array [
+    Node {
       "loc": Object {
         "end": Object {
           "column": 8,
@@ -3185,7 +3185,7 @@ FunCallExpression {
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
-    StringLiteral {
+    Node {
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -3202,7 +3202,7 @@ FunCallExpression {
       "value": "\\"b\\"",
     },
   ],
-  "callee": Identifier {
+  "callee": Node {
     "loc": Object {
       "end": Object {
         "column": 4,
@@ -3235,9 +3235,9 @@ FunCallExpression {
 `;
 
 exports[`(FunCallExpression) with whitespace: with whitespace 1`] = `
-FunCallExpression {
-  "arguments": Array [
-    StringLiteral {
+Node {
+  "args": Array [
+    Node {
       "loc": Object {
         "end": Object {
           "column": 10,
@@ -3254,7 +3254,7 @@ FunCallExpression {
       "value": "\\"a\\"",
     },
   ],
-  "callee": Identifier {
+  "callee": Node {
     "loc": Object {
       "end": Object {
         "column": 4,
@@ -3287,7 +3287,7 @@ FunCallExpression {
 `;
 
 exports[`(Identifier) normal: normal 1`] = `
-Identifier {
+Node {
   "loc": Object {
     "end": Object {
       "column": 8,
@@ -3306,12 +3306,12 @@ Identifier {
 `;
 
 exports[`(IfStatement) basic: basic 1`] = `
-IfStatement {
+Node {
   "alternative": undefined,
   "consequent": Array [
-    SetStatement {
-      "left": Member {
-        "base": Identifier {
+    Node {
+      "left": Node {
+        "base": Node {
           "loc": Object {
             "end": Object {
               "column": 9,
@@ -3339,7 +3339,7 @@ IfStatement {
             "offset": 27,
           },
         },
-        "member": Identifier {
+        "member": Node {
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -3370,7 +3370,7 @@ IfStatement {
         },
       },
       "operator": "=",
-      "right": NumericLiteral {
+      "right": Node {
         "loc": Object {
           "end": Object {
             "column": 19,
@@ -3401,8 +3401,8 @@ IfStatement {
       "offset": 0,
     },
   },
-  "test": Member {
-    "base": Identifier {
+  "test": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -3430,7 +3430,7 @@ IfStatement {
         "offset": 4,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -3453,12 +3453,12 @@ IfStatement {
 `;
 
 exports[`(IfStatement) with else if: with else if 1`] = `
-IfStatement {
-  "alternative": IfStatement {
+Node {
+  "alternative": Node {
     "alternative": Array [
-      SetStatement {
-        "left": Member {
-          "base": Identifier {
+      Node {
+        "left": Node {
+          "base": Node {
             "loc": Object {
               "end": Object {
                 "column": 9,
@@ -3486,7 +3486,7 @@ IfStatement {
               "offset": 107,
             },
           },
-          "member": Identifier {
+          "member": Node {
             "loc": Object {
               "end": Object {
                 "column": 15,
@@ -3517,7 +3517,7 @@ IfStatement {
           },
         },
         "operator": "=",
-        "right": NumericLiteral {
+        "right": Node {
           "loc": Object {
             "end": Object {
               "column": 19,
@@ -3537,9 +3537,9 @@ IfStatement {
       },
     ],
     "consequent": Array [
-      SetStatement {
-        "left": Member {
-          "base": Identifier {
+      Node {
+        "left": Node {
+          "base": Node {
             "loc": Object {
               "end": Object {
                 "column": 9,
@@ -3567,7 +3567,7 @@ IfStatement {
               "offset": 77,
             },
           },
-          "member": Identifier {
+          "member": Node {
             "loc": Object {
               "end": Object {
                 "column": 15,
@@ -3598,7 +3598,7 @@ IfStatement {
           },
         },
         "operator": "=",
-        "right": NumericLiteral {
+        "right": Node {
           "loc": Object {
             "end": Object {
               "column": 19,
@@ -3629,9 +3629,9 @@ IfStatement {
         "offset": 49,
       },
     },
-    "test": UnaryExpression {
-      "argument": Member {
-        "base": Identifier {
+    "test": Node {
+      "argument": Node {
+        "base": Node {
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -3659,7 +3659,7 @@ IfStatement {
             "offset": 54,
           },
         },
-        "member": Identifier {
+        "member": Node {
           "loc": Object {
             "end": Object {
               "column": 25,
@@ -3695,9 +3695,9 @@ IfStatement {
     "type": "IfStatement",
   },
   "consequent": Array [
-    SetStatement {
-      "left": Member {
-        "base": Identifier {
+    Node {
+      "left": Node {
+        "base": Node {
           "loc": Object {
             "end": Object {
               "column": 9,
@@ -3725,7 +3725,7 @@ IfStatement {
             "offset": 27,
           },
         },
-        "member": Identifier {
+        "member": Node {
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -3756,7 +3756,7 @@ IfStatement {
         },
       },
       "operator": "=",
-      "right": NumericLiteral {
+      "right": Node {
         "loc": Object {
           "end": Object {
             "column": 19,
@@ -3787,8 +3787,8 @@ IfStatement {
       "offset": 0,
     },
   },
-  "test": Member {
-    "base": Identifier {
+  "test": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -3816,7 +3816,7 @@ IfStatement {
         "offset": 4,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -3839,11 +3839,11 @@ IfStatement {
 `;
 
 exports[`(IfStatement) with else: with else 1`] = `
-IfStatement {
+Node {
   "alternative": Array [
-    SetStatement {
-      "left": Member {
-        "base": Identifier {
+    Node {
+      "left": Node {
+        "base": Node {
           "loc": Object {
             "end": Object {
               "column": 9,
@@ -3871,7 +3871,7 @@ IfStatement {
             "offset": 57,
           },
         },
-        "member": Identifier {
+        "member": Node {
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -3902,7 +3902,7 @@ IfStatement {
         },
       },
       "operator": "=",
-      "right": NumericLiteral {
+      "right": Node {
         "loc": Object {
           "end": Object {
             "column": 19,
@@ -3922,9 +3922,9 @@ IfStatement {
     },
   ],
   "consequent": Array [
-    SetStatement {
-      "left": Member {
-        "base": Identifier {
+    Node {
+      "left": Node {
+        "base": Node {
           "loc": Object {
             "end": Object {
               "column": 9,
@@ -3952,7 +3952,7 @@ IfStatement {
             "offset": 27,
           },
         },
-        "member": Identifier {
+        "member": Node {
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -3983,7 +3983,7 @@ IfStatement {
         },
       },
       "operator": "=",
-      "right": NumericLiteral {
+      "right": Node {
         "loc": Object {
           "end": Object {
             "column": 19,
@@ -4014,8 +4014,8 @@ IfStatement {
       "offset": 0,
     },
   },
-  "test": Member {
-    "base": Identifier {
+  "test": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -4043,7 +4043,7 @@ IfStatement {
         "offset": 4,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -4066,12 +4066,12 @@ IfStatement {
 `;
 
 exports[`(IfStatement) with empty lines: with empty lines 1`] = `
-IfStatement {
-  "alternative": IfStatement {
+Node {
+  "alternative": Node {
     "alternative": Array [
-      SetStatement {
-        "left": Member {
-          "base": Identifier {
+      Node {
+        "left": Node {
+          "base": Node {
             "loc": Object {
               "end": Object {
                 "column": 9,
@@ -4099,7 +4099,7 @@ IfStatement {
               "offset": 112,
             },
           },
-          "member": Identifier {
+          "member": Node {
             "loc": Object {
               "end": Object {
                 "column": 15,
@@ -4130,7 +4130,7 @@ IfStatement {
           },
         },
         "operator": "=",
-        "right": NumericLiteral {
+        "right": Node {
           "loc": Object {
             "end": Object {
               "column": 19,
@@ -4150,9 +4150,9 @@ IfStatement {
       },
     ],
     "consequent": Array [
-      SetStatement {
-        "left": Member {
-          "base": Identifier {
+      Node {
+        "left": Node {
+          "base": Node {
             "loc": Object {
               "end": Object {
                 "column": 9,
@@ -4180,7 +4180,7 @@ IfStatement {
               "offset": 80,
             },
           },
-          "member": Identifier {
+          "member": Node {
             "loc": Object {
               "end": Object {
                 "column": 15,
@@ -4211,7 +4211,7 @@ IfStatement {
           },
         },
         "operator": "=",
-        "right": NumericLiteral {
+        "right": Node {
           "loc": Object {
             "end": Object {
               "column": 19,
@@ -4242,9 +4242,9 @@ IfStatement {
         "offset": 51,
       },
     },
-    "test": UnaryExpression {
-      "argument": Member {
-        "base": Identifier {
+    "test": Node {
+      "argument": Node {
+        "base": Node {
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -4272,7 +4272,7 @@ IfStatement {
             "offset": 56,
           },
         },
-        "member": Identifier {
+        "member": Node {
           "loc": Object {
             "end": Object {
               "column": 25,
@@ -4308,9 +4308,9 @@ IfStatement {
     "type": "IfStatement",
   },
   "consequent": Array [
-    SetStatement {
-      "left": Member {
-        "base": Identifier {
+    Node {
+      "left": Node {
+        "base": Node {
           "loc": Object {
             "end": Object {
               "column": 9,
@@ -4338,7 +4338,7 @@ IfStatement {
             "offset": 28,
           },
         },
-        "member": Identifier {
+        "member": Node {
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -4369,7 +4369,7 @@ IfStatement {
         },
       },
       "operator": "=",
-      "right": NumericLiteral {
+      "right": Node {
         "loc": Object {
           "end": Object {
             "column": 19,
@@ -4400,8 +4400,8 @@ IfStatement {
       "offset": 0,
     },
   },
-  "test": Member {
-    "base": Identifier {
+  "test": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -4429,7 +4429,7 @@ IfStatement {
         "offset": 4,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -4452,7 +4452,7 @@ IfStatement {
 `;
 
 exports[`(ImportStatement) basic: basic 1`] = `
-ImportStatement {
+Node {
   "loc": Object {
     "end": Object {
       "column": 14,
@@ -4465,7 +4465,7 @@ ImportStatement {
       "offset": 0,
     },
   },
-  "module": Identifier {
+  "module": Node {
     "loc": Object {
       "end": Object {
         "column": 13,
@@ -4486,7 +4486,7 @@ ImportStatement {
 `;
 
 exports[`(IncludeStatement) basic: basic 1`] = `
-IncludeStatement {
+Node {
   "loc": Object {
     "end": Object {
       "column": 27,
@@ -4499,7 +4499,7 @@ IncludeStatement {
       "offset": 0,
     },
   },
-  "module": StringLiteral {
+  "module": Node {
     "loc": Object {
       "end": Object {
         "column": 26,
@@ -4520,7 +4520,7 @@ IncludeStatement {
 `;
 
 exports[`(Ip) 6to4 mapping: 6to4 mapping 1`] = `
-StringLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 18,
@@ -4539,7 +4539,7 @@ StringLiteral {
 `;
 
 exports[`(Ip) 6to4 mapping: 6to4 mapping 2`] = `
-StringLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 18,
@@ -4558,7 +4558,7 @@ StringLiteral {
 `;
 
 exports[`(Ip) 6to4 mapping: 6to4 mapping 3`] = `
-StringLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 5,
@@ -4577,7 +4577,7 @@ StringLiteral {
 `;
 
 exports[`(Ip) IPv4 with cidr: IPv4 with cidr 1`] = `
-Ip {
+Node {
   "cidr": 16,
   "loc": Object {
     "end": Object {
@@ -4597,7 +4597,7 @@ Ip {
 `;
 
 exports[`(Ip) IPv4: IPv4 1`] = `
-StringLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 11,
@@ -4616,7 +4616,7 @@ StringLiteral {
 `;
 
 exports[`(Ip) IPv6 with cidr: IPv6 with cidr 1`] = `
-Ip {
+Node {
   "cidr": 16,
   "loc": Object {
     "end": Object {
@@ -4636,7 +4636,7 @@ Ip {
 `;
 
 exports[`(Ip) IPv6: IPv6 1`] = `
-StringLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 13,
@@ -4655,7 +4655,7 @@ StringLiteral {
 `;
 
 exports[`(Ip) localhost: localhost 1`] = `
-StringLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 11,
@@ -4674,7 +4674,7 @@ StringLiteral {
 `;
 
 exports[`(Ip) unspecified address: unspecified address 1`] = `
-StringLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 4,
@@ -4693,10 +4693,10 @@ StringLiteral {
 `;
 
 exports[`(LogStatement) basic: basic 1`] = `
-LogStatement {
-  "content": ConcatExpression {
+Node {
+  "content": Node {
     "body": Array [
-      StringLiteral {
+      Node {
         "loc": Object {
           "end": Object {
             "column": 9,
@@ -4712,8 +4712,8 @@ LogStatement {
         "type": "StringLiteral",
         "value": "\\"log\\"",
       },
-      Member {
-        "base": Identifier {
+      Node {
+        "base": Node {
           "loc": Object {
             "end": Object {
               "column": 13,
@@ -4741,7 +4741,7 @@ LogStatement {
             "offset": 10,
           },
         },
-        "member": Identifier {
+        "member": Node {
           "loc": Object {
             "end": Object {
               "column": 24,
@@ -4759,7 +4759,7 @@ LogStatement {
         },
         "type": "Member",
       },
-      StringLiteral {
+      Node {
         "loc": Object {
           "end": Object {
             "column": 43,
@@ -4775,7 +4775,7 @@ LogStatement {
         "type": "StringLiteral",
         "value": "\\"vaceline-log :: \\"",
       },
-      StringLiteral {
+      Node {
         "loc": Object {
           "end": Object {
             "column": 18,
@@ -4791,9 +4791,9 @@ LogStatement {
         "type": "StringLiteral",
         "value": "{\\"	timestamp_us:\\"}",
       },
-      Member {
-        "base": Member {
-          "base": Identifier {
+      Node {
+        "base": Node {
+          "base": Node {
             "loc": Object {
               "end": Object {
                 "column": 23,
@@ -4821,7 +4821,7 @@ LogStatement {
               "offset": 65,
             },
           },
-          "member": Identifier {
+          "member": Node {
             "loc": Object {
               "end": Object {
                 "column": 29,
@@ -4851,7 +4851,7 @@ LogStatement {
             "offset": 65,
           },
         },
-        "member": Identifier {
+        "member": Node {
           "loc": Object {
             "end": Object {
               "column": 34,
@@ -4869,7 +4869,7 @@ LogStatement {
         },
         "type": "Member",
       },
-      StringLiteral {
+      Node {
         "loc": Object {
           "end": Object {
             "column": 10,
@@ -4885,11 +4885,11 @@ LogStatement {
         "type": "StringLiteral",
         "value": "{\\"	host:\\"}",
       },
-      FunCallExpression {
-        "arguments": Array [
-          Member {
-            "base": Member {
-              "base": Identifier {
+      Node {
+        "args": Array [
+          Node {
+            "base": Node {
+              "base": Node {
                 "loc": Object {
                   "end": Object {
                     "column": 24,
@@ -4917,7 +4917,7 @@ LogStatement {
                   "offset": 104,
                 },
               },
-              "member": Identifier {
+              "member": Node {
                 "loc": Object {
                   "end": Object {
                     "column": 29,
@@ -4947,7 +4947,7 @@ LogStatement {
                 "offset": 104,
               },
             },
-            "member": Identifier {
+            "member": Node {
               "loc": Object {
                 "end": Object {
                   "column": 46,
@@ -4965,7 +4965,7 @@ LogStatement {
             },
             "type": "Member",
           },
-          StringLiteral {
+          Node {
             "loc": Object {
               "end": Object {
                 "column": 5,
@@ -4981,7 +4981,7 @@ LogStatement {
             "type": "StringLiteral",
             "value": "{\\"	\\"}",
           },
-          StringLiteral {
+          Node {
             "loc": Object {
               "end": Object {
                 "column": 9,
@@ -4998,7 +4998,7 @@ LogStatement {
             "value": "\\"\\"",
           },
         ],
-        "callee": Identifier {
+        "callee": Node {
           "loc": Object {
             "end": Object {
               "column": 20,
@@ -5060,10 +5060,10 @@ LogStatement {
 `;
 
 exports[`(LogicalExpression) and: and 1`] = `
-LogicalExpression {
-  "left": Member {
-    "base": Member {
-      "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
+      "base": Node {
         "loc": Object {
           "end": Object {
             "column": 3,
@@ -5091,7 +5091,7 @@ LogicalExpression {
           "offset": 0,
         },
       },
-      "member": Identifier {
+      "member": Node {
         "loc": Object {
           "end": Object {
             "column": 8,
@@ -5121,7 +5121,7 @@ LogicalExpression {
         "offset": 0,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 14,
@@ -5152,7 +5152,7 @@ LogicalExpression {
     },
   },
   "operator": "&&",
-  "right": StringLiteral {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 21,
@@ -5173,9 +5173,9 @@ LogicalExpression {
 `;
 
 exports[`(LogicalExpression) combination with BinaryExpression: combination with BinaryExpression 1`] = `
-LogicalExpression {
-  "left": BinaryExpression {
-    "left": Identifier {
+Node {
+  "left": Node {
+    "left": Node {
       "loc": Object {
         "end": Object {
           "column": 5,
@@ -5204,7 +5204,7 @@ LogicalExpression {
       },
     },
     "operator": "==",
-    "right": StringLiteral {
+    "right": Node {
       "loc": Object {
         "end": Object {
           "column": 12,
@@ -5235,7 +5235,7 @@ LogicalExpression {
     },
   },
   "operator": "&&",
-  "right": StringLiteral {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 19,
@@ -5256,9 +5256,9 @@ LogicalExpression {
 `;
 
 exports[`(LogicalExpression) combination: combination 1`] = `
-LogicalExpression {
-  "left": LogicalExpression {
-    "left": Identifier {
+Node {
+  "left": Node {
+    "left": Node {
       "loc": Object {
         "end": Object {
           "column": 5,
@@ -5287,7 +5287,7 @@ LogicalExpression {
       },
     },
     "operator": "&&",
-    "right": StringLiteral {
+    "right": Node {
       "loc": Object {
         "end": Object {
           "column": 12,
@@ -5318,7 +5318,7 @@ LogicalExpression {
     },
   },
   "operator": "||",
-  "right": StringLiteral {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 19,
@@ -5339,9 +5339,9 @@ LogicalExpression {
 `;
 
 exports[`(LogicalExpression) combination2 with BinaryExpression: combination2 with BinaryExpression 1`] = `
-LogicalExpression {
-  "left": BinaryExpression {
-    "left": Identifier {
+Node {
+  "left": Node {
+    "left": Node {
       "loc": Object {
         "end": Object {
           "column": 5,
@@ -5370,7 +5370,7 @@ LogicalExpression {
       },
     },
     "operator": "==",
-    "right": StringLiteral {
+    "right": Node {
       "loc": Object {
         "end": Object {
           "column": 12,
@@ -5401,7 +5401,7 @@ LogicalExpression {
     },
   },
   "operator": "||",
-  "right": StringLiteral {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 19,
@@ -5422,8 +5422,8 @@ LogicalExpression {
 `;
 
 exports[`(LogicalExpression) combination2: combination2 1`] = `
-LogicalExpression {
-  "left": Identifier {
+Node {
+  "left": Node {
     "loc": Object {
       "end": Object {
         "column": 5,
@@ -5452,8 +5452,8 @@ LogicalExpression {
     },
   },
   "operator": "||",
-  "right": LogicalExpression {
-    "left": StringLiteral {
+  "right": Node {
+    "left": Node {
       "loc": Object {
         "end": Object {
           "column": 12,
@@ -5482,7 +5482,7 @@ LogicalExpression {
       },
     },
     "operator": "&&",
-    "right": StringLiteral {
+    "right": Node {
       "loc": Object {
         "end": Object {
           "column": 19,
@@ -5505,8 +5505,8 @@ LogicalExpression {
 `;
 
 exports[`(LogicalExpression) combination3: combination3 1`] = `
-LogicalExpression {
-  "left": Identifier {
+Node {
+  "left": Node {
     "loc": Object {
       "end": Object {
         "column": 5,
@@ -5535,8 +5535,8 @@ LogicalExpression {
     },
   },
   "operator": "&&",
-  "right": BinaryExpression {
-    "left": StringLiteral {
+  "right": Node {
+    "left": Node {
       "loc": Object {
         "end": Object {
           "column": 12,
@@ -5565,7 +5565,7 @@ LogicalExpression {
       },
     },
     "operator": "==",
-    "right": StringLiteral {
+    "right": Node {
       "loc": Object {
         "end": Object {
           "column": 19,
@@ -5588,8 +5588,8 @@ LogicalExpression {
 `;
 
 exports[`(LogicalExpression) combination4: combination4 1`] = `
-LogicalExpression {
-  "left": Identifier {
+Node {
+  "left": Node {
     "loc": Object {
       "end": Object {
         "column": 5,
@@ -5618,8 +5618,8 @@ LogicalExpression {
     },
   },
   "operator": "||",
-  "right": BinaryExpression {
-    "left": StringLiteral {
+  "right": Node {
+    "left": Node {
       "loc": Object {
         "end": Object {
           "column": 12,
@@ -5648,7 +5648,7 @@ LogicalExpression {
       },
     },
     "operator": "==",
-    "right": StringLiteral {
+    "right": Node {
       "loc": Object {
         "end": Object {
           "column": 19,
@@ -5671,10 +5671,10 @@ LogicalExpression {
 `;
 
 exports[`(LogicalExpression) or: or 1`] = `
-LogicalExpression {
-  "left": Member {
-    "base": Member {
-      "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
+      "base": Node {
         "loc": Object {
           "end": Object {
             "column": 3,
@@ -5702,7 +5702,7 @@ LogicalExpression {
           "offset": 0,
         },
       },
-      "member": Identifier {
+      "member": Node {
         "loc": Object {
           "end": Object {
             "column": 8,
@@ -5732,7 +5732,7 @@ LogicalExpression {
         "offset": 0,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 14,
@@ -5763,7 +5763,7 @@ LogicalExpression {
     },
   },
   "operator": "||",
-  "right": StringLiteral {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 21,
@@ -5784,8 +5784,8 @@ LogicalExpression {
 `;
 
 exports[`(Member) basic: basic 1`] = `
-Member {
-  "base": Identifier {
+Node {
+  "base": Node {
     "loc": Object {
       "end": Object {
         "column": 3,
@@ -5813,7 +5813,7 @@ Member {
       "offset": 0,
     },
   },
-  "member": Identifier {
+  "member": Node {
     "loc": Object {
       "end": Object {
         "column": 11,
@@ -5834,10 +5834,10 @@ Member {
 `;
 
 exports[`(Member) deep in BinaryExpression: deep in BinaryExpression 1`] = `
-BinaryExpression {
-  "left": Member {
-    "base": Member {
-      "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
+      "base": Node {
         "loc": Object {
           "end": Object {
             "column": 3,
@@ -5865,7 +5865,7 @@ BinaryExpression {
           "offset": 0,
         },
       },
-      "member": Identifier {
+      "member": Node {
         "loc": Object {
           "end": Object {
             "column": 8,
@@ -5895,7 +5895,7 @@ BinaryExpression {
         "offset": 0,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 14,
@@ -5926,7 +5926,7 @@ BinaryExpression {
     },
   },
   "operator": "==",
-  "right": StringLiteral {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 25,
@@ -5947,9 +5947,9 @@ BinaryExpression {
 `;
 
 exports[`(Member) deep: deep 1`] = `
-Member {
-  "base": Member {
-    "base": Identifier {
+Node {
+  "base": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 3,
@@ -5977,7 +5977,7 @@ Member {
         "offset": 0,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 8,
@@ -6007,7 +6007,7 @@ Member {
       "offset": 0,
     },
   },
-  "member": Identifier {
+  "member": Node {
     "loc": Object {
       "end": Object {
         "column": 14,
@@ -6028,9 +6028,9 @@ Member {
 `;
 
 exports[`(Member) in BinaryExpression: in BinaryExpression 1`] = `
-BinaryExpression {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 3,
@@ -6058,7 +6058,7 @@ BinaryExpression {
         "offset": 0,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 11,
@@ -6089,7 +6089,7 @@ BinaryExpression {
     },
   },
   "operator": "==",
-  "right": Identifier {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 22,
@@ -6110,7 +6110,7 @@ BinaryExpression {
 `;
 
 exports[`(MultilineLiteral) basic: basic 1`] = `
-StringLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 2,
@@ -6131,7 +6131,7 @@ StringLiteral {
 `;
 
 exports[`(NumericLiteral) integer: integer 1`] = `
-NumericLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 2,
@@ -6150,7 +6150,7 @@ NumericLiteral {
 `;
 
 exports[`(NumericLiteral) zero: zero 1`] = `
-NumericLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 1,
@@ -6169,13 +6169,13 @@ NumericLiteral {
 `;
 
 exports[`(Program) single handling: single handling 1`] = `
-Program {
+Node {
   "body": Array [
-    SubroutineStatement {
+    Node {
       "body": Array [
-        DeclareStatement {
-          "id": Member {
-            "base": Identifier {
+        Node {
+          "id": Node {
+            "base": Node {
               "loc": Object {
                 "end": Object {
                   "column": 19,
@@ -6203,7 +6203,7 @@ Program {
                 "offset": 31,
               },
             },
-            "member": Identifier {
+            "member": Node {
               "loc": Object {
                 "end": Object {
                   "column": 32,
@@ -6236,9 +6236,9 @@ Program {
           "type": "DeclareStatement",
           "valueType": "STRING",
         },
-        SetStatement {
-          "left": Member {
-            "base": Identifier {
+        Node {
+          "left": Node {
+            "base": Node {
               "loc": Object {
                 "end": Object {
                   "column": 9,
@@ -6266,7 +6266,7 @@ Program {
                 "offset": 62,
               },
             },
-            "member": Identifier {
+            "member": Node {
               "loc": Object {
                 "end": Object {
                   "column": 23,
@@ -6297,7 +6297,7 @@ Program {
             },
           },
           "operator": "=",
-          "right": StringLiteral {
+          "right": Node {
             "loc": Object {
               "end": Object {
                 "column": 35,
@@ -6315,12 +6315,12 @@ Program {
           },
           "type": "SetStatement",
         },
-        IfStatement {
+        Node {
           "alternative": undefined,
           "consequent": Array [
-            AddStatement {
-              "left": Member {
-                "base": Identifier {
+            Node {
+              "left": Node {
+                "base": Node {
                   "loc": Object {
                     "end": Object {
                       "column": 11,
@@ -6348,7 +6348,7 @@ Program {
                     "offset": 143,
                   },
                 },
-                "member": Identifier {
+                "member": Node {
                   "loc": Object {
                     "end": Object {
                       "column": 24,
@@ -6379,7 +6379,7 @@ Program {
                 },
               },
               "operator": "=",
-              "right": StringLiteral {
+              "right": Node {
                 "loc": Object {
                   "end": Object {
                     "column": 46,
@@ -6410,11 +6410,11 @@ Program {
               "offset": 96,
             },
           },
-          "test": BinaryExpression {
-            "left": ValuePair {
-              "base": Member {
-                "base": Member {
-                  "base": Identifier {
+          "test": Node {
+            "left": Node {
+              "base": Node {
+                "base": Node {
+                  "base": Node {
                     "loc": Object {
                       "end": Object {
                         "column": 9,
@@ -6442,7 +6442,7 @@ Program {
                       "offset": 100,
                     },
                   },
-                  "member": Identifier {
+                  "member": Node {
                     "loc": Object {
                       "end": Object {
                         "column": 14,
@@ -6472,7 +6472,7 @@ Program {
                     "offset": 100,
                   },
                 },
-                "member": Identifier {
+                "member": Node {
                   "loc": Object {
                     "end": Object {
                       "column": 22,
@@ -6502,7 +6502,7 @@ Program {
                   "offset": 100,
                 },
               },
-              "name": Identifier {
+              "name": Node {
                 "loc": Object {
                   "end": Object {
                     "column": 27,
@@ -6533,7 +6533,7 @@ Program {
               },
             },
             "operator": "==",
-            "right": StringLiteral {
+            "right": Node {
               "loc": Object {
                 "end": Object {
                   "column": 37,
@@ -6554,7 +6554,7 @@ Program {
           "type": "IfStatement",
         },
       ],
-      "id": Identifier {
+      "id": Node {
         "loc": Object {
           "end": Object {
             "column": 12,
@@ -6602,11 +6602,11 @@ Program {
 `;
 
 exports[`(Program) with empty lines: with empty lines 1`] = `
-Program {
+Node {
   "body": Array [
-    DeclareStatement {
-      "id": Member {
-        "base": Identifier {
+    Node {
+      "id": Node {
+        "base": Node {
           "loc": Object {
             "end": Object {
               "column": 17,
@@ -6634,7 +6634,7 @@ Program {
             "offset": 14,
           },
         },
-        "member": Identifier {
+        "member": Node {
           "loc": Object {
             "end": Object {
               "column": 30,
@@ -6667,9 +6667,9 @@ Program {
       "type": "DeclareStatement",
       "valueType": "STRING",
     },
-    SetStatement {
-      "left": Member {
-        "base": Identifier {
+    Node {
+      "left": Node {
+        "base": Node {
           "loc": Object {
             "end": Object {
               "column": 7,
@@ -6697,7 +6697,7 @@ Program {
             "offset": 43,
           },
         },
-        "member": Identifier {
+        "member": Node {
           "loc": Object {
             "end": Object {
               "column": 21,
@@ -6728,7 +6728,7 @@ Program {
         },
       },
       "operator": "=",
-      "right": StringLiteral {
+      "right": Node {
         "loc": Object {
           "end": Object {
             "column": 27,
@@ -6746,9 +6746,9 @@ Program {
       },
       "type": "SetStatement",
     },
-    SetStatement {
-      "left": Member {
-        "base": Identifier {
+    Node {
+      "left": Node {
+        "base": Node {
           "loc": Object {
             "end": Object {
               "column": 7,
@@ -6776,7 +6776,7 @@ Program {
             "offset": 73,
           },
         },
-        "member": Identifier {
+        "member": Node {
           "loc": Object {
             "end": Object {
               "column": 21,
@@ -6807,7 +6807,7 @@ Program {
         },
       },
       "operator": "=",
-      "right": StringLiteral {
+      "right": Node {
         "loc": Object {
           "end": Object {
             "column": 27,
@@ -6825,9 +6825,9 @@ Program {
       },
       "type": "SetStatement",
     },
-    SetStatement {
-      "left": Member {
-        "base": Identifier {
+    Node {
+      "left": Node {
+        "base": Node {
           "loc": Object {
             "end": Object {
               "column": 7,
@@ -6855,7 +6855,7 @@ Program {
             "offset": 104,
           },
         },
-        "member": Identifier {
+        "member": Node {
           "loc": Object {
             "end": Object {
               "column": 21,
@@ -6886,7 +6886,7 @@ Program {
         },
       },
       "operator": "=",
-      "right": StringLiteral {
+      "right": Node {
         "loc": Object {
           "end": Object {
             "column": 27,
@@ -6904,9 +6904,9 @@ Program {
       },
       "type": "SetStatement",
     },
-    SetStatement {
-      "left": Member {
-        "base": Identifier {
+    Node {
+      "left": Node {
+        "base": Node {
           "loc": Object {
             "end": Object {
               "column": 7,
@@ -6934,7 +6934,7 @@ Program {
             "offset": 136,
           },
         },
-        "member": Identifier {
+        "member": Node {
           "loc": Object {
             "end": Object {
               "column": 21,
@@ -6965,7 +6965,7 @@ Program {
         },
       },
       "operator": "=",
-      "right": StringLiteral {
+      "right": Node {
         "loc": Object {
           "end": Object {
             "column": 27,
@@ -6983,9 +6983,9 @@ Program {
       },
       "type": "SetStatement",
     },
-    SetStatement {
-      "left": Member {
-        "base": Identifier {
+    Node {
+      "left": Node {
+        "base": Node {
           "loc": Object {
             "end": Object {
               "column": 7,
@@ -7013,7 +7013,7 @@ Program {
             "offset": 169,
           },
         },
-        "member": Identifier {
+        "member": Node {
           "loc": Object {
             "end": Object {
               "column": 21,
@@ -7044,7 +7044,7 @@ Program {
         },
       },
       "operator": "=",
-      "right": StringLiteral {
+      "right": Node {
         "loc": Object {
           "end": Object {
             "column": 27,
@@ -7080,7 +7080,7 @@ Program {
 `;
 
 exports[`(RestartStatement) basic: basic 1`] = `
-RestartStatement {
+Node {
   "loc": Object {
     "end": Object {
       "column": 8,
@@ -7098,7 +7098,7 @@ RestartStatement {
 `;
 
 exports[`(ReturnStatement) with parens: with parens 1`] = `
-ReturnStatement {
+Node {
   "action": "pass",
   "loc": Object {
     "end": Object {
@@ -7117,9 +7117,9 @@ ReturnStatement {
 `;
 
 exports[`(SetStatement) addition: addition 1`] = `
-SetStatement {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -7147,7 +7147,7 @@ SetStatement {
         "offset": 4,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -7178,7 +7178,7 @@ SetStatement {
     },
   },
   "operator": "+=",
-  "right": StringLiteral {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 24,
@@ -7199,9 +7199,9 @@ SetStatement {
 `;
 
 exports[`(SetStatement) assignment: assignment 1`] = `
-SetStatement {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -7229,7 +7229,7 @@ SetStatement {
         "offset": 4,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -7260,7 +7260,7 @@ SetStatement {
     },
   },
   "operator": "=",
-  "right": StringLiteral {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 23,
@@ -7281,9 +7281,9 @@ SetStatement {
 `;
 
 exports[`(SetStatement) division: division 1`] = `
-SetStatement {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -7311,7 +7311,7 @@ SetStatement {
         "offset": 4,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -7342,7 +7342,7 @@ SetStatement {
     },
   },
   "operator": "*=",
-  "right": StringLiteral {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 24,
@@ -7363,9 +7363,9 @@ SetStatement {
 `;
 
 exports[`(SetStatement) multiplication: multiplication 1`] = `
-SetStatement {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -7393,7 +7393,7 @@ SetStatement {
         "offset": 4,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -7424,7 +7424,7 @@ SetStatement {
     },
   },
   "operator": "*=",
-  "right": StringLiteral {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 24,
@@ -7445,9 +7445,9 @@ SetStatement {
 `;
 
 exports[`(SetStatement) substraction: substraction 1`] = `
-SetStatement {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -7475,7 +7475,7 @@ SetStatement {
         "offset": 4,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -7506,7 +7506,7 @@ SetStatement {
     },
   },
   "operator": "-=",
-  "right": StringLiteral {
+  "right": Node {
     "loc": Object {
       "end": Object {
         "column": 24,
@@ -7527,7 +7527,7 @@ SetStatement {
 `;
 
 exports[`(StringLiteral) basic: basic 1`] = `
-StringLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 8,
@@ -7546,7 +7546,7 @@ StringLiteral {
 `;
 
 exports[`(StringLiteral) not a comment: not a comment 1`] = `
-StringLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 17,
@@ -7565,7 +7565,7 @@ StringLiteral {
 `;
 
 exports[`(StringLiteral) not an inline comment: not an inline comment 1`] = `
-StringLiteral {
+Node {
   "loc": Object {
     "end": Object {
       "column": 29,
@@ -7584,10 +7584,10 @@ StringLiteral {
 `;
 
 exports[`(SubroutineStatement) basic: basic 1`] = `
-SubroutineStatement {
+Node {
   "body": Array [
-    SetStatement {
-      "left": Identifier {
+    Node {
+      "left": Node {
         "loc": Object {
           "end": Object {
             "column": 14,
@@ -7616,7 +7616,7 @@ SubroutineStatement {
         },
       },
       "operator": "=",
-      "right": StringLiteral {
+      "right": Node {
         "loc": Object {
           "end": Object {
             "column": 22,
@@ -7634,8 +7634,8 @@ SubroutineStatement {
       },
       "type": "SetStatement",
     },
-    SetStatement {
-      "left": Identifier {
+    Node {
+      "left": Node {
         "loc": Object {
           "end": Object {
             "column": 14,
@@ -7664,7 +7664,7 @@ SubroutineStatement {
         },
       },
       "operator": "=",
-      "right": StringLiteral {
+      "right": Node {
         "loc": Object {
           "end": Object {
             "column": 22,
@@ -7683,7 +7683,7 @@ SubroutineStatement {
       "type": "SetStatement",
     },
   ],
-  "id": Identifier {
+  "id": Node {
     "loc": Object {
       "end": Object {
         "column": 12,
@@ -7716,10 +7716,10 @@ SubroutineStatement {
 `;
 
 exports[`(SubroutineStatement) with empty lines: with empty lines 1`] = `
-SubroutineStatement {
+Node {
   "body": Array [
-    SetStatement {
-      "left": Identifier {
+    Node {
+      "left": Node {
         "loc": Object {
           "end": Object {
             "column": 14,
@@ -7748,7 +7748,7 @@ SubroutineStatement {
         },
       },
       "operator": "=",
-      "right": StringLiteral {
+      "right": Node {
         "loc": Object {
           "end": Object {
             "column": 22,
@@ -7766,8 +7766,8 @@ SubroutineStatement {
       },
       "type": "SetStatement",
     },
-    SetStatement {
-      "left": Identifier {
+    Node {
+      "left": Node {
         "loc": Object {
           "end": Object {
             "column": 14,
@@ -7796,7 +7796,7 @@ SubroutineStatement {
         },
       },
       "operator": "=",
-      "right": StringLiteral {
+      "right": Node {
         "loc": Object {
           "end": Object {
             "column": 22,
@@ -7815,7 +7815,7 @@ SubroutineStatement {
       "type": "SetStatement",
     },
   ],
-  "id": Identifier {
+  "id": Node {
     "loc": Object {
       "end": Object {
         "column": 12,
@@ -7848,7 +7848,7 @@ SubroutineStatement {
 `;
 
 exports[`(SyntheticStatement) basic: basic 1`] = `
-SyntheticStatement {
+Node {
   "loc": Object {
     "end": Object {
       "column": 13,
@@ -7861,7 +7861,7 @@ SyntheticStatement {
       "offset": 0,
     },
   },
-  "response": StringLiteral {
+  "response": Node {
     "loc": Object {
       "end": Object {
         "column": 12,
@@ -7882,9 +7882,9 @@ SyntheticStatement {
 `;
 
 exports[`(TableStatement) single key-value: single key-value 1`] = `
-TableStatement {
+Node {
   "body": Array [
-    TableDefinition {
+    Node {
       "key": "\\"key\\"",
       "loc": Object {
         "end": Object {
@@ -7902,7 +7902,7 @@ TableStatement {
       "value": "\\"value\\"",
     },
   ],
-  "id": Identifier {
+  "id": Node {
     "loc": Object {
       "end": Object {
         "column": 20,
@@ -7935,9 +7935,9 @@ TableStatement {
 `;
 
 exports[`(TableStatement) single key-values: single key-values 1`] = `
-TableStatement {
+Node {
   "body": Array [
-    TableDefinition {
+    Node {
       "key": "\\"key\\"",
       "loc": Object {
         "end": Object {
@@ -7954,7 +7954,7 @@ TableStatement {
       "type": "TableDefinition",
       "value": "\\"value\\"",
     },
-    TableDefinition {
+    Node {
       "key": "\\"key2\\"",
       "loc": Object {
         "end": Object {
@@ -7972,7 +7972,7 @@ TableStatement {
       "value": "\\"value2\\"",
     },
   ],
-  "id": Identifier {
+  "id": Node {
     "loc": Object {
       "end": Object {
         "column": 20,
@@ -8005,8 +8005,8 @@ TableStatement {
 `;
 
 exports[`(UnaryExpression) boolean literal: boolean literal 1`] = `
-UnaryExpression {
-  "argument": BooleanLiteral {
+Node {
+  "argument": Node {
     "loc": Object {
       "end": Object {
         "column": 5,
@@ -8040,8 +8040,8 @@ UnaryExpression {
 `;
 
 exports[`(UnaryExpression) variable: variable 1`] = `
-UnaryExpression {
-  "argument": Identifier {
+Node {
+  "argument": Node {
     "loc": Object {
       "end": Object {
         "column": 10,
@@ -8075,9 +8075,9 @@ UnaryExpression {
 `;
 
 exports[`(UnsetStatement) member: member 1`] = `
-UnsetStatement {
-  "id": Member {
-    "base": Identifier {
+Node {
+  "id": Node {
+    "base": Node {
       "loc": Object {
         "end": Object {
           "column": 9,
@@ -8105,7 +8105,7 @@ UnsetStatement {
         "offset": 6,
       },
     },
-    "member": Identifier {
+    "member": Node {
       "loc": Object {
         "end": Object {
           "column": 15,
@@ -8140,8 +8140,8 @@ UnsetStatement {
 `;
 
 exports[`(UnsetStatement) variable: variable 1`] = `
-UnsetStatement {
-  "id": Identifier {
+Node {
+  "id": Node {
     "loc": Object {
       "end": Object {
         "column": 11,
@@ -8174,8 +8174,8 @@ UnsetStatement {
 `;
 
 exports[`(ValuePair) basic: basic 1`] = `
-ValuePair {
-  "base": Identifier {
+Node {
+  "base": Node {
     "loc": Object {
       "end": Object {
         "column": 6,
@@ -8203,7 +8203,7 @@ ValuePair {
       "offset": 0,
     },
   },
-  "name": Identifier {
+  "name": Node {
     "loc": Object {
       "end": Object {
         "column": 14,

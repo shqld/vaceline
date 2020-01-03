@@ -1,6 +1,6 @@
 import { Parser } from '..'
 import { Stack } from '.'
-import * as n from '../../nodes'
+import { d, b, NodeWithLoc, BaseNode } from '../../nodes'
 import * as ops from '../tokenizer/operators'
 import { Token } from '../tokenizer'
 import { isToken } from '../../utils/token'
@@ -10,7 +10,7 @@ export const parseOperatorExpr = (
   p: Parser,
   token: Token = p.read(),
   shortcut = false
-): n.NodeWithLoc<n.Expression> => {
+): NodeWithLoc<d.Expression> => {
   const expr = parseHumbleExpr(p, token)
 
   if (shortcut) return expr
@@ -28,7 +28,7 @@ export const parseOperatorExpr = (
     isBinary: boolean
   }
 
-  const rpn: Array<n.NodeWithLoc<n.Expression> | OperatorToken> = [expr]
+  const rpn: Array<NodeWithLoc<d.Expression> | OperatorToken> = [expr]
   const opStack: Stack<OperatorToken> = []
 
   let op: OperatorToken | null
@@ -70,11 +70,11 @@ export const parseOperatorExpr = (
   }
 
   // calculate rpn
-  const stack: Stack<n.NodeWithLoc<n.Expression>> = []
+  const stack: Stack<NodeWithLoc<d.Expression>> = []
 
   for (let i = 0; i < rpn.length; i++) {
     const item = rpn[i]
-    if (item instanceof n.BaseNode) {
+    if (item instanceof BaseNode) {
       stack.push(item)
       continue
     }
@@ -84,12 +84,12 @@ export const parseOperatorExpr = (
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const left = stack.pop()!
 
-    const nodeType = item.isBinary ? n.BinaryExpression : n.LogicalExpression
-    const expr = new nodeType({
-      left,
-      right,
-      operator: item.value,
-    }) as n.NodeWithLoc<n.BinaryExpression | n.LogicalExpression>
+    const builder = item.isBinary
+      ? b.buildBinaryExpression
+      : b.buildLogicalExpression
+    const expr = builder(left, right, item.value) as NodeWithLoc<
+      d.BinaryExpression | d.LogicalExpression
+    >
 
     expr.loc = { start: left.loc.start, end: right.loc.end }
 

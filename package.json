@@ -13,7 +13,8 @@
   },
   "scripts": {
     "start": "npm run -s build > /dev/null && node dist/cli",
-    "build": "rimraf dist && babel src -d dist -x .ts,.js",
+    "build": "rimraf dist && npm run -s generate && babel src -d dist -x .ts,.js",
+    "generate": "node tasks/generate",
     "inspect": "yarn lint && yarn typecheck && yarn test",
     "lint": "eslint src --ext .ts",
     "typecheck": "tsc --noEmit",
@@ -59,12 +60,13 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^1.18.2",
     "pretty-quick": "^2.0.1",
+    "ts-morph": "^6.0.2",
     "typescript": "^3.7.3"
   },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "yarn pretty-quick && yarn inspect"
+      "pre-commit": "yarn pretty-quick && yarn generate && yarn inspect"
     }
   },
   "lint-staged": {

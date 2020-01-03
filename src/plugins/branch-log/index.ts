@@ -1,28 +1,18 @@
 import { traverse } from '../../lib'
+import { d } from '../../nodes'
 import {
-  Node,
-  Member,
-  Identifier,
-  SetStatement,
-  AddStatement,
-  StringLiteral,
-} from '../../nodes'
-import { isNode } from '../../utils/node'
+  buildMember,
+  buildIdentifier,
+  buildSetStatement,
+  buildStringLiteral,
+  buildAddStatement,
+} from '../../nodes/builders.gen'
 
 const variable = (obj: 'req' | 'resp') =>
-  new Member({
-    base: new Member({
-      base: new Identifier({
-        name: obj,
-      }),
-      member: new Identifier({
-        name: 'http',
-      }),
-    }),
-    member: new Identifier({
-      name: 'Branch-Log',
-    }),
-  })
+  buildMember(
+    buildMember(buildIdentifier(obj), buildIdentifier('http')),
+    buildIdentifier('Branch-Log')
+  )
 
 // const collectLogs = new FunCallExpression({
 //   callee: new Member({
@@ -35,36 +25,34 @@ const variable = (obj: 'req' | 'resp') =>
 //   }),
 // })
 
-export default (ast: Node) => {
+export default (ast: d.Node) => {
   traverse(ast, {
     entry({ node }) {
-      if (isNode(node, ['SubroutineStatement'])) {
+      if (node.is('SubroutineStatement')) {
         const loggerNode =
           node.id.name === 'vcl_deliver'
-            ? new SetStatement({
-                operator: '=',
-                left: variable('resp'),
-                right: new StringLiteral({
-                  value: 'std.collect(std)',
-                }),
-              })
-            : new AddStatement({
-                operator: '=',
-                left: variable('req'),
-                right: new StringLiteral({ value: node.id.name }),
-              })
+            ? buildSetStatement(
+                variable('resp'),
+                buildStringLiteral('std.collect(std)'),
+                '='
+              )
+            : buildAddStatement(
+                variable('req'),
+                buildStringLiteral(node.id.name),
+                '='
+              )
 
         node.body.unshift(loggerNode)
-      } else if (isNode(node, ['IfStatement'])) {
-        const loggerNode = new AddStatement({
-          operator: '=',
-          left: variable('req'),
-          right: new StringLiteral({
-            value: node.loc
+      } else if (node.is('IfStatement')) {
+        const loggerNode = buildAddStatement(
+          variable('req'),
+          buildStringLiteral(
+            node.loc
               ? `${node.loc.start.line}:${node.loc.start.column}`
-              : 'synthethic',
-          }),
-        })
+              : 'synthethic'
+          ),
+          '='
+        )
 
         node.consequent.unshift(loggerNode)
       }

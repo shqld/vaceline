@@ -20,8 +20,6 @@ export const traverseNode = (
   const nextNodes = node.next()
 
   for (const nextNode of nextNodes) {
-    if (!nextNode) continue
-
     traverseNode(nextNode, callback, {
       ...context,
       parent: node,

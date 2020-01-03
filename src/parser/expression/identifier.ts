@@ -1,19 +1,15 @@
 import { Parser } from '..'
-import * as n from '../../nodes'
+import { d, b, NodeWithLoc } from '../../nodes'
 import { Token } from '../tokenizer'
 import { isToken } from '../../utils/token'
 
 export const parseIdentifier = (
   p: Parser,
   token?: Token,
-  base: n.NodeWithLoc<n.Identifier | n.Member> = p.finishNode(
-    n.Identifier,
-    p.startNode(),
-    {
-      name: (token ?? p.read()).value,
-    }
+  base: NodeWithLoc<d.Identifier | d.Member> = p.finishNode(
+    b.buildIdentifier((token ?? p.read()).value, p.startNode())
   )
-): n.NodeWithLoc<n.Member | n.ValuePair | n.Identifier> => {
+): NodeWithLoc<d.Member | d.ValuePair | d.Identifier> => {
   if (isToken(p.peek(), 'symbol', '.')) {
     p.take()
     return parseIdentifier(p, undefined, parseMember(p, base))
@@ -30,44 +26,26 @@ export const parseIdentifier = (
 
 export const parseMember = (
   p: Parser,
-  base: n.NodeWithLoc<n.Identifier | n.Member>
-): n.NodeWithLoc<n.Member> => {
+  base: NodeWithLoc<d.Identifier | d.Member>
+): NodeWithLoc<d.Member> => {
   const memberTok = p.read()
-  const member = p.finishNode(n.Identifier, p.startNode(), {
-    name: memberTok.value,
-  })
+  const member = p.finishNode(b.buildIdentifier(memberTok.value, p.startNode()))
 
-  const expr = new n.Member({
-    base,
-    member,
-  })
-
-  expr.loc = {
+  return b.buildMember(base, member, {
     start: base.loc.start,
     end: member.loc.end,
-  }
-
-  return expr as n.NodeWithLoc<n.Member>
+  })
 }
 
 export const parseValuePair = (
   p: Parser,
-  base: n.NodeWithLoc<n.Identifier | n.Member>
-): n.NodeWithLoc<n.ValuePair> => {
+  base: NodeWithLoc<d.Identifier | d.Member>
+): NodeWithLoc<d.ValuePair> => {
   const nameTok = p.read()
-  const name = p.finishNode(n.Identifier, p.startNode(), {
-    name: nameTok.value,
-  })
+  const name = p.finishNode(b.buildIdentifier(nameTok.value, p.startNode()))
 
-  const expr = new n.ValuePair({
-    base,
-    name,
-  })
-
-  expr.loc = {
+  return b.buildValuePair(base, name, {
     start: base.loc.start,
     end: name.loc.end,
-  }
-
-  return expr as n.NodeWithLoc<n.ValuePair>
+  })
 }

@@ -1,20 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`(AclStatement) basic 1`] = `
-AclStatement {
+Node {
   "body": Array [
-    Ip {
+    Node {
       "cidr": undefined,
       "type": "Ip",
       "value": "127.0.0.1",
     },
-    Ip {
+    Node {
       "cidr": undefined,
       "type": "Ip",
       "value": "localhost",
     },
   ],
-  "id": Identifier {
+  "id": Node {
     "name": "aaa",
     "type": "Identifier",
   },
@@ -24,20 +24,20 @@ AclStatement {
 
 exports[`(AddStatement) TODO: cover operand types
 addition 1`] = `
-AddStatement {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "name": "var",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "vacel",
       "type": "Identifier",
     },
     "type": "Member",
   },
   "operator": "+=",
-  "right": StringLiteral {
+  "right": Node {
     "type": "StringLiteral",
     "value": "\\"vacel\\"",
   },
@@ -46,20 +46,20 @@ AddStatement {
 `;
 
 exports[`(AddStatement) assignment 1`] = `
-AddStatement {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "name": "var",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "vacel",
       "type": "Identifier",
     },
     "type": "Member",
   },
   "operator": "=",
-  "right": StringLiteral {
+  "right": Node {
     "type": "StringLiteral",
     "value": "\\"vacel\\"",
   },
@@ -68,20 +68,20 @@ AddStatement {
 `;
 
 exports[`(AddStatement) division 1`] = `
-AddStatement {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "name": "var",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "vacel",
       "type": "Identifier",
     },
     "type": "Member",
   },
   "operator": "/=",
-  "right": StringLiteral {
+  "right": Node {
     "type": "StringLiteral",
     "value": "\\"vacel\\"",
   },
@@ -90,20 +90,20 @@ AddStatement {
 `;
 
 exports[`(AddStatement) multiplication 1`] = `
-AddStatement {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "name": "var",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "vacel",
       "type": "Identifier",
     },
     "type": "Member",
   },
   "operator": "*=",
-  "right": StringLiteral {
+  "right": Node {
     "type": "StringLiteral",
     "value": "\\"vacel\\"",
   },
@@ -112,20 +112,20 @@ AddStatement {
 `;
 
 exports[`(AddStatement) substraction 1`] = `
-AddStatement {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "name": "var",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "vacel",
       "type": "Identifier",
     },
     "type": "Member",
   },
   "operator": "-=",
-  "right": StringLiteral {
+  "right": Node {
     "type": "StringLiteral",
     "value": "\\"vacel\\"",
   },
@@ -134,94 +134,94 @@ AddStatement {
 `;
 
 exports[`(BackendStatement) basic 1`] = `
-BackendStatement {
+Node {
   "body": Array [
-    BackendDefinition {
+    Node {
       "key": "connect_timeout",
       "type": "BackendDefinition",
-      "value": DurationLiteral {
+      "value": Node {
         "type": "DurationLiteral",
         "value": "1s",
       },
     },
-    BackendDefinition {
+    Node {
       "key": "dynamic",
       "type": "BackendDefinition",
-      "value": BooleanLiteral {
+      "value": Node {
         "type": "BooleanLiteral",
         "value": "true",
       },
     },
-    BackendDefinition {
+    Node {
       "key": "port",
       "type": "BackendDefinition",
-      "value": StringLiteral {
+      "value": Node {
         "type": "StringLiteral",
         "value": "\\"443\\"",
       },
     },
-    BackendDefinition {
+    Node {
       "key": "host",
       "type": "BackendDefinition",
-      "value": StringLiteral {
+      "value": Node {
         "type": "StringLiteral",
         "value": "\\"vaceline.io\\"",
       },
     },
-    BackendDefinition {
+    Node {
       "key": "first_byte_timeout",
       "type": "BackendDefinition",
-      "value": DurationLiteral {
+      "value": Node {
         "type": "DurationLiteral",
         "value": "5s",
       },
     },
-    BackendDefinition {
+    Node {
       "key": "max_connections",
       "type": "BackendDefinition",
-      "value": NumericLiteral {
+      "value": Node {
         "type": "NumericLiteral",
         "value": "100",
       },
     },
-    BackendDefinition {
+    Node {
       "key": "between_bytes_timeout",
       "type": "BackendDefinition",
-      "value": DurationLiteral {
+      "value": Node {
         "type": "DurationLiteral",
         "value": "10s",
       },
     },
-    BackendDefinition {
+    Node {
       "key": "ssl",
       "type": "BackendDefinition",
-      "value": BooleanLiteral {
+      "value": Node {
         "type": "BooleanLiteral",
         "value": "true",
       },
     },
-    BackendDefinition {
+    Node {
       "key": "probe",
       "type": "BackendDefinition",
       "value": Array [
-        BackendDefinition {
+        Node {
           "key": "request",
           "type": "BackendDefinition",
-          "value": ConcatExpression {
+          "value": Node {
             "body": Array [
-              StringLiteral {
+              Node {
                 "type": "StringLiteral",
                 "value": "\\"GET /healthcheck HTTP/1.1\\"",
               },
-              StringLiteral {
+              Node {
                 "type": "StringLiteral",
                 "value": "\\"Host: vaceline.io\\"",
               },
-              StringLiteral {
+              Node {
                 "type": "StringLiteral",
                 "value": "\\"Connection: close\\"",
               },
-              StringLiteral {
+              Node {
                 "type": "StringLiteral",
                 "value": "\\"User-Agent: Vaceline healthcheck\\"",
               },
@@ -229,50 +229,50 @@ BackendStatement {
             "type": "ConcatExpression",
           },
         },
-        BackendDefinition {
+        Node {
           "key": "threshold",
           "type": "BackendDefinition",
-          "value": NumericLiteral {
+          "value": Node {
             "type": "NumericLiteral",
             "value": "1",
           },
         },
-        BackendDefinition {
+        Node {
           "key": "window",
           "type": "BackendDefinition",
-          "value": NumericLiteral {
+          "value": Node {
             "type": "NumericLiteral",
             "value": "2",
           },
         },
-        BackendDefinition {
+        Node {
           "key": "timeout",
           "type": "BackendDefinition",
-          "value": DurationLiteral {
+          "value": Node {
             "type": "DurationLiteral",
             "value": "10s",
           },
         },
-        BackendDefinition {
+        Node {
           "key": "initial",
           "type": "BackendDefinition",
-          "value": NumericLiteral {
+          "value": Node {
             "type": "NumericLiteral",
             "value": "1",
           },
         },
-        BackendDefinition {
+        Node {
           "key": "expected_response",
           "type": "BackendDefinition",
-          "value": NumericLiteral {
+          "value": Node {
             "type": "NumericLiteral",
             "value": "200",
           },
         },
-        BackendDefinition {
+        Node {
           "key": "interval",
           "type": "BackendDefinition",
-          "value": DurationLiteral {
+          "value": Node {
             "type": "DurationLiteral",
             "value": "60s",
           },
@@ -280,7 +280,7 @@ BackendStatement {
       ],
     },
   ],
-  "id": Identifier {
+  "id": Node {
     "name": "vaceline_backend",
     "type": "Identifier",
   },
@@ -289,41 +289,41 @@ BackendStatement {
 `;
 
 exports[`(BinaryExpression) combination with LogicalExpression 1`] = `
-LogicalExpression {
-  "left": BinaryExpression {
-    "left": Member {
-      "base": Member {
-        "base": Identifier {
+Node {
+  "left": Node {
+    "left": Node {
+      "base": Node {
+        "base": Node {
           "name": "req",
           "type": "Identifier",
         },
-        "member": Identifier {
+        "member": Node {
           "name": "http",
           "type": "Identifier",
         },
         "type": "Member",
       },
-      "member": Identifier {
+      "member": Node {
         "name": "Debug",
         "type": "Identifier",
       },
       "type": "Member",
     },
     "operator": "==",
-    "right": StringLiteral {
+    "right": Node {
       "type": "StringLiteral",
       "value": "\\"1\\"",
     },
     "type": "BinaryExpression",
   },
   "operator": "&&",
-  "right": BinaryExpression {
-    "left": StringLiteral {
+  "right": Node {
+    "left": Node {
       "type": "StringLiteral",
       "value": "\\"2\\"",
     },
     "operator": "==",
-    "right": StringLiteral {
+    "right": Node {
       "type": "StringLiteral",
       "value": "\\"3\\"",
     },
@@ -334,27 +334,27 @@ LogicalExpression {
 `;
 
 exports[`(BinaryExpression) equal 1`] = `
-BinaryExpression {
-  "left": Member {
-    "base": Member {
-      "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
+      "base": Node {
         "name": "req",
         "type": "Identifier",
       },
-      "member": Identifier {
+      "member": Node {
         "name": "http",
         "type": "Identifier",
       },
       "type": "Member",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "Debug",
       "type": "Identifier",
     },
     "type": "Member",
   },
   "operator": "==",
-  "right": StringLiteral {
+  "right": Node {
     "type": "StringLiteral",
     "value": "\\"1\\"",
   },
@@ -363,27 +363,27 @@ BinaryExpression {
 `;
 
 exports[`(BinaryExpression) match 1`] = `
-BinaryExpression {
-  "left": Member {
-    "base": Member {
-      "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
+      "base": Node {
         "name": "req",
         "type": "Identifier",
       },
-      "member": Identifier {
+      "member": Node {
         "name": "http",
         "type": "Identifier",
       },
       "type": "Member",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "Debug",
       "type": "Identifier",
     },
     "type": "Member",
   },
   "operator": "~",
-  "right": StringLiteral {
+  "right": Node {
     "type": "StringLiteral",
     "value": "\\"1\\"",
   },
@@ -392,43 +392,43 @@ BinaryExpression {
 `;
 
 exports[`(BinaryExpression) multiple 1`] = `
-BinaryExpression {
-  "left": BinaryExpression {
-    "left": BinaryExpression {
-      "left": Member {
-        "base": Member {
-          "base": Identifier {
+Node {
+  "left": Node {
+    "left": Node {
+      "left": Node {
+        "base": Node {
+          "base": Node {
             "name": "req",
             "type": "Identifier",
           },
-          "member": Identifier {
+          "member": Node {
             "name": "http",
             "type": "Identifier",
           },
           "type": "Member",
         },
-        "member": Identifier {
+        "member": Node {
           "name": "Debug",
           "type": "Identifier",
         },
         "type": "Member",
       },
       "operator": "==",
-      "right": StringLiteral {
+      "right": Node {
         "type": "StringLiteral",
         "value": "\\"1\\"",
       },
       "type": "BinaryExpression",
     },
     "operator": "==",
-    "right": StringLiteral {
+    "right": Node {
       "type": "StringLiteral",
       "value": "\\"2\\"",
     },
     "type": "BinaryExpression",
   },
   "operator": "==",
-  "right": StringLiteral {
+  "right": Node {
     "type": "StringLiteral",
     "value": "\\"3\\"",
   },
@@ -437,27 +437,27 @@ BinaryExpression {
 `;
 
 exports[`(BinaryExpression) not equal 1`] = `
-BinaryExpression {
-  "left": Member {
-    "base": Member {
-      "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
+      "base": Node {
         "name": "req",
         "type": "Identifier",
       },
-      "member": Identifier {
+      "member": Node {
         "name": "http",
         "type": "Identifier",
       },
       "type": "Member",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "Debug",
       "type": "Identifier",
     },
     "type": "Member",
   },
   "operator": "!=",
-  "right": StringLiteral {
+  "right": Node {
     "type": "StringLiteral",
     "value": "\\"1\\"",
   },
@@ -466,28 +466,28 @@ BinaryExpression {
 `;
 
 exports[`(BooleanExpression) with binary 1`] = `
-BooleanExpression {
-  "body": BinaryExpression {
-    "left": Member {
-      "base": Member {
-        "base": Identifier {
+Node {
+  "body": Node {
+    "left": Node {
+      "base": Node {
+        "base": Node {
           "name": "req",
           "type": "Identifier",
         },
-        "member": Identifier {
+        "member": Node {
           "name": "http",
           "type": "Identifier",
         },
         "type": "Member",
       },
-      "member": Identifier {
+      "member": Node {
         "name": "Debug",
         "type": "Identifier",
       },
       "type": "Member",
     },
     "operator": "==",
-    "right": StringLiteral {
+    "right": Node {
       "type": "StringLiteral",
       "value": "\\"1\\"",
     },
@@ -498,21 +498,21 @@ BooleanExpression {
 `;
 
 exports[`(BooleanExpression) with logical 1`] = `
-BooleanExpression {
-  "body": LogicalExpression {
-    "left": Member {
-      "base": Identifier {
+Node {
+  "body": Node {
+    "left": Node {
+      "base": Node {
         "name": "var",
         "type": "Identifier",
       },
-      "member": Identifier {
+      "member": Node {
         "name": "Debug",
         "type": "Identifier",
       },
       "type": "Member",
     },
     "operator": "&&",
-    "right": StringLiteral {
+    "right": Node {
       "type": "StringLiteral",
       "value": "\\"1\\"",
     },
@@ -523,22 +523,22 @@ BooleanExpression {
 `;
 
 exports[`(BooleanLiteral) false 1`] = `
-BooleanLiteral {
+Node {
   "type": "BooleanLiteral",
   "value": "false",
 }
 `;
 
 exports[`(BooleanLiteral) true 1`] = `
-BooleanLiteral {
+Node {
   "type": "BooleanLiteral",
   "value": "true",
 }
 `;
 
 exports[`(CallStatement) basic 1`] = `
-CallStatement {
-  "subroutine": Identifier {
+Node {
+  "subroutine": Node {
     "name": "vaceline_func",
     "type": "Identifier",
   },
@@ -547,29 +547,29 @@ CallStatement {
 `;
 
 exports[`(ConcatExpression) expressions 1`] = `
-ConcatExpression {
+Node {
   "body": Array [
-    StringLiteral {
+    Node {
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
-    NumericLiteral {
+    Node {
       "type": "NumericLiteral",
       "value": "1",
     },
-    Member {
-      "base": Member {
-        "base": Identifier {
+    Node {
+      "base": Node {
+        "base": Node {
           "name": "req",
           "type": "Identifier",
         },
-        "member": Identifier {
+        "member": Node {
           "name": "http",
           "type": "Identifier",
         },
         "type": "Member",
       },
-      "member": Identifier {
+      "member": Node {
         "name": "A",
         "type": "Identifier",
       },
@@ -581,17 +581,17 @@ ConcatExpression {
 `;
 
 exports[`(ConcatExpression) strings 1`] = `
-ConcatExpression {
+Node {
   "body": Array [
-    StringLiteral {
+    Node {
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
-    StringLiteral {
+    Node {
       "type": "StringLiteral",
       "value": "\\"b\\"",
     },
-    StringLiteral {
+    Node {
       "type": "StringLiteral",
       "value": "\\"c\\"",
     },
@@ -601,13 +601,13 @@ ConcatExpression {
 `;
 
 exports[`(DeclareStatement) bool 1`] = `
-DeclareStatement {
-  "id": Member {
-    "base": Identifier {
+Node {
+  "id": Node {
+    "base": Node {
       "name": "var",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "Vaceline",
       "type": "Identifier",
     },
@@ -619,13 +619,13 @@ DeclareStatement {
 `;
 
 exports[`(DeclareStatement) float 1`] = `
-DeclareStatement {
-  "id": Member {
-    "base": Identifier {
+Node {
+  "id": Node {
+    "base": Node {
       "name": "var",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "Vaceline",
       "type": "Identifier",
     },
@@ -637,13 +637,13 @@ DeclareStatement {
 `;
 
 exports[`(DeclareStatement) integer 1`] = `
-DeclareStatement {
-  "id": Member {
-    "base": Identifier {
+Node {
+  "id": Node {
+    "base": Node {
       "name": "var",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "Vaceline",
       "type": "Identifier",
     },
@@ -655,13 +655,13 @@ DeclareStatement {
 `;
 
 exports[`(DeclareStatement) string 1`] = `
-DeclareStatement {
-  "id": Member {
-    "base": Identifier {
+Node {
+  "id": Node {
+    "base": Node {
       "name": "var",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "Vaceline",
       "type": "Identifier",
     },
@@ -673,49 +673,49 @@ DeclareStatement {
 `;
 
 exports[`(DurationLiteral) day 1`] = `
-DurationLiteral {
+Node {
   "type": "DurationLiteral",
   "value": "1d",
 }
 `;
 
 exports[`(DurationLiteral) min 1`] = `
-DurationLiteral {
+Node {
   "type": "DurationLiteral",
   "value": "1m",
 }
 `;
 
 exports[`(DurationLiteral) ms 1`] = `
-DurationLiteral {
+Node {
   "type": "DurationLiteral",
   "value": "1ms",
 }
 `;
 
 exports[`(DurationLiteral) s 1`] = `
-DurationLiteral {
+Node {
   "type": "DurationLiteral",
   "value": "1s",
 }
 `;
 
 exports[`(DurationLiteral) with space between 1`] = `
-DurationLiteral {
+Node {
   "type": "DurationLiteral",
   "value": "1m",
 }
 `;
 
 exports[`(DurationLiteral) year 1`] = `
-DurationLiteral {
+Node {
   "type": "DurationLiteral",
   "value": "1y",
 }
 `;
 
 exports[`(ErrorStatement) basic 1`] = `
-ErrorStatement {
+Node {
   "message": undefined,
   "status": 404,
   "type": "ErrorStatement",
@@ -723,8 +723,8 @@ ErrorStatement {
 `;
 
 exports[`(ErrorStatement) with response 1`] = `
-ErrorStatement {
-  "message": StringLiteral {
+Node {
+  "message": Node {
     "type": "StringLiteral",
     "value": "\\"Not Found\\"",
   },
@@ -734,20 +734,20 @@ ErrorStatement {
 `;
 
 exports[`(ErrorStatement) with variable response 1`] = `
-ErrorStatement {
-  "message": Member {
-    "base": Member {
-      "base": Identifier {
+Node {
+  "message": Node {
+    "base": Node {
+      "base": Node {
         "name": "req",
         "type": "Identifier",
       },
-      "member": Identifier {
+      "member": Node {
         "name": "http",
         "type": "Identifier",
       },
       "type": "Member",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "Debug",
       "type": "Identifier",
     },
@@ -759,15 +759,15 @@ ErrorStatement {
 `;
 
 exports[`(ExpressionStatement) with FunCallExpression 1`] = `
-ExpressionStatement {
-  "body": FunCallExpression {
-    "arguments": Array [
-      Identifier {
+Node {
+  "body": Node {
+    "args": Array [
+      Node {
         "name": "a",
         "type": "Identifier",
       },
     ],
-    "callee": Identifier {
+    "callee": Node {
       "name": "func",
       "type": "Identifier",
     },
@@ -778,8 +778,8 @@ ExpressionStatement {
 `;
 
 exports[`(ExpressionStatement) with Identifer 1`] = `
-ExpressionStatement {
-  "body": Identifier {
+Node {
+  "body": Node {
     "name": "vaceline",
     "type": "Identifier",
   },
@@ -788,8 +788,8 @@ ExpressionStatement {
 `;
 
 exports[`(ExpressionStatement) with Literal 1`] = `
-ExpressionStatement {
-  "body": StringLiteral {
+Node {
+  "body": Node {
     "type": "StringLiteral",
     "value": "\\"string\\"",
   },
@@ -798,20 +798,20 @@ ExpressionStatement {
 `;
 
 exports[`(ExpressionStatement) with Member & Identifier 1`] = `
-ExpressionStatement {
-  "body": Member {
-    "base": Member {
-      "base": Identifier {
+Node {
+  "body": Node {
+    "base": Node {
+      "base": Node {
         "name": "req",
         "type": "Identifier",
       },
-      "member": Identifier {
+      "member": Node {
         "name": "http",
         "type": "Identifier",
       },
       "type": "Member",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "Vaceline",
       "type": "Identifier",
     },
@@ -822,22 +822,22 @@ ExpressionStatement {
 `;
 
 exports[`(FunCallExpression) \`if\` func 1`] = `
-FunCallExpression {
-  "arguments": Array [
-    StringLiteral {
+Node {
+  "args": Array [
+    Node {
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
-    StringLiteral {
+    Node {
       "type": "StringLiteral",
       "value": "\\"b\\"",
     },
-    StringLiteral {
+    Node {
       "type": "StringLiteral",
       "value": "\\"c\\"",
     },
   ],
-  "callee": Identifier {
+  "callee": Node {
     "name": "if",
     "type": "Identifier",
   },
@@ -846,14 +846,14 @@ FunCallExpression {
 `;
 
 exports[`(FunCallExpression) normal 1`] = `
-FunCallExpression {
-  "arguments": Array [
-    StringLiteral {
+Node {
+  "args": Array [
+    Node {
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
   ],
-  "callee": Identifier {
+  "callee": Node {
     "name": "func",
     "type": "Identifier",
   },
@@ -862,18 +862,18 @@ FunCallExpression {
 `;
 
 exports[`(FunCallExpression) with multiple args 1`] = `
-FunCallExpression {
-  "arguments": Array [
-    StringLiteral {
+Node {
+  "args": Array [
+    Node {
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
-    StringLiteral {
+    Node {
       "type": "StringLiteral",
       "value": "\\"b\\"",
     },
   ],
-  "callee": Identifier {
+  "callee": Node {
     "name": "func",
     "type": "Identifier",
   },
@@ -882,14 +882,14 @@ FunCallExpression {
 `;
 
 exports[`(FunCallExpression) with whitespace 1`] = `
-FunCallExpression {
-  "arguments": Array [
-    StringLiteral {
+Node {
+  "args": Array [
+    Node {
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
   ],
-  "callee": Identifier {
+  "callee": Node {
     "name": "func",
     "type": "Identifier",
   },
@@ -898,42 +898,42 @@ FunCallExpression {
 `;
 
 exports[`(Identifier) normal 1`] = `
-Identifier {
+Node {
   "name": "vaceline",
   "type": "Identifier",
 }
 `;
 
 exports[`(IfStatement) basic 1`] = `
-IfStatement {
+Node {
   "alternative": undefined,
   "consequent": Array [
-    SetStatement {
-      "left": Member {
-        "base": Identifier {
+    Node {
+      "left": Node {
+        "base": Node {
           "name": "var",
           "type": "Identifier",
         },
-        "member": Identifier {
+        "member": Node {
           "name": "value",
           "type": "Identifier",
         },
         "type": "Member",
       },
       "operator": "=",
-      "right": NumericLiteral {
+      "right": Node {
         "type": "NumericLiteral",
         "value": "1",
       },
       "type": "SetStatement",
     },
   ],
-  "test": Member {
-    "base": Identifier {
+  "test": Node {
+    "base": Node {
       "name": "var",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "condition",
       "type": "Identifier",
     },
@@ -944,22 +944,22 @@ IfStatement {
 `;
 
 exports[`(IfStatement) with else 1`] = `
-IfStatement {
+Node {
   "alternative": Array [
-    SetStatement {
-      "left": Member {
-        "base": Identifier {
+    Node {
+      "left": Node {
+        "base": Node {
           "name": "var",
           "type": "Identifier",
         },
-        "member": Identifier {
+        "member": Node {
           "name": "value",
           "type": "Identifier",
         },
         "type": "Member",
       },
       "operator": "=",
-      "right": NumericLiteral {
+      "right": Node {
         "type": "NumericLiteral",
         "value": "2",
       },
@@ -967,32 +967,32 @@ IfStatement {
     },
   ],
   "consequent": Array [
-    SetStatement {
-      "left": Member {
-        "base": Identifier {
+    Node {
+      "left": Node {
+        "base": Node {
           "name": "var",
           "type": "Identifier",
         },
-        "member": Identifier {
+        "member": Node {
           "name": "value",
           "type": "Identifier",
         },
         "type": "Member",
       },
       "operator": "=",
-      "right": NumericLiteral {
+      "right": Node {
         "type": "NumericLiteral",
         "value": "1",
       },
       "type": "SetStatement",
     },
   ],
-  "test": Member {
-    "base": Identifier {
+  "test": Node {
+    "base": Node {
       "name": "var",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "condition",
       "type": "Identifier",
     },
@@ -1003,23 +1003,23 @@ IfStatement {
 `;
 
 exports[`(IfStatement) with else if 1`] = `
-IfStatement {
-  "alternative": IfStatement {
+Node {
+  "alternative": Node {
     "alternative": Array [
-      SetStatement {
-        "left": Member {
-          "base": Identifier {
+      Node {
+        "left": Node {
+          "base": Node {
             "name": "var",
             "type": "Identifier",
           },
-          "member": Identifier {
+          "member": Node {
             "name": "value",
             "type": "Identifier",
           },
           "type": "Member",
         },
         "operator": "=",
-        "right": NumericLiteral {
+        "right": Node {
           "type": "NumericLiteral",
           "value": "0",
         },
@@ -1027,33 +1027,33 @@ IfStatement {
       },
     ],
     "consequent": Array [
-      SetStatement {
-        "left": Member {
-          "base": Identifier {
+      Node {
+        "left": Node {
+          "base": Node {
             "name": "var",
             "type": "Identifier",
           },
-          "member": Identifier {
+          "member": Node {
             "name": "value",
             "type": "Identifier",
           },
           "type": "Member",
         },
         "operator": "=",
-        "right": NumericLiteral {
+        "right": Node {
           "type": "NumericLiteral",
           "value": "2",
         },
         "type": "SetStatement",
       },
     ],
-    "test": UnaryExpression {
-      "argument": Member {
-        "base": Identifier {
+    "test": Node {
+      "argument": Node {
+        "base": Node {
           "name": "var",
           "type": "Identifier",
         },
-        "member": Identifier {
+        "member": Node {
           "name": "condition",
           "type": "Identifier",
         },
@@ -1065,32 +1065,32 @@ IfStatement {
     "type": "IfStatement",
   },
   "consequent": Array [
-    SetStatement {
-      "left": Member {
-        "base": Identifier {
+    Node {
+      "left": Node {
+        "base": Node {
           "name": "var",
           "type": "Identifier",
         },
-        "member": Identifier {
+        "member": Node {
           "name": "value",
           "type": "Identifier",
         },
         "type": "Member",
       },
       "operator": "=",
-      "right": NumericLiteral {
+      "right": Node {
         "type": "NumericLiteral",
         "value": "1",
       },
       "type": "SetStatement",
     },
   ],
-  "test": Member {
-    "base": Identifier {
+  "test": Node {
+    "base": Node {
       "name": "var",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "condition",
       "type": "Identifier",
     },
@@ -1101,23 +1101,23 @@ IfStatement {
 `;
 
 exports[`(IfStatement) with empty lines 1`] = `
-IfStatement {
-  "alternative": IfStatement {
+Node {
+  "alternative": Node {
     "alternative": Array [
-      SetStatement {
-        "left": Member {
-          "base": Identifier {
+      Node {
+        "left": Node {
+          "base": Node {
             "name": "var",
             "type": "Identifier",
           },
-          "member": Identifier {
+          "member": Node {
             "name": "value",
             "type": "Identifier",
           },
           "type": "Member",
         },
         "operator": "=",
-        "right": NumericLiteral {
+        "right": Node {
           "type": "NumericLiteral",
           "value": "0",
         },
@@ -1125,33 +1125,33 @@ IfStatement {
       },
     ],
     "consequent": Array [
-      SetStatement {
-        "left": Member {
-          "base": Identifier {
+      Node {
+        "left": Node {
+          "base": Node {
             "name": "var",
             "type": "Identifier",
           },
-          "member": Identifier {
+          "member": Node {
             "name": "value",
             "type": "Identifier",
           },
           "type": "Member",
         },
         "operator": "=",
-        "right": NumericLiteral {
+        "right": Node {
           "type": "NumericLiteral",
           "value": "2",
         },
         "type": "SetStatement",
       },
     ],
-    "test": UnaryExpression {
-      "argument": Member {
-        "base": Identifier {
+    "test": Node {
+      "argument": Node {
+        "base": Node {
           "name": "var",
           "type": "Identifier",
         },
-        "member": Identifier {
+        "member": Node {
           "name": "condition",
           "type": "Identifier",
         },
@@ -1163,32 +1163,32 @@ IfStatement {
     "type": "IfStatement",
   },
   "consequent": Array [
-    SetStatement {
-      "left": Member {
-        "base": Identifier {
+    Node {
+      "left": Node {
+        "base": Node {
           "name": "var",
           "type": "Identifier",
         },
-        "member": Identifier {
+        "member": Node {
           "name": "value",
           "type": "Identifier",
         },
         "type": "Member",
       },
       "operator": "=",
-      "right": NumericLiteral {
+      "right": Node {
         "type": "NumericLiteral",
         "value": "1",
       },
       "type": "SetStatement",
     },
   ],
-  "test": Member {
-    "base": Identifier {
+  "test": Node {
+    "base": Node {
       "name": "var",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "condition",
       "type": "Identifier",
     },
@@ -1199,8 +1199,8 @@ IfStatement {
 `;
 
 exports[`(ImportStatement) basic 1`] = `
-ImportStatement {
-  "module": Identifier {
+Node {
+  "module": Node {
     "name": "module",
     "type": "Identifier",
   },
@@ -1209,8 +1209,8 @@ ImportStatement {
 `;
 
 exports[`(IncludeStatement) basic 1`] = `
-IncludeStatement {
-  "module": StringLiteral {
+Node {
+  "module": Node {
     "type": "StringLiteral",
     "value": "\\"external_library\\"",
   },
@@ -1219,35 +1219,35 @@ IncludeStatement {
 `;
 
 exports[`(Ip) 6to4 mapping 1`] = `
-StringLiteral {
+Node {
   "type": "StringLiteral",
   "value": "\\"2002:c000:0204::\\"",
 }
 `;
 
 exports[`(Ip) 6to4 mapping 2`] = `
-StringLiteral {
+Node {
   "type": "StringLiteral",
   "value": "\\"::FFFF:192.0.2.4\\"",
 }
 `;
 
 exports[`(Ip) 6to4 mapping 3`] = `
-StringLiteral {
+Node {
   "type": "StringLiteral",
   "value": "\\"::1\\"",
 }
 `;
 
 exports[`(Ip) IPv4 1`] = `
-StringLiteral {
+Node {
   "type": "StringLiteral",
   "value": "\\"192.0.2.0\\"",
 }
 `;
 
 exports[`(Ip) IPv4 with cidr 1`] = `
-Ip {
+Node {
   "cidr": 16,
   "type": "Ip",
   "value": "192.0.2.0",
@@ -1255,14 +1255,14 @@ Ip {
 `;
 
 exports[`(Ip) IPv6 1`] = `
-StringLiteral {
+Node {
   "type": "StringLiteral",
   "value": "\\"2001:db8::1\\"",
 }
 `;
 
 exports[`(Ip) IPv6 with cidr 1`] = `
-Ip {
+Node {
   "cidr": 16,
   "type": "Ip",
   "value": "2001:db8::1",
@@ -1270,98 +1270,98 @@ Ip {
 `;
 
 exports[`(Ip) localhost 1`] = `
-StringLiteral {
+Node {
   "type": "StringLiteral",
   "value": "\\"localhost\\"",
 }
 `;
 
 exports[`(Ip) unspecified address 1`] = `
-StringLiteral {
+Node {
   "type": "StringLiteral",
   "value": "\\"::\\"",
 }
 `;
 
 exports[`(LogStatement) basic 1`] = `
-LogStatement {
-  "content": ConcatExpression {
+Node {
+  "content": Node {
     "body": Array [
-      StringLiteral {
+      Node {
         "type": "StringLiteral",
         "value": "\\"log\\"",
       },
-      Member {
-        "base": Identifier {
+      Node {
+        "base": Node {
           "name": "req",
           "type": "Identifier",
         },
-        "member": Identifier {
+        "member": Node {
           "name": "service_id",
           "type": "Identifier",
         },
         "type": "Member",
       },
-      StringLiteral {
+      Node {
         "type": "StringLiteral",
         "value": "\\"vaceline-log :: \\"",
       },
-      StringLiteral {
+      Node {
         "type": "StringLiteral",
         "value": "{\\"	timestamp_us:\\"}",
       },
-      Member {
-        "base": Member {
-          "base": Identifier {
+      Node {
+        "base": Node {
+          "base": Node {
             "name": "time",
             "type": "Identifier",
           },
-          "member": Identifier {
+          "member": Node {
             "name": "start",
             "type": "Identifier",
           },
           "type": "Member",
         },
-        "member": Identifier {
+        "member": Node {
           "name": "usec",
           "type": "Identifier",
         },
         "type": "Member",
       },
-      StringLiteral {
+      Node {
         "type": "StringLiteral",
         "value": "{\\"	host:\\"}",
       },
-      FunCallExpression {
-        "arguments": Array [
-          Member {
-            "base": Member {
-              "base": Identifier {
+      Node {
+        "args": Array [
+          Node {
+            "base": Node {
+              "base": Node {
                 "name": "req",
                 "type": "Identifier",
               },
-              "member": Identifier {
+              "member": Node {
                 "name": "http",
                 "type": "Identifier",
               },
               "type": "Member",
             },
-            "member": Identifier {
+            "member": Node {
               "name": "X-Forwarded-Host",
               "type": "Identifier",
             },
             "type": "Member",
           },
-          StringLiteral {
+          Node {
             "type": "StringLiteral",
             "value": "{\\"	\\"}",
           },
-          StringLiteral {
+          Node {
             "type": "StringLiteral",
             "value": "\\"\\"",
           },
         ],
-        "callee": Identifier {
+        "callee": Node {
           "name": "regsuball",
           "type": "Identifier",
         },
@@ -1375,27 +1375,27 @@ LogStatement {
 `;
 
 exports[`(LogicalExpression) and 1`] = `
-LogicalExpression {
-  "left": Member {
-    "base": Member {
-      "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
+      "base": Node {
         "name": "req",
         "type": "Identifier",
       },
-      "member": Identifier {
+      "member": Node {
         "name": "http",
         "type": "Identifier",
       },
       "type": "Member",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "Debug",
       "type": "Identifier",
     },
     "type": "Member",
   },
   "operator": "&&",
-  "right": StringLiteral {
+  "right": Node {
     "type": "StringLiteral",
     "value": "\\"1\\"",
   },
@@ -1404,21 +1404,21 @@ LogicalExpression {
 `;
 
 exports[`(LogicalExpression) combination 1`] = `
-LogicalExpression {
-  "left": LogicalExpression {
-    "left": Identifier {
+Node {
+  "left": Node {
+    "left": Node {
       "name": "debug",
       "type": "Identifier",
     },
     "operator": "&&",
-    "right": StringLiteral {
+    "right": Node {
       "type": "StringLiteral",
       "value": "\\"1\\"",
     },
     "type": "LogicalExpression",
   },
   "operator": "||",
-  "right": StringLiteral {
+  "right": Node {
     "type": "StringLiteral",
     "value": "\\"2\\"",
   },
@@ -1427,21 +1427,21 @@ LogicalExpression {
 `;
 
 exports[`(LogicalExpression) combination with BinaryExpression 1`] = `
-LogicalExpression {
-  "left": BinaryExpression {
-    "left": Identifier {
+Node {
+  "left": Node {
+    "left": Node {
       "name": "debug",
       "type": "Identifier",
     },
     "operator": "==",
-    "right": StringLiteral {
+    "right": Node {
       "type": "StringLiteral",
       "value": "\\"1\\"",
     },
     "type": "BinaryExpression",
   },
   "operator": "&&",
-  "right": StringLiteral {
+  "right": Node {
     "type": "StringLiteral",
     "value": "\\"2\\"",
   },
@@ -1450,19 +1450,19 @@ LogicalExpression {
 `;
 
 exports[`(LogicalExpression) combination2 1`] = `
-LogicalExpression {
-  "left": Identifier {
+Node {
+  "left": Node {
     "name": "debug",
     "type": "Identifier",
   },
   "operator": "||",
-  "right": LogicalExpression {
-    "left": StringLiteral {
+  "right": Node {
+    "left": Node {
       "type": "StringLiteral",
       "value": "\\"1\\"",
     },
     "operator": "&&",
-    "right": StringLiteral {
+    "right": Node {
       "type": "StringLiteral",
       "value": "\\"2\\"",
     },
@@ -1473,21 +1473,21 @@ LogicalExpression {
 `;
 
 exports[`(LogicalExpression) combination2 with BinaryExpression 1`] = `
-LogicalExpression {
-  "left": BinaryExpression {
-    "left": Identifier {
+Node {
+  "left": Node {
+    "left": Node {
       "name": "debug",
       "type": "Identifier",
     },
     "operator": "==",
-    "right": StringLiteral {
+    "right": Node {
       "type": "StringLiteral",
       "value": "\\"1\\"",
     },
     "type": "BinaryExpression",
   },
   "operator": "||",
-  "right": StringLiteral {
+  "right": Node {
     "type": "StringLiteral",
     "value": "\\"2\\"",
   },
@@ -1496,19 +1496,19 @@ LogicalExpression {
 `;
 
 exports[`(LogicalExpression) combination3 1`] = `
-LogicalExpression {
-  "left": Identifier {
+Node {
+  "left": Node {
     "name": "debug",
     "type": "Identifier",
   },
   "operator": "&&",
-  "right": BinaryExpression {
-    "left": StringLiteral {
+  "right": Node {
+    "left": Node {
       "type": "StringLiteral",
       "value": "\\"1\\"",
     },
     "operator": "==",
-    "right": StringLiteral {
+    "right": Node {
       "type": "StringLiteral",
       "value": "\\"2\\"",
     },
@@ -1519,19 +1519,19 @@ LogicalExpression {
 `;
 
 exports[`(LogicalExpression) combination4 1`] = `
-LogicalExpression {
-  "left": Identifier {
+Node {
+  "left": Node {
     "name": "debug",
     "type": "Identifier",
   },
   "operator": "||",
-  "right": BinaryExpression {
-    "left": StringLiteral {
+  "right": Node {
+    "left": Node {
       "type": "StringLiteral",
       "value": "\\"1\\"",
     },
     "operator": "==",
-    "right": StringLiteral {
+    "right": Node {
       "type": "StringLiteral",
       "value": "\\"2\\"",
     },
@@ -1542,27 +1542,27 @@ LogicalExpression {
 `;
 
 exports[`(LogicalExpression) or 1`] = `
-LogicalExpression {
-  "left": Member {
-    "base": Member {
-      "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
+      "base": Node {
         "name": "req",
         "type": "Identifier",
       },
-      "member": Identifier {
+      "member": Node {
         "name": "http",
         "type": "Identifier",
       },
       "type": "Member",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "Debug",
       "type": "Identifier",
     },
     "type": "Member",
   },
   "operator": "||",
-  "right": StringLiteral {
+  "right": Node {
     "type": "StringLiteral",
     "value": "\\"1\\"",
   },
@@ -1571,12 +1571,12 @@ LogicalExpression {
 `;
 
 exports[`(Member) basic 1`] = `
-Member {
-  "base": Identifier {
+Node {
+  "base": Node {
     "name": "req",
     "type": "Identifier",
   },
-  "member": Identifier {
+  "member": Node {
     "name": "backend",
     "type": "Identifier",
   },
@@ -1585,19 +1585,19 @@ Member {
 `;
 
 exports[`(Member) deep 1`] = `
-Member {
-  "base": Member {
-    "base": Identifier {
+Node {
+  "base": Node {
+    "base": Node {
       "name": "req",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "http",
       "type": "Identifier",
     },
     "type": "Member",
   },
-  "member": Identifier {
+  "member": Node {
     "name": "Debug",
     "type": "Identifier",
   },
@@ -1606,27 +1606,27 @@ Member {
 `;
 
 exports[`(Member) deep in BinaryExpression 1`] = `
-BinaryExpression {
-  "left": Member {
-    "base": Member {
-      "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
+      "base": Node {
         "name": "req",
         "type": "Identifier",
       },
-      "member": Identifier {
+      "member": Node {
         "name": "http",
         "type": "Identifier",
       },
       "type": "Member",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "Debug",
       "type": "Identifier",
     },
     "type": "Member",
   },
   "operator": "==",
-  "right": StringLiteral {
+  "right": Node {
     "type": "StringLiteral",
     "value": "\\"debug\\"",
   },
@@ -1635,20 +1635,20 @@ BinaryExpression {
 `;
 
 exports[`(Member) in BinaryExpression 1`] = `
-BinaryExpression {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "name": "req",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "backend",
       "type": "Identifier",
     },
     "type": "Member",
   },
   "operator": "==",
-  "right": Identifier {
+  "right": Node {
     "name": "backend",
     "type": "Identifier",
   },
@@ -1657,7 +1657,7 @@ BinaryExpression {
 `;
 
 exports[`(MultilineLiteral) basic 1`] = `
-StringLiteral {
+Node {
   "type": "StringLiteral",
   "value": "{\\"
   vaceline
@@ -1666,31 +1666,31 @@ StringLiteral {
 `;
 
 exports[`(NumericLiteral) integer 1`] = `
-NumericLiteral {
+Node {
   "type": "NumericLiteral",
   "value": "10",
 }
 `;
 
 exports[`(NumericLiteral) zero 1`] = `
-NumericLiteral {
+Node {
   "type": "NumericLiteral",
   "value": "0",
 }
 `;
 
 exports[`(Program) single handling 1`] = `
-Program {
+Node {
   "body": Array [
-    SubroutineStatement {
+    Node {
       "body": Array [
-        DeclareStatement {
-          "id": Member {
-            "base": Identifier {
+        Node {
+          "id": Node {
+            "base": Node {
               "name": "var",
               "type": "Identifier",
             },
-            "member": Identifier {
+            "member": Node {
               "name": "vacelinDebug",
               "type": "Identifier",
             },
@@ -1699,76 +1699,76 @@ Program {
           "type": "DeclareStatement",
           "valueType": "STRING",
         },
-        SetStatement {
-          "left": Member {
-            "base": Identifier {
+        Node {
+          "left": Node {
+            "base": Node {
               "name": "var",
               "type": "Identifier",
             },
-            "member": Identifier {
+            "member": Node {
               "name": "vacelineDebug",
               "type": "Identifier",
             },
             "type": "Member",
           },
           "operator": "=",
-          "right": StringLiteral {
+          "right": Node {
             "type": "StringLiteral",
             "value": "\\"initial\\"",
           },
           "type": "SetStatement",
         },
-        IfStatement {
+        Node {
           "alternative": undefined,
           "consequent": Array [
-            AddStatement {
-              "left": Member {
-                "base": Identifier {
+            Node {
+              "left": Node {
+                "base": Node {
                   "name": "var",
                   "type": "Identifier",
                 },
-                "member": Identifier {
+                "member": Node {
                   "name": "vacelinDebug",
                   "type": "Identifier",
                 },
                 "type": "Member",
               },
               "operator": "=",
-              "right": StringLiteral {
+              "right": Node {
                 "type": "StringLiteral",
                 "value": "\\"Vacelin Debug Log\\"",
               },
               "type": "AddStatement",
             },
           ],
-          "test": BinaryExpression {
-            "left": ValuePair {
-              "base": Member {
-                "base": Member {
-                  "base": Identifier {
+          "test": Node {
+            "left": Node {
+              "base": Node {
+                "base": Node {
+                  "base": Node {
                     "name": "req",
                     "type": "Identifier",
                   },
-                  "member": Identifier {
+                  "member": Node {
                     "name": "http",
                     "type": "Identifier",
                   },
                   "type": "Member",
                 },
-                "member": Identifier {
+                "member": Node {
                   "name": "Vacelin",
                   "type": "Identifier",
                 },
                 "type": "Member",
               },
-              "name": Identifier {
+              "name": Node {
                 "name": "Some",
                 "type": "Identifier",
               },
               "type": "ValuePair",
             },
             "operator": "==",
-            "right": StringLiteral {
+            "right": Node {
               "type": "StringLiteral",
               "value": "\\"Some\\"",
             },
@@ -1777,7 +1777,7 @@ Program {
           "type": "IfStatement",
         },
       ],
-      "id": Identifier {
+      "id": Node {
         "name": "vcl_recv",
         "type": "Identifier",
       },
@@ -1789,15 +1789,15 @@ Program {
 `;
 
 exports[`(Program) with empty lines 1`] = `
-Program {
+Node {
   "body": Array [
-    DeclareStatement {
-      "id": Member {
-        "base": Identifier {
+    Node {
+      "id": Node {
+        "base": Node {
           "name": "var",
           "type": "Identifier",
         },
-        "member": Identifier {
+        "member": Node {
           "name": "vacelinDebug",
           "type": "Identifier",
         },
@@ -1806,96 +1806,96 @@ Program {
       "type": "DeclareStatement",
       "valueType": "STRING",
     },
-    SetStatement {
-      "left": Member {
-        "base": Identifier {
+    Node {
+      "left": Node {
+        "base": Node {
           "name": "var",
           "type": "Identifier",
         },
-        "member": Identifier {
+        "member": Node {
           "name": "vacelineDebug",
           "type": "Identifier",
         },
         "type": "Member",
       },
       "operator": "=",
-      "right": StringLiteral {
+      "right": Node {
         "type": "StringLiteral",
         "value": "\\"1\\"",
       },
       "type": "SetStatement",
     },
-    SetStatement {
-      "left": Member {
-        "base": Identifier {
+    Node {
+      "left": Node {
+        "base": Node {
           "name": "var",
           "type": "Identifier",
         },
-        "member": Identifier {
+        "member": Node {
           "name": "vacelineDebug",
           "type": "Identifier",
         },
         "type": "Member",
       },
       "operator": "=",
-      "right": StringLiteral {
+      "right": Node {
         "type": "StringLiteral",
         "value": "\\"2\\"",
       },
       "type": "SetStatement",
     },
-    SetStatement {
-      "left": Member {
-        "base": Identifier {
+    Node {
+      "left": Node {
+        "base": Node {
           "name": "var",
           "type": "Identifier",
         },
-        "member": Identifier {
+        "member": Node {
           "name": "vacelineDebug",
           "type": "Identifier",
         },
         "type": "Member",
       },
       "operator": "=",
-      "right": StringLiteral {
+      "right": Node {
         "type": "StringLiteral",
         "value": "\\"3\\"",
       },
       "type": "SetStatement",
     },
-    SetStatement {
-      "left": Member {
-        "base": Identifier {
+    Node {
+      "left": Node {
+        "base": Node {
           "name": "var",
           "type": "Identifier",
         },
-        "member": Identifier {
+        "member": Node {
           "name": "vacelineDebug",
           "type": "Identifier",
         },
         "type": "Member",
       },
       "operator": "=",
-      "right": StringLiteral {
+      "right": Node {
         "type": "StringLiteral",
         "value": "\\"4\\"",
       },
       "type": "SetStatement",
     },
-    SetStatement {
-      "left": Member {
-        "base": Identifier {
+    Node {
+      "left": Node {
+        "base": Node {
           "name": "var",
           "type": "Identifier",
         },
-        "member": Identifier {
+        "member": Node {
           "name": "vacelineDebug",
           "type": "Identifier",
         },
         "type": "Member",
       },
       "operator": "=",
-      "right": StringLiteral {
+      "right": Node {
         "type": "StringLiteral",
         "value": "\\"5\\"",
       },
@@ -1907,33 +1907,33 @@ Program {
 `;
 
 exports[`(RestartStatement) basic 1`] = `
-RestartStatement {
+Node {
   "type": "RestartStatement",
 }
 `;
 
 exports[`(ReturnStatement) with parens 1`] = `
-ReturnStatement {
+Node {
   "action": "pass",
   "type": "ReturnStatement",
 }
 `;
 
 exports[`(SetStatement) addition 1`] = `
-SetStatement {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "name": "var",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "vacel",
       "type": "Identifier",
     },
     "type": "Member",
   },
   "operator": "+=",
-  "right": StringLiteral {
+  "right": Node {
     "type": "StringLiteral",
     "value": "\\"vacel\\"",
   },
@@ -1942,20 +1942,20 @@ SetStatement {
 `;
 
 exports[`(SetStatement) assignment 1`] = `
-SetStatement {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "name": "var",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "vacel",
       "type": "Identifier",
     },
     "type": "Member",
   },
   "operator": "=",
-  "right": StringLiteral {
+  "right": Node {
     "type": "StringLiteral",
     "value": "\\"vacel\\"",
   },
@@ -1964,20 +1964,20 @@ SetStatement {
 `;
 
 exports[`(SetStatement) division 1`] = `
-SetStatement {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "name": "var",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "vacel",
       "type": "Identifier",
     },
     "type": "Member",
   },
   "operator": "*=",
-  "right": StringLiteral {
+  "right": Node {
     "type": "StringLiteral",
     "value": "\\"vacel\\"",
   },
@@ -1986,20 +1986,20 @@ SetStatement {
 `;
 
 exports[`(SetStatement) multiplication 1`] = `
-SetStatement {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "name": "var",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "vacel",
       "type": "Identifier",
     },
     "type": "Member",
   },
   "operator": "*=",
-  "right": StringLiteral {
+  "right": Node {
     "type": "StringLiteral",
     "value": "\\"vacel\\"",
   },
@@ -2008,20 +2008,20 @@ SetStatement {
 `;
 
 exports[`(SetStatement) substraction 1`] = `
-SetStatement {
-  "left": Member {
-    "base": Identifier {
+Node {
+  "left": Node {
+    "base": Node {
       "name": "var",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "vacel",
       "type": "Identifier",
     },
     "type": "Member",
   },
   "operator": "-=",
-  "right": StringLiteral {
+  "right": Node {
     "type": "StringLiteral",
     "value": "\\"vacel\\"",
   },
@@ -2030,55 +2030,55 @@ SetStatement {
 `;
 
 exports[`(StringLiteral) basic 1`] = `
-StringLiteral {
+Node {
   "type": "StringLiteral",
   "value": "\\"string\\"",
 }
 `;
 
 exports[`(StringLiteral) not a comment 1`] = `
-StringLiteral {
+Node {
   "type": "StringLiteral",
   "value": "\\"# not a comment\\"",
 }
 `;
 
 exports[`(StringLiteral) not an inline comment 1`] = `
-StringLiteral {
+Node {
   "type": "StringLiteral",
   "value": "\\"/* not an inline comment */\\"",
 }
 `;
 
 exports[`(SubroutineStatement) basic 1`] = `
-SubroutineStatement {
+Node {
   "body": Array [
-    SetStatement {
-      "left": Identifier {
+    Node {
+      "left": Node {
         "name": "vaceline",
         "type": "Identifier",
       },
       "operator": "=",
-      "right": StringLiteral {
+      "right": Node {
         "type": "StringLiteral",
         "value": "\\"aaa\\"",
       },
       "type": "SetStatement",
     },
-    SetStatement {
-      "left": Identifier {
+    Node {
+      "left": Node {
         "name": "vaceline",
         "type": "Identifier",
       },
       "operator": "=",
-      "right": StringLiteral {
+      "right": Node {
         "type": "StringLiteral",
         "value": "\\"bbb\\"",
       },
       "type": "SetStatement",
     },
   ],
-  "id": Identifier {
+  "id": Node {
     "name": "vcl_recv",
     "type": "Identifier",
   },
@@ -2087,34 +2087,34 @@ SubroutineStatement {
 `;
 
 exports[`(SubroutineStatement) with empty lines 1`] = `
-SubroutineStatement {
+Node {
   "body": Array [
-    SetStatement {
-      "left": Identifier {
+    Node {
+      "left": Node {
         "name": "vaceline",
         "type": "Identifier",
       },
       "operator": "=",
-      "right": StringLiteral {
+      "right": Node {
         "type": "StringLiteral",
         "value": "\\"aaa\\"",
       },
       "type": "SetStatement",
     },
-    SetStatement {
-      "left": Identifier {
+    Node {
+      "left": Node {
         "name": "vaceline",
         "type": "Identifier",
       },
       "operator": "=",
-      "right": StringLiteral {
+      "right": Node {
         "type": "StringLiteral",
         "value": "\\"bbb\\"",
       },
       "type": "SetStatement",
     },
   ],
-  "id": Identifier {
+  "id": Node {
     "name": "vcl_recv",
     "type": "Identifier",
   },
@@ -2123,8 +2123,8 @@ SubroutineStatement {
 `;
 
 exports[`(SyntheticStatement) basic 1`] = `
-SyntheticStatement {
-  "response": StringLiteral {
+Node {
+  "response": Node {
     "type": "StringLiteral",
     "value": "\\"\\"",
   },
@@ -2133,15 +2133,15 @@ SyntheticStatement {
 `;
 
 exports[`(TableStatement) single key-value 1`] = `
-TableStatement {
+Node {
   "body": Array [
-    TableDefinition {
+    Node {
       "key": "\\"key\\"",
       "type": "TableDefinition",
       "value": "\\"value\\"",
     },
   ],
-  "id": Identifier {
+  "id": Node {
     "name": "vaceline_table",
     "type": "Identifier",
   },
@@ -2150,20 +2150,20 @@ TableStatement {
 `;
 
 exports[`(TableStatement) single key-values 1`] = `
-TableStatement {
+Node {
   "body": Array [
-    TableDefinition {
+    Node {
       "key": "\\"key\\"",
       "type": "TableDefinition",
       "value": "\\"value\\"",
     },
-    TableDefinition {
+    Node {
       "key": "\\"key2\\"",
       "type": "TableDefinition",
       "value": "\\"value2\\"",
     },
   ],
-  "id": Identifier {
+  "id": Node {
     "name": "vaceline_table",
     "type": "Identifier",
   },
@@ -2172,8 +2172,8 @@ TableStatement {
 `;
 
 exports[`(UnaryExpression) boolean literal 1`] = `
-UnaryExpression {
-  "argument": BooleanLiteral {
+Node {
+  "argument": Node {
     "type": "BooleanLiteral",
     "value": "true",
   },
@@ -2183,8 +2183,8 @@ UnaryExpression {
 `;
 
 exports[`(UnaryExpression) variable 1`] = `
-UnaryExpression {
-  "argument": Identifier {
+Node {
+  "argument": Node {
     "name": "condition",
     "type": "Identifier",
   },
@@ -2194,13 +2194,13 @@ UnaryExpression {
 `;
 
 exports[`(UnsetStatement) member 1`] = `
-UnsetStatement {
-  "id": Member {
-    "base": Identifier {
+Node {
+  "id": Node {
+    "base": Node {
       "name": "var",
       "type": "Identifier",
     },
-    "member": Identifier {
+    "member": Node {
       "name": "value",
       "type": "Identifier",
     },
@@ -2211,8 +2211,8 @@ UnsetStatement {
 `;
 
 exports[`(UnsetStatement) variable 1`] = `
-UnsetStatement {
-  "id": Identifier {
+Node {
+  "id": Node {
     "name": "value",
     "type": "Identifier",
   },
@@ -2221,12 +2221,12 @@ UnsetStatement {
 `;
 
 exports[`(ValuePair) basic 1`] = `
-ValuePair {
-  "base": Identifier {
+Node {
+  "base": Node {
     "name": "Cookie",
     "type": "Identifier",
   },
-  "name": Identifier {
+  "name": Node {
     "name": "Vacelin",
     "type": "Identifier",
   },

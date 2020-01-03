@@ -5,17 +5,7 @@ import {
   parse as parsePath,
 } from 'path'
 import assert from 'assert'
-import {
-  map as nodeMap,
-  BaseNode,
-  BaseExpression,
-  BaseStatement,
-  Node,
-  Expression,
-  Statement,
-  BaseLiteral,
-} from '../../src/nodes'
-// @ts-ignore
+import { d, BaseNode, NodeType } from '../../src/nodes'
 import { parse as parseMarkdown } from '@textlint/markdown-to-ast'
 import { parseExpr } from '../../src/parser/expression/index'
 import { parseStmt } from '../../src/parser/statement'
@@ -30,7 +20,7 @@ interface TestCase {
 }
 interface TestDoc {
   name: string
-  parse: (source: string) => Node | Expression | Statement
+  parse: (source: string) => d.Node | d.Expression | d.Statement
   basic: Array<TestCase>
   abnormal: Array<TestCase>
   lint: Array<TestCase>
@@ -40,12 +30,51 @@ interface TestDoc {
 const getValueFromHeader = (headerNode: { children: Array<{ raw: string }> }) =>
   headerNode.children.map((child) => child.raw).join('')
 
-const getParser = (Node: Class<BaseNode>) => {
-  const proto = Object.getPrototypeOf(Node)
+const EXPRESSION_TYPES: Array<NodeType> = [
+  'BooleanLiteral',
+  'StringLiteral',
+  'MultilineLiteral',
+  'DurationLiteral',
+  'NumericLiteral',
+  'Identifier',
+  'Ip',
+  'Member',
+  'ValuePair',
+  'BooleanExpression',
+  'UnaryExpression',
+  'FunCallExpression',
+  'ConcatExpression',
+  'BinaryExpression',
+  'LogicalExpression',
+  'BackendDefinition',
+  'TableDefinition',
+]
 
-  return proto === BaseExpression || proto === BaseLiteral
+const STATEMENT_TYPES: Array<NodeType> = [
+  'AclStatement',
+  'AddStatement',
+  'BackendStatement',
+  'CallStatement',
+  'DeclareStatement',
+  'ErrorStatement',
+  'ExpressionStatement',
+  'IfStatement',
+  'ImportStatement',
+  'IncludeStatement',
+  'LogStatement',
+  'RestartStatement',
+  'ReturnStatement',
+  'SetStatement',
+  'SubroutineStatement',
+  'SyntheticStatement',
+  'TableStatement',
+  'UnsetStatement',
+]
+
+const getParser = (type: NodeType) => {
+  return EXPRESSION_TYPES.includes(type)
     ? (source: string) => parseExpr(new Parser(source))
-    : proto === BaseStatement
+    : STATEMENT_TYPES.includes(type)
     ? (source: string) => parseStmt(new Parser(source))
     : parseNode.bind(null)
 }
@@ -87,7 +116,7 @@ export const parseTestDoc = (path: string): TestDoc => {
         switch (node.depth) {
           case 1:
             break
-          case 2:
+          case 2: {
             buf = null
 
             const value = getValueFromHeader(node) as keyof TestDoc
@@ -99,6 +128,7 @@ export const parseTestDoc = (path: string): TestDoc => {
 
             cases = doc[value] as Array<TestCase>
             break
+          }
           default:
             assert(
               false,
@@ -116,7 +146,7 @@ export const parseTestDoc = (path: string): TestDoc => {
         assert(typeof buf === 'string', `Buf broken at (${path})`)
 
         cases.push({
-          name: buf!,
+          name: buf as string,
           code: node.value,
         })
 
@@ -143,11 +173,7 @@ export const parseTestDoc = (path: string): TestDoc => {
     }
   }
 
-  const Node = nodeMap[doc.name as keyof typeof nodeMap]
-
-  assert(Node != null, doc.name)
-
-  const parser = getParser(Node)
+  const parser = getParser(doc.name as NodeType)
 
   doc.parse = parser
 

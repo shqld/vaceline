@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import fs from 'fs'
 import path from 'path'
 import { traverse, createPathArray } from '../src/traverser'
 import { parse } from '../src'
-import { Identifier, BaseNode } from '../src/nodes'
+import { d, BaseNode } from '../src/nodes'
 import { NodePath } from '../src/traverser/path'
 
 describe('Traverser', () => {
@@ -12,17 +13,17 @@ describe('Traverser', () => {
 
   // it('should traverse every node', () => {})
   it('should traverse entry', () => {
-    let node: Identifier
+    let node: d.Identifier
 
     traverse(ast, {
       entry(path: NodePath) {
-        if (path.node instanceof Identifier) {
+        if (path.node.is('Identifier')) {
           node = path.node
         }
       },
     })
 
-    expect(node!).toBeInstanceOf(Identifier)
+    expect(node!.type).toStrictEqual('Identifier')
   })
 
   describe('Path', () => {

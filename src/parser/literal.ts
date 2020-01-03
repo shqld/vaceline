@@ -1,7 +1,6 @@
-import * as n from '../nodes'
+import { d, b, Location, NodeWithLoc } from '../nodes'
 
 import { Token } from './tokenizer'
-import { NodeWithLoc } from '../nodes'
 import { createError } from './create-error'
 import { Parser } from '.'
 import { isToken } from '../utils/token'
@@ -10,12 +9,10 @@ import { parseIp } from './statement/ip'
 export const parseLiteral = (
   p: Parser,
   token: Token = p.read(),
-  node: NodeWithLoc = p.startNode()
-): n.NodeWithLoc<n.Literal | n.Ip> | null => {
+  loc: Location = p.startNode()
+): NodeWithLoc<d.Literal> | null => {
   if (token.type === 'boolean') {
-    return p.finishNode(n.BooleanLiteral, node, {
-      value: token.value,
-    })
+    return p.finishNode(b.buildBooleanLiteral(token.value, loc))
   }
 
   if (token.type === 'string') {
@@ -23,16 +20,14 @@ export const parseLiteral = (
       return parseIp(p, token)
     }
 
-    return p.finishNode(n.StringLiteral, node, {
-      value: token.value,
-    })
+    return p.finishNode(b.buildStringLiteral(token.value, loc))
   }
 
   if (token.type === 'numeric') {
     if (isToken(p.peek(), 'ident', /ms|s|m|h|d|y/)) {
-      return p.finishNode(n.DurationLiteral, node, {
-        value: token.value + p.read().value,
-      })
+      return p.finishNode(
+        b.buildDurationLiteral(token.value + p.read().value, loc)
+      )
     }
 
     if (!Number.isNaN(Number(token.value))) {
@@ -40,20 +35,13 @@ export const parseLiteral = (
         token.value.startsWith('.') ||
         (token.value.length !== 1 && token.value.startsWith('0'))
       ) {
-        throw createError(
-          p.source,
-          'invalid number',
-          node.loc.start,
-          node.loc.end
-        )
+        throw createError(p.source, 'invalid number', loc.start, loc.end)
       }
 
-      return p.finishNode(n.NumericLiteral, node, {
-        value: token.value,
-      })
+      return p.finishNode(b.buildNumericLiteral(token.value, loc))
     }
 
-    throw createError(p.source, 'invalid token', node.loc.start, node.loc.end)
+    throw createError(p.source, 'invalid token', loc.start, loc.end)
   }
 
   return null
