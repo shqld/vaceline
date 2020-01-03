@@ -1,0 +1,28 @@
+name: deploy
+
+on:
+  push:
+    # FIXME:
+    branches-ignore:
+      - gh-pages
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: NPM or Yarn install with caching
+        uses: bahmutov/npm-install@v1.1.0
+      - name: build source
+        run: yarn build && yarn webpack
+      - name: deploy pages
+        run: |
+          git config --global user.email "me@shomiyamoto.dev"
+          git config --global user.name "Sho Miyamoto"
+
+          git fetch origin gh-pages:gh-pages
+          git checkout gh-pages
+          git add public --force
+          git commit -n -m 'stage: public'
+          git push origin `git subtree split --prefix public`:gh-pages
