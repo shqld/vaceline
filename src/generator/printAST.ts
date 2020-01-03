@@ -1,7 +1,5 @@
-import { Doc, doc as docHelpers } from 'prettier'
+import { Doc, builders as b } from 'prettier/doc'
 import { d, BaseNode } from '../nodes'
-
-const { builders: b } = docHelpers
 
 export interface State {
   lineNum: number

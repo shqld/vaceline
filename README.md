@@ -2,15 +2,13 @@
 
 Vaceline is a tool for trasforming VCL with JS plugins via AST.
 
-*NOTE: this project is still in development.*
-
+_NOTE: this project is still in development._
 
 ## Install
 
 ```sh
 yarn add -D vaceline
 ```
-
 
 ## Usage
 
@@ -41,3 +39,4 @@ Examples:
   - vaceline path/to/dir
   - cat file | vaceline --stdin
   - vaceline file -d dist
+```

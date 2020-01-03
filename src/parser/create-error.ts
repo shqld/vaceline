@@ -1,4 +1,4 @@
-import chalk from 'chalk'
+import * as chalk from '../utils/chalk'
 import { Position } from '../nodes'
 
 const MARGIN = 2
@@ -28,7 +28,7 @@ export const createError = (
 
   const verticalMark =
     ' '.repeat('> '.length + pad + ' | '.length + loc.column - 1) +
-    chalk.redBright.bold(VERTICAL_MARK.repeat(loc.range))
+    chalk.red(VERTICAL_MARK.repeat(loc.range))
 
   const errorLocationDisplay: Array<string> = []
 
@@ -41,7 +41,7 @@ export const createError = (
 
     // `> `
     const horizontalMark = isTargetLine
-      ? chalk.redBright.bold(HORIZONTAL_MARK)
+      ? chalk.red(HORIZONTAL_MARK)
       : ' '.repeat(HORIZONTAL_MARK.length)
 
     // `> 90 | source`
