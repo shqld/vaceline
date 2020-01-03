@@ -1,9 +1,8 @@
-import fs from 'fs'
-import path from 'path'
+// import fs from 'fs'
+// import path from 'path'
 
-import { parse, generate, traverse } from '../../src/lib'
-import DebuggerPlugin from '../../src/plugins/debugger'
-import { Node } from '../../src/nodes'
+// import { parse, generate, traverse } from '../../src/lib'
+// import DebuggerPlugin from '../../src/plugins/debugger'
 
 // const code = fs.readFileSync(
 //   path.resolve('__tests__/__fixture__/rough.vcl'),

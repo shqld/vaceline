@@ -2,12 +2,12 @@ import { Parser } from '..'
 import { isToken } from '../../utils/token'
 import isIp from 'is-ip'
 import { createError } from '../create-error'
-import { Ip } from '../../nodes'
+import { b } from '../../nodes'
 
 export const parseIp = (p: Parser, token = p.read()) => {
   const str = p.validateToken(token, 'string')
   const value = str.value.slice(1, -1) // strip quotes
-  const node = p.startNode()
+  const loc = p.startNode()
 
   const isLocalhost = value === 'localhost'
   const version = isIp.version(value)
@@ -52,8 +52,5 @@ export const parseIp = (p: Parser, token = p.read()) => {
     }
   }
 
-  return p.finishNode(Ip, node, {
-    value,
-    cidr,
-  })
+  return p.finishNode(b.buildIp(value, cidr, loc))
 }

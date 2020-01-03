@@ -1,27 +1,17 @@
 import { Tokenizer, Token, TokenType } from './tokenizer'
-import {
-  Node,
-  Program,
-  Statement,
-  NodeType,
-  PlainNode,
-  NodeWithLoc,
-  NodeMap,
-  BaseNode,
-  Location,
-} from '../nodes'
+import { d, Nodes, NodeWithLoc, Location, NodeType } from '../nodes'
 import { createError } from './create-error'
 import { TokenReader } from './token-reader'
 
-import { isNode } from '../utils/node'
 import { isToken } from '../utils/token'
 import { parseStmt } from './statement/index'
 import { parseCompound } from './compound'
 import { buildDebug } from '../utils/debug'
+import { buildProgram } from '../nodes/builders.gen'
 
 const debug = buildDebug('parser')
 
-export const parse = (source: string): Program => new Parser(source).parse()
+export const parse = (source: string): d.Program => new Parser(source).parse()
 
 export class Parser extends TokenReader {
   source: string
@@ -34,68 +24,57 @@ export class Parser extends TokenReader {
     this.source = source
   }
 
-  parse(): Program {
-    const node = this.startNode()
+  parse(): d.Program {
+    const loc = this.startNode()
 
-    const body = parseCompound<Statement>(this, parseStmt)
+    const body = parseCompound<d.Statement>(this, parseStmt)
 
-    return this.finishNode(Program, node, {
-      body,
-    })
+    // TODO: overload builder func type,
+    // to detect we pass `loc` and its return type is surely `NodeWithLoc`
+    return this.finishNode(buildProgram(body, loc))
   }
 
-  // TODO: no need to create empty node just to keep start location
-  startNode(loc?: Location): NodeWithLoc<BaseNode> {
-    const node = Object.create(BaseNode.prototype)
+  startNode(): Location {
+    const startToken = this.getCurrentToken()
+    const start = startToken
+      ? startToken.loc.start
+      : { offset: 0, line: 1, column: 1 }
 
-    if (loc) {
-      node.loc = loc
-    } else {
-      const startToken = this.getCurrentToken()
-      const start = startToken
-        ? startToken.loc.start
-        : { offset: 0, line: 1, column: 1 }
-
-      node.loc = {
-        start,
-        end: undefined,
-      }
+    return {
+      start,
+      end: {
+        offset: NaN,
+        line: NaN,
+        column: NaN,
+      },
     }
-
-    return node
   }
 
-  finishNode<N extends Node>(
-    type: Class<N>,
-    node: NodeWithLoc,
-    values: PlainNode<N>
+  finishNode<T extends NodeType, N extends Nodes[T]>(
+    node: NodeWithLoc<N>
   ): NodeWithLoc<N> {
     node.loc.end = this.getCurrentToken().loc.end
 
-    const finished = new type(values)
-
-    Object.assign(finished, node)
-
     if (debug.enabled) {
-      const log = { ...finished }
+      const log = { ...node }
       delete log.loc
       debug(log)
     }
 
-    return finished as NodeWithLoc<N>
+    return node as NodeWithLoc<N>
   }
 
   validateNode<T extends Array<NodeType>>(
     node: NodeWithLoc,
-    type: T,
-    message?: string
-  ): NodeMap[T[number]] {
-    if (!isNode(node, type)) {
-      message = 'expected ' + type.join(', ') + (message ? message : '')
-
-      const loc = node.loc
-
-      throw createError(this.source, message, loc.start, loc.end)
+    ...types: T
+  ): NodeWithLoc<Nodes[T[number]]> {
+    if (!node.is(...types)) {
+      throw createError(
+        this.source,
+        'expected ' + types.join(', '),
+        node.loc.start,
+        node.loc.end
+      )
     }
 
     return node

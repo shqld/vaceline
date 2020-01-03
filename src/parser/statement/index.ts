@@ -1,5 +1,4 @@
-import * as n from '../../nodes'
-import { NodeWithLoc } from '../../nodes'
+import { d, b, Location } from '../../nodes'
 import { isToken } from '../../utils/token'
 
 import { parseExpr } from '../expression'
@@ -15,97 +14,77 @@ const ensureSemi = (p: Parser) => {
   p.validateToken(p.read(), 'symbol', ';')
 }
 
-export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
-  const node = p.startNode()
+export const parseStmt = (p: Parser, token: Token = p.read()): d.Statement => {
+  const loc = p.startNode()
 
   if (!keywords.has(token.value)) {
     const body = parseExpr(p, token)
 
     ensureSemi(p)
 
-    return p.finishNode(n.ExpressionStatement, node, {
-      body,
-    })
+    return p.finishNode(b.buildExpressionStatement(body, loc))
   }
 
   if (token.value === 'set' || token.value === 'add') {
-    const left = p.validateNode(parseExpr(p), ['Identifier', 'Member'])
+    const left = p.validateNode(parseExpr(p), 'Identifier', 'Member')
     const operator = p.validateToken(p.read(), 'operator').value
     const right = parseExpr(p)
 
     ensureSemi(p)
 
-    const type: Class<n.Node> =
-      token.value === 'add' ? n.AddStatement : n.SetStatement
+    const builder =
+      token.value === 'add' ? b.buildAddStatement : b.buildSetStatement
 
-    return p.finishNode(type, node, {
-      left,
-      operator,
-      right,
-    }) as n.AddStatement | n.SetStatement
+    return p.finishNode(builder(left, right, operator, loc))
   }
 
   if (token.value === 'unset') {
-    const id = p.validateNode(parseExpr(p), ['Identifier', 'Member'])
+    const id = p.validateNode(parseExpr(p), 'Identifier', 'Member')
 
     ensureSemi(p)
 
-    return p.finishNode(n.UnsetStatement, node, {
-      id,
-    })
+    return p.finishNode(b.buildUnsetStatement(id, loc))
   }
 
   if (token.value === 'include') {
-    const module = p.validateNode(parseExpr(p), ['StringLiteral'])
+    const module = p.validateNode(parseExpr(p), 'StringLiteral')
 
     ensureSemi(p)
 
-    return p.finishNode(n.IncludeStatement, node, {
-      module,
-    })
+    return p.finishNode(b.buildIncludeStatement(module, loc))
   }
 
   if (token.value === 'import') {
-    const module = p.validateNode(
-      parseExpr(p),
-      ['Identifier'],
-      'Only identifier is valid for import'
-    )
+    const module = p.validateNode(parseExpr(p), 'Identifier')
 
     ensureSemi(p)
 
-    return p.finishNode(n.ImportStatement, node, {
-      module,
-    })
+    return p.finishNode(b.buildImportStatement(module, loc))
   }
 
   if (token.value === 'call') {
-    const subroutine = p.validateNode(parseExpr(p), ['Identifier'])
+    const subroutine = p.validateNode(parseExpr(p), 'Identifier')
 
     ensureSemi(p)
 
-    return p.finishNode(n.CallStatement, node, {
-      subroutine,
-    })
+    return p.finishNode(b.buildCallStatement(subroutine, loc))
   }
 
   if (token.value === 'declare') {
     p.validateToken(p.read(), 'ident', 'local')
 
-    const id = p.validateNode(parseIdentifier(p, p.read()), [
+    const id = p.validateNode(
+      parseIdentifier(p, p.read()),
       'Identifier',
-      'Member',
-    ])
+      'Member'
+    )
 
     const valueType = p.validateToken(p.read(), 'ident')
-      .value as n.DeclareValueType
+      .value as d.DeclareValueType
 
     ensureSemi(p)
 
-    return p.finishNode(n.DeclareStatement, node, {
-      id,
-      valueType,
-    })
+    return p.finishNode(b.buildDeclareStatement(id, valueType, loc))
   }
 
   if (token.value === 'return') {
@@ -132,11 +111,11 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
       )
     }
 
-    const action = returnActionToken.value as n.ReturnActionName
+    const action = returnActionToken.value as d.ReturnActionName
 
     ensureSemi(p)
 
-    return p.finishNode(n.ReturnStatement, node, { action })
+    return p.finishNode(b.buildReturnStatement(action, loc))
   }
 
   if (token.value === 'error') {
@@ -146,25 +125,20 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
     if (isToken(p.peek(), 'symbol', ';')) {
       p.take()
 
-      return p.finishNode(n.ErrorStatement, node, {
-        status,
-      })
+      return p.finishNode(b.buildErrorStatement(status, undefined, loc))
     }
 
     const message = parseExpr(p)
 
     ensureSemi(p)
 
-    return p.finishNode(n.ErrorStatement, node, {
-      status,
-      message,
-    })
+    return p.finishNode(b.buildErrorStatement(status, message, loc))
   }
 
   if (token.value === 'restart') {
     ensureSemi(p)
 
-    return p.finishNode(n.RestartStatement, node, {})
+    return p.finishNode(b.buildRestartStatement(loc))
   }
 
   if (token.value === 'synthetic') {
@@ -172,9 +146,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(n.SyntheticStatement, node, {
-      response,
-    })
+    return p.finishNode(b.buildSyntheticStatement(response, loc))
   }
 
   if (token.value === 'log') {
@@ -182,68 +154,53 @@ export const parseStmt = (p: Parser, token: Token = p.read()): n.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(n.LogStatement, node, {
-      content,
-    })
+    return p.finishNode(b.buildLogStatement(content, loc))
   }
 
   if (token.value === 'if') {
-    return parseIfStatement(p, node)
+    return parseIfStatement(p, loc)
   }
 
   if (token.value === 'sub') {
-    const id = p.validateNode(parseExpr(p, p.read(), true), ['Identifier'])
+    const id = p.validateNode(parseExpr(p, p.read(), true), 'Identifier')
     p.validateToken(p.read(), 'symbol', '{')
 
     const body = parseCompound(p, parseStmt, '}')
 
-    return p.finishNode(n.SubroutineStatement, node, {
-      id,
-      body,
-    })
+    return p.finishNode(b.buildSubroutineStatement(id, body, loc))
   }
 
   if (token.value === 'acl') {
-    const id = p.validateNode(parseExpr(p, p.read(), true), ['Identifier'])
+    const id = p.validateNode(parseExpr(p, p.read(), true), 'Identifier')
     p.validateToken(p.read(), 'symbol', '{')
 
     const body = parseCompound(p, parseIp, '}', undefined, true)
 
-    return p.finishNode(n.AclStatement, node, {
-      id,
-      body,
-    })
+    return p.finishNode(b.buildAclStatement(id, body, loc))
   }
 
   if (token.value === 'backend') {
-    const id = p.validateNode(parseExpr(p, p.read(), true), ['Identifier'])
+    const id = p.validateNode(parseExpr(p, p.read(), true), 'Identifier')
 
     p.validateToken(p.read(), 'symbol', '{')
 
     const body = parseCompound(p, parseBackendDef, '}')
 
-    return p.finishNode(n.BackendStatement, node, {
-      id,
-      body,
-    })
+    return p.finishNode(b.buildBackendStatement(id, body, loc))
   }
 
   if (token.value === 'table') {
-    return parseTableStatement(p, node)
+    return parseTableStatement(p, loc)
   }
 
-  throw createError(
-    p.source,
-    '[stmt] not implemented yet',
-    node.loc.start,
-    node.loc.end
-  )
+  throw createError(p.source, '[stmt] not implemented yet', loc.start, loc.end)
 }
 
-const parseBackendDef = (p: Parser, token = p.read()): n.BackendDefinition => {
-  const node = p.startNode()
+const parseBackendDef = (p: Parser, token = p.read()): d.BackendDefinition => {
+  const loc = p.startNode()
+
   p.validateToken(token, 'symbol', '.')
-  const key = p.validateNode(parseExpr(p), ['Identifier']).name
+  const key = p.validateNode(parseExpr(p), 'Identifier').name
   p.validateToken(p.read(), 'operator', '=')
 
   let value
@@ -256,10 +213,10 @@ const parseBackendDef = (p: Parser, token = p.read()): n.BackendDefinition => {
     ensureSemi(p)
   }
 
-  return p.finishNode(n.BackendDefinition, node, { key, value })
+  return p.finishNode(b.buildBackendDefinition(key, value, loc))
 }
 
-const parseIfStatement = (p: Parser, node: NodeWithLoc): n.IfStatement => {
+const parseIfStatement = (p: Parser, loc: Location): d.IfStatement => {
   p.validateToken(p.read(), 'symbol', '(')
 
   const test = parseExpr(p)
@@ -270,7 +227,7 @@ const parseIfStatement = (p: Parser, node: NodeWithLoc): n.IfStatement => {
 
   const consequent = parseCompound(p, parseStmt, '}')
 
-  let alternative: n.IfStatement | Array<n.Statement> | undefined = undefined
+  let alternative: d.IfStatement | Array<d.Statement> | undefined = undefined
 
   const next = p.peek()
 
@@ -289,15 +246,11 @@ const parseIfStatement = (p: Parser, node: NodeWithLoc): n.IfStatement => {
     }
   }
 
-  return p.finishNode(n.IfStatement, node, {
-    test,
-    consequent,
-    alternative,
-  })
+  return p.finishNode(b.buildIfStatement(test, consequent, alternative, loc))
 }
 
-const parseTableDef = (p: Parser, token: Token): n.TableDefinition => {
-  const node = p.startNode()
+const parseTableDef = (p: Parser, token: Token): d.TableDefinition => {
+  const loc = p.startNode()
 
   const key = p.validateToken(token, 'string').value
 
@@ -309,24 +262,15 @@ const parseTableDef = (p: Parser, token: Token): n.TableDefinition => {
     p.take()
   }
 
-  return p.finishNode(n.TableDefinition, node, {
-    key,
-    value,
-  })
+  return p.finishNode(b.buildTableDefinition(key, value, loc))
 }
 
-const parseTableStatement = (
-  p: Parser,
-  node: NodeWithLoc
-): n.TableStatement => {
-  const id = p.validateNode(parseIdentifier(p, p.read()), ['Identifier'])
+const parseTableStatement = (p: Parser, loc: Location): d.TableStatement => {
+  const id = p.validateNode(parseIdentifier(p, p.read()), 'Identifier')
 
   p.validateToken(p.read(), 'symbol', '{')
 
   const body = parseCompound(p, parseTableDef, '}')
 
-  return p.finishNode(n.TableStatement, node, {
-    id,
-    body,
-  })
+  return p.finishNode(b.buildTableStatement(id, body, loc))
 }

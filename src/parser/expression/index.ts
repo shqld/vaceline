@@ -1,4 +1,4 @@
-import * as n from '../../nodes'
+import { d, b, NodeWithLoc } from '../../nodes'
 import { isToken } from '../../utils/token'
 
 import { Token } from '../tokenizer'
@@ -20,12 +20,12 @@ export const parseExpr = (
   p: Parser,
   token: Token = p.read(),
   shortcut = false
-): n.NodeWithLoc<n.Expression> => {
+): NodeWithLoc<d.Expression> => {
   const expr = parseOperatorExpr(p, token)
 
   if (shortcut) return expr
 
-  const node = p.startNode()
+  const loc = p.startNode()
 
   if (isToken(token, 'symbol', ';')) {
     return expr
@@ -71,7 +71,5 @@ export const parseExpr = (
     return expr
   }
 
-  return p.finishNode(n.ConcatExpression, node, {
-    body: buf,
-  })
+  return p.finishNode(b.buildConcatExpression(buf, loc))
 }

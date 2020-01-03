@@ -7,13 +7,13 @@ import {
   generate,
   // traverse,
 } from './lib'
-import { Program } from './nodes'
+import { d } from './nodes'
 import { GenerateOptions } from './generator'
 
 interface TransformResult {
   code: string
   map: string
-  ast: Program
+  ast: d.Program
 }
 
 export { parse, generate as transformFromAst }

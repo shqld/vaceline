@@ -1,6 +1,6 @@
-import { Node, BaseNode } from './nodes'
+import { BaseNode } from './nodes'
 
-export const hydrate = (raw: string): Node =>
+export const hydrate = (raw: string): BaseNode =>
   JSON.parse(raw, (_, value) => {
     if (value && typeof value.type === 'string') {
       // const node = Node.create(value.type as NodeType, value)

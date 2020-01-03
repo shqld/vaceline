@@ -1,12 +1,6 @@
 import { Parser } from '../../src/parser'
 import { parseExpr } from '../../src/parser/expression/index'
-import {
-  BinaryExpression,
-  LogicalExpression,
-  Member,
-  UnaryExpression,
-  ValuePair,
-} from '../../src/nodes'
+import { d } from '../../src/nodes'
 
 const parse = (source: string) => parseExpr(new Parser(source))
 
@@ -50,13 +44,13 @@ describe('Expression', () => {
       expect(parse('http_status_matches(resp.status, "404")')).toMatchObject({
         type: 'FunCallExpression',
         callee: { type: 'Identifier', name: 'http_status_matches' },
-        arguments: [{ type: 'Member' }, { type: 'StringLiteral' }],
+        args: [{ type: 'Member' }, { type: 'StringLiteral' }],
       })
 
       expect(parse('if (req.http.a, var.b, var.c)')).toMatchObject({
         type: 'FunCallExpression',
         callee: { type: 'Identifier', name: 'if' },
-        arguments: [{ type: 'Member' }, { type: 'Member' }, { type: 'Member' }],
+        args: [{ type: 'Member' }, { type: 'Member' }, { type: 'Member' }],
       })
 
       //   expect(() =>
@@ -77,7 +71,7 @@ describe('Expression', () => {
         argument: {
           type: 'Member',
         },
-      } as UnaryExpression)
+      } as d.UnaryExpression)
     })
   })
 
@@ -103,7 +97,7 @@ describe('Expression', () => {
           loc: { start: { offset: 5 }, end: { offset: 5 } },
         },
         loc: { start: { offset: 0 }, end: { offset: 5 } },
-      } as BinaryExpression)
+      } as d.BinaryExpression)
 
       expect(parse('req.http.a ~ "a"')).toMatchObject({
         type: 'BinaryExpression',
@@ -131,14 +125,14 @@ describe('Expression', () => {
           loc: { start: { offset: 10 }, end: { offset: 10 } },
         },
         loc: { start: { offset: 0 }, end: { offset: 10 } },
-      } as BinaryExpression)
+      } as d.BinaryExpression)
     })
 
     it('should take the precedence over first one', () => {
       expect(parse('a == b == c')).toMatchObject({
         left: { left: { name: 'a' }, right: { name: 'b' } },
         right: { name: 'c' },
-      } as BinaryExpression)
+      } as d.BinaryExpression)
     })
   })
 
@@ -156,7 +150,7 @@ describe('Expression', () => {
           loc: { start: { offset: 5 }, end: { offset: 5 } },
         },
         loc: { start: { offset: 0 }, end: { offset: 5 } },
-      } as LogicalExpression)
+      } as d.LogicalExpression)
 
       expect(parse('a || b')).toMatchObject({
         type: 'LogicalExpression',
@@ -201,7 +195,7 @@ describe('Expression', () => {
       expect(parse('a && b && c')).toMatchObject({
         left: { left: { name: 'a' }, right: { name: 'b' } },
         right: { name: 'c' },
-      } as LogicalExpression)
+      } as d.LogicalExpression)
     })
 
     it('should take the precedence over `&&`', () => {
@@ -209,7 +203,7 @@ describe('Expression', () => {
         type: 'LogicalExpression',
         operator: '||',
         right: { operator: '&&' },
-      } as LogicalExpression)
+      } as d.LogicalExpression)
     })
 
     it('should take the precedence over BinaryExpression', () => {
@@ -218,7 +212,7 @@ describe('Expression', () => {
         operator: '&&',
         left: { type: 'BinaryExpression', operator: '==' },
         right: { type: 'BinaryExpression', operator: '!=' },
-      } as LogicalExpression)
+      } as d.LogicalExpression)
     })
 
     // TODO: move to BooleanExpression test
@@ -241,7 +235,7 @@ describe('Expression', () => {
           },
         },
         right: { name: 'd' },
-      } as BinaryExpression)
+      } as d.BinaryExpression)
     })
   })
 
@@ -251,7 +245,7 @@ describe('Expression', () => {
         type: 'Member',
         base: { type: 'Identifier', name: 'a' },
         member: { type: 'Identifier', name: 'b' },
-      } as Member)
+      } as d.Member)
 
       expect(parse('a.b.c')).toMatchObject({
         type: 'Member',
@@ -261,7 +255,7 @@ describe('Expression', () => {
           member: { type: 'Identifier', name: 'b' },
         },
         member: { type: 'Identifier', name: 'c' },
-      } as Member)
+      } as d.Member)
     })
   })
 
@@ -271,7 +265,7 @@ describe('Expression', () => {
         type: 'ValuePair',
         base: { type: 'Identifier', name: 'Cookie' },
         name: { type: 'Identifier', name: 'Vaceline' },
-      } as ValuePair)
+      } as d.ValuePair)
 
       // This is actually invalid (makes no sense)
       // but apparently Fastly's Varnish doesn't throw any errors

@@ -1,16 +1,5 @@
 import { Parser } from '../../src/parser'
-import {
-  AclStatement,
-  LogStatement,
-  BackendStatement,
-  IfStatement,
-  ImportStatement,
-  ReturnStatement,
-  ErrorStatement,
-  RestartStatement,
-  SyntheticStatement,
-  TableStatement,
-} from '../../src/nodes'
+import { d } from '../../src/nodes'
 import { parseStmt } from '../../src/parser/statement/index'
 import { parseIp } from '../../src/parser/statement/ip'
 
@@ -25,7 +14,7 @@ describe('parseStatement', () => {
           type: 'ConcatExpression',
           body: [{ type: 'StringLiteral' }, { type: 'Member' }],
         },
-      } as LogStatement)
+      } as d.LogStatement)
 
       expect(
         parse(`
@@ -59,7 +48,7 @@ acl my_acls {
           { type: 'Ip', loc: { start: { line: 4 } } },
         ],
         loc: { start: { line: 1 }, end: { line: 5 } },
-      } as AclStatement)
+      } as d.AclStatement)
     })
 
     it('should parse Ip', () => {
@@ -174,7 +163,7 @@ backend my_backend {
             ],
           },
         ],
-      } as BackendStatement)
+      } as d.BackendStatement)
     })
   })
 
@@ -218,7 +207,7 @@ if (true) {
             },
           },
         },
-      } as IfStatement)
+      } as d.IfStatement)
     })
   })
 
@@ -234,7 +223,7 @@ import module;
           type: 'Identifier',
           name: 'module',
         },
-      } as ImportStatement)
+      } as d.ImportStatement)
     })
 
     it('should not parse `import` with string literal', () => {
@@ -242,7 +231,7 @@ import module;
         parse(`
 import "module";
     `)
-      ).toThrow(/Only identifier is valid for import/)
+      ).toThrow(/expected Identifier/)
     })
   })
 
@@ -255,7 +244,7 @@ import "module";
       ).toMatchObject({
         type: 'ReturnStatement',
         action: 'pass',
-      } as ReturnStatement)
+      } as d.ReturnStatement)
     })
 
     it('should parse also without parens', () => {
@@ -266,7 +255,7 @@ import "module";
       ).toMatchObject({
         type: 'ReturnStatement',
         action: 'pass',
-      } as ReturnStatement)
+      } as d.ReturnStatement)
     })
 
     it('should not parse with invalid action arg', () => {
@@ -287,7 +276,7 @@ import "module";
       ).toMatchObject({
         type: 'ErrorStatement',
         status: 700,
-      } as ErrorStatement)
+      } as d.ErrorStatement)
     })
 
     it('should parse with error message', () => {
@@ -302,7 +291,7 @@ import "module";
           type: 'StringLiteral',
           value: '"Special Error"',
         },
-      } as ErrorStatement)
+      } as d.ErrorStatement)
     })
   })
 
@@ -314,7 +303,7 @@ import "module";
       `)
       ).toMatchObject({
         type: 'RestartStatement',
-      } as RestartStatement)
+      } as d.RestartStatement)
     })
 
     it('should not parse with argment', () => {
@@ -338,7 +327,7 @@ import "module";
           type: 'StringLiteral',
           value: '"response"',
         },
-      } as SyntheticStatement)
+      } as d.SyntheticStatement)
     })
 
     it('should parse with ConcatExpression', () => {
@@ -351,7 +340,7 @@ import "module";
         response: {
           type: 'ConcatExpression',
         },
-      } as SyntheticStatement)
+      } as d.SyntheticStatement)
     })
 
     it('should not parse with argment', () => {
@@ -388,7 +377,7 @@ import "module";
             value: '"value"',
           },
         ],
-      } as TableStatement)
+      } as d.TableStatement)
     })
 
     it('should parse with trailing comma of last value', () => {
@@ -400,7 +389,7 @@ import "module";
       `)
       ).toMatchObject({
         type: 'TableStatement',
-      } as TableStatement)
+      } as d.TableStatement)
     })
   })
 })
