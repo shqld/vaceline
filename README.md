@@ -4,6 +4,8 @@ Vaceline is a tool for trasforming VCL with JS plugins via AST.
 
 _NOTE: this project is still in development._
 
+You can [try it on the Web now](https://shqld.github.io/vaceline) (also still beta)
+
 ## Install
 
 ```sh
