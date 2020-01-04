@@ -12,39 +12,39 @@
     <title>Vaceline</title>
   </head>
   <body>
-    <section class="section">
+    <main id="main" class="section">
       <h1 class="title">Vaceline</h1>
 
       <div class="columns">
         <div class="column">
           <div id="source" class="container">
-            <div class="control">
-              <h2 class="subtitle">source</h2>
-              <textarea
-                class="textarea is-primary"
-                placeholder="Your VCL"
-                rows="10"
-              ></textarea>
-            </div>
+            <h2 class="subtitle">source</h2>
+            <textarea
+              class="textarea is-primary is-family-code"
+              placeholder="Your VCL"
+              rows="20"
+            ></textarea>
             <button class="button">Transpile</button>
           </div>
         </div>
 
         <div class="column">
           <div id="result" class="container">
-            <div class="control">
-              <h2 class="subtitle">result</h2>
-              <textarea
-                class="textarea"
-                rows="10"
-                placeholder="The result will be output here"
-                disabled
-                readonly
-              ></textarea>
+            <h2 class="subtitle">result</h2>
+            <textarea
+              class="textarea is-family-code"
+              rows="20"
+              placeholder="The result will be output here"
+              disabled
+              readonly
+            ></textarea>
+            <div id="render" class="buttons has-addons">
+              <button class="button is-info is-selected">Code</button>
+              <button class="button">AST</button>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </main>
   </body>
 </html>
