@@ -8,7 +8,7 @@ const distWeb = path.resolve('public/dist')
 const config: webpack.Configuration = {
   ...browser,
   mode: 'production',
-  entry: path.resolve('src/web/index.ts'),
+  entry: path.resolve('src/web/index.tsx'),
   output: {
     path: distWeb,
     filename: 'index.js',

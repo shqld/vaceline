@@ -15,7 +15,7 @@ export const core: Configuration = {
   },
   devtool: isDev ? 'eval-source-map' : false,
   resolve: {
-    extensions: ['.js', '.ts'],
+    extensions: ['.ts', '.tsx', '.js'],
   },
   module: {
     rules: [
