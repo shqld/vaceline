@@ -1,7 +1,7 @@
 /* @jsx h */
 import { h, ComponentType } from 'preact'
 import { useState } from 'preact/hooks'
-import { Result } from '.'
+import { Result } from './type'
 
 export const ResultPanel: ComponentType<{ result: Result | null }> = ({
   result,
