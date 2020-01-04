@@ -34,7 +34,7 @@
     "scope-enum": [
       2,
       "always",
-      ["ast", "spec", "parse", "gen", "traverse", "plugin", "cli"]
+      ["ast", "spec", "parse", "gen", "traverse", "plugin", "cli", "web"]
     ]
   }
 }
