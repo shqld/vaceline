@@ -1,11 +1,7 @@
-import { DefinePlugin } from 'webpack'
 import merge from 'webpack-merge'
-import WebpackBar from 'webpackbar'
 
 import { core } from './core'
-
-// eslint-disable-next-line
-const VisualizerPlugin = require('webpack-visualizer-plugin')
+import { DefinePlugin } from 'webpack'
 
 export interface BrowserOptions {
   isModule: boolean
@@ -31,12 +27,7 @@ export const browser = merge(core, {
     new DefinePlugin({
       BUILD_PLATFORM: `'browser'`,
     }),
-    new VisualizerPlugin(),
-    new WebpackBar({
-      name: 'browser/module',
-      color: 'green',
-    }),
-  ].filter(Boolean),
+  ],
   node: {
     module: 'empty',
     dgram: 'empty',

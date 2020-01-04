@@ -1,7 +1,14 @@
 /* @jsx h */
 import { h, ComponentType } from 'preact'
 import { useState, useRef, useEffect, StateUpdater } from 'preact/hooks'
-import { runTranspile, Result } from '.'
+import * as Comlink from 'comlink'
+import { Result } from './type'
+
+type Transpile = (source: string) => Promise<Result>
+
+const transpile = (Comlink.wrap(
+  new Worker('./dist/worker.js')
+) as unknown) as Transpile
 
 export const SourcePanel: ComponentType<{
   setResult: StateUpdater<Result | null>
@@ -9,16 +16,16 @@ export const SourcePanel: ComponentType<{
   const ref = useRef<HTMLTextAreaElement>()
   const [source, setSource] = useState(localStorage.getItem('source') ?? '')
 
-  const run = () => setResult(runTranspile(source))
+  const run = async () => setResult(await transpile(source))
 
   useEffect(() => {
     // inintial props.value won't be rendered when hydrating
     if (ref.current) ref.current.value = source
   }, [])
 
-  const onKeydown = ({ code, metaKey }: KeyboardEvent) => {
+  const onKeydown = async ({ code, metaKey }: KeyboardEvent) => {
     if (code === 'Enter' && metaKey && ref.current) {
-      setResult(runTranspile(ref.current.value))
+      setResult(await transpile(ref.current.value))
     }
   }
   useEffect(() => {
