@@ -14,7 +14,20 @@ const App = () => {
 
   return (
     <main id="main" class="section">
-      <h1 className="title">Vaceline</h1>
+      <h1 class="title">
+        <a
+          href="https://shqld.github.io/vaceline"
+          style="vertical-align: top; margin-right: 1rem;"
+        >
+          Vaceline
+        </a>
+        <a
+          href="https://github.com/shqld/vaceline"
+          style="vertical-align: top;"
+        >
+          <img src="./i-github.png" alt="vaceline" style="height: 2rem;" />
+        </a>
+      </h1>
 
       <div className="columns">
         <div className="column">
