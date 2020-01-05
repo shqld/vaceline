@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`(AclStatement) format 1`] = `
+exports[`(AclStatement) format basic 1`] = `
 ---------- (input) ---------------------------------------------------------------
 acl aaa {
   "127.0.0.1";
@@ -14,15 +14,44 @@ acl aaa {
 }
 `;
 
-exports[`(AddStatement) format<long> 1`] = `
+exports[`(AddStatement) format TODO: cover operand types
+addition 1`] = `
+---------- (input) ---------------------------------------------------------------
+add var.vacel += "vacel";
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(AddStatement) format assignment 1`] = `
 ---------- (input) ---------------------------------------------------------------
 add var.vacel = "vacel";
 
 ---------- (output) --------------------------------------------------------------
-add var.vacel = "vacel";
 `;
 
-exports[`(AddStatement) format<long> 2`] = `
+exports[`(AddStatement) format division 1`] = `
+---------- (input) ---------------------------------------------------------------
+add var.vacel /= "vacel";
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(AddStatement) format multiplication 1`] = `
+---------- (input) ---------------------------------------------------------------
+add var.vacel *= "vacel";
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(AddStatement) format substraction 1`] = `
+---------- (input) ---------------------------------------------------------------
+add var.vacel -= "vacel";
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(AddStatement) format<long> TODO: cover operand types
+addition 1`] = `
 ---------- (input) ---------------------------------------------------------------
 add var.vacel += "vacel";
 
@@ -30,40 +59,40 @@ add var.vacel += "vacel";
 add var.vacel += "vacel";
 `;
 
-exports[`(AddStatement) format<long> 3`] = `
----------- (input) ---------------------------------------------------------------
-add var.vacel -= "vacel";
-
----------- (output) --------------------------------------------------------------
-add var.vacel -= "vacel";
-`;
-
-exports[`(AddStatement) format<long> 4`] = `
----------- (input) ---------------------------------------------------------------
-add var.vacel *= "vacel";
-
----------- (output) --------------------------------------------------------------
-add var.vacel *= "vacel";
-`;
-
-exports[`(AddStatement) format<long> 5`] = `
----------- (input) ---------------------------------------------------------------
-add var.vacel /= "vacel";
-
----------- (output) --------------------------------------------------------------
-add var.vacel /= "vacel";
-`;
-
-exports[`(AddStatement) format<short> 1`] = `
+exports[`(AddStatement) format<long> assignment 1`] = `
 ---------- (input) ---------------------------------------------------------------
 add var.vacel = "vacel";
 
 ---------- (output) --------------------------------------------------------------
-add var.vacel =
-  "vacel";
+add var.vacel = "vacel";
 `;
 
-exports[`(AddStatement) format<short> 2`] = `
+exports[`(AddStatement) format<long> division 1`] = `
+---------- (input) ---------------------------------------------------------------
+add var.vacel /= "vacel";
+
+---------- (output) --------------------------------------------------------------
+add var.vacel /= "vacel";
+`;
+
+exports[`(AddStatement) format<long> multiplication 1`] = `
+---------- (input) ---------------------------------------------------------------
+add var.vacel *= "vacel";
+
+---------- (output) --------------------------------------------------------------
+add var.vacel *= "vacel";
+`;
+
+exports[`(AddStatement) format<long> substraction 1`] = `
+---------- (input) ---------------------------------------------------------------
+add var.vacel -= "vacel";
+
+---------- (output) --------------------------------------------------------------
+add var.vacel -= "vacel";
+`;
+
+exports[`(AddStatement) format<short> TODO: cover operand types
+addition 1`] = `
 ---------- (input) ---------------------------------------------------------------
 add var.vacel += "vacel";
 
@@ -72,25 +101,16 @@ add var.vacel +=
   "vacel";
 `;
 
-exports[`(AddStatement) format<short> 3`] = `
+exports[`(AddStatement) format<short> assignment 1`] = `
 ---------- (input) ---------------------------------------------------------------
-add var.vacel -= "vacel";
+add var.vacel = "vacel";
 
 ---------- (output) --------------------------------------------------------------
-add var.vacel -=
+add var.vacel =
   "vacel";
 `;
 
-exports[`(AddStatement) format<short> 4`] = `
----------- (input) ---------------------------------------------------------------
-add var.vacel *= "vacel";
-
----------- (output) --------------------------------------------------------------
-add var.vacel *=
-  "vacel";
-`;
-
-exports[`(AddStatement) format<short> 5`] = `
+exports[`(AddStatement) format<short> division 1`] = `
 ---------- (input) ---------------------------------------------------------------
 add var.vacel /= "vacel";
 
@@ -99,7 +119,50 @@ add var.vacel /=
   "vacel";
 `;
 
-exports[`(BackendStatement) format<long> 1`] = `
+exports[`(AddStatement) format<short> multiplication 1`] = `
+---------- (input) ---------------------------------------------------------------
+add var.vacel *= "vacel";
+
+---------- (output) --------------------------------------------------------------
+add var.vacel *=
+  "vacel";
+`;
+
+exports[`(AddStatement) format<short> substraction 1`] = `
+---------- (input) ---------------------------------------------------------------
+add var.vacel -= "vacel";
+
+---------- (output) --------------------------------------------------------------
+add var.vacel -=
+  "vacel";
+`;
+
+exports[`(BackendStatement) format basic 1`] = `
+---------- (input) ---------------------------------------------------------------
+backend vaceline_backend {
+  .connect_timeout = 1s;
+  .dynamic = true;
+  .port = "443";
+  .host = "vaceline.io";
+  .first_byte_timeout = 5s;
+  .max_connections = 100;
+  .between_bytes_timeout = 10s;
+  .ssl = true;
+  .probe = {
+    .request = "GET /healthcheck HTTP/1.1" "Host: vaceline.io" "Connection: close" "User-Agent: Vaceline healthcheck";
+    .threshold = 1;
+    .window = 2;
+    .timeout = 10s;
+    .initial = 1;
+    .expected_response = 200;
+    .interval = 60s;
+  }
+}
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(BackendStatement) format<long> basic 1`] = `
 ---------- (input) ---------------------------------------------------------------
 backend vaceline_backend {
   .connect_timeout = 1s;
@@ -143,7 +206,7 @@ backend vaceline_backend {
 }
 `;
 
-exports[`(BackendStatement) format<short> 1`] = `
+exports[`(BackendStatement) format<short> basic 1`] = `
 ---------- (input) ---------------------------------------------------------------
 backend vaceline_backend {
   .connect_timeout = 1s;
@@ -190,7 +253,50 @@ backend vaceline_backend {
 }
 `;
 
-exports[`(BinaryExpression) format<long> 1`] = `
+exports[`(BinaryExpression) format combination with LogicalExpression 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Debug == "1" && "2" == "3"
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(BinaryExpression) format equal 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Debug == "1"
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(BinaryExpression) format match 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Debug ~ "1"
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(BinaryExpression) format multiple 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Debug == "1" == "2" == "3"
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(BinaryExpression) format not equal 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Debug != "1"
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(BinaryExpression) format<long> combination with LogicalExpression 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Debug == "1" && "2" == "3"
+
+---------- (output) --------------------------------------------------------------
+req.http.Debug == "1" && "2" == "3"
+`;
+
+exports[`(BinaryExpression) format<long> equal 1`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Debug == "1"
 
@@ -198,15 +304,7 @@ req.http.Debug == "1"
 req.http.Debug == "1"
 `;
 
-exports[`(BinaryExpression) format<long> 2`] = `
----------- (input) ---------------------------------------------------------------
-req.http.Debug != "1"
-
----------- (output) --------------------------------------------------------------
-req.http.Debug != "1"
-`;
-
-exports[`(BinaryExpression) format<long> 3`] = `
+exports[`(BinaryExpression) format<long> match 1`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Debug ~ "1"
 
@@ -214,7 +312,7 @@ req.http.Debug ~ "1"
 req.http.Debug ~ "1"
 `;
 
-exports[`(BinaryExpression) format<long> 4`] = `
+exports[`(BinaryExpression) format<long> multiple 1`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Debug == "1" == "2" == "3"
 
@@ -222,61 +320,15 @@ req.http.Debug == "1" == "2" == "3"
 ((req.http.Debug == "1") == "2") == "3"
 `;
 
-exports[`(BinaryExpression) format<long> 5`] = `
----------- (input) ---------------------------------------------------------------
-req.http.Debug == "1" && "2" == "3"
-
----------- (output) --------------------------------------------------------------
-req.http.Debug == "1" && "2" == "3"
-`;
-
-exports[`(BinaryExpression) format<short> 1`] = `
----------- (input) ---------------------------------------------------------------
-req.http.Debug == "1"
-
----------- (output) --------------------------------------------------------------
-req
-  .http
-  .Debug ==
-  "1"
-`;
-
-exports[`(BinaryExpression) format<short> 2`] = `
+exports[`(BinaryExpression) format<long> not equal 1`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Debug != "1"
 
 ---------- (output) --------------------------------------------------------------
-req
-  .http
-  .Debug !=
-  "1"
+req.http.Debug != "1"
 `;
 
-exports[`(BinaryExpression) format<short> 3`] = `
----------- (input) ---------------------------------------------------------------
-req.http.Debug ~ "1"
-
----------- (output) --------------------------------------------------------------
-req
-  .http
-  .Debug ~
-  "1"
-`;
-
-exports[`(BinaryExpression) format<short> 4`] = `
----------- (input) ---------------------------------------------------------------
-req.http.Debug == "1" == "2" == "3"
-
----------- (output) --------------------------------------------------------------
-((req
-  .http
-  .Debug ==
-  "1") ==
-  "2") ==
-  "3"
-`;
-
-exports[`(BinaryExpression) format<short> 5`] = `
+exports[`(BinaryExpression) format<short> combination with LogicalExpression 1`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Debug == "1" && "2" == "3"
 
@@ -289,7 +341,67 @@ req
     "3"
 `;
 
-exports[`(BooleanExpression) format<long> 1`] = `
+exports[`(BinaryExpression) format<short> equal 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Debug == "1"
+
+---------- (output) --------------------------------------------------------------
+req
+  .http
+  .Debug ==
+  "1"
+`;
+
+exports[`(BinaryExpression) format<short> match 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Debug ~ "1"
+
+---------- (output) --------------------------------------------------------------
+req
+  .http
+  .Debug ~
+  "1"
+`;
+
+exports[`(BinaryExpression) format<short> multiple 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Debug == "1" == "2" == "3"
+
+---------- (output) --------------------------------------------------------------
+((req
+  .http
+  .Debug ==
+  "1") ==
+  "2") ==
+  "3"
+`;
+
+exports[`(BinaryExpression) format<short> not equal 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Debug != "1"
+
+---------- (output) --------------------------------------------------------------
+req
+  .http
+  .Debug !=
+  "1"
+`;
+
+exports[`(BooleanExpression) format with binary 1`] = `
+---------- (input) ---------------------------------------------------------------
+(req.http.Debug == "1")
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(BooleanExpression) format with logical 1`] = `
+---------- (input) ---------------------------------------------------------------
+(var.Debug && "1")
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(BooleanExpression) format<long> with binary 1`] = `
 ---------- (input) ---------------------------------------------------------------
 (req.http.Debug == "1")
 
@@ -297,7 +409,7 @@ exports[`(BooleanExpression) format<long> 1`] = `
 (req.http.Debug == "1")
 `;
 
-exports[`(BooleanExpression) format<long> 2`] = `
+exports[`(BooleanExpression) format<long> with logical 1`] = `
 ---------- (input) ---------------------------------------------------------------
 (var.Debug && "1")
 
@@ -305,7 +417,7 @@ exports[`(BooleanExpression) format<long> 2`] = `
 (var.Debug && "1")
 `;
 
-exports[`(BooleanExpression) format<short> 1`] = `
+exports[`(BooleanExpression) format<short> with binary 1`] = `
 ---------- (input) ---------------------------------------------------------------
 (req.http.Debug == "1")
 
@@ -318,7 +430,7 @@ exports[`(BooleanExpression) format<short> 1`] = `
 )
 `;
 
-exports[`(BooleanExpression) format<short> 2`] = `
+exports[`(BooleanExpression) format<short> with logical 1`] = `
 ---------- (input) ---------------------------------------------------------------
 (var.Debug && "1")
 
@@ -329,15 +441,7 @@ exports[`(BooleanExpression) format<short> 2`] = `
 )
 `;
 
-exports[`(BooleanLiteral) format 1`] = `
----------- (input) ---------------------------------------------------------------
-true
-
----------- (output) --------------------------------------------------------------
-true
-`;
-
-exports[`(BooleanLiteral) format 2`] = `
+exports[`(BooleanLiteral) format false 1`] = `
 ---------- (input) ---------------------------------------------------------------
 false
 
@@ -345,7 +449,15 @@ false
 false
 `;
 
-exports[`(CallStatement) format 1`] = `
+exports[`(BooleanLiteral) format true 1`] = `
+---------- (input) ---------------------------------------------------------------
+true
+
+---------- (output) --------------------------------------------------------------
+true
+`;
+
+exports[`(CallStatement) format basic 1`] = `
 ---------- (input) ---------------------------------------------------------------
 call vaceline_func;
 
@@ -353,15 +465,21 @@ call vaceline_func;
 call vaceline_func;
 `;
 
-exports[`(ConcatExpression) format<long> 1`] = `
+exports[`(ConcatExpression) format expressions 1`] = `
+---------- (input) ---------------------------------------------------------------
+"a" 1 req.http.A
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(ConcatExpression) format strings 1`] = `
 ---------- (input) ---------------------------------------------------------------
 "a" "b" "c"
 
 ---------- (output) --------------------------------------------------------------
-"a" "b" "c"
 `;
 
-exports[`(ConcatExpression) format<long> 2`] = `
+exports[`(ConcatExpression) format<long> expressions 1`] = `
 ---------- (input) ---------------------------------------------------------------
 "a" 1 req.http.A
 
@@ -369,17 +487,15 @@ exports[`(ConcatExpression) format<long> 2`] = `
 "a" 1 req.http.A
 `;
 
-exports[`(ConcatExpression) format<short> 1`] = `
+exports[`(ConcatExpression) format<long> strings 1`] = `
 ---------- (input) ---------------------------------------------------------------
 "a" "b" "c"
 
 ---------- (output) --------------------------------------------------------------
-"a"
-  "b"
-  "c"
+"a" "b" "c"
 `;
 
-exports[`(ConcatExpression) format<short> 2`] = `
+exports[`(ConcatExpression) format<short> expressions 1`] = `
 ---------- (input) ---------------------------------------------------------------
 "a" 1 req.http.A
 
@@ -391,15 +507,17 @@ exports[`(ConcatExpression) format<short> 2`] = `
     .A
 `;
 
-exports[`(DeclareStatement) format 1`] = `
+exports[`(ConcatExpression) format<short> strings 1`] = `
 ---------- (input) ---------------------------------------------------------------
-declare local var.Vaceline STRING;
+"a" "b" "c"
 
 ---------- (output) --------------------------------------------------------------
-declare local var.Vaceline STRING;
+"a"
+  "b"
+  "c"
 `;
 
-exports[`(DeclareStatement) format 2`] = `
+exports[`(DeclareStatement) format bool 1`] = `
 ---------- (input) ---------------------------------------------------------------
 declare local var.Vaceline BOOL;
 
@@ -407,15 +525,7 @@ declare local var.Vaceline BOOL;
 declare local var.Vaceline BOOL;
 `;
 
-exports[`(DeclareStatement) format 3`] = `
----------- (input) ---------------------------------------------------------------
-declare local var.Vaceline INTEGER;
-
----------- (output) --------------------------------------------------------------
-declare local var.Vaceline INTEGER;
-`;
-
-exports[`(DeclareStatement) format 4`] = `
+exports[`(DeclareStatement) format float 1`] = `
 ---------- (input) ---------------------------------------------------------------
 declare local var.Vaceline FLOAT;
 
@@ -423,31 +533,23 @@ declare local var.Vaceline FLOAT;
 declare local var.Vaceline FLOAT;
 `;
 
-exports[`(DurationLiteral) format 1`] = `
+exports[`(DeclareStatement) format integer 1`] = `
 ---------- (input) ---------------------------------------------------------------
-1ms
+declare local var.Vaceline INTEGER;
 
 ---------- (output) --------------------------------------------------------------
-1ms
+declare local var.Vaceline INTEGER;
 `;
 
-exports[`(DurationLiteral) format 2`] = `
+exports[`(DeclareStatement) format string 1`] = `
 ---------- (input) ---------------------------------------------------------------
-1s
+declare local var.Vaceline STRING;
 
 ---------- (output) --------------------------------------------------------------
-1s
+declare local var.Vaceline STRING;
 `;
 
-exports[`(DurationLiteral) format 3`] = `
----------- (input) ---------------------------------------------------------------
-1m
-
----------- (output) --------------------------------------------------------------
-1m
-`;
-
-exports[`(DurationLiteral) format 4`] = `
+exports[`(DurationLiteral) format day 1`] = `
 ---------- (input) ---------------------------------------------------------------
 1d
 
@@ -455,15 +557,31 @@ exports[`(DurationLiteral) format 4`] = `
 1d
 `;
 
-exports[`(DurationLiteral) format 5`] = `
+exports[`(DurationLiteral) format min 1`] = `
 ---------- (input) ---------------------------------------------------------------
-1y
+1m
 
 ---------- (output) --------------------------------------------------------------
-1y
+1m
 `;
 
-exports[`(DurationLiteral) format 6`] = `
+exports[`(DurationLiteral) format ms 1`] = `
+---------- (input) ---------------------------------------------------------------
+1ms
+
+---------- (output) --------------------------------------------------------------
+1ms
+`;
+
+exports[`(DurationLiteral) format s 1`] = `
+---------- (input) ---------------------------------------------------------------
+1s
+
+---------- (output) --------------------------------------------------------------
+1s
+`;
+
+exports[`(DurationLiteral) format with space between 1`] = `
 ---------- (input) ---------------------------------------------------------------
 1   m
 
@@ -471,7 +589,15 @@ exports[`(DurationLiteral) format 6`] = `
 1m
 `;
 
-exports[`(ErrorStatement) format 1`] = `
+exports[`(DurationLiteral) format year 1`] = `
+---------- (input) ---------------------------------------------------------------
+1y
+
+---------- (output) --------------------------------------------------------------
+1y
+`;
+
+exports[`(ErrorStatement) format basic 1`] = `
 ---------- (input) ---------------------------------------------------------------
 error 404;
 
@@ -479,7 +605,7 @@ error 404;
 error 404;
 `;
 
-exports[`(ErrorStatement) format 2`] = `
+exports[`(ErrorStatement) format with response 1`] = `
 ---------- (input) ---------------------------------------------------------------
 error 404 "Not Found";
 
@@ -487,7 +613,14 @@ error 404 "Not Found";
 error 404 "Not Found";
 `;
 
-exports[`(ErrorStatement) format<long> 1`] = `
+exports[`(ErrorStatement) format with variable response 1`] = `
+---------- (input) ---------------------------------------------------------------
+error 800 req.http.Debug;
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(ErrorStatement) format<long> with variable response 1`] = `
 ---------- (input) ---------------------------------------------------------------
 error 800 req.http.Debug;
 
@@ -495,7 +628,7 @@ error 800 req.http.Debug;
 error 800 req.http.Debug;
 `;
 
-exports[`(ErrorStatement) format<short> 1`] = `
+exports[`(ErrorStatement) format<short> with variable response 1`] = `
 ---------- (input) ---------------------------------------------------------------
 error 800 req.http.Debug;
 
@@ -505,7 +638,14 @@ error 800 req
   .Debug;
 `;
 
-exports[`(ExpressionStatement) format 1`] = `
+exports[`(ExpressionStatement) format with FunCallExpression 1`] = `
+---------- (input) ---------------------------------------------------------------
+func(a);
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(ExpressionStatement) format with Identifer 1`] = `
 ---------- (input) ---------------------------------------------------------------
 vaceline;
 
@@ -513,7 +653,7 @@ vaceline;
 vaceline;
 `;
 
-exports[`(ExpressionStatement) format 2`] = `
+exports[`(ExpressionStatement) format with Literal 1`] = `
 ---------- (input) ---------------------------------------------------------------
 "string";
 
@@ -521,15 +661,14 @@ exports[`(ExpressionStatement) format 2`] = `
 "string";
 `;
 
-exports[`(ExpressionStatement) format<long> 1`] = `
+exports[`(ExpressionStatement) format with Member & Identifier 1`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Vaceline;
 
 ---------- (output) --------------------------------------------------------------
-req.http.Vaceline;
 `;
 
-exports[`(ExpressionStatement) format<long> 2`] = `
+exports[`(ExpressionStatement) format<long> with FunCallExpression 1`] = `
 ---------- (input) ---------------------------------------------------------------
 func(a);
 
@@ -537,17 +676,15 @@ func(a);
 func(a);
 `;
 
-exports[`(ExpressionStatement) format<short> 1`] = `
+exports[`(ExpressionStatement) format<long> with Member & Identifier 1`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Vaceline;
 
 ---------- (output) --------------------------------------------------------------
-req
-  .http
-  .Vaceline;
+req.http.Vaceline;
 `;
 
-exports[`(ExpressionStatement) format<short> 2`] = `
+exports[`(ExpressionStatement) format<short> with FunCallExpression 1`] = `
 ---------- (input) ---------------------------------------------------------------
 func(a);
 
@@ -557,31 +694,45 @@ func(
 );
 `;
 
-exports[`(FunCallExpression) format<long> 1`] = `
+exports[`(ExpressionStatement) format<short> with Member & Identifier 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Vaceline;
+
+---------- (output) --------------------------------------------------------------
+req
+  .http
+  .Vaceline;
+`;
+
+exports[`(FunCallExpression) format \`if\` func 1`] = `
+---------- (input) ---------------------------------------------------------------
+if("a", "b", "c")
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(FunCallExpression) format normal 1`] = `
 ---------- (input) ---------------------------------------------------------------
 func("a")
 
 ---------- (output) --------------------------------------------------------------
-func("a")
 `;
 
-exports[`(FunCallExpression) format<long> 2`] = `
+exports[`(FunCallExpression) format with multiple args 1`] = `
+---------- (input) ---------------------------------------------------------------
+func("a", "b")
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(FunCallExpression) format with whitespace 1`] = `
 ---------- (input) ---------------------------------------------------------------
 func  ("a")
 
 ---------- (output) --------------------------------------------------------------
-func("a")
 `;
 
-exports[`(FunCallExpression) format<long> 3`] = `
----------- (input) ---------------------------------------------------------------
-func("a", "b")
-
----------- (output) --------------------------------------------------------------
-func("a", "b")
-`;
-
-exports[`(FunCallExpression) format<long> 4`] = `
+exports[`(FunCallExpression) format<long> \`if\` func 1`] = `
 ---------- (input) ---------------------------------------------------------------
 if("a", "b", "c")
 
@@ -589,38 +740,31 @@ if("a", "b", "c")
 if("a", "b", "c")
 `;
 
-exports[`(FunCallExpression) format<short> 1`] = `
+exports[`(FunCallExpression) format<long> normal 1`] = `
 ---------- (input) ---------------------------------------------------------------
 func("a")
 
 ---------- (output) --------------------------------------------------------------
-func(
-  "a",
-)
+func("a")
 `;
 
-exports[`(FunCallExpression) format<short> 2`] = `
----------- (input) ---------------------------------------------------------------
-func  ("a")
-
----------- (output) --------------------------------------------------------------
-func(
-  "a",
-)
-`;
-
-exports[`(FunCallExpression) format<short> 3`] = `
+exports[`(FunCallExpression) format<long> with multiple args 1`] = `
 ---------- (input) ---------------------------------------------------------------
 func("a", "b")
 
 ---------- (output) --------------------------------------------------------------
-func(
-  "a",
-  "b",
-)
+func("a", "b")
 `;
 
-exports[`(FunCallExpression) format<short> 4`] = `
+exports[`(FunCallExpression) format<long> with whitespace 1`] = `
+---------- (input) ---------------------------------------------------------------
+func  ("a")
+
+---------- (output) --------------------------------------------------------------
+func("a")
+`;
+
+exports[`(FunCallExpression) format<short> \`if\` func 1`] = `
 ---------- (input) ---------------------------------------------------------------
 if("a", "b", "c")
 
@@ -632,7 +776,38 @@ if(
 )
 `;
 
-exports[`(Identifier) format 1`] = `
+exports[`(FunCallExpression) format<short> normal 1`] = `
+---------- (input) ---------------------------------------------------------------
+func("a")
+
+---------- (output) --------------------------------------------------------------
+func(
+  "a",
+)
+`;
+
+exports[`(FunCallExpression) format<short> with multiple args 1`] = `
+---------- (input) ---------------------------------------------------------------
+func("a", "b")
+
+---------- (output) --------------------------------------------------------------
+func(
+  "a",
+  "b",
+)
+`;
+
+exports[`(FunCallExpression) format<short> with whitespace 1`] = `
+---------- (input) ---------------------------------------------------------------
+func  ("a")
+
+---------- (output) --------------------------------------------------------------
+func(
+  "a",
+)
+`;
+
+exports[`(Identifier) format normal 1`] = `
 ---------- (input) ---------------------------------------------------------------
 vaceline
 
@@ -640,7 +815,59 @@ vaceline
 vaceline
 `;
 
-exports[`(IfStatement) format<long> 1`] = `
+exports[`(IfStatement) format basic 1`] = `
+---------- (input) ---------------------------------------------------------------
+if (var.condition) {
+  set var.value = 1;
+}
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(IfStatement) format with else 1`] = `
+---------- (input) ---------------------------------------------------------------
+if (var.condition) {
+  set var.value = 1;
+} else {
+  set var.value = 2;
+}
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(IfStatement) format with else if 1`] = `
+---------- (input) ---------------------------------------------------------------
+if (var.condition) {
+  set var.value = 1;
+} else if (!var.condition) {
+  set var.value = 2;
+} else {
+  set var.value = 0;
+}
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(IfStatement) format with empty lines 1`] = `
+---------- (input) ---------------------------------------------------------------
+if (var.condition) {
+
+  set var.value = 1;
+
+} else if (!var.condition) {
+
+  set var.value = 2;
+
+} else {
+
+  set var.value = 0;
+
+}
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(IfStatement) format<long> basic 1`] = `
 ---------- (input) ---------------------------------------------------------------
 if (var.condition) {
   set var.value = 1;
@@ -652,7 +879,7 @@ if (var.condition) {
 }
 `;
 
-exports[`(IfStatement) format<long> 2`] = `
+exports[`(IfStatement) format<long> with else 1`] = `
 ---------- (input) ---------------------------------------------------------------
 if (var.condition) {
   set var.value = 1;
@@ -668,7 +895,7 @@ if (var.condition) {
 }
 `;
 
-exports[`(IfStatement) format<long> 3`] = `
+exports[`(IfStatement) format<long> with else if 1`] = `
 ---------- (input) ---------------------------------------------------------------
 if (var.condition) {
   set var.value = 1;
@@ -688,7 +915,7 @@ if (var.condition) {
 }
 `;
 
-exports[`(IfStatement) format<long> 4`] = `
+exports[`(IfStatement) format<long> with empty lines 1`] = `
 ---------- (input) ---------------------------------------------------------------
 if (var.condition) {
 
@@ -706,20 +933,15 @@ if (var.condition) {
 
 ---------- (output) --------------------------------------------------------------
 if (var.condition) {
-
   set var.value = 1;
 } else if (!var.condition) {
-
-
   set var.value = 2;
 } else {
-
-
   set var.value = 0;
 }
 `;
 
-exports[`(IfStatement) format<short> 1`] = `
+exports[`(IfStatement) format<short> basic 1`] = `
 ---------- (input) ---------------------------------------------------------------
 if (var.condition) {
   set var.value = 1;
@@ -734,7 +956,7 @@ if (
 }
 `;
 
-exports[`(IfStatement) format<short> 2`] = `
+exports[`(IfStatement) format<short> with else 1`] = `
 ---------- (input) ---------------------------------------------------------------
 if (var.condition) {
   set var.value = 1;
@@ -754,7 +976,7 @@ if (
 }
 `;
 
-exports[`(IfStatement) format<short> 3`] = `
+exports[`(IfStatement) format<short> with else if 1`] = `
 ---------- (input) ---------------------------------------------------------------
 if (var.condition) {
   set var.value = 1;
@@ -781,7 +1003,7 @@ if (
 }
 `;
 
-exports[`(IfStatement) format<short> 4`] = `
+exports[`(IfStatement) format<short> with empty lines 1`] = `
 ---------- (input) ---------------------------------------------------------------
 if (var.condition) {
 
@@ -801,25 +1023,20 @@ if (var.condition) {
 if (
   var.condition
 ) {
-
   set var.value =
     1;
 } else if (
   !var.condition
 ) {
-
-
   set var.value =
     2;
 } else {
-
-
   set var.value =
     0;
 }
 `;
 
-exports[`(ImportStatement) format 1`] = `
+exports[`(ImportStatement) format basic 1`] = `
 ---------- (input) ---------------------------------------------------------------
 import module;
 
@@ -827,7 +1044,7 @@ import module;
 import module;
 `;
 
-exports[`(IncludeStatement) format 1`] = `
+exports[`(IncludeStatement) format basic 1`] = `
 ---------- (input) ---------------------------------------------------------------
 include "external_library";
 
@@ -835,47 +1052,7 @@ include "external_library";
 include "external_library";
 `;
 
-exports[`(Ip) format 1`] = `
----------- (input) ---------------------------------------------------------------
-"localhost"
-
----------- (output) --------------------------------------------------------------
-"localhost"
-`;
-
-exports[`(Ip) format 2`] = `
----------- (input) ---------------------------------------------------------------
-"192.0.2.0"
-
----------- (output) --------------------------------------------------------------
-"192.0.2.0"
-`;
-
-exports[`(Ip) format 3`] = `
----------- (input) ---------------------------------------------------------------
-"192.0.2.0"/16
-
----------- (output) --------------------------------------------------------------
-"192.0.2.0"/16
-`;
-
-exports[`(Ip) format 4`] = `
----------- (input) ---------------------------------------------------------------
-"2001:db8::1"
-
----------- (output) --------------------------------------------------------------
-"2001:db8::1"
-`;
-
-exports[`(Ip) format 5`] = `
----------- (input) ---------------------------------------------------------------
-"2001:db8::1"/16
-
----------- (output) --------------------------------------------------------------
-"2001:db8::1"/16
-`;
-
-exports[`(Ip) format 6`] = `
+exports[`(Ip) format 6to4 mapping 1`] = `
 ---------- (input) ---------------------------------------------------------------
 "2002:c000:0204::"
 
@@ -883,7 +1060,7 @@ exports[`(Ip) format 6`] = `
 "2002:c000:0204::"
 `;
 
-exports[`(Ip) format 7`] = `
+exports[`(Ip) format 6to4 mapping 2`] = `
 ---------- (input) ---------------------------------------------------------------
 "::FFFF:192.0.2.4"
 
@@ -891,7 +1068,7 @@ exports[`(Ip) format 7`] = `
 "::FFFF:192.0.2.4"
 `;
 
-exports[`(Ip) format 8`] = `
+exports[`(Ip) format 6to4 mapping 3`] = `
 ---------- (input) ---------------------------------------------------------------
 "::1"
 
@@ -899,7 +1076,47 @@ exports[`(Ip) format 8`] = `
 "::1"
 `;
 
-exports[`(Ip) format 9`] = `
+exports[`(Ip) format IPv4 1`] = `
+---------- (input) ---------------------------------------------------------------
+"192.0.2.0"
+
+---------- (output) --------------------------------------------------------------
+"192.0.2.0"
+`;
+
+exports[`(Ip) format IPv4 with cidr 1`] = `
+---------- (input) ---------------------------------------------------------------
+"192.0.2.0"/16
+
+---------- (output) --------------------------------------------------------------
+"192.0.2.0"/16
+`;
+
+exports[`(Ip) format IPv6 1`] = `
+---------- (input) ---------------------------------------------------------------
+"2001:db8::1"
+
+---------- (output) --------------------------------------------------------------
+"2001:db8::1"
+`;
+
+exports[`(Ip) format IPv6 with cidr 1`] = `
+---------- (input) ---------------------------------------------------------------
+"2001:db8::1"/16
+
+---------- (output) --------------------------------------------------------------
+"2001:db8::1"/16
+`;
+
+exports[`(Ip) format localhost 1`] = `
+---------- (input) ---------------------------------------------------------------
+"localhost"
+
+---------- (output) --------------------------------------------------------------
+"localhost"
+`;
+
+exports[`(Ip) format unspecified address 1`] = `
 ---------- (input) ---------------------------------------------------------------
 "::"
 
@@ -907,7 +1124,16 @@ exports[`(Ip) format 9`] = `
 "::"
 `;
 
-exports[`(LogStatement) format<long> 1`] = `
+exports[`(LogStatement) format basic 1`] = `
+---------- (input) ---------------------------------------------------------------
+log "log" req.service_id "vaceline-log :: "
+  {"	timestamp_us:"} time.start.usec
+  {"	host:"} regsuball(req.http.X-Forwarded-Host, {"	"}, "");
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(LogStatement) format<long> basic 1`] = `
 ---------- (input) ---------------------------------------------------------------
 log "log" req.service_id "vaceline-log :: "
   {"	timestamp_us:"} time.start.usec
@@ -917,7 +1143,7 @@ log "log" req.service_id "vaceline-log :: "
 log "log" req.service_id "vaceline-log :: " {"	timestamp_us:"} time.start.usec {"	host:"} regsuball(req.http.X-Forwarded-Host, {"	"}, "");
 `;
 
-exports[`(LogStatement) format<short> 1`] = `
+exports[`(LogStatement) format<short> basic 1`] = `
 ---------- (input) ---------------------------------------------------------------
 log "log" req.service_id "vaceline-log :: "
   {"	timestamp_us:"} time.start.usec
@@ -941,7 +1167,63 @@ log "log"
   );
 `;
 
-exports[`(LogicalExpression) format<long> 1`] = `
+exports[`(LogicalExpression) format and 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Debug && "1"
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(LogicalExpression) format combination 1`] = `
+---------- (input) ---------------------------------------------------------------
+debug && "1" || "2"
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(LogicalExpression) format combination with BinaryExpression 1`] = `
+---------- (input) ---------------------------------------------------------------
+debug == "1" && "2"
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(LogicalExpression) format combination2 1`] = `
+---------- (input) ---------------------------------------------------------------
+debug || "1" && "2"
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(LogicalExpression) format combination2 with BinaryExpression 1`] = `
+---------- (input) ---------------------------------------------------------------
+debug == "1" || "2"
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(LogicalExpression) format combination3 1`] = `
+---------- (input) ---------------------------------------------------------------
+debug && "1" == "2"
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(LogicalExpression) format combination4 1`] = `
+---------- (input) ---------------------------------------------------------------
+debug || "1" == "2"
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(LogicalExpression) format or 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Debug || "1"
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(LogicalExpression) format<long> and 1`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Debug && "1"
 
@@ -949,15 +1231,7 @@ req.http.Debug && "1"
 req.http.Debug && "1"
 `;
 
-exports[`(LogicalExpression) format<long> 2`] = `
----------- (input) ---------------------------------------------------------------
-req.http.Debug || "1"
-
----------- (output) --------------------------------------------------------------
-req.http.Debug || "1"
-`;
-
-exports[`(LogicalExpression) format<long> 3`] = `
+exports[`(LogicalExpression) format<long> combination 1`] = `
 ---------- (input) ---------------------------------------------------------------
 debug && "1" || "2"
 
@@ -965,7 +1239,15 @@ debug && "1" || "2"
 (debug && "1") || "2"
 `;
 
-exports[`(LogicalExpression) format<long> 4`] = `
+exports[`(LogicalExpression) format<long> combination with BinaryExpression 1`] = `
+---------- (input) ---------------------------------------------------------------
+debug == "1" && "2"
+
+---------- (output) --------------------------------------------------------------
+debug == "1" && "2"
+`;
+
+exports[`(LogicalExpression) format<long> combination2 1`] = `
 ---------- (input) ---------------------------------------------------------------
 debug || "1" && "2"
 
@@ -973,15 +1255,7 @@ debug || "1" && "2"
 debug || ("1" && "2")
 `;
 
-exports[`(LogicalExpression) format<long> 5`] = `
----------- (input) ---------------------------------------------------------------
-debug == "1" && "2"
-
----------- (output) --------------------------------------------------------------
-debug == "1" && "2"
-`;
-
-exports[`(LogicalExpression) format<long> 6`] = `
+exports[`(LogicalExpression) format<long> combination2 with BinaryExpression 1`] = `
 ---------- (input) ---------------------------------------------------------------
 debug == "1" || "2"
 
@@ -989,7 +1263,7 @@ debug == "1" || "2"
 debug == "1" || "2"
 `;
 
-exports[`(LogicalExpression) format<long> 7`] = `
+exports[`(LogicalExpression) format<long> combination3 1`] = `
 ---------- (input) ---------------------------------------------------------------
 debug && "1" == "2"
 
@@ -997,7 +1271,7 @@ debug && "1" == "2"
 debug && "1" == "2"
 `;
 
-exports[`(LogicalExpression) format<long> 8`] = `
+exports[`(LogicalExpression) format<long> combination4 1`] = `
 ---------- (input) ---------------------------------------------------------------
 debug || "1" == "2"
 
@@ -1005,7 +1279,15 @@ debug || "1" == "2"
 debug || "1" == "2"
 `;
 
-exports[`(LogicalExpression) format<short> 1`] = `
+exports[`(LogicalExpression) format<long> or 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Debug || "1"
+
+---------- (output) --------------------------------------------------------------
+req.http.Debug || "1"
+`;
+
+exports[`(LogicalExpression) format<short> and 1`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Debug && "1"
 
@@ -1016,7 +1298,67 @@ req
   "1"
 `;
 
-exports[`(LogicalExpression) format<short> 2`] = `
+exports[`(LogicalExpression) format<short> combination 1`] = `
+---------- (input) ---------------------------------------------------------------
+debug && "1" || "2"
+
+---------- (output) --------------------------------------------------------------
+(debug &&
+  "1") ||
+  "2"
+`;
+
+exports[`(LogicalExpression) format<short> combination with BinaryExpression 1`] = `
+---------- (input) ---------------------------------------------------------------
+debug == "1" && "2"
+
+---------- (output) --------------------------------------------------------------
+debug ==
+  "1" &&
+  "2"
+`;
+
+exports[`(LogicalExpression) format<short> combination2 1`] = `
+---------- (input) ---------------------------------------------------------------
+debug || "1" && "2"
+
+---------- (output) --------------------------------------------------------------
+debug ||
+  ("1" &&
+    "2")
+`;
+
+exports[`(LogicalExpression) format<short> combination2 with BinaryExpression 1`] = `
+---------- (input) ---------------------------------------------------------------
+debug == "1" || "2"
+
+---------- (output) --------------------------------------------------------------
+debug ==
+  "1" ||
+  "2"
+`;
+
+exports[`(LogicalExpression) format<short> combination3 1`] = `
+---------- (input) ---------------------------------------------------------------
+debug && "1" == "2"
+
+---------- (output) --------------------------------------------------------------
+debug &&
+  "1" ==
+    "2"
+`;
+
+exports[`(LogicalExpression) format<short> combination4 1`] = `
+---------- (input) ---------------------------------------------------------------
+debug || "1" == "2"
+
+---------- (output) --------------------------------------------------------------
+debug ||
+  "1" ==
+    "2"
+`;
+
+exports[`(LogicalExpression) format<short> or 1`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Debug || "1"
 
@@ -1027,67 +1369,7 @@ req
   "1"
 `;
 
-exports[`(LogicalExpression) format<short> 3`] = `
----------- (input) ---------------------------------------------------------------
-debug && "1" || "2"
-
----------- (output) --------------------------------------------------------------
-(debug &&
-  "1") ||
-  "2"
-`;
-
-exports[`(LogicalExpression) format<short> 4`] = `
----------- (input) ---------------------------------------------------------------
-debug || "1" && "2"
-
----------- (output) --------------------------------------------------------------
-debug ||
-  ("1" &&
-    "2")
-`;
-
-exports[`(LogicalExpression) format<short> 5`] = `
----------- (input) ---------------------------------------------------------------
-debug == "1" && "2"
-
----------- (output) --------------------------------------------------------------
-debug ==
-  "1" &&
-  "2"
-`;
-
-exports[`(LogicalExpression) format<short> 6`] = `
----------- (input) ---------------------------------------------------------------
-debug == "1" || "2"
-
----------- (output) --------------------------------------------------------------
-debug ==
-  "1" ||
-  "2"
-`;
-
-exports[`(LogicalExpression) format<short> 7`] = `
----------- (input) ---------------------------------------------------------------
-debug && "1" == "2"
-
----------- (output) --------------------------------------------------------------
-debug &&
-  "1" ==
-    "2"
-`;
-
-exports[`(LogicalExpression) format<short> 8`] = `
----------- (input) ---------------------------------------------------------------
-debug || "1" == "2"
-
----------- (output) --------------------------------------------------------------
-debug ||
-  "1" ==
-    "2"
-`;
-
-exports[`(Member) format 1`] = `
+exports[`(Member) format basic 1`] = `
 ---------- (input) ---------------------------------------------------------------
 req.backend
 
@@ -1095,7 +1377,28 @@ req.backend
 req.backend
 `;
 
-exports[`(Member) format<long> 1`] = `
+exports[`(Member) format deep 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Debug
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(Member) format deep in BinaryExpression 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.http.Debug == "debug"
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(Member) format in BinaryExpression 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.backend == backend
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(Member) format<long> deep 1`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Debug
 
@@ -1103,15 +1406,7 @@ req.http.Debug
 req.http.Debug
 `;
 
-exports[`(Member) format<long> 2`] = `
----------- (input) ---------------------------------------------------------------
-req.backend == backend
-
----------- (output) --------------------------------------------------------------
-req.backend == backend
-`;
-
-exports[`(Member) format<long> 3`] = `
+exports[`(Member) format<long> deep in BinaryExpression 1`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Debug == "debug"
 
@@ -1119,7 +1414,15 @@ req.http.Debug == "debug"
 req.http.Debug == "debug"
 `;
 
-exports[`(Member) format<short> 1`] = `
+exports[`(Member) format<long> in BinaryExpression 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.backend == backend
+
+---------- (output) --------------------------------------------------------------
+req.backend == backend
+`;
+
+exports[`(Member) format<short> deep 1`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Debug
 
@@ -1129,16 +1432,7 @@ req
   .Debug
 `;
 
-exports[`(Member) format<short> 2`] = `
----------- (input) ---------------------------------------------------------------
-req.backend == backend
-
----------- (output) --------------------------------------------------------------
-req.backend ==
-  backend
-`;
-
-exports[`(Member) format<short> 3`] = `
+exports[`(Member) format<short> deep in BinaryExpression 1`] = `
 ---------- (input) ---------------------------------------------------------------
 req.http.Debug == "debug"
 
@@ -1149,7 +1443,16 @@ req
   "debug"
 `;
 
-exports[`(MultilineLiteral) format 1`] = `
+exports[`(Member) format<short> in BinaryExpression 1`] = `
+---------- (input) ---------------------------------------------------------------
+req.backend == backend
+
+---------- (output) --------------------------------------------------------------
+req.backend ==
+  backend
+`;
+
+exports[`(MultilineLiteral) format basic 1`] = `
 ---------- (input) ---------------------------------------------------------------
 {"
   vaceline
@@ -1161,7 +1464,7 @@ exports[`(MultilineLiteral) format 1`] = `
 "}
 `;
 
-exports[`(NumericLiteral) format 1`] = `
+exports[`(NumericLiteral) format integer 1`] = `
 ---------- (input) ---------------------------------------------------------------
 10
 
@@ -1169,7 +1472,7 @@ exports[`(NumericLiteral) format 1`] = `
 10
 `;
 
-exports[`(NumericLiteral) format 2`] = `
+exports[`(NumericLiteral) format zero 1`] = `
 ---------- (input) ---------------------------------------------------------------
 0
 
@@ -1177,7 +1480,65 @@ exports[`(NumericLiteral) format 2`] = `
 0
 `;
 
-exports[`(Program) format<long> 1`] = `
+exports[`(Program) format comment 1`] = `
+---------- (input) ---------------------------------------------------------------
+# aaa
+set var.vacelineDebug = "1";
+# bbb
+set var.vacelineDebug = "2";
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(Program) format single handling 1`] = `
+---------- (input) ---------------------------------------------------------------
+sub vcl_recv {
+  declare local var.vacelinDebug STRING;
+  set var.vacelineDebug = "initial";
+
+  if (req.http.Vacelin:Some == "Some") {
+    add var.vacelinDebug = "Vacelin Debug Log";
+  }
+}
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(Program) format with empty lines 1`] = `
+---------- (input) ---------------------------------------------------------------
+declare local var.vacelinDebug STRING;
+set var.vacelineDebug = "1";
+
+set var.vacelineDebug = "2";
+
+
+set var.vacelineDebug = "3";
+
+
+
+set var.vacelineDebug = "4";
+
+
+
+
+set var.vacelineDebug = "5";
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(Program) format<long> comment 1`] = `
+---------- (input) ---------------------------------------------------------------
+# aaa
+set var.vacelineDebug = "1";
+# bbb
+set var.vacelineDebug = "2";
+
+---------- (output) --------------------------------------------------------------
+set var.vacelineDebug = "1";
+set var.vacelineDebug = "2";
+`;
+
+exports[`(Program) format<long> single handling 1`] = `
 ---------- (input) ---------------------------------------------------------------
 sub vcl_recv {
   declare local var.vacelinDebug STRING;
@@ -1192,14 +1553,13 @@ sub vcl_recv {
 sub vcl_recv {
   declare local var.vacelinDebug STRING;
   set var.vacelineDebug = "initial";
-
   if (req.http.Vacelin:Some == "Some") {
     add var.vacelinDebug = "Vacelin Debug Log";
   }
 }
 `;
 
-exports[`(Program) format<long> 2`] = `
+exports[`(Program) format<long> with empty lines 1`] = `
 ---------- (input) ---------------------------------------------------------------
 declare local var.vacelinDebug STRING;
 set var.vacelineDebug = "1";
@@ -1221,23 +1581,27 @@ set var.vacelineDebug = "5";
 ---------- (output) --------------------------------------------------------------
 declare local var.vacelinDebug STRING;
 set var.vacelineDebug = "1";
-
 set var.vacelineDebug = "2";
-
-
 set var.vacelineDebug = "3";
-
-
-
 set var.vacelineDebug = "4";
-
-
-
-
 set var.vacelineDebug = "5";
 `;
 
-exports[`(Program) format<short> 1`] = `
+exports[`(Program) format<short> comment 1`] = `
+---------- (input) ---------------------------------------------------------------
+# aaa
+set var.vacelineDebug = "1";
+# bbb
+set var.vacelineDebug = "2";
+
+---------- (output) --------------------------------------------------------------
+set var.vacelineDebug =
+  "1";
+set var.vacelineDebug =
+  "2";
+`;
+
+exports[`(Program) format<short> single handling 1`] = `
 ---------- (input) ---------------------------------------------------------------
 sub vcl_recv {
   declare local var.vacelinDebug STRING;
@@ -1253,7 +1617,6 @@ sub vcl_recv {
   declare local var.vacelinDebug STRING;
   set var.vacelineDebug =
     "initial";
-
   if (
     req
       .http
@@ -1266,7 +1629,7 @@ sub vcl_recv {
 }
 `;
 
-exports[`(Program) format<short> 2`] = `
+exports[`(Program) format<short> with empty lines 1`] = `
 ---------- (input) ---------------------------------------------------------------
 declare local var.vacelinDebug STRING;
 set var.vacelineDebug = "1";
@@ -1289,27 +1652,17 @@ set var.vacelineDebug = "5";
 declare local var.vacelinDebug STRING;
 set var.vacelineDebug =
   "1";
-
 set var.vacelineDebug =
   "2";
-
-
 set var.vacelineDebug =
   "3";
-
-
-
 set var.vacelineDebug =
   "4";
-
-
-
-
 set var.vacelineDebug =
   "5";
 `;
 
-exports[`(RestartStatement) format 1`] = `
+exports[`(RestartStatement) format basic 1`] = `
 ---------- (input) ---------------------------------------------------------------
 restart;
 
@@ -1317,7 +1670,7 @@ restart;
 restart;
 `;
 
-exports[`(ReturnStatement) format 1`] = `
+exports[`(ReturnStatement) format with parens 1`] = `
 ---------- (input) ---------------------------------------------------------------
 return (pass);
 
@@ -1325,15 +1678,42 @@ return (pass);
 return (pass);
 `;
 
-exports[`(SetStatement) format<long> 1`] = `
+exports[`(SetStatement) format addition 1`] = `
+---------- (input) ---------------------------------------------------------------
+set var.vacel += "vacel";
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(SetStatement) format assignment 1`] = `
 ---------- (input) ---------------------------------------------------------------
 set var.vacel = "vacel";
 
 ---------- (output) --------------------------------------------------------------
-set var.vacel = "vacel";
 `;
 
-exports[`(SetStatement) format<long> 2`] = `
+exports[`(SetStatement) format division 1`] = `
+---------- (input) ---------------------------------------------------------------
+set var.vacel *= "vacel";
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(SetStatement) format multiplication 1`] = `
+---------- (input) ---------------------------------------------------------------
+set var.vacel *= "vacel";
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(SetStatement) format substraction 1`] = `
+---------- (input) ---------------------------------------------------------------
+set var.vacel -= "vacel";
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(SetStatement) format<long> addition 1`] = `
 ---------- (input) ---------------------------------------------------------------
 set var.vacel += "vacel";
 
@@ -1341,40 +1721,39 @@ set var.vacel += "vacel";
 set var.vacel += "vacel";
 `;
 
-exports[`(SetStatement) format<long> 3`] = `
----------- (input) ---------------------------------------------------------------
-set var.vacel -= "vacel";
-
----------- (output) --------------------------------------------------------------
-set var.vacel -= "vacel";
-`;
-
-exports[`(SetStatement) format<long> 4`] = `
----------- (input) ---------------------------------------------------------------
-set var.vacel *= "vacel";
-
----------- (output) --------------------------------------------------------------
-set var.vacel *= "vacel";
-`;
-
-exports[`(SetStatement) format<long> 5`] = `
----------- (input) ---------------------------------------------------------------
-set var.vacel *= "vacel";
-
----------- (output) --------------------------------------------------------------
-set var.vacel *= "vacel";
-`;
-
-exports[`(SetStatement) format<short> 1`] = `
+exports[`(SetStatement) format<long> assignment 1`] = `
 ---------- (input) ---------------------------------------------------------------
 set var.vacel = "vacel";
 
 ---------- (output) --------------------------------------------------------------
-set var.vacel =
-  "vacel";
+set var.vacel = "vacel";
 `;
 
-exports[`(SetStatement) format<short> 2`] = `
+exports[`(SetStatement) format<long> division 1`] = `
+---------- (input) ---------------------------------------------------------------
+set var.vacel *= "vacel";
+
+---------- (output) --------------------------------------------------------------
+set var.vacel *= "vacel";
+`;
+
+exports[`(SetStatement) format<long> multiplication 1`] = `
+---------- (input) ---------------------------------------------------------------
+set var.vacel *= "vacel";
+
+---------- (output) --------------------------------------------------------------
+set var.vacel *= "vacel";
+`;
+
+exports[`(SetStatement) format<long> substraction 1`] = `
+---------- (input) ---------------------------------------------------------------
+set var.vacel -= "vacel";
+
+---------- (output) --------------------------------------------------------------
+set var.vacel -= "vacel";
+`;
+
+exports[`(SetStatement) format<short> addition 1`] = `
 ---------- (input) ---------------------------------------------------------------
 set var.vacel += "vacel";
 
@@ -1383,7 +1762,34 @@ set var.vacel +=
   "vacel";
 `;
 
-exports[`(SetStatement) format<short> 3`] = `
+exports[`(SetStatement) format<short> assignment 1`] = `
+---------- (input) ---------------------------------------------------------------
+set var.vacel = "vacel";
+
+---------- (output) --------------------------------------------------------------
+set var.vacel =
+  "vacel";
+`;
+
+exports[`(SetStatement) format<short> division 1`] = `
+---------- (input) ---------------------------------------------------------------
+set var.vacel *= "vacel";
+
+---------- (output) --------------------------------------------------------------
+set var.vacel *=
+  "vacel";
+`;
+
+exports[`(SetStatement) format<short> multiplication 1`] = `
+---------- (input) ---------------------------------------------------------------
+set var.vacel *= "vacel";
+
+---------- (output) --------------------------------------------------------------
+set var.vacel *=
+  "vacel";
+`;
+
+exports[`(SetStatement) format<short> substraction 1`] = `
 ---------- (input) ---------------------------------------------------------------
 set var.vacel -= "vacel";
 
@@ -1392,25 +1798,7 @@ set var.vacel -=
   "vacel";
 `;
 
-exports[`(SetStatement) format<short> 4`] = `
----------- (input) ---------------------------------------------------------------
-set var.vacel *= "vacel";
-
----------- (output) --------------------------------------------------------------
-set var.vacel *=
-  "vacel";
-`;
-
-exports[`(SetStatement) format<short> 5`] = `
----------- (input) ---------------------------------------------------------------
-set var.vacel *= "vacel";
-
----------- (output) --------------------------------------------------------------
-set var.vacel *=
-  "vacel";
-`;
-
-exports[`(StringLiteral) format 1`] = `
+exports[`(StringLiteral) format basic 1`] = `
 ---------- (input) ---------------------------------------------------------------
 "string"
 
@@ -1418,7 +1806,7 @@ exports[`(StringLiteral) format 1`] = `
 "string"
 `;
 
-exports[`(StringLiteral) format 2`] = `
+exports[`(StringLiteral) format not a comment 1`] = `
 ---------- (input) ---------------------------------------------------------------
 "# not a comment"
 
@@ -1426,7 +1814,7 @@ exports[`(StringLiteral) format 2`] = `
 "# not a comment"
 `;
 
-exports[`(StringLiteral) format 3`] = `
+exports[`(StringLiteral) format not an inline comment 1`] = `
 ---------- (input) ---------------------------------------------------------------
 "/* not an inline comment */"
 
@@ -1434,7 +1822,31 @@ exports[`(StringLiteral) format 3`] = `
 "/* not an inline comment */"
 `;
 
-exports[`(SubroutineStatement) format<long> 1`] = `
+exports[`(SubroutineStatement) format basic 1`] = `
+---------- (input) ---------------------------------------------------------------
+sub vcl_recv {
+  set vaceline = "aaa";
+  set vaceline = "bbb";
+}
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(SubroutineStatement) format with empty lines 1`] = `
+---------- (input) ---------------------------------------------------------------
+sub vcl_recv {
+  set vaceline = "aaa";
+
+
+  set vaceline = "bbb";
+
+
+}
+
+---------- (output) --------------------------------------------------------------
+`;
+
+exports[`(SubroutineStatement) format<long> basic 1`] = `
 ---------- (input) ---------------------------------------------------------------
 sub vcl_recv {
   set vaceline = "aaa";
@@ -1448,7 +1860,7 @@ sub vcl_recv {
 }
 `;
 
-exports[`(SubroutineStatement) format<long> 2`] = `
+exports[`(SubroutineStatement) format<long> with empty lines 1`] = `
 ---------- (input) ---------------------------------------------------------------
 sub vcl_recv {
   set vaceline = "aaa";
@@ -1462,13 +1874,11 @@ sub vcl_recv {
 ---------- (output) --------------------------------------------------------------
 sub vcl_recv {
   set vaceline = "aaa";
-
-
   set vaceline = "bbb";
 }
 `;
 
-exports[`(SubroutineStatement) format<short> 1`] = `
+exports[`(SubroutineStatement) format<short> basic 1`] = `
 ---------- (input) ---------------------------------------------------------------
 sub vcl_recv {
   set vaceline = "aaa";
@@ -1484,7 +1894,7 @@ sub vcl_recv {
 }
 `;
 
-exports[`(SubroutineStatement) format<short> 2`] = `
+exports[`(SubroutineStatement) format<short> with empty lines 1`] = `
 ---------- (input) ---------------------------------------------------------------
 sub vcl_recv {
   set vaceline = "aaa";
@@ -1499,14 +1909,12 @@ sub vcl_recv {
 sub vcl_recv {
   set vaceline =
     "aaa";
-
-
   set vaceline =
     "bbb";
 }
 `;
 
-exports[`(SyntheticStatement) format 1`] = `
+exports[`(SyntheticStatement) format basic 1`] = `
 ---------- (input) ---------------------------------------------------------------
 synthetic "";
 
@@ -1514,7 +1922,7 @@ synthetic "";
 synthetic "";
 `;
 
-exports[`(TableStatement) format 1`] = `
+exports[`(TableStatement) format single key-value 1`] = `
 ---------- (input) ---------------------------------------------------------------
 table vaceline_table {
   "key": "value"
@@ -1526,7 +1934,7 @@ table vaceline_table {
 }
 `;
 
-exports[`(TableStatement) format 2`] = `
+exports[`(TableStatement) format single key-values 1`] = `
 ---------- (input) ---------------------------------------------------------------
 table vaceline_table {
   "key": "value",
@@ -1540,7 +1948,7 @@ table vaceline_table {
 }
 `;
 
-exports[`(UnaryExpression) format 1`] = `
+exports[`(UnaryExpression) format boolean literal 1`] = `
 ---------- (input) ---------------------------------------------------------------
 !true
 
@@ -1548,7 +1956,7 @@ exports[`(UnaryExpression) format 1`] = `
 !true
 `;
 
-exports[`(UnaryExpression) format 2`] = `
+exports[`(UnaryExpression) format variable 1`] = `
 ---------- (input) ---------------------------------------------------------------
 !condition
 
@@ -1556,15 +1964,7 @@ exports[`(UnaryExpression) format 2`] = `
 !condition
 `;
 
-exports[`(UnsetStatement) format 1`] = `
----------- (input) ---------------------------------------------------------------
-unset value;
-
----------- (output) --------------------------------------------------------------
-unset value;
-`;
-
-exports[`(UnsetStatement) format 2`] = `
+exports[`(UnsetStatement) format member 1`] = `
 ---------- (input) ---------------------------------------------------------------
 unset var.value;
 
@@ -1572,7 +1972,15 @@ unset var.value;
 unset var.value;
 `;
 
-exports[`(ValuePair) format 1`] = `
+exports[`(UnsetStatement) format variable 1`] = `
+---------- (input) ---------------------------------------------------------------
+unset value;
+
+---------- (output) --------------------------------------------------------------
+unset value;
+`;
+
+exports[`(ValuePair) format basic 1`] = `
 ---------- (input) ---------------------------------------------------------------
 Cookie:Vacelin
 

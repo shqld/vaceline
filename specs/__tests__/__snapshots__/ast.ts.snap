@@ -1679,6 +1679,52 @@ Node {
 }
 `;
 
+exports[`(Program) comment 1`] = `
+Node {
+  "body": Array [
+    Node {
+      "left": Node {
+        "base": Node {
+          "name": "var",
+          "type": "Identifier",
+        },
+        "member": Node {
+          "name": "vacelineDebug",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "operator": "=",
+      "right": Node {
+        "type": "StringLiteral",
+        "value": "\\"1\\"",
+      },
+      "type": "SetStatement",
+    },
+    Node {
+      "left": Node {
+        "base": Node {
+          "name": "var",
+          "type": "Identifier",
+        },
+        "member": Node {
+          "name": "vacelineDebug",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "operator": "=",
+      "right": Node {
+        "type": "StringLiteral",
+        "value": "\\"2\\"",
+      },
+      "type": "SetStatement",
+    },
+  ],
+  "type": "Program",
+}
+`;
+
 exports[`(Program) single handling 1`] = `
 Node {
   "body": Array [

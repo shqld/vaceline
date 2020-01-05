@@ -24,9 +24,12 @@ export const transform = (
   code: string,
   options: Partial<Options> = {}
 ): TransformResult => {
-  const ast = parse(code)
+  const { ast, comments } = parse(code)
 
-  const result: Partial<TransformResult> = generate(ast, options)
+  const result: Partial<TransformResult> = generate(ast, {
+    ...options,
+    comments,
+  })
 
   result.ast = ast
 
@@ -40,8 +43,12 @@ export const transformFile = (
   const inputPath = resolvePath(filePath)
   assert(existsSync(inputPath), 'File not found: ' + inputPath)
 
-  const ast = parse(readFileSync(filePath, 'utf8'))
-  const result: Partial<TransformResult> = generate(ast, options)
+  const { ast, comments } = parse(readFileSync(filePath, 'utf8'))
+
+  const result: Partial<TransformResult> = generate(ast, {
+    ...options,
+    comments,
+  })
 
   result.ast = ast
 

@@ -6,8 +6,8 @@ import { Tokenizer } from '../../src/parser/tokenizer'
 for (const testdoc of testdocs) {
   for (const testcase of testdoc.basic) {
     describe(`(${testdoc.name})`, () => {
-      const ast = testdoc.parse.call(testdoc.parse, testcase.code)
-      const { code } = generate(ast)
+      const { ast, comments } = testdoc.parse.call(testdoc.parse, testcase.code)
+      const { code } = generate(ast, { comments })
 
       it(testcase.name, () => {
         const output = new Tokenizer(code)
@@ -21,7 +21,7 @@ for (const testdoc of testdocs) {
               return token.value !== '(' && token.value !== ')'
             }
 
-            return token.type !== 'comment'
+            return true
           })
           .map((token) => token.value)
 
@@ -34,20 +34,20 @@ for (const testdoc of testdocs) {
       })
 
       const formatted = {
-        long: generate(ast, { printWidth: Infinity }).code,
-        short: generate(ast, { printWidth: 0 }).code,
+        long: generate(ast, { comments, printWidth: Infinity }).code,
+        short: generate(ast, { comments, printWidth: 0 }).code,
       }
 
       if (formatted.short === formatted.long) {
-        it('format', () => {
+        it('format ' + testcase.name, () => {
           expect(wrap(testcase.code, formatted.long)).toMatchSnapshot()
         })
       } else {
-        it('format<long>', () => {
+        it('format<long> ' + testcase.name, () => {
           expect(wrap(testcase.code, formatted.long)).toMatchSnapshot()
         })
 
-        it('format<short>', () => {
+        it('format<short> ' + testcase.name, () => {
           expect(wrap(testcase.code, formatted.short)).toMatchSnapshot()
         })
       }

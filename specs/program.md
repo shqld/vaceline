@@ -40,6 +40,15 @@ set var.vacelineDebug = "5";
 
 ```
 
+comment
+
+```vcl
+# aaa
+set var.vacelineDebug = "1";
+# bbb
+set var.vacelineDebug = "2";
+```
+
 ## abnormal
 
 ## lint

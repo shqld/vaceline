@@ -169,9 +169,6 @@ export class Tokenizer {
         )
       }
 
-      // TODO: implement comment handling
-      if (type === 'comment') continue
-
       const token = {
         type,
         value: str,

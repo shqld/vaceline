@@ -1,8 +1,10 @@
 import { Doc, builders as b } from 'prettier/doc'
-import { d, BaseNode } from '../nodes'
+import { d, BaseNode, Position } from '../nodes'
+import { CommentReader } from '.'
 
 export interface State {
-  lineNum: number
+  pos: Position
+  comments: CommentReader
 }
 
 export const printNode = (
@@ -89,6 +91,11 @@ export const printNode = (
   }
 }
 
+const hardline = (state: State) => {
+  state.pos.line++
+  return b.hardline
+}
+
 type PrinterFunc<T extends BaseNode, U extends object = object> = (
   node: T,
   state: State,
@@ -102,20 +109,14 @@ export const printStatements = (
   const doc = []
 
   for (const stmt of stmts) {
-    if (stmt.loc && stmt.loc.start.line > state.lineNum) {
-      let delta = stmt.loc.start.line - state.lineNum
-      while (delta--) {
-        doc.push(b.hardline)
-      }
+    console.log('-----------')
+    doc.push(stmt.print(state))
 
-      state.lineNum = stmt.loc.start.line
+    if (stmt.loc && stmt.loc.start.line - state.pos.line >= 0) {
+      console.log('+++')
+      doc.push(hardline(state))
     }
-
-    doc.push(stmt.print(state), b.hardline)
-    state.lineNum++
   }
-
-  doc.pop()
 
   return b.concat(doc)
 }
@@ -124,9 +125,51 @@ export const base = <T extends BaseNode, U extends object>(
   printer: PrinterFunc<T, U>
 ): PrinterFunc<T, U> => {
   return (node: T, state: State, options?: U) => {
+    // console.log()
+    // console.log('state', state.pos)
+
+    const doc = []
+
+    // console.log('node', node.type, node.loc?.start)
+
+    if (node.loc) {
+      let comment = state.comments.peek()
+      let hasInsertedComment = false
+
+      while (comment && comment.loc.start.line < node.loc.start.line) {
+        hasInsertedComment = true
+
+        // console.log('comment', comment.value, comment.loc)
+
+        let lineDelta = comment.loc.start.line - state.pos.line
+        while (lineDelta > 0) {
+          doc.push(hardline(state))
+          lineDelta--
+        }
+
+        state.comments.take()
+        doc.push(comment.value)
+
+        state.pos = comment.loc.start
+
+        comment = state.comments.peek()
+      }
+
+      if (hasInsertedComment) doc.push(hardline(state))
+
+      state.pos = node.loc.start
+    }
+
     const printed = printer(node, state, options)
-    // Some ops
-    return printed
+
+    const comment = state.comments.peek()
+    if (comment && comment.loc.start.line === node.loc?.end.line) {
+      state.comments.take()
+      doc.push(b.lineSuffix(' ' + comment.value))
+    }
+    doc.push(printed)
+
+    return b.concat(doc)
   }
 }
 
@@ -173,7 +216,6 @@ export const printMember: PrinterFunc<
     // break if child is also a Member or if also parent is already broken
     (node.base.type === 'Member' || broken)
 
-  // printExpr('Member', state, {})
   return b.concat([
     b.group(
       b.concat([
@@ -301,7 +343,7 @@ export const printExpressionStatement = base(
 )
 
 export const printIncludeStatement = base((node: d.IncludeStatement, state) => {
-  return b.concat(['include ', printStringLiteral(node.module, state), ';'])
+  return b.concat(['include ', node.module.print(state), ';'])
 })
 
 export const printImportStatement = base((node: d.ImportStatement, state) => {
@@ -412,29 +454,41 @@ export const printIfStatement = base((node: d.IfStatement, state) => {
     b.group(
       b.concat([
         b.indent(
-          b.concat(['(', b.ifBreak(b.hardline, ''), node.test.print(state)])
+          b.concat([
+            '(',
+            b.ifBreak(hardline(state), ''),
+            node.test.print(state),
+          ])
         ),
-        b.ifBreak(b.hardline, ''),
+        b.ifBreak(hardline(state), ''),
         ') ',
       ])
     ),
     '{',
-    b.indent(printStatements(state, node.consequent)),
-    b.hardline,
+    b.indent(
+      b.concat([hardline(state), printStatements(state, node.consequent)])
+    ),
+    hardline(state),
     '}',
+    hardline(state),
   ]
 
   if (node.alternative) {
     const alternative: Array<Doc> = Array.isArray(node.alternative)
       ? [
           ' else {',
-          b.indent(printStatements(state, node.alternative)),
-          b.hardline,
+          b.indent(
+            b.concat([
+              hardline(state),
+              printStatements(state, node.alternative),
+            ])
+          ),
+          hardline(state),
           '}',
         ]
       : [' else ', printIfStatement(node.alternative, state)]
 
-    return b.concat([...doc, ...alternative])
+    return b.concat([...doc, ...alternative, hardline(state)])
   }
 
   return b.concat(doc)
@@ -446,8 +500,8 @@ export const printSubroutineStatement = base(
       'sub ',
       printIdentifier(node.id, state),
       ' {',
-      b.indent(printStatements(state, node.body)),
-      b.hardline,
+      b.indent(b.concat([hardline(state), printStatements(state, node.body)])),
+      hardline(state),
       '}',
     ])
   }
@@ -460,16 +514,16 @@ export const printAclStatement = base((node: d.AclStatement, state) => {
     ' {',
     b.indent(
       b.concat([
-        b.hardline,
+        hardline(state),
         b.join(
-          b.hardline,
+          hardline(state),
           node.body
             .map((ip) => printIp(ip, state))
             .map((doc) => b.concat([doc, ';']))
         ),
       ])
     ),
-    b.hardline,
+    hardline(state),
     '}',
   ])
 })
@@ -481,14 +535,14 @@ export const printBackendDefinition: PrinterFunc<d.BackendDefinition> = base(
           '{',
           b.indent(
             b.concat([
-              b.hardline,
+              hardline(state),
               b.join(
-                b.hardline,
+                hardline(state),
                 node.value.map((v) => printBackendDefinition(v, state))
               ),
             ])
           ),
-          b.hardline,
+          hardline(state),
           '}',
         ])
       : b.concat([node.value.print(state), ';'])
@@ -506,14 +560,14 @@ export const printBackendStatement = base((node: d.BackendStatement, state) => {
       '{',
       b.indent(
         b.concat([
-          b.hardline,
+          hardline(state),
           b.join(
-            b.hardline,
+            hardline(state),
             node.body.map((d) => printBackendDefinition(d, state))
           ),
         ])
       ),
-      b.hardline,
+      hardline(state),
       '}',
     ]),
   ])
@@ -530,16 +584,16 @@ export const printTableStatement = base((node: d.TableStatement, state) => {
     ' {',
     b.indent(
       b.concat([
-        b.hardline,
+        hardline(state),
         b.join(
-          b.concat([',', b.hardline]),
+          b.concat([',', hardline(state)]),
           node.body.map((td) => printTableDefinition(td, state))
         ),
         // TODO: handle trailing comma
         // ',',
       ])
     ),
-    b.hardline,
+    hardline(state),
     '}',
   ])
 })

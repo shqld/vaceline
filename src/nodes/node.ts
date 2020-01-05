@@ -4,6 +4,7 @@ import { Node as UnionNode } from './defs'
 import { State, printNode } from '../generator/printAST'
 import { NodeType } from '.'
 import { Nodes } from './nodes.gen'
+import { Token } from '../parser/tokenizer'
 
 export interface Position {
   offset: number
@@ -40,6 +41,7 @@ export { Node as BaseNode }
 class Node {
   type!: string
   loc?: Location
+  comments?: Array<Token>
 
   next(): Array<Node> {
     return flat(

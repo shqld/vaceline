@@ -11,7 +11,12 @@ import { buildProgram } from '../nodes/builders.gen'
 
 const debug = buildDebug('parser')
 
-export const parse = (source: string): d.Program => new Parser(source).parse()
+export const parse = (
+  source: string
+): { ast: d.Program; comments: Array<Token> } => {
+  const parser = new Parser(source)
+  return { ast: parser.parse(), comments: parser.comments }
+}
 
 export class Parser extends TokenReader {
   source: string
@@ -31,7 +36,9 @@ export class Parser extends TokenReader {
 
     // TODO: overload builder func type,
     // to detect we pass `loc` and its return type is surely `NodeWithLoc`
-    return this.finishNode(buildProgram(body, loc))
+    const program = buildProgram(body, loc)
+
+    return this.finishNode(program)
   }
 
   startNode(): Location {

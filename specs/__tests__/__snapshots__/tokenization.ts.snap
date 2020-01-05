@@ -10946,6 +10946,251 @@ Array [
 ]
 `;
 
+exports[`(Program) <loc>comment 1`] = `
+Array [
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "type": "comment",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 3,
+        "line": 2,
+        "offset": 8,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 2,
+        "offset": 6,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 7,
+        "line": 2,
+        "offset": 12,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 2,
+        "offset": 10,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 8,
+        "line": 2,
+        "offset": 13,
+      },
+      "start": Object {
+        "column": 8,
+        "line": 2,
+        "offset": 13,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 21,
+        "line": 2,
+        "offset": 26,
+      },
+      "start": Object {
+        "column": 9,
+        "line": 2,
+        "offset": 14,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 23,
+        "line": 2,
+        "offset": 28,
+      },
+      "start": Object {
+        "column": 23,
+        "line": 2,
+        "offset": 28,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 27,
+        "line": 2,
+        "offset": 32,
+      },
+      "start": Object {
+        "column": 25,
+        "line": 2,
+        "offset": 30,
+      },
+    },
+    "type": "string",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 28,
+        "line": 2,
+        "offset": 33,
+      },
+      "start": Object {
+        "column": 28,
+        "line": 2,
+        "offset": 33,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 3,
+        "offset": 39,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 3,
+        "offset": 35,
+      },
+    },
+    "type": "comment",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 3,
+        "line": 4,
+        "offset": 43,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 4,
+        "offset": 41,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 7,
+        "line": 4,
+        "offset": 47,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 4,
+        "offset": 45,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 8,
+        "line": 4,
+        "offset": 48,
+      },
+      "start": Object {
+        "column": 8,
+        "line": 4,
+        "offset": 48,
+      },
+    },
+    "type": "symbol",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 21,
+        "line": 4,
+        "offset": 61,
+      },
+      "start": Object {
+        "column": 9,
+        "line": 4,
+        "offset": 49,
+      },
+    },
+    "type": "ident",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 23,
+        "line": 4,
+        "offset": 63,
+      },
+      "start": Object {
+        "column": 23,
+        "line": 4,
+        "offset": 63,
+      },
+    },
+    "type": "operator",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 27,
+        "line": 4,
+        "offset": 67,
+      },
+      "start": Object {
+        "column": 25,
+        "line": 4,
+        "offset": 65,
+      },
+    },
+    "type": "string",
+  },
+  Object {
+    "loc": Object {
+      "end": Object {
+        "column": 28,
+        "line": 4,
+        "offset": 68,
+      },
+      "start": Object {
+        "column": 28,
+        "line": 4,
+        "offset": 68,
+      },
+    },
+    "type": "symbol",
+  },
+]
+`;
+
 exports[`(Program) <loc>single handling 1`] = `
 Array [
   Object {
@@ -12167,6 +12412,75 @@ Array [
       },
     },
     "type": "symbol",
+  },
+]
+`;
+
+exports[`(Program) comment 1`] = `
+Array [
+  Object {
+    "type": "comment",
+    "value": "# aaa",
+  },
+  Object {
+    "type": "ident",
+    "value": "set",
+  },
+  Object {
+    "type": "ident",
+    "value": "var",
+  },
+  Object {
+    "type": "symbol",
+    "value": ".",
+  },
+  Object {
+    "type": "ident",
+    "value": "vacelineDebug",
+  },
+  Object {
+    "type": "operator",
+    "value": "=",
+  },
+  Object {
+    "type": "string",
+    "value": "\\"1\\"",
+  },
+  Object {
+    "type": "symbol",
+    "value": ";",
+  },
+  Object {
+    "type": "comment",
+    "value": "# bbb",
+  },
+  Object {
+    "type": "ident",
+    "value": "set",
+  },
+  Object {
+    "type": "ident",
+    "value": "var",
+  },
+  Object {
+    "type": "symbol",
+    "value": ".",
+  },
+  Object {
+    "type": "ident",
+    "value": "vacelineDebug",
+  },
+  Object {
+    "type": "operator",
+    "value": "=",
+  },
+  Object {
+    "type": "string",
+    "value": "\\"2\\"",
+  },
+  Object {
+    "type": "symbol",
+    "value": ";",
   },
 ]
 `;

@@ -5,12 +5,13 @@ import {
   parse as parsePath,
 } from 'path'
 import assert from 'assert'
-import { d, BaseNode, NodeType } from '../../src/nodes'
+import { d, NodeType } from '../../src/nodes'
 import { parse as parseMarkdown } from '@textlint/markdown-to-ast'
 import { parseExpr } from '../../src/parser/expression/index'
 import { parseStmt } from '../../src/parser/statement'
 import { parse as parseNode } from '../../src'
 import { Parser } from '../../src/parser'
+import { Token } from '../../src/parser/tokenizer'
 
 const specsPath = resolvePath('specs')
 
@@ -20,7 +21,7 @@ interface TestCase {
 }
 interface TestDoc {
   name: string
-  parse: (source: string) => d.Node | d.Expression | d.Statement
+  parse: (source: string) => { ast: d.Node; comments: Array<Token> }
   basic: Array<TestCase>
   abnormal: Array<TestCase>
   lint: Array<TestCase>
@@ -71,12 +72,16 @@ const STATEMENT_TYPES: Array<NodeType> = [
   'UnsetStatement',
 ]
 
-const getParser = (type: NodeType) => {
-  return EXPRESSION_TYPES.includes(type)
-    ? (source: string) => parseExpr(new Parser(source))
+const getParser = (type: NodeType) => (source: string) => {
+  const parser = new Parser(source)
+
+  const ast = EXPRESSION_TYPES.includes(type)
+    ? parseExpr(parser)
     : STATEMENT_TYPES.includes(type)
-    ? (source: string) => parseStmt(new Parser(source))
-    : parseNode.bind(null)
+    ? parseStmt(parser)
+    : parser.parse()
+
+  return { ast, comments: parser.comments }
 }
 
 const pascalCase = (str: string) =>
@@ -97,7 +102,6 @@ export const parseTestDoc = (path: string): TestDoc => {
 
   const doc: TestDoc = {
     name,
-    parse: parseNode,
     basic: [],
     abnormal: [],
     lint: [],

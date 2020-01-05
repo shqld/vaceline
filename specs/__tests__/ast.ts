@@ -5,7 +5,7 @@ for (const testdoc of testdocs) {
   for (const testcase of testdoc.basic) {
     describe(`(${testdoc.name})`, () => {
       it(testcase.name, () => {
-        const ast = testdoc.parse.call(testdoc.parse, testcase.code)
+        const { ast } = testdoc.parse.call(testdoc.parse, testcase.code)
 
         traverse(ast, {
           entry({ node }) {
