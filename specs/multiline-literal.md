@@ -1,7 +1,0 @@
-basic
-
-```vcl
-{"
-  vaceline
-"}
-```

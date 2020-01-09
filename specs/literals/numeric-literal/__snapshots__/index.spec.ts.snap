@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`numeric-literal abbrev_integer 1`] = `
+[expr] not implemented yet
+
+> 1 | .11
+      
+`;
+
+exports[`numeric-literal integer ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 2,
+      "line": 1,
+      "offset": 1,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "NumericLiteral",
+  "value": "10",
+}
+`;
+
+exports[`numeric-literal integer format: format 1`] = `10`;
+
+exports[`numeric-literal integer token 1`] = `
+Array [
+  10,
+]
+`;
+
+exports[`numeric-literal none_after_comma 1`] = `
+invalid number
+
+> 1 | 0.
+      
+`;
+
+exports[`numeric-literal padded_zero 1`] = `
+invalid number
+
+> 1 | 001
+      
+`;
+
+exports[`numeric-literal zero ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "NumericLiteral",
+  "value": "0",
+}
+`;
+
+exports[`numeric-literal zero format: format 1`] = `0`;
+
+exports[`numeric-literal zero token 1`] = `
+Array [
+  0,
+]
+`;

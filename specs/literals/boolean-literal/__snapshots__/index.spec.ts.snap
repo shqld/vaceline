@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`boolean-literal false ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 5,
+      "line": 1,
+      "offset": 4,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "BooleanLiteral",
+  "value": "false",
+}
+`;
+
+exports[`boolean-literal false format: format 1`] = `false`;
+
+exports[`boolean-literal false token 1`] = `
+Array [
+  false,
+]
+`;
+
+exports[`boolean-literal true ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 4,
+      "line": 1,
+      "offset": 3,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "BooleanLiteral",
+  "value": "true",
+}
+`;
+
+exports[`boolean-literal true format: format 1`] = `true`;
+
+exports[`boolean-literal true token 1`] = `
+Array [
+  true,
+]
+`;

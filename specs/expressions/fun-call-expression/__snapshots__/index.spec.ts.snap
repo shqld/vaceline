@@ -1,0 +1,341 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fun-call-expression if_func ast: ast 1`] = `
+Node {
+  "args": Array [
+    Node {
+      "loc": Object {
+        "end": Object {
+          "column": 6,
+          "line": 1,
+          "offset": 5,
+        },
+        "start": Object {
+          "column": 4,
+          "line": 1,
+          "offset": 3,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"a\\"",
+    },
+    Node {
+      "loc": Object {
+        "end": Object {
+          "column": 11,
+          "line": 1,
+          "offset": 10,
+        },
+        "start": Object {
+          "column": 9,
+          "line": 1,
+          "offset": 8,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"b\\"",
+    },
+    Node {
+      "loc": Object {
+        "end": Object {
+          "column": 16,
+          "line": 1,
+          "offset": 15,
+        },
+        "start": Object {
+          "column": 14,
+          "line": 1,
+          "offset": 13,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"c\\"",
+    },
+  ],
+  "callee": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 2,
+        "line": 1,
+        "offset": 1,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "name": "if",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 17,
+      "line": 1,
+      "offset": 16,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "FunCallExpression",
+}
+`;
+
+exports[`fun-call-expression if_func format: format long 1`] = `if("a", "b", "c")`;
+
+exports[`fun-call-expression if_func format: format short 1`] = `
+if(
+  "a",
+  "b",
+  "c",
+)
+`;
+
+exports[`fun-call-expression if_func token 1`] = `
+Array [
+  if,
+  (,
+  "a",
+  ,,
+  "b",
+  ,,
+  "c",
+  ),
+]
+`;
+
+exports[`fun-call-expression trailing_comma_in_args 1`] = `
+[expr] not implemented yet
+
+> 1 | func("a",)
+               
+`;
+
+exports[`fun-call-expression with_an_arg ast: ast 1`] = `
+Node {
+  "args": Array [
+    Node {
+      "loc": Object {
+        "end": Object {
+          "column": 8,
+          "line": 1,
+          "offset": 7,
+        },
+        "start": Object {
+          "column": 6,
+          "line": 1,
+          "offset": 5,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"a\\"",
+    },
+  ],
+  "callee": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 4,
+        "line": 1,
+        "offset": 3,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "name": "func",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 9,
+      "line": 1,
+      "offset": 8,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "FunCallExpression",
+}
+`;
+
+exports[`fun-call-expression with_an_arg format: format long 1`] = `func("a")`;
+
+exports[`fun-call-expression with_an_arg format: format short 1`] = `
+func(
+  "a",
+)
+`;
+
+exports[`fun-call-expression with_an_arg token 1`] = `
+Array [
+  func,
+  (,
+  "a",
+  ),
+]
+`;
+
+exports[`fun-call-expression with_multi_args ast: ast 1`] = `
+Node {
+  "args": Array [
+    Node {
+      "loc": Object {
+        "end": Object {
+          "column": 8,
+          "line": 1,
+          "offset": 7,
+        },
+        "start": Object {
+          "column": 6,
+          "line": 1,
+          "offset": 5,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"a\\"",
+    },
+    Node {
+      "loc": Object {
+        "end": Object {
+          "column": 13,
+          "line": 1,
+          "offset": 12,
+        },
+        "start": Object {
+          "column": 11,
+          "line": 1,
+          "offset": 10,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"b\\"",
+    },
+  ],
+  "callee": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 4,
+        "line": 1,
+        "offset": 3,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "name": "func",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 14,
+      "line": 1,
+      "offset": 13,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "FunCallExpression",
+}
+`;
+
+exports[`fun-call-expression with_multi_args format: format long 1`] = `func("a", "b")`;
+
+exports[`fun-call-expression with_multi_args format: format short 1`] = `
+func(
+  "a",
+  "b",
+)
+`;
+
+exports[`fun-call-expression with_multi_args token 1`] = `
+Array [
+  func,
+  (,
+  "a",
+  ,,
+  "b",
+  ),
+]
+`;
+
+exports[`fun-call-expression with_whitespaces ast: ast 1`] = `
+Node {
+  "args": Array [
+    Node {
+      "loc": Object {
+        "end": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+        "start": Object {
+          "column": 8,
+          "line": 1,
+          "offset": 7,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"a\\"",
+    },
+  ],
+  "callee": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 4,
+        "line": 1,
+        "offset": 3,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "name": "func",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 11,
+      "line": 1,
+      "offset": 10,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "FunCallExpression",
+}
+`;
+
+exports[`fun-call-expression with_whitespaces format: format long 1`] = `func("a")`;
+
+exports[`fun-call-expression with_whitespaces format: format short 1`] = `
+func(
+  "a",
+)
+`;
+
+exports[`fun-call-expression with_whitespaces token 1`] = `
+Array [
+  func,
+  (,
+  "a",
+  ),
+]
+`;

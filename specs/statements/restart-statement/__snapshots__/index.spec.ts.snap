@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`restart-statement basic ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 8,
+      "line": 1,
+      "offset": 7,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "RestartStatement",
+}
+`;
+
+exports[`restart-statement basic format: format 1`] = `restart;`;
+
+exports[`restart-statement basic token 1`] = `
+Array [
+  restart,
+  ;,
+]
+`;
+
+exports[`restart-statement with_args 1`] = `
+expected symbol, ;
+
+> 1 | restart 1;
+              
+`;

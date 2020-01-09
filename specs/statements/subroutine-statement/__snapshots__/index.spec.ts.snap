@@ -1,0 +1,339 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`subroutine-statement basic ast: ast 1`] = `
+Node {
+  "body": Array [
+    Node {
+      "left": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 14,
+            "line": 2,
+            "offset": 28,
+          },
+          "start": Object {
+            "column": 7,
+            "line": 2,
+            "offset": 21,
+          },
+        },
+        "name": "vaceline",
+        "type": "Identifier",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 23,
+          "line": 2,
+          "offset": 37,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 2,
+          "offset": 17,
+        },
+      },
+      "operator": "=",
+      "right": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 22,
+            "line": 2,
+            "offset": 36,
+          },
+          "start": Object {
+            "column": 18,
+            "line": 2,
+            "offset": 32,
+          },
+        },
+        "type": "StringLiteral",
+        "value": "\\"aaa\\"",
+      },
+      "type": "SetStatement",
+    },
+    Node {
+      "left": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 14,
+            "line": 3,
+            "offset": 52,
+          },
+          "start": Object {
+            "column": 7,
+            "line": 3,
+            "offset": 45,
+          },
+        },
+        "name": "vaceline",
+        "type": "Identifier",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 23,
+          "line": 3,
+          "offset": 61,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 3,
+          "offset": 41,
+        },
+      },
+      "operator": "=",
+      "right": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 22,
+            "line": 3,
+            "offset": 60,
+          },
+          "start": Object {
+            "column": 18,
+            "line": 3,
+            "offset": 56,
+          },
+        },
+        "type": "StringLiteral",
+        "value": "\\"bbb\\"",
+      },
+      "type": "SetStatement",
+    },
+  ],
+  "id": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 12,
+        "line": 1,
+        "offset": 11,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "name": "vcl_recv",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 4,
+      "offset": 63,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "SubroutineStatement",
+}
+`;
+
+exports[`subroutine-statement basic format: format long 1`] = `
+sub vcl_recv {
+  set vaceline = "aaa";
+  set vaceline = "bbb";
+}
+`;
+
+exports[`subroutine-statement basic format: format short 1`] = `
+sub vcl_recv {
+  set vaceline =
+    "aaa";
+  set vaceline =
+    "bbb";
+}
+`;
+
+exports[`subroutine-statement basic token 1`] = `
+Array [
+  sub,
+  vcl_recv,
+  {,
+  set,
+  vaceline,
+  =,
+  "aaa",
+  ;,
+  set,
+  vaceline,
+  =,
+  "bbb",
+  ;,
+  },
+]
+`;
+
+exports[`subroutine-statement with_empty_lines ast: ast 1`] = `
+Node {
+  "body": Array [
+    Node {
+      "left": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 14,
+            "line": 2,
+            "offset": 28,
+          },
+          "start": Object {
+            "column": 7,
+            "line": 2,
+            "offset": 21,
+          },
+        },
+        "name": "vaceline",
+        "type": "Identifier",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 23,
+          "line": 2,
+          "offset": 37,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 2,
+          "offset": 17,
+        },
+      },
+      "operator": "=",
+      "right": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 22,
+            "line": 2,
+            "offset": 36,
+          },
+          "start": Object {
+            "column": 18,
+            "line": 2,
+            "offset": 32,
+          },
+        },
+        "type": "StringLiteral",
+        "value": "\\"aaa\\"",
+      },
+      "type": "SetStatement",
+    },
+    Node {
+      "left": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 14,
+            "line": 5,
+            "offset": 54,
+          },
+          "start": Object {
+            "column": 7,
+            "line": 5,
+            "offset": 47,
+          },
+        },
+        "name": "vaceline",
+        "type": "Identifier",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 23,
+          "line": 5,
+          "offset": 63,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 5,
+          "offset": 43,
+        },
+      },
+      "operator": "=",
+      "right": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 22,
+            "line": 5,
+            "offset": 62,
+          },
+          "start": Object {
+            "column": 18,
+            "line": 5,
+            "offset": 58,
+          },
+        },
+        "type": "StringLiteral",
+        "value": "\\"bbb\\"",
+      },
+      "type": "SetStatement",
+    },
+  ],
+  "id": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 12,
+        "line": 1,
+        "offset": 11,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "name": "vcl_recv",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 8,
+      "offset": 67,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "SubroutineStatement",
+}
+`;
+
+exports[`subroutine-statement with_empty_lines format: format long 1`] = `
+sub vcl_recv {
+  set vaceline = "aaa";
+
+
+  set vaceline = "bbb";
+}
+`;
+
+exports[`subroutine-statement with_empty_lines format: format short 1`] = `
+sub vcl_recv {
+  set vaceline =
+    "aaa";
+
+
+  set vaceline =
+    "bbb";
+}
+`;
+
+exports[`subroutine-statement with_empty_lines token 1`] = `
+Array [
+  sub,
+  vcl_recv,
+  {,
+  set,
+  vaceline,
+  =,
+  "aaa",
+  ;,
+  set,
+  vaceline,
+  =,
+  "bbb",
+  ;,
+  },
+]
+`;

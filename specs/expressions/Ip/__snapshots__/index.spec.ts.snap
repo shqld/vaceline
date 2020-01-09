@@ -1,0 +1,272 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ip 6to4_mapping_1 ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 18,
+      "line": 1,
+      "offset": 17,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "StringLiteral",
+  "value": "\\"2002:c000:0204::\\"",
+}
+`;
+
+exports[`ip 6to4_mapping_1 format: format 1`] = `"2002:c000:0204::"`;
+
+exports[`ip 6to4_mapping_1 token 1`] = `
+Array [
+  "2002:c000:0204::",
+]
+`;
+
+exports[`ip 6to4_mapping_2 ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 18,
+      "line": 1,
+      "offset": 17,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "StringLiteral",
+  "value": "\\"::FFFF:192.0.2.4\\"",
+}
+`;
+
+exports[`ip 6to4_mapping_2 format: format 1`] = `"::FFFF:192.0.2.4"`;
+
+exports[`ip 6to4_mapping_2 token 1`] = `
+Array [
+  "::FFFF:192.0.2.4",
+]
+`;
+
+exports[`ip 6to4_mapping_3 ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 5,
+      "line": 1,
+      "offset": 4,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "StringLiteral",
+  "value": "\\"::1\\"",
+}
+`;
+
+exports[`ip 6to4_mapping_3 format: format 1`] = `"::1"`;
+
+exports[`ip 6to4_mapping_3 token 1`] = `
+Array [
+  "::1",
+]
+`;
+
+exports[`ip i_pv4_with_invalid_cidr 1`] = `
+invalid ip address(IPv6 prefix length must be between 0 and 128)
+
+> 1 | "2001:db8::1"/129
+                    ^^
+  2 | 
+`;
+
+exports[`ip ipv4 ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 11,
+      "line": 1,
+      "offset": 10,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "StringLiteral",
+  "value": "\\"192.0.2.0\\"",
+}
+`;
+
+exports[`ip ipv4 format: format 1`] = `"192.0.2.0"`;
+
+exports[`ip ipv4 token 1`] = `
+Array [
+  "192.0.2.0",
+]
+`;
+
+exports[`ip ipv4_with_cidr ast: ast 1`] = `
+Node {
+  "cidr": 16,
+  "loc": Object {
+    "end": Object {
+      "column": 14,
+      "line": 1,
+      "offset": 13,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "Ip",
+  "value": "192.0.2.0",
+}
+`;
+
+exports[`ip ipv4_with_cidr format: format 1`] = `"192.0.2.0"/16`;
+
+exports[`ip ipv4_with_cidr token 1`] = `
+Array [
+  "192.0.2.0",
+  /,
+  16,
+]
+`;
+
+exports[`ip ipv4_with_invalid_cidr 1`] = `
+invalid ip address(IPv4 prefix length must be between 0 and 32)
+
+> 1 | "192.0.2.0"/33
+                  ^
+`;
+
+exports[`ip ipv6 ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 13,
+      "line": 1,
+      "offset": 12,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "StringLiteral",
+  "value": "\\"2001:db8::1\\"",
+}
+`;
+
+exports[`ip ipv6 format: format 1`] = `"2001:db8::1"`;
+
+exports[`ip ipv6 token 1`] = `
+Array [
+  "2001:db8::1",
+]
+`;
+
+exports[`ip ipv6_with_cidr ast: ast 1`] = `
+Node {
+  "cidr": 16,
+  "loc": Object {
+    "end": Object {
+      "column": 16,
+      "line": 1,
+      "offset": 15,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "Ip",
+  "value": "2001:db8::1",
+}
+`;
+
+exports[`ip ipv6_with_cidr format: format 1`] = `"2001:db8::1"/16`;
+
+exports[`ip ipv6_with_cidr token 1`] = `
+Array [
+  "2001:db8::1",
+  /,
+  16,
+]
+`;
+
+exports[`ip localhost ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 11,
+      "line": 1,
+      "offset": 10,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "StringLiteral",
+  "value": "\\"localhost\\"",
+}
+`;
+
+exports[`ip localhost format: format 1`] = `"localhost"`;
+
+exports[`ip localhost token 1`] = `
+Array [
+  "localhost",
+]
+`;
+
+exports[`ip localhost_with_cidr 1`] = `
+invalid ip address(A prefix length is not supported for \`localhost\`)
+
+> 1 | "localhost"/16
+                  ^
+`;
+
+exports[`ip unspecified_address ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 4,
+      "line": 1,
+      "offset": 3,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "StringLiteral",
+  "value": "\\"::\\"",
+}
+`;
+
+exports[`ip unspecified_address format: format 1`] = `"::"`;
+
+exports[`ip unspecified_address token 1`] = `
+Array [
+  "::",
+]
+`;

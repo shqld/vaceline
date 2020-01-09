@@ -1,0 +1,210 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`error-statement basic ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 10,
+      "line": 1,
+      "offset": 9,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "message": undefined,
+  "status": 404,
+  "type": "ErrorStatement",
+}
+`;
+
+exports[`error-statement basic format: format 1`] = `error 404;`;
+
+exports[`error-statement basic token 1`] = `
+Array [
+  error,
+  404,
+  ;,
+]
+`;
+
+exports[`error-statement not_an_integer 1`] = `
+expected numeric, 
+
+> 1 | error "404";
+            ^^^^
+`;
+
+exports[`error-statement not_an_integer_with_response 1`] = `
+expected numeric, 
+
+> 1 | error "404" "Not Found";
+            ^^^^
+  2 | 
+`;
+
+exports[`error-statement with_response ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 22,
+      "line": 1,
+      "offset": 21,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "message": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 21,
+        "line": 1,
+        "offset": 20,
+      },
+      "start": Object {
+        "column": 11,
+        "line": 1,
+        "offset": 10,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"Not Found\\"",
+  },
+  "status": 404,
+  "type": "ErrorStatement",
+}
+`;
+
+exports[`error-statement with_response format: format 1`] = `error 404 "Not Found";`;
+
+exports[`error-statement with_response token 1`] = `
+Array [
+  error,
+  404,
+  "Not Found",
+  ;,
+]
+`;
+
+exports[`error-statement with_variable_response ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 25,
+      "line": 1,
+      "offset": 24,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "message": Node {
+    "base": Node {
+      "base": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 13,
+            "line": 1,
+            "offset": 12,
+          },
+          "start": Object {
+            "column": 11,
+            "line": 1,
+            "offset": 10,
+          },
+        },
+        "name": "req",
+        "type": "Identifier",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 18,
+          "line": 1,
+          "offset": 17,
+        },
+        "start": Object {
+          "column": 11,
+          "line": 1,
+          "offset": 10,
+        },
+      },
+      "member": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 18,
+            "line": 1,
+            "offset": 17,
+          },
+          "start": Object {
+            "column": 15,
+            "line": 1,
+            "offset": 14,
+          },
+        },
+        "name": "http",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 24,
+        "line": 1,
+        "offset": 23,
+      },
+      "start": Object {
+        "column": 11,
+        "line": 1,
+        "offset": 10,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 24,
+          "line": 1,
+          "offset": 23,
+        },
+        "start": Object {
+          "column": 20,
+          "line": 1,
+          "offset": 19,
+        },
+      },
+      "name": "Debug",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "status": 800,
+  "type": "ErrorStatement",
+}
+`;
+
+exports[`error-statement with_variable_response format: format long 1`] = `error 800 req.http.Debug;`;
+
+exports[`error-statement with_variable_response format: format short 1`] = `
+error 800 req
+  .http
+  .Debug;
+`;
+
+exports[`error-statement with_variable_response token 1`] = `
+Array [
+  error,
+  800,
+  req,
+  .,
+  http,
+  .,
+  Debug,
+  ;,
+]
+`;

@@ -1,0 +1,1 @@
+declare local var.Vaceline STRING;

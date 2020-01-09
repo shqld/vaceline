@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`synthetic-statement basic ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 13,
+      "line": 1,
+      "offset": 12,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "response": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 12,
+        "line": 1,
+        "offset": 11,
+      },
+      "start": Object {
+        "column": 11,
+        "line": 1,
+        "offset": 10,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"\\"",
+  },
+  "type": "SyntheticStatement",
+}
+`;
+
+exports[`synthetic-statement basic format: format 1`] = `synthetic "";`;
+
+exports[`synthetic-statement basic token 1`] = `
+Array [
+  synthetic,
+  "",
+  ;,
+]
+`;

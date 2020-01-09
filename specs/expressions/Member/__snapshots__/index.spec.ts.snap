@@ -1,0 +1,393 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`member basic ast: ast 1`] = `
+Node {
+  "base": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 3,
+        "line": 1,
+        "offset": 2,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "name": "req",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 11,
+      "line": 1,
+      "offset": 10,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "member": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 11,
+        "line": 1,
+        "offset": 10,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "name": "backend",
+    "type": "Identifier",
+  },
+  "type": "Member",
+}
+`;
+
+exports[`member basic format: format 1`] = `req.backend`;
+
+exports[`member basic token 1`] = `
+Array [
+  req,
+  .,
+  backend,
+]
+`;
+
+exports[`member deep ast: ast 1`] = `
+Node {
+  "base": Node {
+    "base": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 3,
+          "line": 1,
+          "offset": 2,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "name": "req",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 8,
+        "line": 1,
+        "offset": 7,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 8,
+          "line": 1,
+          "offset": 7,
+        },
+        "start": Object {
+          "column": 5,
+          "line": 1,
+          "offset": 4,
+        },
+      },
+      "name": "http",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 14,
+      "line": 1,
+      "offset": 13,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "member": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 14,
+        "line": 1,
+        "offset": 13,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 1,
+        "offset": 9,
+      },
+    },
+    "name": "Debug",
+    "type": "Identifier",
+  },
+  "type": "Member",
+}
+`;
+
+exports[`member deep format: format long 1`] = `req.http.Debug`;
+
+exports[`member deep format: format short 1`] = `
+req
+  .http
+  .Debug
+`;
+
+exports[`member deep token 1`] = `
+Array [
+  req,
+  .,
+  http,
+  .,
+  Debug,
+]
+`;
+
+exports[`member deep_in_binary_expression ast: ast 1`] = `
+Node {
+  "left": Node {
+    "base": Node {
+      "base": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 3,
+            "line": 1,
+            "offset": 2,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 1,
+            "offset": 0,
+          },
+        },
+        "name": "req",
+        "type": "Identifier",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 8,
+          "line": 1,
+          "offset": 7,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "member": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 8,
+            "line": 1,
+            "offset": 7,
+          },
+          "start": Object {
+            "column": 5,
+            "line": 1,
+            "offset": 4,
+          },
+        },
+        "name": "http",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 14,
+        "line": 1,
+        "offset": 13,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 14,
+          "line": 1,
+          "offset": 13,
+        },
+        "start": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+      },
+      "name": "Debug",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 25,
+      "line": 1,
+      "offset": 24,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "==",
+  "right": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 25,
+        "line": 1,
+        "offset": 24,
+      },
+      "start": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"debug\\"",
+  },
+  "type": "BinaryExpression",
+}
+`;
+
+exports[`member deep_in_binary_expression format: format long 1`] = `req.http.Debug == "debug"`;
+
+exports[`member deep_in_binary_expression format: format short 1`] = `
+req
+  .http
+  .Debug ==
+  "debug"
+`;
+
+exports[`member deep_in_binary_expression token 1`] = `
+Array [
+  req,
+  .,
+  http,
+  .,
+  Debug,
+  ==,
+  "debug",
+]
+`;
+
+exports[`member in_binary_expression ast: ast 1`] = `
+Node {
+  "left": Node {
+    "base": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 3,
+          "line": 1,
+          "offset": 2,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "name": "req",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 11,
+        "line": 1,
+        "offset": 10,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 11,
+          "line": 1,
+          "offset": 10,
+        },
+        "start": Object {
+          "column": 5,
+          "line": 1,
+          "offset": 4,
+        },
+      },
+      "name": "backend",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 22,
+      "line": 1,
+      "offset": 21,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "==",
+  "right": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 22,
+        "line": 1,
+        "offset": 21,
+      },
+      "start": Object {
+        "column": 16,
+        "line": 1,
+        "offset": 15,
+      },
+    },
+    "name": "backend",
+    "type": "Identifier",
+  },
+  "type": "BinaryExpression",
+}
+`;
+
+exports[`member in_binary_expression format: format long 1`] = `req.backend == backend`;
+
+exports[`member in_binary_expression format: format short 1`] = `
+req.backend ==
+  backend
+`;
+
+exports[`member in_binary_expression token 1`] = `
+Array [
+  req,
+  .,
+  backend,
+  ==,
+  backend,
+]
+`;

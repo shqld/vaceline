@@ -1,5 +1,0 @@
-basic
-
-```vcl
-synthetic "";
-```

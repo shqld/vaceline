@@ -1,0 +1,1755 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`if-statement basic ast: ast 1`] = `
+Node {
+  "alternative": undefined,
+  "consequent": Array [
+    Node {
+      "left": Node {
+        "base": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 9,
+              "line": 2,
+              "offset": 29,
+            },
+            "start": Object {
+              "column": 7,
+              "line": 2,
+              "offset": 27,
+            },
+          },
+          "name": "var",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 15,
+            "line": 2,
+            "offset": 35,
+          },
+          "start": Object {
+            "column": 7,
+            "line": 2,
+            "offset": 27,
+          },
+        },
+        "member": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 15,
+              "line": 2,
+              "offset": 35,
+            },
+            "start": Object {
+              "column": 11,
+              "line": 2,
+              "offset": 31,
+            },
+          },
+          "name": "value",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 20,
+          "line": 2,
+          "offset": 40,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 2,
+          "offset": 23,
+        },
+      },
+      "operator": "=",
+      "right": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 19,
+            "line": 2,
+            "offset": 39,
+          },
+          "start": Object {
+            "column": 19,
+            "line": 2,
+            "offset": 39,
+          },
+        },
+        "type": "NumericLiteral",
+        "value": "1",
+      },
+      "type": "SetStatement",
+    },
+  ],
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 3,
+      "offset": 42,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "test": Node {
+    "base": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 7,
+          "line": 1,
+          "offset": 6,
+        },
+        "start": Object {
+          "column": 5,
+          "line": 1,
+          "offset": 4,
+        },
+      },
+      "name": "var",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 17,
+          "line": 1,
+          "offset": 16,
+        },
+        "start": Object {
+          "column": 9,
+          "line": 1,
+          "offset": 8,
+        },
+      },
+      "name": "condition",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "type": "IfStatement",
+}
+`;
+
+exports[`if-statement basic format: format long 1`] = `
+if (var.condition) {
+  set var.value = 1;
+}
+`;
+
+exports[`if-statement basic format: format short 1`] = `
+if (
+  var.condition
+) {
+  set var.value =
+    1;
+}
+`;
+
+exports[`if-statement basic token 1`] = `
+Array [
+  if,
+  (,
+  var,
+  .,
+  condition,
+  ),
+  {,
+  set,
+  var,
+  .,
+  value,
+  =,
+  1,
+  ;,
+  },
+]
+`;
+
+exports[`if-statement with_else ast: ast 1`] = `
+Node {
+  "alternative": Array [
+    Node {
+      "left": Node {
+        "base": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 9,
+              "line": 4,
+              "offset": 59,
+            },
+            "start": Object {
+              "column": 7,
+              "line": 4,
+              "offset": 57,
+            },
+          },
+          "name": "var",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 15,
+            "line": 4,
+            "offset": 65,
+          },
+          "start": Object {
+            "column": 7,
+            "line": 4,
+            "offset": 57,
+          },
+        },
+        "member": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 15,
+              "line": 4,
+              "offset": 65,
+            },
+            "start": Object {
+              "column": 11,
+              "line": 4,
+              "offset": 61,
+            },
+          },
+          "name": "value",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 20,
+          "line": 4,
+          "offset": 70,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 4,
+          "offset": 53,
+        },
+      },
+      "operator": "=",
+      "right": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 19,
+            "line": 4,
+            "offset": 69,
+          },
+          "start": Object {
+            "column": 19,
+            "line": 4,
+            "offset": 69,
+          },
+        },
+        "type": "NumericLiteral",
+        "value": "2",
+      },
+      "type": "SetStatement",
+    },
+  ],
+  "consequent": Array [
+    Node {
+      "left": Node {
+        "base": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 9,
+              "line": 2,
+              "offset": 29,
+            },
+            "start": Object {
+              "column": 7,
+              "line": 2,
+              "offset": 27,
+            },
+          },
+          "name": "var",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 15,
+            "line": 2,
+            "offset": 35,
+          },
+          "start": Object {
+            "column": 7,
+            "line": 2,
+            "offset": 27,
+          },
+        },
+        "member": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 15,
+              "line": 2,
+              "offset": 35,
+            },
+            "start": Object {
+              "column": 11,
+              "line": 2,
+              "offset": 31,
+            },
+          },
+          "name": "value",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 20,
+          "line": 2,
+          "offset": 40,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 2,
+          "offset": 23,
+        },
+      },
+      "operator": "=",
+      "right": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 19,
+            "line": 2,
+            "offset": 39,
+          },
+          "start": Object {
+            "column": 19,
+            "line": 2,
+            "offset": 39,
+          },
+        },
+        "type": "NumericLiteral",
+        "value": "1",
+      },
+      "type": "SetStatement",
+    },
+  ],
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 5,
+      "offset": 72,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "test": Node {
+    "base": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 7,
+          "line": 1,
+          "offset": 6,
+        },
+        "start": Object {
+          "column": 5,
+          "line": 1,
+          "offset": 4,
+        },
+      },
+      "name": "var",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 17,
+          "line": 1,
+          "offset": 16,
+        },
+        "start": Object {
+          "column": 9,
+          "line": 1,
+          "offset": 8,
+        },
+      },
+      "name": "condition",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "type": "IfStatement",
+}
+`;
+
+exports[`if-statement with_else format: format long 1`] = `
+if (var.condition) {
+  set var.value = 1;
+} else {
+  set var.value = 2;
+}
+`;
+
+exports[`if-statement with_else format: format short 1`] = `
+if (
+  var.condition
+) {
+  set var.value =
+    1;
+} else {
+  set var.value =
+    2;
+}
+`;
+
+exports[`if-statement with_else token 1`] = `
+Array [
+  if,
+  (,
+  var,
+  .,
+  condition,
+  ),
+  {,
+  set,
+  var,
+  .,
+  value,
+  =,
+  1,
+  ;,
+  },
+  else,
+  {,
+  set,
+  var,
+  .,
+  value,
+  =,
+  2,
+  ;,
+  },
+]
+`;
+
+exports[`if-statement with_else_else_if ast: ast 1`] = `
+Node {
+  "alternative": Node {
+    "alternative": Array [
+      Node {
+        "left": Node {
+          "base": Node {
+            "loc": Object {
+              "end": Object {
+                "column": 9,
+                "line": 6,
+                "offset": 109,
+              },
+              "start": Object {
+                "column": 7,
+                "line": 6,
+                "offset": 107,
+              },
+            },
+            "name": "var",
+            "type": "Identifier",
+          },
+          "loc": Object {
+            "end": Object {
+              "column": 15,
+              "line": 6,
+              "offset": 115,
+            },
+            "start": Object {
+              "column": 7,
+              "line": 6,
+              "offset": 107,
+            },
+          },
+          "member": Node {
+            "loc": Object {
+              "end": Object {
+                "column": 15,
+                "line": 6,
+                "offset": 115,
+              },
+              "start": Object {
+                "column": 11,
+                "line": 6,
+                "offset": 111,
+              },
+            },
+            "name": "value",
+            "type": "Identifier",
+          },
+          "type": "Member",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 20,
+            "line": 6,
+            "offset": 120,
+          },
+          "start": Object {
+            "column": 3,
+            "line": 6,
+            "offset": 103,
+          },
+        },
+        "operator": "=",
+        "right": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 19,
+              "line": 6,
+              "offset": 119,
+            },
+            "start": Object {
+              "column": 19,
+              "line": 6,
+              "offset": 119,
+            },
+          },
+          "type": "NumericLiteral",
+          "value": "0",
+        },
+        "type": "SetStatement",
+      },
+    ],
+    "consequent": Array [
+      Node {
+        "left": Node {
+          "base": Node {
+            "loc": Object {
+              "end": Object {
+                "column": 9,
+                "line": 4,
+                "offset": 79,
+              },
+              "start": Object {
+                "column": 7,
+                "line": 4,
+                "offset": 77,
+              },
+            },
+            "name": "var",
+            "type": "Identifier",
+          },
+          "loc": Object {
+            "end": Object {
+              "column": 15,
+              "line": 4,
+              "offset": 85,
+            },
+            "start": Object {
+              "column": 7,
+              "line": 4,
+              "offset": 77,
+            },
+          },
+          "member": Node {
+            "loc": Object {
+              "end": Object {
+                "column": 15,
+                "line": 4,
+                "offset": 85,
+              },
+              "start": Object {
+                "column": 11,
+                "line": 4,
+                "offset": 81,
+              },
+            },
+            "name": "value",
+            "type": "Identifier",
+          },
+          "type": "Member",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 20,
+            "line": 4,
+            "offset": 90,
+          },
+          "start": Object {
+            "column": 3,
+            "line": 4,
+            "offset": 73,
+          },
+        },
+        "operator": "=",
+        "right": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 19,
+              "line": 4,
+              "offset": 89,
+            },
+            "start": Object {
+              "column": 19,
+              "line": 4,
+              "offset": 89,
+            },
+          },
+          "type": "NumericLiteral",
+          "value": "2",
+        },
+        "type": "SetStatement",
+      },
+    ],
+    "loc": Object {
+      "end": Object {
+        "column": 1,
+        "line": 7,
+        "offset": 122,
+      },
+      "start": Object {
+        "column": 8,
+        "line": 3,
+        "offset": 49,
+      },
+    },
+    "test": Node {
+      "argument": Node {
+        "base": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 15,
+              "line": 3,
+              "offset": 56,
+            },
+            "start": Object {
+              "column": 13,
+              "line": 3,
+              "offset": 54,
+            },
+          },
+          "name": "var",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 25,
+            "line": 3,
+            "offset": 66,
+          },
+          "start": Object {
+            "column": 13,
+            "line": 3,
+            "offset": 54,
+          },
+        },
+        "member": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 25,
+              "line": 3,
+              "offset": 66,
+            },
+            "start": Object {
+              "column": 17,
+              "line": 3,
+              "offset": 58,
+            },
+          },
+          "name": "condition",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 25,
+          "line": 3,
+          "offset": 66,
+        },
+        "start": Object {
+          "column": 12,
+          "line": 3,
+          "offset": 53,
+        },
+      },
+      "operator": "!",
+      "type": "UnaryExpression",
+    },
+    "type": "IfStatement",
+  },
+  "consequent": Array [
+    Node {
+      "left": Node {
+        "base": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 9,
+              "line": 2,
+              "offset": 29,
+            },
+            "start": Object {
+              "column": 7,
+              "line": 2,
+              "offset": 27,
+            },
+          },
+          "name": "var",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 15,
+            "line": 2,
+            "offset": 35,
+          },
+          "start": Object {
+            "column": 7,
+            "line": 2,
+            "offset": 27,
+          },
+        },
+        "member": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 15,
+              "line": 2,
+              "offset": 35,
+            },
+            "start": Object {
+              "column": 11,
+              "line": 2,
+              "offset": 31,
+            },
+          },
+          "name": "value",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 20,
+          "line": 2,
+          "offset": 40,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 2,
+          "offset": 23,
+        },
+      },
+      "operator": "=",
+      "right": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 19,
+            "line": 2,
+            "offset": 39,
+          },
+          "start": Object {
+            "column": 19,
+            "line": 2,
+            "offset": 39,
+          },
+        },
+        "type": "NumericLiteral",
+        "value": "1",
+      },
+      "type": "SetStatement",
+    },
+  ],
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 7,
+      "offset": 122,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "test": Node {
+    "base": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 7,
+          "line": 1,
+          "offset": 6,
+        },
+        "start": Object {
+          "column": 5,
+          "line": 1,
+          "offset": 4,
+        },
+      },
+      "name": "var",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 17,
+          "line": 1,
+          "offset": 16,
+        },
+        "start": Object {
+          "column": 9,
+          "line": 1,
+          "offset": 8,
+        },
+      },
+      "name": "condition",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "type": "IfStatement",
+}
+`;
+
+exports[`if-statement with_else_else_if format: format long 1`] = `
+if (var.condition) {
+  set var.value = 1;
+} else if (!var.condition) {
+  set var.value = 2;
+} else {
+  set var.value = 0;
+}
+`;
+
+exports[`if-statement with_else_else_if format: format short 1`] = `
+if (
+  var.condition
+) {
+  set var.value =
+    1;
+} else if (
+  !var.condition
+) {
+  set var.value =
+    2;
+} else {
+  set var.value =
+    0;
+}
+`;
+
+exports[`if-statement with_else_else_if token 1`] = `
+Array [
+  if,
+  (,
+  var,
+  .,
+  condition,
+  ),
+  {,
+  set,
+  var,
+  .,
+  value,
+  =,
+  1,
+  ;,
+  },
+  else,
+  if,
+  (,
+  !,
+  var,
+  .,
+  condition,
+  ),
+  {,
+  set,
+  var,
+  .,
+  value,
+  =,
+  2,
+  ;,
+  },
+  else,
+  {,
+  set,
+  var,
+  .,
+  value,
+  =,
+  0,
+  ;,
+  },
+]
+`;
+
+exports[`if-statement with_else_if ast: ast 1`] = `
+Node {
+  "alternative": Node {
+    "alternative": undefined,
+    "consequent": Array [
+      Node {
+        "left": Node {
+          "base": Node {
+            "loc": Object {
+              "end": Object {
+                "column": 9,
+                "line": 4,
+                "offset": 79,
+              },
+              "start": Object {
+                "column": 7,
+                "line": 4,
+                "offset": 77,
+              },
+            },
+            "name": "var",
+            "type": "Identifier",
+          },
+          "loc": Object {
+            "end": Object {
+              "column": 15,
+              "line": 4,
+              "offset": 85,
+            },
+            "start": Object {
+              "column": 7,
+              "line": 4,
+              "offset": 77,
+            },
+          },
+          "member": Node {
+            "loc": Object {
+              "end": Object {
+                "column": 15,
+                "line": 4,
+                "offset": 85,
+              },
+              "start": Object {
+                "column": 11,
+                "line": 4,
+                "offset": 81,
+              },
+            },
+            "name": "value",
+            "type": "Identifier",
+          },
+          "type": "Member",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 20,
+            "line": 4,
+            "offset": 90,
+          },
+          "start": Object {
+            "column": 3,
+            "line": 4,
+            "offset": 73,
+          },
+        },
+        "operator": "=",
+        "right": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 19,
+              "line": 4,
+              "offset": 89,
+            },
+            "start": Object {
+              "column": 19,
+              "line": 4,
+              "offset": 89,
+            },
+          },
+          "type": "NumericLiteral",
+          "value": "2",
+        },
+        "type": "SetStatement",
+      },
+    ],
+    "loc": Object {
+      "end": Object {
+        "column": 1,
+        "line": 5,
+        "offset": 92,
+      },
+      "start": Object {
+        "column": 8,
+        "line": 3,
+        "offset": 49,
+      },
+    },
+    "test": Node {
+      "argument": Node {
+        "base": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 15,
+              "line": 3,
+              "offset": 56,
+            },
+            "start": Object {
+              "column": 13,
+              "line": 3,
+              "offset": 54,
+            },
+          },
+          "name": "var",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 25,
+            "line": 3,
+            "offset": 66,
+          },
+          "start": Object {
+            "column": 13,
+            "line": 3,
+            "offset": 54,
+          },
+        },
+        "member": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 25,
+              "line": 3,
+              "offset": 66,
+            },
+            "start": Object {
+              "column": 17,
+              "line": 3,
+              "offset": 58,
+            },
+          },
+          "name": "condition",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 25,
+          "line": 3,
+          "offset": 66,
+        },
+        "start": Object {
+          "column": 12,
+          "line": 3,
+          "offset": 53,
+        },
+      },
+      "operator": "!",
+      "type": "UnaryExpression",
+    },
+    "type": "IfStatement",
+  },
+  "consequent": Array [
+    Node {
+      "left": Node {
+        "base": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 9,
+              "line": 2,
+              "offset": 29,
+            },
+            "start": Object {
+              "column": 7,
+              "line": 2,
+              "offset": 27,
+            },
+          },
+          "name": "var",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 15,
+            "line": 2,
+            "offset": 35,
+          },
+          "start": Object {
+            "column": 7,
+            "line": 2,
+            "offset": 27,
+          },
+        },
+        "member": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 15,
+              "line": 2,
+              "offset": 35,
+            },
+            "start": Object {
+              "column": 11,
+              "line": 2,
+              "offset": 31,
+            },
+          },
+          "name": "value",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 20,
+          "line": 2,
+          "offset": 40,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 2,
+          "offset": 23,
+        },
+      },
+      "operator": "=",
+      "right": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 19,
+            "line": 2,
+            "offset": 39,
+          },
+          "start": Object {
+            "column": 19,
+            "line": 2,
+            "offset": 39,
+          },
+        },
+        "type": "NumericLiteral",
+        "value": "1",
+      },
+      "type": "SetStatement",
+    },
+  ],
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 5,
+      "offset": 92,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "test": Node {
+    "base": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 7,
+          "line": 1,
+          "offset": 6,
+        },
+        "start": Object {
+          "column": 5,
+          "line": 1,
+          "offset": 4,
+        },
+      },
+      "name": "var",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 17,
+          "line": 1,
+          "offset": 16,
+        },
+        "start": Object {
+          "column": 9,
+          "line": 1,
+          "offset": 8,
+        },
+      },
+      "name": "condition",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "type": "IfStatement",
+}
+`;
+
+exports[`if-statement with_else_if format: format long 1`] = `
+if (var.condition) {
+  set var.value = 1;
+} else if (!var.condition) {
+  set var.value = 2;
+}
+`;
+
+exports[`if-statement with_else_if format: format short 1`] = `
+if (
+  var.condition
+) {
+  set var.value =
+    1;
+} else if (
+  !var.condition
+) {
+  set var.value =
+    2;
+}
+`;
+
+exports[`if-statement with_else_if token 1`] = `
+Array [
+  if,
+  (,
+  var,
+  .,
+  condition,
+  ),
+  {,
+  set,
+  var,
+  .,
+  value,
+  =,
+  1,
+  ;,
+  },
+  else,
+  if,
+  (,
+  !,
+  var,
+  .,
+  condition,
+  ),
+  {,
+  set,
+  var,
+  .,
+  value,
+  =,
+  2,
+  ;,
+  },
+]
+`;
+
+exports[`if-statement with_empty_lines ast: ast 1`] = `
+Node {
+  "alternative": Node {
+    "alternative": Array [
+      Node {
+        "left": Node {
+          "base": Node {
+            "loc": Object {
+              "end": Object {
+                "column": 9,
+                "line": 11,
+                "offset": 114,
+              },
+              "start": Object {
+                "column": 7,
+                "line": 11,
+                "offset": 112,
+              },
+            },
+            "name": "var",
+            "type": "Identifier",
+          },
+          "loc": Object {
+            "end": Object {
+              "column": 15,
+              "line": 11,
+              "offset": 120,
+            },
+            "start": Object {
+              "column": 7,
+              "line": 11,
+              "offset": 112,
+            },
+          },
+          "member": Node {
+            "loc": Object {
+              "end": Object {
+                "column": 15,
+                "line": 11,
+                "offset": 120,
+              },
+              "start": Object {
+                "column": 11,
+                "line": 11,
+                "offset": 116,
+              },
+            },
+            "name": "value",
+            "type": "Identifier",
+          },
+          "type": "Member",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 20,
+            "line": 11,
+            "offset": 125,
+          },
+          "start": Object {
+            "column": 3,
+            "line": 11,
+            "offset": 108,
+          },
+        },
+        "operator": "=",
+        "right": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 19,
+              "line": 11,
+              "offset": 124,
+            },
+            "start": Object {
+              "column": 19,
+              "line": 11,
+              "offset": 124,
+            },
+          },
+          "type": "NumericLiteral",
+          "value": "0",
+        },
+        "type": "SetStatement",
+      },
+    ],
+    "consequent": Array [
+      Node {
+        "left": Node {
+          "base": Node {
+            "loc": Object {
+              "end": Object {
+                "column": 9,
+                "line": 7,
+                "offset": 82,
+              },
+              "start": Object {
+                "column": 7,
+                "line": 7,
+                "offset": 80,
+              },
+            },
+            "name": "var",
+            "type": "Identifier",
+          },
+          "loc": Object {
+            "end": Object {
+              "column": 15,
+              "line": 7,
+              "offset": 88,
+            },
+            "start": Object {
+              "column": 7,
+              "line": 7,
+              "offset": 80,
+            },
+          },
+          "member": Node {
+            "loc": Object {
+              "end": Object {
+                "column": 15,
+                "line": 7,
+                "offset": 88,
+              },
+              "start": Object {
+                "column": 11,
+                "line": 7,
+                "offset": 84,
+              },
+            },
+            "name": "value",
+            "type": "Identifier",
+          },
+          "type": "Member",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 20,
+            "line": 7,
+            "offset": 93,
+          },
+          "start": Object {
+            "column": 3,
+            "line": 7,
+            "offset": 76,
+          },
+        },
+        "operator": "=",
+        "right": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 19,
+              "line": 7,
+              "offset": 92,
+            },
+            "start": Object {
+              "column": 19,
+              "line": 7,
+              "offset": 92,
+            },
+          },
+          "type": "NumericLiteral",
+          "value": "2",
+        },
+        "type": "SetStatement",
+      },
+    ],
+    "loc": Object {
+      "end": Object {
+        "column": 1,
+        "line": 13,
+        "offset": 128,
+      },
+      "start": Object {
+        "column": 8,
+        "line": 5,
+        "offset": 51,
+      },
+    },
+    "test": Node {
+      "argument": Node {
+        "base": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 15,
+              "line": 5,
+              "offset": 58,
+            },
+            "start": Object {
+              "column": 13,
+              "line": 5,
+              "offset": 56,
+            },
+          },
+          "name": "var",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 25,
+            "line": 5,
+            "offset": 68,
+          },
+          "start": Object {
+            "column": 13,
+            "line": 5,
+            "offset": 56,
+          },
+        },
+        "member": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 25,
+              "line": 5,
+              "offset": 68,
+            },
+            "start": Object {
+              "column": 17,
+              "line": 5,
+              "offset": 60,
+            },
+          },
+          "name": "condition",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 25,
+          "line": 5,
+          "offset": 68,
+        },
+        "start": Object {
+          "column": 12,
+          "line": 5,
+          "offset": 55,
+        },
+      },
+      "operator": "!",
+      "type": "UnaryExpression",
+    },
+    "type": "IfStatement",
+  },
+  "consequent": Array [
+    Node {
+      "left": Node {
+        "base": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 9,
+              "line": 3,
+              "offset": 30,
+            },
+            "start": Object {
+              "column": 7,
+              "line": 3,
+              "offset": 28,
+            },
+          },
+          "name": "var",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 15,
+            "line": 3,
+            "offset": 36,
+          },
+          "start": Object {
+            "column": 7,
+            "line": 3,
+            "offset": 28,
+          },
+        },
+        "member": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 15,
+              "line": 3,
+              "offset": 36,
+            },
+            "start": Object {
+              "column": 11,
+              "line": 3,
+              "offset": 32,
+            },
+          },
+          "name": "value",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 20,
+          "line": 3,
+          "offset": 41,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 3,
+          "offset": 24,
+        },
+      },
+      "operator": "=",
+      "right": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 19,
+            "line": 3,
+            "offset": 40,
+          },
+          "start": Object {
+            "column": 19,
+            "line": 3,
+            "offset": 40,
+          },
+        },
+        "type": "NumericLiteral",
+        "value": "1",
+      },
+      "type": "SetStatement",
+    },
+  ],
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 13,
+      "offset": 128,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "test": Node {
+    "base": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 7,
+          "line": 1,
+          "offset": 6,
+        },
+        "start": Object {
+          "column": 5,
+          "line": 1,
+          "offset": 4,
+        },
+      },
+      "name": "var",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 17,
+          "line": 1,
+          "offset": 16,
+        },
+        "start": Object {
+          "column": 9,
+          "line": 1,
+          "offset": 8,
+        },
+      },
+      "name": "condition",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "type": "IfStatement",
+}
+`;
+
+exports[`if-statement with_empty_lines format: format long 1`] = `
+if (var.condition) {
+
+  set var.value = 1;
+} else if (!var.condition) {
+
+
+  set var.value = 2;
+} else {
+
+
+  set var.value = 0;
+}
+`;
+
+exports[`if-statement with_empty_lines format: format short 1`] = `
+if (
+  var.condition
+) {
+
+  set var.value =
+    1;
+} else if (
+  !var.condition
+) {
+
+
+  set var.value =
+    2;
+} else {
+
+
+  set var.value =
+    0;
+}
+`;
+
+exports[`if-statement with_empty_lines token 1`] = `
+Array [
+  if,
+  (,
+  var,
+  .,
+  condition,
+  ),
+  {,
+  set,
+  var,
+  .,
+  value,
+  =,
+  1,
+  ;,
+  },
+  else,
+  if,
+  (,
+  !,
+  var,
+  .,
+  condition,
+  ),
+  {,
+  set,
+  var,
+  .,
+  value,
+  =,
+  2,
+  ;,
+  },
+  else,
+  {,
+  set,
+  var,
+  .,
+  value,
+  =,
+  0,
+  ;,
+  },
+]
+`;

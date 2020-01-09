@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`import-statement basic ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 14,
+      "line": 1,
+      "offset": 13,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "module": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 13,
+        "line": 1,
+        "offset": 12,
+      },
+      "start": Object {
+        "column": 8,
+        "line": 1,
+        "offset": 7,
+      },
+    },
+    "name": "module",
+    "type": "Identifier",
+  },
+  "type": "ImportStatement",
+}
+`;
+
+exports[`import-statement basic format: format 1`] = `import module;`;
+
+exports[`import-statement basic token 1`] = `
+Array [
+  import,
+  module,
+  ;,
+]
+`;
+
+exports[`import-statement with_string_param 1`] = `
+expected Identifier
+
+> 1 | import "module";
+             ^^^^^^^
+  2 | 
+`;

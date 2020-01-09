@@ -1,5 +1,0 @@
-basic
-
-```vcl
-Cookie:Vacelin
-```
