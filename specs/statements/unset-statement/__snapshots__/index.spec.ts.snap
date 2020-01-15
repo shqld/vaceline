@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`unset-statement member ast: ast 1`] = `
+Node {
+  "id": Node {
+    "base": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 9,
+          "line": 1,
+          "offset": 8,
+        },
+        "start": Object {
+          "column": 7,
+          "line": 1,
+          "offset": 6,
+        },
+      },
+      "name": "var",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 15,
+        "line": 1,
+        "offset": 14,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 1,
+        "offset": 6,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 15,
+          "line": 1,
+          "offset": 14,
+        },
+        "start": Object {
+          "column": 11,
+          "line": 1,
+          "offset": 10,
+        },
+      },
+      "name": "value",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 16,
+      "line": 1,
+      "offset": 15,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "UnsetStatement",
+}
+`;
+
+exports[`unset-statement member format: format 1`] = `unset var.value;`;
+
+exports[`unset-statement member token 1`] = `
+Array [
+  unset,
+  var,
+  .,
+  value,
+  ;,
+]
+`;
+
+exports[`unset-statement variable ast: ast 1`] = `
+Node {
+  "id": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 11,
+        "line": 1,
+        "offset": 10,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 1,
+        "offset": 6,
+      },
+    },
+    "name": "value",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 12,
+      "line": 1,
+      "offset": 11,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "UnsetStatement",
+}
+`;
+
+exports[`unset-statement variable format: format 1`] = `unset value;`;
+
+exports[`unset-statement variable token 1`] = `
+Array [
+  unset,
+  value,
+  ;,
+]
+`;

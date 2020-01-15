@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`unary-expression boolean_literal ast: ast 1`] = `
+Node {
+  "argument": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+      "start": Object {
+        "column": 2,
+        "line": 1,
+        "offset": 1,
+      },
+    },
+    "type": "BooleanLiteral",
+    "value": "true",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 5,
+      "line": 1,
+      "offset": 4,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "!",
+  "type": "UnaryExpression",
+}
+`;
+
+exports[`unary-expression boolean_literal format: format 1`] = `!true`;
+
+exports[`unary-expression boolean_literal token 1`] = `
+Array [
+  !,
+  true,
+]
+`;
+
+exports[`unary-expression variable ast: ast 1`] = `
+Node {
+  "argument": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 10,
+        "line": 1,
+        "offset": 9,
+      },
+      "start": Object {
+        "column": 2,
+        "line": 1,
+        "offset": 1,
+      },
+    },
+    "name": "condition",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 10,
+      "line": 1,
+      "offset": 9,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "!",
+  "type": "UnaryExpression",
+}
+`;
+
+exports[`unary-expression variable format: format 1`] = `!condition`;
+
+exports[`unary-expression variable token 1`] = `
+Array [
+  !,
+  condition,
+]
+`;

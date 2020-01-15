@@ -1,0 +1,287 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`concat-expression strings ast: ast 1`] = `
+Node {
+  "body": Array [
+    Node {
+      "loc": Object {
+        "end": Object {
+          "column": 3,
+          "line": 1,
+          "offset": 2,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"a\\"",
+    },
+    Node {
+      "loc": Object {
+        "end": Object {
+          "column": 7,
+          "line": 1,
+          "offset": 6,
+        },
+        "start": Object {
+          "column": 5,
+          "line": 1,
+          "offset": 4,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"b\\"",
+    },
+    Node {
+      "loc": Object {
+        "end": Object {
+          "column": 11,
+          "line": 1,
+          "offset": 10,
+        },
+        "start": Object {
+          "column": 9,
+          "line": 1,
+          "offset": 8,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"c\\"",
+    },
+  ],
+  "loc": Object {
+    "end": Object {
+      "column": 11,
+      "line": 1,
+      "offset": 10,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "ConcatExpression",
+}
+`;
+
+exports[`concat-expression strings format: format long 1`] = `"a" "b" "c"`;
+
+exports[`concat-expression strings format: format short 1`] = `
+"a"
+  "b"
+  "c"
+`;
+
+exports[`concat-expression strings token 1`] = `
+Array [
+  "a",
+  "b",
+  "c",
+]
+`;
+
+exports[`concat-expression variables ast: ast 1`] = `
+Node {
+  "body": Array [
+    Node {
+      "base": Node {
+        "base": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 3,
+              "line": 1,
+              "offset": 2,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "name": "req",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 8,
+            "line": 1,
+            "offset": 7,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 1,
+            "offset": 0,
+          },
+        },
+        "member": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 8,
+              "line": 1,
+              "offset": 7,
+            },
+            "start": Object {
+              "column": 5,
+              "line": 1,
+              "offset": 4,
+            },
+          },
+          "name": "http",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "member": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 10,
+            "line": 1,
+            "offset": 9,
+          },
+          "start": Object {
+            "column": 10,
+            "line": 1,
+            "offset": 9,
+          },
+        },
+        "name": "A",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    Node {
+      "base": Node {
+        "base": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 14,
+              "line": 1,
+              "offset": 13,
+            },
+            "start": Object {
+              "column": 12,
+              "line": 1,
+              "offset": 11,
+            },
+          },
+          "name": "req",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 19,
+            "line": 1,
+            "offset": 18,
+          },
+          "start": Object {
+            "column": 12,
+            "line": 1,
+            "offset": 11,
+          },
+        },
+        "member": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 19,
+              "line": 1,
+              "offset": 18,
+            },
+            "start": Object {
+              "column": 16,
+              "line": 1,
+              "offset": 15,
+            },
+          },
+          "name": "http",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 21,
+          "line": 1,
+          "offset": 20,
+        },
+        "start": Object {
+          "column": 12,
+          "line": 1,
+          "offset": 11,
+        },
+      },
+      "member": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 21,
+            "line": 1,
+            "offset": 20,
+          },
+          "start": Object {
+            "column": 21,
+            "line": 1,
+            "offset": 20,
+          },
+        },
+        "name": "B",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+  ],
+  "loc": Object {
+    "end": Object {
+      "column": 21,
+      "line": 1,
+      "offset": 20,
+    },
+    "start": Object {
+      "column": 10,
+      "line": 1,
+      "offset": 9,
+    },
+  },
+  "type": "ConcatExpression",
+}
+`;
+
+exports[`concat-expression variables format: format long 1`] = `req.http.A req.http.B`;
+
+exports[`concat-expression variables format: format short 1`] = `
+req
+    .http
+    .A
+  req
+    .http
+    .B
+`;
+
+exports[`concat-expression variables token 1`] = `
+Array [
+  req,
+  .,
+  http,
+  .,
+  A,
+  req,
+  .,
+  http,
+  .,
+  B,
+]
+`;

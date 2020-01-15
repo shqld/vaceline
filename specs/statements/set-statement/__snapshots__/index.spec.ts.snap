@@ -1,0 +1,506 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`set-statement addition ast: ast 1`] = `
+Node {
+  "left": Node {
+    "base": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 7,
+          "line": 1,
+          "offset": 6,
+        },
+        "start": Object {
+          "column": 5,
+          "line": 1,
+          "offset": 4,
+        },
+      },
+      "name": "var",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 13,
+        "line": 1,
+        "offset": 12,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 13,
+          "line": 1,
+          "offset": 12,
+        },
+        "start": Object {
+          "column": 9,
+          "line": 1,
+          "offset": 8,
+        },
+      },
+      "name": "vacel",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 25,
+      "line": 1,
+      "offset": 24,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "+=",
+  "right": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 24,
+        "line": 1,
+        "offset": 23,
+      },
+      "start": Object {
+        "column": 18,
+        "line": 1,
+        "offset": 17,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"vacel\\"",
+  },
+  "type": "SetStatement",
+}
+`;
+
+exports[`set-statement addition format: format long 1`] = `set var.vacel += "vacel";`;
+
+exports[`set-statement addition format: format short 1`] = `
+set var.vacel +=
+  "vacel";
+`;
+
+exports[`set-statement addition token 1`] = `
+Array [
+  set,
+  var,
+  .,
+  vacel,
+  +=,
+  "vacel",
+  ;,
+]
+`;
+
+exports[`set-statement assignment ast: ast 1`] = `
+Node {
+  "left": Node {
+    "base": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 7,
+          "line": 1,
+          "offset": 6,
+        },
+        "start": Object {
+          "column": 5,
+          "line": 1,
+          "offset": 4,
+        },
+      },
+      "name": "var",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 13,
+        "line": 1,
+        "offset": 12,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 13,
+          "line": 1,
+          "offset": 12,
+        },
+        "start": Object {
+          "column": 9,
+          "line": 1,
+          "offset": 8,
+        },
+      },
+      "name": "vacel",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 24,
+      "line": 1,
+      "offset": 23,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "=",
+  "right": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 23,
+        "line": 1,
+        "offset": 22,
+      },
+      "start": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"vacel\\"",
+  },
+  "type": "SetStatement",
+}
+`;
+
+exports[`set-statement assignment format: format long 1`] = `set var.vacel = "vacel";`;
+
+exports[`set-statement assignment format: format short 1`] = `
+set var.vacel =
+  "vacel";
+`;
+
+exports[`set-statement assignment token 1`] = `
+Array [
+  set,
+  var,
+  .,
+  vacel,
+  =,
+  "vacel",
+  ;,
+]
+`;
+
+exports[`set-statement division ast: ast 1`] = `
+Node {
+  "left": Node {
+    "base": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 7,
+          "line": 1,
+          "offset": 6,
+        },
+        "start": Object {
+          "column": 5,
+          "line": 1,
+          "offset": 4,
+        },
+      },
+      "name": "var",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 13,
+        "line": 1,
+        "offset": 12,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 13,
+          "line": 1,
+          "offset": 12,
+        },
+        "start": Object {
+          "column": 9,
+          "line": 1,
+          "offset": 8,
+        },
+      },
+      "name": "vacel",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 25,
+      "line": 1,
+      "offset": 24,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "*=",
+  "right": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 24,
+        "line": 1,
+        "offset": 23,
+      },
+      "start": Object {
+        "column": 18,
+        "line": 1,
+        "offset": 17,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"vacel\\"",
+  },
+  "type": "SetStatement",
+}
+`;
+
+exports[`set-statement division format: format long 1`] = `set var.vacel *= "vacel";`;
+
+exports[`set-statement division format: format short 1`] = `
+set var.vacel *=
+  "vacel";
+`;
+
+exports[`set-statement division token 1`] = `
+Array [
+  set,
+  var,
+  .,
+  vacel,
+  *=,
+  "vacel",
+  ;,
+]
+`;
+
+exports[`set-statement multiplication ast: ast 1`] = `
+Node {
+  "left": Node {
+    "base": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 7,
+          "line": 1,
+          "offset": 6,
+        },
+        "start": Object {
+          "column": 5,
+          "line": 1,
+          "offset": 4,
+        },
+      },
+      "name": "var",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 13,
+        "line": 1,
+        "offset": 12,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 13,
+          "line": 1,
+          "offset": 12,
+        },
+        "start": Object {
+          "column": 9,
+          "line": 1,
+          "offset": 8,
+        },
+      },
+      "name": "vacel",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 25,
+      "line": 1,
+      "offset": 24,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "*=",
+  "right": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 24,
+        "line": 1,
+        "offset": 23,
+      },
+      "start": Object {
+        "column": 18,
+        "line": 1,
+        "offset": 17,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"vacel\\"",
+  },
+  "type": "SetStatement",
+}
+`;
+
+exports[`set-statement multiplication format: format long 1`] = `set var.vacel *= "vacel";`;
+
+exports[`set-statement multiplication format: format short 1`] = `
+set var.vacel *=
+  "vacel";
+`;
+
+exports[`set-statement multiplication token 1`] = `
+Array [
+  set,
+  var,
+  .,
+  vacel,
+  *=,
+  "vacel",
+  ;,
+]
+`;
+
+exports[`set-statement substraction ast: ast 1`] = `
+Node {
+  "left": Node {
+    "base": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 7,
+          "line": 1,
+          "offset": 6,
+        },
+        "start": Object {
+          "column": 5,
+          "line": 1,
+          "offset": 4,
+        },
+      },
+      "name": "var",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 13,
+        "line": 1,
+        "offset": 12,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 13,
+          "line": 1,
+          "offset": 12,
+        },
+        "start": Object {
+          "column": 9,
+          "line": 1,
+          "offset": 8,
+        },
+      },
+      "name": "vacel",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 25,
+      "line": 1,
+      "offset": 24,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "-=",
+  "right": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 24,
+        "line": 1,
+        "offset": 23,
+      },
+      "start": Object {
+        "column": 18,
+        "line": 1,
+        "offset": 17,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"vacel\\"",
+  },
+  "type": "SetStatement",
+}
+`;
+
+exports[`set-statement substraction format: format long 1`] = `set var.vacel -= "vacel";`;
+
+exports[`set-statement substraction format: format short 1`] = `
+set var.vacel -=
+  "vacel";
+`;
+
+exports[`set-statement substraction token 1`] = `
+Array [
+  set,
+  var,
+  .,
+  vacel,
+  -=,
+  "vacel",
+  ;,
+]
+`;

@@ -1,0 +1,811 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`binary-expression equal ast: ast 1`] = `
+Node {
+  "left": Node {
+    "base": Node {
+      "base": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 3,
+            "line": 1,
+            "offset": 2,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 1,
+            "offset": 0,
+          },
+        },
+        "name": "req",
+        "type": "Identifier",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 8,
+          "line": 1,
+          "offset": 7,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "member": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 8,
+            "line": 1,
+            "offset": 7,
+          },
+          "start": Object {
+            "column": 5,
+            "line": 1,
+            "offset": 4,
+          },
+        },
+        "name": "http",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 14,
+        "line": 1,
+        "offset": 13,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 14,
+          "line": 1,
+          "offset": 13,
+        },
+        "start": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+      },
+      "name": "Debug",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 21,
+      "line": 1,
+      "offset": 20,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "==",
+  "right": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 21,
+        "line": 1,
+        "offset": 20,
+      },
+      "start": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"1\\"",
+  },
+  "type": "BinaryExpression",
+}
+`;
+
+exports[`binary-expression equal format: format long 1`] = `req.http.Debug == "1"`;
+
+exports[`binary-expression equal format: format short 1`] = `
+req
+  .http
+  .Debug ==
+  "1"
+`;
+
+exports[`binary-expression equal token 1`] = `
+Array [
+  req,
+  .,
+  http,
+  .,
+  Debug,
+  ==,
+  "1",
+]
+`;
+
+exports[`binary-expression match ast: ast 1`] = `
+Node {
+  "left": Node {
+    "base": Node {
+      "base": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 3,
+            "line": 1,
+            "offset": 2,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 1,
+            "offset": 0,
+          },
+        },
+        "name": "req",
+        "type": "Identifier",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 8,
+          "line": 1,
+          "offset": 7,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "member": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 8,
+            "line": 1,
+            "offset": 7,
+          },
+          "start": Object {
+            "column": 5,
+            "line": 1,
+            "offset": 4,
+          },
+        },
+        "name": "http",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 14,
+        "line": 1,
+        "offset": 13,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 14,
+          "line": 1,
+          "offset": 13,
+        },
+        "start": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+      },
+      "name": "Debug",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 20,
+      "line": 1,
+      "offset": 19,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "~",
+  "right": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 20,
+        "line": 1,
+        "offset": 19,
+      },
+      "start": Object {
+        "column": 18,
+        "line": 1,
+        "offset": 17,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"1\\"",
+  },
+  "type": "BinaryExpression",
+}
+`;
+
+exports[`binary-expression match format: format long 1`] = `req.http.Debug ~ "1"`;
+
+exports[`binary-expression match format: format short 1`] = `
+req
+  .http
+  .Debug ~
+  "1"
+`;
+
+exports[`binary-expression match token 1`] = `
+Array [
+  req,
+  .,
+  http,
+  .,
+  Debug,
+  ~,
+  "1",
+]
+`;
+
+exports[`binary-expression multi_binary_expr ast: ast 1`] = `
+Node {
+  "left": Node {
+    "left": Node {
+      "left": Node {
+        "base": Node {
+          "base": Node {
+            "loc": Object {
+              "end": Object {
+                "column": 3,
+                "line": 1,
+                "offset": 2,
+              },
+              "start": Object {
+                "column": 1,
+                "line": 1,
+                "offset": 0,
+              },
+            },
+            "name": "req",
+            "type": "Identifier",
+          },
+          "loc": Object {
+            "end": Object {
+              "column": 8,
+              "line": 1,
+              "offset": 7,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "member": Node {
+            "loc": Object {
+              "end": Object {
+                "column": 8,
+                "line": 1,
+                "offset": 7,
+              },
+              "start": Object {
+                "column": 5,
+                "line": 1,
+                "offset": 4,
+              },
+            },
+            "name": "http",
+            "type": "Identifier",
+          },
+          "type": "Member",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 14,
+            "line": 1,
+            "offset": 13,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 1,
+            "offset": 0,
+          },
+        },
+        "member": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 14,
+              "line": 1,
+              "offset": 13,
+            },
+            "start": Object {
+              "column": 10,
+              "line": 1,
+              "offset": 9,
+            },
+          },
+          "name": "Debug",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 21,
+          "line": 1,
+          "offset": 20,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "operator": "==",
+      "right": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 21,
+            "line": 1,
+            "offset": 20,
+          },
+          "start": Object {
+            "column": 19,
+            "line": 1,
+            "offset": 18,
+          },
+        },
+        "type": "StringLiteral",
+        "value": "\\"1\\"",
+      },
+      "type": "BinaryExpression",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 28,
+        "line": 1,
+        "offset": 27,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "operator": "==",
+    "right": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 28,
+          "line": 1,
+          "offset": 27,
+        },
+        "start": Object {
+          "column": 26,
+          "line": 1,
+          "offset": 25,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"2\\"",
+    },
+    "type": "BinaryExpression",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 35,
+      "line": 1,
+      "offset": 34,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "==",
+  "right": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 35,
+        "line": 1,
+        "offset": 34,
+      },
+      "start": Object {
+        "column": 33,
+        "line": 1,
+        "offset": 32,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"3\\"",
+  },
+  "type": "BinaryExpression",
+}
+`;
+
+exports[`binary-expression multi_binary_expr format: format long 1`] = `((req.http.Debug == "1") == "2") == "3"`;
+
+exports[`binary-expression multi_binary_expr format: format short 1`] = `
+((req
+  .http
+  .Debug ==
+  "1") ==
+  "2") ==
+  "3"
+`;
+
+exports[`binary-expression multi_binary_expr token 1`] = `
+Array [
+  req,
+  .,
+  http,
+  .,
+  Debug,
+  ==,
+  "1",
+  ==,
+  "2",
+  ==,
+  "3",
+]
+`;
+
+exports[`binary-expression multi_with_logical_expr ast: ast 1`] = `
+Node {
+  "left": Node {
+    "left": Node {
+      "base": Node {
+        "base": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 3,
+              "line": 1,
+              "offset": 2,
+            },
+            "start": Object {
+              "column": 1,
+              "line": 1,
+              "offset": 0,
+            },
+          },
+          "name": "req",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 8,
+            "line": 1,
+            "offset": 7,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 1,
+            "offset": 0,
+          },
+        },
+        "member": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 8,
+              "line": 1,
+              "offset": 7,
+            },
+            "start": Object {
+              "column": 5,
+              "line": 1,
+              "offset": 4,
+            },
+          },
+          "name": "http",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 14,
+          "line": 1,
+          "offset": 13,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "member": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 14,
+            "line": 1,
+            "offset": 13,
+          },
+          "start": Object {
+            "column": 10,
+            "line": 1,
+            "offset": 9,
+          },
+        },
+        "name": "Debug",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 21,
+        "line": 1,
+        "offset": 20,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "operator": "==",
+    "right": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 21,
+          "line": 1,
+          "offset": 20,
+        },
+        "start": Object {
+          "column": 19,
+          "line": 1,
+          "offset": 18,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "type": "BinaryExpression",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 35,
+      "line": 1,
+      "offset": 34,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "&&",
+  "right": Node {
+    "left": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 28,
+          "line": 1,
+          "offset": 27,
+        },
+        "start": Object {
+          "column": 26,
+          "line": 1,
+          "offset": 25,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"2\\"",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 35,
+        "line": 1,
+        "offset": 34,
+      },
+      "start": Object {
+        "column": 26,
+        "line": 1,
+        "offset": 25,
+      },
+    },
+    "operator": "==",
+    "right": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 35,
+          "line": 1,
+          "offset": 34,
+        },
+        "start": Object {
+          "column": 33,
+          "line": 1,
+          "offset": 32,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"3\\"",
+    },
+    "type": "BinaryExpression",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`binary-expression multi_with_logical_expr format: format long 1`] = `req.http.Debug == "1" && "2" == "3"`;
+
+exports[`binary-expression multi_with_logical_expr format: format short 1`] = `
+req
+  .http
+  .Debug ==
+  "1" &&
+  "2" ==
+    "3"
+`;
+
+exports[`binary-expression multi_with_logical_expr token 1`] = `
+Array [
+  req,
+  .,
+  http,
+  .,
+  Debug,
+  ==,
+  "1",
+  &&,
+  "2",
+  ==,
+  "3",
+]
+`;
+
+exports[`binary-expression not_equal ast: ast 1`] = `
+Node {
+  "left": Node {
+    "base": Node {
+      "base": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 3,
+            "line": 1,
+            "offset": 2,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 1,
+            "offset": 0,
+          },
+        },
+        "name": "req",
+        "type": "Identifier",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 8,
+          "line": 1,
+          "offset": 7,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "member": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 8,
+            "line": 1,
+            "offset": 7,
+          },
+          "start": Object {
+            "column": 5,
+            "line": 1,
+            "offset": 4,
+          },
+        },
+        "name": "http",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 14,
+        "line": 1,
+        "offset": 13,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 14,
+          "line": 1,
+          "offset": 13,
+        },
+        "start": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+      },
+      "name": "Debug",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 21,
+      "line": 1,
+      "offset": 20,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "!=",
+  "right": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 21,
+        "line": 1,
+        "offset": 20,
+      },
+      "start": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"1\\"",
+  },
+  "type": "BinaryExpression",
+}
+`;
+
+exports[`binary-expression not_equal format: format long 1`] = `req.http.Debug != "1"`;
+
+exports[`binary-expression not_equal format: format short 1`] = `
+req
+  .http
+  .Debug !=
+  "1"
+`;
+
+exports[`binary-expression not_equal token 1`] = `
+Array [
+  req,
+  .,
+  http,
+  .,
+  Debug,
+  !=,
+  "1",
+]
+`;

@@ -1,0 +1,168 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`duration-literal day ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 2,
+      "line": 1,
+      "offset": 1,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "DurationLiteral",
+  "value": "1d",
+}
+`;
+
+exports[`duration-literal day format: format 1`] = `1d`;
+
+exports[`duration-literal day token 1`] = `
+Array [
+  1,
+  d,
+]
+`;
+
+exports[`duration-literal milli_second ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 3,
+      "line": 1,
+      "offset": 2,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "DurationLiteral",
+  "value": "1ms",
+}
+`;
+
+exports[`duration-literal milli_second format: format 1`] = `1ms`;
+
+exports[`duration-literal milli_second token 1`] = `
+Array [
+  1,
+  ms,
+]
+`;
+
+exports[`duration-literal minute ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 3,
+      "line": 1,
+      "offset": 2,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "name": "min",
+  "type": "Identifier",
+}
+`;
+
+exports[`duration-literal minute format: format 1`] = `min`;
+
+exports[`duration-literal minute token 1`] = `
+Array [
+  min,
+]
+`;
+
+exports[`duration-literal second ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 2,
+      "line": 1,
+      "offset": 1,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "DurationLiteral",
+  "value": "1s",
+}
+`;
+
+exports[`duration-literal second format: format 1`] = `1s`;
+
+exports[`duration-literal second token 1`] = `
+Array [
+  1,
+  s,
+]
+`;
+
+exports[`duration-literal with_space_between ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 5,
+      "line": 1,
+      "offset": 4,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "DurationLiteral",
+  "value": "1m",
+}
+`;
+
+exports[`duration-literal with_space_between format: format 1`] = `1m`;
+
+exports[`duration-literal with_space_between token 1`] = `
+Array [
+  1,
+  m,
+]
+`;
+
+exports[`duration-literal year ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 2,
+      "line": 1,
+      "offset": 1,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "DurationLiteral",
+  "value": "1y",
+}
+`;
+
+exports[`duration-literal year format: format 1`] = `1y`;
+
+exports[`duration-literal year token 1`] = `
+Array [
+  1,
+  y,
+]
+`;

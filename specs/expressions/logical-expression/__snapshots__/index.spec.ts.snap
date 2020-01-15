@@ -1,0 +1,875 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`logical-expression and ast: ast 1`] = `
+Node {
+  "left": Node {
+    "base": Node {
+      "base": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 3,
+            "line": 1,
+            "offset": 2,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 1,
+            "offset": 0,
+          },
+        },
+        "name": "req",
+        "type": "Identifier",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 8,
+          "line": 1,
+          "offset": 7,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "member": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 8,
+            "line": 1,
+            "offset": 7,
+          },
+          "start": Object {
+            "column": 5,
+            "line": 1,
+            "offset": 4,
+          },
+        },
+        "name": "http",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 14,
+        "line": 1,
+        "offset": 13,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 14,
+          "line": 1,
+          "offset": 13,
+        },
+        "start": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+      },
+      "name": "Debug",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 21,
+      "line": 1,
+      "offset": 20,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "&&",
+  "right": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 21,
+        "line": 1,
+        "offset": 20,
+      },
+      "start": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"1\\"",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`logical-expression and format: format long 1`] = `req.http.Debug && "1"`;
+
+exports[`logical-expression and format: format short 1`] = `
+req
+  .http
+  .Debug &&
+  "1"
+`;
+
+exports[`logical-expression and token 1`] = `
+Array [
+  req,
+  .,
+  http,
+  .,
+  Debug,
+  &&,
+  "1",
+]
+`;
+
+exports[`logical-expression combination_1 ast: ast 1`] = `
+Node {
+  "left": Node {
+    "left": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 5,
+          "line": 1,
+          "offset": 4,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "name": "debug",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 12,
+        "line": 1,
+        "offset": 11,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "operator": "&&",
+    "right": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 12,
+          "line": 1,
+          "offset": 11,
+        },
+        "start": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "type": "LogicalExpression",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 19,
+      "line": 1,
+      "offset": 18,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "||",
+  "right": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+      "start": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"2\\"",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`logical-expression combination_1 format: format long 1`] = `(debug && "1") || "2"`;
+
+exports[`logical-expression combination_1 format: format short 1`] = `
+(debug &&
+  "1") ||
+  "2"
+`;
+
+exports[`logical-expression combination_1 token 1`] = `
+Array [
+  debug,
+  &&,
+  "1",
+  ||,
+  "2",
+]
+`;
+
+exports[`logical-expression combination_2 ast: ast 1`] = `
+Node {
+  "left": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "name": "debug",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 19,
+      "line": 1,
+      "offset": 18,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "||",
+  "right": Node {
+    "left": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 12,
+          "line": 1,
+          "offset": 11,
+        },
+        "start": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 1,
+        "offset": 9,
+      },
+    },
+    "operator": "&&",
+    "right": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 19,
+          "line": 1,
+          "offset": 18,
+        },
+        "start": Object {
+          "column": 17,
+          "line": 1,
+          "offset": 16,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"2\\"",
+    },
+    "type": "LogicalExpression",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`logical-expression combination_2 format: format long 1`] = `debug || ("1" && "2")`;
+
+exports[`logical-expression combination_2 format: format short 1`] = `
+debug ||
+  ("1" &&
+    "2")
+`;
+
+exports[`logical-expression combination_2 token 1`] = `
+Array [
+  debug,
+  ||,
+  "1",
+  &&,
+  "2",
+]
+`;
+
+exports[`logical-expression combination_with_binary_expression_1 ast: ast 1`] = `
+Node {
+  "left": Node {
+    "left": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 5,
+          "line": 1,
+          "offset": 4,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "name": "debug",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 12,
+        "line": 1,
+        "offset": 11,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "operator": "==",
+    "right": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 12,
+          "line": 1,
+          "offset": 11,
+        },
+        "start": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "type": "BinaryExpression",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 19,
+      "line": 1,
+      "offset": 18,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "&&",
+  "right": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+      "start": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"2\\"",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`logical-expression combination_with_binary_expression_1 format: format long 1`] = `debug == "1" && "2"`;
+
+exports[`logical-expression combination_with_binary_expression_1 format: format short 1`] = `
+debug ==
+  "1" &&
+  "2"
+`;
+
+exports[`logical-expression combination_with_binary_expression_1 token 1`] = `
+Array [
+  debug,
+  ==,
+  "1",
+  &&,
+  "2",
+]
+`;
+
+exports[`logical-expression combination_with_binary_expression_2 ast: ast 1`] = `
+Node {
+  "left": Node {
+    "left": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 5,
+          "line": 1,
+          "offset": 4,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "name": "debug",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 12,
+        "line": 1,
+        "offset": 11,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "operator": "==",
+    "right": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 12,
+          "line": 1,
+          "offset": 11,
+        },
+        "start": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "type": "BinaryExpression",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 19,
+      "line": 1,
+      "offset": 18,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "||",
+  "right": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+      "start": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"2\\"",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`logical-expression combination_with_binary_expression_2 format: format long 1`] = `debug == "1" || "2"`;
+
+exports[`logical-expression combination_with_binary_expression_2 format: format short 1`] = `
+debug ==
+  "1" ||
+  "2"
+`;
+
+exports[`logical-expression combination_with_binary_expression_2 token 1`] = `
+Array [
+  debug,
+  ==,
+  "1",
+  ||,
+  "2",
+]
+`;
+
+exports[`logical-expression combination_with_binary_expression_3 ast: ast 1`] = `
+Node {
+  "left": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "name": "debug",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 19,
+      "line": 1,
+      "offset": 18,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "&&",
+  "right": Node {
+    "left": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 12,
+          "line": 1,
+          "offset": 11,
+        },
+        "start": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 1,
+        "offset": 9,
+      },
+    },
+    "operator": "==",
+    "right": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 19,
+          "line": 1,
+          "offset": 18,
+        },
+        "start": Object {
+          "column": 17,
+          "line": 1,
+          "offset": 16,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"2\\"",
+    },
+    "type": "BinaryExpression",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`logical-expression combination_with_binary_expression_3 format: format long 1`] = `debug && "1" == "2"`;
+
+exports[`logical-expression combination_with_binary_expression_3 format: format short 1`] = `
+debug &&
+  "1" ==
+    "2"
+`;
+
+exports[`logical-expression combination_with_binary_expression_3 token 1`] = `
+Array [
+  debug,
+  &&,
+  "1",
+  ==,
+  "2",
+]
+`;
+
+exports[`logical-expression combination_with_binary_expression_4 ast: ast 1`] = `
+Node {
+  "left": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "name": "debug",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 19,
+      "line": 1,
+      "offset": 18,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "||",
+  "right": Node {
+    "left": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 12,
+          "line": 1,
+          "offset": 11,
+        },
+        "start": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 1,
+        "offset": 9,
+      },
+    },
+    "operator": "==",
+    "right": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 19,
+          "line": 1,
+          "offset": 18,
+        },
+        "start": Object {
+          "column": 17,
+          "line": 1,
+          "offset": 16,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"2\\"",
+    },
+    "type": "BinaryExpression",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`logical-expression combination_with_binary_expression_4 format: format long 1`] = `debug || "1" == "2"`;
+
+exports[`logical-expression combination_with_binary_expression_4 format: format short 1`] = `
+debug ||
+  "1" ==
+    "2"
+`;
+
+exports[`logical-expression combination_with_binary_expression_4 token 1`] = `
+Array [
+  debug,
+  ||,
+  "1",
+  ==,
+  "2",
+]
+`;
+
+exports[`logical-expression or ast: ast 1`] = `
+Node {
+  "left": Node {
+    "base": Node {
+      "base": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 3,
+            "line": 1,
+            "offset": 2,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 1,
+            "offset": 0,
+          },
+        },
+        "name": "req",
+        "type": "Identifier",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 8,
+          "line": 1,
+          "offset": 7,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "member": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 8,
+            "line": 1,
+            "offset": 7,
+          },
+          "start": Object {
+            "column": 5,
+            "line": 1,
+            "offset": 4,
+          },
+        },
+        "name": "http",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 14,
+        "line": 1,
+        "offset": 13,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 14,
+          "line": 1,
+          "offset": 13,
+        },
+        "start": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+      },
+      "name": "Debug",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 21,
+      "line": 1,
+      "offset": 20,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "operator": "||",
+  "right": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 21,
+        "line": 1,
+        "offset": 20,
+      },
+      "start": Object {
+        "column": 19,
+        "line": 1,
+        "offset": 18,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"1\\"",
+  },
+  "type": "LogicalExpression",
+}
+`;
+
+exports[`logical-expression or format: format long 1`] = `req.http.Debug || "1"`;
+
+exports[`logical-expression or format: format short 1`] = `
+req
+  .http
+  .Debug ||
+  "1"
+`;
+
+exports[`logical-expression or token 1`] = `
+Array [
+  req,
+  .,
+  http,
+  .,
+  Debug,
+  ||,
+  "1",
+]
+`;

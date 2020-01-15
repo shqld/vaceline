@@ -1,0 +1,287 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`expression-statement with_funcallexpression ast: ast 1`] = `
+Node {
+  "body": Node {
+    "args": Array [
+      Node {
+        "loc": Object {
+          "end": Object {
+            "column": 6,
+            "line": 1,
+            "offset": 5,
+          },
+          "start": Object {
+            "column": 6,
+            "line": 1,
+            "offset": 5,
+          },
+        },
+        "name": "a",
+        "type": "Identifier",
+      },
+    ],
+    "callee": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 4,
+          "line": 1,
+          "offset": 3,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "name": "func",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 7,
+        "line": 1,
+        "offset": 6,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "type": "FunCallExpression",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 8,
+      "line": 1,
+      "offset": 7,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "ExpressionStatement",
+}
+`;
+
+exports[`expression-statement with_funcallexpression format: format long 1`] = `func(a);`;
+
+exports[`expression-statement with_funcallexpression format: format short 1`] = `
+func(
+  a,
+);
+`;
+
+exports[`expression-statement with_funcallexpression token 1`] = `
+Array [
+  func,
+  (,
+  a,
+  ),
+  ;,
+]
+`;
+
+exports[`expression-statement with_identifier ast: ast 1`] = `
+Node {
+  "body": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 8,
+        "line": 1,
+        "offset": 7,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "name": "vaceline",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 9,
+      "line": 1,
+      "offset": 8,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "ExpressionStatement",
+}
+`;
+
+exports[`expression-statement with_identifier format: format 1`] = `vaceline;`;
+
+exports[`expression-statement with_identifier token 1`] = `
+Array [
+  vaceline,
+  ;,
+]
+`;
+
+exports[`expression-statement with_literal ast: ast 1`] = `
+Node {
+  "body": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 8,
+        "line": 1,
+        "offset": 7,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"string\\"",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 9,
+      "line": 1,
+      "offset": 8,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "ExpressionStatement",
+}
+`;
+
+exports[`expression-statement with_literal format: format 1`] = `"string";`;
+
+exports[`expression-statement with_literal token 1`] = `
+Array [
+  "string",
+  ;,
+]
+`;
+
+exports[`expression-statement with_member_identifier ast: ast 1`] = `
+Node {
+  "body": Node {
+    "base": Node {
+      "base": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 3,
+            "line": 1,
+            "offset": 2,
+          },
+          "start": Object {
+            "column": 1,
+            "line": 1,
+            "offset": 0,
+          },
+        },
+        "name": "req",
+        "type": "Identifier",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 8,
+          "line": 1,
+          "offset": 7,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "member": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 8,
+            "line": 1,
+            "offset": 7,
+          },
+          "start": Object {
+            "column": 5,
+            "line": 1,
+            "offset": 4,
+          },
+        },
+        "name": "http",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 17,
+          "line": 1,
+          "offset": 16,
+        },
+        "start": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+      },
+      "name": "Vaceline",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 18,
+      "line": 1,
+      "offset": 17,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "ExpressionStatement",
+}
+`;
+
+exports[`expression-statement with_member_identifier format: format long 1`] = `req.http.Vaceline;`;
+
+exports[`expression-statement with_member_identifier format: format short 1`] = `
+req
+  .http
+  .Vaceline;
+`;
+
+exports[`expression-statement with_member_identifier token 1`] = `
+Array [
+  req,
+  .,
+  http,
+  .,
+  Vaceline,
+  ;,
+]
+`;

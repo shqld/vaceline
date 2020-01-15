@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`include-statement basic ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 27,
+      "line": 1,
+      "offset": 26,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "module": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 26,
+        "line": 1,
+        "offset": 25,
+      },
+      "start": Object {
+        "column": 9,
+        "line": 1,
+        "offset": 8,
+      },
+    },
+    "type": "StringLiteral",
+    "value": "\\"external_library\\"",
+  },
+  "type": "IncludeStatement",
+}
+`;
+
+exports[`include-statement basic format: format 1`] = `include "external_library";`;
+
+exports[`include-statement basic token 1`] = `
+Array [
+  include,
+  "external_library",
+  ;,
+]
+`;
+
+exports[`include-statement with_identifier 1`] = `
+expected StringLiteral
+
+> 1 | include external_library;
+              ^^^^^^^^^^^^^^^
+  2 | 
+`;

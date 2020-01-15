@@ -1,0 +1,259 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`table-statement multiple_key_values ast: ast 1`] = `
+Node {
+  "body": Array [
+    Node {
+      "key": "\\"key\\"",
+      "loc": Object {
+        "end": Object {
+          "column": 17,
+          "line": 2,
+          "offset": 39,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 2,
+          "offset": 25,
+        },
+      },
+      "type": "TableDefinition",
+      "value": "\\"value\\"",
+    },
+    Node {
+      "key": "\\"key2\\"",
+      "loc": Object {
+        "end": Object {
+          "column": 18,
+          "line": 3,
+          "offset": 58,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 3,
+          "offset": 43,
+        },
+      },
+      "type": "TableDefinition",
+      "value": "\\"value2\\"",
+    },
+  ],
+  "id": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 20,
+        "line": 1,
+        "offset": 19,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 1,
+        "offset": 6,
+      },
+    },
+    "name": "vaceline_table",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 4,
+      "offset": 60,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "TableStatement",
+}
+`;
+
+exports[`table-statement multiple_key_values format: format 1`] = `
+table vaceline_table {
+  "key":"value",
+  "key2":"value2"
+}
+`;
+
+exports[`table-statement multiple_key_values token 1`] = `
+Array [
+  table,
+  vaceline_table,
+  {,
+  "key",
+  :,
+  "value",
+  ,,
+  "key2",
+  :,
+  "value2",
+  },
+]
+`;
+
+exports[`table-statement single_key_value ast: ast 1`] = `
+Node {
+  "body": Array [
+    Node {
+      "key": "\\"key\\"",
+      "loc": Object {
+        "end": Object {
+          "column": 16,
+          "line": 2,
+          "offset": 38,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 2,
+          "offset": 25,
+        },
+      },
+      "type": "TableDefinition",
+      "value": "\\"value\\"",
+    },
+  ],
+  "id": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 20,
+        "line": 1,
+        "offset": 19,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 1,
+        "offset": 6,
+      },
+    },
+    "name": "vaceline_table",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 3,
+      "offset": 40,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "TableStatement",
+}
+`;
+
+exports[`table-statement single_key_value format: format 1`] = `
+table vaceline_table {
+  "key":"value"
+}
+`;
+
+exports[`table-statement single_key_value token 1`] = `
+Array [
+  table,
+  vaceline_table,
+  {,
+  "key",
+  :,
+  "value",
+  },
+]
+`;
+
+exports[`table-statement with_trailing_comma ast: ast 1`] = `
+Node {
+  "body": Array [
+    Node {
+      "key": "\\"key\\"",
+      "loc": Object {
+        "end": Object {
+          "column": 17,
+          "line": 2,
+          "offset": 39,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 2,
+          "offset": 25,
+        },
+      },
+      "type": "TableDefinition",
+      "value": "\\"value\\"",
+    },
+    Node {
+      "key": "\\"key2\\"",
+      "loc": Object {
+        "end": Object {
+          "column": 19,
+          "line": 3,
+          "offset": 59,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 3,
+          "offset": 43,
+        },
+      },
+      "type": "TableDefinition",
+      "value": "\\"value2\\"",
+    },
+  ],
+  "id": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 20,
+        "line": 1,
+        "offset": 19,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 1,
+        "offset": 6,
+      },
+    },
+    "name": "vaceline_table",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 4,
+      "offset": 61,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "TableStatement",
+}
+`;
+
+exports[`table-statement with_trailing_comma format: format 1`] = `
+table vaceline_table {
+  "key":"value",
+  "key2":"value2"
+}
+`;
+
+exports[`table-statement with_trailing_comma token 1`] = `
+Array [
+  table,
+  vaceline_table,
+  {,
+  "key",
+  :,
+  "value",
+  ,,
+  "key2",
+  :,
+  "value2",
+  ,,
+  },
+]
+`;
