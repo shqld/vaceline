@@ -1,4 +1,4 @@
-name: CI
+name: build
 
 on: [push]
 
@@ -8,7 +8,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: NPM or Yarn install with caching
+
+      - name: yarn install with caching
         uses: bahmutov/npm-install@v1.1.0
-      - name: Inspect(lint, typecheck, test)
-        run: yarn inspect
+
+      - name: lint
+        run: yarn lint
+
+      - name: typecheck
+        run: yarn typecheck
+
+      - name: unit test
+        run: yarn test __tests__
+
+      - name: spec test
+        run: yarn test specs -u
