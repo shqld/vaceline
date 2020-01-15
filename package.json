@@ -23,6 +23,7 @@
     "typecheck": "tsc --noEmit",
     "test": "jest",
     "bench": "node benchmark > bench.txt",
+    "build-doc": "node tasks/build-doc",
     "coverage": "jest --coverage"
   },
   "dependencies": {
