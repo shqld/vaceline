@@ -1,0 +1,272 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`boolean-expression with_binary_expr ast: ast 1`] = `
+Node {
+  "body": Node {
+    "left": Node {
+      "base": Node {
+        "base": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 4,
+              "line": 1,
+              "offset": 3,
+            },
+            "start": Object {
+              "column": 2,
+              "line": 1,
+              "offset": 1,
+            },
+          },
+          "name": "req",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 9,
+            "line": 1,
+            "offset": 8,
+          },
+          "start": Object {
+            "column": 2,
+            "line": 1,
+            "offset": 1,
+          },
+        },
+        "member": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 9,
+              "line": 1,
+              "offset": 8,
+            },
+            "start": Object {
+              "column": 6,
+              "line": 1,
+              "offset": 5,
+            },
+          },
+          "name": "http",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 15,
+          "line": 1,
+          "offset": 14,
+        },
+        "start": Object {
+          "column": 2,
+          "line": 1,
+          "offset": 1,
+        },
+      },
+      "member": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 15,
+            "line": 1,
+            "offset": 14,
+          },
+          "start": Object {
+            "column": 11,
+            "line": 1,
+            "offset": 10,
+          },
+        },
+        "name": "Debug",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 22,
+        "line": 1,
+        "offset": 21,
+      },
+      "start": Object {
+        "column": 2,
+        "line": 1,
+        "offset": 1,
+      },
+    },
+    "operator": "==",
+    "right": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 22,
+          "line": 1,
+          "offset": 21,
+        },
+        "start": Object {
+          "column": 20,
+          "line": 1,
+          "offset": 19,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "type": "BinaryExpression",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 23,
+      "line": 1,
+      "offset": 22,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "BooleanExpression",
+}
+`;
+
+exports[`boolean-expression with_binary_expr format: format long 1`] = `(req.http.Debug == "1")`;
+
+exports[`boolean-expression with_binary_expr format: format short 1`] = `
+(
+  req
+    .http
+    .Debug ==
+    "1"
+)
+`;
+
+exports[`boolean-expression with_binary_expr token 1`] = `
+Array [
+  (,
+  req,
+  .,
+  http,
+  .,
+  Debug,
+  ==,
+  "1",
+  ),
+]
+`;
+
+exports[`boolean-expression with_logical_expr ast: ast 1`] = `
+Node {
+  "body": Node {
+    "left": Node {
+      "base": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 4,
+            "line": 1,
+            "offset": 3,
+          },
+          "start": Object {
+            "column": 2,
+            "line": 1,
+            "offset": 1,
+          },
+        },
+        "name": "var",
+        "type": "Identifier",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 10,
+          "line": 1,
+          "offset": 9,
+        },
+        "start": Object {
+          "column": 2,
+          "line": 1,
+          "offset": 1,
+        },
+      },
+      "member": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 10,
+            "line": 1,
+            "offset": 9,
+          },
+          "start": Object {
+            "column": 6,
+            "line": 1,
+            "offset": 5,
+          },
+        },
+        "name": "Debug",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 17,
+        "line": 1,
+        "offset": 16,
+      },
+      "start": Object {
+        "column": 2,
+        "line": 1,
+        "offset": 1,
+      },
+    },
+    "operator": "&&",
+    "right": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 17,
+          "line": 1,
+          "offset": 16,
+        },
+        "start": Object {
+          "column": 15,
+          "line": 1,
+          "offset": 14,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"1\\"",
+    },
+    "type": "LogicalExpression",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 18,
+      "line": 1,
+      "offset": 17,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "BooleanExpression",
+}
+`;
+
+exports[`boolean-expression with_logical_expr format: format long 1`] = `(var.Debug && "1")`;
+
+exports[`boolean-expression with_logical_expr format: format short 1`] = `
+(
+  var.Debug &&
+    "1"
+)
+`;
+
+exports[`boolean-expression with_logical_expr token 1`] = `
+Array [
+  (,
+  var,
+  .,
+  Debug,
+  &&,
+  "1",
+  ),
+]
+`;

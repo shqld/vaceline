@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`multiline-literal basic ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 2,
+      "line": 3,
+      "offset": 15,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "StringLiteral",
+  "value": "{\\"
+  vaceline
+\\"}",
+}
+`;
+
+exports[`multiline-literal basic format: format 1`] = `
+{"
+  vaceline
+"}
+`;
+
+exports[`multiline-literal basic token 1`] = `
+Array [
+  {"
+  vaceline
+"},
+]
+`;

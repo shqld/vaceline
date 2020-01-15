@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`return-statement invalid_return_action 1`] = `
+return action should be one of deliver, fetch, restart, hash, pass, pipe, synth, purge, lookup, deliver_stale
+
+> 1 | return invalid_action;
+             ^^^^^^^^^^^^^
+`;
+
+exports[`return-statement with_parens ast: ast 1`] = `
+Node {
+  "action": "pass",
+  "loc": Object {
+    "end": Object {
+      "column": 14,
+      "line": 1,
+      "offset": 13,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "ReturnStatement",
+}
+`;
+
+exports[`return-statement with_parens format: format 1`] = `return (pass);`;
+
+exports[`return-statement with_parens token 1`] = `
+Array [
+  return,
+  (,
+  pass,
+  ),
+  ;,
+]
+`;
+
+exports[`return-statement without_parens ast: ast 1`] = `
+Node {
+  "action": "pass",
+  "loc": Object {
+    "end": Object {
+      "column": 12,
+      "line": 1,
+      "offset": 11,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "ReturnStatement",
+}
+`;
+
+exports[`return-statement without_parens format: format 1`] = `return (pass);`;
+
+exports[`return-statement without_parens token 1`] = `
+Array [
+  return,
+  pass,
+  ;,
+]
+`;

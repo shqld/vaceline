@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`identifier basic ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 8,
+      "line": 1,
+      "offset": 7,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "name": "vaceline",
+  "type": "Identifier",
+}
+`;
+
+exports[`identifier basic format: format 1`] = `vaceline`;
+
+exports[`identifier basic token 1`] = `
+Array [
+  vaceline,
+]
+`;

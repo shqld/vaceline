@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`string-literal basic ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 8,
+      "line": 1,
+      "offset": 7,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "StringLiteral",
+  "value": "\\"string\\"",
+}
+`;
+
+exports[`string-literal basic format: format 1`] = `"string"`;
+
+exports[`string-literal basic token 1`] = `
+Array [
+  "string",
+]
+`;
+
+exports[`string-literal no_closing_quote 1`] = `
+invalid token (string may have newlines inside normal quotes, use \`{" "}\`)
+
+> 1 | "no closing quote
+      ^
+`;
+
+exports[`string-literal not_a_comment ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 17,
+      "line": 1,
+      "offset": 16,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "StringLiteral",
+  "value": "\\"# not a comment\\"",
+}
+`;
+
+exports[`string-literal not_a_comment format: format 1`] = `"# not a comment"`;
+
+exports[`string-literal not_a_comment token 1`] = `
+Array [
+  "# not a comment",
+]
+`;
+
+exports[`string-literal not_an_inline_comment ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 29,
+      "line": 1,
+      "offset": 28,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "StringLiteral",
+  "value": "\\"/* not an inline comment */\\"",
+}
+`;
+
+exports[`string-literal not_an_inline_comment format: format 1`] = `"/* not an inline comment */"`;
+
+exports[`string-literal not_an_inline_comment token 1`] = `
+Array [
+  "/* not an inline comment */",
+]
+`;

@@ -1,0 +1,321 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`declare-statement bool ast: ast 1`] = `
+Node {
+  "id": Node {
+    "base": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 17,
+          "line": 1,
+          "offset": 16,
+        },
+        "start": Object {
+          "column": 15,
+          "line": 1,
+          "offset": 14,
+        },
+      },
+      "name": "var",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 26,
+        "line": 1,
+        "offset": 25,
+      },
+      "start": Object {
+        "column": 15,
+        "line": 1,
+        "offset": 14,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 26,
+          "line": 1,
+          "offset": 25,
+        },
+        "start": Object {
+          "column": 19,
+          "line": 1,
+          "offset": 18,
+        },
+      },
+      "name": "Vaceline",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 32,
+      "line": 1,
+      "offset": 31,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "DeclareStatement",
+  "valueType": "BOOL",
+}
+`;
+
+exports[`declare-statement bool format: format 1`] = `declare local var.Vaceline BOOL;`;
+
+exports[`declare-statement bool token 1`] = `
+Array [
+  declare,
+  local,
+  var,
+  .,
+  Vaceline,
+  BOOL,
+  ;,
+]
+`;
+
+exports[`declare-statement float ast: ast 1`] = `
+Node {
+  "id": Node {
+    "base": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 17,
+          "line": 1,
+          "offset": 16,
+        },
+        "start": Object {
+          "column": 15,
+          "line": 1,
+          "offset": 14,
+        },
+      },
+      "name": "var",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 26,
+        "line": 1,
+        "offset": 25,
+      },
+      "start": Object {
+        "column": 15,
+        "line": 1,
+        "offset": 14,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 26,
+          "line": 1,
+          "offset": 25,
+        },
+        "start": Object {
+          "column": 19,
+          "line": 1,
+          "offset": 18,
+        },
+      },
+      "name": "Vaceline",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 33,
+      "line": 1,
+      "offset": 32,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "DeclareStatement",
+  "valueType": "FLOAT",
+}
+`;
+
+exports[`declare-statement float format: format 1`] = `declare local var.Vaceline FLOAT;`;
+
+exports[`declare-statement float token 1`] = `
+Array [
+  declare,
+  local,
+  var,
+  .,
+  Vaceline,
+  FLOAT,
+  ;,
+]
+`;
+
+exports[`declare-statement integer ast: ast 1`] = `
+Node {
+  "id": Node {
+    "base": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 17,
+          "line": 1,
+          "offset": 16,
+        },
+        "start": Object {
+          "column": 15,
+          "line": 1,
+          "offset": 14,
+        },
+      },
+      "name": "var",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 26,
+        "line": 1,
+        "offset": 25,
+      },
+      "start": Object {
+        "column": 15,
+        "line": 1,
+        "offset": 14,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 26,
+          "line": 1,
+          "offset": 25,
+        },
+        "start": Object {
+          "column": 19,
+          "line": 1,
+          "offset": 18,
+        },
+      },
+      "name": "Vaceline",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 35,
+      "line": 1,
+      "offset": 34,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "DeclareStatement",
+  "valueType": "INTEGER",
+}
+`;
+
+exports[`declare-statement integer format: format 1`] = `declare local var.Vaceline INTEGER;`;
+
+exports[`declare-statement integer token 1`] = `
+Array [
+  declare,
+  local,
+  var,
+  .,
+  Vaceline,
+  INTEGER,
+  ;,
+]
+`;
+
+exports[`declare-statement string ast: ast 1`] = `
+Node {
+  "id": Node {
+    "base": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 17,
+          "line": 1,
+          "offset": 16,
+        },
+        "start": Object {
+          "column": 15,
+          "line": 1,
+          "offset": 14,
+        },
+      },
+      "name": "var",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 26,
+        "line": 1,
+        "offset": 25,
+      },
+      "start": Object {
+        "column": 15,
+        "line": 1,
+        "offset": 14,
+      },
+    },
+    "member": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 26,
+          "line": 1,
+          "offset": 25,
+        },
+        "start": Object {
+          "column": 19,
+          "line": 1,
+          "offset": 18,
+        },
+      },
+      "name": "Vaceline",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 34,
+      "line": 1,
+      "offset": 33,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "DeclareStatement",
+  "valueType": "STRING",
+}
+`;
+
+exports[`declare-statement string format: format 1`] = `declare local var.Vaceline STRING;`;
+
+exports[`declare-statement string token 1`] = `
+Array [
+  declare,
+  local,
+  var,
+  .,
+  Vaceline,
+  STRING,
+  ;,
+]
+`;

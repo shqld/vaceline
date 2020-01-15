@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`call-statement index ast: ast 1`] = `
+Node {
+  "loc": Object {
+    "end": Object {
+      "column": 19,
+      "line": 1,
+      "offset": 18,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "subroutine": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 18,
+        "line": 1,
+        "offset": 17,
+      },
+      "start": Object {
+        "column": 6,
+        "line": 1,
+        "offset": 5,
+      },
+    },
+    "name": "vaceline_func",
+    "type": "Identifier",
+  },
+  "type": "CallStatement",
+}
+`;
+
+exports[`call-statement index format: format 1`] = `call vaceline_func;`;
+
+exports[`call-statement index token 1`] = `
+Array [
+  call,
+  vaceline_func,
+  ;,
+]
+`;

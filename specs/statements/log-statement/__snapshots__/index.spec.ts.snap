@@ -1,0 +1,419 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`log-statement basic ast: ast 1`] = `
+Node {
+  "content": Node {
+    "body": Array [
+      Node {
+        "loc": Object {
+          "end": Object {
+            "column": 9,
+            "line": 1,
+            "offset": 8,
+          },
+          "start": Object {
+            "column": 5,
+            "line": 1,
+            "offset": 4,
+          },
+        },
+        "type": "StringLiteral",
+        "value": "\\"log\\"",
+      },
+      Node {
+        "base": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 13,
+              "line": 1,
+              "offset": 12,
+            },
+            "start": Object {
+              "column": 11,
+              "line": 1,
+              "offset": 10,
+            },
+          },
+          "name": "req",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 24,
+            "line": 1,
+            "offset": 23,
+          },
+          "start": Object {
+            "column": 11,
+            "line": 1,
+            "offset": 10,
+          },
+        },
+        "member": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 24,
+              "line": 1,
+              "offset": 23,
+            },
+            "start": Object {
+              "column": 15,
+              "line": 1,
+              "offset": 14,
+            },
+          },
+          "name": "service_id",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      Node {
+        "loc": Object {
+          "end": Object {
+            "column": 43,
+            "line": 1,
+            "offset": 42,
+          },
+          "start": Object {
+            "column": 26,
+            "line": 1,
+            "offset": 25,
+          },
+        },
+        "type": "StringLiteral",
+        "value": "\\"vaceline-log :: \\"",
+      },
+      Node {
+        "loc": Object {
+          "end": Object {
+            "column": 18,
+            "line": 2,
+            "offset": 63,
+          },
+          "start": Object {
+            "column": 3,
+            "line": 2,
+            "offset": 46,
+          },
+        },
+        "type": "StringLiteral",
+        "value": "{\\"	timestamp_us:\\"}",
+      },
+      Node {
+        "base": Node {
+          "base": Node {
+            "loc": Object {
+              "end": Object {
+                "column": 23,
+                "line": 2,
+                "offset": 68,
+              },
+              "start": Object {
+                "column": 20,
+                "line": 2,
+                "offset": 65,
+              },
+            },
+            "name": "time",
+            "type": "Identifier",
+          },
+          "loc": Object {
+            "end": Object {
+              "column": 29,
+              "line": 2,
+              "offset": 74,
+            },
+            "start": Object {
+              "column": 20,
+              "line": 2,
+              "offset": 65,
+            },
+          },
+          "member": Node {
+            "loc": Object {
+              "end": Object {
+                "column": 29,
+                "line": 2,
+                "offset": 74,
+              },
+              "start": Object {
+                "column": 25,
+                "line": 2,
+                "offset": 70,
+              },
+            },
+            "name": "start",
+            "type": "Identifier",
+          },
+          "type": "Member",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 34,
+            "line": 2,
+            "offset": 79,
+          },
+          "start": Object {
+            "column": 20,
+            "line": 2,
+            "offset": 65,
+          },
+        },
+        "member": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 34,
+              "line": 2,
+              "offset": 79,
+            },
+            "start": Object {
+              "column": 31,
+              "line": 2,
+              "offset": 76,
+            },
+          },
+          "name": "usec",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      Node {
+        "loc": Object {
+          "end": Object {
+            "column": 10,
+            "line": 3,
+            "offset": 92,
+          },
+          "start": Object {
+            "column": 3,
+            "line": 3,
+            "offset": 83,
+          },
+        },
+        "type": "StringLiteral",
+        "value": "{\\"	host:\\"}",
+      },
+      Node {
+        "args": Array [
+          Node {
+            "base": Node {
+              "base": Node {
+                "loc": Object {
+                  "end": Object {
+                    "column": 24,
+                    "line": 3,
+                    "offset": 106,
+                  },
+                  "start": Object {
+                    "column": 22,
+                    "line": 3,
+                    "offset": 104,
+                  },
+                },
+                "name": "req",
+                "type": "Identifier",
+              },
+              "loc": Object {
+                "end": Object {
+                  "column": 29,
+                  "line": 3,
+                  "offset": 111,
+                },
+                "start": Object {
+                  "column": 22,
+                  "line": 3,
+                  "offset": 104,
+                },
+              },
+              "member": Node {
+                "loc": Object {
+                  "end": Object {
+                    "column": 29,
+                    "line": 3,
+                    "offset": 111,
+                  },
+                  "start": Object {
+                    "column": 26,
+                    "line": 3,
+                    "offset": 108,
+                  },
+                },
+                "name": "http",
+                "type": "Identifier",
+              },
+              "type": "Member",
+            },
+            "loc": Object {
+              "end": Object {
+                "column": 46,
+                "line": 3,
+                "offset": 128,
+              },
+              "start": Object {
+                "column": 22,
+                "line": 3,
+                "offset": 104,
+              },
+            },
+            "member": Node {
+              "loc": Object {
+                "end": Object {
+                  "column": 46,
+                  "line": 3,
+                  "offset": 128,
+                },
+                "start": Object {
+                  "column": 31,
+                  "line": 3,
+                  "offset": 113,
+                },
+              },
+              "name": "X-Forwarded-Host",
+              "type": "Identifier",
+            },
+            "type": "Member",
+          },
+          Node {
+            "loc": Object {
+              "end": Object {
+                "column": 5,
+                "line": 3,
+                "offset": 135,
+              },
+              "start": Object {
+                "column": 49,
+                "line": 3,
+                "offset": 131,
+              },
+            },
+            "type": "StringLiteral",
+            "value": "{\\"	\\"}",
+          },
+          Node {
+            "loc": Object {
+              "end": Object {
+                "column": 9,
+                "line": 3,
+                "offset": 139,
+              },
+              "start": Object {
+                "column": 8,
+                "line": 3,
+                "offset": 138,
+              },
+            },
+            "type": "StringLiteral",
+            "value": "\\"\\"",
+          },
+        ],
+        "callee": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 20,
+              "line": 3,
+              "offset": 102,
+            },
+            "start": Object {
+              "column": 12,
+              "line": 3,
+              "offset": 94,
+            },
+          },
+          "name": "regsuball",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 10,
+            "line": 3,
+            "offset": 140,
+          },
+          "start": Object {
+            "column": 12,
+            "line": 3,
+            "offset": 94,
+          },
+        },
+        "type": "FunCallExpression",
+      },
+    ],
+    "loc": Object {
+      "end": Object {
+        "column": 10,
+        "line": 3,
+        "offset": 140,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "type": "ConcatExpression",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 11,
+      "line": 3,
+      "offset": 141,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "LogStatement",
+}
+`;
+
+exports[`log-statement basic format: format long 1`] = `log "log" req.service_id "vaceline-log :: " {"	timestamp_us:"} time.start.usec {"	host:"} regsuball(req.http.X-Forwarded-Host, {"	"}, "");`;
+
+exports[`log-statement basic format: format short 1`] = `
+log "log"
+  req.service_id
+  "vaceline-log :: "
+  {"	timestamp_us:"}
+  time
+    .start
+    .usec
+  {"	host:"}
+  regsuball(
+    req
+      .http
+      .X-Forwarded-Host,
+    {"	"},
+    "",
+  );
+`;
+
+exports[`log-statement basic token 1`] = `
+Array [
+  log,
+  "log",
+  req,
+  .,
+  service_id,
+  "vaceline-log :: ",
+  {"	timestamp_us:"},
+  time,
+  .,
+  start,
+  .,
+  usec,
+  {"	host:"},
+  regsuball,
+  (,
+  req,
+  .,
+  http,
+  .,
+  X-Forwarded-Host,
+  ,,
+  {"	"},
+  ,,
+  "",
+  ),
+  ;,
+]
+`;

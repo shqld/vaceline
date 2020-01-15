@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`acl-statement index ast: ast 1`] = `
+Node {
+  "body": Array [
+    Node {
+      "cidr": undefined,
+      "loc": Object {
+        "end": Object {
+          "column": 13,
+          "line": 2,
+          "offset": 22,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 2,
+          "offset": 12,
+        },
+      },
+      "type": "Ip",
+      "value": "127.0.0.1",
+    },
+    Node {
+      "cidr": undefined,
+      "loc": Object {
+        "end": Object {
+          "column": 13,
+          "line": 3,
+          "offset": 37,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 3,
+          "offset": 27,
+        },
+      },
+      "type": "Ip",
+      "value": "localhost",
+    },
+  ],
+  "id": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 7,
+        "line": 1,
+        "offset": 6,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "name": "aaa",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 4,
+      "offset": 40,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "AclStatement",
+}
+`;
+
+exports[`acl-statement index format: format 1`] = `
+acl aaa {
+  "127.0.0.1";
+  "localhost";
+}
+`;
+
+exports[`acl-statement index token 1`] = `
+Array [
+  acl,
+  aaa,
+  {,
+  "127.0.0.1",
+  ;,
+  "localhost",
+  ;,
+  },
+]
+`;
