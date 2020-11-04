@@ -107,11 +107,74 @@ Array [
 ]
 `;
 
-exports[`fun-call-expression trailing_comma_in_args 1`] = `
-[expr] not implemented yet
+exports[`fun-call-expression trailing_comma_in_args ast: ast 1`] = `
+Node {
+  "args": Array [
+    Node {
+      "loc": Object {
+        "end": Object {
+          "column": 8,
+          "line": 1,
+          "offset": 7,
+        },
+        "start": Object {
+          "column": 6,
+          "line": 1,
+          "offset": 5,
+        },
+      },
+      "type": "StringLiteral",
+      "value": "\\"a\\"",
+    },
+  ],
+  "callee": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 4,
+        "line": 1,
+        "offset": 3,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "name": "func",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 10,
+      "line": 1,
+      "offset": 9,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "FunCallExpression",
+}
+`;
 
-> 1 | func("a",)
-               
+exports[`fun-call-expression trailing_comma_in_args format: format long 1`] = `func("a")`;
+
+exports[`fun-call-expression trailing_comma_in_args format: format short 1`] = `
+func(
+  "a",
+)
+`;
+
+exports[`fun-call-expression trailing_comma_in_args token 1`] = `
+Array [
+  func,
+  (,
+  "a",
+  ,,
+  ),
+]
 `;
 
 exports[`fun-call-expression with_an_arg ast: ast 1`] = `
@@ -337,5 +400,57 @@ Array [
   (,
   "a",
   ),
+]
+`;
+
+exports[`fun-call-expression witout_arg ast: ast 1`] = `
+Node {
+  "args": Array [],
+  "callee": Node {
+    "loc": Object {
+      "end": Object {
+        "column": 4,
+        "line": 1,
+        "offset": 3,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "name": "func",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 6,
+      "line": 1,
+      "offset": 5,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "FunCallExpression",
+}
+`;
+
+exports[`fun-call-expression witout_arg format: format long 1`] = `func()`;
+
+exports[`fun-call-expression witout_arg format: format short 1`] = `
+func(
+  ,
+)
+`;
+
+exports[`fun-call-expression witout_arg token 1`] = `
+Array [
+  func,
+  (,
+  ),
+  ;,
 ]
 `;
