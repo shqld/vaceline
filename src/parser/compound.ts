@@ -21,7 +21,7 @@ export const parseCompound = <T>(
 
     p.take()
 
-    if (until && token.type === 'symbol' && token.value === until) {
+    if (until && isToken(token, 'symbol', until)) {
       // zero length arg or trailing comma
       break
     }
