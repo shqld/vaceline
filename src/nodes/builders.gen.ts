@@ -380,7 +380,7 @@ export function buildSetStatement(
 }
 
 export function buildUnsetStatement(
-  id: d.Identifier | d.Member,
+  id: d.Identifier | d.Member | d.ValuePair,
   loc?: Location
 ): NodeWithLoc<d.UnsetStatement> {
   const node = Object.create(BaseNode.prototype) as NodeWithLoc<

@@ -77,6 +77,155 @@ Array [
 ]
 `;
 
+exports[`unset-statement valuepair ast: ast 1`] = `
+Node {
+  "id": Node {
+    "base": Node {
+      "base": Node {
+        "base": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 9,
+              "line": 1,
+              "offset": 8,
+            },
+            "start": Object {
+              "column": 7,
+              "line": 1,
+              "offset": 6,
+            },
+          },
+          "name": "req",
+          "type": "Identifier",
+        },
+        "loc": Object {
+          "end": Object {
+            "column": 14,
+            "line": 1,
+            "offset": 13,
+          },
+          "start": Object {
+            "column": 7,
+            "line": 1,
+            "offset": 6,
+          },
+        },
+        "member": Node {
+          "loc": Object {
+            "end": Object {
+              "column": 14,
+              "line": 1,
+              "offset": 13,
+            },
+            "start": Object {
+              "column": 11,
+              "line": 1,
+              "offset": 10,
+            },
+          },
+          "name": "http",
+          "type": "Identifier",
+        },
+        "type": "Member",
+      },
+      "loc": Object {
+        "end": Object {
+          "column": 21,
+          "line": 1,
+          "offset": 20,
+        },
+        "start": Object {
+          "column": 7,
+          "line": 1,
+          "offset": 6,
+        },
+      },
+      "member": Node {
+        "loc": Object {
+          "end": Object {
+            "column": 21,
+            "line": 1,
+            "offset": 20,
+          },
+          "start": Object {
+            "column": 16,
+            "line": 1,
+            "offset": 15,
+          },
+        },
+        "name": "Cookie",
+        "type": "Identifier",
+      },
+      "type": "Member",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 32,
+        "line": 1,
+        "offset": 31,
+      },
+      "start": Object {
+        "column": 7,
+        "line": 1,
+        "offset": 6,
+      },
+    },
+    "name": Node {
+      "loc": Object {
+        "end": Object {
+          "column": 32,
+          "line": 1,
+          "offset": 31,
+        },
+        "start": Object {
+          "column": 23,
+          "line": 1,
+          "offset": 22,
+        },
+      },
+      "name": "session_id",
+      "type": "Identifier",
+    },
+    "type": "ValuePair",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 33,
+      "line": 1,
+      "offset": 32,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "UnsetStatement",
+}
+`;
+
+exports[`unset-statement valuepair format: format long 1`] = `unset req.http.Cookie:session_id;`;
+
+exports[`unset-statement valuepair format: format short 1`] = `
+unset req
+  .http
+  .Cookie:session_id;
+`;
+
+exports[`unset-statement valuepair token 1`] = `
+Array [
+  unset,
+  req,
+  .,
+  http,
+  .,
+  Cookie,
+  :,
+  session_id,
+  ;,
+]
+`;
+
 exports[`unset-statement variable ast: ast 1`] = `
 Node {
   "id": Node {
