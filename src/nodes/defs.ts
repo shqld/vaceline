@@ -182,7 +182,7 @@ export interface SetStatement extends BaseNode {
 
 export interface UnsetStatement extends BaseNode {
   type: 'UnsetStatement'
-  id: Identifier | Member
+  id: Identifier | Member | ValuePair
 }
 
 export type ReturnActionName =
