@@ -39,7 +39,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): d.Statement => {
   }
 
   if (token.value === 'unset') {
-    const id = p.validateNode(parseExpr(p), 'Identifier', 'Member')
+    const id = p.validateNode(parseExpr(p), 'Identifier', 'Member', 'ValuePair')
 
     ensureSemi(p)
 
