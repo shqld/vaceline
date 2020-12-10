@@ -13,11 +13,10 @@
   },
   "scripts": {
     "start": "npm run -s build > /dev/null && node dist/cli",
-    "build": "npm run -s generate && babel src -d dist -x .ts,.js --delete-dir-on-start",
+    "build": "babel src -d dist -x .ts,.js --delete-dir-on-start",
     "serve": "serve public",
     "dev-web": "yarn serve & yarn webpack --watch",
     "webpack": "babel-node tasks/webpack.ts -x .ts",
-    "generate": "babel-node tasks/generate -x .ts",
     "inspect": "yarn lint && yarn typecheck && yarn test",
     "lint": "eslint src --ext .ts",
     "typecheck": "tsc --noEmit",
@@ -88,7 +87,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "yarn pretty-quick && yarn generate && yarn inspect"
+      "pre-commit": "yarn pretty-quick && yarn inspect"
     }
   },
   "lint-staged": {

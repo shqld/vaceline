@@ -1,11 +1,90 @@
-import * as d from './defs'
-export { d }
+export { Node, PlainNode, Position, NodeWithLoc, Location } from './node'
+import { buildNode } from './node'
 
-import * as b from './builders.gen'
-export { b }
+import {
+  Program,
+  BooleanLiteral,
+  StringLiteral,
+  MultilineLiteral,
+  DurationLiteral,
+  NumericLiteral,
+  Identifier,
+  Ip,
+  Member,
+  ValuePair,
+  BooleanExpression,
+  UnaryExpression,
+  FunCallExpression,
+  ConcatExpression,
+  BinaryExpression,
+  LogicalExpression,
+  ExpressionStatement,
+  IncludeStatement,
+  ImportStatement,
+  CallStatement,
+  DeclareStatement,
+  AddStatement,
+  SetStatement,
+  UnsetStatement,
+  ReturnStatement,
+  ErrorStatement,
+  RestartStatement,
+  SyntheticStatement,
+  LogStatement,
+  IfStatement,
+  SubroutineStatement,
+  AclStatement,
+  BackendDefinition,
+  BackendStatement,
+  TableDefinition,
+  TableStatement,
+} from './defs'
 
-import { Nodes } from './nodes.gen'
-type NodeType = keyof Nodes
-export { Nodes, NodeType }
+const nodes = {
+  Program,
+  BooleanLiteral,
+  StringLiteral,
+  MultilineLiteral,
+  DurationLiteral,
+  NumericLiteral,
+  Identifier,
+  Ip,
+  Member,
+  ValuePair,
+  BooleanExpression,
+  UnaryExpression,
+  FunCallExpression,
+  ConcatExpression,
+  BinaryExpression,
+  LogicalExpression,
+  ExpressionStatement,
+  IncludeStatement,
+  ImportStatement,
+  CallStatement,
+  DeclareStatement,
+  AddStatement,
+  SetStatement,
+  UnsetStatement,
+  ReturnStatement,
+  ErrorStatement,
+  RestartStatement,
+  SyntheticStatement,
+  LogStatement,
+  IfStatement,
+  SubroutineStatement,
+  AclStatement,
+  BackendDefinition,
+  BackendStatement,
+  TableDefinition,
+  TableStatement,
+} as const
 
-export { BaseNode, PlainNode, Position, NodeWithLoc, Location } from './node'
+type Nodes = typeof nodes
+type NodeName = keyof Nodes
+
+export const d = Object.fromEntries(
+  Object.keys(nodes).map((name) => [
+    name as NodeName,
+    buildNode(nodes[name as NodeName]),
+  ])
+) as { [Name in NodeName]: Nodes[Name] }

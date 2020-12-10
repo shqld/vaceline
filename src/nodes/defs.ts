@@ -1,261 +1,172 @@
-import { BaseNode } from './node'
+import { Node } from './node'
 
-export type Node = Program | Statement | Expression
-
-export type Statement =
-  | AclStatement
-  | AddStatement
-  | BackendStatement
-  | CallStatement
-  | DeclareStatement
-  | ErrorStatement
-  | ExpressionStatement
-  | IfStatement
-  | ImportStatement
-  | IncludeStatement
-  | LogStatement
-  | RestartStatement
-  | ReturnStatement
-  | SetStatement
-  | SubroutineStatement
-  | SyntheticStatement
-  | TableStatement
-  | UnsetStatement
-
-export type Expression =
-  | Literal
-  | BinaryExpression
-  | BooleanExpression
-  | ConcatExpression
-  | FunCallExpression
-  | Identifier
-  | LogicalExpression
-  | Member
-  | UnaryExpression
-  | ValuePair
-  | BackendDefinition
-  | TableDefinition
-
-export type Literal =
-  | BooleanLiteral
-  | DurationLiteral
-  | MultilineLiteral
-  | NumericLiteral
-  | StringLiteral
-  | Ip
-
-export interface Program extends BaseNode {
-  type: 'Program'
+export class Program extends Node {
   body: Array<Statement>
 }
 
-export interface BooleanLiteral extends BaseNode {
-  type: 'BooleanLiteral'
+export abstract class Expression extends Node {}
+
+export abstract class Literal extends Expression {}
+
+export class BooleanLiteral extends Literal {
   value: string
 }
 
-export interface StringLiteral extends BaseNode {
-  type: 'StringLiteral'
+export class StringLiteral extends Literal {
   value: string
 }
 
-export interface MultilineLiteral extends BaseNode {
-  type: 'MultilineLiteral'
+export class MultilineLiteral extends Literal {
   value: string
 }
 
-export interface DurationLiteral extends BaseNode {
-  type: 'DurationLiteral'
+export class DurationLiteral extends Literal {
   value: string
 }
 
-export interface NumericLiteral extends BaseNode {
-  type: 'NumericLiteral'
+export class NumericLiteral extends Literal {
   value: string
 }
 
-export interface Identifier extends BaseNode {
-  type: 'Identifier'
+export class Identifier extends Expression {
   name: string
 }
 
-export interface Ip extends BaseNode {
-  type: 'Ip'
+export class Ip extends Expression {
   value: string
   cidr?: number
 }
 
-export interface Member extends BaseNode {
-  type: 'Member'
+export class Member extends Expression {
   base: Identifier | Member
   member: Identifier
 }
 
-export interface ValuePair extends BaseNode {
-  type: 'ValuePair'
+export class ValuePair extends Expression {
   base: Identifier | Member
   name: Identifier
 }
 
-export interface BooleanExpression extends BaseNode {
-  type: 'BooleanExpression'
+export class BooleanExpression extends Expression {
   body: Expression
 }
 
-export interface UnaryExpression extends BaseNode {
-  type: 'UnaryExpression'
+export class UnaryExpression extends Expression {
   operator: string
   argument: Expression
 }
 
-export interface FunCallExpression extends BaseNode {
-  type: 'FunCallExpression'
+export class FunCallExpression extends Expression {
   callee: Member | Identifier | ValuePair
   args: Array<Expression>
 }
 
-export interface ConcatExpression extends BaseNode {
-  type: 'ConcatExpression'
+export class ConcatExpression extends Expression {
   body: Array<Expression>
 }
 
-export interface BinaryExpression extends BaseNode {
-  type: 'BinaryExpression'
+export class BinaryExpression extends Expression {
   left: Expression
   right: Expression
   operator: string
 }
 
-export interface LogicalExpression extends BaseNode {
-  type: 'LogicalExpression'
+export class LogicalExpression extends Expression {
   left: Expression
   right: Expression
   operator: string
 }
 
-export interface ExpressionStatement extends BaseNode {
-  type: 'ExpressionStatement'
+export abstract class Statement extends Node {}
+
+export class ExpressionStatement extends Statement {
   body: Expression
 }
 
-export interface IncludeStatement extends BaseNode {
-  type: 'IncludeStatement'
+export class IncludeStatement extends Statement {
   module: StringLiteral
 }
 
-export interface ImportStatement extends BaseNode {
-  type: 'ImportStatement'
+export class ImportStatement extends Statement {
   module: Identifier
 }
 
-export interface CallStatement extends BaseNode {
-  type: 'CallStatement'
+export class CallStatement extends Statement {
   subroutine: Identifier
 }
 
-export type DeclareValueType =
-  | 'STRING'
-  | 'BOOL'
-  | 'BOOLEAN'
-  | 'INTEGER'
-  | 'FLOAT'
-
-export interface DeclareStatement extends BaseNode {
-  type: 'DeclareStatement'
+export class DeclareStatement extends Statement {
   id: Identifier | Member
-  valueType: DeclareValueType
+  valueType: 'STRING' | 'BOOL' | 'BOOLEAN' | 'INTEGER' | 'FLOAT'
 }
 
-export interface AddStatement extends BaseNode {
-  type: 'AddStatement'
+export class AddStatement extends Statement {
   left: Identifier | Member
   right: Expression
   operator: string
 }
 
-export interface SetStatement extends BaseNode {
-  type: 'SetStatement'
+export class SetStatement extends Statement {
   left: Identifier | Member
   right: Expression
   operator: string
 }
 
-export interface UnsetStatement extends BaseNode {
-  type: 'UnsetStatement'
+export class UnsetStatement extends Statement {
   id: Identifier | Member | ValuePair
 }
 
-export type ReturnActionName =
-  | 'pass'
-  | 'hit_for_pass'
-  | 'lookup'
-  | 'pipe'
-  | 'deliver'
-
-export interface ReturnStatement extends BaseNode {
-  type: 'ReturnStatement'
-  action: ReturnActionName
+export class ReturnStatement extends Statement {
+  action: 'pass' | 'hit_for_pass' | 'lookup' | 'pipe' | 'deliver'
 }
 
-export interface ErrorStatement extends BaseNode {
-  type: 'ErrorStatement'
+export class ErrorStatement extends Statement {
   status: number
   message?: Expression
 }
 
-export interface RestartStatement extends BaseNode {
-  type: 'RestartStatement'
-}
+export class RestartStatement extends Statement {}
 
-export interface SyntheticStatement extends BaseNode {
-  type: 'SyntheticStatement'
+export class SyntheticStatement extends Statement {
   response: Expression
 }
 
-export interface LogStatement extends BaseNode {
-  type: 'LogStatement'
+export class LogStatement extends Statement {
   content: Expression
 }
 
-export interface IfStatement extends BaseNode {
-  type: 'IfStatement'
+export class IfStatement extends Statement {
   test: Expression
   consequent: Array<Statement>
   alternative?: IfStatement | Array<Statement>
 }
 
-export interface SubroutineStatement extends BaseNode {
-  type: 'SubroutineStatement'
+export class SubroutineStatement extends Statement {
   id: Identifier
   body: Array<Statement>
 }
 
-export interface AclStatement extends BaseNode {
-  type: 'AclStatement'
+export class AclStatement extends Statement {
   id: Identifier
   body: Array<Ip>
 }
 
-export interface BackendDefinition extends BaseNode {
-  type: 'BackendDefinition'
+export class BackendDefinition extends Statement {
   key: string
   value: Expression | Array<BackendDefinition>
 }
 
-export interface BackendStatement extends BaseNode {
-  type: 'BackendStatement'
+export class BackendStatement extends Statement {
   id: Identifier
   body: Array<BackendDefinition>
 }
 
-export interface TableDefinition extends BaseNode {
-  type: 'TableDefinition'
+export class TableDefinition extends Statement {
   key: string
   value: string
 }
 
-export interface TableStatement extends BaseNode {
-  type: 'TableStatement'
+export class TableStatement extends Statement {
   id: Identifier
   body: Array<TableDefinition>
 }
