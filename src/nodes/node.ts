@@ -28,6 +28,10 @@ export type NodeWithLoc<N extends Node = Node> = N & { loc: Location }
 // const flat = <T>(arr: Array<T>) =>
 //   arr.reduce((acc, cur) => acc.concat(cur), [] as Array<T>)
 
+const kCache = Symbol()
+
+type NodeKlass<T> = typeof Node & { new (): T }
+
 export abstract class Node {
   loc?: Location
 
@@ -46,9 +50,13 @@ export abstract class Node {
     }
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static create<T>(this: { new (): T }, props: T): T {
-    return new this()
+  static [kCache]: Function
+  static create<T>(this: NodeKlass<T>, props: T): T {
+    const func = this[kCache]
+
+    if (!func) this[kCache] = buildCreateNode(this)
+
+    return func(props)
   }
 
   // next(): Array<Node> {
@@ -66,9 +74,7 @@ export abstract class Node {
   // }
 }
 
-export const buildNode = <T extends Node>(klass: {
-  new (): T
-}): { new (): T; create: (props: T, loc?: Location) => T } => {
+export const buildCreateNode = <T>(klass: NodeKlass<T>): Function => {
   const propNames = Object.getOwnPropertyNames(new klass())
   const src = [
     'const obj = new this();',
@@ -77,11 +83,5 @@ export const buildNode = <T extends Node>(klass: {
     'return obj;',
   ].join('\n')
 
-  const create = new Function('props', src) as (props: T, loc?: Location) => T
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-  // @ts-ignore
-  klass.create = create
-
-  return klass as { new (): T; create: (props: T, loc?: Location) => T }
+  return new Function('props', src)
 }
