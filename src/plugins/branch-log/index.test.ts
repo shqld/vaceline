@@ -1,7 +1,7 @@
 import { parse, traverse, generate } from '../../lib'
 import BranchLogPlugin from '.'
 import { NodePath } from '../../traverser/path'
-import { d } from '../../nodes'
+import * as d from '../../nodes'
 
 const code = `
 
@@ -35,7 +35,7 @@ describe('BranchLogPlugin', () => {
 
     traverse(ast, {
       entry({ node }: NodePath<d.SubroutineStatement | d.IfStatement>) {
-        if (node.is('SubroutineStatement')) {
+        if (node instanceof d.SubroutineStatement) {
           if (node.id.name === 'vcl_recv') {
             const loggerNode = node.body[0]
 
@@ -65,7 +65,7 @@ describe('BranchLogPlugin', () => {
               'set resp.http.Vaceline-Branch-Log = req.http.Vaceline-Branch-Log;'
             )
           }
-        } else if (node.is('IfStatement')) {
+        } else if (node instanceof d.IfStatement) {
           const loggerNode = node.consequent[0]
 
           expect(generate(loggerNode).code).toMatch(

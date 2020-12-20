@@ -1,4 +1,5 @@
-import { d, b, Location } from '../../nodes'
+import { Location } from '../../nodes'
+import * as d from '../../nodes'
 import { isToken } from '../../utils/token'
 
 import { parseExpr } from '../expression'
@@ -22,20 +23,21 @@ export const parseStmt = (p: Parser, token: Token = p.read()): d.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(b.buildExpressionStatement(body, loc))
+    return p.finishNode(d.ExpressionStatement.create({ body, loc }))
   }
 
   if (token.value === 'set' || token.value === 'add') {
-    const left = p.validateNode(parseExpr(p), 'Identifier', 'Member')
+    const left = p.validateNode(parseExpr(p), d.Identifier, d.Member)
+    left
     const operator = p.validateToken(p.read(), 'operator').value
     const right = parseExpr(p)
 
     ensureSemi(p)
 
     const builder =
-      token.value === 'add' ? b.buildAddStatement : b.buildSetStatement
+      token.value === 'add' ? d.AddStatement.create : d.SetStatement.create
 
-    return p.finishNode(builder(left, right, operator, loc))
+    return p.finishNode(builder({ left, right, operator, loc }))
   }
 
   if (token.value === 'unset') {

@@ -1,7 +1,7 @@
 export interface Position {
   offset: number
-  line: number
-  column: number
+  line?: number
+  column?: number
 }
 
 export interface Location {
@@ -22,9 +22,6 @@ export const buildEmptryLocation = (): Location => ({
   },
 })
 
-export type PlainNode<N extends Node> = Omit<N, keyof Node>
-export type NodeWithLoc<N extends Node = Node> = N & { loc: Location }
-
 // const flat = <T>(arr: Array<T>) =>
 //   arr.reduce((acc, cur) => acc.concat(cur), [] as Array<T>)
 
@@ -33,6 +30,7 @@ const kCache = Symbol()
 type NodeKlass<T> = typeof Node & { new (): T }
 
 export abstract class Node {
+  type!: string
   loc?: Location
 
   constructor() {
@@ -51,7 +49,7 @@ export abstract class Node {
   }
 
   static [kCache]: Function
-  static create<T>(this: NodeKlass<T>, props: T): T {
+  static create<T>(this: NodeKlass<T>, props: Omit<T, 'type'>): T {
     const func = this[kCache]
 
     if (!func) this[kCache] = buildCreateNode(this)

@@ -1,8 +1,8 @@
-import { BaseNode } from '../nodes'
+import { Node } from '../nodes'
 import { NodePath, TraversalContext, Handler } from './path'
 
 export const traverseNode = (
-  node: BaseNode,
+  node: Node,
   callback: (path: NodePath, context: TraversalContext) => void,
   context: TraversalContext = {
     parent: null,
@@ -29,7 +29,7 @@ export const traverseNode = (
 }
 
 export const traverse = (
-  ast: BaseNode,
+  ast: Node,
   handler: Handler,
   context: TraversalContext = {
     parent: null,
@@ -49,7 +49,7 @@ export const traverse = (
 
 // Create traversal path array recursively
 export const createPathArray = (
-  ast: BaseNode,
+  ast: Node,
   context: TraversalContext = {
     parent: null,
     parentPath: null,

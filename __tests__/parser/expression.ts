@@ -1,6 +1,6 @@
 import { Parser } from '../../src/parser'
 import { parseExpr } from '../../src/parser/expression/index'
-import { d } from '../../src/nodes'
+import * as d from '../../src/nodes'
 
 const parse = (source: string) => parseExpr(new Parser(source))
 
@@ -130,7 +130,8 @@ describe('Expression', () => {
 
     it('should take the precedence over first one', () => {
       expect(parse('a == b == c')).toMatchObject({
-        left: { left: { name: 'a' }, right: { name: 'b' } },
+        operator: '==',
+        left: { operator: '==', left: { name: 'a' }, right: { name: 'b' } },
         right: { name: 'c' },
       } as d.BinaryExpression)
     })
@@ -193,7 +194,12 @@ describe('Expression', () => {
 
     it('should take the precedence over first one', () => {
       expect(parse('a && b && c')).toMatchObject({
-        left: { left: { name: 'a' }, right: { name: 'b' } },
+        operator: '&&',
+        left: {
+          operator: '&&',
+          left: { name: 'a' },
+          right: { name: 'b' },
+        },
         right: { name: 'c' },
       } as d.LogicalExpression)
     })
@@ -202,7 +208,8 @@ describe('Expression', () => {
       expect(parse('a || b && c')).toMatchObject({
         type: 'LogicalExpression',
         operator: '||',
-        right: { operator: '&&' },
+        left: 'a',
+        right: { operator: '&&', left: 'b', right: 'c' },
       } as d.LogicalExpression)
     })
 

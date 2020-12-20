@@ -1,5 +1,5 @@
 import { Parser } from '../../src/parser'
-import { d } from '../../src/nodes'
+import * as d from '../../src/nodes'
 import { parseStmt } from '../../src/parser/statement/index'
 import { parseIp } from '../../src/parser/statement/ip'
 

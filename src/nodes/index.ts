@@ -1,4 +1,4 @@
-export { Node, PlainNode, Position, NodeWithLoc, Location } from './node'
+export { Node, Position, Location } from './node'
 
 import * as nodes from './defs'
 export * from './defs'

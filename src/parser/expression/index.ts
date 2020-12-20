@@ -1,4 +1,4 @@
-import { d, b, NodeWithLoc } from '../../nodes'
+import * as d from '../../nodes'
 import { isToken } from '../../utils/token'
 
 import { Token } from '../tokenizer'
@@ -71,5 +71,5 @@ export const parseExpr = (
     return expr
   }
 
-  return p.finishNode(b.buildConcatExpression(buf, loc))
+  return p.finishNode(d.ConcatExpression.create({ body: buf, loc }))
 }

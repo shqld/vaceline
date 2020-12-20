@@ -2,7 +2,7 @@ import { Parser } from '..'
 import { isToken } from '../../utils/token'
 import isIp from 'is-ip'
 import { createError } from '../create-error'
-import { b } from '../../nodes'
+import * as d from '../../nodes'
 
 export const parseIp = (p: Parser, token = p.read()) => {
   // TODO: We can know what Ip addresses look like and detect them
@@ -55,5 +55,11 @@ export const parseIp = (p: Parser, token = p.read()) => {
     }
   }
 
-  return p.finishNode(b.buildIp(value, cidr, loc))
+  return p.finishNode(
+    d.Ip.create({
+      value,
+      cidr,
+      loc,
+    })
+  )
 }

@@ -3,7 +3,8 @@ import fs from 'fs'
 import path from 'path'
 import { traverse, createPathArray } from '../src/traverser'
 import { parse } from '../src'
-import { d, BaseNode } from '../src/nodes'
+import * as d from '../src/nodes'
+import { Node } from '../src/nodes'
 import { NodePath } from '../src/traverser/path'
 
 describe('Traverser', () => {
@@ -40,7 +41,7 @@ describe('Traverser', () => {
       const path = paths[paths.length - 1]
 
       expect(path).toBeInstanceOf(NodePath)
-      expect(path.parent).toBeInstanceOf(BaseNode)
+      expect(path.parent).toBeInstanceOf(Node)
       expect(path.parentPath).toBeInstanceOf(NodePath)
     })
 
