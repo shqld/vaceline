@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`declare-statement bool ast: ast 1`] = `
-Node {
-  "id": Node {
-    "base": Node {
+Object {
+  "id": Object {
+    "base": Object {
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -31,7 +31,7 @@ Node {
         "offset": 14,
       },
     },
-    "member": Node {
+    "member": Object {
       "loc": Object {
         "end": Object {
           "column": 26,
@@ -81,9 +81,9 @@ Array [
 `;
 
 exports[`declare-statement float ast: ast 1`] = `
-Node {
-  "id": Node {
-    "base": Node {
+Object {
+  "id": Object {
+    "base": Object {
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -111,7 +111,7 @@ Node {
         "offset": 14,
       },
     },
-    "member": Node {
+    "member": Object {
       "loc": Object {
         "end": Object {
           "column": 26,
@@ -161,9 +161,9 @@ Array [
 `;
 
 exports[`declare-statement integer ast: ast 1`] = `
-Node {
-  "id": Node {
-    "base": Node {
+Object {
+  "id": Object {
+    "base": Object {
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -191,7 +191,7 @@ Node {
         "offset": 14,
       },
     },
-    "member": Node {
+    "member": Object {
       "loc": Object {
         "end": Object {
           "column": 26,
@@ -241,9 +241,9 @@ Array [
 `;
 
 exports[`declare-statement string ast: ast 1`] = `
-Node {
-  "id": Node {
-    "base": Node {
+Object {
+  "id": Object {
+    "base": Object {
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -271,7 +271,7 @@ Node {
         "offset": 14,
       },
     },
-    "member": Node {
+    "member": Object {
       "loc": Object {
         "end": Object {
           "column": 26,

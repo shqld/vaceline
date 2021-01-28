@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`subroutine-statement basic ast: ast 1`] = `
-Node {
+Object {
   "body": Array [
-    Node {
-      "left": Node {
+    Object {
+      "left": Object {
         "loc": Object {
           "end": Object {
             "column": 14,
@@ -33,7 +33,7 @@ Node {
         },
       },
       "operator": "=",
-      "right": Node {
+      "right": Object {
         "loc": Object {
           "end": Object {
             "column": 22,
@@ -51,8 +51,8 @@ Node {
       },
       "type": "SetStatement",
     },
-    Node {
-      "left": Node {
+    Object {
+      "left": Object {
         "loc": Object {
           "end": Object {
             "column": 14,
@@ -81,7 +81,7 @@ Node {
         },
       },
       "operator": "=",
-      "right": Node {
+      "right": Object {
         "loc": Object {
           "end": Object {
             "column": 22,
@@ -100,7 +100,7 @@ Node {
       "type": "SetStatement",
     },
   ],
-  "id": Node {
+  "id": Object {
     "loc": Object {
       "end": Object {
         "column": 12,
@@ -168,10 +168,10 @@ Array [
 `;
 
 exports[`subroutine-statement with_empty_lines ast: ast 1`] = `
-Node {
+Object {
   "body": Array [
-    Node {
-      "left": Node {
+    Object {
+      "left": Object {
         "loc": Object {
           "end": Object {
             "column": 14,
@@ -200,7 +200,7 @@ Node {
         },
       },
       "operator": "=",
-      "right": Node {
+      "right": Object {
         "loc": Object {
           "end": Object {
             "column": 22,
@@ -218,8 +218,8 @@ Node {
       },
       "type": "SetStatement",
     },
-    Node {
-      "left": Node {
+    Object {
+      "left": Object {
         "loc": Object {
           "end": Object {
             "column": 14,
@@ -248,7 +248,7 @@ Node {
         },
       },
       "operator": "=",
-      "right": Node {
+      "right": Object {
         "loc": Object {
           "end": Object {
             "column": 22,
@@ -267,7 +267,7 @@ Node {
       "type": "SetStatement",
     },
   ],
-  "id": Node {
+  "id": Object {
     "loc": Object {
       "end": Object {
         "column": 12,

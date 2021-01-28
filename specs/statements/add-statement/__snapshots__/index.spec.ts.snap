@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`add-statement addition ast: ast 1`] = `
-Node {
-  "left": Node {
-    "base": Node {
+Object {
+  "left": Object {
+    "base": Object {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -31,7 +31,7 @@ Node {
         "offset": 4,
       },
     },
-    "member": Node {
+    "member": Object {
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -62,7 +62,7 @@ Node {
     },
   },
   "operator": "+=",
-  "right": Node {
+  "right": Object {
     "loc": Object {
       "end": Object {
         "column": 24,
@@ -102,9 +102,9 @@ Array [
 `;
 
 exports[`add-statement assignment ast: ast 1`] = `
-Node {
-  "left": Node {
-    "base": Node {
+Object {
+  "left": Object {
+    "base": Object {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -132,7 +132,7 @@ Node {
         "offset": 4,
       },
     },
-    "member": Node {
+    "member": Object {
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -163,7 +163,7 @@ Node {
     },
   },
   "operator": "=",
-  "right": Node {
+  "right": Object {
     "loc": Object {
       "end": Object {
         "column": 23,
@@ -203,9 +203,9 @@ Array [
 `;
 
 exports[`add-statement division ast: ast 1`] = `
-Node {
-  "left": Node {
-    "base": Node {
+Object {
+  "left": Object {
+    "base": Object {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -233,7 +233,7 @@ Node {
         "offset": 4,
       },
     },
-    "member": Node {
+    "member": Object {
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -264,7 +264,7 @@ Node {
     },
   },
   "operator": "/=",
-  "right": Node {
+  "right": Object {
     "loc": Object {
       "end": Object {
         "column": 24,
@@ -304,9 +304,9 @@ Array [
 `;
 
 exports[`add-statement multiplication ast: ast 1`] = `
-Node {
-  "left": Node {
-    "base": Node {
+Object {
+  "left": Object {
+    "base": Object {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -334,7 +334,7 @@ Node {
         "offset": 4,
       },
     },
-    "member": Node {
+    "member": Object {
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -365,7 +365,7 @@ Node {
     },
   },
   "operator": "*=",
-  "right": Node {
+  "right": Object {
     "loc": Object {
       "end": Object {
         "column": 24,
@@ -405,9 +405,9 @@ Array [
 `;
 
 exports[`add-statement substraction ast: ast 1`] = `
-Node {
-  "left": Node {
-    "base": Node {
+Object {
+  "left": Object {
+    "base": Object {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -435,7 +435,7 @@ Node {
         "offset": 4,
       },
     },
-    "member": Node {
+    "member": Object {
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -466,7 +466,7 @@ Node {
     },
   },
   "operator": "-=",
-  "right": Node {
+  "right": Object {
     "loc": Object {
       "end": Object {
         "column": 23,

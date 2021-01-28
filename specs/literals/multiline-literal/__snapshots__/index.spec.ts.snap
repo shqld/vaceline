@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`multiline-literal basic ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 2,

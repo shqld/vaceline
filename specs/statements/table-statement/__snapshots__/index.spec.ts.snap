@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`table-statement multiple_key_values ast: ast 1`] = `
-Node {
+Object {
   "body": Array [
-    Node {
+    Object {
       "key": "\\"key\\"",
       "loc": Object {
         "end": Object {
@@ -20,7 +20,7 @@ Node {
       "type": "TableDefinition",
       "value": "\\"value\\"",
     },
-    Node {
+    Object {
       "key": "\\"key2\\"",
       "loc": Object {
         "end": Object {
@@ -38,7 +38,7 @@ Node {
       "value": "\\"value2\\"",
     },
   ],
-  "id": Node {
+  "id": Object {
     "loc": Object {
       "end": Object {
         "column": 20,
@@ -94,9 +94,9 @@ Array [
 `;
 
 exports[`table-statement single_key_value ast: ast 1`] = `
-Node {
+Object {
   "body": Array [
-    Node {
+    Object {
       "key": "\\"key\\"",
       "loc": Object {
         "end": Object {
@@ -114,7 +114,7 @@ Node {
       "value": "\\"value\\"",
     },
   ],
-  "id": Node {
+  "id": Object {
     "loc": Object {
       "end": Object {
         "column": 20,
@@ -165,9 +165,9 @@ Array [
 `;
 
 exports[`table-statement with_trailing_comma ast: ast 1`] = `
-Node {
+Object {
   "body": Array [
-    Node {
+    Object {
       "key": "\\"key\\"",
       "loc": Object {
         "end": Object {
@@ -184,7 +184,7 @@ Node {
       "type": "TableDefinition",
       "value": "\\"value\\"",
     },
-    Node {
+    Object {
       "key": "\\"key2\\"",
       "loc": Object {
         "end": Object {
@@ -202,7 +202,7 @@ Node {
       "value": "\\"value2\\"",
     },
   ],
-  "id": Node {
+  "id": Object {
     "loc": Object {
       "end": Object {
         "column": 20,

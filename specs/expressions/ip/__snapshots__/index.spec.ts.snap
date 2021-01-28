@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ip 6to4_mapping_1 ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 18,
@@ -28,7 +28,7 @@ Array [
 `;
 
 exports[`ip 6to4_mapping_2 ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 18,
@@ -55,7 +55,7 @@ Array [
 `;
 
 exports[`ip 6to4_mapping_3 ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 5,
@@ -90,7 +90,7 @@ invalid ip address(IPv6 prefix length must be between 0 and 128)
 `;
 
 exports[`ip ipv4 ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 11,
@@ -117,7 +117,7 @@ Array [
 `;
 
 exports[`ip ipv4_with_cidr ast: ast 1`] = `
-Node {
+Object {
   "cidr": 16,
   "loc": Object {
     "end": Object {
@@ -154,7 +154,7 @@ invalid ip address(IPv4 prefix length must be between 0 and 32)
 `;
 
 exports[`ip ipv6 ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 13,
@@ -181,7 +181,7 @@ Array [
 `;
 
 exports[`ip ipv6_with_cidr ast: ast 1`] = `
-Node {
+Object {
   "cidr": 16,
   "loc": Object {
     "end": Object {
@@ -211,7 +211,7 @@ Array [
 `;
 
 exports[`ip localhost ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 11,
@@ -245,7 +245,7 @@ invalid ip address(A prefix length is not supported for \`localhost\`)
 `;
 
 exports[`ip unspecified_address ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 4,

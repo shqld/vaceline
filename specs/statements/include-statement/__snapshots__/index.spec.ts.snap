@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`include-statement basic ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 27,
@@ -14,7 +14,7 @@ Node {
       "offset": 0,
     },
   },
-  "module": Node {
+  "module": Object {
     "loc": Object {
       "end": Object {
         "column": 26,

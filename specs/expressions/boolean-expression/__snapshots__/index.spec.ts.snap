@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`boolean-expression with_binary_expr ast: ast 1`] = `
-Node {
-  "body": Node {
-    "left": Node {
-      "base": Node {
-        "base": Node {
+Object {
+  "body": Object {
+    "left": Object {
+      "base": Object {
+        "base": Object {
           "loc": Object {
             "end": Object {
               "column": 4,
@@ -33,7 +33,7 @@ Node {
             "offset": 1,
           },
         },
-        "member": Node {
+        "member": Object {
           "loc": Object {
             "end": Object {
               "column": 9,
@@ -63,7 +63,7 @@ Node {
           "offset": 1,
         },
       },
-      "member": Node {
+      "member": Object {
         "loc": Object {
           "end": Object {
             "column": 15,
@@ -94,7 +94,7 @@ Node {
       },
     },
     "operator": "==",
-    "right": Node {
+    "right": Object {
       "loc": Object {
         "end": Object {
           "column": 22,
@@ -154,10 +154,10 @@ Array [
 `;
 
 exports[`boolean-expression with_logical_expr ast: ast 1`] = `
-Node {
-  "body": Node {
-    "left": Node {
-      "base": Node {
+Object {
+  "body": Object {
+    "left": Object {
+      "base": Object {
         "loc": Object {
           "end": Object {
             "column": 4,
@@ -185,7 +185,7 @@ Node {
           "offset": 1,
         },
       },
-      "member": Node {
+      "member": Object {
         "loc": Object {
           "end": Object {
             "column": 10,
@@ -216,7 +216,7 @@ Node {
       },
     },
     "operator": "&&",
-    "right": Node {
+    "right": Object {
       "loc": Object {
         "end": Object {
           "column": 17,

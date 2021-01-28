@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`fun-call-expression if_func ast: ast 1`] = `
-Node {
+Object {
   "args": Array [
-    Node {
+    Object {
       "loc": Object {
         "end": Object {
           "column": 6,
@@ -19,7 +19,7 @@ Node {
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
-    Node {
+    Object {
       "loc": Object {
         "end": Object {
           "column": 11,
@@ -35,7 +35,7 @@ Node {
       "type": "StringLiteral",
       "value": "\\"b\\"",
     },
-    Node {
+    Object {
       "loc": Object {
         "end": Object {
           "column": 16,
@@ -52,7 +52,7 @@ Node {
       "value": "\\"c\\"",
     },
   ],
-  "callee": Node {
+  "callee": Object {
     "loc": Object {
       "end": Object {
         "column": 2,
@@ -108,9 +108,9 @@ Array [
 `;
 
 exports[`fun-call-expression trailing_comma_in_args ast: ast 1`] = `
-Node {
+Object {
   "args": Array [
-    Node {
+    Object {
       "loc": Object {
         "end": Object {
           "column": 8,
@@ -127,7 +127,7 @@ Node {
       "value": "\\"a\\"",
     },
   ],
-  "callee": Node {
+  "callee": Object {
     "loc": Object {
       "end": Object {
         "column": 4,
@@ -178,9 +178,9 @@ Array [
 `;
 
 exports[`fun-call-expression with_an_arg ast: ast 1`] = `
-Node {
+Object {
   "args": Array [
-    Node {
+    Object {
       "loc": Object {
         "end": Object {
           "column": 8,
@@ -197,7 +197,7 @@ Node {
       "value": "\\"a\\"",
     },
   ],
-  "callee": Node {
+  "callee": Object {
     "loc": Object {
       "end": Object {
         "column": 4,
@@ -247,9 +247,9 @@ Array [
 `;
 
 exports[`fun-call-expression with_multi_args ast: ast 1`] = `
-Node {
+Object {
   "args": Array [
-    Node {
+    Object {
       "loc": Object {
         "end": Object {
           "column": 8,
@@ -265,7 +265,7 @@ Node {
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
-    Node {
+    Object {
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -282,7 +282,7 @@ Node {
       "value": "\\"b\\"",
     },
   ],
-  "callee": Node {
+  "callee": Object {
     "loc": Object {
       "end": Object {
         "column": 4,
@@ -335,9 +335,9 @@ Array [
 `;
 
 exports[`fun-call-expression with_whitespaces ast: ast 1`] = `
-Node {
+Object {
   "args": Array [
-    Node {
+    Object {
       "loc": Object {
         "end": Object {
           "column": 10,
@@ -354,7 +354,7 @@ Node {
       "value": "\\"a\\"",
     },
   ],
-  "callee": Node {
+  "callee": Object {
     "loc": Object {
       "end": Object {
         "column": 4,
@@ -404,9 +404,9 @@ Array [
 `;
 
 exports[`fun-call-expression witout_arg ast: ast 1`] = `
-Node {
+Object {
   "args": Array [],
-  "callee": Node {
+  "callee": Object {
     "loc": Object {
       "end": Object {
         "column": 4,

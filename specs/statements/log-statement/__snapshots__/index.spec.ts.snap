@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`log-statement basic ast: ast 1`] = `
-Node {
-  "content": Node {
+Object {
+  "content": Object {
     "body": Array [
-      Node {
+      Object {
         "loc": Object {
           "end": Object {
             "column": 9,
@@ -20,8 +20,8 @@ Node {
         "type": "StringLiteral",
         "value": "\\"log\\"",
       },
-      Node {
-        "base": Node {
+      Object {
+        "base": Object {
           "loc": Object {
             "end": Object {
               "column": 13,
@@ -49,7 +49,7 @@ Node {
             "offset": 10,
           },
         },
-        "member": Node {
+        "member": Object {
           "loc": Object {
             "end": Object {
               "column": 24,
@@ -67,7 +67,7 @@ Node {
         },
         "type": "Member",
       },
-      Node {
+      Object {
         "loc": Object {
           "end": Object {
             "column": 43,
@@ -83,7 +83,7 @@ Node {
         "type": "StringLiteral",
         "value": "\\"vaceline-log :: \\"",
       },
-      Node {
+      Object {
         "loc": Object {
           "end": Object {
             "column": 18,
@@ -99,9 +99,9 @@ Node {
         "type": "StringLiteral",
         "value": "{\\"	timestamp_us:\\"}",
       },
-      Node {
-        "base": Node {
-          "base": Node {
+      Object {
+        "base": Object {
+          "base": Object {
             "loc": Object {
               "end": Object {
                 "column": 23,
@@ -129,7 +129,7 @@ Node {
               "offset": 65,
             },
           },
-          "member": Node {
+          "member": Object {
             "loc": Object {
               "end": Object {
                 "column": 29,
@@ -159,7 +159,7 @@ Node {
             "offset": 65,
           },
         },
-        "member": Node {
+        "member": Object {
           "loc": Object {
             "end": Object {
               "column": 34,
@@ -177,7 +177,7 @@ Node {
         },
         "type": "Member",
       },
-      Node {
+      Object {
         "loc": Object {
           "end": Object {
             "column": 10,
@@ -193,11 +193,11 @@ Node {
         "type": "StringLiteral",
         "value": "{\\"	host:\\"}",
       },
-      Node {
+      Object {
         "args": Array [
-          Node {
-            "base": Node {
-              "base": Node {
+          Object {
+            "base": Object {
+              "base": Object {
                 "loc": Object {
                   "end": Object {
                     "column": 24,
@@ -225,7 +225,7 @@ Node {
                   "offset": 104,
                 },
               },
-              "member": Node {
+              "member": Object {
                 "loc": Object {
                   "end": Object {
                     "column": 29,
@@ -255,7 +255,7 @@ Node {
                 "offset": 104,
               },
             },
-            "member": Node {
+            "member": Object {
               "loc": Object {
                 "end": Object {
                   "column": 46,
@@ -273,7 +273,7 @@ Node {
             },
             "type": "Member",
           },
-          Node {
+          Object {
             "loc": Object {
               "end": Object {
                 "column": 5,
@@ -289,7 +289,7 @@ Node {
             "type": "StringLiteral",
             "value": "{\\"	\\"}",
           },
-          Node {
+          Object {
             "loc": Object {
               "end": Object {
                 "column": 9,
@@ -306,7 +306,7 @@ Node {
             "value": "\\"\\"",
           },
         ],
-        "callee": Node {
+        "callee": Object {
           "loc": Object {
             "end": Object {
               "column": 20,

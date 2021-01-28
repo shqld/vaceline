@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`acl-statement index ast: ast 1`] = `
-Node {
+Object {
   "body": Array [
-    Node {
+    Object {
       "cidr": undefined,
       "loc": Object {
         "end": Object {
@@ -20,7 +20,7 @@ Node {
       "type": "Ip",
       "value": "127.0.0.1",
     },
-    Node {
+    Object {
       "cidr": undefined,
       "loc": Object {
         "end": Object {
@@ -38,7 +38,7 @@ Node {
       "value": "localhost",
     },
   ],
-  "id": Node {
+  "id": Object {
     "loc": Object {
       "end": Object {
         "column": 7,
