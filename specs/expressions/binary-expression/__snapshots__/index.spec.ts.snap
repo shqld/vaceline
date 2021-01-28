@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`binary-expression equal ast: ast 1`] = `
-Node {
-  "left": Node {
-    "base": Node {
-      "base": Node {
+Object {
+  "left": Object {
+    "base": Object {
+      "base": Object {
         "loc": Object {
           "end": Object {
             "column": 3,
@@ -32,7 +32,7 @@ Node {
           "offset": 0,
         },
       },
-      "member": Node {
+      "member": Object {
         "loc": Object {
           "end": Object {
             "column": 8,
@@ -62,7 +62,7 @@ Node {
         "offset": 0,
       },
     },
-    "member": Node {
+    "member": Object {
       "loc": Object {
         "end": Object {
           "column": 14,
@@ -93,7 +93,7 @@ Node {
     },
   },
   "operator": "==",
-  "right": Node {
+  "right": Object {
     "loc": Object {
       "end": Object {
         "column": 21,
@@ -135,10 +135,10 @@ Array [
 `;
 
 exports[`binary-expression match ast: ast 1`] = `
-Node {
-  "left": Node {
-    "base": Node {
-      "base": Node {
+Object {
+  "left": Object {
+    "base": Object {
+      "base": Object {
         "loc": Object {
           "end": Object {
             "column": 3,
@@ -166,7 +166,7 @@ Node {
           "offset": 0,
         },
       },
-      "member": Node {
+      "member": Object {
         "loc": Object {
           "end": Object {
             "column": 8,
@@ -196,7 +196,7 @@ Node {
         "offset": 0,
       },
     },
-    "member": Node {
+    "member": Object {
       "loc": Object {
         "end": Object {
           "column": 14,
@@ -227,7 +227,7 @@ Node {
     },
   },
   "operator": "~",
-  "right": Node {
+  "right": Object {
     "loc": Object {
       "end": Object {
         "column": 20,
@@ -269,12 +269,12 @@ Array [
 `;
 
 exports[`binary-expression multi_binary_expr ast: ast 1`] = `
-Node {
-  "left": Node {
-    "left": Node {
-      "left": Node {
-        "base": Node {
-          "base": Node {
+Object {
+  "left": Object {
+    "left": Object {
+      "left": Object {
+        "base": Object {
+          "base": Object {
             "loc": Object {
               "end": Object {
                 "column": 3,
@@ -302,7 +302,7 @@ Node {
               "offset": 0,
             },
           },
-          "member": Node {
+          "member": Object {
             "loc": Object {
               "end": Object {
                 "column": 8,
@@ -332,7 +332,7 @@ Node {
             "offset": 0,
           },
         },
-        "member": Node {
+        "member": Object {
           "loc": Object {
             "end": Object {
               "column": 14,
@@ -363,7 +363,7 @@ Node {
         },
       },
       "operator": "==",
-      "right": Node {
+      "right": Object {
         "loc": Object {
           "end": Object {
             "column": 21,
@@ -394,7 +394,7 @@ Node {
       },
     },
     "operator": "==",
-    "right": Node {
+    "right": Object {
       "loc": Object {
         "end": Object {
           "column": 28,
@@ -425,7 +425,7 @@ Node {
     },
   },
   "operator": "==",
-  "right": Node {
+  "right": Object {
     "loc": Object {
       "end": Object {
         "column": 35,
@@ -473,11 +473,11 @@ Array [
 `;
 
 exports[`binary-expression multi_with_logical_expr ast: ast 1`] = `
-Node {
-  "left": Node {
-    "left": Node {
-      "base": Node {
-        "base": Node {
+Object {
+  "left": Object {
+    "left": Object {
+      "base": Object {
+        "base": Object {
           "loc": Object {
             "end": Object {
               "column": 3,
@@ -505,7 +505,7 @@ Node {
             "offset": 0,
           },
         },
-        "member": Node {
+        "member": Object {
           "loc": Object {
             "end": Object {
               "column": 8,
@@ -535,7 +535,7 @@ Node {
           "offset": 0,
         },
       },
-      "member": Node {
+      "member": Object {
         "loc": Object {
           "end": Object {
             "column": 14,
@@ -566,7 +566,7 @@ Node {
       },
     },
     "operator": "==",
-    "right": Node {
+    "right": Object {
       "loc": Object {
         "end": Object {
           "column": 21,
@@ -597,8 +597,8 @@ Node {
     },
   },
   "operator": "&&",
-  "right": Node {
-    "left": Node {
+  "right": Object {
+    "left": Object {
       "loc": Object {
         "end": Object {
           "column": 28,
@@ -627,7 +627,7 @@ Node {
       },
     },
     "operator": "==",
-    "right": Node {
+    "right": Object {
       "loc": Object {
         "end": Object {
           "column": 35,
@@ -677,10 +677,10 @@ Array [
 `;
 
 exports[`binary-expression not_equal ast: ast 1`] = `
-Node {
-  "left": Node {
-    "base": Node {
-      "base": Node {
+Object {
+  "left": Object {
+    "base": Object {
+      "base": Object {
         "loc": Object {
           "end": Object {
             "column": 3,
@@ -708,7 +708,7 @@ Node {
           "offset": 0,
         },
       },
-      "member": Node {
+      "member": Object {
         "loc": Object {
           "end": Object {
             "column": 8,
@@ -738,7 +738,7 @@ Node {
         "offset": 0,
       },
     },
-    "member": Node {
+    "member": Object {
       "loc": Object {
         "end": Object {
           "column": 14,
@@ -769,7 +769,7 @@ Node {
     },
   },
   "operator": "!=",
-  "right": Node {
+  "right": Object {
     "loc": Object {
       "end": Object {
         "column": 21,

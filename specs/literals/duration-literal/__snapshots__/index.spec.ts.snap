@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`duration-literal day ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 2,
@@ -29,7 +29,7 @@ Array [
 `;
 
 exports[`duration-literal milli_second ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 3,
@@ -57,7 +57,7 @@ Array [
 `;
 
 exports[`duration-literal minute ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 3,
@@ -84,7 +84,7 @@ Array [
 `;
 
 exports[`duration-literal second ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 2,
@@ -112,7 +112,7 @@ Array [
 `;
 
 exports[`duration-literal with_space_between ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 5,
@@ -140,7 +140,7 @@ Array [
 `;
 
 exports[`duration-literal year ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 2,

@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`program single_handling ast: ast 1`] = `
-Node {
+Object {
   "body": Array [
-    Node {
+    Object {
       "body": Array [
-        Node {
-          "id": Node {
-            "base": Node {
+        Object {
+          "id": Object {
+            "base": Object {
               "loc": Object {
                 "end": Object {
                   "column": 19,
@@ -35,7 +35,7 @@ Node {
                 "offset": 31,
               },
             },
-            "member": Node {
+            "member": Object {
               "loc": Object {
                 "end": Object {
                   "column": 32,
@@ -68,9 +68,9 @@ Node {
           "type": "DeclareStatement",
           "valueType": "STRING",
         },
-        Node {
-          "left": Node {
-            "base": Node {
+        Object {
+          "left": Object {
+            "base": Object {
               "loc": Object {
                 "end": Object {
                   "column": 9,
@@ -98,7 +98,7 @@ Node {
                 "offset": 62,
               },
             },
-            "member": Node {
+            "member": Object {
               "loc": Object {
                 "end": Object {
                   "column": 23,
@@ -129,7 +129,7 @@ Node {
             },
           },
           "operator": "=",
-          "right": Node {
+          "right": Object {
             "loc": Object {
               "end": Object {
                 "column": 35,
@@ -147,12 +147,12 @@ Node {
           },
           "type": "SetStatement",
         },
-        Node {
+        Object {
           "alternative": undefined,
           "consequent": Array [
-            Node {
-              "left": Node {
-                "base": Node {
+            Object {
+              "left": Object {
+                "base": Object {
                   "loc": Object {
                     "end": Object {
                       "column": 11,
@@ -180,7 +180,7 @@ Node {
                     "offset": 143,
                   },
                 },
-                "member": Node {
+                "member": Object {
                   "loc": Object {
                     "end": Object {
                       "column": 24,
@@ -211,7 +211,7 @@ Node {
                 },
               },
               "operator": "=",
-              "right": Node {
+              "right": Object {
                 "loc": Object {
                   "end": Object {
                     "column": 46,
@@ -242,11 +242,11 @@ Node {
               "offset": 96,
             },
           },
-          "test": Node {
-            "left": Node {
-              "base": Node {
-                "base": Node {
-                  "base": Node {
+          "test": Object {
+            "left": Object {
+              "base": Object {
+                "base": Object {
+                  "base": Object {
                     "loc": Object {
                       "end": Object {
                         "column": 9,
@@ -274,7 +274,7 @@ Node {
                       "offset": 100,
                     },
                   },
-                  "member": Node {
+                  "member": Object {
                     "loc": Object {
                       "end": Object {
                         "column": 14,
@@ -304,7 +304,7 @@ Node {
                     "offset": 100,
                   },
                 },
-                "member": Node {
+                "member": Object {
                   "loc": Object {
                     "end": Object {
                       "column": 22,
@@ -334,7 +334,7 @@ Node {
                   "offset": 100,
                 },
               },
-              "name": Node {
+              "name": Object {
                 "loc": Object {
                   "end": Object {
                     "column": 27,
@@ -365,7 +365,7 @@ Node {
               },
             },
             "operator": "==",
-            "right": Node {
+            "right": Object {
               "loc": Object {
                 "end": Object {
                   "column": 37,
@@ -386,7 +386,7 @@ Node {
           "type": "IfStatement",
         },
       ],
-      "id": Node {
+      "id": Object {
         "loc": Object {
           "end": Object {
             "column": 12,
@@ -507,11 +507,11 @@ Array [
 `;
 
 exports[`program with_empty_lines ast: ast 1`] = `
-Node {
+Object {
   "body": Array [
-    Node {
-      "id": Node {
-        "base": Node {
+    Object {
+      "id": Object {
+        "base": Object {
           "loc": Object {
             "end": Object {
               "column": 17,
@@ -539,7 +539,7 @@ Node {
             "offset": 14,
           },
         },
-        "member": Node {
+        "member": Object {
           "loc": Object {
             "end": Object {
               "column": 30,
@@ -572,9 +572,9 @@ Node {
       "type": "DeclareStatement",
       "valueType": "STRING",
     },
-    Node {
-      "left": Node {
-        "base": Node {
+    Object {
+      "left": Object {
+        "base": Object {
           "loc": Object {
             "end": Object {
               "column": 7,
@@ -602,7 +602,7 @@ Node {
             "offset": 43,
           },
         },
-        "member": Node {
+        "member": Object {
           "loc": Object {
             "end": Object {
               "column": 21,
@@ -633,7 +633,7 @@ Node {
         },
       },
       "operator": "=",
-      "right": Node {
+      "right": Object {
         "loc": Object {
           "end": Object {
             "column": 27,
@@ -651,9 +651,9 @@ Node {
       },
       "type": "SetStatement",
     },
-    Node {
-      "left": Node {
-        "base": Node {
+    Object {
+      "left": Object {
+        "base": Object {
           "loc": Object {
             "end": Object {
               "column": 7,
@@ -681,7 +681,7 @@ Node {
             "offset": 73,
           },
         },
-        "member": Node {
+        "member": Object {
           "loc": Object {
             "end": Object {
               "column": 21,
@@ -712,7 +712,7 @@ Node {
         },
       },
       "operator": "=",
-      "right": Node {
+      "right": Object {
         "loc": Object {
           "end": Object {
             "column": 27,

@@ -1,4 +1,13 @@
-import { d, b, Location } from '../../nodes'
+import {
+  BackendDefinition,
+  DeclareValueType,
+  IfStatement,
+  Location,
+  ReturnActionName,
+  Statement,
+  TableDefinition,
+  TableStatement,
+} from '../../nodes'
 import { isToken } from '../../utils/token'
 
 import { parseExpr } from '../expression'
@@ -14,7 +23,7 @@ const ensureSemi = (p: Parser) => {
   p.validateToken(p.read(), 'symbol', ';')
 }
 
-export const parseStmt = (p: Parser, token: Token = p.read()): d.Statement => {
+export const parseStmt = (p: Parser, token: Token = p.read()): Statement => {
   const loc = p.startNode()
 
   if (!keywords.has(token.value)) {
@@ -22,7 +31,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): d.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(b.buildExpressionStatement(body, loc))
+    return p.finishNode({ type: 'ExpressionStatement', body, loc })
   }
 
   if (token.value === 'set' || token.value === 'add') {
@@ -32,10 +41,9 @@ export const parseStmt = (p: Parser, token: Token = p.read()): d.Statement => {
 
     ensureSemi(p)
 
-    const builder =
-      token.value === 'add' ? b.buildAddStatement : b.buildSetStatement
+    const type = token.value === 'add' ? 'AddStatement' : 'SetStatement'
 
-    return p.finishNode(builder(left, right, operator, loc))
+    return p.finishNode({ type, left, right, operator, loc })
   }
 
   if (token.value === 'unset') {
@@ -43,7 +51,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): d.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(b.buildUnsetStatement(id, loc))
+    return p.finishNode({ type: 'UnsetStatement', id, loc })
   }
 
   if (token.value === 'include') {
@@ -51,7 +59,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): d.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(b.buildIncludeStatement(module, loc))
+    return p.finishNode({ type: 'IncludeStatement', module, loc })
   }
 
   if (token.value === 'import') {
@@ -59,7 +67,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): d.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(b.buildImportStatement(module, loc))
+    return p.finishNode({ type: 'ImportStatement', module, loc })
   }
 
   if (token.value === 'call') {
@@ -67,7 +75,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): d.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(b.buildCallStatement(subroutine, loc))
+    return p.finishNode({ type: 'CallStatement', subroutine, loc })
   }
 
   if (token.value === 'declare') {
@@ -80,11 +88,11 @@ export const parseStmt = (p: Parser, token: Token = p.read()): d.Statement => {
     )
 
     const valueType = p.validateToken(p.read(), 'ident')
-      .value as d.DeclareValueType
+      .value as DeclareValueType
 
     ensureSemi(p)
 
-    return p.finishNode(b.buildDeclareStatement(id, valueType, loc))
+    return p.finishNode({ type: 'DeclareStatement', id, valueType, loc })
   }
 
   if (token.value === 'return') {
@@ -111,11 +119,11 @@ export const parseStmt = (p: Parser, token: Token = p.read()): d.Statement => {
       )
     }
 
-    const action = returnActionToken.value as d.ReturnActionName
+    const action = returnActionToken.value as ReturnActionName
 
     ensureSemi(p)
 
-    return p.finishNode(b.buildReturnStatement(action, loc))
+    return p.finishNode({ type: 'ReturnStatement', action, loc })
   }
 
   if (token.value === 'error') {
@@ -125,20 +133,25 @@ export const parseStmt = (p: Parser, token: Token = p.read()): d.Statement => {
     if (isToken(p.peek(), 'symbol', ';')) {
       p.take()
 
-      return p.finishNode(b.buildErrorStatement(status, undefined, loc))
+      return p.finishNode({
+        type: 'ErrorStatement',
+        status,
+        message: undefined,
+        loc,
+      })
     }
 
     const message = parseExpr(p)
 
     ensureSemi(p)
 
-    return p.finishNode(b.buildErrorStatement(status, message, loc))
+    return p.finishNode({ type: 'ErrorStatement', status, message, loc })
   }
 
   if (token.value === 'restart') {
     ensureSemi(p)
 
-    return p.finishNode(b.buildRestartStatement(loc))
+    return p.finishNode({ type: 'RestartStatement', loc })
   }
 
   if (token.value === 'synthetic') {
@@ -146,7 +159,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): d.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(b.buildSyntheticStatement(response, loc))
+    return p.finishNode({ type: 'SyntheticStatement', response, loc })
   }
 
   if (token.value === 'log') {
@@ -154,7 +167,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): d.Statement => {
 
     ensureSemi(p)
 
-    return p.finishNode(b.buildLogStatement(content, loc))
+    return p.finishNode({ type: 'LogStatement', content, loc })
   }
 
   if (token.value === 'if') {
@@ -167,7 +180,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): d.Statement => {
 
     const body = parseCompound(p, parseStmt, '}')
 
-    return p.finishNode(b.buildSubroutineStatement(id, body, loc))
+    return p.finishNode({ type: 'SubroutineStatement', id, body, loc })
   }
 
   if (token.value === 'acl') {
@@ -176,7 +189,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): d.Statement => {
 
     const body = parseCompound(p, parseIp, '}', undefined, true)
 
-    return p.finishNode(b.buildAclStatement(id, body, loc))
+    return p.finishNode({ type: 'AclStatement', id, body, loc })
   }
 
   if (token.value === 'backend') {
@@ -186,7 +199,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): d.Statement => {
 
     const body = parseCompound(p, parseBackendDef, '}')
 
-    return p.finishNode(b.buildBackendStatement(id, body, loc))
+    return p.finishNode({ type: 'BackendStatement', id, body, loc })
   }
 
   if (token.value === 'table') {
@@ -196,7 +209,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): d.Statement => {
   throw createError(p.source, '[stmt] not implemented yet', loc.start, loc.end)
 }
 
-const parseBackendDef = (p: Parser, token = p.read()): d.BackendDefinition => {
+const parseBackendDef = (p: Parser, token = p.read()): BackendDefinition => {
   const loc = p.startNode()
 
   p.validateToken(token, 'symbol', '.')
@@ -213,10 +226,10 @@ const parseBackendDef = (p: Parser, token = p.read()): d.BackendDefinition => {
     ensureSemi(p)
   }
 
-  return p.finishNode(b.buildBackendDefinition(key, value, loc))
+  return p.finishNode({ type: 'BackendDefinition', key, value, loc })
 }
 
-const parseIfStatement = (p: Parser, loc: Location): d.IfStatement => {
+const parseIfStatement = (p: Parser, loc: Location): IfStatement => {
   p.validateToken(p.read(), 'symbol', '(')
 
   const test = parseExpr(p)
@@ -227,7 +240,7 @@ const parseIfStatement = (p: Parser, loc: Location): d.IfStatement => {
 
   const consequent = parseCompound(p, parseStmt, '}')
 
-  let alternative: d.IfStatement | Array<d.Statement> | undefined = undefined
+  let alternative: IfStatement | Array<Statement> | undefined = undefined
 
   const next = p.peek()
 
@@ -246,10 +259,16 @@ const parseIfStatement = (p: Parser, loc: Location): d.IfStatement => {
     }
   }
 
-  return p.finishNode(b.buildIfStatement(test, consequent, alternative, loc))
+  return p.finishNode({
+    type: 'IfStatement',
+    test,
+    consequent,
+    alternative,
+    loc,
+  })
 }
 
-const parseTableDef = (p: Parser, token: Token): d.TableDefinition => {
+const parseTableDef = (p: Parser, token: Token): TableDefinition => {
   const loc = p.startNode()
 
   const key = p.validateToken(token, 'string').value
@@ -262,15 +281,15 @@ const parseTableDef = (p: Parser, token: Token): d.TableDefinition => {
     p.take()
   }
 
-  return p.finishNode(b.buildTableDefinition(key, value, loc))
+  return p.finishNode({ type: 'TableDefinition', key, value, loc })
 }
 
-const parseTableStatement = (p: Parser, loc: Location): d.TableStatement => {
+const parseTableStatement = (p: Parser, loc: Location): TableStatement => {
   const id = p.validateNode(parseIdentifier(p, p.read()), 'Identifier')
 
   p.validateToken(p.read(), 'symbol', '{')
 
   const body = parseCompound(p, parseTableDef, '}')
 
-  return p.finishNode(b.buildTableStatement(id, body, loc))
+  return p.finishNode({ type: 'TableStatement', id, body, loc })
 }

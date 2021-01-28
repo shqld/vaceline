@@ -1,7 +1,7 @@
 import { parse, traverse, generate } from '../../lib'
 import BranchLogPlugin from '.'
 import { NodePath } from '../../traverser/path'
-import { d } from '../../nodes'
+import { AddStatement, IfStatement, SubroutineStatement } from '../../nodes'
 
 const code = `
 
@@ -34,8 +34,8 @@ describe('BranchLogPlugin', () => {
     BranchLogPlugin(ast)
 
     traverse(ast, {
-      entry({ node }: NodePath<d.SubroutineStatement | d.IfStatement>) {
-        if (node.is('SubroutineStatement')) {
+      entry({ node }: NodePath<SubroutineStatement | IfStatement>) {
+        if (node.type === 'SubroutineStatement') {
           if (node.id.name === 'vcl_recv') {
             const loggerNode = node.body[0]
 
@@ -48,7 +48,7 @@ describe('BranchLogPlugin', () => {
             expect(loggerNode).toMatchObject({
               type: 'AddStatement',
               left: { member: { name: 'Vaceline-Branch-Log' } },
-            } as d.AddStatement)
+            } as AddStatement)
 
             expect(generate(loggerNode).code).toMatch(
               /add req\.http\.Vaceline-Branch-Log = "\(.*\).*";/
@@ -65,7 +65,7 @@ describe('BranchLogPlugin', () => {
               'set resp.http.Vaceline-Branch-Log = req.http.Vaceline-Branch-Log;'
             )
           }
-        } else if (node.is('IfStatement')) {
+        } else if (node.type === 'IfStatement') {
           const loggerNode = node.consequent[0]
 
           expect(generate(loggerNode).code).toMatch(

@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`unset-statement member ast: ast 1`] = `
-Node {
-  "id": Node {
-    "base": Node {
+Object {
+  "id": Object {
+    "base": Object {
       "loc": Object {
         "end": Object {
           "column": 9,
@@ -31,7 +31,7 @@ Node {
         "offset": 6,
       },
     },
-    "member": Node {
+    "member": Object {
       "loc": Object {
         "end": Object {
           "column": 15,
@@ -78,11 +78,11 @@ Array [
 `;
 
 exports[`unset-statement valuepair ast: ast 1`] = `
-Node {
-  "id": Node {
-    "base": Node {
-      "base": Node {
-        "base": Node {
+Object {
+  "id": Object {
+    "base": Object {
+      "base": Object {
+        "base": Object {
           "loc": Object {
             "end": Object {
               "column": 9,
@@ -110,7 +110,7 @@ Node {
             "offset": 6,
           },
         },
-        "member": Node {
+        "member": Object {
           "loc": Object {
             "end": Object {
               "column": 14,
@@ -140,7 +140,7 @@ Node {
           "offset": 6,
         },
       },
-      "member": Node {
+      "member": Object {
         "loc": Object {
           "end": Object {
             "column": 21,
@@ -170,7 +170,7 @@ Node {
         "offset": 6,
       },
     },
-    "name": Node {
+    "name": Object {
       "loc": Object {
         "end": Object {
           "column": 32,
@@ -227,8 +227,8 @@ Array [
 `;
 
 exports[`unset-statement variable ast: ast 1`] = `
-Node {
-  "id": Node {
+Object {
+  "id": Object {
     "loc": Object {
       "end": Object {
         "column": 11,

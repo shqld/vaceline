@@ -1,5 +1,12 @@
 import { Tokenizer, Token, TokenType } from './tokenizer'
-import { d, Nodes, NodeWithLoc, Location, NodeType } from '../nodes'
+import {
+  Node,
+  NodeWithLoc,
+  Location,
+  NodeType,
+  Statement,
+  Program,
+} from '../nodes'
 import { createError } from './create-error'
 import { TokenReader } from './token-reader'
 
@@ -7,11 +14,10 @@ import { isToken } from '../utils/token'
 import { parseStmt } from './statement/index'
 import { parseCompound } from './compound'
 import { buildDebug } from '../utils/debug'
-import { buildProgram } from '../nodes/builders.gen'
 
 const debug = buildDebug('parser')
 
-export const parse = (source: string): d.Program => new Parser(source).parse()
+export const parse = (source: string): Program => new Parser(source).parse()
 
 export class Parser extends TokenReader {
   source: string
@@ -24,14 +30,14 @@ export class Parser extends TokenReader {
     this.source = source
   }
 
-  parse(): d.Program {
+  parse(): Program {
     const loc = this.startNode()
 
-    const body = parseCompound<d.Statement>(this, parseStmt)
+    const body = parseCompound<Statement>(this, parseStmt)
 
     // TODO: overload builder func type,
     // to detect we pass `loc` and its return type is surely `NodeWithLoc`
-    return this.finishNode(buildProgram(body, loc))
+    return this.finishNode({ type: 'Program', body, loc })
   }
 
   startNode(): Location {
@@ -50,25 +56,26 @@ export class Parser extends TokenReader {
     }
   }
 
-  finishNode<T extends NodeType, N extends Nodes[T]>(
-    node: NodeWithLoc<N>
-  ): NodeWithLoc<N> {
+  finishNode<T extends NodeType>(
+    node: NodeWithLoc<Node & { type: T }>
+  ): NodeWithLoc<Node & { type: T }> {
     node.loc.end = this.getCurrentToken().loc.end
 
     if (debug.enabled) {
       const log = { ...node }
+      // @ts-expect-error
       delete log.loc
       debug(log)
     }
 
-    return node as NodeWithLoc<N>
+    return node
   }
 
   validateNode<T extends Array<NodeType>>(
     node: NodeWithLoc,
     ...types: T
-  ): NodeWithLoc<Nodes[T[number]]> {
-    if (!node.is(...types)) {
+  ): NodeWithLoc<Node & { type: T[number] }> {
+    if (!types.includes(node.type)) {
       throw createError(
         this.source,
         'expected ' + types.join(', '),
@@ -77,7 +84,7 @@ export class Parser extends TokenReader {
       )
     }
 
-    return node
+    return node as NodeWithLoc<Node & { type: T }>
   }
 
   validateToken<T extends TokenType, U extends string>(

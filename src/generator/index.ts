@@ -1,5 +1,6 @@
 import { printer, PrinterOptions } from 'prettier/doc'
-import { Node } from '../nodes/defs'
+import { Node } from '../nodes'
+import { printNode } from './printAST'
 
 export type GenerateOptions = {} & PrinterOptions
 
@@ -14,7 +15,7 @@ export const generate = (
   options: Partial<GenerateOptions> = defaultGenerateOptions
 ): { code: string; map?: string } => {
   const { formatted } = printer.printDocToString(
-    ast.print({
+    printNode(ast, {
       lineNum: 1,
     }),
     {

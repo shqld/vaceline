@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`concat-expression strings ast: ast 1`] = `
-Node {
+Object {
   "body": Array [
-    Node {
+    Object {
       "loc": Object {
         "end": Object {
           "column": 3,
@@ -19,7 +19,7 @@ Node {
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
-    Node {
+    Object {
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -35,7 +35,7 @@ Node {
       "type": "StringLiteral",
       "value": "\\"b\\"",
     },
-    Node {
+    Object {
       "loc": Object {
         "end": Object {
           "column": 11,
@@ -85,11 +85,11 @@ Array [
 `;
 
 exports[`concat-expression variables ast: ast 1`] = `
-Node {
+Object {
   "body": Array [
-    Node {
-      "base": Node {
-        "base": Node {
+    Object {
+      "base": Object {
+        "base": Object {
           "loc": Object {
             "end": Object {
               "column": 3,
@@ -117,7 +117,7 @@ Node {
             "offset": 0,
           },
         },
-        "member": Node {
+        "member": Object {
           "loc": Object {
             "end": Object {
               "column": 8,
@@ -147,7 +147,7 @@ Node {
           "offset": 0,
         },
       },
-      "member": Node {
+      "member": Object {
         "loc": Object {
           "end": Object {
             "column": 10,
@@ -165,9 +165,9 @@ Node {
       },
       "type": "Member",
     },
-    Node {
-      "base": Node {
-        "base": Node {
+    Object {
+      "base": Object {
+        "base": Object {
           "loc": Object {
             "end": Object {
               "column": 14,
@@ -195,7 +195,7 @@ Node {
             "offset": 11,
           },
         },
-        "member": Node {
+        "member": Object {
           "loc": Object {
             "end": Object {
               "column": 19,
@@ -225,7 +225,7 @@ Node {
           "offset": 11,
         },
       },
-      "member": Node {
+      "member": Object {
         "loc": Object {
           "end": Object {
             "column": 21,

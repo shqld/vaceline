@@ -1,11 +1,23 @@
-import * as d from './defs'
-export { d }
+import { Program } from './program'
+import { Expression } from './expression'
+import { Statement } from './statement'
 
-import * as b from './builders.gen'
-export { b }
+import { Location } from './location'
 
-import { Nodes } from './nodes.gen'
-type NodeType = keyof Nodes
-export { Nodes, NodeType }
+export * from './program'
+export * from './statement'
+export * from './expression'
+export * from './literal'
 
-export { BaseNode, PlainNode, Position, NodeWithLoc, Location } from './node'
+export * from './location'
+
+export type Node = Program | Statement | Expression
+export type PlainNode<N extends Node> = Omit<N, keyof Node>
+export type NodeWithLoc<N extends Node = Node> = N & { loc: Location }
+
+export interface BaseNode {
+  type: string
+  loc?: Location
+}
+
+export type NodeType = Node['type']

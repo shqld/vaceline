@@ -1,5 +1,5 @@
 import { Parser } from '..'
-import { d, b, NodeWithLoc, Location } from '../../nodes'
+import { NodeWithLoc, Location, Expression } from '../../nodes'
 import { Token } from '../tokenizer'
 import { isToken } from '../../utils/token'
 import { createError } from '../create-error'
@@ -12,7 +12,7 @@ export const parseHumbleExpr = (
   p: Parser,
   token: Token = p.read(),
   loc: Location = p.startNode()
-): NodeWithLoc<d.Expression> => {
+): NodeWithLoc<Expression> => {
   const literal = parseLiteral(p, token)
 
   if (literal) return literal
@@ -25,7 +25,12 @@ export const parseHumbleExpr = (
 
       const args = parseCompound(p, parseExpr, ')', ',')
 
-      return p.finishNode(b.buildFunCallExpression(ident, args, loc))
+      return p.finishNode({
+        type: 'FunCallExpression',
+        callee: ident,
+        args,
+        loc,
+      })
     }
 
     return ident
@@ -36,15 +41,18 @@ export const parseHumbleExpr = (
       const body = parseExpr(p)
       p.validateToken(p.read(), 'symbol', ')')
 
-      return p.finishNode(b.buildBooleanExpression(body, loc))
+      return p.finishNode({ type: 'BooleanExpression', body, loc })
     }
   }
 
   if (token.type === 'operator') {
     if (token.value === '!') {
-      return p.finishNode(
-        b.buildUnaryExpression(token.value, parseExpr(p), loc)
-      )
+      return p.finishNode({
+        type: 'UnaryExpression',
+        operator: token.value,
+        argument: parseExpr(p),
+        loc,
+      })
     }
   }
 

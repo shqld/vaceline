@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`hydrate should: ast 1`] = `
-Node {
+Object {
   "body": Array [
-    Node {
+    Object {
       "loc": Object {
         "end": Object {
           "column": 25,
@@ -16,7 +16,7 @@ Node {
           "offset": 0,
         },
       },
-      "module": Node {
+      "module": Object {
         "loc": Object {
           "end": Object {
             "column": 24,
@@ -34,7 +34,7 @@ Node {
       },
       "type": "IncludeStatement",
     },
-    Node {
+    Object {
       "loc": Object {
         "end": Object {
           "column": 25,
@@ -47,7 +47,7 @@ Node {
           "offset": 26,
         },
       },
-      "module": Node {
+      "module": Object {
         "loc": Object {
           "end": Object {
             "column": 24,
@@ -65,9 +65,9 @@ Node {
       },
       "type": "IncludeStatement",
     },
-    Node {
+    Object {
       "body": Array [
-        Node {
+        Object {
           "key": "ssh",
           "loc": Object {
             "end": Object {
@@ -82,7 +82,7 @@ Node {
             },
           },
           "type": "BackendDefinition",
-          "value": Node {
+          "value": Object {
             "loc": Object {
               "end": Object {
                 "column": 13,
@@ -99,7 +99,7 @@ Node {
             "value": "true",
           },
         },
-        Node {
+        Object {
           "key": "host",
           "loc": Object {
             "end": Object {
@@ -114,7 +114,7 @@ Node {
             },
           },
           "type": "BackendDefinition",
-          "value": Node {
+          "value": Object {
             "loc": Object {
               "end": Object {
                 "column": 23,
@@ -132,7 +132,7 @@ Node {
           },
         },
       ],
-      "id": Node {
+      "id": Object {
         "loc": Object {
           "end": Object {
             "column": 20,
@@ -162,12 +162,12 @@ Node {
       },
       "type": "BackendStatement",
     },
-    Node {
+    Object {
       "body": Array [
-        Node {
-          "left": Node {
-            "base": Node {
-              "base": Node {
+        Object {
+          "left": Object {
+            "base": Object {
+              "base": Object {
                 "loc": Object {
                   "end": Object {
                     "column": 9,
@@ -195,7 +195,7 @@ Node {
                   "offset": 140,
                 },
               },
-              "member": Node {
+              "member": Object {
                 "loc": Object {
                   "end": Object {
                     "column": 14,
@@ -225,7 +225,7 @@ Node {
                 "offset": 140,
               },
             },
-            "member": Node {
+            "member": Object {
               "loc": Object {
                 "end": Object {
                   "column": 28,
@@ -256,11 +256,11 @@ Node {
             },
           },
           "operator": "=",
-          "right": Node {
+          "right": Object {
             "args": Array [
-              Node {
-                "base": Node {
-                  "base": Node {
+              Object {
+                "base": Object {
+                  "base": Object {
                     "loc": Object {
                       "end": Object {
                         "column": 7,
@@ -288,7 +288,7 @@ Node {
                       "offset": 173,
                     },
                   },
-                  "member": Node {
+                  "member": Object {
                     "loc": Object {
                       "end": Object {
                         "column": 12,
@@ -318,7 +318,7 @@ Node {
                     "offset": 173,
                   },
                 },
-                "member": Node {
+                "member": Object {
                   "loc": Object {
                     "end": Object {
                       "column": 29,
@@ -336,9 +336,9 @@ Node {
                 },
                 "type": "Member",
               },
-              Node {
-                "base": Node {
-                  "base": Node {
+              Object {
+                "base": Object {
+                  "base": Object {
                     "loc": Object {
                       "end": Object {
                         "column": 7,
@@ -366,7 +366,7 @@ Node {
                       "offset": 204,
                     },
                   },
-                  "member": Node {
+                  "member": Object {
                     "loc": Object {
                       "end": Object {
                         "column": 12,
@@ -396,7 +396,7 @@ Node {
                     "offset": 204,
                   },
                 },
-                "member": Node {
+                "member": Object {
                   "loc": Object {
                     "end": Object {
                       "column": 29,
@@ -414,9 +414,9 @@ Node {
                 },
                 "type": "Member",
               },
-              Node {
-                "base": Node {
-                  "base": Node {
+              Object {
+                "base": Object {
+                  "base": Object {
                     "loc": Object {
                       "end": Object {
                         "column": 7,
@@ -444,7 +444,7 @@ Node {
                       "offset": 235,
                     },
                   },
-                  "member": Node {
+                  "member": Object {
                     "loc": Object {
                       "end": Object {
                         "column": 12,
@@ -474,7 +474,7 @@ Node {
                     "offset": 235,
                   },
                 },
-                "member": Node {
+                "member": Object {
                   "loc": Object {
                     "end": Object {
                       "column": 17,
@@ -493,7 +493,7 @@ Node {
                 "type": "Member",
               },
             ],
-            "callee": Node {
+            "callee": Object {
               "loc": Object {
                 "end": Object {
                   "column": 33,
@@ -525,9 +525,9 @@ Node {
           },
           "type": "SetStatement",
         },
-        Node {
-          "id": Node {
-            "base": Node {
+        Object {
+          "id": Object {
+            "base": Object {
               "loc": Object {
                 "end": Object {
                   "column": 19,
@@ -555,7 +555,7 @@ Node {
                 "offset": 291,
               },
             },
-            "member": Node {
+            "member": Object {
               "loc": Object {
                 "end": Object {
                   "column": 33,
@@ -588,9 +588,9 @@ Node {
           "type": "DeclareStatement",
           "valueType": "BOOL",
         },
-        Node {
-          "id": Node {
-            "base": Node {
+        Object {
+          "id": Object {
+            "base": Object {
               "loc": Object {
                 "end": Object {
                   "column": 19,
@@ -618,7 +618,7 @@ Node {
                 "offset": 331,
               },
             },
-            "member": Node {
+            "member": Object {
               "loc": Object {
                 "end": Object {
                   "column": 31,
@@ -651,9 +651,9 @@ Node {
           "type": "DeclareStatement",
           "valueType": "STRING",
         },
-        Node {
-          "left": Node {
-            "base": Node {
+        Object {
+          "left": Object {
+            "base": Object {
               "loc": Object {
                 "end": Object {
                   "column": 9,
@@ -681,7 +681,7 @@ Node {
                 "offset": 362,
               },
             },
-            "member": Node {
+            "member": Object {
               "loc": Object {
                 "end": Object {
                   "column": 23,
@@ -712,13 +712,13 @@ Node {
             },
           },
           "operator": "=",
-          "right": Node {
-            "body": Node {
-              "left": Node {
-                "left": Node {
-                  "base": Node {
-                    "base": Node {
-                      "base": Node {
+          "right": Object {
+            "body": Object {
+              "left": Object {
+                "left": Object {
+                  "base": Object {
+                    "base": Object {
+                      "base": Object {
                         "loc": Object {
                           "end": Object {
                             "column": 7,
@@ -746,7 +746,7 @@ Node {
                           "offset": 388,
                         },
                       },
-                      "member": Node {
+                      "member": Object {
                         "loc": Object {
                           "end": Object {
                             "column": 12,
@@ -776,7 +776,7 @@ Node {
                         "offset": 388,
                       },
                     },
-                    "member": Node {
+                    "member": Object {
                       "loc": Object {
                         "end": Object {
                           "column": 19,
@@ -806,7 +806,7 @@ Node {
                       "offset": 388,
                     },
                   },
-                  "name": Node {
+                  "name": Object {
                     "loc": Object {
                       "end": Object {
                         "column": 28,
@@ -837,7 +837,7 @@ Node {
                   },
                 },
                 "operator": "~",
-                "right": Node {
+                "right": Object {
                   "loc": Object {
                     "end": Object {
                       "column": 44,
@@ -868,9 +868,9 @@ Node {
                 },
               },
               "operator": "&&",
-              "right": Node {
-                "base": Node {
-                  "base": Node {
+              "right": Object {
+                "base": Object {
+                  "base": Object {
                     "loc": Object {
                       "end": Object {
                         "column": 7,
@@ -898,7 +898,7 @@ Node {
                       "offset": 436,
                     },
                   },
-                  "member": Node {
+                  "member": Object {
                     "loc": Object {
                       "end": Object {
                         "column": 12,
@@ -928,7 +928,7 @@ Node {
                     "offset": 436,
                   },
                 },
-                "member": Node {
+                "member": Object {
                   "loc": Object {
                     "end": Object {
                       "column": 34,
@@ -964,9 +964,9 @@ Node {
           },
           "type": "SetStatement",
         },
-        Node {
-          "left": Node {
-            "base": Node {
+        Object {
+          "left": Object {
+            "base": Object {
               "loc": Object {
                 "end": Object {
                   "column": 9,
@@ -994,7 +994,7 @@ Node {
                 "offset": 479,
               },
             },
-            "member": Node {
+            "member": Object {
               "loc": Object {
                 "end": Object {
                   "column": 21,
@@ -1025,10 +1025,10 @@ Node {
             },
           },
           "operator": "=",
-          "right": Node {
+          "right": Object {
             "args": Array [
-              Node {
-                "base": Node {
+              Object {
+                "base": Object {
                   "loc": Object {
                     "end": Object {
                       "column": 30,
@@ -1056,7 +1056,7 @@ Node {
                     "offset": 500,
                   },
                 },
-                "member": Node {
+                "member": Object {
                   "loc": Object {
                     "end": Object {
                       "column": 44,
@@ -1074,9 +1074,9 @@ Node {
                 },
                 "type": "Member",
               },
-              Node {
-                "base": Node {
-                  "base": Node {
+              Object {
+                "base": Object {
+                  "base": Object {
                     "loc": Object {
                       "end": Object {
                         "column": 49,
@@ -1104,7 +1104,7 @@ Node {
                       "offset": 519,
                     },
                   },
-                  "member": Node {
+                  "member": Object {
                     "loc": Object {
                       "end": Object {
                         "column": 54,
@@ -1134,7 +1134,7 @@ Node {
                     "offset": 519,
                   },
                 },
-                "member": Node {
+                "member": Object {
                   "loc": Object {
                     "end": Object {
                       "column": 76,
@@ -1153,7 +1153,7 @@ Node {
                 "type": "Member",
               },
             ],
-            "callee": Node {
+            "callee": Object {
               "loc": Object {
                 "end": Object {
                   "column": 26,
@@ -1185,10 +1185,10 @@ Node {
           },
           "type": "SetStatement",
         },
-        Node {
-          "left": Node {
-            "base": Node {
-              "base": Node {
+        Object {
+          "left": Object {
+            "base": Object {
+              "base": Object {
                 "loc": Object {
                   "end": Object {
                     "column": 9,
@@ -1216,7 +1216,7 @@ Node {
                   "offset": 580,
                 },
               },
-              "member": Node {
+              "member": Object {
                 "loc": Object {
                   "end": Object {
                     "column": 14,
@@ -1246,7 +1246,7 @@ Node {
                 "offset": 580,
               },
             },
-            "member": Node {
+            "member": Object {
               "loc": Object {
                 "end": Object {
                   "column": 33,
@@ -1277,10 +1277,10 @@ Node {
             },
           },
           "operator": "=",
-          "right": Node {
+          "right": Object {
             "args": Array [
-              Node {
-                "base": Node {
+              Object {
+                "base": Object {
                   "loc": Object {
                     "end": Object {
                       "column": 42,
@@ -1308,7 +1308,7 @@ Node {
                     "offset": 613,
                   },
                 },
-                "member": Node {
+                "member": Object {
                   "loc": Object {
                     "end": Object {
                       "column": 56,
@@ -1326,7 +1326,7 @@ Node {
                 },
                 "type": "Member",
               },
-              Node {
+              Object {
                 "loc": Object {
                   "end": Object {
                     "column": 64,
@@ -1342,7 +1342,7 @@ Node {
                 "type": "StringLiteral",
                 "value": "\\"true\\"",
               },
-              Node {
+              Object {
                 "loc": Object {
                   "end": Object {
                     "column": 73,
@@ -1359,7 +1359,7 @@ Node {
                 "value": "\\"false\\"",
               },
             ],
-            "callee": Node {
+            "callee": Object {
               "loc": Object {
                 "end": Object {
                   "column": 38,
@@ -1391,10 +1391,10 @@ Node {
           },
           "type": "SetStatement",
         },
-        Node {
-          "left": Node {
-            "base": Node {
-              "base": Node {
+        Object {
+          "left": Object {
+            "base": Object {
+              "base": Object {
                 "loc": Object {
                   "end": Object {
                     "column": 9,
@@ -1422,7 +1422,7 @@ Node {
                   "offset": 673,
                 },
               },
-              "member": Node {
+              "member": Object {
                 "loc": Object {
                   "end": Object {
                     "column": 14,
@@ -1452,7 +1452,7 @@ Node {
                 "offset": 673,
               },
             },
-            "member": Node {
+            "member": Object {
               "loc": Object {
                 "end": Object {
                   "column": 36,
@@ -1483,8 +1483,8 @@ Node {
             },
           },
           "operator": "=",
-          "right": Node {
-            "base": Node {
+          "right": Object {
+            "base": Object {
               "loc": Object {
                 "end": Object {
                   "column": 42,
@@ -1512,7 +1512,7 @@ Node {
                 "offset": 706,
               },
             },
-            "member": Node {
+            "member": Object {
               "loc": Object {
                 "end": Object {
                   "column": 54,
@@ -1533,7 +1533,7 @@ Node {
           "type": "SetStatement",
         },
       ],
-      "id": Node {
+      "id": Object {
         "loc": Object {
           "end": Object {
             "column": 12,
@@ -1563,9 +1563,9 @@ Node {
       },
       "type": "SubroutineStatement",
     },
-    Node {
+    Object {
       "body": Array [
-        Node {
+        Object {
           "loc": Object {
             "end": Object {
               "column": 37,
@@ -1578,7 +1578,7 @@ Node {
               "offset": 743,
             },
           },
-          "subroutine": Node {
+          "subroutine": Object {
             "loc": Object {
               "end": Object {
                 "column": 36,
@@ -1597,7 +1597,7 @@ Node {
           "type": "CallStatement",
         },
       ],
-      "id": Node {
+      "id": Object {
         "loc": Object {
           "end": Object {
             "column": 12,
@@ -1627,9 +1627,9 @@ Node {
       },
       "type": "SubroutineStatement",
     },
-    Node {
+    Object {
       "body": Array [
-        Node {
+        Object {
           "loc": Object {
             "end": Object {
               "column": 37,
@@ -1642,7 +1642,7 @@ Node {
               "offset": 799,
             },
           },
-          "subroutine": Node {
+          "subroutine": Object {
             "loc": Object {
               "end": Object {
                 "column": 36,
@@ -1661,7 +1661,7 @@ Node {
           "type": "CallStatement",
         },
       ],
-      "id": Node {
+      "id": Object {
         "loc": Object {
           "end": Object {
             "column": 12,
@@ -1691,12 +1691,12 @@ Node {
       },
       "type": "SubroutineStatement",
     },
-    Node {
+    Object {
       "body": Array [
-        Node {
-          "id": Node {
-            "base": Node {
-              "base": Node {
+        Object {
+          "id": Object {
+            "base": Object {
+              "base": Object {
                 "loc": Object {
                   "end": Object {
                     "column": 13,
@@ -1724,7 +1724,7 @@ Node {
                   "offset": 882,
                 },
               },
-              "member": Node {
+              "member": Object {
                 "loc": Object {
                   "end": Object {
                     "column": 18,
@@ -1754,7 +1754,7 @@ Node {
                 "offset": 882,
               },
             },
-            "member": Node {
+            "member": Object {
               "loc": Object {
                 "end": Object {
                   "column": 37,
@@ -1787,7 +1787,7 @@ Node {
           "type": "UnsetStatement",
         },
       ],
-      "id": Node {
+      "id": Object {
         "loc": Object {
           "end": Object {
             "column": 33,
@@ -1817,14 +1817,14 @@ Node {
       },
       "type": "SubroutineStatement",
     },
-    Node {
+    Object {
       "body": Array [
-        Node {
+        Object {
           "alternative": undefined,
           "consequent": Array [
-            Node {
-              "left": Node {
-                "base": Node {
+            Object {
+              "left": Object {
+                "base": Object {
                   "loc": Object {
                     "end": Object {
                       "column": 14,
@@ -1852,7 +1852,7 @@ Node {
                     "offset": 987,
                   },
                 },
-                "member": Node {
+                "member": Object {
                   "loc": Object {
                     "end": Object {
                       "column": 18,
@@ -1883,7 +1883,7 @@ Node {
                 },
               },
               "operator": "=",
-              "right": Node {
+              "right": Object {
                 "loc": Object {
                   "end": Object {
                     "column": 23,
@@ -1914,10 +1914,10 @@ Node {
               "offset": 934,
             },
           },
-          "test": Node {
-            "left": Node {
-              "base": Node {
-                "base": Node {
+          "test": Object {
+            "left": Object {
+              "base": Object {
+                "base": Object {
                   "loc": Object {
                     "end": Object {
                       "column": 9,
@@ -1945,7 +1945,7 @@ Node {
                     "offset": 938,
                   },
                 },
-                "member": Node {
+                "member": Object {
                   "loc": Object {
                     "end": Object {
                       "column": 14,
@@ -1975,7 +1975,7 @@ Node {
                   "offset": 938,
                 },
               },
-              "member": Node {
+              "member": Object {
                 "loc": Object {
                   "end": Object {
                     "column": 33,
@@ -2006,7 +2006,7 @@ Node {
               },
             },
             "operator": "==",
-            "right": Node {
+            "right": Object {
               "loc": Object {
                 "end": Object {
                   "column": 43,
@@ -2027,7 +2027,7 @@ Node {
           "type": "IfStatement",
         },
       ],
-      "id": Node {
+      "id": Object {
         "loc": Object {
           "end": Object {
             "column": 13,

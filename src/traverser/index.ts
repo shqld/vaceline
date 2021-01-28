@@ -1,8 +1,22 @@
-import { BaseNode } from '../nodes'
+import { Node } from '../nodes'
 import { NodePath, TraversalContext, Handler } from './path'
 
+const flat = <T>(arr: Array<T>) =>
+  arr.reduce((acc, cur) => acc.concat(cur), [] as Array<T>)
+
+function next(node: Node) {
+  return flat(
+    Object.values(node).filter(
+      (v) =>
+        Array.isArray(v) ||
+        // FIXME: too fragile
+        typeof v?.type === 'string'
+    )
+  )
+}
+
 export const traverseNode = (
-  node: BaseNode,
+  node: Node,
   callback: (path: NodePath, context: TraversalContext) => void,
   context: TraversalContext = {
     parent: null,
@@ -17,7 +31,7 @@ export const traverseNode = (
 
   callback(path, context)
 
-  const nextNodes = node.next()
+  const nextNodes = next(node)
 
   for (const nextNode of nextNodes) {
     traverseNode(nextNode, callback, {
@@ -29,7 +43,7 @@ export const traverseNode = (
 }
 
 export const traverse = (
-  ast: BaseNode,
+  ast: Node,
   handler: Handler,
   context: TraversalContext = {
     parent: null,
@@ -49,7 +63,7 @@ export const traverse = (
 
 // Create traversal path array recursively
 export const createPathArray = (
-  ast: BaseNode,
+  ast: Node,
   context: TraversalContext = {
     parent: null,
     parentPath: null,

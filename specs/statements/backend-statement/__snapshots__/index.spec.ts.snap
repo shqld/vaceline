@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`backend-statement index ast: ast 1`] = `
-Node {
+Object {
   "body": Array [
-    Node {
+    Object {
       "key": "connect_timeout",
       "loc": Object {
         "end": Object {
@@ -18,7 +18,7 @@ Node {
         },
       },
       "type": "BackendDefinition",
-      "value": Node {
+      "value": Object {
         "loc": Object {
           "end": Object {
             "column": 23,
@@ -35,7 +35,7 @@ Node {
         "value": "1s",
       },
     },
-    Node {
+    Object {
       "key": "dynamic",
       "loc": Object {
         "end": Object {
@@ -50,7 +50,7 @@ Node {
         },
       },
       "type": "BackendDefinition",
-      "value": Node {
+      "value": Object {
         "loc": Object {
           "end": Object {
             "column": 17,
@@ -67,7 +67,7 @@ Node {
         "value": "true",
       },
     },
-    Node {
+    Object {
       "key": "port",
       "loc": Object {
         "end": Object {
@@ -82,7 +82,7 @@ Node {
         },
       },
       "type": "BackendDefinition",
-      "value": Node {
+      "value": Object {
         "loc": Object {
           "end": Object {
             "column": 15,
@@ -99,7 +99,7 @@ Node {
         "value": "\\"443\\"",
       },
     },
-    Node {
+    Object {
       "key": "host",
       "loc": Object {
         "end": Object {
@@ -114,7 +114,7 @@ Node {
         },
       },
       "type": "BackendDefinition",
-      "value": Node {
+      "value": Object {
         "loc": Object {
           "end": Object {
             "column": 23,
@@ -131,7 +131,7 @@ Node {
         "value": "\\"vaceline.io\\"",
       },
     },
-    Node {
+    Object {
       "key": "first_byte_timeout",
       "loc": Object {
         "end": Object {
@@ -146,7 +146,7 @@ Node {
         },
       },
       "type": "BackendDefinition",
-      "value": Node {
+      "value": Object {
         "loc": Object {
           "end": Object {
             "column": 26,
@@ -163,7 +163,7 @@ Node {
         "value": "5s",
       },
     },
-    Node {
+    Object {
       "key": "max_connections",
       "loc": Object {
         "end": Object {
@@ -178,7 +178,7 @@ Node {
         },
       },
       "type": "BackendDefinition",
-      "value": Node {
+      "value": Object {
         "loc": Object {
           "end": Object {
             "column": 24,
@@ -195,7 +195,7 @@ Node {
         "value": "100",
       },
     },
-    Node {
+    Object {
       "key": "between_bytes_timeout",
       "loc": Object {
         "end": Object {
@@ -210,7 +210,7 @@ Node {
         },
       },
       "type": "BackendDefinition",
-      "value": Node {
+      "value": Object {
         "loc": Object {
           "end": Object {
             "column": 30,
@@ -227,7 +227,7 @@ Node {
         "value": "10s",
       },
     },
-    Node {
+    Object {
       "key": "ssl",
       "loc": Object {
         "end": Object {
@@ -242,7 +242,7 @@ Node {
         },
       },
       "type": "BackendDefinition",
-      "value": Node {
+      "value": Object {
         "loc": Object {
           "end": Object {
             "column": 13,
@@ -259,7 +259,7 @@ Node {
         "value": "true",
       },
     },
-    Node {
+    Object {
       "key": "probe",
       "loc": Object {
         "end": Object {
@@ -275,7 +275,7 @@ Node {
       },
       "type": "BackendDefinition",
       "value": Array [
-        Node {
+        Object {
           "key": "request",
           "loc": Object {
             "end": Object {
@@ -290,9 +290,9 @@ Node {
             },
           },
           "type": "BackendDefinition",
-          "value": Node {
+          "value": Object {
             "body": Array [
-              Node {
+              Object {
                 "loc": Object {
                   "end": Object {
                     "column": 42,
@@ -308,7 +308,7 @@ Node {
                 "type": "StringLiteral",
                 "value": "\\"GET /healthcheck HTTP/1.1\\"",
               },
-              Node {
+              Object {
                 "loc": Object {
                   "end": Object {
                     "column": 62,
@@ -324,7 +324,7 @@ Node {
                 "type": "StringLiteral",
                 "value": "\\"Host: vaceline.io\\"",
               },
-              Node {
+              Object {
                 "loc": Object {
                   "end": Object {
                     "column": 82,
@@ -340,7 +340,7 @@ Node {
                 "type": "StringLiteral",
                 "value": "\\"Connection: close\\"",
               },
-              Node {
+              Object {
                 "loc": Object {
                   "end": Object {
                     "column": 117,
@@ -372,7 +372,7 @@ Node {
             "type": "ConcatExpression",
           },
         },
-        Node {
+        Object {
           "key": "threshold",
           "loc": Object {
             "end": Object {
@@ -387,7 +387,7 @@ Node {
             },
           },
           "type": "BackendDefinition",
-          "value": Node {
+          "value": Object {
             "loc": Object {
               "end": Object {
                 "column": 18,
@@ -404,7 +404,7 @@ Node {
             "value": "1",
           },
         },
-        Node {
+        Object {
           "key": "window",
           "loc": Object {
             "end": Object {
@@ -419,7 +419,7 @@ Node {
             },
           },
           "type": "BackendDefinition",
-          "value": Node {
+          "value": Object {
             "loc": Object {
               "end": Object {
                 "column": 15,
@@ -436,7 +436,7 @@ Node {
             "value": "2",
           },
         },
-        Node {
+        Object {
           "key": "timeout",
           "loc": Object {
             "end": Object {
@@ -451,7 +451,7 @@ Node {
             },
           },
           "type": "BackendDefinition",
-          "value": Node {
+          "value": Object {
             "loc": Object {
               "end": Object {
                 "column": 18,
@@ -468,7 +468,7 @@ Node {
             "value": "10s",
           },
         },
-        Node {
+        Object {
           "key": "initial",
           "loc": Object {
             "end": Object {
@@ -483,7 +483,7 @@ Node {
             },
           },
           "type": "BackendDefinition",
-          "value": Node {
+          "value": Object {
             "loc": Object {
               "end": Object {
                 "column": 16,
@@ -500,7 +500,7 @@ Node {
             "value": "1",
           },
         },
-        Node {
+        Object {
           "key": "expected_response",
           "loc": Object {
             "end": Object {
@@ -515,7 +515,7 @@ Node {
             },
           },
           "type": "BackendDefinition",
-          "value": Node {
+          "value": Object {
             "loc": Object {
               "end": Object {
                 "column": 28,
@@ -532,7 +532,7 @@ Node {
             "value": "200",
           },
         },
-        Node {
+        Object {
           "key": "interval",
           "loc": Object {
             "end": Object {
@@ -547,7 +547,7 @@ Node {
             },
           },
           "type": "BackendDefinition",
-          "value": Node {
+          "value": Object {
             "loc": Object {
               "end": Object {
                 "column": 19,
@@ -567,7 +567,7 @@ Node {
       ],
     },
   ],
-  "id": Node {
+  "id": Object {
     "loc": Object {
       "end": Object {
         "column": 24,

@@ -1,6 +1,12 @@
+import {
+  BinaryExpression,
+  LogicalExpression,
+  Member,
+  UnaryExpression,
+  ValuePair,
+} from '../../src/nodes'
 import { Parser } from '../../src/parser'
 import { parseExpr } from '../../src/parser/expression/index'
-import { d } from '../../src/nodes'
 
 const parse = (source: string) => parseExpr(new Parser(source))
 
@@ -71,7 +77,7 @@ describe('Expression', () => {
         argument: {
           type: 'Member',
         },
-      } as d.UnaryExpression)
+      } as UnaryExpression)
     })
   })
 
@@ -97,7 +103,7 @@ describe('Expression', () => {
           loc: { start: { offset: 5 }, end: { offset: 5 } },
         },
         loc: { start: { offset: 0 }, end: { offset: 5 } },
-      } as d.BinaryExpression)
+      } as BinaryExpression)
 
       expect(parse('req.http.a ~ "a"')).toMatchObject({
         type: 'BinaryExpression',
@@ -125,14 +131,14 @@ describe('Expression', () => {
           loc: { start: { offset: 10 }, end: { offset: 10 } },
         },
         loc: { start: { offset: 0 }, end: { offset: 10 } },
-      } as d.BinaryExpression)
+      } as BinaryExpression)
     })
 
     it('should take the precedence over first one', () => {
       expect(parse('a == b == c')).toMatchObject({
         left: { left: { name: 'a' }, right: { name: 'b' } },
         right: { name: 'c' },
-      } as d.BinaryExpression)
+      } as BinaryExpression)
     })
   })
 
@@ -150,7 +156,7 @@ describe('Expression', () => {
           loc: { start: { offset: 5 }, end: { offset: 5 } },
         },
         loc: { start: { offset: 0 }, end: { offset: 5 } },
-      } as d.LogicalExpression)
+      } as LogicalExpression)
 
       expect(parse('a || b')).toMatchObject({
         type: 'LogicalExpression',
@@ -195,7 +201,7 @@ describe('Expression', () => {
       expect(parse('a && b && c')).toMatchObject({
         left: { left: { name: 'a' }, right: { name: 'b' } },
         right: { name: 'c' },
-      } as d.LogicalExpression)
+      } as LogicalExpression)
     })
 
     it('should take the precedence over `&&`', () => {
@@ -203,7 +209,7 @@ describe('Expression', () => {
         type: 'LogicalExpression',
         operator: '||',
         right: { operator: '&&' },
-      } as d.LogicalExpression)
+      } as LogicalExpression)
     })
 
     it('should take the precedence over BinaryExpression', () => {
@@ -212,7 +218,7 @@ describe('Expression', () => {
         operator: '&&',
         left: { type: 'BinaryExpression', operator: '==' },
         right: { type: 'BinaryExpression', operator: '!=' },
-      } as d.LogicalExpression)
+      } as LogicalExpression)
     })
 
     // TODO: move to BooleanExpression test
@@ -235,7 +241,7 @@ describe('Expression', () => {
           },
         },
         right: { name: 'd' },
-      } as d.BinaryExpression)
+      } as BinaryExpression)
     })
   })
 
@@ -245,7 +251,7 @@ describe('Expression', () => {
         type: 'Member',
         base: { type: 'Identifier', name: 'a' },
         member: { type: 'Identifier', name: 'b' },
-      } as d.Member)
+      } as Member)
 
       expect(parse('a.b.c')).toMatchObject({
         type: 'Member',
@@ -255,7 +261,7 @@ describe('Expression', () => {
           member: { type: 'Identifier', name: 'b' },
         },
         member: { type: 'Identifier', name: 'c' },
-      } as d.Member)
+      } as Member)
     })
   })
 
@@ -265,7 +271,7 @@ describe('Expression', () => {
         type: 'ValuePair',
         base: { type: 'Identifier', name: 'Cookie' },
         name: { type: 'Identifier', name: 'Vaceline' },
-      } as d.ValuePair)
+      } as ValuePair)
 
       // This is actually invalid (makes no sense)
       // but apparently Fastly's Varnish doesn't throw any errors

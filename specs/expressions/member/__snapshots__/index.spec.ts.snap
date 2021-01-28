@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`member basic ast: ast 1`] = `
-Node {
-  "base": Node {
+Object {
+  "base": Object {
     "loc": Object {
       "end": Object {
         "column": 3,
@@ -30,7 +30,7 @@ Node {
       "offset": 0,
     },
   },
-  "member": Node {
+  "member": Object {
     "loc": Object {
       "end": Object {
         "column": 11,
@@ -61,9 +61,9 @@ Array [
 `;
 
 exports[`member deep ast: ast 1`] = `
-Node {
-  "base": Node {
-    "base": Node {
+Object {
+  "base": Object {
+    "base": Object {
       "loc": Object {
         "end": Object {
           "column": 3,
@@ -91,7 +91,7 @@ Node {
         "offset": 0,
       },
     },
-    "member": Node {
+    "member": Object {
       "loc": Object {
         "end": Object {
           "column": 8,
@@ -121,7 +121,7 @@ Node {
       "offset": 0,
     },
   },
-  "member": Node {
+  "member": Object {
     "loc": Object {
       "end": Object {
         "column": 14,
@@ -160,10 +160,10 @@ Array [
 `;
 
 exports[`member deep_in_binary_expression ast: ast 1`] = `
-Node {
-  "left": Node {
-    "base": Node {
-      "base": Node {
+Object {
+  "left": Object {
+    "base": Object {
+      "base": Object {
         "loc": Object {
           "end": Object {
             "column": 3,
@@ -191,7 +191,7 @@ Node {
           "offset": 0,
         },
       },
-      "member": Node {
+      "member": Object {
         "loc": Object {
           "end": Object {
             "column": 8,
@@ -221,7 +221,7 @@ Node {
         "offset": 0,
       },
     },
-    "member": Node {
+    "member": Object {
       "loc": Object {
         "end": Object {
           "column": 14,
@@ -252,7 +252,7 @@ Node {
     },
   },
   "operator": "==",
-  "right": Node {
+  "right": Object {
     "loc": Object {
       "end": Object {
         "column": 25,
@@ -294,9 +294,9 @@ Array [
 `;
 
 exports[`member in_binary_expression ast: ast 1`] = `
-Node {
-  "left": Node {
-    "base": Node {
+Object {
+  "left": Object {
+    "base": Object {
       "loc": Object {
         "end": Object {
           "column": 3,
@@ -324,7 +324,7 @@ Node {
         "offset": 0,
       },
     },
-    "member": Node {
+    "member": Object {
       "loc": Object {
         "end": Object {
           "column": 11,
@@ -355,7 +355,7 @@ Node {
     },
   },
   "operator": "==",
-  "right": Node {
+  "right": Object {
     "loc": Object {
       "end": Object {
         "column": 22,
