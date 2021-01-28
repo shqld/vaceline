@@ -1,4 +1,4 @@
-import { d, b, Location, NodeWithLoc } from '../nodes'
+import { Literal, Location, NodeWithLoc } from '../nodes'
 
 import { Token } from './tokenizer'
 import { createError } from './create-error'
@@ -10,9 +10,9 @@ export const parseLiteral = (
   p: Parser,
   token: Token = p.read(),
   loc: Location = p.startNode()
-): NodeWithLoc<d.Literal> | null => {
+): NodeWithLoc<Literal> | null => {
   if (token.type === 'boolean') {
-    return p.finishNode(b.buildBooleanLiteral(token.value, loc))
+    return p.finishNode({ type: 'BooleanLiteral', value: token.value, loc })
   }
 
   if (token.type === 'string') {
@@ -20,14 +20,16 @@ export const parseLiteral = (
       return parseIp(p, token)
     }
 
-    return p.finishNode(b.buildStringLiteral(token.value, loc))
+    return p.finishNode({ type: 'StringLiteral', value: token.value, loc })
   }
 
   if (token.type === 'numeric') {
     if (isToken(p.peek(), 'ident', /ms|s|m|h|d|y/)) {
-      return p.finishNode(
-        b.buildDurationLiteral(token.value + p.read().value, loc)
-      )
+      return p.finishNode({
+        type: 'DurationLiteral',
+        value: token.value + p.read().value,
+        loc,
+      })
     }
 
     if (!Number.isNaN(Number(token.value))) {
@@ -38,7 +40,7 @@ export const parseLiteral = (
         throw createError(p.source, 'invalid number', loc.start, loc.end)
       }
 
-      return p.finishNode(b.buildNumericLiteral(token.value, loc))
+      return p.finishNode({ type: 'NumericLiteral', value: token.value, loc })
     }
 
     throw createError(p.source, 'invalid token', loc.start, loc.end)

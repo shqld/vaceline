@@ -1,15 +1,17 @@
 import { Parser } from '..'
-import { d, b, NodeWithLoc } from '../../nodes'
+import { Identifier, Member, NodeWithLoc, ValuePair } from '../../nodes'
 import { Token } from '../tokenizer'
 import { isToken } from '../../utils/token'
 
 export const parseIdentifier = (
   p: Parser,
   token?: Token,
-  base: NodeWithLoc<d.Identifier | d.Member> = p.finishNode(
-    b.buildIdentifier((token ?? p.read()).value, p.startNode())
-  )
-): NodeWithLoc<d.Member | d.ValuePair | d.Identifier> => {
+  base: NodeWithLoc<Identifier | Member> = p.finishNode({
+    type: 'Identifier',
+    name: (token ?? p.read()).value,
+    loc: p.startNode(),
+  })
+): NodeWithLoc<Member | ValuePair | Identifier> => {
   if (isToken(p.peek(), 'symbol', '.')) {
     p.take()
     return parseIdentifier(p, undefined, parseMember(p, base))
@@ -26,26 +28,44 @@ export const parseIdentifier = (
 
 export const parseMember = (
   p: Parser,
-  base: NodeWithLoc<d.Identifier | d.Member>
-): NodeWithLoc<d.Member> => {
+  base: NodeWithLoc<Identifier | Member>
+): NodeWithLoc<Member> => {
   const memberTok = p.read()
-  const member = p.finishNode(b.buildIdentifier(memberTok.value, p.startNode()))
-
-  return b.buildMember(base, member, {
-    start: base.loc.start,
-    end: member.loc.end,
+  const member = p.finishNode({
+    type: 'Identifier',
+    name: memberTok.value,
+    loc: p.startNode(),
   })
+
+  return {
+    type: 'Member',
+    base,
+    member,
+    loc: {
+      start: base.loc.start,
+      end: member.loc.end,
+    },
+  }
 }
 
 export const parseValuePair = (
   p: Parser,
-  base: NodeWithLoc<d.Identifier | d.Member>
-): NodeWithLoc<d.ValuePair> => {
+  base: NodeWithLoc<Identifier | Member>
+): NodeWithLoc<ValuePair> => {
   const nameTok = p.read()
-  const name = p.finishNode(b.buildIdentifier(nameTok.value, p.startNode()))
-
-  return b.buildValuePair(base, name, {
-    start: base.loc.start,
-    end: name.loc.end,
+  const name = p.finishNode({
+    type: 'Identifier',
+    name: nameTok.value,
+    loc: p.startNode(),
   })
+
+  return {
+    type: 'ValuePair',
+    base,
+    name,
+    loc: {
+      start: base.loc.start,
+      end: name.loc.end,
+    },
+  }
 }
