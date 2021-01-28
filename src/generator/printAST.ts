@@ -1,15 +1,12 @@
 import { Doc, builders as b } from 'prettier/doc'
-import { d, BaseNode } from '../nodes'
+import { Node } from '../nodes'
+import * as d from '../nodes'
 
 export interface State {
   lineNum: number
 }
 
-export const printNode = (
-  node: d.Node,
-  state: State,
-  options?: object
-): Doc => {
+export const printNode = (node: Node, state: State, options?: object): Doc => {
   switch (node.type) {
     case 'Program':
       return printProgram(node, state, options)
@@ -89,7 +86,7 @@ export const printNode = (
   }
 }
 
-type PrinterFunc<T extends BaseNode, U extends object = object> = (
+type PrinterFunc<T extends Node, U extends object = object> = (
   node: T,
   state: State,
   options?: U
@@ -111,7 +108,7 @@ export const printStatements = (
       state.lineNum = stmt.loc.start.line
     }
 
-    doc.push(stmt.print(state), b.hardline)
+    doc.push(printNode(stmt, state), b.hardline)
     state.lineNum++
   }
 
@@ -120,7 +117,7 @@ export const printStatements = (
   return b.concat(doc)
 }
 
-export const base = <T extends BaseNode, U extends object>(
+export const base = <T extends Node, U extends object>(
   printer: PrinterFunc<T, U>
 ): PrinterFunc<T, U> => {
   return (node: T, state: State, options?: U) => {
@@ -177,7 +174,7 @@ export const printMember: PrinterFunc<
   return b.concat([
     b.group(
       b.concat([
-        node.base.print(state, {
+        printNode(node.base, state, {
           neverBreak,
           broken: shouldBreak,
         }),
@@ -195,7 +192,7 @@ export const printMember: PrinterFunc<
 
 export const printValuePair = base((node: d.ValuePair, state) => {
   return b.concat([
-    node.base.print(state),
+    printNode(node.base, state),
     ':',
     printIdentifier(node.name, state),
   ])
@@ -206,7 +203,11 @@ export const printBooleanExpression = base(
     return b.group(
       b.concat([
         b.indent(
-          b.concat(['(', b.ifBreak(b.softline, ''), node.body.print(state)])
+          b.concat([
+            '(',
+            b.ifBreak(b.softline, ''),
+            printNode(node.body, state),
+          ])
         ),
         b.ifBreak(b.softline, ''),
         ')',
@@ -216,13 +217,13 @@ export const printBooleanExpression = base(
 )
 
 export const printUnaryExpression = base((node: d.UnaryExpression, state) => {
-  return b.concat([node.operator, node.argument.print(state)])
+  return b.concat([node.operator, printNode(node.argument, state)])
 })
 
 export const printFunCallExpression = base(
   (node: d.FunCallExpression, state) => {
     return b.concat([
-      node.callee.print(state),
+      printNode(node.callee, state),
       '(',
       b.group(
         b.concat([
@@ -231,7 +232,7 @@ export const printFunCallExpression = base(
               b.ifBreak(b.line, ''),
               b.join(
                 b.concat([',', b.line]),
-                node.args.map((n) => n.print(state))
+                node.args.map((n) => printNode(n, state))
               ),
               b.ifBreak(',', ''),
             ])
@@ -249,7 +250,7 @@ export const printConcatExpression = base((node: d.ConcatExpression, state) => {
     b.indent(
       b.join(
         b.line,
-        node.body.map((n) => n.print(state))
+        node.body.map((n) => printNode(n, state))
       )
     )
   )
@@ -260,13 +261,15 @@ export const printBinaryExpression: PrinterFunc<d.BinaryExpression> = base(
     const left =
       node.left.type === 'BinaryExpression'
         ? b.concat(['(', printBinaryExpression(node.left, state), ')'])
-        : node.left.print(state)
+        : printNode(node.left, state)
 
     return b.group(
       b.concat([
         left,
         ' ',
-        b.indent(b.concat([node.operator, b.line, node.right.print(state)])),
+        b.indent(
+          b.concat([node.operator, b.line, printNode(node.right, state)])
+        ),
       ])
     )
   }
@@ -279,14 +282,14 @@ export const printLogicalExpression: PrinterFunc<d.LogicalExpression> = base(
       node.operator === '||' &&
       node.left.operator === '&&'
         ? b.concat(['(', printLogicalExpression(node.left, state), ')'])
-        : node.left.print(state)
+        : printNode(node.left, state)
 
     const right =
       node.right.type === 'LogicalExpression' &&
       node.operator === '||' &&
       node.right.operator === '&&'
         ? b.concat(['(', printLogicalExpression(node.right, state), ')'])
-        : node.right.print(state)
+        : printNode(node.right, state)
 
     return b.group(
       b.concat([left, ' ', b.indent(b.concat([node.operator, b.line, right]))])
@@ -296,7 +299,7 @@ export const printLogicalExpression: PrinterFunc<d.LogicalExpression> = base(
 
 export const printExpressionStatement = base(
   (node: d.ExpressionStatement, state) => {
-    return b.concat([node.body.print(state), ';'])
+    return b.concat([printNode(node.body, state), ';'])
   }
 )
 
@@ -305,11 +308,11 @@ export const printIncludeStatement = base((node: d.IncludeStatement, state) => {
 })
 
 export const printImportStatement = base((node: d.ImportStatement, state) => {
-  return b.concat(['import ', node.module.print(state), ';'])
+  return b.concat(['import ', printNode(node.module, state), ';'])
 })
 
 export const printCallStatement = base((node: d.CallStatement, state) => {
-  return b.concat(['call ', node.subroutine.print(state), ';'])
+  return b.concat(['call ', printNode(node.subroutine, state), ';'])
 })
 
 export type DeclareValueType =
@@ -323,7 +326,7 @@ export const printDeclareStatement = base((node: d.DeclareStatement, state) => {
   return b.concat([
     'declare ',
     'local ',
-    node.id.print(state, { neverBreak: true }),
+    printNode(node.id, state, { neverBreak: true }),
     ' ',
     node.valueType,
     ';',
@@ -335,11 +338,11 @@ export const printAddStatement = base((node: d.AddStatement, state) => {
     b.indent(
       b.concat([
         'add ',
-        node.left.print(state, { neverBreak: true }),
+        printNode(node.left, state, { neverBreak: true }),
         ' ',
         node.operator,
         b.line,
-        node.right.print(state),
+        printNode(node.right, state),
         ';',
       ])
     )
@@ -351,11 +354,11 @@ export const printSetStatement = base((node: d.SetStatement, state) => {
     b.indent(
       b.concat([
         'set ',
-        node.left.print(state, { neverBreak: true }),
+        printNode(node.left, state, { neverBreak: true }),
         ' ',
         node.operator,
         b.line,
-        node.right.print(state, { neverBreak: true }),
+        printNode(node.right, state, { neverBreak: true }),
         ';',
       ])
     )
@@ -363,7 +366,11 @@ export const printSetStatement = base((node: d.SetStatement, state) => {
 })
 
 export const printUnsetStatement = base((node: d.UnsetStatement, state) => {
-  return b.concat(['unset ', node.id.print(state, { neverBreak: true }), ';'])
+  return b.concat([
+    'unset ',
+    printNode(node.id, state, { neverBreak: true }),
+    ';',
+  ])
 })
 
 export type ReturnActionName =
@@ -385,7 +392,7 @@ export const printErrorStatement = base((node: d.ErrorStatement, state) => {
       [
         'error',
         node.status.toString(),
-        node.message && node.message.print(state),
+        node.message && printNode(node.message, state),
       ].filter(Boolean) as Array<Doc>
     ),
     ';',
@@ -398,12 +405,12 @@ export const printRestartStatement = base(() => {
 
 export const printSyntheticStatement = base(
   (node: d.SyntheticStatement, state) => {
-    return b.concat(['synthetic ', node.response.print(state), ';'])
+    return b.concat(['synthetic ', printNode(node.response, state), ';'])
   }
 )
 
 export const printLogStatement = base((node: d.LogStatement, state) => {
-  return b.concat(['log ', node.content.print(state), ';'])
+  return b.concat(['log ', printNode(node.content, state), ';'])
 })
 
 export const printIfStatement = base((node: d.IfStatement, state) => {
@@ -412,7 +419,11 @@ export const printIfStatement = base((node: d.IfStatement, state) => {
     b.group(
       b.concat([
         b.indent(
-          b.concat(['(', b.ifBreak(b.hardline, ''), node.test.print(state)])
+          b.concat([
+            '(',
+            b.ifBreak(b.hardline, ''),
+            printNode(node.test, state),
+          ])
         ),
         b.ifBreak(b.hardline, ''),
         ') ',
@@ -491,7 +502,7 @@ export const printBackendDefinition: PrinterFunc<d.BackendDefinition> = base(
           b.hardline,
           '}',
         ])
-      : b.concat([node.value.print(state), ';'])
+      : b.concat([printNode(node.value, state), ';'])
 
     return b.concat(['.', node.key, ' = ', printedValue])
   }
@@ -522,6 +533,10 @@ export const printBackendStatement = base((node: d.BackendStatement, state) => {
 export const printTableDefinition = base((node: d.TableDefinition) => {
   return b.concat([node.key, ':', node.value])
 })
+
+/**
+ * asdfasdf
+ */
 
 export const printTableStatement = base((node: d.TableStatement, state) => {
   return b.concat([
