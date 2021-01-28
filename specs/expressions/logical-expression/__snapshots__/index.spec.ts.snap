@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`logical-expression and ast: ast 1`] = `
-Node {
-  "left": Node {
-    "base": Node {
-      "base": Node {
+Object {
+  "left": Object {
+    "base": Object {
+      "base": Object {
         "loc": Object {
           "end": Object {
             "column": 3,
@@ -32,7 +32,7 @@ Node {
           "offset": 0,
         },
       },
-      "member": Node {
+      "member": Object {
         "loc": Object {
           "end": Object {
             "column": 8,
@@ -62,7 +62,7 @@ Node {
         "offset": 0,
       },
     },
-    "member": Node {
+    "member": Object {
       "loc": Object {
         "end": Object {
           "column": 14,
@@ -93,7 +93,7 @@ Node {
     },
   },
   "operator": "&&",
-  "right": Node {
+  "right": Object {
     "loc": Object {
       "end": Object {
         "column": 21,
@@ -135,9 +135,9 @@ Array [
 `;
 
 exports[`logical-expression combination_1 ast: ast 1`] = `
-Node {
-  "left": Node {
-    "left": Node {
+Object {
+  "left": Object {
+    "left": Object {
       "loc": Object {
         "end": Object {
           "column": 5,
@@ -166,7 +166,7 @@ Node {
       },
     },
     "operator": "&&",
-    "right": Node {
+    "right": Object {
       "loc": Object {
         "end": Object {
           "column": 12,
@@ -197,7 +197,7 @@ Node {
     },
   },
   "operator": "||",
-  "right": Node {
+  "right": Object {
     "loc": Object {
       "end": Object {
         "column": 19,
@@ -236,8 +236,8 @@ Array [
 `;
 
 exports[`logical-expression combination_2 ast: ast 1`] = `
-Node {
-  "left": Node {
+Object {
+  "left": Object {
     "loc": Object {
       "end": Object {
         "column": 5,
@@ -266,8 +266,8 @@ Node {
     },
   },
   "operator": "||",
-  "right": Node {
-    "left": Node {
+  "right": Object {
+    "left": Object {
       "loc": Object {
         "end": Object {
           "column": 12,
@@ -296,7 +296,7 @@ Node {
       },
     },
     "operator": "&&",
-    "right": Node {
+    "right": Object {
       "loc": Object {
         "end": Object {
           "column": 19,
@@ -337,9 +337,9 @@ Array [
 `;
 
 exports[`logical-expression combination_with_binary_expression_1 ast: ast 1`] = `
-Node {
-  "left": Node {
-    "left": Node {
+Object {
+  "left": Object {
+    "left": Object {
       "loc": Object {
         "end": Object {
           "column": 5,
@@ -368,7 +368,7 @@ Node {
       },
     },
     "operator": "==",
-    "right": Node {
+    "right": Object {
       "loc": Object {
         "end": Object {
           "column": 12,
@@ -399,7 +399,7 @@ Node {
     },
   },
   "operator": "&&",
-  "right": Node {
+  "right": Object {
     "loc": Object {
       "end": Object {
         "column": 19,
@@ -438,9 +438,9 @@ Array [
 `;
 
 exports[`logical-expression combination_with_binary_expression_2 ast: ast 1`] = `
-Node {
-  "left": Node {
-    "left": Node {
+Object {
+  "left": Object {
+    "left": Object {
       "loc": Object {
         "end": Object {
           "column": 5,
@@ -469,7 +469,7 @@ Node {
       },
     },
     "operator": "==",
-    "right": Node {
+    "right": Object {
       "loc": Object {
         "end": Object {
           "column": 12,
@@ -500,7 +500,7 @@ Node {
     },
   },
   "operator": "||",
-  "right": Node {
+  "right": Object {
     "loc": Object {
       "end": Object {
         "column": 19,
@@ -539,8 +539,8 @@ Array [
 `;
 
 exports[`logical-expression combination_with_binary_expression_3 ast: ast 1`] = `
-Node {
-  "left": Node {
+Object {
+  "left": Object {
     "loc": Object {
       "end": Object {
         "column": 5,
@@ -569,8 +569,8 @@ Node {
     },
   },
   "operator": "&&",
-  "right": Node {
-    "left": Node {
+  "right": Object {
+    "left": Object {
       "loc": Object {
         "end": Object {
           "column": 12,
@@ -599,7 +599,7 @@ Node {
       },
     },
     "operator": "==",
-    "right": Node {
+    "right": Object {
       "loc": Object {
         "end": Object {
           "column": 19,
@@ -640,8 +640,8 @@ Array [
 `;
 
 exports[`logical-expression combination_with_binary_expression_4 ast: ast 1`] = `
-Node {
-  "left": Node {
+Object {
+  "left": Object {
     "loc": Object {
       "end": Object {
         "column": 5,
@@ -670,8 +670,8 @@ Node {
     },
   },
   "operator": "||",
-  "right": Node {
-    "left": Node {
+  "right": Object {
+    "left": Object {
       "loc": Object {
         "end": Object {
           "column": 12,
@@ -700,7 +700,7 @@ Node {
       },
     },
     "operator": "==",
-    "right": Node {
+    "right": Object {
       "loc": Object {
         "end": Object {
           "column": 19,
@@ -741,10 +741,10 @@ Array [
 `;
 
 exports[`logical-expression or ast: ast 1`] = `
-Node {
-  "left": Node {
-    "base": Node {
-      "base": Node {
+Object {
+  "left": Object {
+    "base": Object {
+      "base": Object {
         "loc": Object {
           "end": Object {
             "column": 3,
@@ -772,7 +772,7 @@ Node {
           "offset": 0,
         },
       },
-      "member": Node {
+      "member": Object {
         "loc": Object {
           "end": Object {
             "column": 8,
@@ -802,7 +802,7 @@ Node {
         "offset": 0,
       },
     },
-    "member": Node {
+    "member": Object {
       "loc": Object {
         "end": Object {
           "column": 14,
@@ -833,7 +833,7 @@ Node {
     },
   },
   "operator": "||",
-  "right": Node {
+  "right": Object {
     "loc": Object {
       "end": Object {
         "column": 21,

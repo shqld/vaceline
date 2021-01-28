@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`expression-statement with_funcallexpression ast: ast 1`] = `
-Node {
-  "body": Node {
+Object {
+  "body": Object {
     "args": Array [
-      Node {
+      Object {
         "loc": Object {
           "end": Object {
             "column": 6,
@@ -21,7 +21,7 @@ Node {
         "type": "Identifier",
       },
     ],
-    "callee": Node {
+    "callee": Object {
       "loc": Object {
         "end": Object {
           "column": 4,
@@ -86,8 +86,8 @@ Array [
 `;
 
 exports[`expression-statement with_identifier ast: ast 1`] = `
-Node {
-  "body": Node {
+Object {
+  "body": Object {
     "loc": Object {
       "end": Object {
         "column": 8,
@@ -129,8 +129,8 @@ Array [
 `;
 
 exports[`expression-statement with_literal ast: ast 1`] = `
-Node {
-  "body": Node {
+Object {
+  "body": Object {
     "loc": Object {
       "end": Object {
         "column": 8,
@@ -172,10 +172,10 @@ Array [
 `;
 
 exports[`expression-statement with_member_identifier ast: ast 1`] = `
-Node {
-  "body": Node {
-    "base": Node {
-      "base": Node {
+Object {
+  "body": Object {
+    "base": Object {
+      "base": Object {
         "loc": Object {
           "end": Object {
             "column": 3,
@@ -203,7 +203,7 @@ Node {
           "offset": 0,
         },
       },
-      "member": Node {
+      "member": Object {
         "loc": Object {
           "end": Object {
             "column": 8,
@@ -233,7 +233,7 @@ Node {
         "offset": 0,
       },
     },
-    "member": Node {
+    "member": Object {
       "loc": Object {
         "end": Object {
           "column": 17,

@@ -1,4 +1,4 @@
-import { d, b, NodeWithLoc } from '../../nodes'
+import { Expression, NodeWithLoc } from '../../nodes'
 import { isToken } from '../../utils/token'
 
 import { Token } from '../tokenizer'
@@ -20,7 +20,7 @@ export const parseExpr = (
   p: Parser,
   token: Token = p.read(),
   shortcut = false
-): NodeWithLoc<d.Expression> => {
+): NodeWithLoc<Expression> => {
   const expr = parseOperatorExpr(p, token)
 
   if (shortcut) return expr
@@ -71,5 +71,5 @@ export const parseExpr = (
     return expr
   }
 
-  return p.finishNode(b.buildConcatExpression(buf, loc))
+  return p.finishNode({ type: 'ConcatExpression', body: buf, loc })
 }

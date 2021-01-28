@@ -1,6 +1,13 @@
-import { BaseNode } from './node'
-
-export type Node = Program | Statement | Expression
+import {
+  BackendDefinition,
+  Expression,
+  Identifier,
+  Member,
+  TableDefinition,
+  ValuePair,
+} from './expression'
+import { Ip, StringLiteral } from './literal'
+import { BaseNode } from '.'
 
 export type Statement =
   | AclStatement
@@ -21,117 +28,6 @@ export type Statement =
   | SyntheticStatement
   | TableStatement
   | UnsetStatement
-
-export type Expression =
-  | Literal
-  | BinaryExpression
-  | BooleanExpression
-  | ConcatExpression
-  | FunCallExpression
-  | Identifier
-  | LogicalExpression
-  | Member
-  | UnaryExpression
-  | ValuePair
-  | BackendDefinition
-  | TableDefinition
-
-export type Literal =
-  | BooleanLiteral
-  | DurationLiteral
-  | MultilineLiteral
-  | NumericLiteral
-  | StringLiteral
-  | Ip
-
-export interface Program extends BaseNode {
-  type: 'Program'
-  body: Array<Statement>
-}
-
-export interface BooleanLiteral extends BaseNode {
-  type: 'BooleanLiteral'
-  value: string
-}
-
-export interface StringLiteral extends BaseNode {
-  type: 'StringLiteral'
-  value: string
-}
-
-export interface MultilineLiteral extends BaseNode {
-  type: 'MultilineLiteral'
-  value: string
-}
-
-export interface DurationLiteral extends BaseNode {
-  type: 'DurationLiteral'
-  value: string
-}
-
-export interface NumericLiteral extends BaseNode {
-  type: 'NumericLiteral'
-  value: string
-}
-
-export interface Identifier extends BaseNode {
-  type: 'Identifier'
-  name: string
-}
-
-export interface Ip extends BaseNode {
-  type: 'Ip'
-  value: string
-  cidr?: number
-}
-
-export interface Member extends BaseNode {
-  type: 'Member'
-  base: Identifier | Member
-  member: Identifier
-}
-
-export interface ValuePair extends BaseNode {
-  type: 'ValuePair'
-  base: Identifier | Member
-  name: Identifier
-}
-
-export interface BooleanExpression extends BaseNode {
-  type: 'BooleanExpression'
-  body: Expression
-}
-
-export interface UnaryExpression extends BaseNode {
-  type: 'UnaryExpression'
-  operator: string
-  argument: Expression
-}
-
-export interface FunCallExpression extends BaseNode {
-  type: 'FunCallExpression'
-  callee: Member | Identifier | ValuePair
-  args: Array<Expression>
-}
-
-export interface ConcatExpression extends BaseNode {
-  type: 'ConcatExpression'
-  body: Array<Expression>
-}
-
-export interface BinaryExpression extends BaseNode {
-  type: 'BinaryExpression'
-  left: Expression
-  right: Expression
-  operator: string
-}
-
-export interface LogicalExpression extends BaseNode {
-  type: 'LogicalExpression'
-  left: Expression
-  right: Expression
-  operator: string
-}
 
 export interface ExpressionStatement extends BaseNode {
   type: 'ExpressionStatement'
@@ -236,22 +132,10 @@ export interface AclStatement extends BaseNode {
   body: Array<Ip>
 }
 
-export interface BackendDefinition extends BaseNode {
-  type: 'BackendDefinition'
-  key: string
-  value: Expression | Array<BackendDefinition>
-}
-
 export interface BackendStatement extends BaseNode {
   type: 'BackendStatement'
   id: Identifier
   body: Array<BackendDefinition>
-}
-
-export interface TableDefinition extends BaseNode {
-  type: 'TableDefinition'
-  key: string
-  value: string
 }
 
 export interface TableStatement extends BaseNode {

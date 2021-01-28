@@ -8,8 +8,8 @@ import { Parser } from '../src/parser'
 import { parseExpr } from '../src/parser/expression/index'
 import { parseStmt } from '../src/parser/statement'
 import { generate } from '../src/lib'
-import { Node } from '../src/nodes/defs'
 import { Tokenizer } from '../src/parser/tokenizer'
+import { Node } from '../src/nodes'
 
 type Parse = (source: string) => Node
 

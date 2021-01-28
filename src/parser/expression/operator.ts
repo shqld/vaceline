@@ -1,6 +1,11 @@
 import { Parser } from '..'
 import { Stack } from '.'
-import { d, b, NodeWithLoc, BaseNode } from '../../nodes'
+import {
+  BinaryExpression,
+  Expression,
+  LogicalExpression,
+  NodeWithLoc,
+} from '../../nodes'
 import * as ops from '../tokenizer/operators'
 import { Token } from '../tokenizer'
 import { isToken } from '../../utils/token'
@@ -10,7 +15,7 @@ export const parseOperatorExpr = (
   p: Parser,
   token: Token = p.read(),
   shortcut = false
-): NodeWithLoc<d.Expression> => {
+): NodeWithLoc<Expression> => {
   const expr = parseHumbleExpr(p, token)
 
   if (shortcut) return expr
@@ -28,7 +33,7 @@ export const parseOperatorExpr = (
     isBinary: boolean
   }
 
-  const rpn: Array<NodeWithLoc<d.Expression> | OperatorToken> = [expr]
+  const rpn: Array<NodeWithLoc<Expression> | OperatorToken> = [expr]
   const opStack: Stack<OperatorToken> = []
 
   let op: OperatorToken | null
@@ -70,11 +75,11 @@ export const parseOperatorExpr = (
   }
 
   // calculate rpn
-  const stack: Stack<NodeWithLoc<d.Expression>> = []
+  const stack: Stack<NodeWithLoc<Expression>> = []
 
   for (let i = 0; i < rpn.length; i++) {
     const item = rpn[i]
-    if (item instanceof BaseNode) {
+    if (item.type !== 'operator') {
       stack.push(item)
       continue
     }
@@ -84,14 +89,14 @@ export const parseOperatorExpr = (
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const left = stack.pop()!
 
-    const builder = item.isBinary
-      ? b.buildBinaryExpression
-      : b.buildLogicalExpression
-    const expr = builder(left, right, item.value) as NodeWithLoc<
-      d.BinaryExpression | d.LogicalExpression
-    >
-
-    expr.loc = { start: left.loc.start, end: right.loc.end }
+    const type = item.isBinary ? 'BinaryExpression' : 'LogicalExpression'
+    const expr: NodeWithLoc<BinaryExpression | LogicalExpression> = {
+      type,
+      left,
+      right,
+      operator: item.value,
+      loc: { start: left.loc.start, end: right.loc.end },
+    }
 
     stack.push(expr)
   }

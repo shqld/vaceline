@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`value-pair basic ast: ast 1`] = `
-Node {
-  "base": Node {
+Object {
+  "base": Object {
     "loc": Object {
       "end": Object {
         "column": 6,
@@ -30,7 +30,7 @@ Node {
       "offset": 0,
     },
   },
-  "name": Node {
+  "name": Object {
     "loc": Object {
       "end": Object {
         "column": 14,

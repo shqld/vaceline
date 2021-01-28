@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`unary-expression boolean_literal ast: ast 1`] = `
-Node {
-  "argument": Node {
+Object {
+  "argument": Object {
     "loc": Object {
       "end": Object {
         "column": 5,
@@ -45,8 +45,8 @@ Array [
 `;
 
 exports[`unary-expression variable ast: ast 1`] = `
-Node {
-  "argument": Node {
+Object {
+  "argument": Object {
     "loc": Object {
       "end": Object {
         "column": 10,

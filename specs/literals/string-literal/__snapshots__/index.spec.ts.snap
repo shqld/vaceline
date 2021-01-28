@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`string-literal basic ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 8,
@@ -35,7 +35,7 @@ invalid token (string may have newlines inside normal quotes, use \`{" "}\`)
 `;
 
 exports[`string-literal not_a_comment ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 17,
@@ -62,7 +62,7 @@ Array [
 `;
 
 exports[`string-literal not_an_inline_comment ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 29,

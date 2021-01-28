@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`boolean-literal false ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 5,
@@ -28,7 +28,7 @@ Array [
 `;
 
 exports[`boolean-literal true ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 4,

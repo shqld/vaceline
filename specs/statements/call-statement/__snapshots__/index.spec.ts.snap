@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`call-statement index ast: ast 1`] = `
-Node {
+Object {
   "loc": Object {
     "end": Object {
       "column": 19,
@@ -14,7 +14,7 @@ Node {
       "offset": 0,
     },
   },
-  "subroutine": Node {
+  "subroutine": Object {
     "loc": Object {
       "end": Object {
         "column": 18,

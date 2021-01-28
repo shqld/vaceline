@@ -3,8 +3,8 @@ import fs from 'fs'
 import path from 'path'
 import { traverse, createPathArray } from '../src/traverser'
 import { parse } from '../src'
-import { d, BaseNode } from '../src/nodes'
 import { NodePath } from '../src/traverser/path'
+import { Identifier } from '../src/nodes'
 
 describe('Traverser', () => {
   const codePath = path.resolve('__tests__/__fixture__/rough.vcl')
@@ -13,11 +13,11 @@ describe('Traverser', () => {
 
   // it('should traverse every node', () => {})
   it('should traverse entry', () => {
-    let node: d.Identifier
+    let node: Identifier
 
     traverse(ast, {
       entry(path: NodePath) {
-        if (path.node.is('Identifier')) {
+        if (path.node.type === 'Identifier') {
           node = path.node
         }
       },
@@ -40,7 +40,7 @@ describe('Traverser', () => {
       const path = paths[paths.length - 1]
 
       expect(path).toBeInstanceOf(NodePath)
-      expect(path.parent).toBeInstanceOf(BaseNode)
+      expect(typeof path.parent?.type).toBe('string')
       expect(path.parentPath).toBeInstanceOf(NodePath)
     })
 

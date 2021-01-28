@@ -8,7 +8,7 @@ return action should be one of deliver, fetch, restart, hash, pass, pipe, synth,
 `;
 
 exports[`return-statement with_parens ast: ast 1`] = `
-Node {
+Object {
   "action": "pass",
   "loc": Object {
     "end": Object {
@@ -39,7 +39,7 @@ Array [
 `;
 
 exports[`return-statement without_parens ast: ast 1`] = `
-Node {
+Object {
   "action": "pass",
   "loc": Object {
     "end": Object {
