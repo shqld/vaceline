@@ -85,7 +85,7 @@ async function main(opts: CliOptions) {
       createStream(output, '\n').pipe(
         fs
           .createWriteStream('/dev/stderr')
-          .addListener('unpipe', () => resolve())
+          .addListener('unpipe', () => resolve(undefined))
       )
     )
   }
