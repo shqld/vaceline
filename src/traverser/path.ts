@@ -1,22 +1,21 @@
-import { BaseNode } from '../nodes'
+import { Node } from '../nodes'
 
 export interface Handler {
-  entry?(path: NodePath<BaseNode>): void
+  entry?(path: NodePath<Node>): void
 }
 
 export interface TraversalContext {
-  parent: BaseNode | null
-  parentPath: NodePath<BaseNode> | null
+  parent: Node | null
+  parentPath: NodePath<Node> | null
   inList: boolean
   key?: number
   state: unknown
 }
 
-export class NodePath<T extends BaseNode = BaseNode>
-  implements TraversalContext {
+export class NodePath<T extends Node = Node> implements TraversalContext {
   node: T
 
-  parent: BaseNode | null
+  parent: Node | null
   // hub: HubInterface;
   // contexts: Array<TraversalContext>;
   // data: Object;
@@ -26,7 +25,7 @@ export class NodePath<T extends BaseNode = BaseNode>
   state!: unknown
   // opts?: Object
   // skipKeys?: Object
-  parentPath!: NodePath<BaseNode> | null
+  parentPath!: NodePath<Node> | null
   context!: TraversalContext
   // container?: Object | Array<Object>
   listKey?: string
