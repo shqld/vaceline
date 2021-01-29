@@ -136,7 +136,7 @@ export class Tokenizer {
       } else {
         type = 'ident'
 
-        if (!/^[A-Za-z][A-Za-z\d.-_]*/.test(str)) {
+        if (!/^[A-Za-z_][A-Za-z\d.-_]*/.test(str)) {
           err = 'invalid token'
         }
       }
