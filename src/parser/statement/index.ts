@@ -35,7 +35,12 @@ export const parseStmt = (p: Parser, token: Token = p.read()): Statement => {
   }
 
   if (token.value === 'set' || token.value === 'add') {
-    const left = p.validateNode(parseExpr(p), 'Identifier', 'Member')
+    const left = p.validateNode(
+      parseExpr(p),
+      'Identifier',
+      'Member',
+      'ValuePair'
+    )
     const operator = p.validateToken(p.read(), 'operator').value
     const right = parseExpr(p)
 

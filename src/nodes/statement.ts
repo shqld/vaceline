@@ -64,14 +64,14 @@ export interface DeclareStatement extends BaseNode {
 
 export interface AddStatement extends BaseNode {
   type: 'AddStatement'
-  left: Identifier | Member
+  left: Identifier | Member | ValuePair
   right: Expression
   operator: string
 }
 
 export interface SetStatement extends BaseNode {
   type: 'SetStatement'
-  left: Identifier | Member
+  left: Identifier | Member | ValuePair
   right: Expression
   operator: string
 }
