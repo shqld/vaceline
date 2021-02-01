@@ -5,6 +5,7 @@ Expression not implemented yet
 
 > 1 | .11
       
+
 `;
 
 exports[`numeric-literal integer ast: ast 1`] = `
@@ -39,6 +40,7 @@ Invalid number
 
 > 1 | 0.
       
+
 `;
 
 exports[`numeric-literal padded_zero 1`] = `
@@ -46,6 +48,7 @@ Invalid number
 
 > 1 | 001
       
+
 `;
 
 exports[`numeric-literal zero ast: ast 1`] = `

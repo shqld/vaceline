@@ -9,48 +9,32 @@ export const createError = (
   source: string,
   message: string,
   start: Position,
-  end?: Position
+  end: Position
 ): SyntaxError => {
-  const lines = source.split('\n')
+  const topLineNumber = start.line >= MARGIN ? start.line - MARGIN : start.line
+  const topLineOffset = topLineNumber - 1 // zero-offset
 
-  // const loc = getLocation(lines, start, end)
-  const loc = {
-    line: start.line,
-    column: start.column,
-    range: end ? end.column - start.column : 1,
-  }
+  const indicator = source
+    .split('\n')
+    .slice(topLineOffset, topLineOffset + MARGIN * 2 + 1)
+    .map((line, i) => {
+      const lineNumber = topLineNumber + i
+      const lineOffset = topLineOffset + i
 
-  const topLine = loc.line - MARGIN - 1 > 0 ? loc.line - MARGIN - 1 : 0
-  const bottomLine =
-    loc.line + MARGIN <= lines.length ? loc.line + MARGIN : lines.length
+      const bar = chalk.gray(String(lineNumber) + ' | ')
 
-  const pad = String(bottomLine).length // The max of line num digits
+      if (lineNumber === start.line) {
+        return [
+          chalk.red(HORIZONTAL_MARK) + bar + line,
+          ' '.repeat(5 + String(lineOffset).length + start.column - 1) +
+            chalk.red(VERTICAL_MARK.repeat(end.offset + 1 - start.offset)),
+        ]
+      }
 
-  const verticalMark =
-    ' '.repeat('> '.length + pad + ' | '.length + loc.column - 1) +
-    chalk.red(VERTICAL_MARK.repeat(loc.range))
+      return ' '.repeat(HORIZONTAL_MARK.length) + bar + line
+    })
+    .flat()
+    .join('\n')
 
-  const errorLocationDisplay: Array<string> = []
-
-  lines.slice(topLine, bottomLine).forEach((lineStr, num) => {
-    const currentLine = topLine + num + 1
-    const isTargetLine = currentLine === loc.line
-
-    // `90 | `
-    const lineIndicator = String(currentLine).padStart(pad) + ' | '
-
-    // `> `
-    const horizontalMark = isTargetLine
-      ? chalk.red(HORIZONTAL_MARK)
-      : ' '.repeat(HORIZONTAL_MARK.length)
-
-    // `> 90 | source`
-    errorLocationDisplay.push(
-      horizontalMark + chalk.gray(lineIndicator) + lineStr
-    )
-
-    if (isTargetLine) errorLocationDisplay.push(verticalMark)
-  })
-
-  return new SyntaxError(message + '\n\n' + errorLocationDisplay.join('\n'))
+  return new SyntaxError(message + '\n\n' + indicator + '\n')
 }

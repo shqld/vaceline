@@ -32,6 +32,7 @@ Invalid token (string may have newlines inside normal quotes, use \`{" "}\`)
 
 > 1 | "no closing quote
       ^
+
 `;
 
 exports[`string-literal not_a_comment ast: ast 1`] = `

@@ -48,6 +48,7 @@ exports[`include-statement with_identifier 1`] = `
 Expected one of [StringLiteral]
 
 > 1 | include external_library;
-              ^^^^^^^^^^^^^^^
+              ^^^^^^^^^^^^^^^^
   2 | 
+
 `;

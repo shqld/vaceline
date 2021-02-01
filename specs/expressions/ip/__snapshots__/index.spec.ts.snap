@@ -85,8 +85,9 @@ exports[`ip i_pv4_with_invalid_cidr 1`] = `
 Invalid ip address(IPv6 prefix length must be between 0 and 128)
 
 > 1 | "2001:db8::1"/129
-                    ^^
+                    ^^^
   2 | 
+
 `;
 
 exports[`ip ipv4 ast: ast 1`] = `
@@ -150,7 +151,8 @@ exports[`ip ipv4_with_invalid_cidr 1`] = `
 Invalid ip address(IPv4 prefix length must be between 0 and 32)
 
 > 1 | "192.0.2.0"/33
-                  ^
+                  ^^
+
 `;
 
 exports[`ip ipv6 ast: ast 1`] = `
@@ -241,7 +243,8 @@ exports[`ip localhost_with_cidr 1`] = `
 Invalid ip address(A prefix length is not supported for \`localhost\`)
 
 > 1 | "localhost"/16
-                  ^
+                  ^^
+
 `;
 
 exports[`ip unspecified_address ast: ast 1`] = `
