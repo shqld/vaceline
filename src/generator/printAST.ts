@@ -83,6 +83,8 @@ export const printNode = (node: Node, state: State, options?: object): Doc => {
       return printBackendDefinition(node, state, options)
     case 'TableDefinition':
       return printTableDefinition(node, state, options)
+    case 'DirectorStatement':
+      return printDirectorStatement(node, state, options)
   }
 }
 
@@ -558,3 +560,40 @@ export const printTableStatement = base((node: d.TableStatement, state) => {
     '}',
   ])
 })
+
+export const printDirectorStatement = base(
+  (node: d.DirectorStatement, state) => {
+    return b.concat([
+      'director ',
+      printIdentifier(node.id, state),
+      ' ',
+      printIdentifier(node.directorType, state),
+      ' {',
+      b.indent(
+        b.concat([
+          b.hardline,
+          b.join(
+            b.hardline,
+            node.body.map((item) => {
+              if ('backend' in item) {
+                return b.concat([
+                  '{ ',
+                  b.join(' ', [
+                    '.backend = ' + item.backend + ';',
+                    ...item.attributes.map(
+                      (attr) => '.' + attr.key + ' = ' + attr.value + ';'
+                    ),
+                  ]),
+                  ' }',
+                ])
+              }
+              return b.concat(['.' + item.key + ' = ' + item.value + ';'])
+            })
+          ),
+        ])
+      ),
+      b.hardline,
+      '}',
+    ])
+  }
+)

@@ -24,6 +24,7 @@ export const keywords = new Set([
   'log',
   'if',
   'else',
+  'director',
   ...topLevelKeywords,
 ])
 

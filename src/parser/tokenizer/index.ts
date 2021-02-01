@@ -38,7 +38,7 @@ const splitters = [
   /* string         */ /"[^\n]*?"/,
   /* multiline str  */ /{"[\s\S]*?"}/,
   /* ident          */ /[A-z][A-z\d-_]*/,
-  /* numeric        */ /[\d][\d.]+/,
+  /* numeric        */ /[\d][\d.]+%?/,
   ...operators,
   ...symbols,
 ]
@@ -129,7 +129,7 @@ export class Tokenizer {
         const lines = str.split('\n')
         line += lines.length - 1
         column = lines[lines.length - 1].length - (str.length - 1)
-      } else if (/^[\d.]+$/.test(str)) {
+      } else if (/^[\d.]+%?$/.test(str)) {
         type = 'numeric'
       } else if (/^(#|\/\/|\/\*)/.test(str)) {
         type = 'comment'
