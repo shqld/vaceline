@@ -17,7 +17,7 @@ export const parseIp = (p: Parser, token = p.read()) => {
   if (!isLocalhost && !version) {
     throw createError(
       p.source,
-      'invalid ip address, Expected `"localhost"`, "IP"`, or `"IP"/prefix`',
+      'Invalid ip address, Expected `"localhost"`, "IP"`, or `"IP"/prefix`',
       token.loc.start,
       token.loc.end
     )
@@ -47,7 +47,7 @@ export const parseIp = (p: Parser, token = p.read()) => {
     if (message) {
       throw createError(
         p.source,
-        `invalid ip address(${message})`,
+        `Invalid ip address(${message})`,
         token.loc.start,
         token.loc.end
       )

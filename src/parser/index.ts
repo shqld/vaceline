@@ -78,7 +78,7 @@ export class Parser extends TokenReader {
     if (!types.includes(node.type)) {
       throw createError(
         this.source,
-        'expected ' + types.join(', '),
+        'Expected one of [' + types.join(', ') + ']',
         node.loc.start,
         node.loc.end
       )
@@ -95,7 +95,7 @@ export class Parser extends TokenReader {
     if (!isToken(token, type, value)) {
       throw createError(
         this.source,
-        'expected ' + [type, value].join(', '),
+        `Expected '${value}' ${type} token`,
         token.loc.start,
         token.loc.end
       )

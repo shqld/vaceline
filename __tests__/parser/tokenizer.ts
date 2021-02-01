@@ -193,7 +193,7 @@ ident
 llo"
         `
         )
-      ).toThrowError(/invalid token/)
+      ).toThrowError(/Invalid token/)
     })
 
     it('should tokenize quoted multiline string', () => {
@@ -301,7 +301,7 @@ ident4
         )
       ).toThrow(
         `
-invalid token
+Invalid token: '%%%'
 
   1 | ident1
   2 | ident2

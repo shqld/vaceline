@@ -82,7 +82,7 @@ Array [
 `;
 
 exports[`ip i_pv4_with_invalid_cidr 1`] = `
-invalid ip address(IPv6 prefix length must be between 0 and 128)
+Invalid ip address(IPv6 prefix length must be between 0 and 128)
 
 > 1 | "2001:db8::1"/129
                     ^^
@@ -147,7 +147,7 @@ Array [
 `;
 
 exports[`ip ipv4_with_invalid_cidr 1`] = `
-invalid ip address(IPv4 prefix length must be between 0 and 32)
+Invalid ip address(IPv4 prefix length must be between 0 and 32)
 
 > 1 | "192.0.2.0"/33
                   ^
@@ -238,7 +238,7 @@ Array [
 `;
 
 exports[`ip localhost_with_cidr 1`] = `
-invalid ip address(A prefix length is not supported for \`localhost\`)
+Invalid ip address(A prefix length is not supported for \`localhost\`)
 
 > 1 | "localhost"/16
                   ^

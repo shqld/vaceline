@@ -120,7 +120,7 @@ export class Tokenizer {
 
         if (!str.endsWith('"') || str === '"') {
           err =
-            'invalid token (string may have newlines inside normal quotes, use `{" "}`)'
+            'Invalid token (string may have newlines inside normal quotes, use `{" "}`)'
         }
       } else if (str.startsWith('{"')) {
         type = 'string'
@@ -137,7 +137,7 @@ export class Tokenizer {
         type = 'ident'
 
         if (!/^[A-Za-z_][A-Za-z\d.-_]*/.test(str)) {
-          err = 'invalid token'
+          err = `Invalid token: '${str}'`
         }
       }
 

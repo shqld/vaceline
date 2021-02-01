@@ -37,13 +37,13 @@ export const parseLiteral = (
         token.value.startsWith('.') ||
         (token.value.length !== 1 && token.value.startsWith('0'))
       ) {
-        throw createError(p.source, 'invalid number', loc.start, loc.end)
+        throw createError(p.source, 'Invalid number', loc.start, loc.end)
       }
 
       return p.finishNode({ type: 'NumericLiteral', value: token.value, loc })
     }
 
-    throw createError(p.source, 'invalid token', loc.start, loc.end)
+    throw createError(p.source, 'Invalid token', loc.start, loc.end)
   }
 
   return null

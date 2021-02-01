@@ -38,7 +38,7 @@ export const optionParser = yargs
       })
       .check((opts: Partial<CliOptions>) => {
         if (!opts.stdin) {
-          assert(opts.source, new Error('source must be present'))
+          assert(opts.source, new Error('Source must be present'))
           assert(
             fs.existsSync(opts.source as string),
             new Error('File not found at ' + opts.source)
@@ -47,7 +47,7 @@ export const optionParser = yargs
 
         if (opts.source && opts.stdin) {
           throw new Error(
-            'source and --stdin cannot be passed at the same time'
+            'Source and --stdin cannot be passed at the same time'
           )
         }
 

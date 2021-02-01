@@ -28,7 +28,7 @@ Array [
 `;
 
 exports[`string-literal no_closing_quote 1`] = `
-invalid token (string may have newlines inside normal quotes, use \`{" "}\`)
+Invalid token (string may have newlines inside normal quotes, use \`{" "}\`)
 
 > 1 | "no closing quote
       ^

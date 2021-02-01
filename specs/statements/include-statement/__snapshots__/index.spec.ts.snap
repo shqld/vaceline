@@ -45,7 +45,7 @@ Array [
 `;
 
 exports[`include-statement with_identifier 1`] = `
-expected StringLiteral
+Expected one of [StringLiteral]
 
 > 1 | include external_library;
               ^^^^^^^^^^^^^^^

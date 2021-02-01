@@ -28,7 +28,7 @@ describe('Literal', () => {
         parseExpr(`"
           multiline
         "`)
-      ).toThrowError(/invalid token/)
+      ).toThrowError(/Invalid token/)
     })
   })
 
@@ -79,9 +79,9 @@ multiline
         value: '0',
       })
 
-      expect(() => parseExpr('001')).toThrowError(/invalid number/)
+      expect(() => parseExpr('001')).toThrowError(/Invalid number/)
 
-      expect(() => parseExpr('0.')).toThrow(/invalid number/)
+      expect(() => parseExpr('0.')).toThrow(/Invalid number/)
       expect(parseExpr('.11')).toBe(null)
     })
   })
