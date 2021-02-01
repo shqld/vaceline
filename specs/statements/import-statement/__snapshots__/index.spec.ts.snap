@@ -48,6 +48,7 @@ exports[`import-statement with_string_param 1`] = `
 Expected one of [Identifier]
 
 > 1 | import "module";
-             ^^^^^^^
+             ^^^^^^^^
   2 | 
+
 `;

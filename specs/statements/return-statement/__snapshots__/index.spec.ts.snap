@@ -4,7 +4,8 @@ exports[`return-statement invalid_return_action 1`] = `
 return action should be one of deliver, fetch, restart, hash, pass, pipe, synth, purge, lookup, deliver_stale
 
 > 1 | return invalid_action;
-             ^^^^^^^^^^^^^
+             ^^^^^^^^^^^^^^
+
 `;
 
 exports[`return-statement with_parens ast: ast 1`] = `

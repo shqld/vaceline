@@ -31,5 +31,6 @@ exports[`restart-statement with_args 1`] = `
 Expected ';' symbol token
 
 > 1 | restart 1;
-              
+              ^
+
 `;

@@ -34,15 +34,17 @@ exports[`error-statement not_an_integer 1`] = `
 Expected 'undefined' numeric token
 
 > 1 | error "404";
-            ^^^^
+            ^^^^^
+
 `;
 
 exports[`error-statement not_an_integer_with_response 1`] = `
 Expected 'undefined' numeric token
 
 > 1 | error "404" "Not Found";
-            ^^^^
+            ^^^^^
   2 | 
+
 `;
 
 exports[`error-statement with_response ast: ast 1`] = `
