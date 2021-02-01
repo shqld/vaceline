@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`numeric-literal abbrev_integer 1`] = `
-[expr] not implemented yet
+Expression not implemented yet
 
 > 1 | .11
       
@@ -35,14 +35,14 @@ Array [
 `;
 
 exports[`numeric-literal none_after_comma 1`] = `
-invalid number
+Invalid number
 
 > 1 | 0.
       
 `;
 
 exports[`numeric-literal padded_zero 1`] = `
-invalid number
+Invalid number
 
 > 1 | 001
       

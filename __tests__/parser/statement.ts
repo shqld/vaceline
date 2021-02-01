@@ -70,7 +70,7 @@ acl my_acls {
         value: 'localhost',
       })
       expect(() => parse('"localhost"/16;')).toThrow(
-        /invalid ip address.*A prefix length is not supported for `localhost`/
+        /Invalid ip address.*A prefix length is not supported for `localhost`/
       )
 
       // v4
@@ -121,8 +121,8 @@ acl my_acls {
         value: '::',
       })
 
-      expect(() => parse('"0.0.0";')).toThrow(/invalid ip address/)
-      expect(() => parse('"invalid";')).toThrow(/invalid ip address/)
+      expect(() => parse('"0.0.0";')).toThrow(/Invalid ip address/)
+      expect(() => parse('"invalid";')).toThrow(/Invalid ip address/)
     })
   })
 
@@ -242,7 +242,7 @@ import module;
         parse(`
 import "module";
     `)
-      ).toThrow(/expected Identifier/)
+      ).toThrow(/Expected one of \[Identifier\]/)
     })
   })
 
@@ -322,7 +322,7 @@ import "module";
         parse(`
         restart 1;
       `)
-      ).toThrow(/expected symbol.*;/)
+      ).toThrow(/Expected ';' symbol token.*/)
     })
   })
 

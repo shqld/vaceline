@@ -56,5 +56,10 @@ export const parseHumbleExpr = (
     }
   }
 
-  throw createError(p.source, '[expr] not implemented yet', loc.start, loc.end)
+  throw createError(
+    p.source,
+    'Expression not implemented yet',
+    loc.start,
+    loc.end
+  )
 }

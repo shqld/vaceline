@@ -31,14 +31,14 @@ Array [
 `;
 
 exports[`error-statement not_an_integer 1`] = `
-expected numeric, 
+Expected 'undefined' numeric token
 
 > 1 | error "404";
             ^^^^
 `;
 
 exports[`error-statement not_an_integer_with_response 1`] = `
-expected numeric, 
+Expected 'undefined' numeric token
 
 > 1 | error "404" "Not Found";
             ^^^^

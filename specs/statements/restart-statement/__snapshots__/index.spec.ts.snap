@@ -28,7 +28,7 @@ Array [
 `;
 
 exports[`restart-statement with_args 1`] = `
-expected symbol, ;
+Expected ';' symbol token
 
 > 1 | restart 1;
               

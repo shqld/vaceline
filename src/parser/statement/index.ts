@@ -216,7 +216,12 @@ export const parseStmt = (p: Parser, token: Token = p.read()): Statement => {
     return parseDirectorStatement(p, loc)
   }
 
-  throw createError(p.source, '[stmt] not implemented yet', loc.start, loc.end)
+  throw createError(
+    p.source,
+    'Statement not implemented yet',
+    loc.start,
+    loc.end
+  )
 }
 
 const parseBackendDef = (p: Parser, token = p.read()): BackendDefinition => {
