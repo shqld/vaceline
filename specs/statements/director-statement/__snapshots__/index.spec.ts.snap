@@ -1,0 +1,700 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`director-statement client ast: ast 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "key": "quorum",
+      "value": "20%",
+    },
+    Object {
+      "attributes": Array [
+        Object {
+          "key": "weight",
+          "value": "1",
+        },
+      ],
+      "backend": "F_origin_0",
+    },
+    Object {
+      "attributes": Array [
+        Object {
+          "key": "weight",
+          "value": "1",
+        },
+      ],
+      "backend": "F_origin_1",
+    },
+    Object {
+      "attributes": Array [
+        Object {
+          "key": "weight",
+          "value": "1",
+        },
+      ],
+      "backend": "F_origin_2",
+    },
+  ],
+  "directorType": Object {
+    "loc": Object {
+      "end": Object {
+        "column": 30,
+        "line": 3,
+        "offset": 98,
+      },
+      "start": Object {
+        "column": 25,
+        "line": 3,
+        "offset": 93,
+      },
+    },
+    "name": "client",
+    "type": "Identifier",
+  },
+  "id": Object {
+    "loc": Object {
+      "end": Object {
+        "column": 23,
+        "line": 3,
+        "offset": 91,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 3,
+        "offset": 78,
+      },
+    },
+    "name": "the_client_dir",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 8,
+      "offset": 231,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 3,
+      "offset": 69,
+    },
+  },
+  "type": "DirectorStatement",
+}
+`;
+
+exports[`director-statement client format: format 1`] = `
+director the_client_dir client {
+  .quorum = 20%;
+  { .backend = F_origin_0; .weight = 1; }
+  { .backend = F_origin_1; .weight = 1; }
+  { .backend = F_origin_2; .weight = 1; }
+}
+`;
+
+exports[`director-statement client token 1`] = `
+Array [
+  director,
+  the_client_dir,
+  client,
+  {,
+  .,
+  quorum,
+  =,
+  20%,
+  ;,
+  {,
+  .,
+  backend,
+  =,
+  F_origin_0,
+  ;,
+  .,
+  weight,
+  =,
+  1,
+  ;,
+  },
+  {,
+  .,
+  backend,
+  =,
+  F_origin_1,
+  ;,
+  .,
+  weight,
+  =,
+  1,
+  ;,
+  },
+  {,
+  .,
+  backend,
+  =,
+  F_origin_2,
+  ;,
+  .,
+  weight,
+  =,
+  1,
+  ;,
+  },
+  },
+  sub,
+  vcl_recv,
+  {,
+  set,
+  client,
+  .,
+  identity,
+  =,
+  req,
+  .,
+  http,
+  .,
+  cookie,
+  :,
+  user_id,
+  ;,
+  set,
+  req,
+  .,
+  backend,
+  =,
+  the_client_dir,
+  ;,
+  },
+]
+`;
+
+exports[`director-statement consistent-hashing ast: ast 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "attributes": Array [
+        Object {
+          "key": "id",
+          "value": "\\"s1\\"",
+        },
+      ],
+      "backend": "s1",
+    },
+    Object {
+      "attributes": Array [
+        Object {
+          "key": "id",
+          "value": "\\"s2\\"",
+        },
+      ],
+      "backend": "s2",
+    },
+    Object {
+      "attributes": Array [
+        Object {
+          "key": "id",
+          "value": "\\"s3\\"",
+        },
+      ],
+      "backend": "s3",
+    },
+  ],
+  "directorType": Object {
+    "loc": Object {
+      "end": Object {
+        "column": 28,
+        "line": 3,
+        "offset": 96,
+      },
+      "start": Object {
+        "column": 24,
+        "line": 3,
+        "offset": 92,
+      },
+    },
+    "name": "chash",
+    "type": "Identifier",
+  },
+  "id": Object {
+    "loc": Object {
+      "end": Object {
+        "column": 22,
+        "line": 3,
+        "offset": 90,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 3,
+        "offset": 78,
+      },
+    },
+    "name": "the_chash_dir",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 7,
+      "offset": 199,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 3,
+      "offset": 69,
+    },
+  },
+  "type": "DirectorStatement",
+}
+`;
+
+exports[`director-statement consistent-hashing format: format 1`] = `
+director the_chash_dir chash {
+  { .backend = s1; .id = "s1"; }
+  { .backend = s2; .id = "s2"; }
+  { .backend = s3; .id = "s3"; }
+}
+`;
+
+exports[`director-statement consistent-hashing token 1`] = `
+Array [
+  director,
+  the_chash_dir,
+  chash,
+  {,
+  {,
+  .,
+  backend,
+  =,
+  s1,
+  ;,
+  .,
+  id,
+  =,
+  "s1",
+  ;,
+  },
+  {,
+  .,
+  backend,
+  =,
+  s2,
+  ;,
+  .,
+  id,
+  =,
+  "s2",
+  ;,
+  },
+  {,
+  .,
+  backend,
+  =,
+  s3,
+  ;,
+  .,
+  id,
+  =,
+  "s3",
+  ;,
+  },
+  },
+]
+`;
+
+exports[`director-statement content ast: ast 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "key": "quorum",
+      "value": "20%",
+    },
+    Object {
+      "attributes": Array [
+        Object {
+          "key": "weight",
+          "value": "1",
+        },
+      ],
+      "backend": "F_origin_0",
+    },
+    Object {
+      "attributes": Array [
+        Object {
+          "key": "weight",
+          "value": "1",
+        },
+      ],
+      "backend": "F_origin_1",
+    },
+    Object {
+      "attributes": Array [
+        Object {
+          "key": "weight",
+          "value": "1",
+        },
+      ],
+      "backend": "F_origin_2",
+    },
+  ],
+  "directorType": Object {
+    "loc": Object {
+      "end": Object {
+        "column": 26,
+        "line": 3,
+        "offset": 94,
+      },
+      "start": Object {
+        "column": 23,
+        "line": 3,
+        "offset": 91,
+      },
+    },
+    "name": "hash",
+    "type": "Identifier",
+  },
+  "id": Object {
+    "loc": Object {
+      "end": Object {
+        "column": 21,
+        "line": 3,
+        "offset": 89,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 3,
+        "offset": 78,
+      },
+    },
+    "name": "the_hash_dir",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 8,
+      "offset": 227,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 3,
+      "offset": 69,
+    },
+  },
+  "type": "DirectorStatement",
+}
+`;
+
+exports[`director-statement content format: format 1`] = `
+director the_hash_dir hash {
+  .quorum = 20%;
+  { .backend = F_origin_0; .weight = 1; }
+  { .backend = F_origin_1; .weight = 1; }
+  { .backend = F_origin_2; .weight = 1; }
+}
+`;
+
+exports[`director-statement content token 1`] = `
+Array [
+  director,
+  the_hash_dir,
+  hash,
+  {,
+  .,
+  quorum,
+  =,
+  20%,
+  ;,
+  {,
+  .,
+  backend,
+  =,
+  F_origin_0,
+  ;,
+  .,
+  weight,
+  =,
+  1,
+  ;,
+  },
+  {,
+  .,
+  backend,
+  =,
+  F_origin_1,
+  ;,
+  .,
+  weight,
+  =,
+  1,
+  ;,
+  },
+  {,
+  .,
+  backend,
+  =,
+  F_origin_2,
+  ;,
+  .,
+  weight,
+  =,
+  1,
+  ;,
+  },
+  },
+]
+`;
+
+exports[`director-statement fallback ast: ast 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "attributes": Array [],
+      "backend": "F_backend1",
+    },
+    Object {
+      "attributes": Array [],
+      "backend": "F_backend2",
+    },
+    Object {
+      "attributes": Array [],
+      "backend": "F_backend3",
+    },
+  ],
+  "directorType": Object {
+    "loc": Object {
+      "end": Object {
+        "column": 24,
+        "line": 3,
+        "offset": 92,
+      },
+      "start": Object {
+        "column": 17,
+        "line": 3,
+        "offset": 85,
+      },
+    },
+    "name": "fallback",
+    "type": "Identifier",
+  },
+  "id": Object {
+    "loc": Object {
+      "end": Object {
+        "column": 15,
+        "line": 3,
+        "offset": 83,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 3,
+        "offset": 78,
+      },
+    },
+    "name": "my_dir",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 7,
+      "offset": 183,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 3,
+      "offset": 69,
+    },
+  },
+  "type": "DirectorStatement",
+}
+`;
+
+exports[`director-statement fallback format: format 1`] = `
+director my_dir fallback {
+  { .backend = F_backend1; }
+  { .backend = F_backend2; }
+  { .backend = F_backend3; }
+}
+`;
+
+exports[`director-statement fallback token 1`] = `
+Array [
+  director,
+  my_dir,
+  fallback,
+  {,
+  {,
+  .,
+  backend,
+  =,
+  F_backend1,
+  ;,
+  },
+  {,
+  .,
+  backend,
+  =,
+  F_backend2,
+  ;,
+  },
+  {,
+  .,
+  backend,
+  =,
+  F_backend3,
+  ;,
+  },
+  },
+]
+`;
+
+exports[`director-statement random ast: ast 1`] = `
+Object {
+  "body": Array [
+    Object {
+      "key": "quorum",
+      "value": "50%",
+    },
+    Object {
+      "key": "retries",
+      "value": "3",
+    },
+    Object {
+      "attributes": Array [
+        Object {
+          "key": "weight",
+          "value": "2",
+        },
+      ],
+      "backend": "F_backend1",
+    },
+    Object {
+      "attributes": Array [
+        Object {
+          "key": "weight",
+          "value": "1",
+        },
+      ],
+      "backend": "F_backend2",
+    },
+    Object {
+      "attributes": Array [
+        Object {
+          "key": "weight",
+          "value": "1",
+        },
+      ],
+      "backend": "F_backend3",
+    },
+  ],
+  "directorType": Object {
+    "loc": Object {
+      "end": Object {
+        "column": 22,
+        "line": 3,
+        "offset": 90,
+      },
+      "start": Object {
+        "column": 17,
+        "line": 3,
+        "offset": 85,
+      },
+    },
+    "name": "random",
+    "type": "Identifier",
+  },
+  "id": Object {
+    "loc": Object {
+      "end": Object {
+        "column": 15,
+        "line": 3,
+        "offset": 83,
+      },
+      "start": Object {
+        "column": 10,
+        "line": 3,
+        "offset": 78,
+      },
+    },
+    "name": "my_dir",
+    "type": "Identifier",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 9,
+      "offset": 263,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 3,
+      "offset": 69,
+    },
+  },
+  "type": "DirectorStatement",
+}
+`;
+
+exports[`director-statement random format: format 1`] = `
+director my_dir random {
+  .quorum = 50%;
+  .retries = 3;
+  { .backend = F_backend1; .weight = 2; }
+  { .backend = F_backend2; .weight = 1; }
+  { .backend = F_backend3; .weight = 1; }
+}
+`;
+
+exports[`director-statement random token 1`] = `
+Array [
+  director,
+  my_dir,
+  random,
+  {,
+  .,
+  quorum,
+  =,
+  50%,
+  ;,
+  .,
+  retries,
+  =,
+  3,
+  ;,
+  {,
+  .,
+  backend,
+  =,
+  F_backend1,
+  ;,
+  .,
+  weight,
+  =,
+  2,
+  ;,
+  },
+  {,
+  .,
+  backend,
+  =,
+  F_backend2,
+  ;,
+  .,
+  weight,
+  =,
+  1,
+  ;,
+  },
+  {,
+  .,
+  backend,
+  =,
+  F_backend3,
+  ;,
+  .,
+  weight,
+  =,
+  1,
+  ;,
+  },
+  },
+]
+`;

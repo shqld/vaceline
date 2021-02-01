@@ -15,6 +15,7 @@ export type Statement =
   | BackendStatement
   | CallStatement
   | DeclareStatement
+  | DirectorStatement
   | ErrorStatement
   | ExpressionStatement
   | IfStatement
@@ -142,4 +143,23 @@ export interface TableStatement extends BaseNode {
   type: 'TableStatement'
   id: Identifier
   body: Array<TableDefinition>
+}
+
+export interface DirectorStatement extends BaseNode {
+  type: 'DirectorStatement'
+  id: Identifier
+  directorType: Identifier
+  body: Array<
+    | {
+        key: string
+        value: string
+      }
+    | {
+        backend: string
+        attributes: Array<{
+          key: string
+          value: string
+        }>
+      }
+  >
 }

@@ -1,6 +1,7 @@
 import {
   BackendDefinition,
   DeclareValueType,
+  DirectorStatement,
   IfStatement,
   Location,
   ReturnActionName,
@@ -211,6 +212,10 @@ export const parseStmt = (p: Parser, token: Token = p.read()): Statement => {
     return parseTableStatement(p, loc)
   }
 
+  if (token.value === 'director') {
+    return parseDirectorStatement(p, loc)
+  }
+
   throw createError(p.source, '[stmt] not implemented yet', loc.start, loc.end)
 }
 
@@ -297,4 +302,59 @@ const parseTableStatement = (p: Parser, loc: Location): TableStatement => {
   const body = parseCompound(p, parseTableDef, '}')
 
   return p.finishNode({ type: 'TableStatement', id, body, loc })
+}
+
+function parseDirectorStatement(p: Parser, loc: Location): DirectorStatement {
+  const id = p.validateNode(parseIdentifier(p), 'Identifier')
+  const directorType = p.validateNode(parseIdentifier(p), 'Identifier')
+
+  p.validateToken(p.read(), 'symbol', '{')
+
+  const body = parseCompound(
+    p,
+    (p, token) => {
+      if (token.value === '{') {
+        const attributes = parseCompound(
+          p,
+          (p, token) => {
+            p.validateToken(token, 'symbol', '.')
+            const key = p.read().value
+            p.validateToken(p.read(), 'operator', '=')
+            const value = p.validateNode(parseIdentifier(p), 'Identifier').name
+            ensureSemi(p)
+
+            return { key, value }
+          },
+          '}'
+        )
+
+        const backend = attributes.shift()
+        if (backend?.key !== 'backend')
+          // TODO: use general-purpose validate function
+          throw new Error('No backend name specified')
+
+        return {
+          backend: backend.value,
+          attributes,
+        }
+      }
+
+      p.validateToken(token, 'symbol', '.')
+      const key = p.read().value
+      p.validateToken(p.read(), 'operator', '=')
+      const value = p.read().value
+      ensureSemi(p)
+
+      return { key, value }
+    },
+    '}'
+  ).filter(Boolean)
+
+  return p.finishNode({
+    type: 'DirectorStatement',
+    id,
+    directorType,
+    body,
+    loc,
+  })
 }
