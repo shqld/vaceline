@@ -29,8 +29,10 @@ async function main(opts: CliOptions) {
 
   if (opts.debug === true) {
     debug.enable('vaceline:*')
+    require('source-map-support').install()
   } else if (typeof opts.debug === 'string') {
     debug.enable(`vaceline:${opts.debug}:*`)
+    require('source-map-support').install()
   }
 
   const inputPaths = opts.source

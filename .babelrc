@@ -8,5 +8,6 @@
     "@babel/proposal-optional-chaining",
     "@babel/proposal-nullish-coalescing-operator",
     "@babel/transform-react-jsx"
-  ]
+  ],
+  "sourceMaps": "inline"
 }

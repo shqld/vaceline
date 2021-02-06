@@ -74,6 +74,7 @@
     "pretty-quick": "^2.0.1",
     "rimraf": "^3.0.0",
     "serve": "^11.3.0",
+    "source-map-support": "^0.5.19",
     "strip-ansi": "^6.0.0",
     "ts-morph": "^6.0.2",
     "typescript": "^4.1.3",
