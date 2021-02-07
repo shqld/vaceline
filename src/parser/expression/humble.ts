@@ -6,7 +6,7 @@ import { createError } from '../create-error'
 import { parseLiteral } from '../literal'
 import { parseExpr } from '.'
 import { parseCompound } from '../compound'
-import { parseIdentifier } from './identifier'
+import { parseId } from './identifier'
 
 export function parseHumbleExpr(
   p: Parser,
@@ -18,7 +18,7 @@ export function parseHumbleExpr(
   if (literal) return literal
 
   if (token.type === 'ident') {
-    const ident = parseIdentifier(p, token)
+    const ident = parseId(p, token)
 
     if (isToken(p.peek(), 'symbol', '(')) {
       p.take()
