@@ -28,53 +28,52 @@ function parseIdentifier(
   p: Parser,
   token: Token = p.read()
 ): Located<Identifier> {
-  return p.finishNode({
+  return p.parseNode(token, () => ({
     type: 'Identifier',
     name: token.value,
-    loc: p.startNode(),
-  })
+  }))
 }
 
 function parseMember(
   p: Parser,
   base: Located<Exclude<Id, ValuePair>>
 ): Located<Member> {
-  const memberTok = p.read()
-  const member = p.finishNode({
-    type: 'Identifier',
-    name: memberTok.value,
-    loc: p.startNode(),
-  })
+  return p.parseNode(p.read(), ({ token }) => {
+    const member = p.parseNode(token, () => ({
+      type: 'Identifier',
+      name: token.value,
+    }))
 
-  return {
-    type: 'Member',
-    base,
-    member,
-    loc: {
-      start: base.loc.start,
-      end: member.loc.end,
-    },
-  }
+    return {
+      type: 'Member',
+      base,
+      member,
+      loc: {
+        start: base.loc.start,
+        end: member.loc.end,
+      },
+    }
+  })
 }
 
 function parseValuePair(
   p: Parser,
   base: Located<Exclude<Id, ValuePair>>
 ): Located<ValuePair> {
-  const nameTok = p.read()
-  const name = p.finishNode({
-    type: 'Identifier',
-    name: nameTok.value,
-    loc: p.startNode(),
-  })
+  return p.parseNode(p.read(), ({ token }) => {
+    const name = p.parseNode(token, () => ({
+      type: 'Identifier',
+      name: token.value,
+    }))
 
-  return {
-    type: 'ValuePair',
-    base,
-    name,
-    loc: {
-      start: base.loc.start,
-      end: name.loc.end,
-    },
-  }
+    return {
+      type: 'ValuePair',
+      base,
+      name,
+      loc: {
+        start: base.loc.start,
+        end: name.loc.end,
+      },
+    }
+  })
 }
