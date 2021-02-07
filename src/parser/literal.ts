@@ -1,4 +1,4 @@
-import { Literal, Location, Located } from '../nodes'
+import { Literal, Located } from '../nodes'
 
 import { Token } from './tokenizer'
 import { createError } from './create-error'
@@ -8,11 +8,13 @@ import { parseIp } from './statement/ip'
 
 export function parseLiteral(
   p: Parser,
-  token: Token = p.read(),
-  loc: Location = p.startNode()
+  token: Token = p.read()
 ): Located<Literal> | null {
   if (token.type === 'boolean') {
-    return p.finishNode({ type: 'BooleanLiteral', value: token.value, loc })
+    return p.parseNode(token, () => ({
+      type: 'BooleanLiteral',
+      value: token.value,
+    }))
   }
 
   if (token.type === 'string') {
@@ -20,16 +22,18 @@ export function parseLiteral(
       return parseIp(p, token)
     }
 
-    return p.finishNode({ type: 'StringLiteral', value: token.value, loc })
+    return p.parseNode(token, () => ({
+      type: 'StringLiteral',
+      value: token.value,
+    }))
   }
 
   if (token.type === 'numeric') {
     if (isToken(p.peek(), 'ident', /ms|s|m|h|d|y/)) {
-      return p.finishNode({
+      return p.parseNode(token, () => ({
         type: 'DurationLiteral',
         value: token.value + p.read().value,
-        loc,
-      })
+      }))
     }
 
     if (!Number.isNaN(Number(token.value))) {
@@ -37,13 +41,21 @@ export function parseLiteral(
         token.value.startsWith('.') ||
         (token.value.length !== 1 && token.value.startsWith('0'))
       ) {
-        throw createError(p.source, 'Invalid number', loc.start, loc.end)
+        throw createError(
+          p.source,
+          'Invalid number',
+          token.loc.start,
+          token.loc.end
+        )
       }
 
-      return p.finishNode({ type: 'NumericLiteral', value: token.value, loc })
+      return p.parseNode(token, () => ({
+        type: 'NumericLiteral',
+        value: token.value,
+      }))
     }
 
-    throw createError(p.source, 'Invalid token', loc.start, loc.end)
+    throw createError(p.source, 'Invalid token', token.loc.start, token.loc.end)
   }
 
   return null

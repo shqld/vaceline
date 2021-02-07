@@ -39,7 +39,7 @@ exports[`numeric-literal none_after_comma 1`] = `
 Invalid number
 
 > 1 | 0.
-      
+      ^^
 
 `;
 
@@ -47,7 +47,7 @@ exports[`numeric-literal padded_zero 1`] = `
 Invalid number
 
 > 1 | 001
-      
+      ^^^
 
 `;
 
