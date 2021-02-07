@@ -1,17 +1,17 @@
 import { Parser } from '..'
-import { Identifier, Member, NodeWithLoc, ValuePair } from '../../nodes'
+import { Identifier, Member, Located, ValuePair } from '../../nodes'
 import { Token } from '../tokenizer'
 import { isToken } from '../../utils/token'
 
 export const parseIdentifier = (
   p: Parser,
   token?: Token,
-  base: NodeWithLoc<Identifier | Member> = p.finishNode({
+  base: Located<Identifier | Member> = p.finishNode({
     type: 'Identifier',
     name: (token ?? p.read()).value,
     loc: p.startNode(),
   })
-): NodeWithLoc<Member | ValuePair | Identifier> => {
+): Located<Member | ValuePair | Identifier> => {
   if (isToken(p.peek(), 'symbol', '.')) {
     p.take()
     return parseIdentifier(p, undefined, parseMember(p, base))
@@ -28,8 +28,8 @@ export const parseIdentifier = (
 
 export const parseMember = (
   p: Parser,
-  base: NodeWithLoc<Identifier | Member>
-): NodeWithLoc<Member> => {
+  base: Located<Identifier | Member>
+): Located<Member> => {
   const memberTok = p.read()
   const member = p.finishNode({
     type: 'Identifier',
@@ -50,8 +50,8 @@ export const parseMember = (
 
 export const parseValuePair = (
   p: Parser,
-  base: NodeWithLoc<Identifier | Member>
-): NodeWithLoc<ValuePair> => {
+  base: Located<Identifier | Member>
+): Located<ValuePair> => {
   const nameTok = p.read()
   const name = p.finishNode({
     type: 'Identifier',

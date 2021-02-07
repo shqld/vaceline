@@ -1,4 +1,4 @@
-import { Expression, NodeWithLoc } from '../../nodes'
+import { Expression, Located } from '../../nodes'
 import { isToken } from '../../utils/token'
 
 import { Token } from '../tokenizer'
@@ -20,7 +20,7 @@ export const parseExpr = (
   p: Parser,
   token: Token = p.read(),
   shortcut = false
-): NodeWithLoc<Expression> => {
+): Located<Expression> => {
   const expr = parseOperatorExpr(p, token)
 
   if (shortcut) return expr

@@ -1,12 +1,5 @@
 import { Tokenizer, Token, TokenType } from './tokenizer'
-import {
-  Node,
-  NodeWithLoc,
-  Location,
-  NodeType,
-  Statement,
-  Program,
-} from '../nodes'
+import { Node, Located, Location, NodeType, Statement, Program } from '../nodes'
 import { createError } from './create-error'
 import { TokenReader } from './token-reader'
 
@@ -36,7 +29,7 @@ export class Parser extends TokenReader {
     const body = parseCompound<Statement>(this, parseStmt)
 
     // TODO: overload builder func type,
-    // to detect we pass `loc` and its return type is surely `NodeWithLoc`
+    // to detect we pass `loc` and its return type is surely `Located`
     return this.finishNode({ type: 'Program', body, loc })
   }
 
@@ -57,8 +50,8 @@ export class Parser extends TokenReader {
   }
 
   finishNode<T extends NodeType>(
-    node: NodeWithLoc<Node & { type: T }>
-  ): NodeWithLoc<Node & { type: T }> {
+    node: Located<Node & { type: T }>
+  ): Located<Node & { type: T }> {
     node.loc.end = this.getCurrentToken().loc.end
 
     if (debug.enabled) {
@@ -72,9 +65,9 @@ export class Parser extends TokenReader {
   }
 
   validateNode<T extends Array<NodeType>>(
-    node: NodeWithLoc,
+    node: Located,
     ...types: T
-  ): NodeWithLoc<Node & { type: T[number] }> {
+  ): Located<Node & { type: T[number] }> {
     if (!types.includes(node.type)) {
       throw createError(
         this.source,
@@ -84,7 +77,7 @@ export class Parser extends TokenReader {
       )
     }
 
-    return node as NodeWithLoc<Node & { type: T }>
+    return node as Located<Node & { type: T }>
   }
 
   validateToken<T extends TokenType, U extends string>(

@@ -1,5 +1,5 @@
 import { Parser } from '..'
-import { NodeWithLoc, Location, Expression } from '../../nodes'
+import { Located, Location, Expression } from '../../nodes'
 import { Token } from '../tokenizer'
 import { isToken } from '../../utils/token'
 import { createError } from '../create-error'
@@ -12,7 +12,7 @@ export const parseHumbleExpr = (
   p: Parser,
   token: Token = p.read(),
   loc: Location = p.startNode()
-): NodeWithLoc<Expression> => {
+): Located<Expression> => {
   const literal = parseLiteral(p, token)
 
   if (literal) return literal
