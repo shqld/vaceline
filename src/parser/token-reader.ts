@@ -44,10 +44,10 @@ export class TokenReader {
     return token
   }
 
-  peek(): Token | null {
+  peek(): Token | undefined {
     const token = this.tokens[this.cur]
 
-    if (!token) return null
+    if (!token) return undefined
 
     if (token.type === 'comment') {
       this.comments.push(token)
