@@ -23,7 +23,7 @@ export function parseHumbleExpr(
     if (isToken(p.peek(), 'symbol', '(')) {
       p.take()
 
-      const args = parseCompound(p, parseExpr, ')', ',')
+      const args = parseCompound(p, parseExpr, { until: ')', delimiter: ',' })
 
       return p.finishNode({
         type: 'FunCallExpression',
