@@ -5,12 +5,12 @@ const MARGIN = 2
 const HORIZONTAL_MARK = '> '
 const VERTICAL_MARK = '^'
 
-export const createError = (
+export function createError(
   source: string,
   message: string,
   start: Position,
   end: Position
-): SyntaxError => {
+): SyntaxError {
   const topLineNumber = start.line >= MARGIN ? start.line - MARGIN : start.line
   const topLineOffset = topLineNumber - 1 // zero-offset
 

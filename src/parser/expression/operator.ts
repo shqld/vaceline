@@ -11,11 +11,11 @@ import { Token } from '../tokenizer'
 import { isToken } from '../../utils/token'
 import { parseHumbleExpr } from './humble'
 
-export const parseOperatorExpr = (
+export function parseOperatorExpr(
   p: Parser,
   token: Token = p.read(),
   shortcut = false
-): Located<Expression> => {
+): Located<Expression> {
   const expr = parseHumbleExpr(p, token)
 
   if (shortcut) return expr

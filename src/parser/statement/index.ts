@@ -20,11 +20,9 @@ import { Token } from '../tokenizer'
 import { parseCompound } from '../compound'
 import { parseIdentifier } from '../expression/identifier'
 
-const ensureSemi = (p: Parser) => {
-  p.validateToken(p.read(), 'symbol', ';')
-}
+const ensureSemi = (p: Parser) => p.validateToken(p.read(), 'symbol', ';')
 
-export const parseStmt = (p: Parser, token: Token = p.read()): Statement => {
+export function parseStmt(p: Parser, token: Token = p.read()): Statement {
   const loc = p.startNode()
 
   if (!keywords.has(token.value)) {
@@ -224,7 +222,7 @@ export const parseStmt = (p: Parser, token: Token = p.read()): Statement => {
   )
 }
 
-const parseBackendDef = (p: Parser, token = p.read()): BackendDefinition => {
+function parseBackendDef(p: Parser, token = p.read()): BackendDefinition {
   const loc = p.startNode()
 
   p.validateToken(token, 'symbol', '.')
@@ -244,7 +242,7 @@ const parseBackendDef = (p: Parser, token = p.read()): BackendDefinition => {
   return p.finishNode({ type: 'BackendDefinition', key, value, loc })
 }
 
-const parseIfStatement = (p: Parser, loc: Location): IfStatement => {
+function parseIfStatement(p: Parser, loc: Location): IfStatement {
   p.validateToken(p.read(), 'symbol', '(')
 
   const test = parseExpr(p)
@@ -283,7 +281,7 @@ const parseIfStatement = (p: Parser, loc: Location): IfStatement => {
   })
 }
 
-const parseTableDef = (p: Parser, token: Token): TableDefinition => {
+function parseTableDef(p: Parser, token: Token): TableDefinition {
   const loc = p.startNode()
 
   const key = p.validateToken(token, 'string').value
@@ -299,7 +297,7 @@ const parseTableDef = (p: Parser, token: Token): TableDefinition => {
   return p.finishNode({ type: 'TableDefinition', key, value, loc })
 }
 
-const parseTableStatement = (p: Parser, loc: Location): TableStatement => {
+function parseTableStatement(p: Parser, loc: Location): TableStatement {
   const id = p.validateNode(parseIdentifier(p, p.read()), 'Identifier')
 
   p.validateToken(p.read(), 'symbol', '{')

@@ -8,11 +8,11 @@ import { parseExpr } from '.'
 import { parseCompound } from '../compound'
 import { parseIdentifier } from './identifier'
 
-export const parseHumbleExpr = (
+export function parseHumbleExpr(
   p: Parser,
   token: Token = p.read(),
   loc: Location = p.startNode()
-): Located<Expression> => {
+): Located<Expression> {
   const literal = parseLiteral(p, token)
 
   if (literal) return literal

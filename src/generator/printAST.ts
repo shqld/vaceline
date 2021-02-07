@@ -6,7 +6,7 @@ export interface State {
   lineNum: number
 }
 
-export const printNode = (node: Node, state: State, options?: object): Doc => {
+export function printNode(node: Node, state: State, options?: object): Doc {
   switch (node.type) {
     case 'Program':
       return printProgram(node, state, options)

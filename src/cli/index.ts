@@ -16,7 +16,7 @@ import { parse, transformFile } from '..'
 // const pipeline = promisify(stream.pipeline)
 const writeFile = fs.promises ? fs.promises.writeFile : promisify(fs.writeFile)
 
-const createStream = (...strs: Array<string>) => {
+function createStream(...strs: Array<string>) {
   const readable = new stream.Readable()
   strs.forEach((str) => readable.push(str))
   readable.push(null)

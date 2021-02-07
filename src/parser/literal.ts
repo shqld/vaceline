@@ -6,11 +6,11 @@ import { Parser } from '.'
 import { isToken } from '../utils/token'
 import { parseIp } from './statement/ip'
 
-export const parseLiteral = (
+export function parseLiteral(
   p: Parser,
   token: Token = p.read(),
   loc: Location = p.startNode()
-): Located<Literal> | null => {
+): Located<Literal> | null {
   if (token.type === 'boolean') {
     return p.finishNode({ type: 'BooleanLiteral', value: token.value, loc })
   }

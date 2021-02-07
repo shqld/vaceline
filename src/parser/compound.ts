@@ -2,13 +2,13 @@ import { Parser } from '.'
 import { Token } from './tokenizer'
 import { isToken } from '../utils/token'
 
-export const parseCompound = <T>(
+export function parseCompound<T>(
   p: Parser,
   parse: (p: Parser, token: Token) => T,
   until?: string,
   delimiter?: string,
   semi = false
-): Array<T> => {
+): Array<T> {
   const compound: Array<T> = []
 
   // eslint-disable-next-line no-constant-condition

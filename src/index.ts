@@ -20,10 +20,10 @@ export { parse, generate as transformFromAst }
 
 export type Options = {} & GenerateOptions
 
-export const transform = (
+export function transform(
   code: string,
   options: Partial<Options> = {}
-): TransformResult => {
+): TransformResult {
   const ast = parse(code)
 
   const result: Partial<TransformResult> = generate(ast, options)
@@ -33,10 +33,10 @@ export const transform = (
   return result as TransformResult
 }
 
-export const transformFile = (
+export function transformFile(
   filePath: string,
   options: Partial<Options> = {}
-): TransformResult => {
+): TransformResult {
   const inputPath = resolvePath(filePath)
   assert(existsSync(inputPath), 'File not found: ' + inputPath)
 

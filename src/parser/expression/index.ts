@@ -16,11 +16,11 @@ export interface Stack<T> {
   length: Array<T>['length']
 }
 
-export const parseExpr = (
+export function parseExpr(
   p: Parser,
   token: Token = p.read(),
   shortcut = false
-): Located<Expression> => {
+): Located<Expression> {
   const expr = parseOperatorExpr(p, token)
 
   if (shortcut) return expr
