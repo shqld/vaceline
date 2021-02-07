@@ -2,12 +2,16 @@ import { Parser } from '.'
 import { Token } from './tokenizer'
 import { isToken } from '../utils/token'
 
+interface CompoundOptions {
+  until: string
+  delimiter: string
+  semi: boolean
+}
+
 export function parseCompound<T>(
   p: Parser,
   parse: (p: Parser, token: Token) => T,
-  until?: string,
-  delimiter?: string,
-  semi = false
+  { until, delimiter, semi = false }: Partial<CompoundOptions> | undefined = {}
 ): Array<T> {
   const compound: Array<T> = []
 

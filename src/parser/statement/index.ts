@@ -178,7 +178,7 @@ export function parseStmt(p: Parser, token: Token = p.read()): Statement {
     const id = p.validateNode(parseExpr(p, p.read(), true), 'Identifier')
     p.validateToken(p.read(), 'symbol', '{')
 
-    const body = parseCompound(p, parseStmt, '}')
+    const body = parseCompound(p, parseStmt, { until: '}' })
 
     return p.finishNode({ type: 'SubroutineStatement', id, body, loc })
   }
@@ -187,7 +187,7 @@ export function parseStmt(p: Parser, token: Token = p.read()): Statement {
     const id = p.validateNode(parseExpr(p, p.read(), true), 'Identifier')
     p.validateToken(p.read(), 'symbol', '{')
 
-    const body = parseCompound(p, parseIp, '}', undefined, true)
+    const body = parseCompound(p, parseIp, { until: '}', semi: true })
 
     return p.finishNode({ type: 'AclStatement', id, body, loc })
   }
@@ -197,7 +197,7 @@ export function parseStmt(p: Parser, token: Token = p.read()): Statement {
 
     p.validateToken(p.read(), 'symbol', '{')
 
-    const body = parseCompound(p, parseBackendDef, '}')
+    const body = parseCompound(p, parseBackendDef, { until: '}' })
 
     return p.finishNode({ type: 'BackendStatement', id, body, loc })
   }
@@ -229,7 +229,7 @@ function parseBackendDef(p: Parser, token = p.read()): BackendDefinition {
 
   if (isToken(p.peek(), 'symbol', '{')) {
     p.take()
-    value = parseCompound(p, parseBackendDef, '}')
+    value = parseCompound(p, parseBackendDef, { until: '}' })
   } else {
     value = parseExpr(p)
     ensureSemi(p)
@@ -247,7 +247,7 @@ function parseIfStatement(p: Parser, loc: Location): IfStatement {
 
   p.validateToken(p.read(), 'symbol', '{')
 
-  const consequent = parseCompound(p, parseStmt, '}')
+  const consequent = parseCompound(p, parseStmt, { until: '}' })
 
   let alternative: IfStatement | Array<Statement> | undefined = undefined
 
@@ -264,7 +264,7 @@ function parseIfStatement(p: Parser, loc: Location): IfStatement {
       alternative = parseIfStatement(p, p.startNode())
     } else {
       p.validateToken(p.read(), 'symbol', '{')
-      alternative = parseCompound(p, parseStmt, '}')
+      alternative = parseCompound(p, parseStmt, { until: '}' })
     }
   }
 
@@ -298,7 +298,7 @@ function parseTableStatement(p: Parser, loc: Location): TableStatement {
 
   p.validateToken(p.read(), 'symbol', '{')
 
-  const body = parseCompound(p, parseTableDef, '}')
+  const body = parseCompound(p, parseTableDef, { until: '}' })
 
   return p.finishNode({ type: 'TableStatement', id, body, loc })
 }
@@ -324,7 +324,7 @@ function parseDirectorStatement(p: Parser, loc: Location): DirectorStatement {
 
             return { key, value }
           },
-          '}'
+          { until: '}' }
         )
 
         const backend = attributes.shift()
@@ -346,7 +346,7 @@ function parseDirectorStatement(p: Parser, loc: Location): DirectorStatement {
 
       return { key, value }
     },
-    '}'
+    { until: '}' }
   ).filter(Boolean)
 
   return p.finishNode({
