@@ -1,4 +1,4 @@
-import { Literal, Location, NodeWithLoc } from '../nodes'
+import { Literal, Location, Located } from '../nodes'
 
 import { Token } from './tokenizer'
 import { createError } from './create-error'
@@ -10,7 +10,7 @@ export const parseLiteral = (
   p: Parser,
   token: Token = p.read(),
   loc: Location = p.startNode()
-): NodeWithLoc<Literal> | null => {
+): Located<Literal> | null => {
   if (token.type === 'boolean') {
     return p.finishNode({ type: 'BooleanLiteral', value: token.value, loc })
   }

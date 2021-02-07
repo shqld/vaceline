@@ -4,7 +4,7 @@ import {
   BinaryExpression,
   Expression,
   LogicalExpression,
-  NodeWithLoc,
+  Located,
 } from '../../nodes'
 import * as ops from '../tokenizer/operators'
 import { Token } from '../tokenizer'
@@ -15,7 +15,7 @@ export const parseOperatorExpr = (
   p: Parser,
   token: Token = p.read(),
   shortcut = false
-): NodeWithLoc<Expression> => {
+): Located<Expression> => {
   const expr = parseHumbleExpr(p, token)
 
   if (shortcut) return expr
@@ -33,7 +33,7 @@ export const parseOperatorExpr = (
     isBinary: boolean
   }
 
-  const rpn: Array<NodeWithLoc<Expression> | OperatorToken> = [expr]
+  const rpn: Array<Located<Expression> | OperatorToken> = [expr]
   const opStack: Stack<OperatorToken> = []
 
   let op: OperatorToken | null
@@ -75,7 +75,7 @@ export const parseOperatorExpr = (
   }
 
   // calculate rpn
-  const stack: Stack<NodeWithLoc<Expression>> = []
+  const stack: Stack<Located<Expression>> = []
 
   for (let i = 0; i < rpn.length; i++) {
     const item = rpn[i]
@@ -90,7 +90,7 @@ export const parseOperatorExpr = (
     const left = stack.pop()!
 
     const type = item.isBinary ? 'BinaryExpression' : 'LogicalExpression'
-    const expr: NodeWithLoc<BinaryExpression | LogicalExpression> = {
+    const expr: Located<BinaryExpression | LogicalExpression> = {
       type,
       left,
       right,

@@ -13,7 +13,7 @@ export * from './location'
 
 export type Node = Program | Statement | Expression
 export type PlainNode<N extends Node> = Omit<N, keyof Node>
-export type NodeWithLoc<N extends Node = Node> = N & { loc: Location }
+export type Located<N extends Node = Node> = N & { loc: Location }
 
 export interface BaseNode {
   type: string

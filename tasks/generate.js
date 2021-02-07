@@ -46,12 +46,7 @@ buildersFile.addImportDeclarations([
     moduleSpecifier: './defs',
   },
   {
-    namedImports: [
-      'Location',
-      'BaseNode',
-      'NodeWithLoc',
-      'buildEmptryLocation',
-    ],
+    namedImports: ['Location', 'BaseNode', 'Located', 'buildEmptryLocation'],
     moduleSpecifier: './node',
   },
 ])
@@ -64,12 +59,12 @@ buildersFile.addFunctions(
     return {
       isExported: true,
       name: 'build' + nodeName,
-      returnType: `NodeWithLoc<${nodeName}>`,
+      returnType: `Located<${nodeName}>`,
       parameters: props
         .map((p) => p.getStructure())
         .concat({ name: 'loc', type: 'Location', hasQuestionToken: true }),
       statements: [
-        `const node = Object.create(BaseNode.prototype) as NodeWithLoc<${nodeName}>`,
+        `const node = Object.create(BaseNode.prototype) as Located<${nodeName}>`,
         '',
         `node.type = '${nodeName}'`,
         `node.loc = loc || buildEmptryLocation()`,
