@@ -18,7 +18,7 @@ import { keywords, returnActions } from '../keywords'
 import { parseIp } from './ip'
 import { Token } from '../tokenizer'
 import { parseCompound } from '../compound'
-import { parseIdentifier } from '../expression/identifier'
+import { parseId } from '../expression/identifier'
 
 const ensureSemi = (p: Parser) => p.validateToken(p.read(), 'symbol', ';')
 
@@ -85,11 +85,7 @@ export function parseStmt(p: Parser, token: Token = p.read()): Statement {
   if (token.value === 'declare') {
     p.validateToken(p.read(), 'ident', 'local')
 
-    const id = p.validateNode(
-      parseIdentifier(p, p.read()),
-      'Identifier',
-      'Member'
-    )
+    const id = p.validateNode(parseId(p, p.read()), 'Identifier', 'Member')
 
     const valueType = p.validateToken(p.read(), 'ident')
       .value as DeclareValueType
@@ -298,7 +294,7 @@ function parseTableDef(p: Parser, token: Token): TableDefinition {
 }
 
 function parseTableStatement(p: Parser, loc: Location): TableStatement {
-  const id = p.validateNode(parseIdentifier(p, p.read()), 'Identifier')
+  const id = p.validateNode(parseId(p, p.read()), 'Identifier')
 
   p.validateToken(p.read(), 'symbol', '{')
 
@@ -308,8 +304,8 @@ function parseTableStatement(p: Parser, loc: Location): TableStatement {
 }
 
 function parseDirectorStatement(p: Parser, loc: Location): DirectorStatement {
-  const id = p.validateNode(parseIdentifier(p), 'Identifier')
-  const directorType = p.validateNode(parseIdentifier(p), 'Identifier')
+  const id = p.validateNode(parseId(p), 'Identifier')
+  const directorType = p.validateNode(parseId(p), 'Identifier')
 
   p.validateToken(p.read(), 'symbol', '{')
 
@@ -323,7 +319,7 @@ function parseDirectorStatement(p: Parser, loc: Location): DirectorStatement {
             p.validateToken(token, 'symbol', '.')
             const key = p.read().value
             p.validateToken(p.read(), 'operator', '=')
-            const value = p.validateNode(parseIdentifier(p), 'Identifier').name
+            const value = p.validateNode(parseId(p), 'Identifier').name
             ensureSemi(p)
 
             return { key, value }
