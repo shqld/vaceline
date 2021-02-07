@@ -15,7 +15,7 @@ function next(node: Node) {
   )
 }
 
-export const traverseNode = (
+export function traverseNode(
   node: Node,
   callback: (path: NodePath, context: TraversalContext) => void,
   context: TraversalContext = {
@@ -24,7 +24,7 @@ export const traverseNode = (
     inList: false,
     state: null,
   }
-): void => {
+): void {
   const path = new NodePath(node, context)
 
   // If sobroutine, ..., then set `inList` true
@@ -42,7 +42,7 @@ export const traverseNode = (
   }
 }
 
-export const traverse = (
+export function traverse(
   ast: Node,
   handler: Handler,
   context: TraversalContext = {
@@ -51,7 +51,7 @@ export const traverse = (
     inList: false,
     state: null,
   }
-): void => {
+): void {
   const handle = (path: NodePath, context: TraversalContext) => {
     if (handler.entry) {
       handler.entry.call(context.state, path)
@@ -62,7 +62,7 @@ export const traverse = (
 }
 
 // Create traversal path array recursively
-export const createPathArray = (
+export function createPathArray(
   ast: Node,
   context: TraversalContext = {
     parent: null,
@@ -70,7 +70,7 @@ export const createPathArray = (
     inList: false,
     state: null,
   }
-): Array<NodePath> => {
+): Array<NodePath> {
   const paths: Array<NodePath> = []
   const appendPath = (path: NodePath) => paths.push(path)
 

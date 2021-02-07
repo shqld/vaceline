@@ -10,10 +10,10 @@ const defaultGenerateOptions: GenerateOptions = {
   useTabs: false,
 }
 
-export const generate = (
+export function generate(
   ast: Node,
   options: Partial<GenerateOptions> = defaultGenerateOptions
-): { code: string; map?: string } => {
+): { code: string; map?: string } {
   const { formatted } = printer.printDocToString(
     printNode(ast, {
       lineNum: 1,

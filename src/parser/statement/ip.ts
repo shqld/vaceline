@@ -3,7 +3,7 @@ import { isToken } from '../../utils/token'
 import isIp from 'is-ip'
 import { createError } from '../create-error'
 
-export const parseIp = (p: Parser, token = p.read()) => {
+export function parseIp(p: Parser, token = p.read()) {
   // TODO: We can know what Ip addresses look like and detect them
   // so it should be parsed not as StringLiteral even outside of AclStatement
 
