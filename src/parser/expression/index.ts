@@ -25,51 +25,51 @@ export function parseExpr(
 
   if (shortcut) return expr
 
-  const loc = p.startNode()
-
   if (isToken(token, 'symbol', ';')) {
     return expr
   }
 
-  let backup = p.getCursor()
+  return p.parseNode(p.getCurrentToken(), () => {
+    let backup = p.getCursor()
 
-  const buf = [expr]
+    const buf = [expr]
 
-  let nextToken = p.peek()
+    let nextToken = p.peek()
 
-  while (nextToken) {
-    p.take()
+    while (nextToken) {
+      p.take()
 
-    if (isToken(nextToken, 'symbol', ';')) {
-      break
-    }
-
-    if (isToken(nextToken, 'symbol', '+')) {
-      nextToken = p.read()
-    }
-
-    try {
-      const expr = parseHumbleExpr(p, nextToken)
-      buf.push(expr)
-      backup = p.getCursor()
-    } catch (err) {
-      if (err instanceof SyntaxError) {
+      if (isToken(nextToken, 'symbol', ';')) {
         break
-      } else {
-        throw err
       }
+
+      if (isToken(nextToken, 'symbol', '+')) {
+        nextToken = p.read()
+      }
+
+      try {
+        const expr = parseHumbleExpr(p, nextToken)
+        buf.push(expr)
+        backup = p.getCursor()
+      } catch (err) {
+        if (err instanceof SyntaxError) {
+          break
+        } else {
+          throw err
+        }
+      }
+
+      nextToken = p.peek()
     }
 
-    nextToken = p.peek()
-  }
+    // backtrack to the backed-up cursor
+    p.jumpTo(backup)
 
-  // backtrack to the backed-up cursor
-  p.jumpTo(backup)
+    // the next token wasn't an expression
+    if (buf.length === 1) {
+      return expr
+    }
 
-  // the next token wasn't an expression
-  if (buf.length === 1) {
-    return expr
-  }
-
-  return p.finishNode({ type: 'ConcatExpression', body: buf, loc })
+    return { type: 'ConcatExpression', body: buf }
+  })
 }
