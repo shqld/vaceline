@@ -57,7 +57,10 @@ Object {
 }
 `;
 
-exports[`statement basic format: format 1`] = `stmt;`;
+exports[`statement basic format: format 1`] = `
+# leading comments
+stmt;
+`;
 
 exports[`statement basic token 1`] = `
 Array [
@@ -156,7 +159,12 @@ Object {
 }
 `;
 
-exports[`statement multi_comments format: format 1`] = `stmt;`;
+exports[`statement multi_comments format: format 1`] = `
+# leading comments
+# leading comments
+# leading comments
+stmt;
+`;
 
 exports[`statement multi_comments token 1`] = `
 Array [
