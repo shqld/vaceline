@@ -41,11 +41,16 @@ export class Parser extends TokenReader {
   }
 
   parse(): Located<Program> {
-    const loc = this.startNode()
-
     const body = parseCompound<Statement>(this, parseStmt)
 
-    return this.finishNode({ type: 'Program', body, loc })
+    return {
+      type: 'Program',
+      body,
+      loc: {
+        start: { offset: 0, line: 1, column: 1 },
+        end: this.getCurrentToken().loc.end,
+      },
+    }
   }
 
   parseNode<T extends NodeType>(
@@ -56,11 +61,7 @@ export class Parser extends TokenReader {
 
     const state: ParsingState = {
       token,
-      pos: token
-        ? token.loc.start
-        : // Especially for parsing Program node since the beginning of file
-          // has no token
-          { offset: 0, line: 1, column: 1 },
+      pos: token.loc.start,
     }
 
     const node = parse(state)
