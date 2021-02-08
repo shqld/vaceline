@@ -40,12 +40,12 @@ Object {
       "end": Object {
         "column": 30,
         "line": 3,
-        "offset": 98,
+        "offset": 100,
       },
       "start": Object {
         "column": 25,
         "line": 3,
-        "offset": 93,
+        "offset": 95,
       },
     },
     "name": "client",
@@ -56,12 +56,12 @@ Object {
       "end": Object {
         "column": 23,
         "line": 3,
-        "offset": 91,
+        "offset": 93,
       },
       "start": Object {
         "column": 10,
         "line": 3,
-        "offset": 78,
+        "offset": 80,
       },
     },
     "name": "the_client_dir",
@@ -71,12 +71,12 @@ Object {
     "end": Object {
       "column": 1,
       "line": 8,
-      "offset": 231,
+      "offset": 233,
     },
     "start": Object {
       "column": 1,
       "line": 3,
-      "offset": 69,
+      "offset": 71,
     },
   },
   "type": "DirectorStatement",
@@ -203,12 +203,12 @@ Object {
       "end": Object {
         "column": 28,
         "line": 3,
-        "offset": 96,
+        "offset": 98,
       },
       "start": Object {
         "column": 24,
         "line": 3,
-        "offset": 92,
+        "offset": 94,
       },
     },
     "name": "chash",
@@ -219,12 +219,12 @@ Object {
       "end": Object {
         "column": 22,
         "line": 3,
-        "offset": 90,
+        "offset": 92,
       },
       "start": Object {
         "column": 10,
         "line": 3,
-        "offset": 78,
+        "offset": 80,
       },
     },
     "name": "the_chash_dir",
@@ -234,12 +234,12 @@ Object {
     "end": Object {
       "column": 1,
       "line": 7,
-      "offset": 199,
+      "offset": 201,
     },
     "start": Object {
       "column": 1,
       "line": 3,
-      "offset": 69,
+      "offset": 71,
     },
   },
   "type": "DirectorStatement",
@@ -340,12 +340,12 @@ Object {
       "end": Object {
         "column": 26,
         "line": 3,
-        "offset": 94,
+        "offset": 96,
       },
       "start": Object {
         "column": 23,
         "line": 3,
-        "offset": 91,
+        "offset": 93,
       },
     },
     "name": "hash",
@@ -356,12 +356,12 @@ Object {
       "end": Object {
         "column": 21,
         "line": 3,
-        "offset": 89,
+        "offset": 91,
       },
       "start": Object {
         "column": 10,
         "line": 3,
-        "offset": 78,
+        "offset": 80,
       },
     },
     "name": "the_hash_dir",
@@ -371,12 +371,12 @@ Object {
     "end": Object {
       "column": 1,
       "line": 8,
-      "offset": 227,
+      "offset": 229,
     },
     "start": Object {
       "column": 1,
       "line": 3,
-      "offset": 69,
+      "offset": 71,
     },
   },
   "type": "DirectorStatement",
@@ -464,12 +464,12 @@ Object {
       "end": Object {
         "column": 24,
         "line": 3,
-        "offset": 92,
+        "offset": 94,
       },
       "start": Object {
         "column": 17,
         "line": 3,
-        "offset": 85,
+        "offset": 87,
       },
     },
     "name": "fallback",
@@ -480,12 +480,12 @@ Object {
       "end": Object {
         "column": 15,
         "line": 3,
-        "offset": 83,
+        "offset": 85,
       },
       "start": Object {
         "column": 10,
         "line": 3,
-        "offset": 78,
+        "offset": 80,
       },
     },
     "name": "my_dir",
@@ -495,12 +495,12 @@ Object {
     "end": Object {
       "column": 1,
       "line": 7,
-      "offset": 183,
+      "offset": 185,
     },
     "start": Object {
       "column": 1,
       "line": 3,
-      "offset": 69,
+      "offset": 71,
     },
   },
   "type": "DirectorStatement",
@@ -590,12 +590,12 @@ Object {
       "end": Object {
         "column": 22,
         "line": 3,
-        "offset": 90,
+        "offset": 92,
       },
       "start": Object {
         "column": 17,
         "line": 3,
-        "offset": 85,
+        "offset": 87,
       },
     },
     "name": "random",
@@ -606,12 +606,12 @@ Object {
       "end": Object {
         "column": 15,
         "line": 3,
-        "offset": 83,
+        "offset": 85,
       },
       "start": Object {
         "column": 10,
         "line": 3,
-        "offset": 78,
+        "offset": 80,
       },
     },
     "name": "my_dir",
@@ -621,12 +621,12 @@ Object {
     "end": Object {
       "column": 1,
       "line": 9,
-      "offset": 263,
+      "offset": 265,
     },
     "start": Object {
       "column": 1,
       "line": 3,
-      "offset": 69,
+      "offset": 71,
     },
   },
   "type": "DirectorStatement",

@@ -1,4 +1,4 @@
-# https://developer.fastly.com/reference/vcl/declarations/director/
+### https://developer.fastly.com/reference/vcl/declarations/director/
 
 director the_chash_dir chash {
   { .backend = s1; .id = "s1"; }

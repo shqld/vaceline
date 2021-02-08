@@ -1,4 +1,4 @@
-# https://developer.fastly.com/reference/vcl/declarations/director/
+### https://developer.fastly.com/reference/vcl/declarations/director/
 
 director my_dir random {
     .quorum = 50%;

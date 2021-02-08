@@ -1,4 +1,4 @@
-# https://developer.fastly.com/reference/vcl/declarations/director/
+### https://developer.fastly.com/reference/vcl/declarations/director/
 
 director the_client_dir client {
   .quorum=20%;
