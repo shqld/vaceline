@@ -515,19 +515,16 @@ Object {
 `;
 
 exports[`program single_handling format: format long 1`] = `
-sub vcl_recv {
-  declare local var.vacelinDebug STRING;
+sub vcl_recv {declare local var.vacelinDebug STRING;
   set var.vacelineDebug = "initial";
 
-  if (req.http.Vacelin:Some == "Some") {
-    add var.vacelinDebug = "Vacelin Debug Log";
+  if (req.http.Vacelin:Some == "Some") {add var.vacelinDebug = "Vacelin Debug Log";
   }
 }
 `;
 
 exports[`program single_handling format: format short 1`] = `
-sub vcl_recv {
-  declare local var.vacelinDebug STRING;
+sub vcl_recv {declare local var.vacelinDebug STRING;
   set var.vacelineDebug =
     "initial";
 
@@ -536,8 +533,7 @@ sub vcl_recv {
       .http
       .Vacelin:Some ==
       "Some"
-  ) {
-    add var.vacelinDebug =
+  ) {add var.vacelinDebug =
       "Vacelin Debug Log";
   }
 }

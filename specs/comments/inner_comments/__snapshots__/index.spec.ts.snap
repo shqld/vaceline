@@ -60,6 +60,7 @@ Object {
 
 exports[`inner_comments basic format: format 1`] = `
 sub subroutine {
+
 }
 `;
 
@@ -165,6 +166,7 @@ Object {
 
 exports[`inner_comments multi_comments format: format 1`] = `
 sub subroutine {
+
 }
 `;
 

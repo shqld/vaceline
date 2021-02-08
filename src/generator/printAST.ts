@@ -1,117 +1,116 @@
 import { Doc, builders as b } from 'prettier/doc'
-import { Node } from '../nodes'
+import { Node, isLocated, Located } from '../nodes'
 import * as d from '../nodes'
 
-export interface State {
-  lineNum: number
-}
-
-export function printNode(node: Node, state: State, options?: object): Doc {
+export function printNode(node: Node, options?: object): Doc {
   switch (node.type) {
     case 'Program':
-      return printProgram(node, state, options)
+      return printProgram(node, options)
 
     case 'AclStatement':
-      return printAclStatement(node, state, options)
+      return printAclStatement(node, options)
     case 'AddStatement':
-      return printAddStatement(node, state, options)
+      return printAddStatement(node, options)
     case 'BackendStatement':
-      return printBackendStatement(node, state, options)
+      return printBackendStatement(node, options)
     case 'CallStatement':
-      return printCallStatement(node, state, options)
+      return printCallStatement(node, options)
     case 'DeclareStatement':
-      return printDeclareStatement(node, state, options)
+      return printDeclareStatement(node, options)
     case 'ErrorStatement':
-      return printErrorStatement(node, state, options)
+      return printErrorStatement(node, options)
     case 'ExpressionStatement':
-      return printExpressionStatement(node, state, options)
+      return printExpressionStatement(node, options)
     case 'IfStatement':
-      return printIfStatement(node, state, options)
+      return printIfStatement(node, options)
     case 'ImportStatement':
-      return printImportStatement(node, state, options)
+      return printImportStatement(node, options)
     case 'IncludeStatement':
-      return printIncludeStatement(node, state, options)
+      return printIncludeStatement(node, options)
     case 'LogStatement':
-      return printLogStatement(node, state, options)
+      return printLogStatement(node, options)
     case 'RestartStatement':
-      return printRestartStatement(node, state, options)
+      return printRestartStatement(node, options)
     case 'ReturnStatement':
-      return printReturnStatement(node, state, options)
+      return printReturnStatement(node, options)
     case 'SetStatement':
-      return printSetStatement(node, state, options)
+      return printSetStatement(node, options)
     case 'SubroutineStatement':
-      return printSubroutineStatement(node, state, options)
+      return printSubroutineStatement(node, options)
     case 'SyntheticStatement':
-      return printSyntheticStatement(node, state, options)
+      return printSyntheticStatement(node, options)
     case 'TableStatement':
-      return printTableStatement(node, state, options)
+      return printTableStatement(node, options)
     case 'UnsetStatement':
-      return printUnsetStatement(node, state, options)
+      return printUnsetStatement(node, options)
 
     case 'BooleanLiteral':
-      return printBooleanLiteral(node, state, options)
+      return printBooleanLiteral(node, options)
     case 'DurationLiteral':
-      return printDurationLiteral(node, state, options)
+      return printDurationLiteral(node, options)
     case 'MultilineLiteral':
-      return printMultilineLiteral(node, state, options)
+      return printMultilineLiteral(node, options)
     case 'NumericLiteral':
-      return printNumericLiteral(node, state, options)
+      return printNumericLiteral(node, options)
     case 'StringLiteral':
-      return printStringLiteral(node, state, options)
+      return printStringLiteral(node, options)
 
     case 'BinaryExpression':
-      return printBinaryExpression(node, state, options)
+      return printBinaryExpression(node, options)
     case 'BooleanExpression':
-      return printBooleanExpression(node, state, options)
+      return printBooleanExpression(node, options)
     case 'ConcatExpression':
-      return printConcatExpression(node, state, options)
+      return printConcatExpression(node, options)
     case 'FunCallExpression':
-      return printFunCallExpression(node, state, options)
+      return printFunCallExpression(node, options)
     case 'Identifier':
-      return printIdentifier(node, state, options)
+      return printIdentifier(node, options)
     case 'Ip':
-      return printIp(node, state, options)
+      return printIp(node, options)
     case 'LogicalExpression':
-      return printLogicalExpression(node, state, options)
+      return printLogicalExpression(node, options)
     case 'Member':
-      return printMember(node, state, options)
+      return printMember(node, options)
     case 'UnaryExpression':
-      return printUnaryExpression(node, state, options)
+      return printUnaryExpression(node, options)
     case 'ValuePair':
-      return printValuePair(node, state, options)
+      return printValuePair(node, options)
     case 'BackendDefinition':
-      return printBackendDefinition(node, state, options)
+      return printBackendDefinition(node, options)
     case 'TableDefinition':
-      return printTableDefinition(node, state, options)
+      return printTableDefinition(node, options)
     case 'DirectorStatement':
-      return printDirectorStatement(node, state, options)
+      return printDirectorStatement(node, options)
   }
 }
 
 type PrinterFunc<T extends Node, U extends object = object> = (
   node: T,
-  state: State,
   options?: U
 ) => Doc
 
-export const printStatements = (
-  state: State,
-  stmts: Array<d.Statement>
-): Doc => {
+export function printStatements(stmts: Array<d.Statement>): Doc {
   const doc = []
 
+  let lastLine: number =
+    (stmts[0] && isLocated(stmts[0]) && getLastLine(stmts[0])) || 1
+
   for (const stmt of stmts) {
-    if (stmt.loc && stmt.loc.start.line > state.lineNum) {
-      let delta = stmt.loc.start.line - state.lineNum
+    if (isLocated(stmt) && stmt.loc.start.line - lastLine > 0) {
+      // Compare the next line with previous line of the last node
+      // TODO: Set max number of empty lines between statements
+      let delta = getFirstLine(stmt) - lastLine - 1
+
       while (delta--) {
         doc.push(b.hardline)
       }
 
-      state.lineNum = stmt.loc.start.line
+      // Set last line of the current node as the last line to compare
+      // with in the next iteration
+      lastLine = getLastLine(stmt)
     }
 
-    doc.push(printNode(stmt, state), b.hardline)
-    state.lineNum++
+    doc.push(printNode(stmt), b.hardline)
   }
 
   doc.pop()
@@ -119,11 +118,24 @@ export const printStatements = (
   return b.concat(doc)
 }
 
+function getFirstLine(node: Located<Node>): number {
+  // first leading comment or first line of node
+  return node.leadingComments?.[0]?.loc?.start.line ?? node.loc.start.line
+}
+
+function getLastLine(node: Located<Node>): number {
+  // last trailing comment or last line of node
+  return (
+    node.trailingComments?.[node.trailingComments?.length - 1]?.loc?.end.line ??
+    node.loc.end.line
+  )
+}
+
 export const base = <T extends Node, U extends object>(
   printer: PrinterFunc<T, U>
 ): PrinterFunc<T, U> => {
-  return (node: T, state: State, options?: U) => {
-    let printed = printer(node, state, options)
+  return (node: T, options?: U) => {
+    let printed = printer(node, options)
 
     if (node.leadingComments?.length)
       printed = b.concat([
@@ -148,8 +160,8 @@ export const base = <T extends Node, U extends object>(
   }
 }
 
-export const printProgram = base((node: d.Program, state) => {
-  return printStatements(state, node.body)
+export const printProgram = base((node: d.Program) => {
+  return printStatements(node.body)
 })
 
 export const printBooleanLiteral = base((node: d.BooleanLiteral) => {
@@ -183,7 +195,7 @@ export const printIp = base((node: d.Ip) => {
 export const printMember: PrinterFunc<
   d.Member,
   { neverBreak?: boolean; broken?: boolean }
-> = base((node, state, options) => {
+> = base((node, options) => {
   const { neverBreak = false, broken = false } = options ?? {}
 
   const shouldBreak =
@@ -191,11 +203,11 @@ export const printMember: PrinterFunc<
     // break if child is also a Member or if also parent is already broken
     (node.base.type === 'Member' || broken)
 
-  // printExpr('Member', state, {})
+  // printExpr('Member',  {})
   return b.concat([
     b.group(
       b.concat([
-        printNode(node.base, state, {
+        printNode(node.base, {
           neverBreak,
           broken: shouldBreak,
         }),
@@ -203,7 +215,7 @@ export const printMember: PrinterFunc<
           b.concat([
             shouldBreak ? b.softline : '',
             '.',
-            printIdentifier(node.member, state),
+            printIdentifier(node.member),
           ])
         ),
       ])
@@ -211,106 +223,92 @@ export const printMember: PrinterFunc<
   ])
 })
 
-export const printValuePair = base((node: d.ValuePair, state) => {
-  return b.concat([
-    printNode(node.base, state),
-    ':',
-    printIdentifier(node.name, state),
-  ])
+export const printValuePair = base((node: d.ValuePair) => {
+  return b.concat([printNode(node.base), ':', printIdentifier(node.name)])
 })
 
-export const printBooleanExpression = base(
-  (node: d.BooleanExpression, state) => {
-    return b.group(
+export const printBooleanExpression = base((node: d.BooleanExpression) => {
+  return b.group(
+    b.concat([
+      b.indent(
+        b.concat(['(', b.ifBreak(b.softline, ''), printNode(node.body)])
+      ),
+      b.ifBreak(b.softline, ''),
+      ')',
+    ])
+  )
+})
+
+export const printUnaryExpression = base((node: d.UnaryExpression) => {
+  return b.concat([node.operator, printNode(node.argument)])
+})
+
+export const printFunCallExpression = base((node: d.FunCallExpression) => {
+  return b.concat([
+    printNode(node.callee),
+    '(',
+    b.group(
       b.concat([
         b.indent(
           b.concat([
-            '(',
-            b.ifBreak(b.softline, ''),
-            printNode(node.body, state),
+            b.ifBreak(b.line, ''),
+            b.join(
+              b.concat([',', b.line]),
+              node.args.map((n) => printNode(n))
+            ),
+            b.ifBreak(',', ''),
           ])
         ),
-        b.ifBreak(b.softline, ''),
-        ')',
+        b.ifBreak(b.line, ''),
       ])
-    )
-  }
-)
-
-export const printUnaryExpression = base((node: d.UnaryExpression, state) => {
-  return b.concat([node.operator, printNode(node.argument, state)])
+    ),
+    ')',
+  ])
 })
 
-export const printFunCallExpression = base(
-  (node: d.FunCallExpression, state) => {
-    return b.concat([
-      printNode(node.callee, state),
-      '(',
-      b.group(
-        b.concat([
-          b.indent(
-            b.concat([
-              b.ifBreak(b.line, ''),
-              b.join(
-                b.concat([',', b.line]),
-                node.args.map((n) => printNode(n, state))
-              ),
-              b.ifBreak(',', ''),
-            ])
-          ),
-          b.ifBreak(b.line, ''),
-        ])
-      ),
-      ')',
-    ])
-  }
-)
-
-export const printConcatExpression = base((node: d.ConcatExpression, state) => {
+export const printConcatExpression = base((node: d.ConcatExpression) => {
   return b.group(
     b.indent(
       b.join(
         b.line,
-        node.body.map((n) => printNode(n, state))
+        node.body.map((n) => printNode(n))
       )
     )
   )
 })
 
 export const printBinaryExpression: PrinterFunc<d.BinaryExpression> = base(
-  (node: d.BinaryExpression, state) => {
+  (node: d.BinaryExpression) => {
     const left =
       node.left.type === 'BinaryExpression'
-        ? b.concat(['(', printBinaryExpression(node.left, state), ')'])
-        : printNode(node.left, state)
+        ? b.concat(['(', printBinaryExpression(node.left), ')'])
+        : printNode(node.left)
 
     return b.group(
       b.concat([
         left,
         ' ',
-        b.indent(
-          b.concat([node.operator, b.line, printNode(node.right, state)])
-        ),
+        b.indent(b.concat([node.operator, b.line, printNode(node.right)])),
       ])
     )
   }
 )
 
 export const printLogicalExpression: PrinterFunc<d.LogicalExpression> = base(
-  (node: d.LogicalExpression, state) => {
+  (node: d.LogicalExpression) => {
     const left =
       node.left.type === 'LogicalExpression' &&
       node.operator === '||' &&
       node.left.operator === '&&'
-        ? b.concat(['(', printLogicalExpression(node.left, state), ')'])
-        : printNode(node.left, state)
+        ? b.concat(['(', printLogicalExpression(node.left), ')'])
+        : printNode(node.left)
 
     const right =
       node.right.type === 'LogicalExpression' &&
       node.operator === '||' &&
       node.right.operator === '&&'
-        ? b.concat(['(', printLogicalExpression(node.right, state), ')'])
-        : printNode(node.right, state)
+        ? b.concat(['(', printLogicalExpression(node.right), ')'])
+        : printNode(node.right)
 
     return b.group(
       b.concat([left, ' ', b.indent(b.concat([node.operator, b.line, right]))])
@@ -318,22 +316,20 @@ export const printLogicalExpression: PrinterFunc<d.LogicalExpression> = base(
   }
 )
 
-export const printExpressionStatement = base(
-  (node: d.ExpressionStatement, state) => {
-    return b.concat([printNode(node.body, state), ';'])
-  }
-)
-
-export const printIncludeStatement = base((node: d.IncludeStatement, state) => {
-  return b.concat(['include ', printStringLiteral(node.module, state), ';'])
+export const printExpressionStatement = base((node: d.ExpressionStatement) => {
+  return b.concat([printNode(node.body), ';'])
 })
 
-export const printImportStatement = base((node: d.ImportStatement, state) => {
-  return b.concat(['import ', printNode(node.module, state), ';'])
+export const printIncludeStatement = base((node: d.IncludeStatement) => {
+  return b.concat(['include ', printStringLiteral(node.module), ';'])
 })
 
-export const printCallStatement = base((node: d.CallStatement, state) => {
-  return b.concat(['call ', printNode(node.subroutine, state), ';'])
+export const printImportStatement = base((node: d.ImportStatement) => {
+  return b.concat(['import ', printNode(node.module), ';'])
+})
+
+export const printCallStatement = base((node: d.CallStatement) => {
+  return b.concat(['call ', printNode(node.subroutine), ';'])
 })
 
 export type DeclareValueType =
@@ -343,55 +339,51 @@ export type DeclareValueType =
   | 'INTEGER'
   | 'FLOAT'
 
-export const printDeclareStatement = base((node: d.DeclareStatement, state) => {
+export const printDeclareStatement = base((node: d.DeclareStatement) => {
   return b.concat([
     'declare ',
     'local ',
-    printNode(node.id, state, { neverBreak: true }),
+    printNode(node.id, { neverBreak: true }),
     ' ',
     node.valueType,
     ';',
   ])
 })
 
-export const printAddStatement = base((node: d.AddStatement, state) => {
+export const printAddStatement = base((node: d.AddStatement) => {
   return b.group(
     b.indent(
       b.concat([
         'add ',
-        printNode(node.left, state, { neverBreak: true }),
+        printNode(node.left, { neverBreak: true }),
         ' ',
         node.operator,
         b.line,
-        printNode(node.right, state),
+        printNode(node.right),
         ';',
       ])
     )
   )
 })
 
-export const printSetStatement = base((node: d.SetStatement, state) => {
+export const printSetStatement = base((node: d.SetStatement) => {
   return b.group(
     b.indent(
       b.concat([
         'set ',
-        printNode(node.left, state, { neverBreak: true }),
+        printNode(node.left, { neverBreak: true }),
         ' ',
         node.operator,
         b.line,
-        printNode(node.right, state, { neverBreak: true }),
+        printNode(node.right, { neverBreak: true }),
         ';',
       ])
     )
   )
 })
 
-export const printUnsetStatement = base((node: d.UnsetStatement, state) => {
-  return b.concat([
-    'unset ',
-    printNode(node.id, state, { neverBreak: true }),
-    ';',
-  ])
+export const printUnsetStatement = base((node: d.UnsetStatement) => {
+  return b.concat(['unset ', printNode(node.id, { neverBreak: true }), ';'])
 })
 
 export type ReturnActionName =
@@ -406,14 +398,14 @@ export const printReturnStatement = base((node: d.ReturnStatement) => {
   return b.concat(['return ', '(', node.action, ')', ';'])
 })
 
-export const printErrorStatement = base((node: d.ErrorStatement, state) => {
+export const printErrorStatement = base((node: d.ErrorStatement) => {
   return b.concat([
     b.join(
       ' ',
       [
         'error',
         node.status.toString(),
-        node.message && printNode(node.message, state),
+        node.message && printNode(node.message),
       ].filter(Boolean) as Array<Doc>
     ),
     ';',
@@ -424,34 +416,28 @@ export const printRestartStatement = base(() => {
   return 'restart;'
 })
 
-export const printSyntheticStatement = base(
-  (node: d.SyntheticStatement, state) => {
-    return b.concat(['synthetic ', printNode(node.response, state), ';'])
-  }
-)
-
-export const printLogStatement = base((node: d.LogStatement, state) => {
-  return b.concat(['log ', printNode(node.content, state), ';'])
+export const printSyntheticStatement = base((node: d.SyntheticStatement) => {
+  return b.concat(['synthetic ', printNode(node.response), ';'])
 })
 
-export const printIfStatement = base((node: d.IfStatement, state) => {
+export const printLogStatement = base((node: d.LogStatement) => {
+  return b.concat(['log ', printNode(node.content), ';'])
+})
+
+export const printIfStatement = base((node: d.IfStatement) => {
   const doc = [
     'if ',
     b.group(
       b.concat([
         b.indent(
-          b.concat([
-            '(',
-            b.ifBreak(b.hardline, ''),
-            printNode(node.test, state),
-          ])
+          b.concat(['(', b.ifBreak(b.hardline, ''), printNode(node.test)])
         ),
         b.ifBreak(b.hardline, ''),
         ') ',
       ])
     ),
     '{',
-    b.indent(printStatements(state, node.consequent)),
+    b.indent(printStatements(node.consequent)),
     b.hardline,
     '}',
   ]
@@ -460,11 +446,11 @@ export const printIfStatement = base((node: d.IfStatement, state) => {
     const alternative: Array<Doc> = Array.isArray(node.alternative)
       ? [
           ' else {',
-          b.indent(printStatements(state, node.alternative)),
+          b.indent(printStatements(node.alternative)),
           b.hardline,
           '}',
         ]
-      : [' else ', printIfStatement(node.alternative, state)]
+      : [' else ', printIfStatement(node.alternative)]
 
     return b.concat([...doc, ...alternative])
   }
@@ -472,32 +458,28 @@ export const printIfStatement = base((node: d.IfStatement, state) => {
   return b.concat(doc)
 })
 
-export const printSubroutineStatement = base(
-  (node: d.SubroutineStatement, state) => {
-    return b.concat([
-      'sub ',
-      printIdentifier(node.id, state),
-      ' {',
-      b.indent(printStatements(state, node.body)),
-      b.hardline,
-      '}',
-    ])
-  }
-)
+export const printSubroutineStatement = base((node: d.SubroutineStatement) => {
+  return b.concat([
+    'sub ',
+    printIdentifier(node.id),
+    ' {',
+    b.indent(printStatements(node.body)),
+    b.hardline,
+    '}',
+  ])
+})
 
-export const printAclStatement = base((node: d.AclStatement, state) => {
+export const printAclStatement = base((node: d.AclStatement) => {
   return b.concat([
     'acl ',
-    printIdentifier(node.id, state),
+    printIdentifier(node.id),
     ' {',
     b.indent(
       b.concat([
         b.hardline,
         b.join(
           b.hardline,
-          node.body
-            .map((ip) => printIp(ip, state))
-            .map((doc) => b.concat([doc, ';']))
+          node.body.map((ip) => printIp(ip)).map((doc) => b.concat([doc, ';']))
         ),
       ])
     ),
@@ -507,7 +489,7 @@ export const printAclStatement = base((node: d.AclStatement, state) => {
 })
 
 export const printBackendDefinition: PrinterFunc<d.BackendDefinition> = base(
-  (node: d.BackendDefinition, state) => {
+  (node: d.BackendDefinition) => {
     const printedValue: Doc = Array.isArray(node.value)
       ? b.concat([
           '{',
@@ -516,23 +498,23 @@ export const printBackendDefinition: PrinterFunc<d.BackendDefinition> = base(
               b.hardline,
               b.join(
                 b.hardline,
-                node.value.map((v) => printBackendDefinition(v, state))
+                node.value.map((v) => printBackendDefinition(v))
               ),
             ])
           ),
           b.hardline,
           '}',
         ])
-      : b.concat([printNode(node.value, state), ';'])
+      : b.concat([printNode(node.value), ';'])
 
     return b.concat(['.', node.key, ' = ', printedValue])
   }
 )
 
-export const printBackendStatement = base((node: d.BackendStatement, state) => {
+export const printBackendStatement = base((node: d.BackendStatement) => {
   return b.concat([
     'backend ',
-    printIdentifier(node.id, state),
+    printIdentifier(node.id),
     ' ',
     b.concat([
       '{',
@@ -541,7 +523,7 @@ export const printBackendStatement = base((node: d.BackendStatement, state) => {
           b.hardline,
           b.join(
             b.hardline,
-            node.body.map((d) => printBackendDefinition(d, state))
+            node.body.map((d) => printBackendDefinition(d))
           ),
         ])
       ),
@@ -559,17 +541,17 @@ export const printTableDefinition = base((node: d.TableDefinition) => {
  * asdfasdf
  */
 
-export const printTableStatement = base((node: d.TableStatement, state) => {
+export const printTableStatement = base((node: d.TableStatement) => {
   return b.concat([
     'table ',
-    printIdentifier(node.id, state),
+    printIdentifier(node.id),
     ' {',
     b.indent(
       b.concat([
         b.hardline,
         b.join(
           b.concat([',', b.hardline]),
-          node.body.map((td) => printTableDefinition(td, state))
+          node.body.map((td) => printTableDefinition(td))
         ),
         // TODO: handle trailing comma
         // ',',
@@ -580,39 +562,37 @@ export const printTableStatement = base((node: d.TableStatement, state) => {
   ])
 })
 
-export const printDirectorStatement = base(
-  (node: d.DirectorStatement, state) => {
-    return b.concat([
-      'director ',
-      printIdentifier(node.id, state),
-      ' ',
-      printIdentifier(node.directorType, state),
-      ' {',
-      b.indent(
-        b.concat([
+export const printDirectorStatement = base((node: d.DirectorStatement) => {
+  return b.concat([
+    'director ',
+    printIdentifier(node.id),
+    ' ',
+    printIdentifier(node.directorType),
+    ' {',
+    b.indent(
+      b.concat([
+        b.hardline,
+        b.join(
           b.hardline,
-          b.join(
-            b.hardline,
-            node.body.map((item) => {
-              if ('backend' in item) {
-                return b.concat([
-                  '{ ',
-                  b.join(' ', [
-                    '.backend = ' + item.backend + ';',
-                    ...item.attributes.map(
-                      (attr) => '.' + attr.key + ' = ' + attr.value + ';'
-                    ),
-                  ]),
-                  ' }',
-                ])
-              }
-              return b.concat(['.' + item.key + ' = ' + item.value + ';'])
-            })
-          ),
-        ])
-      ),
-      b.hardline,
-      '}',
-    ])
-  }
-)
+          node.body.map((item) => {
+            if ('backend' in item) {
+              return b.concat([
+                '{ ',
+                b.join(' ', [
+                  '.backend = ' + item.backend + ';',
+                  ...item.attributes.map(
+                    (attr) => '.' + attr.key + ' = ' + attr.value + ';'
+                  ),
+                ]),
+                ' }',
+              ])
+            }
+            return b.concat(['.' + item.key + ' = ' + item.value + ';'])
+          })
+        ),
+      ])
+    ),
+    b.hardline,
+    '}',
+  ])
+})
