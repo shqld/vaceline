@@ -2,9 +2,13 @@
 
 exports[`binary-expression equal ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "left": Object {
     "base": Object {
       "base": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 3,
@@ -18,8 +22,11 @@ Object {
           },
         },
         "name": "req",
+        "trailingComments": Array [],
         "type": "Identifier",
       },
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 8,
@@ -33,6 +40,8 @@ Object {
         },
       },
       "member": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 8,
@@ -46,10 +55,14 @@ Object {
           },
         },
         "name": "http",
+        "trailingComments": Array [],
         "type": "Identifier",
       },
+      "trailingComments": Array [],
       "type": "Member",
     },
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 14,
@@ -63,6 +76,8 @@ Object {
       },
     },
     "member": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 14,
@@ -76,8 +91,10 @@ Object {
         },
       },
       "name": "Debug",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "trailingComments": Array [],
     "type": "Member",
   },
   "loc": Object {
@@ -94,6 +111,8 @@ Object {
   },
   "operator": "==",
   "right": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 21,
@@ -106,9 +125,11 @@ Object {
         "offset": 18,
       },
     },
+    "trailingComments": Array [],
     "type": "StringLiteral",
     "value": "\\"1\\"",
   },
+  "trailingComments": Array [],
   "type": "BinaryExpression",
 }
 `;
@@ -136,9 +157,13 @@ Array [
 
 exports[`binary-expression match ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "left": Object {
     "base": Object {
       "base": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 3,
@@ -152,8 +177,11 @@ Object {
           },
         },
         "name": "req",
+        "trailingComments": Array [],
         "type": "Identifier",
       },
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 8,
@@ -167,6 +195,8 @@ Object {
         },
       },
       "member": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 8,
@@ -180,10 +210,14 @@ Object {
           },
         },
         "name": "http",
+        "trailingComments": Array [],
         "type": "Identifier",
       },
+      "trailingComments": Array [],
       "type": "Member",
     },
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 14,
@@ -197,6 +231,8 @@ Object {
       },
     },
     "member": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 14,
@@ -210,8 +246,10 @@ Object {
         },
       },
       "name": "Debug",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "trailingComments": Array [],
     "type": "Member",
   },
   "loc": Object {
@@ -228,6 +266,8 @@ Object {
   },
   "operator": "~",
   "right": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 20,
@@ -240,9 +280,11 @@ Object {
         "offset": 17,
       },
     },
+    "trailingComments": Array [],
     "type": "StringLiteral",
     "value": "\\"1\\"",
   },
+  "trailingComments": Array [],
   "type": "BinaryExpression",
 }
 `;
@@ -270,11 +312,15 @@ Array [
 
 exports[`binary-expression multi_binary_expr ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "left": Object {
     "left": Object {
       "left": Object {
         "base": Object {
           "base": Object {
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 3,
@@ -288,8 +334,11 @@ Object {
               },
             },
             "name": "req",
+            "trailingComments": Array [],
             "type": "Identifier",
           },
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 8,
@@ -303,6 +352,8 @@ Object {
             },
           },
           "member": Object {
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 8,
@@ -316,10 +367,14 @@ Object {
               },
             },
             "name": "http",
+            "trailingComments": Array [],
             "type": "Identifier",
           },
+          "trailingComments": Array [],
           "type": "Member",
         },
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 14,
@@ -333,6 +388,8 @@ Object {
           },
         },
         "member": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 14,
@@ -346,8 +403,10 @@ Object {
             },
           },
           "name": "Debug",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "trailingComments": Array [],
         "type": "Member",
       },
       "loc": Object {
@@ -364,6 +423,8 @@ Object {
       },
       "operator": "==",
       "right": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 21,
@@ -376,6 +437,7 @@ Object {
             "offset": 18,
           },
         },
+        "trailingComments": Array [],
         "type": "StringLiteral",
         "value": "\\"1\\"",
       },
@@ -395,6 +457,8 @@ Object {
     },
     "operator": "==",
     "right": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 28,
@@ -407,6 +471,7 @@ Object {
           "offset": 25,
         },
       },
+      "trailingComments": Array [],
       "type": "StringLiteral",
       "value": "\\"2\\"",
     },
@@ -426,6 +491,8 @@ Object {
   },
   "operator": "==",
   "right": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 35,
@@ -438,9 +505,11 @@ Object {
         "offset": 32,
       },
     },
+    "trailingComments": Array [],
     "type": "StringLiteral",
     "value": "\\"3\\"",
   },
+  "trailingComments": Array [],
   "type": "BinaryExpression",
 }
 `;
@@ -474,10 +543,14 @@ Array [
 
 exports[`binary-expression multi_with_logical_expr ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "left": Object {
     "left": Object {
       "base": Object {
         "base": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 3,
@@ -491,8 +564,11 @@ Object {
             },
           },
           "name": "req",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 8,
@@ -506,6 +582,8 @@ Object {
           },
         },
         "member": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 8,
@@ -519,10 +597,14 @@ Object {
             },
           },
           "name": "http",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "trailingComments": Array [],
         "type": "Member",
       },
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 14,
@@ -536,6 +618,8 @@ Object {
         },
       },
       "member": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 14,
@@ -549,8 +633,10 @@ Object {
           },
         },
         "name": "Debug",
+        "trailingComments": Array [],
         "type": "Identifier",
       },
+      "trailingComments": Array [],
       "type": "Member",
     },
     "loc": Object {
@@ -567,6 +653,8 @@ Object {
     },
     "operator": "==",
     "right": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 21,
@@ -579,6 +667,7 @@ Object {
           "offset": 18,
         },
       },
+      "trailingComments": Array [],
       "type": "StringLiteral",
       "value": "\\"1\\"",
     },
@@ -599,6 +688,8 @@ Object {
   "operator": "&&",
   "right": Object {
     "left": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 28,
@@ -611,6 +702,7 @@ Object {
           "offset": 25,
         },
       },
+      "trailingComments": Array [],
       "type": "StringLiteral",
       "value": "\\"2\\"",
     },
@@ -628,6 +720,8 @@ Object {
     },
     "operator": "==",
     "right": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 35,
@@ -640,11 +734,13 @@ Object {
           "offset": 32,
         },
       },
+      "trailingComments": Array [],
       "type": "StringLiteral",
       "value": "\\"3\\"",
     },
     "type": "BinaryExpression",
   },
+  "trailingComments": Array [],
   "type": "LogicalExpression",
 }
 `;
@@ -678,9 +774,13 @@ Array [
 
 exports[`binary-expression not_equal ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "left": Object {
     "base": Object {
       "base": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 3,
@@ -694,8 +794,11 @@ Object {
           },
         },
         "name": "req",
+        "trailingComments": Array [],
         "type": "Identifier",
       },
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 8,
@@ -709,6 +812,8 @@ Object {
         },
       },
       "member": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 8,
@@ -722,10 +827,14 @@ Object {
           },
         },
         "name": "http",
+        "trailingComments": Array [],
         "type": "Identifier",
       },
+      "trailingComments": Array [],
       "type": "Member",
     },
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 14,
@@ -739,6 +848,8 @@ Object {
       },
     },
     "member": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 14,
@@ -752,8 +863,10 @@ Object {
         },
       },
       "name": "Debug",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "trailingComments": Array [],
     "type": "Member",
   },
   "loc": Object {
@@ -770,6 +883,8 @@ Object {
   },
   "operator": "!=",
   "right": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 21,
@@ -782,9 +897,11 @@ Object {
         "offset": 18,
       },
     },
+    "trailingComments": Array [],
     "type": "StringLiteral",
     "value": "\\"1\\"",
   },
+  "trailingComments": Array [],
   "type": "BinaryExpression",
 }
 `;

@@ -2,6 +2,8 @@
 
 exports[`import-statement basic ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 14,
@@ -15,6 +17,8 @@ Object {
     },
   },
   "module": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 13,
@@ -28,8 +32,10 @@ Object {
       },
     },
     "name": "module",
+    "trailingComments": Array [],
     "type": "Identifier",
   },
+  "trailingComments": Array [],
   "type": "ImportStatement",
 }
 `;

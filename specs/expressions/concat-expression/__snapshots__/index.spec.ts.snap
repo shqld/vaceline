@@ -4,6 +4,8 @@ exports[`concat-expression strings ast: ast 1`] = `
 Object {
   "body": Array [
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 3,
@@ -16,10 +18,13 @@ Object {
           "offset": 0,
         },
       },
+      "trailingComments": Array [],
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -32,10 +37,13 @@ Object {
           "offset": 4,
         },
       },
+      "trailingComments": Array [],
       "type": "StringLiteral",
       "value": "\\"b\\"",
     },
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 11,
@@ -48,10 +56,13 @@ Object {
           "offset": 8,
         },
       },
+      "trailingComments": Array [],
       "type": "StringLiteral",
       "value": "\\"c\\"",
     },
   ],
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 11,
@@ -64,6 +75,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "ConcatExpression",
 }
 `;
@@ -90,6 +102,8 @@ Object {
     Object {
       "base": Object {
         "base": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 3,
@@ -103,8 +117,11 @@ Object {
             },
           },
           "name": "req",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 8,
@@ -118,6 +135,8 @@ Object {
           },
         },
         "member": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 8,
@@ -131,10 +150,14 @@ Object {
             },
           },
           "name": "http",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "trailingComments": Array [],
         "type": "Member",
       },
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 10,
@@ -148,6 +171,8 @@ Object {
         },
       },
       "member": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 10,
@@ -161,13 +186,17 @@ Object {
           },
         },
         "name": "A",
+        "trailingComments": Array [],
         "type": "Identifier",
       },
+      "trailingComments": Array [],
       "type": "Member",
     },
     Object {
       "base": Object {
         "base": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 14,
@@ -181,8 +210,11 @@ Object {
             },
           },
           "name": "req",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 19,
@@ -196,6 +228,8 @@ Object {
           },
         },
         "member": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 19,
@@ -209,10 +243,14 @@ Object {
             },
           },
           "name": "http",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "trailingComments": Array [],
         "type": "Member",
       },
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 21,
@@ -226,6 +264,8 @@ Object {
         },
       },
       "member": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 21,
@@ -239,11 +279,15 @@ Object {
           },
         },
         "name": "B",
+        "trailingComments": Array [],
         "type": "Identifier",
       },
+      "trailingComments": Array [],
       "type": "Member",
     },
   ],
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 21,
@@ -256,6 +300,7 @@ Object {
       "offset": 9,
     },
   },
+  "trailingComments": Array [],
   "type": "ConcatExpression",
 }
 `;

@@ -2,6 +2,8 @@
 
 exports[`call-statement index ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 19,
@@ -15,6 +17,8 @@ Object {
     },
   },
   "subroutine": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 18,
@@ -28,8 +32,10 @@ Object {
       },
     },
     "name": "vaceline_func",
+    "trailingComments": Array [],
     "type": "Identifier",
   },
+  "trailingComments": Array [],
   "type": "CallStatement",
 }
 `;

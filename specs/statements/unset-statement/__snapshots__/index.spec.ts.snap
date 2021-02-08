@@ -4,6 +4,8 @@ exports[`unset-statement member ast: ast 1`] = `
 Object {
   "id": Object {
     "base": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 9,
@@ -17,8 +19,11 @@ Object {
         },
       },
       "name": "var",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 15,
@@ -32,6 +37,8 @@ Object {
       },
     },
     "member": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 15,
@@ -45,10 +52,14 @@ Object {
         },
       },
       "name": "value",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "trailingComments": Array [],
     "type": "Member",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 16,
@@ -61,6 +72,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "UnsetStatement",
 }
 `;
@@ -83,6 +95,8 @@ Object {
     "base": Object {
       "base": Object {
         "base": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 9,
@@ -96,8 +110,11 @@ Object {
             },
           },
           "name": "req",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 14,
@@ -111,6 +128,8 @@ Object {
           },
         },
         "member": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 14,
@@ -124,10 +143,14 @@ Object {
             },
           },
           "name": "http",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "trailingComments": Array [],
         "type": "Member",
       },
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 21,
@@ -141,6 +164,8 @@ Object {
         },
       },
       "member": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 21,
@@ -154,10 +179,14 @@ Object {
           },
         },
         "name": "Cookie",
+        "trailingComments": Array [],
         "type": "Identifier",
       },
+      "trailingComments": Array [],
       "type": "Member",
     },
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 32,
@@ -171,6 +200,8 @@ Object {
       },
     },
     "name": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 32,
@@ -184,10 +215,14 @@ Object {
         },
       },
       "name": "session_id",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "trailingComments": Array [],
     "type": "ValuePair",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 33,
@@ -200,6 +235,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "UnsetStatement",
 }
 `;
@@ -229,6 +265,8 @@ Array [
 exports[`unset-statement variable ast: ast 1`] = `
 Object {
   "id": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 11,
@@ -242,8 +280,11 @@ Object {
       },
     },
     "name": "value",
+    "trailingComments": Array [],
     "type": "Identifier",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 12,
@@ -256,6 +297,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "UnsetStatement",
 }
 `;

@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`statement basic ast: ast 1`] = `
+Object {
+  "body": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
+    "loc": Object {
+      "end": Object {
+        "column": 4,
+        "line": 2,
+        "offset": 13,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 2,
+        "offset": 10,
+      },
+    },
+    "name": "stmt",
+    "trailingComments": Array [],
+    "type": "Identifier",
+  },
+  "innerComments": Array [],
+  "leadingComments": Array [
+    Object {
+      "loc": Object {
+        "end": Object {
+          "column": 9,
+          "line": 1,
+          "offset": 8,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "CommentLine",
+      "value": "# comment",
+    },
+  ],
+  "loc": Object {
+    "end": Object {
+      "column": 5,
+      "line": 2,
+      "offset": 14,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 2,
+      "offset": 10,
+    },
+  },
+  "trailingComments": Array [],
+  "type": "ExpressionStatement",
+}
+`;
+
+exports[`statement basic format: format 1`] = `stmt;`;
+
+exports[`statement basic token 1`] = `
+Array [
+  # comment,
+  stmt,
+  ;,
+]
+`;
+
+exports[`statement multi_comments ast: ast 1`] = `
+Object {
+  "body": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
+    "loc": Object {
+      "end": Object {
+        "column": 4,
+        "line": 4,
+        "offset": 33,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 4,
+        "offset": 30,
+      },
+    },
+    "name": "stmt",
+    "trailingComments": Array [],
+    "type": "Identifier",
+  },
+  "innerComments": Array [],
+  "leadingComments": Array [
+    Object {
+      "loc": Object {
+        "end": Object {
+          "column": 9,
+          "line": 3,
+          "offset": 28,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 3,
+          "offset": 20,
+        },
+      },
+      "type": "CommentLine",
+      "value": "# comment",
+    },
+    Object {
+      "loc": Object {
+        "end": Object {
+          "column": 9,
+          "line": 2,
+          "offset": 18,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 2,
+          "offset": 10,
+        },
+      },
+      "type": "CommentLine",
+      "value": "# comment",
+    },
+    Object {
+      "loc": Object {
+        "end": Object {
+          "column": 9,
+          "line": 1,
+          "offset": 8,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "type": "CommentLine",
+      "value": "# comment",
+    },
+  ],
+  "loc": Object {
+    "end": Object {
+      "column": 5,
+      "line": 4,
+      "offset": 34,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 4,
+      "offset": 30,
+    },
+  },
+  "trailingComments": Array [],
+  "type": "ExpressionStatement",
+}
+`;
+
+exports[`statement multi_comments format: format 1`] = `stmt;`;
+
+exports[`statement multi_comments token 1`] = `
+Array [
+  # comment,
+  # comment,
+  # comment,
+  stmt,
+  ;,
+]
+`;

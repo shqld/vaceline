@@ -3,6 +3,8 @@
 exports[`unary-expression boolean_literal ast: ast 1`] = `
 Object {
   "argument": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 5,
@@ -15,9 +17,12 @@ Object {
         "offset": 1,
       },
     },
+    "trailingComments": Array [],
     "type": "BooleanLiteral",
     "value": "true",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 5,
@@ -31,6 +36,7 @@ Object {
     },
   },
   "operator": "!",
+  "trailingComments": Array [],
   "type": "UnaryExpression",
 }
 `;
@@ -47,6 +53,8 @@ Array [
 exports[`unary-expression variable ast: ast 1`] = `
 Object {
   "argument": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 10,
@@ -60,8 +68,11 @@ Object {
       },
     },
     "name": "condition",
+    "trailingComments": Array [],
     "type": "Identifier",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 10,
@@ -75,6 +86,7 @@ Object {
     },
   },
   "operator": "!",
+  "trailingComments": Array [],
   "type": "UnaryExpression",
 }
 `;

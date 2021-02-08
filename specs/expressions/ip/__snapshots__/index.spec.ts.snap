@@ -2,6 +2,8 @@
 
 exports[`ip 6to4_mapping_1 ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 18,
@@ -14,6 +16,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "StringLiteral",
   "value": "\\"2002:c000:0204::\\"",
 }
@@ -29,6 +32,8 @@ Array [
 
 exports[`ip 6to4_mapping_2 ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 18,
@@ -41,6 +46,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "StringLiteral",
   "value": "\\"::FFFF:192.0.2.4\\"",
 }
@@ -56,6 +62,8 @@ Array [
 
 exports[`ip 6to4_mapping_3 ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 5,
@@ -68,6 +76,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "StringLiteral",
   "value": "\\"::1\\"",
 }
@@ -92,6 +101,8 @@ Invalid ip address(IPv6 prefix length must be between 0 and 128)
 
 exports[`ip ipv4 ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 11,
@@ -104,6 +115,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "StringLiteral",
   "value": "\\"192.0.2.0\\"",
 }
@@ -120,6 +132,8 @@ Array [
 exports[`ip ipv4_with_cidr ast: ast 1`] = `
 Object {
   "cidr": 16,
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 14,
@@ -132,6 +146,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "Ip",
   "value": "192.0.2.0",
 }
@@ -157,6 +172,8 @@ Invalid ip address(IPv4 prefix length must be between 0 and 32)
 
 exports[`ip ipv6 ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 13,
@@ -169,6 +186,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "StringLiteral",
   "value": "\\"2001:db8::1\\"",
 }
@@ -185,6 +203,8 @@ Array [
 exports[`ip ipv6_with_cidr ast: ast 1`] = `
 Object {
   "cidr": 16,
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 16,
@@ -197,6 +217,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "Ip",
   "value": "2001:db8::1",
 }
@@ -214,6 +235,8 @@ Array [
 
 exports[`ip localhost ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 11,
@@ -226,6 +249,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "StringLiteral",
   "value": "\\"localhost\\"",
 }
@@ -249,6 +273,8 @@ Invalid ip address(A prefix length is not supported for \`localhost\`)
 
 exports[`ip unspecified_address ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 4,
@@ -261,6 +287,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "StringLiteral",
   "value": "\\"::\\"",
 }

@@ -2,6 +2,8 @@
 
 exports[`boolean-literal false ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 5,
@@ -14,6 +16,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "BooleanLiteral",
   "value": "false",
 }
@@ -29,6 +32,8 @@ Array [
 
 exports[`boolean-literal true ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 4,
@@ -41,6 +46,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "BooleanLiteral",
   "value": "true",
 }

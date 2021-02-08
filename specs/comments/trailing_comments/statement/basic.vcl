@@ -1,0 +1,2 @@
+# leading comments
+stmt;

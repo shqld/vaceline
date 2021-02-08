@@ -2,6 +2,8 @@
 
 exports[`include-statement basic ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 27,
@@ -15,6 +17,8 @@ Object {
     },
   },
   "module": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 26,
@@ -27,9 +31,11 @@ Object {
         "offset": 8,
       },
     },
+    "trailingComments": Array [],
     "type": "StringLiteral",
     "value": "\\"external_library\\"",
   },
+  "trailingComments": Array [],
   "type": "IncludeStatement",
 }
 `;

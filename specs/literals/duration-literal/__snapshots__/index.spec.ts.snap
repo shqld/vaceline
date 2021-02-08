@@ -2,6 +2,8 @@
 
 exports[`duration-literal day ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 2,
@@ -14,6 +16,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "DurationLiteral",
   "value": "1d",
 }
@@ -30,6 +33,8 @@ Array [
 
 exports[`duration-literal milli_second ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 3,
@@ -42,6 +47,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "DurationLiteral",
   "value": "1ms",
 }
@@ -58,6 +64,8 @@ Array [
 
 exports[`duration-literal minute ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 3,
@@ -71,6 +79,7 @@ Object {
     },
   },
   "name": "min",
+  "trailingComments": Array [],
   "type": "Identifier",
 }
 `;
@@ -85,6 +94,8 @@ Array [
 
 exports[`duration-literal second ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 2,
@@ -97,6 +108,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "DurationLiteral",
   "value": "1s",
 }
@@ -113,6 +125,8 @@ Array [
 
 exports[`duration-literal with_space_between ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 5,
@@ -125,6 +139,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "DurationLiteral",
   "value": "1m",
 }
@@ -141,6 +156,8 @@ Array [
 
 exports[`duration-literal year ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 2,
@@ -153,6 +170,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "DurationLiteral",
   "value": "1y",
 }

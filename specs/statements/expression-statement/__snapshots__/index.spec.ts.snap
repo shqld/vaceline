@@ -5,6 +5,8 @@ Object {
   "body": Object {
     "args": Array [
       Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 6,
@@ -18,10 +20,13 @@ Object {
           },
         },
         "name": "a",
+        "trailingComments": Array [],
         "type": "Identifier",
       },
     ],
     "callee": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 4,
@@ -35,8 +40,11 @@ Object {
         },
       },
       "name": "func",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 7,
@@ -49,8 +57,11 @@ Object {
         "offset": 0,
       },
     },
+    "trailingComments": Array [],
     "type": "FunCallExpression",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 8,
@@ -63,6 +74,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "ExpressionStatement",
 }
 `;
@@ -88,6 +100,8 @@ Array [
 exports[`expression-statement with_identifier ast: ast 1`] = `
 Object {
   "body": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 8,
@@ -101,8 +115,11 @@ Object {
       },
     },
     "name": "vaceline",
+    "trailingComments": Array [],
     "type": "Identifier",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 9,
@@ -115,6 +132,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "ExpressionStatement",
 }
 `;
@@ -131,6 +149,8 @@ Array [
 exports[`expression-statement with_literal ast: ast 1`] = `
 Object {
   "body": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 8,
@@ -143,9 +163,12 @@ Object {
         "offset": 0,
       },
     },
+    "trailingComments": Array [],
     "type": "StringLiteral",
     "value": "\\"string\\"",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 9,
@@ -158,6 +181,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "ExpressionStatement",
 }
 `;
@@ -176,6 +200,8 @@ Object {
   "body": Object {
     "base": Object {
       "base": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 3,
@@ -189,8 +215,11 @@ Object {
           },
         },
         "name": "req",
+        "trailingComments": Array [],
         "type": "Identifier",
       },
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 8,
@@ -204,6 +233,8 @@ Object {
         },
       },
       "member": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 8,
@@ -217,10 +248,14 @@ Object {
           },
         },
         "name": "http",
+        "trailingComments": Array [],
         "type": "Identifier",
       },
+      "trailingComments": Array [],
       "type": "Member",
     },
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 17,
@@ -234,6 +269,8 @@ Object {
       },
     },
     "member": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -247,10 +284,14 @@ Object {
         },
       },
       "name": "Vaceline",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "trailingComments": Array [],
     "type": "Member",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 18,
@@ -263,6 +304,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "ExpressionStatement",
 }
 `;

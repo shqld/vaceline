@@ -1,10 +1,11 @@
+import { Comment } from '../nodes'
 import { Token } from './tokenizer'
 
 export class TokenReader {
   private tokens: Array<Token>
   private cur: number
 
-  comments: Array<Token>
+  comments: Array<Comment>
 
   constructor(tokens: Array<Token>) {
     this.tokens = tokens
@@ -25,7 +26,7 @@ export class TokenReader {
     return this.cur
   }
 
-  get(cur: number): Token | null {
+  getToken(cur: number): Token | null {
     return this.tokens[cur]
   }
 
@@ -37,7 +38,11 @@ export class TokenReader {
     }
 
     if (token.type === 'comment') {
-      this.comments.push(token)
+      this.comments.push({
+        type: 'CommentLine',
+        value: token.value,
+        loc: token.loc,
+      })
       return this.read()
     }
 
@@ -50,7 +55,11 @@ export class TokenReader {
     if (!token) return undefined
 
     if (token.type === 'comment') {
-      this.comments.push(token)
+      this.comments.push({
+        type: 'CommentLine',
+        value: token.value,
+        loc: token.loc,
+      })
       this.take()
       return this.peek()
     }

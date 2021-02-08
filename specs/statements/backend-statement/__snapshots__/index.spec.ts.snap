@@ -4,7 +4,9 @@ exports[`backend-statement index ast: ast 1`] = `
 Object {
   "body": Array [
     Object {
+      "innerComments": Array [],
       "key": "connect_timeout",
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 24,
@@ -17,8 +19,11 @@ Object {
           "offset": 29,
         },
       },
+      "trailingComments": Array [],
       "type": "BackendDefinition",
       "value": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 23,
@@ -31,12 +36,15 @@ Object {
             "offset": 48,
           },
         },
+        "trailingComments": Array [],
         "type": "DurationLiteral",
         "value": "1s",
       },
     },
     Object {
+      "innerComments": Array [],
       "key": "dynamic",
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 18,
@@ -49,8 +57,11 @@ Object {
           "offset": 54,
         },
       },
+      "trailingComments": Array [],
       "type": "BackendDefinition",
       "value": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 17,
@@ -63,12 +74,15 @@ Object {
             "offset": 65,
           },
         },
+        "trailingComments": Array [],
         "type": "BooleanLiteral",
         "value": "true",
       },
     },
     Object {
+      "innerComments": Array [],
       "key": "port",
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 16,
@@ -81,8 +95,11 @@ Object {
           "offset": 73,
         },
       },
+      "trailingComments": Array [],
       "type": "BackendDefinition",
       "value": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 15,
@@ -95,12 +112,15 @@ Object {
             "offset": 81,
           },
         },
+        "trailingComments": Array [],
         "type": "StringLiteral",
         "value": "\\"443\\"",
       },
     },
     Object {
+      "innerComments": Array [],
       "key": "host",
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 24,
@@ -113,8 +133,11 @@ Object {
           "offset": 90,
         },
       },
+      "trailingComments": Array [],
       "type": "BackendDefinition",
       "value": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 23,
@@ -127,12 +150,15 @@ Object {
             "offset": 98,
           },
         },
+        "trailingComments": Array [],
         "type": "StringLiteral",
         "value": "\\"vaceline.io\\"",
       },
     },
     Object {
+      "innerComments": Array [],
       "key": "first_byte_timeout",
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 27,
@@ -145,8 +171,11 @@ Object {
           "offset": 115,
         },
       },
+      "trailingComments": Array [],
       "type": "BackendDefinition",
       "value": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 26,
@@ -159,12 +188,15 @@ Object {
             "offset": 137,
           },
         },
+        "trailingComments": Array [],
         "type": "DurationLiteral",
         "value": "5s",
       },
     },
     Object {
+      "innerComments": Array [],
       "key": "max_connections",
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 25,
@@ -177,8 +209,11 @@ Object {
           "offset": 143,
         },
       },
+      "trailingComments": Array [],
       "type": "BackendDefinition",
       "value": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 24,
@@ -191,12 +226,15 @@ Object {
             "offset": 162,
           },
         },
+        "trailingComments": Array [],
         "type": "NumericLiteral",
         "value": "100",
       },
     },
     Object {
+      "innerComments": Array [],
       "key": "between_bytes_timeout",
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 31,
@@ -209,8 +247,11 @@ Object {
           "offset": 169,
         },
       },
+      "trailingComments": Array [],
       "type": "BackendDefinition",
       "value": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 30,
@@ -223,12 +264,15 @@ Object {
             "offset": 194,
           },
         },
+        "trailingComments": Array [],
         "type": "DurationLiteral",
         "value": "10s",
       },
     },
     Object {
+      "innerComments": Array [],
       "key": "ssl",
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 14,
@@ -241,8 +285,11 @@ Object {
           "offset": 201,
         },
       },
+      "trailingComments": Array [],
       "type": "BackendDefinition",
       "value": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 13,
@@ -255,12 +302,15 @@ Object {
             "offset": 208,
           },
         },
+        "trailingComments": Array [],
         "type": "BooleanLiteral",
         "value": "true",
       },
     },
     Object {
+      "innerComments": Array [],
       "key": "probe",
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 3,
@@ -273,10 +323,13 @@ Object {
           "offset": 216,
         },
       },
+      "trailingComments": Array [],
       "type": "BackendDefinition",
       "value": Array [
         Object {
+          "innerComments": Array [],
           "key": "request",
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 118,
@@ -289,10 +342,13 @@ Object {
               "offset": 231,
             },
           },
+          "trailingComments": Array [],
           "type": "BackendDefinition",
           "value": Object {
             "body": Array [
               Object {
+                "innerComments": Array [],
+                "leadingComments": Array [],
                 "loc": Object {
                   "end": Object {
                     "column": 42,
@@ -305,10 +361,13 @@ Object {
                     "offset": 242,
                   },
                 },
+                "trailingComments": Array [],
                 "type": "StringLiteral",
                 "value": "\\"GET /healthcheck HTTP/1.1\\"",
               },
               Object {
+                "innerComments": Array [],
+                "leadingComments": Array [],
                 "loc": Object {
                   "end": Object {
                     "column": 62,
@@ -321,10 +380,13 @@ Object {
                     "offset": 270,
                   },
                 },
+                "trailingComments": Array [],
                 "type": "StringLiteral",
                 "value": "\\"Host: vaceline.io\\"",
               },
               Object {
+                "innerComments": Array [],
+                "leadingComments": Array [],
                 "loc": Object {
                   "end": Object {
                     "column": 82,
@@ -337,10 +399,13 @@ Object {
                     "offset": 290,
                   },
                 },
+                "trailingComments": Array [],
                 "type": "StringLiteral",
                 "value": "\\"Connection: close\\"",
               },
               Object {
+                "innerComments": Array [],
+                "leadingComments": Array [],
                 "loc": Object {
                   "end": Object {
                     "column": 117,
@@ -353,10 +418,13 @@ Object {
                     "offset": 310,
                   },
                 },
+                "trailingComments": Array [],
                 "type": "StringLiteral",
                 "value": "\\"User-Agent: Vaceline healthcheck\\"",
               },
             ],
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 117,
@@ -369,11 +437,14 @@ Object {
                 "offset": 242,
               },
             },
+            "trailingComments": Array [],
             "type": "ConcatExpression",
           },
         },
         Object {
+          "innerComments": Array [],
           "key": "threshold",
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 19,
@@ -386,8 +457,11 @@ Object {
               "offset": 350,
             },
           },
+          "trailingComments": Array [],
           "type": "BackendDefinition",
           "value": Object {
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 18,
@@ -400,12 +474,15 @@ Object {
                 "offset": 363,
               },
             },
+            "trailingComments": Array [],
             "type": "NumericLiteral",
             "value": "1",
           },
         },
         Object {
+          "innerComments": Array [],
           "key": "window",
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 16,
@@ -418,8 +495,11 @@ Object {
               "offset": 370,
             },
           },
+          "trailingComments": Array [],
           "type": "BackendDefinition",
           "value": Object {
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 15,
@@ -432,12 +512,15 @@ Object {
                 "offset": 380,
               },
             },
+            "trailingComments": Array [],
             "type": "NumericLiteral",
             "value": "2",
           },
         },
         Object {
+          "innerComments": Array [],
           "key": "timeout",
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 19,
@@ -450,8 +533,11 @@ Object {
               "offset": 387,
             },
           },
+          "trailingComments": Array [],
           "type": "BackendDefinition",
           "value": Object {
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 18,
@@ -464,12 +550,15 @@ Object {
                 "offset": 398,
               },
             },
+            "trailingComments": Array [],
             "type": "DurationLiteral",
             "value": "10s",
           },
         },
         Object {
+          "innerComments": Array [],
           "key": "initial",
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 17,
@@ -482,8 +571,11 @@ Object {
               "offset": 407,
             },
           },
+          "trailingComments": Array [],
           "type": "BackendDefinition",
           "value": Object {
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 16,
@@ -496,12 +588,15 @@ Object {
                 "offset": 418,
               },
             },
+            "trailingComments": Array [],
             "type": "NumericLiteral",
             "value": "1",
           },
         },
         Object {
+          "innerComments": Array [],
           "key": "expected_response",
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 29,
@@ -514,8 +609,11 @@ Object {
               "offset": 425,
             },
           },
+          "trailingComments": Array [],
           "type": "BackendDefinition",
           "value": Object {
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 28,
@@ -528,12 +626,15 @@ Object {
                 "offset": 446,
               },
             },
+            "trailingComments": Array [],
             "type": "NumericLiteral",
             "value": "200",
           },
         },
         Object {
+          "innerComments": Array [],
           "key": "interval",
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 20,
@@ -546,8 +647,11 @@ Object {
               "offset": 455,
             },
           },
+          "trailingComments": Array [],
           "type": "BackendDefinition",
           "value": Object {
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 19,
@@ -560,6 +664,7 @@ Object {
                 "offset": 467,
               },
             },
+            "trailingComments": Array [],
             "type": "DurationLiteral",
             "value": "60s",
           },
@@ -568,6 +673,8 @@ Object {
     },
   ],
   "id": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 24,
@@ -581,8 +688,11 @@ Object {
       },
     },
     "name": "vaceline_backend",
+    "trailingComments": Array [],
     "type": "Identifier",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 1,
@@ -595,6 +705,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "BackendStatement",
 }
 `;
