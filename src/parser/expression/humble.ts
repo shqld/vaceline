@@ -1,5 +1,5 @@
 import { Parser } from '..'
-import { Located, Location, Expression } from '../../nodes'
+import { Located, Expression } from '../../nodes'
 import { Token } from '../tokenizer'
 import { isToken } from '../../utils/token'
 import { createError } from '../create-error'
@@ -10,56 +10,55 @@ import { parseId } from './identifier'
 
 export function parseHumbleExpr(
   p: Parser,
-  token: Token = p.read(),
-  loc: Location = p.startNode()
+  token: Token = p.read()
 ): Located<Expression> {
   const literal = parseLiteral(p, token)
 
   if (literal) return literal
 
   if (token.type === 'ident') {
-    const ident = parseId(p, token)
+    return p.parseNode(token, () => {
+      const id = parseId(p, token)
 
-    if (isToken(p.peek(), 'symbol', '(')) {
-      p.take()
+      if (isToken(p.peek(), 'symbol', '(')) {
+        p.take() // skip '(' symbol
 
-      const args = parseCompound(p, parseExpr, { until: ')', delimiter: ',' })
+        const args = parseCompound(p, parseExpr, { until: ')', delimiter: ',' })
 
-      return p.finishNode({
-        type: 'FunCallExpression',
-        callee: ident,
-        args,
-        loc,
-      })
-    }
+        return {
+          type: 'FunCallExpression',
+          callee: id,
+          args,
+        }
+      }
 
-    return ident
+      return id
+    })
   }
 
-  if (token.type === 'symbol') {
-    if (token.value === '(') {
+  if (token.type === 'symbol' && token.value === '(') {
+    return p.parseNode(token, () => {
       const body = parseExpr(p)
       p.validateToken(p.read(), 'symbol', ')')
 
-      return p.finishNode({ type: 'BooleanExpression', body, loc })
-    }
+      return { type: 'BooleanExpression', body }
+    })
   }
 
-  if (token.type === 'operator') {
-    if (token.value === '!') {
-      return p.finishNode({
+  if (token.type === 'operator' && token.value === '!') {
+    return p.parseNode(token, () => {
+      return {
         type: 'UnaryExpression',
         operator: token.value,
         argument: parseExpr(p),
-        loc,
-      })
-    }
+      }
+    })
   }
 
   throw createError(
     p.source,
     'Expression not implemented yet',
-    loc.start,
-    loc.end
+    token.loc.start,
+    token.loc.end
   )
 }
