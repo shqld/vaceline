@@ -8,12 +8,12 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
     />
-    <script defer type="module" src="./dist/index.js"></script>
+    <script defer type="module" src="./main.js"></script>
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=UA-155321166-1"
     ></script>
-    <link rel="preload" href="./dist/worker.js" as="script" />
+    <link rel="preload" href="./worker.js" as="script" />
     <script>
       window.dataLayer = window.dataLayer || []
       function gtag() {
@@ -22,28 +22,41 @@
       gtag('js', new Date())
       gtag('config', 'UA-155321166-1')
     </script>
-    <title>Vaceline</title>
+    <title>Playground -- Vaceline</title>
   </head>
   <body>
     <main id="main" class="section">
-      <h1 class="title">
-        <a
-          href="https://shqld.github.io/vaceline"
-          style="vertical-align: top; margin-right: 1rem;"
-        >
-          Vaceline
+      <h1
+        id="title"
+        class="title"
+        style="display: flex; justify-content: space-between;"
+      >
+        <a href="https://shqld.github.io/vaceline">
+          Vaceline Playground
         </a>
-        <a
-          href="https://github.com/shqld/vaceline"
-          style="vertical-align: top;"
-        >
-          <img src="./i-github.png" alt="vaceline" style="height: 2rem;" />
-        </a>
+        <div>
+          <button data-share>
+            <img
+              src="./i-share.png"
+              alt="link to share"
+              width="50"
+              height="50"
+            >
+          </button>
+          <a href="https://github.com/shqld/vaceline">
+            <img
+              src="./i-github.png"
+              alt="vaceline github"
+              width="50"
+              height="50"
+            >
+          </a>
+        </div>
       </h1>
 
       <div class="columns">
         <div class="column">
-          <div id="source" class="container">
+          <vaceline-source-panel id="source" class="container">
             <h2 class="subtitle">source</h2>
             <textarea
               class="textarea is-primary is-family-code"
@@ -52,9 +65,9 @@
             ></textarea>
             <button class="button">Transpile</button>
           </div>
-        </div>
+        </vaceline-source-panel>
 
-        <div class="column">
+        <vaceline-result-panel class="column">
           <div id="result" class="container">
             <h2 class="subtitle">result</h2>
             <textarea
@@ -65,11 +78,13 @@
               readonly
             ></textarea>
             <div id="render" class="buttons has-addons">
-              <button class="button is-info is-selected">Code</button>
-              <button class="button">AST</button>
+              <button class="button is-info is-selected" data-type="code">
+                Code
+              </button>
+              <button class="button" data-type="ast">AST</button>
             </div>
           </div>
-        </div>
+        </vaceline-result-panel>
       </div>
     </main>
   </body>
