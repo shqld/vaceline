@@ -3,7 +3,6 @@ import {
   DeclareValueType,
   DirectorStatement,
   IfStatement,
-  Location,
   ReturnActionName,
   Statement,
   TableDefinition,
@@ -23,337 +22,377 @@ import { parseId } from '../expression/identifier'
 const ensureSemi = (p: Parser) => p.validateToken(p.read(), 'symbol', ';')
 
 export function parseStmt(p: Parser, token: Token = p.read()): Statement {
-  const loc = p.startNode()
-
   if (!keywords.has(token.value)) {
-    const body = parseExpr(p, token)
+    return p.parseNode(token, () => {
+      const body = parseExpr(p, token)
 
-    ensureSemi(p)
+      ensureSemi(p)
 
-    return p.finishNode({ type: 'ExpressionStatement', body, loc })
+      return { type: 'ExpressionStatement', body }
+    })
   }
 
   if (token.value === 'set' || token.value === 'add') {
-    const left = p.validateNode(
-      parseExpr(p),
-      'Identifier',
-      'Member',
-      'ValuePair'
-    )
-    const operator = p.validateToken(p.read(), 'operator').value
-    const right = parseExpr(p)
+    return p.parseNode(token, () => {
+      const left = p.validateNode(
+        parseExpr(p),
+        'Identifier',
+        'Member',
+        'ValuePair'
+      )
+      const operator = p.validateToken(p.read(), 'operator').value
+      const right = parseExpr(p)
 
-    ensureSemi(p)
+      ensureSemi(p)
 
-    const type = token.value === 'add' ? 'AddStatement' : 'SetStatement'
+      const type = token.value === 'add' ? 'AddStatement' : 'SetStatement'
 
-    return p.finishNode({ type, left, right, operator, loc })
+      return { type, left, right, operator }
+    })
   }
 
   if (token.value === 'unset') {
-    const id = p.validateNode(parseExpr(p), 'Identifier', 'Member', 'ValuePair')
+    return p.parseNode(token, () => {
+      const id = p.validateNode(
+        parseExpr(p),
+        'Identifier',
+        'Member',
+        'ValuePair'
+      )
 
-    ensureSemi(p)
+      ensureSemi(p)
 
-    return p.finishNode({ type: 'UnsetStatement', id, loc })
+      return { type: 'UnsetStatement', id }
+    })
   }
 
   if (token.value === 'include') {
-    const module = p.validateNode(parseExpr(p), 'StringLiteral')
+    return p.parseNode(token, () => {
+      const module = p.validateNode(parseExpr(p), 'StringLiteral')
 
-    ensureSemi(p)
+      ensureSemi(p)
 
-    return p.finishNode({ type: 'IncludeStatement', module, loc })
+      return { type: 'IncludeStatement', module }
+    })
   }
 
   if (token.value === 'import') {
-    const module = p.validateNode(parseExpr(p), 'Identifier')
+    return p.parseNode(token, () => {
+      const module = p.validateNode(parseExpr(p), 'Identifier')
 
-    ensureSemi(p)
+      ensureSemi(p)
 
-    return p.finishNode({ type: 'ImportStatement', module, loc })
+      return { type: 'ImportStatement', module }
+    })
   }
 
   if (token.value === 'call') {
-    const subroutine = p.validateNode(parseExpr(p), 'Identifier')
+    return p.parseNode(token, () => {
+      const subroutine = p.validateNode(parseExpr(p), 'Identifier')
 
-    ensureSemi(p)
+      ensureSemi(p)
 
-    return p.finishNode({ type: 'CallStatement', subroutine, loc })
+      return { type: 'CallStatement', subroutine }
+    })
   }
 
   if (token.value === 'declare') {
-    p.validateToken(p.read(), 'ident', 'local')
+    return p.parseNode(token, () => {
+      p.validateToken(p.read(), 'ident', 'local')
 
-    const id = p.validateNode(parseId(p, p.read()), 'Identifier', 'Member')
+      const id = p.validateNode(parseId(p, p.read()), 'Identifier', 'Member')
 
-    const valueType = p.validateToken(p.read(), 'ident')
-      .value as DeclareValueType
+      const valueType = p.validateToken(p.read(), 'ident')
+        .value as DeclareValueType
 
-    ensureSemi(p)
+      ensureSemi(p)
 
-    return p.finishNode({ type: 'DeclareStatement', id, valueType, loc })
+      return { type: 'DeclareStatement', id, valueType }
+    })
   }
 
   if (token.value === 'return') {
-    let returnActionToken: Token
+    return p.parseNode(token, () => {
+      let returnActionToken: Token
 
-    // `()` can be skipped
-    if (isToken(p.peek(), 'symbol', '(')) {
-      p.take()
+      // `()` can be skipped
+      if (isToken(p.peek(), 'symbol', '(')) {
+        p.take()
 
-      returnActionToken = p.read()
+        returnActionToken = p.read()
 
-      p.validateToken(p.read(), 'symbol', ')')
-    } else {
-      returnActionToken = p.read()
-    }
+        p.validateToken(p.read(), 'symbol', ')')
+      } else {
+        returnActionToken = p.read()
+      }
 
-    if (!returnActions.has(returnActionToken.value)) {
-      throw createError(
-        p.source,
-        'return action should be one of ' +
-          Array.from(returnActions.values()).join(', '),
-        returnActionToken.loc.start,
-        returnActionToken.loc.end
-      )
-    }
+      if (!returnActions.has(returnActionToken.value)) {
+        throw createError(
+          p.source,
+          'return action should be one of ' +
+            Array.from(returnActions.values()).join(', '),
+          returnActionToken.loc.start,
+          returnActionToken.loc.end
+        )
+      }
 
-    const action = returnActionToken.value as ReturnActionName
+      const action = returnActionToken.value as ReturnActionName
 
-    ensureSemi(p)
+      ensureSemi(p)
 
-    return p.finishNode({ type: 'ReturnStatement', action, loc })
+      return { type: 'ReturnStatement', action }
+    })
   }
 
   if (token.value === 'error') {
-    const status = Number(p.validateToken(p.read(), 'numeric').value)
+    return p.parseNode(token, () => {
+      const status = Number(p.validateToken(p.read(), 'numeric').value)
 
-    // `message` can be void
-    if (isToken(p.peek(), 'symbol', ';')) {
-      p.take()
+      // `message` can be void
+      if (isToken(p.peek(), 'symbol', ';')) {
+        p.take()
 
-      return p.finishNode({
-        type: 'ErrorStatement',
-        status,
-        message: undefined,
-        loc,
-      })
-    }
+        return {
+          type: 'ErrorStatement',
+          status,
+          message: undefined,
+        }
+      }
 
-    const message = parseExpr(p)
+      const message = parseExpr(p)
 
-    ensureSemi(p)
+      ensureSemi(p)
 
-    return p.finishNode({ type: 'ErrorStatement', status, message, loc })
+      return { type: 'ErrorStatement', status, message }
+    })
   }
 
   if (token.value === 'restart') {
-    ensureSemi(p)
+    return p.parseNode(token, () => {
+      ensureSemi(p)
 
-    return p.finishNode({ type: 'RestartStatement', loc })
+      return { type: 'RestartStatement' }
+    })
   }
 
   if (token.value === 'synthetic') {
-    const response = parseExpr(p)
+    return p.parseNode(token, () => {
+      const response = parseExpr(p)
 
-    ensureSemi(p)
+      ensureSemi(p)
 
-    return p.finishNode({ type: 'SyntheticStatement', response, loc })
+      return { type: 'SyntheticStatement', response }
+    })
   }
 
   if (token.value === 'log') {
-    const content = parseExpr(p)
+    return p.parseNode(token, () => {
+      const content = parseExpr(p)
 
-    ensureSemi(p)
+      ensureSemi(p)
 
-    return p.finishNode({ type: 'LogStatement', content, loc })
+      return { type: 'LogStatement', content }
+    })
   }
 
   if (token.value === 'if') {
-    return parseIfStatement(p, loc)
+    return parseIfStatement(p, token)
   }
 
   if (token.value === 'sub') {
-    const id = p.validateNode(parseExpr(p, p.read(), true), 'Identifier')
-    p.validateToken(p.read(), 'symbol', '{')
+    return p.parseNode(token, () => {
+      const id = p.validateNode(parseExpr(p, p.read(), true), 'Identifier')
+      p.validateToken(p.read(), 'symbol', '{')
 
-    const body = parseCompound(p, parseStmt, { until: '}' })
+      const body = parseCompound(p, parseStmt, { until: '}' })
 
-    return p.finishNode({ type: 'SubroutineStatement', id, body, loc })
+      return { type: 'SubroutineStatement', id, body }
+    })
   }
 
   if (token.value === 'acl') {
-    const id = p.validateNode(parseExpr(p, p.read(), true), 'Identifier')
-    p.validateToken(p.read(), 'symbol', '{')
+    return p.parseNode(token, () => {
+      const id = p.validateNode(parseExpr(p, p.read(), true), 'Identifier')
+      p.validateToken(p.read(), 'symbol', '{')
 
-    const body = parseCompound(p, parseIp, { until: '}', semi: true })
+      const body = parseCompound(p, parseIp, { until: '}', semi: true })
 
-    return p.finishNode({ type: 'AclStatement', id, body, loc })
+      return { type: 'AclStatement', id, body }
+    })
   }
 
   if (token.value === 'backend') {
-    const id = p.validateNode(parseExpr(p, p.read(), true), 'Identifier')
+    return p.parseNode(token, () => {
+      const id = p.validateNode(parseExpr(p, p.read(), true), 'Identifier')
 
-    p.validateToken(p.read(), 'symbol', '{')
+      p.validateToken(p.read(), 'symbol', '{')
 
-    const body = parseCompound(p, parseBackendDef, { until: '}' })
+      const body = parseCompound(p, parseBackendDef, { until: '}' })
 
-    return p.finishNode({ type: 'BackendStatement', id, body, loc })
+      return { type: 'BackendStatement', id, body }
+    })
   }
 
   if (token.value === 'table') {
-    return parseTableStatement(p, loc)
+    return parseTableStatement(p, token)
   }
 
   if (token.value === 'director') {
-    return parseDirectorStatement(p, loc)
+    return parseDirectorStatement(p, token)
   }
 
   throw createError(
     p.source,
     'Statement not implemented yet',
-    loc.start,
-    loc.end
+    token.loc.start,
+    token.loc.end
   )
 }
 
 function parseBackendDef(p: Parser, token = p.read()): BackendDefinition {
-  const loc = p.startNode()
+  return p.parseNode(token, () => {
+    p.validateToken(token, 'symbol', '.')
+    const key = p.validateNode(parseExpr(p), 'Identifier').name
+    p.validateToken(p.read(), 'operator', '=')
 
-  p.validateToken(token, 'symbol', '.')
-  const key = p.validateNode(parseExpr(p), 'Identifier').name
-  p.validateToken(p.read(), 'operator', '=')
+    let value
 
-  let value
-
-  if (isToken(p.peek(), 'symbol', '{')) {
-    p.take()
-    value = parseCompound(p, parseBackendDef, { until: '}' })
-  } else {
-    value = parseExpr(p)
-    ensureSemi(p)
-  }
-
-  return p.finishNode({ type: 'BackendDefinition', key, value, loc })
-}
-
-function parseIfStatement(p: Parser, loc: Location): IfStatement {
-  p.validateToken(p.read(), 'symbol', '(')
-
-  const test = parseExpr(p)
-
-  p.validateToken(p.read(), 'symbol', ')')
-
-  p.validateToken(p.read(), 'symbol', '{')
-
-  const consequent = parseCompound(p, parseStmt, { until: '}' })
-
-  let alternative: IfStatement | Array<Statement> | undefined = undefined
-
-  const next = p.peek()
-
-  if (isToken(next, 'ident', /elsif|elseif/)) {
-    p.take()
-    alternative = parseIfStatement(p, p.startNode())
-  } else if (isToken(next, 'ident', 'else')) {
-    p.take()
-
-    if (isToken(p.peek(), 'ident', 'if')) {
+    if (isToken(p.peek(), 'symbol', '{')) {
       p.take()
-      alternative = parseIfStatement(p, p.startNode())
+      value = parseCompound(p, parseBackendDef, { until: '}' })
     } else {
-      p.validateToken(p.read(), 'symbol', '{')
-      alternative = parseCompound(p, parseStmt, { until: '}' })
+      value = parseExpr(p)
+      ensureSemi(p)
     }
-  }
 
-  return p.finishNode({
-    type: 'IfStatement',
-    test,
-    consequent,
-    alternative,
-    loc,
+    return { type: 'BackendDefinition', key, value }
   })
 }
 
-function parseTableDef(p: Parser, token: Token): TableDefinition {
-  const loc = p.startNode()
+function parseIfStatement(p: Parser, token: Token = p.read()): IfStatement {
+  return p.parseNode(token, () => {
+    p.validateToken(p.read(), 'symbol', '(')
 
-  const key = p.validateToken(token, 'string').value
+    const test = parseExpr(p)
 
-  p.validateToken(p.read(), 'symbol', ':')
+    p.validateToken(p.read(), 'symbol', ')')
 
-  const value = p.validateToken(p.read(), 'string').value
+    p.validateToken(p.read(), 'symbol', '{')
 
-  if (isToken(p.peek(), 'symbol', ',')) {
-    p.take()
-  }
+    const consequent = parseCompound(p, parseStmt, { until: '}' })
 
-  return p.finishNode({ type: 'TableDefinition', key, value, loc })
-}
+    let alternative: IfStatement | Array<Statement> | undefined = undefined
 
-function parseTableStatement(p: Parser, loc: Location): TableStatement {
-  const id = p.validateNode(parseId(p, p.read()), 'Identifier')
+    const next = p.peek()
 
-  p.validateToken(p.read(), 'symbol', '{')
+    if (isToken(next, 'ident', /elsif|elseif/)) {
+      alternative = parseIfStatement(p, p.read())
+    } else if (isToken(next, 'ident', 'else')) {
+      p.take()
 
-  const body = parseCompound(p, parseTableDef, { until: '}' })
-
-  return p.finishNode({ type: 'TableStatement', id, body, loc })
-}
-
-function parseDirectorStatement(p: Parser, loc: Location): DirectorStatement {
-  const id = p.validateNode(parseId(p), 'Identifier')
-  const directorType = p.validateNode(parseId(p), 'Identifier')
-
-  p.validateToken(p.read(), 'symbol', '{')
-
-  const body = parseCompound(
-    p,
-    (p, token) => {
-      if (token.value === '{') {
-        const attributes = parseCompound(
-          p,
-          (p, token) => {
-            p.validateToken(token, 'symbol', '.')
-            const key = p.read().value
-            p.validateToken(p.read(), 'operator', '=')
-            const value = p.validateNode(parseId(p), 'Identifier').name
-            ensureSemi(p)
-
-            return { key, value }
-          },
-          { until: '}' }
-        )
-
-        const backend = attributes.shift()
-        if (backend?.key !== 'backend')
-          // TODO: use general-purpose validate function
-          throw new Error('No backend name specified')
-
-        return {
-          backend: backend.value,
-          attributes,
-        }
+      if (isToken(p.peek(), 'ident', 'if')) {
+        alternative = parseIfStatement(p, p.read())
+      } else {
+        p.validateToken(p.read(), 'symbol', '{')
+        alternative = parseCompound(p, parseStmt, { until: '}' })
       }
+    }
 
-      p.validateToken(token, 'symbol', '.')
-      const key = p.read().value
-      p.validateToken(p.read(), 'operator', '=')
-      const value = p.read().value
-      ensureSemi(p)
+    return {
+      type: 'IfStatement',
+      test,
+      consequent,
+      alternative,
+    }
+  })
+}
 
-      return { key, value }
-    },
-    { until: '}' }
-  ).filter(Boolean)
+function parseTableDef(p: Parser, token: Token = p.read()): TableDefinition {
+  return p.parseNode(token, () => {
+    const key = p.validateToken(token, 'string').value
 
-  return p.finishNode({
-    type: 'DirectorStatement',
-    id,
-    directorType,
-    body,
-    loc,
+    p.validateToken(p.read(), 'symbol', ':')
+
+    const value = p.validateToken(p.read(), 'string').value
+
+    if (isToken(p.peek(), 'symbol', ',')) {
+      p.take()
+    }
+
+    return { type: 'TableDefinition', key, value }
+  })
+}
+
+function parseTableStatement(
+  p: Parser,
+  token: Token = p.read()
+): TableStatement {
+  return p.parseNode(token, () => {
+    const id = p.validateNode(parseId(p, p.read()), 'Identifier')
+
+    p.validateToken(p.read(), 'symbol', '{')
+
+    const body = parseCompound(p, parseTableDef, { until: '}' })
+
+    return { type: 'TableStatement', id, body }
+  })
+}
+
+function parseDirectorStatement(
+  p: Parser,
+  token: Token = p.read()
+): DirectorStatement {
+  return p.parseNode(token, () => {
+    const id = p.validateNode(parseId(p), 'Identifier')
+    const directorType = p.validateNode(parseId(p), 'Identifier')
+
+    p.validateToken(p.read(), 'symbol', '{')
+
+    const body = parseCompound(
+      p,
+      (p, token) => {
+        if (token.value === '{') {
+          const attributes = parseCompound(
+            p,
+            (p, token) => {
+              p.validateToken(token, 'symbol', '.')
+              const key = p.read().value
+              p.validateToken(p.read(), 'operator', '=')
+              const value = p.validateNode(parseId(p), 'Identifier').name
+              ensureSemi(p)
+
+              return { key, value }
+            },
+            { until: '}' }
+          )
+
+          const backend = attributes.shift()
+          if (backend?.key !== 'backend')
+            // TODO: use general-purpose validate function
+            throw new Error('No backend name specified')
+
+          return {
+            backend: backend.value,
+            attributes,
+          }
+        }
+
+        p.validateToken(token, 'symbol', '.')
+        const key = p.read().value
+        p.validateToken(p.read(), 'operator', '=')
+        const value = p.read().value
+        ensureSemi(p)
+
+        return { key, value }
+      },
+      { until: '}' }
+    ).filter(Boolean)
+
+    return {
+      type: 'DirectorStatement',
+      id,
+      directorType,
+      body,
+    }
   })
 }
