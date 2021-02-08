@@ -97,13 +97,13 @@ Object {
       "loc": Object {
         "end": Object {
           "column": 9,
-          "line": 3,
-          "offset": 28,
+          "line": 1,
+          "offset": 8,
         },
         "start": Object {
           "column": 1,
-          "line": 3,
-          "offset": 20,
+          "line": 1,
+          "offset": 0,
         },
       },
       "type": "CommentLine",
@@ -129,13 +129,13 @@ Object {
       "loc": Object {
         "end": Object {
           "column": 9,
-          "line": 1,
-          "offset": 8,
+          "line": 3,
+          "offset": 28,
         },
         "start": Object {
           "column": 1,
-          "line": 1,
-          "offset": 0,
+          "line": 3,
+          "offset": 20,
         },
       },
       "type": "CommentLine",

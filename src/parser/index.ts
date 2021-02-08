@@ -106,7 +106,7 @@ export class Parser extends TokenReader {
 
     this.comments = this.comments.slice(0, i)
 
-    return leadingComments
+    return leadingComments.reverse()
   }
 
   parseInnerComments(): Array<Comment> {
