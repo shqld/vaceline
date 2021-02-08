@@ -157,13 +157,15 @@ Object {
 `;
 
 exports[`subroutine-statement basic format: format long 1`] = `
-sub vcl_recv {set vaceline = "aaa";
+sub vcl_recv {
+  set vaceline = "aaa";
   set vaceline = "bbb";
 }
 `;
 
 exports[`subroutine-statement basic format: format short 1`] = `
-sub vcl_recv {set vaceline =
+sub vcl_recv {
+  set vaceline =
     "aaa";
   set vaceline =
     "bbb";
@@ -346,7 +348,8 @@ Object {
 `;
 
 exports[`subroutine-statement with_empty_lines format: format long 1`] = `
-sub vcl_recv {set vaceline = "aaa";
+sub vcl_recv {
+  set vaceline = "aaa";
 
 
   set vaceline = "bbb";
@@ -354,7 +357,8 @@ sub vcl_recv {set vaceline = "aaa";
 `;
 
 exports[`subroutine-statement with_empty_lines format: format short 1`] = `
-sub vcl_recv {set vaceline =
+sub vcl_recv {
+  set vaceline =
     "aaa";
 
 

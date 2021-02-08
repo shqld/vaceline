@@ -437,7 +437,7 @@ export const printIfStatement = base((node: d.IfStatement) => {
       ])
     ),
     '{',
-    b.indent(printStatements(node.consequent)),
+    b.indent(b.concat([b.hardline, printStatements(node.consequent)])),
     b.hardline,
     '}',
   ]
@@ -446,7 +446,7 @@ export const printIfStatement = base((node: d.IfStatement) => {
     const alternative: Array<Doc> = Array.isArray(node.alternative)
       ? [
           ' else {',
-          b.indent(printStatements(node.alternative)),
+          b.indent(b.concat([b.hardline, printStatements(node.alternative)])),
           b.hardline,
           '}',
         ]
@@ -463,7 +463,7 @@ export const printSubroutineStatement = base((node: d.SubroutineStatement) => {
     'sub ',
     printIdentifier(node.id),
     ' {',
-    b.indent(printStatements(node.body)),
+    b.indent(b.concat([b.hardline, printStatements(node.body)])),
     b.hardline,
     '}',
   ])
