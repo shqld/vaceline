@@ -4,7 +4,7 @@ exports[`numeric-literal abbrev_integer 1`] = `
 Expression not implemented yet
 
 > 1 | .11
-      
+      ^
 
 `;
 
