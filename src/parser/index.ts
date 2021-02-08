@@ -1,13 +1,5 @@
 import { Tokenizer, Token, TokenType } from './tokenizer'
-import {
-  Node,
-  Located,
-  NodeType,
-  Statement,
-  Program,
-  Position,
-  Location,
-} from '../nodes'
+import { Node, Located, NodeType, Statement, Program, Position } from '../nodes'
 import { createError } from './create-error'
 import { TokenReader } from './token-reader'
 
@@ -76,34 +68,6 @@ export class Parser extends TokenReader {
     debug.finish(node)
 
     // @ts-expect-error FIXME:
-    return node
-  }
-
-  // FIXME: remove
-  startNode(): Location {
-    const startToken = this.getCurrentToken()
-    const start = startToken
-      ? startToken.loc.start
-      : { offset: 0, line: 1, column: 1 }
-
-    return {
-      start,
-      end: {
-        offset: NaN,
-        line: NaN,
-        column: NaN,
-      },
-    }
-  }
-
-  // FIXME: remove
-  finishNode<T extends NodeType>(
-    node: Located<Node & { type: T }>
-  ): Located<Node & { type: T }> {
-    node.loc.end = this.getCurrentToken().loc.end
-
-    debug.finish(node)
-
     return node
   }
 
