@@ -123,8 +123,27 @@ export const base = <T extends Node, U extends object>(
   printer: PrinterFunc<T, U>
 ): PrinterFunc<T, U> => {
   return (node: T, state: State, options?: U) => {
-    const printed = printer(node, state, options)
-    // Some ops
+    let printed = printer(node, state, options)
+
+    if (node.leadingComments?.length)
+      printed = b.concat([
+        b.join(
+          b.hardline,
+          node.leadingComments.map((comment) => comment.value)
+        ),
+        b.hardline,
+        printed,
+      ])
+
+    if (node.trailingComments?.length)
+      printed = b.concat([
+        printed,
+        ' ',
+        ...node.trailingComments.map((comment) => comment.value),
+      ])
+
+    // TODO: print innerComments
+
     return printed
   }
 }
