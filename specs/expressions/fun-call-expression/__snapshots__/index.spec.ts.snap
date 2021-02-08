@@ -107,6 +107,128 @@ Array [
 ]
 `;
 
+exports[`fun-call-expression member_callee ast: ast 1`] = `
+Object {
+  "args": Array [
+    Object {
+      "loc": Object {
+        "end": Object {
+          "column": 14,
+          "line": 1,
+          "offset": 13,
+        },
+        "start": Object {
+          "column": 11,
+          "line": 1,
+          "offset": 10,
+        },
+      },
+      "name": "some",
+      "type": "Identifier",
+    },
+    Object {
+      "loc": Object {
+        "end": Object {
+          "column": 20,
+          "line": 1,
+          "offset": 19,
+        },
+        "start": Object {
+          "column": 17,
+          "line": 1,
+          "offset": 16,
+        },
+      },
+      "name": "args",
+      "type": "Identifier",
+    },
+  ],
+  "callee": Object {
+    "base": Object {
+      "loc": Object {
+        "end": Object {
+          "column": 4,
+          "line": 1,
+          "offset": 3,
+        },
+        "start": Object {
+          "column": 1,
+          "line": 1,
+          "offset": 0,
+        },
+      },
+      "name": "some",
+      "type": "Identifier",
+    },
+    "loc": Object {
+      "end": Object {
+        "column": 9,
+        "line": 1,
+        "offset": 8,
+      },
+      "start": Object {
+        "column": 1,
+        "line": 1,
+        "offset": 0,
+      },
+    },
+    "member": Object {
+      "loc": Object {
+        "end": Object {
+          "column": 9,
+          "line": 1,
+          "offset": 8,
+        },
+        "start": Object {
+          "column": 6,
+          "line": 1,
+          "offset": 5,
+        },
+      },
+      "name": "func",
+      "type": "Identifier",
+    },
+    "type": "Member",
+  },
+  "loc": Object {
+    "end": Object {
+      "column": 21,
+      "line": 1,
+      "offset": 20,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "type": "FunCallExpression",
+}
+`;
+
+exports[`fun-call-expression member_callee format: format long 1`] = `some.func(some, args)`;
+
+exports[`fun-call-expression member_callee format: format short 1`] = `
+some.func(
+  some,
+  args,
+)
+`;
+
+exports[`fun-call-expression member_callee token 1`] = `
+Array [
+  some,
+  .,
+  func,
+  (,
+  some,
+  ,,
+  args,
+  ),
+  ;,
+]
+`;
+
 exports[`fun-call-expression trailing_comma_in_args ast: ast 1`] = `
 Object {
   "args": Array [
