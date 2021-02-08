@@ -1,14 +1,10 @@
 // Back to JavaScript due to typing collision between dom and webworker
 
-/// <reference no-default-lib="true"/>
-/// <reference lib="webworker"/>
-
 import * as Comlink from 'comlink'
+import { parse, generate } from '../../src/lib'
 
-const transpile = async (source) => {
+const transpile = async (source: string) => {
   try {
-    const { parse, traverse, generate } = await import('../lib')
-
     const ast = parse(source)
     const { code } = generate(ast)
 
