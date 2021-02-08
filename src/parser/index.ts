@@ -142,7 +142,7 @@ export class Parser extends TokenReader {
   }
 
   validateNode<T extends Array<NodeType>>(
-    node: Located,
+    node: Located<Node>,
     ...types: T
   ): Located<Node & { type: T[number] }> {
     if (!types.includes(node.type)) {
