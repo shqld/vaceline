@@ -1,0 +1,181 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`inner_comments basic ast: ast 1`] = `
+Object {
+  "body": Array [],
+  "id": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
+    "loc": Object {
+      "end": Object {
+        "column": 14,
+        "line": 1,
+        "offset": 13,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "name": "subroutine",
+    "trailingComments": Array [],
+    "type": "Identifier",
+  },
+  "innerComments": Array [
+    Object {
+      "loc": Object {
+        "end": Object {
+          "column": 11,
+          "line": 2,
+          "offset": 27,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 2,
+          "offset": 19,
+        },
+      },
+      "type": "CommentLine",
+      "value": "# comment",
+    },
+  ],
+  "leadingComments": Array [],
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 3,
+      "offset": 29,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "trailingComments": Array [],
+  "type": "SubroutineStatement",
+}
+`;
+
+exports[`inner_comments basic format: format 1`] = `
+sub subroutine {
+}
+`;
+
+exports[`inner_comments basic token 1`] = `
+Array [
+  sub,
+  subroutine,
+  {,
+  # comment,
+  },
+]
+`;
+
+exports[`inner_comments multi_comments ast: ast 1`] = `
+Object {
+  "body": Array [],
+  "id": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
+    "loc": Object {
+      "end": Object {
+        "column": 14,
+        "line": 1,
+        "offset": 13,
+      },
+      "start": Object {
+        "column": 5,
+        "line": 1,
+        "offset": 4,
+      },
+    },
+    "name": "subroutine",
+    "trailingComments": Array [],
+    "type": "Identifier",
+  },
+  "innerComments": Array [
+    Object {
+      "loc": Object {
+        "end": Object {
+          "column": 11,
+          "line": 2,
+          "offset": 27,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 2,
+          "offset": 19,
+        },
+      },
+      "type": "CommentLine",
+      "value": "# comment",
+    },
+    Object {
+      "loc": Object {
+        "end": Object {
+          "column": 11,
+          "line": 3,
+          "offset": 39,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 3,
+          "offset": 31,
+        },
+      },
+      "type": "CommentLine",
+      "value": "# comment",
+    },
+    Object {
+      "loc": Object {
+        "end": Object {
+          "column": 11,
+          "line": 4,
+          "offset": 51,
+        },
+        "start": Object {
+          "column": 3,
+          "line": 4,
+          "offset": 43,
+        },
+      },
+      "type": "CommentLine",
+      "value": "# comment",
+    },
+  ],
+  "leadingComments": Array [],
+  "loc": Object {
+    "end": Object {
+      "column": 1,
+      "line": 5,
+      "offset": 53,
+    },
+    "start": Object {
+      "column": 1,
+      "line": 1,
+      "offset": 0,
+    },
+  },
+  "trailingComments": Array [],
+  "type": "SubroutineStatement",
+}
+`;
+
+exports[`inner_comments multi_comments format: format 1`] = `
+sub subroutine {
+}
+`;
+
+exports[`inner_comments multi_comments token 1`] = `
+Array [
+  sub,
+  subroutine,
+  {,
+  # comment,
+  # comment,
+  # comment,
+  },
+]
+`;

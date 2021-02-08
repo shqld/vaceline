@@ -2,6 +2,8 @@
 
 exports[`string-literal basic ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 8,
@@ -14,6 +16,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "StringLiteral",
   "value": "\\"string\\"",
 }
@@ -37,6 +40,8 @@ Invalid token (string may have newlines inside normal quotes, use \`{" "}\`)
 
 exports[`string-literal not_a_comment ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 17,
@@ -49,6 +54,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "StringLiteral",
   "value": "\\"# not a comment\\"",
 }
@@ -64,6 +70,8 @@ Array [
 
 exports[`string-literal not_an_inline_comment ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 29,
@@ -76,6 +84,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "StringLiteral",
   "value": "\\"/* not an inline comment */\\"",
 }

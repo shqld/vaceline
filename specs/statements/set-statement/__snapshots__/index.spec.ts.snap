@@ -2,8 +2,12 @@
 
 exports[`set-statement addition ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "left": Object {
     "base": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -17,8 +21,11 @@ Object {
         },
       },
       "name": "var",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 13,
@@ -32,6 +39,8 @@ Object {
       },
     },
     "member": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -45,8 +54,10 @@ Object {
         },
       },
       "name": "vacel",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "trailingComments": Array [],
     "type": "Member",
   },
   "loc": Object {
@@ -63,6 +74,8 @@ Object {
   },
   "operator": "+=",
   "right": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 24,
@@ -75,9 +88,11 @@ Object {
         "offset": 17,
       },
     },
+    "trailingComments": Array [],
     "type": "StringLiteral",
     "value": "\\"vacel\\"",
   },
+  "trailingComments": Array [],
   "type": "SetStatement",
 }
 `;
@@ -103,8 +118,12 @@ Array [
 
 exports[`set-statement assignment ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "left": Object {
     "base": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -118,8 +137,11 @@ Object {
         },
       },
       "name": "var",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 13,
@@ -133,6 +155,8 @@ Object {
       },
     },
     "member": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -146,8 +170,10 @@ Object {
         },
       },
       "name": "vacel",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "trailingComments": Array [],
     "type": "Member",
   },
   "loc": Object {
@@ -164,6 +190,8 @@ Object {
   },
   "operator": "=",
   "right": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 23,
@@ -176,9 +204,11 @@ Object {
         "offset": 16,
       },
     },
+    "trailingComments": Array [],
     "type": "StringLiteral",
     "value": "\\"vacel\\"",
   },
+  "trailingComments": Array [],
   "type": "SetStatement",
 }
 `;
@@ -204,8 +234,12 @@ Array [
 
 exports[`set-statement division ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "left": Object {
     "base": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -219,8 +253,11 @@ Object {
         },
       },
       "name": "var",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 13,
@@ -234,6 +271,8 @@ Object {
       },
     },
     "member": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -247,8 +286,10 @@ Object {
         },
       },
       "name": "vacel",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "trailingComments": Array [],
     "type": "Member",
   },
   "loc": Object {
@@ -265,6 +306,8 @@ Object {
   },
   "operator": "*=",
   "right": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 24,
@@ -277,9 +320,11 @@ Object {
         "offset": 17,
       },
     },
+    "trailingComments": Array [],
     "type": "StringLiteral",
     "value": "\\"vacel\\"",
   },
+  "trailingComments": Array [],
   "type": "SetStatement",
 }
 `;
@@ -305,8 +350,12 @@ Array [
 
 exports[`set-statement multiplication ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "left": Object {
     "base": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -320,8 +369,11 @@ Object {
         },
       },
       "name": "var",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 13,
@@ -335,6 +387,8 @@ Object {
       },
     },
     "member": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -348,8 +402,10 @@ Object {
         },
       },
       "name": "vacel",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "trailingComments": Array [],
     "type": "Member",
   },
   "loc": Object {
@@ -366,6 +422,8 @@ Object {
   },
   "operator": "*=",
   "right": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 24,
@@ -378,9 +436,11 @@ Object {
         "offset": 17,
       },
     },
+    "trailingComments": Array [],
     "type": "StringLiteral",
     "value": "\\"vacel\\"",
   },
+  "trailingComments": Array [],
   "type": "SetStatement",
 }
 `;
@@ -406,8 +466,12 @@ Array [
 
 exports[`set-statement substraction ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "left": Object {
     "base": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -421,8 +485,11 @@ Object {
         },
       },
       "name": "var",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 13,
@@ -436,6 +503,8 @@ Object {
       },
     },
     "member": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -449,8 +518,10 @@ Object {
         },
       },
       "name": "vacel",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "trailingComments": Array [],
     "type": "Member",
   },
   "loc": Object {
@@ -467,6 +538,8 @@ Object {
   },
   "operator": "-=",
   "right": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 24,
@@ -479,9 +552,11 @@ Object {
         "offset": 17,
       },
     },
+    "trailingComments": Array [],
     "type": "StringLiteral",
     "value": "\\"vacel\\"",
   },
+  "trailingComments": Array [],
   "type": "SetStatement",
 }
 `;

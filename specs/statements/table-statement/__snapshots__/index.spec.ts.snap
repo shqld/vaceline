@@ -4,7 +4,9 @@ exports[`table-statement multiple_key_values ast: ast 1`] = `
 Object {
   "body": Array [
     Object {
+      "innerComments": Array [],
       "key": "\\"key\\"",
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -17,11 +19,14 @@ Object {
           "offset": 25,
         },
       },
+      "trailingComments": Array [],
       "type": "TableDefinition",
       "value": "\\"value\\"",
     },
     Object {
+      "innerComments": Array [],
       "key": "\\"key2\\"",
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 18,
@@ -34,11 +39,14 @@ Object {
           "offset": 43,
         },
       },
+      "trailingComments": Array [],
       "type": "TableDefinition",
       "value": "\\"value2\\"",
     },
   ],
   "id": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 20,
@@ -52,8 +60,11 @@ Object {
       },
     },
     "name": "vaceline_table",
+    "trailingComments": Array [],
     "type": "Identifier",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 1,
@@ -66,6 +77,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "TableStatement",
 }
 `;
@@ -97,7 +109,9 @@ exports[`table-statement single_key_value ast: ast 1`] = `
 Object {
   "body": Array [
     Object {
+      "innerComments": Array [],
       "key": "\\"key\\"",
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 16,
@@ -110,11 +124,14 @@ Object {
           "offset": 25,
         },
       },
+      "trailingComments": Array [],
       "type": "TableDefinition",
       "value": "\\"value\\"",
     },
   ],
   "id": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 20,
@@ -128,8 +145,11 @@ Object {
       },
     },
     "name": "vaceline_table",
+    "trailingComments": Array [],
     "type": "Identifier",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 1,
@@ -142,6 +162,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "TableStatement",
 }
 `;
@@ -168,7 +189,9 @@ exports[`table-statement with_trailing_comma ast: ast 1`] = `
 Object {
   "body": Array [
     Object {
+      "innerComments": Array [],
       "key": "\\"key\\"",
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -181,11 +204,14 @@ Object {
           "offset": 25,
         },
       },
+      "trailingComments": Array [],
       "type": "TableDefinition",
       "value": "\\"value\\"",
     },
     Object {
+      "innerComments": Array [],
       "key": "\\"key2\\"",
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 19,
@@ -198,11 +224,14 @@ Object {
           "offset": 43,
         },
       },
+      "trailingComments": Array [],
       "type": "TableDefinition",
       "value": "\\"value2\\"",
     },
   ],
   "id": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 20,
@@ -216,8 +245,11 @@ Object {
       },
     },
     "name": "vaceline_table",
+    "trailingComments": Array [],
     "type": "Identifier",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 1,
@@ -230,6 +262,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "TableStatement",
 }
 `;

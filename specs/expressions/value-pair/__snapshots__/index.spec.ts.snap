@@ -3,6 +3,8 @@
 exports[`value-pair basic ast: ast 1`] = `
 Object {
   "base": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 6,
@@ -16,8 +18,11 @@ Object {
       },
     },
     "name": "Cookie",
+    "trailingComments": Array [],
     "type": "Identifier",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 14,
@@ -31,6 +36,8 @@ Object {
     },
   },
   "name": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 14,
@@ -44,8 +51,10 @@ Object {
       },
     },
     "name": "Vacelin",
+    "trailingComments": Array [],
     "type": "Identifier",
   },
+  "trailingComments": Array [],
   "type": "ValuePair",
 }
 `;

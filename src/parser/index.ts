@@ -1,5 +1,13 @@
 import { Tokenizer, Token, TokenType } from './tokenizer'
-import { Node, Located, NodeType, Statement, Program, Position } from '../nodes'
+import {
+  Node,
+  Located,
+  NodeType,
+  Statement,
+  Program,
+  Position,
+  Comment,
+} from '../nodes'
 import { createError } from './create-error'
 import { TokenReader } from './token-reader'
 
@@ -19,6 +27,7 @@ export const parse = (source: string): Program => new Parser(source).parse()
 interface ParsingState {
   token: Token
   pos: Position
+  comments?: Array<Comment>
 }
 
 export class Parser extends TokenReader {
@@ -35,14 +44,22 @@ export class Parser extends TokenReader {
   parse(): Located<Program> {
     const body = parseCompound<Statement>(this, parseStmt)
 
-    return {
+    const pos = { offset: 0, line: 1, column: 1 }
+
+    const node: Located<Program> = {
       type: 'Program',
       body,
       loc: {
-        start: { offset: 0, line: 1, column: 1 },
+        start: pos,
         end: this.getCurrentToken().loc.end,
       },
     }
+
+    node.leadingComments = []
+    node.innerComments = this.parseInnerComments()
+    node.trailingComments = this.parseTrailingComments()
+
+    return node
   }
 
   parseNode<T extends NodeType>(
@@ -56,6 +73,8 @@ export class Parser extends TokenReader {
       pos: token.loc.start,
     }
 
+    const leadingComments = this.parseLeadingComments(state.pos)
+
     const node = parse(state)
 
     if (!node.loc) {
@@ -65,10 +84,61 @@ export class Parser extends TokenReader {
       }
     }
 
+    node.leadingComments = leadingComments
+    node.innerComments = this.parseInnerComments()
+    node.trailingComments = this.parseTrailingComments()
+
     debug.finish(node)
 
     // @ts-expect-error FIXME:
     return node
+  }
+
+  parseLeadingComments(pos: Position): Array<Comment> {
+    const leadingComments = []
+
+    let i = this.comments.length - 1
+
+    while (this.comments[i]?.loc?.start.line ?? Infinity < pos.line) {
+      leadingComments?.push(this.comments[i])
+      i--
+    }
+
+    this.comments = this.comments.slice(0, i)
+
+    return leadingComments
+  }
+
+  parseInnerComments(): Array<Comment> {
+    const innerComments = this.comments.slice()
+
+    this.comments = []
+
+    return innerComments
+  }
+
+  parseTrailingComments(): Array<Comment> {
+    const trailingComments: Array<Comment> = []
+
+    let cur = this.getCursor()
+    let token = this.getToken(cur)
+
+    while (
+      token?.type === 'comment' &&
+      token.loc.start.line === this.getCurrentToken().loc.end.line
+    ) {
+      this.take()
+
+      trailingComments.push({
+        type: 'CommentLine',
+        value: token.value,
+        loc: token.loc,
+      })
+
+      token = this.getToken(++cur)
+    }
+
+    return trailingComments
   }
 
   validateNode<T extends Array<NodeType>>(

@@ -2,6 +2,8 @@
 
 exports[`identifier basic ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 8,
@@ -15,6 +17,7 @@ Object {
     },
   },
   "name": "vaceline",
+  "trailingComments": Array [],
   "type": "Identifier",
 }
 `;

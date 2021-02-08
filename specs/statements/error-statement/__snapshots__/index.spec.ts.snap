@@ -2,6 +2,8 @@
 
 exports[`error-statement basic ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 10,
@@ -16,6 +18,7 @@ Object {
   },
   "message": undefined,
   "status": 404,
+  "trailingComments": Array [],
   "type": "ErrorStatement",
 }
 `;
@@ -49,6 +52,8 @@ Expected 'undefined' numeric token
 
 exports[`error-statement with_response ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 22,
@@ -62,6 +67,8 @@ Object {
     },
   },
   "message": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 21,
@@ -74,10 +81,12 @@ Object {
         "offset": 10,
       },
     },
+    "trailingComments": Array [],
     "type": "StringLiteral",
     "value": "\\"Not Found\\"",
   },
   "status": 404,
+  "trailingComments": Array [],
   "type": "ErrorStatement",
 }
 `;
@@ -95,6 +104,8 @@ Array [
 
 exports[`error-statement with_variable_response ast: ast 1`] = `
 Object {
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 25,
@@ -110,6 +121,8 @@ Object {
   "message": Object {
     "base": Object {
       "base": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 13,
@@ -123,8 +136,11 @@ Object {
           },
         },
         "name": "req",
+        "trailingComments": Array [],
         "type": "Identifier",
       },
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 18,
@@ -138,6 +154,8 @@ Object {
         },
       },
       "member": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 18,
@@ -151,10 +169,14 @@ Object {
           },
         },
         "name": "http",
+        "trailingComments": Array [],
         "type": "Identifier",
       },
+      "trailingComments": Array [],
       "type": "Member",
     },
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 24,
@@ -168,6 +190,8 @@ Object {
       },
     },
     "member": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 24,
@@ -181,11 +205,14 @@ Object {
         },
       },
       "name": "Debug",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "trailingComments": Array [],
     "type": "Member",
   },
   "status": 800,
+  "trailingComments": Array [],
   "type": "ErrorStatement",
 }
 `;

@@ -4,6 +4,8 @@ exports[`fun-call-expression if_func ast: ast 1`] = `
 Object {
   "args": Array [
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 6,
@@ -16,10 +18,13 @@ Object {
           "offset": 3,
         },
       },
+      "trailingComments": Array [],
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 11,
@@ -32,10 +37,13 @@ Object {
           "offset": 8,
         },
       },
+      "trailingComments": Array [],
       "type": "StringLiteral",
       "value": "\\"b\\"",
     },
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 16,
@@ -48,11 +56,14 @@ Object {
           "offset": 13,
         },
       },
+      "trailingComments": Array [],
       "type": "StringLiteral",
       "value": "\\"c\\"",
     },
   ],
   "callee": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 2,
@@ -66,8 +77,11 @@ Object {
       },
     },
     "name": "if",
+    "trailingComments": Array [],
     "type": "Identifier",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 17,
@@ -80,6 +94,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "FunCallExpression",
 }
 `;
@@ -111,6 +126,8 @@ exports[`fun-call-expression member_callee ast: ast 1`] = `
 Object {
   "args": Array [
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 14,
@@ -124,9 +141,12 @@ Object {
         },
       },
       "name": "some",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 20,
@@ -140,11 +160,14 @@ Object {
         },
       },
       "name": "args",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
   ],
   "callee": Object {
     "base": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 4,
@@ -158,8 +181,11 @@ Object {
         },
       },
       "name": "some",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 9,
@@ -173,6 +199,8 @@ Object {
       },
     },
     "member": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 9,
@@ -186,10 +214,14 @@ Object {
         },
       },
       "name": "func",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "trailingComments": Array [],
     "type": "Member",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 21,
@@ -202,6 +234,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "FunCallExpression",
 }
 `;
@@ -233,6 +266,8 @@ exports[`fun-call-expression trailing_comma_in_args ast: ast 1`] = `
 Object {
   "args": Array [
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 8,
@@ -245,11 +280,14 @@ Object {
           "offset": 5,
         },
       },
+      "trailingComments": Array [],
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
   ],
   "callee": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 4,
@@ -263,8 +301,11 @@ Object {
       },
     },
     "name": "func",
+    "trailingComments": Array [],
     "type": "Identifier",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 10,
@@ -277,6 +318,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "FunCallExpression",
 }
 `;
@@ -303,6 +345,8 @@ exports[`fun-call-expression with_an_arg ast: ast 1`] = `
 Object {
   "args": Array [
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 8,
@@ -315,11 +359,14 @@ Object {
           "offset": 5,
         },
       },
+      "trailingComments": Array [],
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
   ],
   "callee": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 4,
@@ -333,8 +380,11 @@ Object {
       },
     },
     "name": "func",
+    "trailingComments": Array [],
     "type": "Identifier",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 9,
@@ -347,6 +397,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "FunCallExpression",
 }
 `;
@@ -372,6 +423,8 @@ exports[`fun-call-expression with_multi_args ast: ast 1`] = `
 Object {
   "args": Array [
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 8,
@@ -384,10 +437,13 @@ Object {
           "offset": 5,
         },
       },
+      "trailingComments": Array [],
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -400,11 +456,14 @@ Object {
           "offset": 10,
         },
       },
+      "trailingComments": Array [],
       "type": "StringLiteral",
       "value": "\\"b\\"",
     },
   ],
   "callee": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 4,
@@ -418,8 +477,11 @@ Object {
       },
     },
     "name": "func",
+    "trailingComments": Array [],
     "type": "Identifier",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 14,
@@ -432,6 +494,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "FunCallExpression",
 }
 `;
@@ -460,6 +523,8 @@ exports[`fun-call-expression with_whitespaces ast: ast 1`] = `
 Object {
   "args": Array [
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 10,
@@ -472,11 +537,14 @@ Object {
           "offset": 7,
         },
       },
+      "trailingComments": Array [],
       "type": "StringLiteral",
       "value": "\\"a\\"",
     },
   ],
   "callee": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 4,
@@ -490,8 +558,11 @@ Object {
       },
     },
     "name": "func",
+    "trailingComments": Array [],
     "type": "Identifier",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 11,
@@ -504,6 +575,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "FunCallExpression",
 }
 `;
@@ -529,6 +601,8 @@ exports[`fun-call-expression witout_arg ast: ast 1`] = `
 Object {
   "args": Array [],
   "callee": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 4,
@@ -542,8 +616,11 @@ Object {
       },
     },
     "name": "func",
+    "trailingComments": Array [],
     "type": "Identifier",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 6,
@@ -556,6 +633,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "FunCallExpression",
 }
 `;

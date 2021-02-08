@@ -5,6 +5,8 @@ Object {
   "body": Array [
     Object {
       "cidr": undefined,
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -17,11 +19,14 @@ Object {
           "offset": 12,
         },
       },
+      "trailingComments": Array [],
       "type": "Ip",
       "value": "127.0.0.1",
     },
     Object {
       "cidr": undefined,
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 13,
@@ -34,11 +39,14 @@ Object {
           "offset": 27,
         },
       },
+      "trailingComments": Array [],
       "type": "Ip",
       "value": "localhost",
     },
   ],
   "id": Object {
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 7,
@@ -52,8 +60,11 @@ Object {
       },
     },
     "name": "aaa",
+    "trailingComments": Array [],
     "type": "Identifier",
   },
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 1,
@@ -66,6 +77,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "AclStatement",
 }
 `;

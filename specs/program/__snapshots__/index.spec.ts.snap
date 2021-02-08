@@ -8,6 +8,8 @@ Object {
         Object {
           "id": Object {
             "base": Object {
+              "innerComments": Array [],
+              "leadingComments": Array [],
               "loc": Object {
                 "end": Object {
                   "column": 19,
@@ -21,8 +23,11 @@ Object {
                 },
               },
               "name": "var",
+              "trailingComments": Array [],
               "type": "Identifier",
             },
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 32,
@@ -36,6 +41,8 @@ Object {
               },
             },
             "member": Object {
+              "innerComments": Array [],
+              "leadingComments": Array [],
               "loc": Object {
                 "end": Object {
                   "column": 32,
@@ -49,10 +56,14 @@ Object {
                 },
               },
               "name": "vacelinDebug",
+              "trailingComments": Array [],
               "type": "Identifier",
             },
+            "trailingComments": Array [],
             "type": "Member",
           },
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 40,
@@ -65,12 +76,17 @@ Object {
               "offset": 17,
             },
           },
+          "trailingComments": Array [],
           "type": "DeclareStatement",
           "valueType": "STRING",
         },
         Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "left": Object {
             "base": Object {
+              "innerComments": Array [],
+              "leadingComments": Array [],
               "loc": Object {
                 "end": Object {
                   "column": 9,
@@ -84,8 +100,11 @@ Object {
                 },
               },
               "name": "var",
+              "trailingComments": Array [],
               "type": "Identifier",
             },
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 23,
@@ -99,6 +118,8 @@ Object {
               },
             },
             "member": Object {
+              "innerComments": Array [],
+              "leadingComments": Array [],
               "loc": Object {
                 "end": Object {
                   "column": 23,
@@ -112,8 +133,10 @@ Object {
                 },
               },
               "name": "vacelineDebug",
+              "trailingComments": Array [],
               "type": "Identifier",
             },
+            "trailingComments": Array [],
             "type": "Member",
           },
           "loc": Object {
@@ -130,6 +153,8 @@ Object {
           },
           "operator": "=",
           "right": Object {
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 35,
@@ -142,17 +167,23 @@ Object {
                 "offset": 82,
               },
             },
+            "trailingComments": Array [],
             "type": "StringLiteral",
             "value": "\\"initial\\"",
           },
+          "trailingComments": Array [],
           "type": "SetStatement",
         },
         Object {
           "alternative": undefined,
           "consequent": Array [
             Object {
+              "innerComments": Array [],
+              "leadingComments": Array [],
               "left": Object {
                 "base": Object {
+                  "innerComments": Array [],
+                  "leadingComments": Array [],
                   "loc": Object {
                     "end": Object {
                       "column": 11,
@@ -166,8 +197,11 @@ Object {
                     },
                   },
                   "name": "var",
+                  "trailingComments": Array [],
                   "type": "Identifier",
                 },
+                "innerComments": Array [],
+                "leadingComments": Array [],
                 "loc": Object {
                   "end": Object {
                     "column": 24,
@@ -181,6 +215,8 @@ Object {
                   },
                 },
                 "member": Object {
+                  "innerComments": Array [],
+                  "leadingComments": Array [],
                   "loc": Object {
                     "end": Object {
                       "column": 24,
@@ -194,8 +230,10 @@ Object {
                     },
                   },
                   "name": "vacelinDebug",
+                  "trailingComments": Array [],
                   "type": "Identifier",
                 },
+                "trailingComments": Array [],
                 "type": "Member",
               },
               "loc": Object {
@@ -212,6 +250,8 @@ Object {
               },
               "operator": "=",
               "right": Object {
+                "innerComments": Array [],
+                "leadingComments": Array [],
                 "loc": Object {
                   "end": Object {
                     "column": 46,
@@ -224,12 +264,16 @@ Object {
                     "offset": 162,
                   },
                 },
+                "trailingComments": Array [],
                 "type": "StringLiteral",
                 "value": "\\"Vacelin Debug Log\\"",
               },
+              "trailingComments": Array [],
               "type": "AddStatement",
             },
           ],
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 3,
@@ -243,10 +287,14 @@ Object {
             },
           },
           "test": Object {
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "left": Object {
               "base": Object {
                 "base": Object {
                   "base": Object {
+                    "innerComments": Array [],
+                    "leadingComments": Array [],
                     "loc": Object {
                       "end": Object {
                         "column": 9,
@@ -260,8 +308,11 @@ Object {
                       },
                     },
                     "name": "req",
+                    "trailingComments": Array [],
                     "type": "Identifier",
                   },
+                  "innerComments": Array [],
+                  "leadingComments": Array [],
                   "loc": Object {
                     "end": Object {
                       "column": 14,
@@ -275,6 +326,8 @@ Object {
                     },
                   },
                   "member": Object {
+                    "innerComments": Array [],
+                    "leadingComments": Array [],
                     "loc": Object {
                       "end": Object {
                         "column": 14,
@@ -288,10 +341,14 @@ Object {
                       },
                     },
                     "name": "http",
+                    "trailingComments": Array [],
                     "type": "Identifier",
                   },
+                  "trailingComments": Array [],
                   "type": "Member",
                 },
+                "innerComments": Array [],
+                "leadingComments": Array [],
                 "loc": Object {
                   "end": Object {
                     "column": 22,
@@ -305,6 +362,8 @@ Object {
                   },
                 },
                 "member": Object {
+                  "innerComments": Array [],
+                  "leadingComments": Array [],
                   "loc": Object {
                     "end": Object {
                       "column": 22,
@@ -318,10 +377,14 @@ Object {
                     },
                   },
                   "name": "Vacelin",
+                  "trailingComments": Array [],
                   "type": "Identifier",
                 },
+                "trailingComments": Array [],
                 "type": "Member",
               },
+              "innerComments": Array [],
+              "leadingComments": Array [],
               "loc": Object {
                 "end": Object {
                   "column": 27,
@@ -335,6 +398,8 @@ Object {
                 },
               },
               "name": Object {
+                "innerComments": Array [],
+                "leadingComments": Array [],
                 "loc": Object {
                   "end": Object {
                     "column": 27,
@@ -348,8 +413,10 @@ Object {
                   },
                 },
                 "name": "Some",
+                "trailingComments": Array [],
                 "type": "Identifier",
               },
+              "trailingComments": Array [],
               "type": "ValuePair",
             },
             "loc": Object {
@@ -366,6 +433,8 @@ Object {
             },
             "operator": "==",
             "right": Object {
+              "innerComments": Array [],
+              "leadingComments": Array [],
               "loc": Object {
                 "end": Object {
                   "column": 37,
@@ -378,15 +447,20 @@ Object {
                   "offset": 125,
                 },
               },
+              "trailingComments": Array [],
               "type": "StringLiteral",
               "value": "\\"Some\\"",
             },
+            "trailingComments": Array [],
             "type": "BinaryExpression",
           },
+          "trailingComments": Array [],
           "type": "IfStatement",
         },
       ],
       "id": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 12,
@@ -400,8 +474,11 @@ Object {
           },
         },
         "name": "vcl_recv",
+        "trailingComments": Array [],
         "type": "Identifier",
       },
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 1,
@@ -414,9 +491,12 @@ Object {
           "offset": 0,
         },
       },
+      "trailingComments": Array [],
       "type": "SubroutineStatement",
     },
   ],
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 1,
@@ -429,6 +509,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "Program",
 }
 `;
@@ -512,6 +593,8 @@ Object {
     Object {
       "id": Object {
         "base": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 17,
@@ -525,8 +608,11 @@ Object {
             },
           },
           "name": "var",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 30,
@@ -540,6 +626,8 @@ Object {
           },
         },
         "member": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 30,
@@ -553,10 +641,14 @@ Object {
             },
           },
           "name": "vacelinDebug",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "trailingComments": Array [],
         "type": "Member",
       },
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 38,
@@ -569,12 +661,17 @@ Object {
           "offset": 0,
         },
       },
+      "trailingComments": Array [],
       "type": "DeclareStatement",
       "valueType": "STRING",
     },
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "left": Object {
         "base": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 7,
@@ -588,8 +685,11 @@ Object {
             },
           },
           "name": "var",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 21,
@@ -603,6 +703,8 @@ Object {
           },
         },
         "member": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 21,
@@ -616,8 +718,10 @@ Object {
             },
           },
           "name": "vacelineDebug",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "trailingComments": Array [],
         "type": "Member",
       },
       "loc": Object {
@@ -634,6 +738,8 @@ Object {
       },
       "operator": "=",
       "right": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 27,
@@ -646,14 +752,20 @@ Object {
             "offset": 63,
           },
         },
+        "trailingComments": Array [],
         "type": "StringLiteral",
         "value": "\\"1\\"",
       },
+      "trailingComments": Array [],
       "type": "SetStatement",
     },
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "left": Object {
         "base": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 7,
@@ -667,8 +779,11 @@ Object {
             },
           },
           "name": "var",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 21,
@@ -682,6 +797,8 @@ Object {
           },
         },
         "member": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 21,
@@ -695,8 +812,10 @@ Object {
             },
           },
           "name": "vacelineDebug",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "trailingComments": Array [],
         "type": "Member",
       },
       "loc": Object {
@@ -713,6 +832,8 @@ Object {
       },
       "operator": "=",
       "right": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 27,
@@ -725,12 +846,16 @@ Object {
             "offset": 93,
           },
         },
+        "trailingComments": Array [],
         "type": "StringLiteral",
         "value": "\\"2\\"",
       },
+      "trailingComments": Array [],
       "type": "SetStatement",
     },
   ],
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 28,
@@ -743,6 +868,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "Program",
 }
 `;

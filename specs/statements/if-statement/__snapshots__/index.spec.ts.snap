@@ -5,8 +5,12 @@ Object {
   "alternative": undefined,
   "consequent": Array [
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "left": Object {
         "base": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 9,
@@ -20,8 +24,11 @@ Object {
             },
           },
           "name": "var",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 15,
@@ -35,6 +42,8 @@ Object {
           },
         },
         "member": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -48,8 +57,10 @@ Object {
             },
           },
           "name": "value",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "trailingComments": Array [],
         "type": "Member",
       },
       "loc": Object {
@@ -66,6 +77,8 @@ Object {
       },
       "operator": "=",
       "right": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 19,
@@ -78,12 +91,16 @@ Object {
             "offset": 39,
           },
         },
+        "trailingComments": Array [],
         "type": "NumericLiteral",
         "value": "1",
       },
+      "trailingComments": Array [],
       "type": "SetStatement",
     },
   ],
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 1,
@@ -98,6 +115,8 @@ Object {
   },
   "test": Object {
     "base": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -111,8 +130,11 @@ Object {
         },
       },
       "name": "var",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 17,
@@ -126,6 +148,8 @@ Object {
       },
     },
     "member": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -139,10 +163,13 @@ Object {
         },
       },
       "name": "condition",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "trailingComments": Array [],
     "type": "Member",
   },
+  "trailingComments": Array [],
   "type": "IfStatement",
 }
 `;
@@ -186,8 +213,12 @@ exports[`if-statement with_else ast: ast 1`] = `
 Object {
   "alternative": Array [
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "left": Object {
         "base": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 9,
@@ -201,8 +232,11 @@ Object {
             },
           },
           "name": "var",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 15,
@@ -216,6 +250,8 @@ Object {
           },
         },
         "member": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -229,8 +265,10 @@ Object {
             },
           },
           "name": "value",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "trailingComments": Array [],
         "type": "Member",
       },
       "loc": Object {
@@ -247,6 +285,8 @@ Object {
       },
       "operator": "=",
       "right": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 19,
@@ -259,16 +299,22 @@ Object {
             "offset": 69,
           },
         },
+        "trailingComments": Array [],
         "type": "NumericLiteral",
         "value": "2",
       },
+      "trailingComments": Array [],
       "type": "SetStatement",
     },
   ],
   "consequent": Array [
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "left": Object {
         "base": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 9,
@@ -282,8 +328,11 @@ Object {
             },
           },
           "name": "var",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 15,
@@ -297,6 +346,8 @@ Object {
           },
         },
         "member": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -310,8 +361,10 @@ Object {
             },
           },
           "name": "value",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "trailingComments": Array [],
         "type": "Member",
       },
       "loc": Object {
@@ -328,6 +381,8 @@ Object {
       },
       "operator": "=",
       "right": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 19,
@@ -340,12 +395,16 @@ Object {
             "offset": 39,
           },
         },
+        "trailingComments": Array [],
         "type": "NumericLiteral",
         "value": "1",
       },
+      "trailingComments": Array [],
       "type": "SetStatement",
     },
   ],
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 1,
@@ -360,6 +419,8 @@ Object {
   },
   "test": Object {
     "base": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -373,8 +434,11 @@ Object {
         },
       },
       "name": "var",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 17,
@@ -388,6 +452,8 @@ Object {
       },
     },
     "member": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -401,10 +467,13 @@ Object {
         },
       },
       "name": "condition",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "trailingComments": Array [],
     "type": "Member",
   },
+  "trailingComments": Array [],
   "type": "IfStatement",
 }
 `;
@@ -464,8 +533,12 @@ Object {
   "alternative": Object {
     "alternative": Array [
       Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "left": Object {
           "base": Object {
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 9,
@@ -479,8 +552,11 @@ Object {
               },
             },
             "name": "var",
+            "trailingComments": Array [],
             "type": "Identifier",
           },
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -494,6 +570,8 @@ Object {
             },
           },
           "member": Object {
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 15,
@@ -507,8 +585,10 @@ Object {
               },
             },
             "name": "value",
+            "trailingComments": Array [],
             "type": "Identifier",
           },
+          "trailingComments": Array [],
           "type": "Member",
         },
         "loc": Object {
@@ -525,6 +605,8 @@ Object {
         },
         "operator": "=",
         "right": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 19,
@@ -537,16 +619,22 @@ Object {
               "offset": 119,
             },
           },
+          "trailingComments": Array [],
           "type": "NumericLiteral",
           "value": "0",
         },
+        "trailingComments": Array [],
         "type": "SetStatement",
       },
     ],
     "consequent": Array [
       Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "left": Object {
           "base": Object {
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 9,
@@ -560,8 +648,11 @@ Object {
               },
             },
             "name": "var",
+            "trailingComments": Array [],
             "type": "Identifier",
           },
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -575,6 +666,8 @@ Object {
             },
           },
           "member": Object {
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 15,
@@ -588,8 +681,10 @@ Object {
               },
             },
             "name": "value",
+            "trailingComments": Array [],
             "type": "Identifier",
           },
+          "trailingComments": Array [],
           "type": "Member",
         },
         "loc": Object {
@@ -606,6 +701,8 @@ Object {
         },
         "operator": "=",
         "right": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 19,
@@ -618,12 +715,16 @@ Object {
               "offset": 89,
             },
           },
+          "trailingComments": Array [],
           "type": "NumericLiteral",
           "value": "2",
         },
+        "trailingComments": Array [],
         "type": "SetStatement",
       },
     ],
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 1,
@@ -639,6 +740,8 @@ Object {
     "test": Object {
       "argument": Object {
         "base": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -652,8 +755,11 @@ Object {
             },
           },
           "name": "var",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 25,
@@ -667,6 +773,8 @@ Object {
           },
         },
         "member": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 25,
@@ -680,10 +788,14 @@ Object {
             },
           },
           "name": "condition",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "trailingComments": Array [],
         "type": "Member",
       },
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 25,
@@ -697,14 +809,20 @@ Object {
         },
       },
       "operator": "!",
+      "trailingComments": Array [],
       "type": "UnaryExpression",
     },
+    "trailingComments": Array [],
     "type": "IfStatement",
   },
   "consequent": Array [
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "left": Object {
         "base": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 9,
@@ -718,8 +836,11 @@ Object {
             },
           },
           "name": "var",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 15,
@@ -733,6 +854,8 @@ Object {
           },
         },
         "member": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -746,8 +869,10 @@ Object {
             },
           },
           "name": "value",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "trailingComments": Array [],
         "type": "Member",
       },
       "loc": Object {
@@ -764,6 +889,8 @@ Object {
       },
       "operator": "=",
       "right": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 19,
@@ -776,12 +903,16 @@ Object {
             "offset": 39,
           },
         },
+        "trailingComments": Array [],
         "type": "NumericLiteral",
         "value": "1",
       },
+      "trailingComments": Array [],
       "type": "SetStatement",
     },
   ],
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 1,
@@ -796,6 +927,8 @@ Object {
   },
   "test": Object {
     "base": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -809,8 +942,11 @@ Object {
         },
       },
       "name": "var",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 17,
@@ -824,6 +960,8 @@ Object {
       },
     },
     "member": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -837,10 +975,13 @@ Object {
         },
       },
       "name": "condition",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "trailingComments": Array [],
     "type": "Member",
   },
+  "trailingComments": Array [],
   "type": "IfStatement",
 }
 `;
@@ -925,8 +1066,12 @@ Object {
     "alternative": undefined,
     "consequent": Array [
       Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "left": Object {
           "base": Object {
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 9,
@@ -940,8 +1085,11 @@ Object {
               },
             },
             "name": "var",
+            "trailingComments": Array [],
             "type": "Identifier",
           },
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -955,6 +1103,8 @@ Object {
             },
           },
           "member": Object {
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 15,
@@ -968,8 +1118,10 @@ Object {
               },
             },
             "name": "value",
+            "trailingComments": Array [],
             "type": "Identifier",
           },
+          "trailingComments": Array [],
           "type": "Member",
         },
         "loc": Object {
@@ -986,6 +1138,8 @@ Object {
         },
         "operator": "=",
         "right": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 19,
@@ -998,12 +1152,16 @@ Object {
               "offset": 89,
             },
           },
+          "trailingComments": Array [],
           "type": "NumericLiteral",
           "value": "2",
         },
+        "trailingComments": Array [],
         "type": "SetStatement",
       },
     ],
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 1,
@@ -1019,6 +1177,8 @@ Object {
     "test": Object {
       "argument": Object {
         "base": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -1032,8 +1192,11 @@ Object {
             },
           },
           "name": "var",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 25,
@@ -1047,6 +1210,8 @@ Object {
           },
         },
         "member": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 25,
@@ -1060,10 +1225,14 @@ Object {
             },
           },
           "name": "condition",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "trailingComments": Array [],
         "type": "Member",
       },
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 25,
@@ -1077,14 +1246,20 @@ Object {
         },
       },
       "operator": "!",
+      "trailingComments": Array [],
       "type": "UnaryExpression",
     },
+    "trailingComments": Array [],
     "type": "IfStatement",
   },
   "consequent": Array [
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "left": Object {
         "base": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 9,
@@ -1098,8 +1273,11 @@ Object {
             },
           },
           "name": "var",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 15,
@@ -1113,6 +1291,8 @@ Object {
           },
         },
         "member": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -1126,8 +1306,10 @@ Object {
             },
           },
           "name": "value",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "trailingComments": Array [],
         "type": "Member",
       },
       "loc": Object {
@@ -1144,6 +1326,8 @@ Object {
       },
       "operator": "=",
       "right": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 19,
@@ -1156,12 +1340,16 @@ Object {
             "offset": 39,
           },
         },
+        "trailingComments": Array [],
         "type": "NumericLiteral",
         "value": "1",
       },
+      "trailingComments": Array [],
       "type": "SetStatement",
     },
   ],
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 1,
@@ -1176,6 +1364,8 @@ Object {
   },
   "test": Object {
     "base": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -1189,8 +1379,11 @@ Object {
         },
       },
       "name": "var",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 17,
@@ -1204,6 +1397,8 @@ Object {
       },
     },
     "member": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -1217,10 +1412,13 @@ Object {
         },
       },
       "name": "condition",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "trailingComments": Array [],
     "type": "Member",
   },
+  "trailingComments": Array [],
   "type": "IfStatement",
 }
 `;
@@ -1289,8 +1487,12 @@ Object {
   "alternative": Object {
     "alternative": Array [
       Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "left": Object {
           "base": Object {
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 9,
@@ -1304,8 +1506,11 @@ Object {
               },
             },
             "name": "var",
+            "trailingComments": Array [],
             "type": "Identifier",
           },
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -1319,6 +1524,8 @@ Object {
             },
           },
           "member": Object {
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 15,
@@ -1332,8 +1539,10 @@ Object {
               },
             },
             "name": "value",
+            "trailingComments": Array [],
             "type": "Identifier",
           },
+          "trailingComments": Array [],
           "type": "Member",
         },
         "loc": Object {
@@ -1350,6 +1559,8 @@ Object {
         },
         "operator": "=",
         "right": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 19,
@@ -1362,16 +1573,22 @@ Object {
               "offset": 124,
             },
           },
+          "trailingComments": Array [],
           "type": "NumericLiteral",
           "value": "0",
         },
+        "trailingComments": Array [],
         "type": "SetStatement",
       },
     ],
     "consequent": Array [
       Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "left": Object {
           "base": Object {
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 9,
@@ -1385,8 +1602,11 @@ Object {
               },
             },
             "name": "var",
+            "trailingComments": Array [],
             "type": "Identifier",
           },
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -1400,6 +1620,8 @@ Object {
             },
           },
           "member": Object {
+            "innerComments": Array [],
+            "leadingComments": Array [],
             "loc": Object {
               "end": Object {
                 "column": 15,
@@ -1413,8 +1635,10 @@ Object {
               },
             },
             "name": "value",
+            "trailingComments": Array [],
             "type": "Identifier",
           },
+          "trailingComments": Array [],
           "type": "Member",
         },
         "loc": Object {
@@ -1431,6 +1655,8 @@ Object {
         },
         "operator": "=",
         "right": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 19,
@@ -1443,12 +1669,16 @@ Object {
               "offset": 92,
             },
           },
+          "trailingComments": Array [],
           "type": "NumericLiteral",
           "value": "2",
         },
+        "trailingComments": Array [],
         "type": "SetStatement",
       },
     ],
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 1,
@@ -1464,6 +1694,8 @@ Object {
     "test": Object {
       "argument": Object {
         "base": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -1477,8 +1709,11 @@ Object {
             },
           },
           "name": "var",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 25,
@@ -1492,6 +1727,8 @@ Object {
           },
         },
         "member": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 25,
@@ -1505,10 +1742,14 @@ Object {
             },
           },
           "name": "condition",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "trailingComments": Array [],
         "type": "Member",
       },
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 25,
@@ -1522,14 +1763,20 @@ Object {
         },
       },
       "operator": "!",
+      "trailingComments": Array [],
       "type": "UnaryExpression",
     },
+    "trailingComments": Array [],
     "type": "IfStatement",
   },
   "consequent": Array [
     Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "left": Object {
         "base": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 9,
@@ -1543,8 +1790,11 @@ Object {
             },
           },
           "name": "var",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 15,
@@ -1558,6 +1808,8 @@ Object {
           },
         },
         "member": Object {
+          "innerComments": Array [],
+          "leadingComments": Array [],
           "loc": Object {
             "end": Object {
               "column": 15,
@@ -1571,8 +1823,10 @@ Object {
             },
           },
           "name": "value",
+          "trailingComments": Array [],
           "type": "Identifier",
         },
+        "trailingComments": Array [],
         "type": "Member",
       },
       "loc": Object {
@@ -1589,6 +1843,8 @@ Object {
       },
       "operator": "=",
       "right": Object {
+        "innerComments": Array [],
+        "leadingComments": Array [],
         "loc": Object {
           "end": Object {
             "column": 19,
@@ -1601,12 +1857,16 @@ Object {
             "offset": 40,
           },
         },
+        "trailingComments": Array [],
         "type": "NumericLiteral",
         "value": "1",
       },
+      "trailingComments": Array [],
       "type": "SetStatement",
     },
   ],
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 1,
@@ -1621,6 +1881,8 @@ Object {
   },
   "test": Object {
     "base": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 7,
@@ -1634,8 +1896,11 @@ Object {
         },
       },
       "name": "var",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "innerComments": Array [],
+    "leadingComments": Array [],
     "loc": Object {
       "end": Object {
         "column": 17,
@@ -1649,6 +1914,8 @@ Object {
       },
     },
     "member": Object {
+      "innerComments": Array [],
+      "leadingComments": Array [],
       "loc": Object {
         "end": Object {
           "column": 17,
@@ -1662,10 +1929,13 @@ Object {
         },
       },
       "name": "condition",
+      "trailingComments": Array [],
       "type": "Identifier",
     },
+    "trailingComments": Array [],
     "type": "Member",
   },
+  "trailingComments": Array [],
   "type": "IfStatement",
 }
 `;

@@ -11,6 +11,8 @@ return action should be one of deliver, fetch, restart, hash, pass, pipe, synth,
 exports[`return-statement with_parens ast: ast 1`] = `
 Object {
   "action": "pass",
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 14,
@@ -23,6 +25,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "ReturnStatement",
 }
 `;
@@ -42,6 +45,8 @@ Array [
 exports[`return-statement without_parens ast: ast 1`] = `
 Object {
   "action": "pass",
+  "innerComments": Array [],
+  "leadingComments": Array [],
   "loc": Object {
     "end": Object {
       "column": 12,
@@ -54,6 +59,7 @@ Object {
       "offset": 0,
     },
   },
+  "trailingComments": Array [],
   "type": "ReturnStatement",
 }
 `;
