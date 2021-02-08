@@ -54,7 +54,7 @@ export const runSpec = (dirName: string, options: { parser?: Parse }) => {
       continue
     }
 
-    const source = fs.readFileSync(vcl, 'utf8')
+    const source = fs.readFileSync(vcl, 'utf8').replace(/^###.*\n/g, '')
     const args = { source, parse, caseName }
 
     describe(groupName, () => {
@@ -75,7 +75,7 @@ export const runSpec = (dirName: string, options: { parser?: Parse }) => {
       continue
     }
 
-    const source = fs.readFileSync(err, 'utf8')
+    const source = fs.readFileSync(err, 'utf8').replace(/^###.*\n/g, '')
     const args = { source, parse, caseName }
 
     describe(groupName, () => {
