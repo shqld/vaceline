@@ -15,7 +15,11 @@ export * from './comment'
 
 export type Node = Program | Statement | Expression
 export type PlainNode<N extends Node> = Omit<N, keyof Node>
-export type Located<N extends Node = Node> = N & { loc: Location }
+export type Located<N extends Node> = N & { loc: Location }
+
+export function isLocated<T extends Node>(node: T): node is Located<T> {
+  return 'loc' in node
+}
 
 export interface BaseNode {
   type: string
