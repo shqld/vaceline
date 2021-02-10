@@ -17,7 +17,8 @@ import { keywords, returnActions } from '../keywords'
 import { parseIp } from './ip'
 import { Token } from '../tokenizer'
 import { parseCompound } from '../compound'
-import { parseId } from '../expression/identifier'
+import { parseId, parseIdentifier } from '../expression/identifier'
+import { parseLiteral } from '../literal'
 
 const ensureSemi = (p: Parser) => p.validateToken(p.read(), 'symbol', ';')
 
@@ -34,12 +35,7 @@ export function parseStmt(p: Parser, token: Token = p.read()): Statement {
 
   if (token.value === 'set' || token.value === 'add') {
     return p.parseNode(token, () => {
-      const left = p.validateNode(
-        parseExpr(p),
-        'Identifier',
-        'Member',
-        'ValuePair'
-      )
+      const left = parseId(p)
       const operator = p.validateToken(p.read(), 'operator').value
       const right = parseExpr(p)
 
@@ -53,12 +49,7 @@ export function parseStmt(p: Parser, token: Token = p.read()): Statement {
 
   if (token.value === 'unset') {
     return p.parseNode(token, () => {
-      const id = p.validateNode(
-        parseExpr(p),
-        'Identifier',
-        'Member',
-        'ValuePair'
-      )
+      const id = parseId(p)
 
       ensureSemi(p)
 
@@ -68,17 +59,30 @@ export function parseStmt(p: Parser, token: Token = p.read()): Statement {
 
   if (token.value === 'include') {
     return p.parseNode(token, () => {
-      const module = p.validateNode(parseExpr(p), 'StringLiteral')
+      const moduleToken = p.read()
+      const module = parseLiteral(p, moduleToken)
+
+      if (!(module && module.type === 'StringLiteral')) {
+        throw createError(
+          p.source,
+          'Expected one of [StringLiteral]',
+          moduleToken.loc.start,
+          moduleToken.loc.end
+        )
+      }
 
       ensureSemi(p)
 
-      return { type: 'IncludeStatement', module }
+      return {
+        type: 'IncludeStatement',
+        module: p.validateNode(module, 'StringLiteral'),
+      }
     })
   }
 
   if (token.value === 'import') {
     return p.parseNode(token, () => {
-      const module = p.validateNode(parseExpr(p), 'Identifier')
+      const module = parseIdentifier(p)
 
       ensureSemi(p)
 
@@ -88,7 +92,7 @@ export function parseStmt(p: Parser, token: Token = p.read()): Statement {
 
   if (token.value === 'call') {
     return p.parseNode(token, () => {
-      const subroutine = p.validateNode(parseExpr(p), 'Identifier')
+      const subroutine = parseIdentifier(p)
 
       ensureSemi(p)
 
@@ -201,7 +205,7 @@ export function parseStmt(p: Parser, token: Token = p.read()): Statement {
 
   if (token.value === 'sub') {
     return p.parseNode(token, () => {
-      const id = p.validateNode(parseExpr(p, p.read(), true), 'Identifier')
+      const id = parseIdentifier(p)
       p.validateToken(p.read(), 'symbol', '{')
 
       const body = parseCompound(p, parseStmt, { until: '}' })
@@ -212,7 +216,8 @@ export function parseStmt(p: Parser, token: Token = p.read()): Statement {
 
   if (token.value === 'acl') {
     return p.parseNode(token, () => {
-      const id = p.validateNode(parseExpr(p, p.read(), true), 'Identifier')
+      const id = parseIdentifier(p)
+
       p.validateToken(p.read(), 'symbol', '{')
 
       const body = parseCompound(p, parseIp, { until: '}', semi: true })
@@ -223,7 +228,7 @@ export function parseStmt(p: Parser, token: Token = p.read()): Statement {
 
   if (token.value === 'backend') {
     return p.parseNode(token, () => {
-      const id = p.validateNode(parseExpr(p, p.read(), true), 'Identifier')
+      const id = parseIdentifier(p)
 
       p.validateToken(p.read(), 'symbol', '{')
 
@@ -358,7 +363,7 @@ function parseDirectorStatement(
               p.validateToken(token, 'symbol', '.')
               const key = p.read().value
               p.validateToken(p.read(), 'operator', '=')
-              const value = p.validateNode(parseId(p), 'Identifier').name
+              const value = p.read().value
               ensureSemi(p)
 
               return { key, value }

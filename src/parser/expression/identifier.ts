@@ -2,6 +2,7 @@ import { Parser } from '..'
 import { Identifier, Member, Located, ValuePair } from '../../nodes'
 import { Token } from '../tokenizer'
 import { isToken } from '../../utils/token'
+import { createError } from '../create-error'
 
 type Id = Member | ValuePair | Identifier
 
@@ -24,14 +25,25 @@ export function parseId(
   return base
 }
 
-function parseIdentifier(
+export function parseIdentifier(
   p: Parser,
   token: Token = p.read()
 ): Located<Identifier> {
-  return p.parseNode(token, () => ({
-    type: 'Identifier',
-    name: token.value,
-  }))
+  return p.parseNode(token, () => {
+    if (token.type !== 'ident') {
+      throw createError(
+        p.source,
+        'Expected one of [Identifier]',
+        token.loc.start,
+        token.loc.end
+      )
+    }
+
+    return {
+      type: 'Identifier',
+      name: token.value,
+    }
+  })
 }
 
 function parseMember(
