@@ -49,25 +49,20 @@ export class TokenReader {
     return token
   }
 
-  peek(): Token | undefined {
-    const token = this.tokens[this.cur]
+  peek(skip = 0): Token | undefined {
+    const token = this.tokens[this.cur + skip]
 
     if (!token) return undefined
 
     if (token.type === 'comment') {
-      this.comments.push({
-        type: 'CommentLine',
-        value: token.value,
-        loc: token.loc,
-      })
-      this.take()
-      return this.peek()
+      return this.peek(skip + 1)
     }
 
     return token
   }
 
+  // TODO: This can be replaced with read()
   take(): void {
-    this.cur++
+    this.read()
   }
 }

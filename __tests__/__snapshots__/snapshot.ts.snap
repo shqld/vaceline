@@ -2496,78 +2496,13 @@ Object {
       "type": "SubroutineStatement",
     },
   ],
-  "innerComments": Array [
-    Object {
-      "loc": Object {
-        "end": Object {
-          "column": 17,
-          "line": 52,
-          "offset": 1027,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 52,
-          "offset": 1011,
-        },
-      },
-      "type": "CommentLine",
-      "value": "# sub vcl_error {",
-    },
-    Object {
-      "loc": Object {
-        "end": Object {
-          "column": 3,
-          "line": 53,
-          "offset": 1031,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 53,
-          "offset": 1029,
-        },
-      },
-      "type": "CommentLine",
-      "value": "# }",
-    },
-    Object {
-      "loc": Object {
-        "end": Object {
-          "column": 19,
-          "line": 55,
-          "offset": 1052,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 55,
-          "offset": 1034,
-        },
-      },
-      "type": "CommentLine",
-      "value": "# sub vcl_deliver {",
-    },
-    Object {
-      "loc": Object {
-        "end": Object {
-          "column": 3,
-          "line": 56,
-          "offset": 1056,
-        },
-        "start": Object {
-          "column": 1,
-          "line": 56,
-          "offset": 1054,
-        },
-      },
-      "type": "CommentLine",
-      "value": "# }",
-    },
-  ],
+  "innerComments": Array [],
   "leadingComments": Array [],
   "loc": Object {
     "end": Object {
-      "column": 3,
-      "line": 56,
-      "offset": 1056,
+      "column": 1,
+      "line": 50,
+      "offset": 1008,
     },
     "start": Object {
       "column": 1,
