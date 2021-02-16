@@ -127,7 +127,8 @@ export class Parser extends TokenReader {
       token?.type === 'comment' &&
       token.loc.start.line === this.getCurrentToken().loc.end.line
     ) {
-      this.take()
+      // @ts-expect-error FIXME: TokenReader.p.cur should not be called here inside of Parser
+      this.cur++
 
       trailingComments.push({
         type: 'CommentLine',
