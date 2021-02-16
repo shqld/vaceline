@@ -29,16 +29,21 @@ Positionals:
   source  Source file/dir to transpile                                  [string]
 
 Options:
-  --stdin        Accept input from stdin                               [boolean]
   --ast          Output as AST                                         [boolean]
-  -d, --out-dir  Output dir                                             [string]
-  --debug        Enable debug logging                                  [boolean]
+  --out-dir, -d  Output dir                                             [string]
+  --silent, -s   Disable any logging                  [boolean] [default: false]
+  --debug        Enable debug logging                 [boolean] [default: false]
+  --minify                                             [boolean] [default: true]
+  --no-comments                                        [boolean] [default: true]
+  --printWidth                                            [number] [default: 80]
+  --tabWidth                                               [number] [default: 2]
+  --useTabs                                           [boolean] [default: false]
   -h, --help     Show help                                             [boolean]
   -v, --version  Show version number                                   [boolean]
 
 Examples:
   - vaceline path/to/file.vcl
   - vaceline path/to/dir
-  - cat file | vaceline --stdin
+  - cat file | vaceline
   - vaceline file -d dist
 ```
