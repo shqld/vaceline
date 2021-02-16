@@ -4,6 +4,7 @@ import fs from 'fs'
 import path from 'path'
 import * as stream from 'stream'
 import { promisify } from 'util'
+import { Console } from 'console'
 
 import mkdirp from 'mkdirp'
 import debug from 'debug'
@@ -12,6 +13,8 @@ import { optionParser, CliOptions } from './options'
 import * as utils from './utils'
 
 import { parse, transformFile } from '..'
+
+const console = new Console(process.stderr, process.stderr)
 
 // const pipeline = promisify(stream.pipeline)
 const writeFile = fs.promises ? fs.promises.writeFile : promisify(fs.writeFile)
@@ -86,7 +89,7 @@ async function main(opts: CliOptions) {
     await new Promise((resolve) =>
       createStream(output, '\n').pipe(
         fs
-          .createWriteStream('/dev/stderr')
+          .createWriteStream('/dev/stdout')
           .addListener('unpipe', () => resolve(undefined))
       )
     )
