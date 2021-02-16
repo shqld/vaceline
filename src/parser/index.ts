@@ -104,7 +104,7 @@ export class Parser {
       i--
     }
 
-    this.reader.comments = this.reader.comments.slice(0, i)
+    this.reader.comments = this.reader.comments.slice(0, i + 1)
 
     return leadingComments.reverse()
   }
