@@ -11,3 +11,5 @@ export const readdirr = (dirPath: string): Array<string> =>
           [] as Array<string>
         )
     : [dirPath]
+
+export const isFromStdin = !process.stdin.isTTY

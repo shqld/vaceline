@@ -3,6 +3,7 @@ import path from 'path'
 import yargs from 'yargs'
 import assert from 'assert'
 import { GenerateOptions } from '../generator'
+import { isFromStdin } from './utils'
 
 export type CliOptions = GenerateOptions & {
   source: string
@@ -28,7 +29,7 @@ export const optionParser = yargs
       .showHelpOnFail(false, 'Specify --help for available options\n')
       .example('- $0 path/to/file.vcl', '')
       .example('- $0 path/to/dir', '')
-      .example('- cat file | $0 --stdin', '')
+      .example('- cat file | $0', '')
       .example('- $0 file -d dist', '')
 
       .positional('source', {
@@ -37,7 +38,7 @@ export const optionParser = yargs
         coerce: path.resolve,
       })
       .check((opts: Partial<CliOptions>) => {
-        if (!opts.stdin) {
+        if (!isFromStdin) {
           assert(opts.source, new Error('Source must be present'))
           assert(
             fs.existsSync(opts.source as string),
@@ -45,18 +46,13 @@ export const optionParser = yargs
           )
         }
 
-        if (opts.source && opts.stdin) {
+        if (opts.source && isFromStdin) {
           throw new Error(
-            'Source and --stdin cannot be passed at the same time'
+            'Source and input from stdin cannot be passed at the same time'
           )
         }
 
         return true
-      })
-      .option('stdin', {
-        type: 'boolean',
-        desc: 'Accept input from stdin',
-        coerce: Boolean,
       })
       .option('ast', {
         type: 'boolean',
