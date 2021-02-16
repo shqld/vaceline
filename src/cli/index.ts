@@ -38,11 +38,11 @@ async function main(opts: CliOptions) {
     require('source-map-support').install()
   }
 
-  const inputPaths = opts.source
-    ? fs.statSync(opts.source).isDirectory()
-      ? utils.readdirr(opts.source)
-      : [opts.source]
-    : ['/dev/stdin']
+  const inputPaths = utils.isFromStdin
+    ? ['/dev/stdin']
+    : fs.statSync(opts.source).isDirectory()
+    ? utils.readdirr(opts.source)
+    : [opts.source]
 
   const writings: Array<Promise<void>> = []
 
