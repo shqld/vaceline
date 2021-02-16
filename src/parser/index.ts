@@ -30,15 +30,15 @@ interface ParsingState {
   comments?: Array<Comment>
 }
 
-export class Parser extends TokenReader {
+export class Parser {
   source: string
+  private reader: TokenReader
 
   constructor(source: string /* opts: { keywords?: Array<string> } = {} */) {
     const tokens = new Tokenizer(source).tokenize()
 
-    super(tokens)
-
     this.source = source
+    this.reader = new TokenReader(tokens)
   }
 
   parse(): Located<Program> {
@@ -51,7 +51,7 @@ export class Parser extends TokenReader {
       body,
       loc: {
         start: pos,
-        end: this.getCurrentToken().loc.end,
+        end: this.reader.getCurrentToken().loc.end,
       },
     }
 
@@ -80,7 +80,7 @@ export class Parser extends TokenReader {
     if (!node.loc) {
       node.loc = {
         start: state.pos,
-        end: this.getCurrentToken().loc.end,
+        end: this.reader.getCurrentToken().loc.end,
       }
     }
 
@@ -97,22 +97,22 @@ export class Parser extends TokenReader {
   parseLeadingComments(pos: Position): Array<Comment> {
     const leadingComments = []
 
-    let i = this.comments.length - 1
+    let i = this.reader.comments.length - 1
 
-    while (this.comments[i]?.loc?.start.line ?? Infinity < pos.line) {
-      leadingComments?.push(this.comments[i])
+    while (this.reader.comments[i]?.loc?.start.line ?? Infinity < pos.line) {
+      leadingComments?.push(this.reader.comments[i])
       i--
     }
 
-    this.comments = this.comments.slice(0, i)
+    this.reader.comments = this.reader.comments.slice(0, i)
 
     return leadingComments.reverse()
   }
 
   parseInnerComments(): Array<Comment> {
-    const innerComments = this.comments.slice()
+    const innerComments = this.reader.comments.slice()
 
-    this.comments = []
+    this.reader.comments = []
 
     return innerComments
   }
@@ -120,15 +120,14 @@ export class Parser extends TokenReader {
   parseTrailingComments(): Array<Comment> {
     const trailingComments: Array<Comment> = []
 
-    let cur = this.getCursor()
-    let token = this.getToken(cur)
+    let cur = this.reader.getCursor()
+    let token = this.reader.getToken(cur)
 
     while (
       token?.type === 'comment' &&
-      token.loc.start.line === this.getCurrentToken().loc.end.line
+      token.loc.start.line === this.reader.getCurrentToken().loc.end.line
     ) {
-      // @ts-expect-error FIXME: TokenReader.p.cur should not be called here inside of Parser
-      this.cur++
+      this.reader.jumpTo(cur + 1)
 
       trailingComments.push({
         type: 'CommentLine',
@@ -136,10 +135,29 @@ export class Parser extends TokenReader {
         loc: token.loc,
       })
 
-      token = this.getToken(++cur)
+      token = this.reader.getToken(++cur)
     }
 
     return trailingComments
+  }
+
+  read() {
+    return this.reader.read()
+  }
+  peek() {
+    return this.reader.peek()
+  }
+  take() {
+    return this.reader.take()
+  }
+  getCursor() {
+    return this.reader.getCursor()
+  }
+  jumpTo(cur: number) {
+    return this.reader.jumpTo(cur)
+  }
+  getCurrentToken(): Token {
+    return this.reader.getCurrentToken()
   }
 
   validateNode<T extends Array<NodeType>>(
