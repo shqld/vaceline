@@ -4,9 +4,9 @@ import {
   Member,
   UnaryExpression,
   ValuePair,
-} from '../../src/nodes'
-import { Parser } from '../../src/parser'
-import { parseExpr } from '../../src/parser/expression/index'
+} from '@vaceline/types'
+import { Parser } from '../src'
+import { parseExpr } from '../src/expression'
 
 const parse = (source: string) => parseExpr(new Parser(source))
 

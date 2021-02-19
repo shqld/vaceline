@@ -9,10 +9,10 @@ import {
   ReturnStatement,
   SyntheticStatement,
   TableStatement,
-} from '../../src/nodes'
-import { Parser } from '../../src/parser'
-import { parseStmt } from '../../src/parser/statement/index'
-import { parseIp } from '../../src/parser/statement/ip'
+} from '@vaceline/types'
+import { Parser } from '../src'
+import { parseStmt } from '../src/statement'
+import { parseIp } from '../src/statement/ip'
 
 const parse = (source: string) => parseStmt(new Parser(source.trim()))
 
