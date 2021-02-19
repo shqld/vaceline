@@ -2,13 +2,9 @@ import { resolve as resolvePath } from 'path'
 import { existsSync, readFileSync } from 'fs'
 import assert from 'assert'
 
-import {
-  parse,
-  generate,
-  // traverse,
-} from './lib'
-import { GenerateOptions } from './generator'
-import { Program } from './nodes'
+import { parse } from '@vaceline/parser'
+import { generate, GenerateOptions } from '@vaceline/generator'
+import { Program } from '@vaceline/types'
 
 interface TransformResult {
   code: string
