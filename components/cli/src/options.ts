@@ -1,8 +1,8 @@
 import fs from 'fs'
 import path from 'path'
-import yargs from 'yargs'
 import assert from 'assert'
-import { GenerateOptions } from '../generator'
+import yargs from 'yargs'
+import { GenerateOptions } from '@vaceline/generator'
 import { isFromStdin } from './utils'
 
 export type CliOptions = GenerateOptions & {

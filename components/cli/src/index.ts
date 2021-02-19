@@ -12,7 +12,7 @@ import debug from 'debug'
 import { optionParser, CliOptions } from './options'
 import * as utils from './utils'
 
-import { parse, transformFile } from '..'
+import { parse, transformFile } from '@vaceline/core'
 
 const console = new Console(process.stderr, process.stderr)
 
