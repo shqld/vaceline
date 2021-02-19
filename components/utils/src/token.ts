@@ -1,4 +1,4 @@
-import { Token, TokenType } from '../parser/tokenizer'
+import { Token, TokenType } from '@vaceline/parser/src/tokenizer'
 
 export function isToken<
   Type extends TokenType,
