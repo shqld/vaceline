@@ -1,4 +1,4 @@
-import { Node } from '../nodes'
+import { Node } from '@vaceline/types'
 import { NodePath, TraversalContext, Handler } from './path'
 
 const flat = <T>(arr: Array<T>) =>

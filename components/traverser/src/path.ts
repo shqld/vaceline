@@ -1,4 +1,4 @@
-import { Node } from '../nodes'
+import { Node } from '@vaceline/types'
 
 export interface Handler {
   entry?(path: NodePath<Node>): void
