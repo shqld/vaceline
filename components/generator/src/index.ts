@@ -1,5 +1,5 @@
 import { printer, PrinterOptions } from 'prettier/doc'
-import { Node } from '../nodes'
+import { Node } from '@vaceline/types'
 import { printNode } from './printAST'
 
 export type GenerateOptions = {} & PrinterOptions

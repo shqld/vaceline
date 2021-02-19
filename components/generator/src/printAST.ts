@@ -1,6 +1,6 @@
 import { Doc, builders as b } from 'prettier/doc'
-import { Node, isLocated, Located } from '../nodes'
-import * as d from '../nodes'
+import { Node, isLocated, Located } from '@vaceline/types'
+import * as d from '@vaceline/types'
 
 export function printNode(node: Node, options?: object): Doc {
   switch (node.type) {
