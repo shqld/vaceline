@@ -3,13 +3,12 @@ import * as fs from 'fs'
 import { wrap as wrapRaw } from 'jest-snapshot-serializer-raw'
 import stripAnsi from 'strip-ansi'
 
-import { parse as parseNode } from '../src'
-import { Parser } from '../src/parser'
-import { parseExpr } from '../src/parser/expression/index'
-import { parseStmt } from '../src/parser/statement'
-import { generate } from '../src/lib'
-import { Tokenizer } from '../src/parser/tokenizer'
-import { Node } from '../src/nodes'
+import { parse as parseNode, Parser } from '@vaceline/parser'
+import { parseExpr } from '@vaceline/parser/src/expression/index'
+import { parseStmt } from '@vaceline/parser/src/statement'
+import { Tokenizer } from '@vaceline/parser/src/tokenizer'
+import { generate } from '@vaceline/generator'
+import { Node } from '@vaceline/types'
 
 type Parse = (source: string) => Node
 
