@@ -5,8 +5,14 @@
   "repository": "git@github.com:shqld/vaceline.git",
   "author": "Sho Miyamoto <me@shomiyamoto.dev>",
   "license": "MIT",
+  "private": true,
   "files": [
     "dist"
+  ],
+  "workspaces": [
+    "components/*",
+    "plugins/*",
+    "web"
   ],
   "bin": {
     "vaceline": "./dist/cli/index.js"
@@ -24,16 +30,6 @@
     "dev:web": "rimraf web/dist && cp -r web/src/public web/dist && yarn webpack --watch --dev --config web/webpack.config.ts",
     "build:web": "rimraf web/dist && cp -r web/src/public web/dist && yarn webpack --config web/webpack.config.ts",
     "publish:web": "yarn build:web && yarn gh-pages -d web/dist"
-  },
-  "dependencies": {
-    "@textlint/markdown-to-ast": "^6.1.6",
-    "chalk": "^2.4.2",
-    "change-case": "^4.1.1",
-    "debug": "^4.1.1",
-    "is-ip": "^3.1.0",
-    "mkdirp": "^0.5.1",
-    "prettier": "^2.2.1",
-    "yargs": "^13.2.4"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",

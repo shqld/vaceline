@@ -27,7 +27,8 @@
         "revert",
         "config",
         "build",
-        "ci"
+        "ci",
+        "chore"
       ]
     ],
     "scope-enum": [
