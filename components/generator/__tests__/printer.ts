@@ -1,7 +1,4 @@
-import fs from 'fs'
-import path from 'path'
-
-import { Buffer } from '../../src/generator/buffer'
+import { Buffer } from '../src/buffer'
 
 describe('Buffer', () => {
   it('should buf correctly', () => {
