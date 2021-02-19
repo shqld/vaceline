@@ -1,5 +1,5 @@
-import { traverse } from '../../lib'
-import { Node } from '../../nodes'
+import { Node } from '@vaceline/types'
+import { traverse } from '@vaceline/traverser'
 
 // req.http.Vaceline-Branch-Log
 const varBranchLog: Node = {

@@ -1,7 +1,10 @@
-import { parse, traverse, generate } from '../../lib'
+import { parse } from '@vaceline/parser'
+import { traverse } from '@vaceline/traverser'
+import { generate } from '@vaceline/generator'
+
 import BranchLogPlugin from '.'
-import { NodePath } from '../../traverser/path'
-import { AddStatement, IfStatement, SubroutineStatement } from '../../nodes'
+import { NodePath } from '@vaceline/traverser/src/path'
+import { AddStatement, IfStatement, SubroutineStatement } from '@vaceline/types'
 
 const code = `
 
