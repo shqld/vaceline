@@ -7,14 +7,13 @@ import {
   Program,
   Position,
   Comment,
-} from '../nodes'
+} from '@vaceline/types'
 import { createError } from './create-error'
 import { TokenReader } from './token-reader'
 
-import { isToken } from '../utils/token'
+import { isToken, buildDebug } from '@vaceline/utils'
 import { parseStmt } from './statement/index'
 import { parseCompound } from './compound'
-import { buildDebug } from '../utils/debug'
 
 const debug = {
   start: buildDebug('parser:start'),

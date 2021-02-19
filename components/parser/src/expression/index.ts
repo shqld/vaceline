@@ -1,12 +1,12 @@
-import { Expression, Located } from '../../nodes'
-import { isToken } from '../../utils/token'
+import { Expression, Located } from '@vaceline/types'
+import { isToken } from '@vaceline/utils'
 
 import { Token } from '../tokenizer'
 import { Parser } from '..'
 import { parseOperatorExpr } from './operator'
 import { parseHumbleExpr } from './humble'
 
-// import { buildDebug } from '../../utils/debug'
+// import { buildDebug } from '@vaceline/utils'
 // const debug = buildDebug('parser', 'expression')
 
 export interface Stack<T> {

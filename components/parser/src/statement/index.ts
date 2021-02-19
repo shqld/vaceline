@@ -7,8 +7,8 @@ import {
   Statement,
   TableDefinition,
   TableStatement,
-} from '../../nodes'
-import { isToken } from '../../utils/token'
+} from '@vaceline/types'
+import { isToken } from '@vaceline/utils'
 
 import { parseExpr } from '../expression'
 import { createError } from '../create-error'

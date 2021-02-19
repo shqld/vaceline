@@ -5,10 +5,10 @@ import {
   Expression,
   LogicalExpression,
   Located,
-} from '../../nodes'
+} from '@vaceline/types'
 import * as ops from '../tokenizer/operators'
 import { Token } from '../tokenizer'
-import { isToken } from '../../utils/token'
+import { isToken } from '@vaceline/utils'
 import { parseHumbleExpr } from './humble'
 
 export function parseOperatorExpr(

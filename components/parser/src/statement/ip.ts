@@ -1,5 +1,5 @@
 import { Parser } from '..'
-import { isToken } from '../../utils/token'
+import { isToken } from '@vaceline/utils'
 import isIp from 'is-ip'
 import { createError } from '../create-error'
 

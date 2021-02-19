@@ -1,10 +1,10 @@
+import { Located, Expression } from '@vaceline/types'
+import { isToken } from '@vaceline/utils'
 import { Parser } from '..'
-import { Located, Expression } from '../../nodes'
+import { parseExpr } from '.'
 import { Token } from '../tokenizer'
-import { isToken } from '../../utils/token'
 import { createError } from '../create-error'
 import { parseLiteral } from '../literal'
-import { parseExpr } from '.'
 import { parseCompound } from '../compound'
 import { parseId } from './identifier'
 

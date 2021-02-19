@@ -1,4 +1,4 @@
-import { Comment } from '../nodes'
+import { Comment } from '@vaceline/types'
 import { Token } from './tokenizer'
 
 export class TokenReader {
