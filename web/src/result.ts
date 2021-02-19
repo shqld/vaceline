@@ -1,4 +1,4 @@
-import { BaseNode } from '../../src/nodes'
+import { BaseNode } from '@vaceline/types'
 
 export type Result =
   | { type: 'success'; code: string; ast: BaseNode }

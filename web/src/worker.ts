@@ -1,7 +1,8 @@
 // Back to JavaScript due to typing collision between dom and webworker
 
 import * as Comlink from 'comlink'
-import { parse, generate } from '../../src/lib'
+import { parse } from '@vaceline/parser'
+import { generate } from '@vaceline/generator'
 
 const transpile = async (source: string) => {
   try {
