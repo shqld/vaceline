@@ -2,13 +2,19 @@
   "name": "@vaceline/traverser",
   "version": "0.0.1",
   "license": "MIT",
+  "author": "Sho Miyamoto <me@shomiyamoto.dev>",
+  "main": "dist/index.js",
+  "module": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@vaceline/types": "0.0.1"
+  },
+  "devDependencies": {
+    "@vaceline/parser": "0.0.1"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/shqld/vaceline.git",
     "directory": "components/traverser"
-  },
-  "author": "Sho Miyamoto <me@shomiyamoto.dev>",
-  "main": "dist/index.js",
-  "module": "src/index.ts",
-  "types": "src/index.ts"
+  }
 }

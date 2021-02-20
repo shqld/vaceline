@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import fs from 'fs'
 import path from 'path'
-import { parse } from '@vaceline/parser'
 import { Identifier } from '@vaceline/types'
+import { parse} from '@vaceline/parser'
 import { traverse, createPathArray } from '../src'
 import { NodePath } from '../src/path'
 
