@@ -2,9 +2,5 @@
   "version": "0.0.1",
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "packages": [
-    "components/*",
-    "plugins/*",
-    "web"
-  ]
+  "packages": ["components/*", "plugins/*", "web"]
 }
