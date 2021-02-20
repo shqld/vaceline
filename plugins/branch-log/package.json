@@ -1,6 +1,6 @@
 {
   "name": "@vaceline/plugin-branch-log",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "author": "Sho Miyamoto <me@shomiyamoto.dev>",
   "main": "dist/index.js",
@@ -13,8 +13,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@vaceline/types": "0.0.1",
     "@vaceline/traverser": "0.0.1",
+    "@vaceline/types": "0.0.1",
     "yargs": "^13.2.4"
   },
   "devDependencies": {

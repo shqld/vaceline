@@ -1,6 +1,6 @@
 {
   "name": "@vaceline/parser",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "author": "Sho Miyamoto <me@shomiyamoto.dev>",
   "main": "dist/index.js",
