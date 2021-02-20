@@ -7,8 +7,7 @@ import {
   Located,
 } from '@vaceline/types'
 import * as ops from '../tokenizer/operators'
-import { Token } from '../tokenizer'
-import { isToken } from '@vaceline/utils'
+import { isToken, Token } from '../tokenizer'
 import { parseHumbleExpr } from './humble'
 
 export function parseOperatorExpr(

@@ -1,7 +1,6 @@
 import { Expression, Located } from '@vaceline/types'
-import { isToken } from '@vaceline/utils'
 
-import { Token } from '../tokenizer'
+import { isToken, Token } from '../tokenizer'
 import { Parser } from '..'
 import { parseOperatorExpr } from './operator'
 import { parseHumbleExpr } from './humble'

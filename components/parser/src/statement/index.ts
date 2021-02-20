@@ -8,14 +8,13 @@ import {
   TableDefinition,
   TableStatement,
 } from '@vaceline/types'
-import { isToken } from '@vaceline/utils'
 
 import { parseExpr } from '../expression'
 import { createError } from '../create-error'
 import { Parser } from '..'
 import { keywords, returnActions } from '../keywords'
 import { parseIp } from './ip'
-import { Token } from '../tokenizer'
+import { isToken, Token } from '../tokenizer'
 import { parseCompound } from '../compound'
 import { parseId, parseIdentifier } from '../expression/identifier'
 import { parseLiteral } from '../literal'

@@ -1,9 +1,8 @@
 import { Literal, Located } from '@vaceline/types'
 
-import { Token } from './tokenizer'
+import { isToken, Token } from './tokenizer'
 import { createError } from './create-error'
 import { Parser } from '.'
-import { isToken } from '@vaceline/utils'
 import { parseIp } from './statement/ip'
 
 export function parseLiteral(

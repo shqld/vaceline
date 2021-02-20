@@ -1,7 +1,7 @@
 import { Parser } from '..'
-import { isToken } from '@vaceline/utils'
 import isIp from 'is-ip'
 import { createError } from '../create-error'
+import { isToken } from '../tokenizer'
 
 export function parseIp(p: Parser, token = p.read()) {
   return p.parseNode(token, () => {

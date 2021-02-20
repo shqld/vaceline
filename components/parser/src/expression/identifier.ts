@@ -1,7 +1,6 @@
 import { Parser } from '..'
 import { Identifier, Member, Located, ValuePair } from '@vaceline/types'
-import { Token } from '../tokenizer'
-import { isToken } from '@vaceline/utils'
+import { isToken, Token } from '../tokenizer'
 import { createError } from '../create-error'
 
 type Id = Member | ValuePair | Identifier

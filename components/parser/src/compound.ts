@@ -1,6 +1,5 @@
 import { Parser } from '.'
-import { Token } from './tokenizer'
-import { isToken } from '@vaceline/utils'
+import { isToken, Token } from './tokenizer'
 
 interface CompoundOptions {
   until: string

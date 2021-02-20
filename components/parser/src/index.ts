@@ -1,4 +1,4 @@
-import { Tokenizer, Token, TokenType } from './tokenizer'
+import { Tokenizer, Token, TokenType, isToken } from './tokenizer'
 import {
   Node,
   Located,
@@ -11,7 +11,7 @@ import {
 import { createError } from './create-error'
 import { TokenReader } from './token-reader'
 
-import { isToken, buildDebug } from '@vaceline/utils'
+import {  buildDebug } from '@vaceline/utils'
 import { parseStmt } from './statement/index'
 import { parseCompound } from './compound'
 

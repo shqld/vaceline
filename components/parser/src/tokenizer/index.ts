@@ -7,6 +7,8 @@ const debug = buildDebug('tokenize')
 const debugToken = debug.extend('token')
 const debugRaw = debug.extend('raw')
 
+export * from './is-token'
+
 export type TokenType =
   | 'ident'
   | 'symbol'
