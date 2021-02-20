@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-import { parse } from '@vaceline/parser'
+import { Node } from '@vaceline/types'
 import { getJoinedRegExp } from '@vaceline/parser/src/tokenizer'
 import { generate } from '../src'
 
@@ -36,9 +36,7 @@ const excludeSomeTokensAndConvertIntoArray = (code: string): Array<string> =>
 describe('Generator', () => {
   const codePath = path.resolve('__tests__/__fixture__/rough.vcl')
   const code = fs.readFileSync(codePath, 'utf8')
-  // const rawAst = fs.readFileSync(path.resolve('__tests__/__fixture__/test_ast.json'), 'utf8')
-  // const ast = hydrate(rawAst)
-  const ast = parse(code)
+  const ast: Node = JSON.parse(fs.readFileSync(path.join(__dirname,'__fixture__/rough.ast.json'), 'utf8'))
 
   it('should', () => {
     const result = generate(ast)
