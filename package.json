@@ -85,11 +85,5 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-commit": "yarn pretty-quick && yarn inspect"
     }
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "npm run -s type",
-      "npm run -s lint"
-    ]
   }
 }
