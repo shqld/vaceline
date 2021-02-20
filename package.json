@@ -19,11 +19,11 @@
   },
   "scripts": {
     "start": "npm run -s build > /dev/null && node dist/cli",
-    "build": "babel src -d dist -x .ts,.js --delete-dir-on-start",
-    "inspect": "yarn lint && yarn typecheck && yarn test",
-    "lint": "eslint src --ext .ts",
-    "typecheck": "tsc --noEmit",
-    "test": "jest",
+    "build": "lerna run build --parallel",
+    "inspect": "yarn lint && yarn type && yarn test",
+    "lint": "lerna run lint --parallel",
+    "type": "lerna run type --parallel",
+    "test": "lerna run test --parallel",
     "bench": "node benchmark > bench.txt",
     "build-doc": "node tasks/build-doc",
     "coverage": "jest --coverage",
@@ -91,7 +91,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "npm run -s typecheck",
+      "npm run -s type",
       "npm run -s lint"
     ]
   }

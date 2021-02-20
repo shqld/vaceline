@@ -6,6 +6,12 @@
   "main": "dist/index.js",
   "module": "src/index.ts",
   "types": "src/index.ts",
+  "scripts": {
+    "build": "babel src -d dist -x .ts,.js --delete-dir-on-start",
+    "lint": "eslint src --ext .ts",
+    "type": "tsc --noEmit",
+    "test": "jest"
+  },
   "dependencies": {
     "@vaceline/generator": "0.0.1",
     "mkdirp": "^0.5.1",
