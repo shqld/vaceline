@@ -8,7 +8,9 @@
   "module": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
-    "build": "babel src -d dist -x .ts,.js --delete-dir-on-start",
+    "dev": "rimraf dist && cp -r src/public dist && yarn webpack --watch --dev --config webpack.config.ts",
+    "build": "rimraf dist && cp -r src/public dist && yarn webpack --config webpack.config.ts",
+    "prepublishOnly": "yarn build && yarn gh-pages -d dist",
     "lint": "eslint src --ext .ts",
     "type": "tsc --noEmit",
     "test": "jest"

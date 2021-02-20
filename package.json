@@ -26,10 +26,7 @@
     "test": "lerna run test --parallel",
     "bench": "node benchmark > bench.txt",
     "build-doc": "node tasks/build-doc",
-    "coverage": "jest --coverage",
-    "dev:web": "rimraf web/dist && cp -r web/src/public web/dist && yarn webpack --watch --dev --config web/webpack.config.ts",
-    "build:web": "rimraf web/dist && cp -r web/src/public web/dist && yarn webpack --config web/webpack.config.ts",
-    "publish:web": "yarn build:web && yarn gh-pages -d web/dist"
+    "coverage": "jest --coverage"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
