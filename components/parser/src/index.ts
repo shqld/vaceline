@@ -11,7 +11,7 @@ import {
 import { createError } from './create-error'
 import { TokenReader } from './token-reader'
 
-import {  buildDebug } from '@vaceline/utils'
+import { buildDebug } from '@vaceline/utils'
 import { parseStmt } from './statement/index'
 import { parseCompound } from './compound'
 

@@ -36,7 +36,9 @@ const excludeSomeTokensAndConvertIntoArray = (code: string): Array<string> =>
 describe('Generator', () => {
   const codePath = path.resolve('__tests__/__fixture__/rough.vcl')
   const code = fs.readFileSync(codePath, 'utf8')
-  const ast: Node = JSON.parse(fs.readFileSync(path.join(__dirname,'__fixture__/rough.ast.json'), 'utf8'))
+  const ast: Node = JSON.parse(
+    fs.readFileSync(path.join(__dirname, '__fixture__/rough.ast.json'), 'utf8')
+  )
 
   it('should', () => {
     const result = generate(ast)

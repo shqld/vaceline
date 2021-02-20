@@ -2,7 +2,7 @@
 import fs from 'fs'
 import path from 'path'
 import { Identifier } from '@vaceline/types'
-import { parse} from '@vaceline/parser'
+import { parse } from '@vaceline/parser'
 import { traverse, createPathArray } from '../src'
 import { NodePath } from '../src/path'
 
