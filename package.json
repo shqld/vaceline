@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "npm run -s build > /dev/null && node dist/cli",
-    "build": "babel src -d dist -x .ts,.js --delete-dir-on-start",
+    "build": "babel src -d dist -x .ts,.js --delete-dir-on-start && tsc -p tsconfig.build.json",
     "inspect": "yarn lint && yarn typecheck && yarn test",
     "lint": "eslint src --ext .ts",
     "typecheck": "tsc --noEmit",
